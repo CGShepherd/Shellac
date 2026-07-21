@@ -1,0 +1,32 @@
+{
+  "identifier": "G3-016",
+  "revision": "Rev A0",
+  "title": "Real Footprint Audit",
+  "baseline_tests": "275 passed",
+  "files": [
+    {
+      "path": "README_G3_016.md",
+      "sha256": "21ad6666f3161e6ab6e667370eda208f98e307ea4bcb97b4208fa3d53b659866"
+    },
+    {
+      "path": "docs/G3-016_Real_Footprint_Audit_and_Capacitor_ECO_Blockers_Rev_A0.md",
+      "sha256": "00a330ccffc73359826ac761656fba5578ba96e76d808ad6aa33c42f373df236"
+    },
+    {
+      "path": "generator/layout/real_footprint_audit.py",
+      "sha256": "df06831af2ca6dfe4623e45fa8858f3a61ddb146c7834e98e20fe56b40086109"
+    },
+    {
+      "path": "real_footprint_audit.json",
+      "sha256": "27d136665cb5856bc71dea54d3aa19ff26b6946244dd017e93c186628fe91574"
+    },
+    {
+      "path": "scripts/report_real_footprint_audit.py",
+      "sha256": "efc4548b2d885083ace66452131fc7dda47a7474d7e4e92ec09141e68379132e"
+    },
+    {
+      "path": "tests/test_real_footprint_audit.py",
+      "sha256": "4c1f657b51c33fc4b8603ddc64099c8feeea430d57f39176c492e09e318f3c52"
+    }
+  ]
+}

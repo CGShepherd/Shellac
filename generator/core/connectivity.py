@@ -1,20 +1,14 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
-@dataclass(frozen=True)
-class Net:
+@dataclass
+class Label:
     name: str
-    net_class: str = "Default"
+    x: float
+    y: float
 
 @dataclass
-class PinRef:
-    component_ref: str
-    pin: str
-
-@dataclass
-class Connection:
-    net: Net
-    pins: list[PinRef] = field(default_factory=list)
-
-    def add(self, component_ref: str, pin: str):
-        self.pins.append(PinRef(component_ref, pin))
-        return self
+class Wire:
+    x1: float
+    y1: float
+    x2: float
+    y2: float

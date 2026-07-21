@@ -1,0 +1,357 @@
+{
+  "identifier": "G3-FPA-016",
+  "revision": "Rev A0",
+  "status": "BLOCKED \u2014 schematic-to-physical capacitor ECO required",
+  "board_population_count": 225,
+  "accepted_identity_count": 191,
+  "review_count": 16,
+  "blocker_count": 18,
+  "findings": [
+    {
+      "ref": "C30010",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "68n + 5.6n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C30011",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "68n + 9.1n + 0.56n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C30012",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "68n + 10n + 0.47n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C30013",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "27n + 2.4n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C30030",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "120n + 12n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C30032",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "56n + 6.2n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C30033",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "33n + 3.6n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C35010",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "68n + 5.6n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C35011",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "68n + 9.1n + 0.56n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C35012",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "68n + 10n + 0.47n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C35013",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "27n + 2.4n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C35030",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "120n + 12n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C35032",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "56n + 6.2n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C35033",
+      "sheet_id": "SCH103",
+      "severity": "BLOCKER",
+      "category": "compound_capacitor_not_physical",
+      "value": "33n + 3.6n",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "One schematic reference encodes multiple parallel capacitor values but owns only one PCB footprint.",
+      "required_action": "Decompose into individually referenced physical capacitors while preserving the synthesised aggregate value and channel symmetry."
+    },
+    {
+      "ref": "C80010",
+      "sheet_id": "SCH108",
+      "severity": "BLOCKER",
+      "category": "non_polar_10u_0805_unresolved",
+      "value": "10u NP",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "A non-polar 10 uF signal capacitor is assigned to a generic 0805 footprint without an approved dielectric, voltage or derating basis.",
+      "required_action": "Select the physical capacitor technology and rated voltage, then assign the corresponding real footprint before placement acceptance."
+    },
+    {
+      "ref": "C80011",
+      "sheet_id": "SCH108",
+      "severity": "BLOCKER",
+      "category": "non_polar_10u_0805_unresolved",
+      "value": "10u NP",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "A non-polar 10 uF signal capacitor is assigned to a generic 0805 footprint without an approved dielectric, voltage or derating basis.",
+      "required_action": "Select the physical capacitor technology and rated voltage, then assign the corresponding real footprint before placement acceptance."
+    },
+    {
+      "ref": "C90010",
+      "sheet_id": "SCH108",
+      "severity": "BLOCKER",
+      "category": "non_polar_10u_0805_unresolved",
+      "value": "10u NP",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "A non-polar 10 uF signal capacitor is assigned to a generic 0805 footprint without an approved dielectric, voltage or derating basis.",
+      "required_action": "Select the physical capacitor technology and rated voltage, then assign the corresponding real footprint before placement acceptance."
+    },
+    {
+      "ref": "C90011",
+      "sheet_id": "SCH108",
+      "severity": "BLOCKER",
+      "category": "non_polar_10u_0805_unresolved",
+      "value": "10u NP",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "A non-polar 10 uF signal capacitor is assigned to a generic 0805 footprint without an approved dielectric, voltage or derating basis.",
+      "required_action": "Select the physical capacitor technology and rated voltage, then assign the corresponding real footprint before placement acceptance."
+    },
+    {
+      "ref": "C30052",
+      "sheet_id": "SCH103",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C30053",
+      "sheet_id": "SCH103",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C35052",
+      "sheet_id": "SCH103",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C35053",
+      "sheet_id": "SCH103",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C4093",
+      "sheet_id": "SCH104",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C4094",
+      "sheet_id": "SCH104",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C5093",
+      "sheet_id": "SCH105",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C5094",
+      "sheet_id": "SCH105",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C70093",
+      "sheet_id": "SCH107",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C70094",
+      "sheet_id": "SCH107",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C75093",
+      "sheet_id": "SCH107",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C75094",
+      "sheet_id": "SCH107",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C80042",
+      "sheet_id": "SCH108",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C80043",
+      "sheet_id": "SCH108",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C90042",
+      "sheet_id": "SCH108",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    },
+    {
+      "ref": "C90043",
+      "sheet_id": "SCH108",
+      "severity": "REVIEW",
+      "category": "10u_0805_derating_review",
+      "value": "10u",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "finding": "10 uF in 0805 may be electrically viable only with a specific MLCC voltage rating and acceptable DC-bias derating.",
+      "required_action": "Confirm rail exposure, dielectric, rated voltage and effective capacitance before freezing the footprint."
+    }
+  ],
+  "invariants": [
+    "No compound electrical value may be represented by one physical footprint.",
+    "Signal-path capacitor technology and voltage rating must be explicit.",
+    "Mirrored channels must retain identical physical decomposition.",
+    "No footprint audit action authorises routing or manufacturing release."
+  ]
+}
