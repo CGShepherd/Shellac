@@ -147,3 +147,35 @@ def test_root_only_global_names_cannot_collide_with_engineering_signal_names(tmp
     global_names = set(__import__("re").findall(r'\(global_label "([^"]+)"', text))
     assert global_names
     assert all(name.startswith("ROOT__") for name in global_names)
+
+
+def test_sch103_physical_capacitor_values_and_packages_are_mirrored():
+    from generator.physical_parts import timing_capacitor_footprint
+
+    sheet = _sheet()
+    by_ref = {component.ref: component for component in sheet.components}
+
+    expected_parts = []
+    next_suffix = 10
+    for network in list(BASS_NETWORKS[1:]) + [RIAA_BASS_NETWORK]:
+        for value_nf in network.capacitor_parts_nf:
+            expected_parts.append((next_suffix, value_nf))
+            next_suffix += 1
+
+    next_suffix = 20
+    for network in TREBLE_NETWORKS[1:]:
+        for value_nf in network.capacitor_parts_nf:
+            expected_parts.append((next_suffix, value_nf))
+            next_suffix += 1
+
+    def formatted_value(value_nf):
+        if value_nf < 1.0:
+            return f"{value_nf * 1000:g}p"
+        return f"{value_nf:g}n"
+
+    for base in (300, 350):
+        for suffix, value_nf in expected_parts:
+            component = by_ref[f"C{base}{suffix}"]
+            assert component.value == formatted_value(value_nf)
+            assert component.footprint == timing_capacitor_footprint(value_nf)
+            assert "+" not in component.value

@@ -10,6 +10,7 @@ from __future__ import annotations
 from generator.core.components import Component, capacitor, resistor, testpoint
 from generator.core.geometry import Point
 from generator.core.pins import pin_position
+from generator.physical_parts import timing_capacitor_footprint
 from generator.model.replay_eq import (
     BASS_NETWORKS, OPA1612_DESIGN_OUTPUT_RMS_V, RECOVERY_RF_OHM,
     RECOVERY_RG_OHM, RIAA_BASS_NETWORK, TREBLE_NETWORKS, SOURCE_URL,
@@ -35,16 +36,6 @@ def _physical_cap_value(value_nf: float) -> str:
         return f"{value_nf * 1000:g}p"
     return f"{value_nf:g}n"
 
-
-def _timing_cap_footprint(value_nf: float) -> str:
-    """Provisional solderable C0G package policy for SCH103 timing parts.
-
-    Larger values use 1206 to improve C0G availability; trimming values remain
-    0805. Exact manufacturer part numbers remain a procurement-freeze action.
-    """
-    if value_nf >= 27.0:
-        return "Capacitor_SMD:C_1206_3216Metric"
-    return "Capacitor_SMD:C_0805_2012Metric"
 
 
 def _add_parallel_capacitors(
@@ -77,7 +68,7 @@ def _add_parallel_capacitors(
             voltage="50V min",
             function=function,
             rotation=90,
-            footprint=_timing_cap_footprint(value_nf),
+            footprint=timing_capacitor_footprint(value_nf),
         ))
         sheet.connect_points(node_a, pin_position(cap, "1"))
         sheet.connect_points(pin_position(cap, "2"), node_b)
