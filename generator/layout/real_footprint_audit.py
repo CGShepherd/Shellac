@@ -117,6 +117,7 @@ def build_real_footprint_audit() -> RealFootprintAudit:
             "No compound electrical value may be represented by one physical footprint.",
             "Signal-path capacitor technology and voltage rating must be explicit.",
             "Mirrored channels must retain identical physical decomposition.",
+            "Only conventional solderable terminations are permitted; conductive-epoxy-only parts are prohibited.",
             "No footprint audit action authorises routing or manufacturing release.",
         ],
     )
@@ -132,8 +133,8 @@ def validate_real_footprint_audit(audit: RealFootprintAudit) -> list[str]:
     if len(refs) != len(set(refs)):
         issues.append("duplicate footprint audit finding")
     compound = [f for f in audit.findings if f.category == "compound_capacitor_not_physical"]
-    if len(compound) != 14:
-        issues.append(f"expected 14 compound-capacitor blockers, found {len(compound)}")
+    if compound:
+        issues.append(f"compound-capacitor blockers remain: {len(compound)}")
     np10 = [f for f in audit.findings if f.category == "non_polar_10u_0805_unresolved"]
     if len(np10) != 4:
         issues.append(f"expected 4 non-polar 10 uF blockers, found {len(np10)}")

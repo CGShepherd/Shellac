@@ -29,8 +29,60 @@ def _opamp(ref, value, function, at, gain):
     )
 
 
-def _cap_value(parts):
-    return " + ".join(f"{value:g}n" for value in parts)
+def _physical_cap_value(value_nf: float) -> str:
+    """Format one physical capacitor value for KiCad and the BOM."""
+    if value_nf < 1.0:
+        return f"{value_nf * 1000:g}p"
+    return f"{value_nf:g}n"
+
+
+def _timing_cap_footprint(value_nf: float) -> str:
+    """Provisional solderable C0G package policy for SCH103 timing parts.
+
+    Larger values use 1206 to improve C0G availability; trimming values remain
+    0805. Exact manufacturer part numbers remain a procurement-freeze action.
+    """
+    if value_nf >= 27.0:
+        return "Capacitor_SMD:C_1206_3216Metric"
+    return "Capacitor_SMD:C_0805_2012Metric"
+
+
+def _add_parallel_capacitors(
+    sheet,
+    *,
+    refs: tuple[str, ...],
+    values_nf: tuple[float, ...],
+    x: float,
+    y: float,
+    node_a: Point,
+    node_b: Point,
+    function: str,
+):
+    """Add explicitly referenced physical capacitors in parallel.
+
+    Each capacitor owns one footprint and is wired to the same two electrical
+    nodes. Vertical staggering keeps the schematic human-reviewable.
+    """
+    if len(refs) != len(values_nf):
+        raise ValueError("one reference is required for each physical capacitor")
+    capacitors = []
+    spacing = 5.08
+    y0 = y - spacing * (len(values_nf) - 1) / 2
+    for index, (ref, value_nf) in enumerate(zip(refs, values_nf)):
+        cap = sheet.add_component(capacitor(
+            ref,
+            _physical_cap_value(value_nf),
+            Point(x, y0 + index * spacing),
+            dielectric="C0G/NP0",
+            voltage="50V min",
+            function=function,
+            rotation=90,
+            footprint=_timing_cap_footprint(value_nf),
+        ))
+        sheet.connect_points(node_a, pin_position(cap, "1"))
+        sheet.connect_points(pin_position(cap, "2"), node_b)
+        capacitors.append(cap)
+    return tuple(capacitors)
 
 
 def _wire_path(sheet, *points):
@@ -137,20 +189,29 @@ def _add_channel(sheet, channel, index, y):
 
     branches = list(BASS_NETWORKS[1:]) + [RIAA_BASS_NETWORK]
     branch_pins = ("B200", "B400", "B500", "RIAA")
+    bass_cap_index = 10
     for i, (item, pin_name) in enumerate(zip(branches, branch_pins)):
         yy = y - 45 + i * 15
         r = sheet.add_component(resistor(
             f"R{base}{10+i}", f"{item.rs_ohm:g}", Point(118, yy),
             tolerance="0.1%", function=f"{item.name} series R",
         ))
-        c = sheet.add_component(capacitor(
-            f"C{base}{10+i}", _cap_value(item.capacitor_parts_nf),
-            Point(145, yy), dielectric="Film/C0G", voltage="50V min",
-            function=f"{item.name} branch", rotation=90,
-        ))
         sheet.connect_points(u1_out, pin_position(r, "1"))
-        sheet.connect_points(pin_position(r, "2"), pin_position(c, "1"))
-        sheet.connect_points(pin_position(c, "2"), pin_position(swb, pin_name))
+        refs = tuple(
+            f"C{base}{bass_cap_index + offset}"
+            for offset in range(len(item.capacitor_parts_nf))
+        )
+        _add_parallel_capacitors(
+            sheet,
+            refs=refs,
+            values_nf=item.capacitor_parts_nf,
+            x=145,
+            y=yy,
+            node_a=pin_position(r, "2"),
+            node_b=pin_position(swb, pin_name),
+            function=f"{item.name} branch",
+        )
+        bass_cap_index += len(item.capacitor_parts_nf)
 
     # Passive treble selector. The main 750-ohm path remains continuous; each
     # selected capacitor is a visible branch from its contact to 0VA.
@@ -165,22 +226,31 @@ def _add_channel(sheet, channel, index, y):
     treble_common = pin_position(swt, "COMMON")
     sheet.connect_points(rt_2, treble_common)
 
-    treble_caps = []
+    treble_cap_index = 20
     for i, (item, pin_name) in enumerate(
         zip(TREBLE_NETWORKS[1:], ("T1600", "T2121", "T3400", "T5800"))
     ):
         yy = y - 35 + i * 18
-        c = sheet.add_component(capacitor(
-            f"C{base}{30+i}", _cap_value(item.capacitor_parts_nf),
-            Point(310, yy), dielectric="Film/C0G", voltage="50V min",
-            function=f"{item.name} treble", rotation=90,
-        ))
-        sheet.connect_points(pin_position(swt, pin_name), pin_position(c, "1"))
-        _label_on_dedicated_stub(
-            sheet, pin_position(c, "2"), "0VA",
-            dy=7, label_dx=5.08,
+        refs = tuple(
+            f"C{base}{treble_cap_index + offset}"
+            for offset in range(len(item.capacitor_parts_nf))
         )
-        treble_caps.append(c)
+        ground_node = Point(325, yy + 10)
+        _add_parallel_capacitors(
+            sheet,
+            refs=refs,
+            values_nf=item.capacitor_parts_nf,
+            x=310,
+            y=yy,
+            node_a=pin_position(swt, pin_name),
+            node_b=ground_node,
+            function=f"{item.name} treble",
+        )
+        _label_on_dedicated_stub(
+            sheet, ground_node, "0VA",
+            dx=5.08, label_dx=5.08,
+        )
+        treble_cap_index += len(item.capacitor_parts_nf)
 
     # Recovery stage and feedback divider.
     u2 = sheet.add_component(_opamp(

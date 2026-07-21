@@ -7,20 +7,17 @@ from generator.layout.real_footprint_audit import (
 def test_real_footprint_audit_is_deterministic_and_balanced():
     audit = build_real_footprint_audit()
     assert validate_real_footprint_audit(audit) == []
-    assert audit.board_population_count == 225
-    assert audit.accepted_identity_count == 191
+    assert audit.board_population_count == 243
+    assert audit.accepted_identity_count == 223
     assert audit.review_count == 16
-    assert audit.blocker_count == 18
+    assert audit.blocker_count == 4
     assert audit.status.startswith("BLOCKED")
 
 
-def test_compound_replay_capacitors_are_not_treated_as_physical_parts():
+def test_replay_capacitors_are_decomposed_into_physical_parts():
     audit = build_real_footprint_audit()
     compound = [f for f in audit.findings if f.category == "compound_capacitor_not_physical"]
-    assert len(compound) == 14
-    assert {f.sheet_id for f in compound} == {"SCH103"}
-    assert all("+" in f.value for f in compound)
-    assert all(f.severity == "BLOCKER" for f in compound)
+    assert compound == []
 
 
 def test_unresolved_ten_microfarad_classes_remain_visible():

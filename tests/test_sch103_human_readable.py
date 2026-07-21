@@ -50,19 +50,33 @@ def test_sch103_selector_branches_are_directly_wired():
     edges = _edges(sheet)
     for base in (300, 350):
         swb = by_ref[f"SW{base}1"]
-        for i, pin_name in enumerate(("B200", "B400", "B500", "RIAA")):
-            cap = by_ref[f"C{base}{10+i}"]
-            assert frozenset((
-                (pin_position(cap, "2").x, pin_position(cap, "2").y),
-                (pin_position(swb, pin_name).x, pin_position(swb, pin_name).y),
-            )) in edges
+        bass_refs = {
+            "B200": (10, 11),
+            "B400": (12, 13, 14),
+            "B500": (15, 16, 17),
+            "RIAA": (18, 19),
+        }
+        for pin_name, suffixes in bass_refs.items():
+            for suffix in suffixes:
+                cap = by_ref[f"C{base}{suffix}"]
+                assert frozenset((
+                    (pin_position(cap, "2").x, pin_position(cap, "2").y),
+                    (pin_position(swb, pin_name).x, pin_position(swb, pin_name).y),
+                )) in edges
         swt = by_ref[f"SW{base}2"]
-        for i, pin_name in enumerate(("T1600", "T2121", "T3400", "T5800")):
-            cap = by_ref[f"C{base}{30+i}"]
-            assert frozenset((
-                (pin_position(swt, pin_name).x, pin_position(swt, pin_name).y),
-                (pin_position(cap, "1").x, pin_position(cap, "1").y),
-            )) in edges
+        treble_refs = {
+            "T1600": (20, 21),
+            "T2121": (22,),
+            "T3400": (23, 24),
+            "T5800": (25, 26),
+        }
+        for pin_name, suffixes in treble_refs.items():
+            for suffix in suffixes:
+                cap = by_ref[f"C{base}{suffix}"]
+                assert frozenset((
+                    (pin_position(swt, pin_name).x, pin_position(swt, pin_name).y),
+                    (pin_position(cap, "1").x, pin_position(cap, "1").y),
+                )) in edges
 
 
 def test_sch103_testpoints_are_on_real_signal_nodes():
