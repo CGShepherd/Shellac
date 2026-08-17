@@ -189,8 +189,102 @@ def _pack_cluster(
                 "Constrained proposal eligible for review acceptance."
             ),
         ))
+    if _has_body_overlap(proposals):
+        return _pack_cluster_shelves(ghost, entries)
     return proposals
 
+
+
+def _pack_cluster_shelves(
+    ghost: GhostCluster,
+    entries: list[FootprintEntry],
+) -> list[PlacementProposal]:
+    """Fallback deterministic shelf packer for dense mixed-size clusters.
+
+    The preliminary grid is intentionally simple and can compress row pitch
+    when a cluster contains one unusually large package.  This fallback is
+    used only when that grid would overlap conservative footprint envelopes.
+    """
+    gap = 1.2
+    margin = max(1.5, ghost.keepout_mm / 2.0)
+    left = ghost.x_mm + margin
+    top = ghost.y_mm + margin
+    right = ghost.x_mm + ghost.width_mm - margin
+    bottom = ghost.y_mm + ghost.depth_mm - margin
+
+    ordered = sorted(
+        entries,
+        key=lambda item: (
+            0 if item.ref in ghost.anchor_refs else 1,
+            -footprint_envelope(item).depth_mm,
+            -footprint_envelope(item).width_mm,
+            item.ref,
+        ),
+    )
+
+    rows: list[list[FootprintEntry]] = []
+    row_widths: list[float] = []
+    row_heights: list[float] = []
+    for entry in ordered:
+        env = footprint_envelope(entry)
+        placed = False
+        for index, row in enumerate(rows):
+            candidate_width = row_widths[index] + gap + env.width_mm
+            if candidate_width <= (right - left) + 1e-9:
+                row.append(entry)
+                row_widths[index] = candidate_width
+                row_heights[index] = max(row_heights[index], env.depth_mm)
+                placed = True
+                break
+        if not placed:
+            rows.append([entry])
+            row_widths.append(env.width_mm)
+            row_heights.append(env.depth_mm)
+
+    total_height = sum(row_heights) + gap * max(0, len(rows) - 1)
+    if total_height > (bottom - top) + 1e-9:
+        raise ValueError(f"{ghost.identifier} cannot fit conservative footprint envelopes")
+
+    proposals: list[PlacementProposal] = []
+    y_cursor = top
+    for row, row_height in zip(rows, row_heights):
+        x_cursor = left
+        for entry in row:
+            env = footprint_envelope(entry)
+            x = x_cursor + env.width_mm / 2.0
+            y = y_cursor + row_height / 2.0
+            proposals.append(PlacementProposal(
+                ref=entry.ref,
+                sheet_id=entry.sheet_id,
+                cluster_id=ghost.identifier,
+                footprint=entry.footprint,
+                x_mm=round(x, 3),
+                y_mm=round(y, 3),
+                rotation_deg=_proposal_rotation(entry, ghost),
+                width_mm=env.width_mm,
+                depth_mm=env.depth_mm,
+                accepted=not ghost.manual_authority,
+                placement_authority=("manual_review" if ghost.manual_authority else "synthesised_review"),
+                rationale=(
+                    "Coordinate proposal only; critical cluster requires Gate 3A human acceptance."
+                    if ghost.manual_authority else
+                    "Constrained proposal eligible for review acceptance."
+                ),
+            ))
+            x_cursor += env.width_mm + gap
+        y_cursor += row_height + gap
+    return proposals
+
+
+def _has_body_overlap(proposals: list[PlacementProposal]) -> bool:
+    for index, a in enumerate(proposals):
+        for b in proposals[index + 1:]:
+            if (
+                abs(a.x_mm - b.x_mm) < (a.width_mm + b.width_mm) / 2.0 - 1e-9
+                and abs(a.y_mm - b.y_mm) < (a.depth_mm + b.depth_mm) / 2.0 - 1e-9
+            ):
+                return True
+    return False
 
 def validate_preliminary_placement(model: PreliminaryPlacementBaseline) -> list[str]:
     issues: list[str] = []
@@ -251,7 +345,7 @@ def build_preliminary_placement_baseline(
             "Panel and virtual references receive no PCB coordinate.",
             "Manual-authority clusters are never automatically accepted.",
             "Coordinates remain provisional until enclosure and mounting datums are frozen.",
-            "Exact KiCad courtyard and collision closure remains a later board-export gate.",
+            "Conservative footprint-envelope collision closure is required before routing review.",
         ],
     )
     issues = validate_preliminary_placement(model)

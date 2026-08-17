@@ -29,3 +29,17 @@ def test_preliminary_placement_is_valid_and_non_manufacturing():
     placement = build_preliminary_placement_baseline()
     assert validate_preliminary_placement(placement) == []
     assert "not accepted for manufacture" in placement.status.lower()
+
+
+def test_preliminary_candidate_has_no_conservative_body_overlaps():
+    placement = build_preliminary_placement_baseline()
+    proposals = placement.proposals
+    overlaps = []
+    for index, a in enumerate(proposals):
+        for b in proposals[index + 1:]:
+            if (
+                abs(a.x_mm - b.x_mm) < (a.width_mm + b.width_mm) / 2.0 - 1e-9
+                and abs(a.y_mm - b.y_mm) < (a.depth_mm + b.depth_mm) / 2.0 - 1e-9
+            ):
+                overlaps.append((a.ref, b.ref))
+    assert overlaps == []
