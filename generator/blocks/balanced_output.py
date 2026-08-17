@@ -8,6 +8,10 @@ in for conductors.
 
 from __future__ import annotations
 
+from generator.component_selection import (
+    bulk_decoupling_capacitor_requirements,
+    common_mode_sense_capacitor_requirements,
+)
 from generator.core.components import Component, capacitor, testpoint
 from generator.core.geometry import Point
 from generator.core.pins import pin_position
@@ -136,6 +140,7 @@ def _sense_capacitor(
         dielectric="Non-polar electrolytic",
         voltage="35V min",
         function=function,
+        footprint=common_mode_sense_capacitor_requirements().selected_footprint,
     ))
     pin_1 = pin_position(cap, "1")
     pin_2 = pin_position(cap, "2")
@@ -365,6 +370,7 @@ def _add_channel(
             dielectric="Low-ESR electrolytic",
             voltage="35V min",
             function=f"{ch} local {rail} bulk decoupling",
+            footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
         ))
         sheet.connect_vertical_two_pin(hf, rail, "0VA")
         sheet.connect_vertical_two_pin(bulk, rail, "0VA")

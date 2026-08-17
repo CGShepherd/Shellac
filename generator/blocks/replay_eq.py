@@ -7,6 +7,7 @@ substitutes for conductors.
 """
 from __future__ import annotations
 
+from generator.component_selection import bulk_decoupling_capacitor_requirements
 from generator.core.components import Component, capacitor, resistor, testpoint
 from generator.core.geometry import Point
 from generator.core.pins import pin_position
@@ -306,6 +307,7 @@ def _add_channel(sheet, channel, index, y):
             f"C{base}{52+n}", "10u", Point(bulk_x, y+55),
             dielectric="Low-ESR electrolytic", voltage="35V min",
             function=f"{rail} bulk decoupling",
+            footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
         ))
         for cap in (hf_dec, bulk):
             _label_on_dedicated_stub(

@@ -8,6 +8,10 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
 
+from generator.component_selection import (
+    BULK_DECOUPLING_10UF_SMD,
+    NONPOLAR_FEEDBACK_10UF_THT,
+)
 from generator.layout.footprint_contract import build_footprint_contract
 
 
@@ -66,38 +70,46 @@ def build_real_footprint_audit() -> RealFootprintAudit:
                     "preserving the synthesised aggregate value and channel symmetry."
                 ),
             ))
-        elif entry.lib_id.startswith("Device:C") and entry.value == "10u NP":
+        elif (
+            entry.lib_id.startswith("Device:C")
+            and entry.value == "10u NP"
+            and entry.footprint != NONPOLAR_FEEDBACK_10UF_THT
+        ):
             findings.append(FootprintAuditFinding(
                 ref=entry.ref,
                 sheet_id=entry.sheet_id,
                 severity="BLOCKER",
-                category="non_polar_10u_0805_unresolved",
+                category="non_polar_10u_physical_unresolved",
                 value=entry.value,
                 footprint=entry.footprint,
                 finding=(
-                    "A non-polar 10 uF signal capacitor is assigned to a generic 0805 "
-                    "footprint without an approved dielectric, voltage or derating basis."
+                    "A non-polar 10 uF signal capacitor does not use the controlled "
+                    "common-mode feedback footprint policy."
                 ),
                 required_action=(
-                    "Select the physical capacitor technology and rated voltage, then "
-                    "assign the corresponding real footprint before placement acceptance."
+                    "Apply the controlled 10 uF non-polar feedback requirements before "
+                    "placement acceptance."
                 ),
             ))
-        elif entry.lib_id.startswith("Device:C") and entry.value == "10u":
+        elif (
+            entry.lib_id.startswith("Device:C")
+            and entry.value == "10u"
+            and entry.footprint != BULK_DECOUPLING_10UF_SMD
+        ):
             findings.append(FootprintAuditFinding(
                 ref=entry.ref,
                 sheet_id=entry.sheet_id,
                 severity="REVIEW",
-                category="10u_0805_derating_review",
+                category="10u_bulk_physical_identity_review",
                 value=entry.value,
                 footprint=entry.footprint,
                 finding=(
-                    "10 uF in 0805 may be electrically viable only with a specific MLCC "
-                    "voltage rating and acceptable DC-bias derating."
+                    "A 10 uF bulk decoupling capacitor does not use the controlled "
+                    "35 V low-ESR electrolytic footprint policy."
                 ),
                 required_action=(
-                    "Confirm rail exposure, dielectric, rated voltage and effective "
-                    "capacitance before freezing the footprint."
+                    "Apply the controlled 10 uF bulk-decoupling requirements before "
+                    "freezing the footprint."
                 ),
             ))
 
@@ -105,7 +117,7 @@ def build_real_footprint_audit() -> RealFootprintAudit:
     reviews = sum(f.severity == "REVIEW" for f in findings)
     accepted = len(entries) - blockers - reviews
     return RealFootprintAudit(
-        identifier="G3-FPA-016",
+        identifier="G3-FPA-017",
         revision="Rev A0",
         status=("BLOCKED — schematic-to-physical capacitor ECO required" if blockers else "READY"),
         board_population_count=len(entries),
@@ -135,7 +147,10 @@ def validate_real_footprint_audit(audit: RealFootprintAudit) -> list[str]:
     compound = [f for f in audit.findings if f.category == "compound_capacitor_not_physical"]
     if compound:
         issues.append(f"compound-capacitor blockers remain: {len(compound)}")
-    np10 = [f for f in audit.findings if f.category == "non_polar_10u_0805_unresolved"]
-    if len(np10) != 4:
-        issues.append(f"expected 4 non-polar 10 uF blockers, found {len(np10)}")
+    np10 = [f for f in audit.findings if f.category == "non_polar_10u_physical_unresolved"]
+    if np10:
+        issues.append(f"non-polar 10 uF blockers remain: {len(np10)}")
+    bulk10 = [f for f in audit.findings if f.category == "10u_bulk_physical_identity_review"]
+    if bulk10:
+        issues.append(f"10 uF bulk footprint reviews remain: {len(bulk10)}")
     return issues

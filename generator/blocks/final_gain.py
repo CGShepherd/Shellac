@@ -6,6 +6,7 @@ matrix without changing the frozen total gain budget.
 """
 from __future__ import annotations
 
+from generator.component_selection import bulk_decoupling_capacitor_requirements
 from generator.core.components import Component, capacitor, resistor, testpoint
 from generator.core.geometry import Point
 from generator.core.pins import pin_position
@@ -96,11 +97,13 @@ def _decoupling(sheet) -> None:
         "C4093", "10u", Point(170, 245),
         dielectric="Low-ESR electrolytic", voltage="35V min",
         function="Local +18V bulk decoupling",
+        footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
     ))
     minus_bulk = sheet.add_component(capacitor(
         "C4094", "10u", Point(210, 245),
         dielectric="Low-ESR electrolytic", voltage="35V min",
         function="Local -18V bulk decoupling",
+        footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
     ))
 
     for component in (plus_hf, plus_bulk):

@@ -70,3 +70,37 @@ def test_component_function_vocabulary_covers_planned_policy_classes():
         "feedback",
         "compensation",
     }
+
+
+def test_bulk_decoupling_policy_closes_generic_0805_placeholder():
+    from generator.component_selection import (
+        BULK_DECOUPLING_10UF_SMD,
+        CapacitorDielectric,
+        ComponentFunction,
+        bulk_decoupling_capacitor_requirements,
+    )
+
+    req = bulk_decoupling_capacitor_requirements()
+    assert req.function is ComponentFunction.DECOUPLING
+    assert req.dielectric is CapacitorDielectric.ELECTROLYTIC
+    assert req.minimum_voltage_v == 35.0
+    assert req.signal_path is False
+    assert req.selected_footprint == BULK_DECOUPLING_10UF_SMD
+    assert "0805" not in req.selected_footprint
+
+
+def test_common_mode_sense_policy_is_nonpolar_and_signal_path():
+    from generator.component_selection import (
+        NONPOLAR_FEEDBACK_10UF_THT,
+        CapacitorDielectric,
+        ComponentFunction,
+        common_mode_sense_capacitor_requirements,
+    )
+
+    req = common_mode_sense_capacitor_requirements()
+    assert req.function is ComponentFunction.FEEDBACK
+    assert req.dielectric is CapacitorDielectric.NONPOLAR_ELECTROLYTIC
+    assert req.minimum_voltage_v == 35.0
+    assert req.signal_path is True
+    assert req.selected_footprint == NONPOLAR_FEEDBACK_10UF_THT
+    assert "0805" not in req.selected_footprint

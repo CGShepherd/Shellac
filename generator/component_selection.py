@@ -28,6 +28,7 @@ class CapacitorDielectric(str, Enum):
     X7R = "X7R"
     FILM = "film"
     ELECTROLYTIC = "electrolytic"
+    NONPOLAR_ELECTROLYTIC = "non-polar electrolytic"
 
 
 @dataclass(frozen=True)
@@ -67,6 +68,8 @@ class ComponentRequirements:
 
 TIMING_CAPACITOR_0805 = "Capacitor_SMD:C_0805_2012Metric"
 TIMING_CAPACITOR_1206 = "Capacitor_SMD:C_1206_3216Metric"
+BULK_DECOUPLING_10UF_SMD = "Capacitor_SMD:CP_Elec_6.3x5.8"
+NONPOLAR_FEEDBACK_10UF_THT = "Capacitor_THT:C_Radial_D5.0mm_H5.0mm_P2.00mm"
 
 
 def timing_capacitor_requirements(value_nf: float) -> ComponentRequirements:
@@ -104,3 +107,43 @@ def timing_capacitor_footprint(value_nf: float) -> str:
     """Return the current first-choice timing-capacitor footprint."""
 
     return timing_capacitor_requirements(value_nf).selected_footprint
+
+
+def bulk_decoupling_capacitor_requirements() -> ComponentRequirements:
+    """Return the physical requirements for local 10 uF rail decoupling.
+
+    The generated design already specifies low-ESR electrolytic technology and
+    35 V minimum rating on the +/-18 V rails.  A 6.3 mm SMD aluminium
+    electrolytic can footprint replaces the previous generic 0805 placeholder.
+    Manufacturer and series selection remains a procurement decision.
+    """
+
+    return ComponentRequirements(
+        function=ComponentFunction.DECOUPLING,
+        dielectric=CapacitorDielectric.ELECTROLYTIC,
+        tolerance_percent=20.0,
+        minimum_voltage_v=35.0,
+        preferred_footprints=(BULK_DECOUPLING_10UF_SMD,),
+        signal_path=False,
+        notes="10 uF local rail bulk decoupling; low-ESR electrolytic, manufacturer part not frozen.",
+    )
+
+
+def common_mode_sense_capacitor_requirements() -> ComponentRequirements:
+    """Return the physical requirements for THAT1646 OUT-to-SNS capacitors.
+
+    These are signal-path/common-mode feedback parts and are explicitly
+    non-polar electrolytics in the approved SCH108 design intent.  A
+    conventional 5 mm radial, 2 mm pitch footprint replaces the generic 0805
+    placeholder while manufacturer selection remains deferred.
+    """
+
+    return ComponentRequirements(
+        function=ComponentFunction.FEEDBACK,
+        dielectric=CapacitorDielectric.NONPOLAR_ELECTROLYTIC,
+        tolerance_percent=20.0,
+        minimum_voltage_v=35.0,
+        preferred_footprints=(NONPOLAR_FEEDBACK_10UF_THT,),
+        signal_path=True,
+        notes="THAT1646 OUT-to-SNS 10 uF non-polar capacitor; manufacturer part not frozen.",
+    )

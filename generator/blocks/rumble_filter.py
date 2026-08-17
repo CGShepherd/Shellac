@@ -9,6 +9,7 @@ at the stereo bypass selector.
 
 from __future__ import annotations
 
+from generator.component_selection import bulk_decoupling_capacitor_requirements
 from generator.core.components import Component, capacitor, resistor, testpoint
 from generator.core.geometry import Point
 from generator.core.pins import pin_position
@@ -163,10 +164,12 @@ def _add_decoupling(sheet, channel: str, base: int, *, y_hf: float, y_bulk: floa
     plus_bulk = sheet.add_component(capacitor(
         f"C{base}93", "10u", Point(255, y_bulk), dielectric="Low-ESR electrolytic",
         voltage="35V min", function=f"{channel} local +18V bulk decoupling",
+        footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
     ))
     minus_bulk = sheet.add_component(capacitor(
         f"C{base}94", "10u", Point(280, y_bulk), dielectric="Low-ESR electrolytic",
         voltage="35V min", function=f"{channel} local -18V bulk decoupling",
+        footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
     ))
 
     for component in (plus_hf, plus_bulk):

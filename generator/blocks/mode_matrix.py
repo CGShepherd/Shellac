@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from generator.component_selection import bulk_decoupling_capacitor_requirements
 from generator.core.components import Component, capacitor, resistor, testpoint
 from generator.core.geometry import Point
 from generator.core.pins import pin_position
@@ -125,5 +126,6 @@ def add_mode_matrix(sheet) -> None:
             dielectric="C0G/X7R" if kind == "HF" else "Low-ESR electrolytic",
             voltage="50V min" if kind == "HF" else "35V min",
             function=f"Local {rail} {kind} decoupling",
+            footprint=(bulk_decoupling_capacitor_requirements().selected_footprint if kind == "bulk" else "Capacitor_SMD:C_0805_2012Metric"),
         ))
         sheet.connect_vertical_two_pin(cap, rail, "0VA")
