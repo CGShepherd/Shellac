@@ -29,6 +29,7 @@ __all__ = [
     "validate_interface_architecture",
     "FitStatus", "VerifiedEnclosure", "ComponentEnvelope", "ControlStackContract", "UnicaseFitDecision", "build_unicase_fit_decision", "validate_unicase_fit_decision",
     "ClosureState", "FloorEnvelope", "RectangularFit", "PsuFitClosure", "build_psu_fit_closure", "validate_psu_fit_closure",
+    "ReplacementEnclosure", "PassiveThermalReserve", "PsuEnclosureFreeze", "build_psu_enclosure_freeze", "validate_psu_enclosure_freeze",
     ]
 
 
@@ -69,6 +70,12 @@ def __getattr__(name: str):
     }:
         from . import psu_fit
         return getattr(psu_fit, name)
+    if name in {
+        "ReplacementEnclosure", "PassiveThermalReserve", "PsuEnclosureFreeze",
+        "build_psu_enclosure_freeze", "validate_psu_enclosure_freeze",
+    }:
+        from . import psu_enclosure_freeze
+        return getattr(psu_enclosure_freeze, name)
     if name in {
         "CarrierPlateFreeze", "DrawingEvidence", "EnclosureDecision",
         "build_enclosure_decision_baseline", "decision_findings",

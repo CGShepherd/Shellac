@@ -12,12 +12,12 @@ def test_audio_unicase2_is_exactly_frozen_and_fits_carrier():
     assert model.audio.base_pcb_depth_mm >= 150.0
     assert model.audio.usable_inside_height_mm >= 60.0
 
-def test_psu_unicase1_is_not_prematurely_frozen():
+def test_psu_unicase2_is_frozen_after_g3023():
     model = build_unicase_fit_decision()
-    assert model.psu.order_code == "M5501119"
-    assert model.psu_status is FitStatus.REJECTED
+    assert model.psu.order_code == "M5502119"
+    assert model.psu_status is FitStatus.FROZEN
+    assert model.psu.usable_inside_height_mm >= 80.0
     assert any("thermal" in item.lower() for item in model.open_items)
-    assert any("next larger" in item.lower() for item in model.open_items)
 
 def test_transformer_envelope_includes_datasheet_allowance():
     t = build_unicase_fit_decision().transformer
