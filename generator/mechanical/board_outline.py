@@ -143,7 +143,7 @@ def build_provisional_outline_contract(
         ],
         invariants=[
             "No manufacturing mounting-hole coordinate is emitted before enclosure freeze.",
-            "The input side remains the right board edge and output/DC side remains the left board edge.",
+            "The board orientation remains front-to-rear: audio input region at front, output and DC-entry regions at rear.",
             "Board origin and coordinate handedness remain stable across provisional and frozen states.",
             "All PCB holes are non-plated mechanical holes with explicit copper keep-outs.",
         ],

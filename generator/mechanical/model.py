@@ -189,8 +189,8 @@ def build_mechanical_baseline() -> MechanicalBaseline:
         Datum("DAT-007", "PSU front DC-output plane", "Front end-panel plane carrying only the regulated low-voltage output interface.", "Panel drawing and segregation review."),
     ]
     candidates = [
-        EnclosureCandidate("ENC-A04", "METCASE", "UNICASE 2 / black RAL 9005 (M5502119)", EnclosureRole.AUDIO, AccessArchitecture.TOTAL_ACCESS, None, None, None, 260.0, "Aluminium metal instrument enclosure", CandidateStatus.DATA_REQUIRED, 5, 5, 4, 5, "Selected enclosure family and finish. Manufacturer confirms 260 x 250 x 90 mm external size and 241 x 229 mm base-PCB capability; usable internal control/bushing stack-up remains drawing-gated before exact order-code freeze."),
-        EnclosureCandidate("ENC-P04", "METCASE", "UNICASE / black RAL 9005", EnclosureRole.PSU, AccessArchitecture.TOTAL_ACCESS, None, None, None, None, "Aluminium metal instrument enclosure", CandidateStatus.DATA_REQUIRED, 5, 5, 4, 5, "Selected enclosure family and finish. Exact PSU size remains open pending toroid, regulator, IEC, mains-segregation and thermal fit."),
+        EnclosureCandidate("ENC-A04", "METCASE", "UNICASE 2 / black RAL 9005 (M5502119)", EnclosureRole.AUDIO, AccessArchitecture.TOTAL_ACCESS, 241.0, 229.0, 86.2, 260.0, "Aluminium metal instrument enclosure", CandidateStatus.PLAUSIBLE, 5, 5, 4, 5, "Exact audio enclosure frozen by G3-MECH-020. Manufacturer drawing gives 241 x 229 mm base-PCB envelope, 256 x 236 mm inside-face envelope and 86.2 mm internal cover height; control-hole release remains part-gated."),
+        EnclosureCandidate("ENC-P04", "METCASE", "UNICASE 1 / black RAL 9005 (M5501119)", EnclosureRole.PSU, AccessArchitecture.TOTAL_ACCESS, 166.0, 159.0, 65.0, 185.0, "Aluminium metal instrument enclosure", CandidateStatus.CONDITIONAL, 5, 5, 4, 5, "Preferred matching PSU candidate. Manufacturer base-PCB envelope is 166 x 159 mm; it deliberately fails the historical 180 mm depth / 80 mm height screening envelope until component-level IEC, transformer, regulator, segregation and thermal proof supersedes that conservative gate."),
         EnclosureCandidate("ENC-A01", "Takachi", "Large AL die-cast family", EnclosureRole.AUDIO, AccessArchitecture.DIECAST_LID, None, None, None, None, "Die-cast aluminium", CandidateStatus.DATA_REQUIRED, 4, 5, 5, 3, "Retained as the rugged audio candidate; exact part and boss-to-boss dimensions remain to be frozen."),
         EnclosureCandidate("ENC-A02", "Takachi", "Detachable-top T/project-box family", EnclosureRole.AUDIO, AccessArchitecture.VERTICAL_LID, 239.0, 133.0, 57.0, 250.0, "Aluminium metal project box", CandidateStatus.CONDITIONAL, 5, 5, 3, 5, "Example compact size is too shallow/depth-limited against the current hard envelope; larger family member remains credible."),
         EnclosureCandidate("ENC-A03", "Custom/Takachi", "Custom detachable-cover aluminium", EnclosureRole.AUDIO, AccessArchitecture.VERTICAL_LID, 250.0, 160.0, 70.0, 280.0, "Aluminium metal instrument case", CandidateStatus.PLAUSIBLE, 5, 5, 4, 5, "Reference geometry only, not an ordered part. Demonstrates the target envelope for supplier comparison."),
@@ -201,14 +201,14 @@ def build_mechanical_baseline() -> MechanicalBaseline:
     return MechanicalBaseline(
         identifier="G3-MECH-003",
         revision="Rev A1",
-        status="ENCLOSURE FAMILY FROZEN — METCASE UNICASE black RAL 9005; exact audio/PSU order codes remain drawing-gated",
+        status="AUDIO ENCLOSURE FROZEN — M5502119; PSU M5501119 remains component-fit gated",
         audio_requirement=audio,
         psu_requirement=psu,
         datums=datums,
         candidates=candidates,
         open_inputs=[
-            "Exact black METCASE UNICASE audio order code and authoritative drawing; M5502119 is the current audio-size candidate.",
-            "Exact black METCASE UNICASE PSU order code and authoritative drawing after toroid/regulator/mains/thermal fit.",
+            "Audio M5502119 is frozen; exact upper-cover control stack remains gated by selected control parts.",
+            "Prove or reject PSU M5501119 with exact IEC/regulator geometry, mains segregation and thermal fit.",
             "Exact PCB-mounted switch/potentiometer parts, anti-rotation features, and bushing-to-upper-cover stack-up.",
             "Selected filtered IEC inlet, fuse holder/switch, XLR/DC variants and panel cut-outs.",
             "Released datum-based 1:1 PDF/DXF drilling templates after PCB/control coordinates freeze.",

@@ -27,7 +27,8 @@ __all__ = [
     "EnclosureFamilyFreeze", "PanelInterface", "DrillingTemplateContract",
     "InterfaceArchitecture", "build_interface_architecture",
     "validate_interface_architecture",
-]
+    "FitStatus", "VerifiedEnclosure", "ComponentEnvelope", "ControlStackContract", "UnicaseFitDecision", "build_unicase_fit_decision", "validate_unicase_fit_decision",
+    ]
 
 
 def __getattr__(name: str):
@@ -55,6 +56,12 @@ def __getattr__(name: str):
     }:
         from . import interface_architecture
         return getattr(interface_architecture, name)
+    if name in {
+        "FitStatus", "VerifiedEnclosure", "ComponentEnvelope", "ControlStackContract",
+        "UnicaseFitDecision", "build_unicase_fit_decision", "validate_unicase_fit_decision",
+    }:
+        from . import unicase_fit
+        return getattr(unicase_fit, name)
     if name in {
         "CarrierPlateFreeze", "DrawingEvidence", "EnclosureDecision",
         "build_enclosure_decision_baseline", "decision_findings",
