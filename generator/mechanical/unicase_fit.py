@@ -92,9 +92,9 @@ def build_unicase_fit_decision() -> UnicaseFitDecision:
         external_width_mm=185.0, external_depth_mm=180.0, external_height_mm=65.0,
         base_pcb_width_mm=166.0, base_pcb_depth_mm=159.0,
         panel_thickness_mm=2.0,
-        usable_inside_width_mm=None, usable_inside_depth_mm=None,
-        usable_inside_height_mm=None,
-        source_reference="METCASE M5501119 manufacturer product data/drawing set",
+        usable_inside_width_mm=181.0, usable_inside_depth_mm=161.01,
+        usable_inside_height_mm=61.2,
+        source_reference="METCASE M5501119 manufacturer drawing",
     )
     transformer = ComponentEnvelope(
         identifier="TI-69043-ME / TA030-15",
@@ -120,8 +120,8 @@ def build_unicase_fit_decision() -> UnicaseFitDecision:
         "Audio M5502119 is frozen: 220 x 140 mm PCB fits the manufacturer 241 x 229 mm base-PCB envelope with 21 mm and 89 mm total margin respectively.",
         "A 230 x 150 mm carrier also fits within the 241 x 229 mm base envelope when oriented 230 mm across the 241 mm dimension.",
         "Audio usable internal envelope from the manufacturer drawing is compatible with the current 60 mm height gate.",
-        "PSU M5501119 remains conditional rather than frozen: its 166 x 159 mm base envelope can plausibly package the 78 x 78 mm conservative transformer envelope and existing regulator module, but exact IEC/filter, regulator-board and segregation geometry is not yet frozen.",
-        "The historical PSU 80 mm minimum-height gate is not relaxed by this increment; it is superseded only if a component-level fit and thermal/clearance review proves the 65 mm UNICASE 1 architecture.",
+        "G3-021 closes the M5501119 internal envelope at 181 x 161.01 x 61.2 mm and proves the known transformer/regulator rectangular envelopes can coexist; exact mains-entry hardware and passive thermal evidence still block release.",
+        "The historical PSU 80 mm screening height is superseded for geometric screening by the drawing-backed 61.2 mm internal-height assessment, but M5501119 remains conditional until the G3-021 release blockers close.",
         "Drilling-template coordinates remain unreleased until exact control parts close the bushing stack.",
     ]
     return UnicaseFitDecision(
@@ -130,10 +130,8 @@ def build_unicase_fit_decision() -> UnicaseFitDecision:
         audio_status=FitStatus.FROZEN, psu_status=FitStatus.CONDITIONAL,
         findings=findings,
         open_items=[
-            "select exact filtered IEC/fuse/switch hardware and verify rear-panel depth in M5501119",
-            "verify regulator PCB 75 x 85 x 31 mm envelope and mounting orientation against the M5501119 drawing",
-            "complete mains/SELV segregation and transformer-fastener clearance overlay for M5501119",
-            "complete passive thermal check before accepting the lower 65 mm PSU enclosure",
+            "select exact filtered IEC/fuse/DPST-switch hardware and prove rear-panel depth, terminals, touch protection, mains/SELV segregation and wiring bend space",
+            "complete passive thermal check for transformer plus LM317/LM337 dissipation before freezing M5501119",
             "select exact PCB-mounted pots/switches and close upper-cover bushing stack",
         ],
     )

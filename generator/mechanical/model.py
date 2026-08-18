@@ -201,14 +201,14 @@ def build_mechanical_baseline() -> MechanicalBaseline:
     return MechanicalBaseline(
         identifier="G3-MECH-003",
         revision="Rev A1",
-        status="AUDIO ENCLOSURE FROZEN — M5502119; PSU M5501119 remains component-fit gated",
+        status="AUDIO ENCLOSURE FROZEN — M5502119; PSU M5501119 geometry proven, release blocked",
         audio_requirement=audio,
         psu_requirement=psu,
         datums=datums,
         candidates=candidates,
         open_inputs=[
             "Audio M5502119 is frozen; exact upper-cover control stack remains gated by selected control parts.",
-            "Prove or reject PSU M5501119 with exact IEC/regulator geometry, mains segregation and thermal fit.",
+            "Close exact M5501119 mains-entry hardware and passive thermal evidence; known transformer/regulator geometry is proven by G3-021.",
             "Exact PCB-mounted switch/potentiometer parts, anti-rotation features, and bushing-to-upper-cover stack-up.",
             "Selected filtered IEC inlet, fuse holder/switch, XLR/DC variants and panel cut-outs.",
             "Released datum-based 1:1 PDF/DXF drilling templates after PCB/control coordinates freeze.",

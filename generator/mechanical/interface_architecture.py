@@ -98,7 +98,7 @@ def build_interface_architecture() -> InterfaceArchitecture:
         finish="Black",
         colour_standard="RAL 9005",
         construction="aluminium total-access instrument enclosure with removable top/base and anodised front/rear panels",
-        family_status="PARTIAL SIZE FREEZE — audio M5502119 frozen; PSU M5501119 remains component-fit gated",
+        family_status="PARTIAL SIZE FREEZE — audio M5502119 frozen; PSU M5501119 geometry proven but release blocked",
         exact_audio_order_code="M5502119",
         exact_psu_order_code=None,
         source_reference="METCASE UNICASE manufacturer catalogue/product drawings",
@@ -179,7 +179,7 @@ def build_interface_architecture() -> InterfaceArchitecture:
     return InterfaceArchitecture(
         identifier="G3-MECH-019",
         revision="Rev A0",
-        status="ARCHITECTURE_FROZEN — audio M5502119 frozen; PSU size and drilling coordinates remain open",
+        status="ARCHITECTURE_FROZEN — audio M5502119 frozen; PSU M5501119 release evidence and drilling coordinates remain open",
         enclosure_family=family,
         signal_flow_rule="main audio signal flow is front-to-rear: input XLRs at front, PCB processing inward, output XLRs at rear; regulated DC enters at rear near the centreline",
         psu_flow_rule="PSU flow is rear-to-front: mains entry at rear, transformer transition, rectification/regulation, regulated DC output at front",
@@ -195,7 +195,7 @@ def build_interface_architecture() -> InterfaceArchitecture:
         ],
         open_items=[
             "audio black UNICASE 2 M5502119 frozen by G3-MECH-020; preserve its manufacturer datums",
-            "prove or reject black UNICASE 1 M5501119 for PSU from IEC/regulator layout, segregation and thermal fit",
+            "G3-021 proves known M5501119 transformer/regulator geometry; close exact mains-entry hardware and passive thermal evidence before PSU freeze",
             "select exact PCB-mount switch/potentiometer families and verify threaded-bushing stack-up",
             "decide whether every indicator can use PCB mounting/light pipes or whether any flying indicator lead is genuinely required",
             "generate released 1:1 PDF and DXF drilling templates only after exact PCB/control coordinates are frozen",
