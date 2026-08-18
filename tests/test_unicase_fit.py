@@ -15,9 +15,9 @@ def test_audio_unicase2_is_exactly_frozen_and_fits_carrier():
 def test_psu_unicase1_is_not_prematurely_frozen():
     model = build_unicase_fit_decision()
     assert model.psu.order_code == "M5501119"
-    assert model.psu_status is FitStatus.CONDITIONAL
+    assert model.psu_status is FitStatus.REJECTED
     assert any("thermal" in item.lower() for item in model.open_items)
-    assert any("segregation" in item.lower() for item in model.open_items)
+    assert any("next larger" in item.lower() for item in model.open_items)
 
 def test_transformer_envelope_includes_datasheet_allowance():
     t = build_unicase_fit_decision().transformer

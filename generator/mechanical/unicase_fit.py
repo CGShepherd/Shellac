@@ -120,18 +120,17 @@ def build_unicase_fit_decision() -> UnicaseFitDecision:
         "Audio M5502119 is frozen: 220 x 140 mm PCB fits the manufacturer 241 x 229 mm base-PCB envelope with 21 mm and 89 mm total margin respectively.",
         "A 230 x 150 mm carrier also fits within the 241 x 229 mm base envelope when oriented 230 mm across the 241 mm dimension.",
         "Audio usable internal envelope from the manufacturer drawing is compatible with the current 60 mm height gate.",
-        "G3-021 closes the M5501119 internal envelope at 181 x 161.01 x 61.2 mm and proves the known transformer/regulator rectangular envelopes can coexist; exact mains-entry hardware and passive thermal evidence still block release.",
-        "The historical PSU 80 mm screening height is superseded for geometric screening by the drawing-backed 61.2 mm internal-height assessment, but M5501119 remains conditional until the G3-021 release blockers close.",
+        "G3-022 closes the exact integrated mains-entry package but rejects M5501119 at the binary release gate because passive thermal release evidence is not available from the controlled design baseline.",
+        "The historical PSU 80 mm screening height is no longer relevant to M5501119: G3-022 rejects that enclosure rather than relaxing thermal release requirements.",
         "Drilling-template coordinates remain unreleased until exact control parts close the bushing stack.",
     ]
     return UnicaseFitDecision(
         identifier="G3-MECH-020", revision="Rev A0",
         audio=audio, psu=psu, transformer=transformer, control_stack=controls,
-        audio_status=FitStatus.FROZEN, psu_status=FitStatus.CONDITIONAL,
+        audio_status=FitStatus.FROZEN, psu_status=FitStatus.REJECTED,
         findings=findings,
         open_items=[
-            "select exact filtered IEC/fuse/DPST-switch hardware and prove rear-panel depth, terminals, touch protection, mains/SELV segregation and wiring bend space",
-            "complete passive thermal check for transformer plus LM317/LM337 dissipation before freezing M5501119",
+            "M5501119 rejected by G3-022; evaluate the next larger black UNICASE PSU candidate with explicit passive-thermal margin",
             "select exact PCB-mounted pots/switches and close upper-cover bushing stack",
         ],
     )
@@ -145,8 +144,8 @@ def validate_unicase_fit_decision(model: UnicaseFitDecision) -> list[str]:
         issues.append("audio enclosure does not preserve the 230 x 150 mm carrier envelope")
     if model.audio.usable_inside_height_mm is None or model.audio.usable_inside_height_mm < 60.0:
         issues.append("audio usable height does not meet the project gate")
-    if model.psu.order_code == "M5501119" and model.psu_status is FitStatus.FROZEN:
-        issues.append("M5501119 PSU may not be frozen before component/thermal/segregation closure")
+    if model.psu.order_code == "M5501119" and model.psu_status is not FitStatus.REJECTED:
+        issues.append("M5501119 PSU must remain rejected after G3-022 binary release gate")
     if model.control_stack.panel_thickness_mm is not None:
         issues.append("control panel thickness must remain open until verified from the exact cover drawing")
     if "never pull" not in model.control_stack.alignment_rule.lower():
