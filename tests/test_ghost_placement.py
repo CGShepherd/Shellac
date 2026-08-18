@@ -16,13 +16,13 @@ def test_ghost_placement_respects_board_and_architecture_invariants():
     assert validate_ghost_placement(model) == []
     micro = [c for c in model.clusters if c.sensitivity == SensitivityClass.MICROVOLT]
     assert {c.identifier for c in micro} == {"CLU-101-A", "CLU-101-C"}
-    assert all(c.harness_edge == "right" for c in micro)
+    assert all(c.harness_edge == "front" for c in micro)
 
 
-def test_power_cluster_is_left_edge_and_thermally_identified():
+def test_power_cluster_is_rear_edge_and_thermally_identified():
     model = build_ghost_placement_baseline()
     power = next(c for c in model.clusters if c.identifier == "CLU-106")
-    assert power.harness_edge == "left"
+    assert power.harness_edge == "rear"
     assert power.thermal.value == "moderate"
 
 

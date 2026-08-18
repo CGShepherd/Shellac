@@ -100,21 +100,21 @@ def _thermal(cluster: ComponentCluster) -> ThermalClass:
 
 def _entry_exit(cluster: ComponentCluster) -> tuple[str, str]:
     if cluster.identifier in {"CLU-101-A", "CLU-101-C"}:
-        return "right", "left"
+        return "front", "rear"
     if cluster.identifier == "CLU-106":
-        return "left", "right"
+        return "rear", "inward"
     if cluster.identifier == "CLU-109":
-        return "control", "control"
+        return "top", "top"
     return "right", "left"
 
 
 def _harness_edge(cluster: ComponentCluster) -> str:
-    if cluster.edge_affinity == EdgeAffinity.RIGHT:
-        return "right"
-    if cluster.edge_affinity == EdgeAffinity.LEFT:
-        return "left"
-    if cluster.edge_affinity == EdgeAffinity.CONTROL:
-        return "control"
+    if cluster.edge_affinity == EdgeAffinity.FRONT:
+        return "front"
+    if cluster.edge_affinity == EdgeAffinity.REAR:
+        return "rear"
+    if cluster.edge_affinity == EdgeAffinity.TOP:
+        return "top"
     return "none"
 
 
@@ -128,7 +128,7 @@ def _pack_region(region: RegionBox, clusters: list[ComponentCluster]) -> list[Gh
 
     # Prefer vertical stacking for full-depth edge regions; horizontal packing
     # elsewhere. This is a review envelope, not final placement.
-    vertical = region.identifier in {"REG-01", "REG-04", "REG-05", "REG-06"}
+    vertical = region.identifier in {"REG-04", "REG-05", "REG-08"}
     total_weight = sum(max(c.maximum_cluster_span_mm, 1.0) for c in clusters)
     ghosts: list[GhostCluster] = []
     cursor = margin
@@ -186,11 +186,11 @@ def validate_ghost_placement(model: GhostPlacementBaseline) -> list[str]:
         if cluster.y_mm + cluster.depth_mm > model.board_depth_mm + 1e-6:
             issues.append(f"{cluster.identifier} exceeds board depth")
     micro = [c for c in model.clusters if c.sensitivity == SensitivityClass.MICROVOLT]
-    if not micro or any(c.harness_edge != "right" for c in micro):
-        issues.append("microvolt clusters must remain on right-side harness edge")
+    if not micro or any(c.harness_edge != "front" for c in micro):
+        issues.append("microvolt clusters must remain on front harness edge")
     power = [c for c in model.clusters if c.sensitivity == SensitivityClass.POWER]
-    if len(power) != 1 or power[0].harness_edge != "left":
-        issues.append("power-entry cluster must remain on left-side harness edge")
+    if len(power) != 1 or power[0].harness_edge != "rear":
+        issues.append("power-entry cluster must remain on rear harness edge")
     return issues
 
 
@@ -208,18 +208,6 @@ def build_ghost_placement_baseline(
     for region in regions.regions:
         ghosts.extend(_pack_region(region, by_region.get(region.identifier, [])))
 
-    # REG-08 is the board-edge harness-interface corridor rather than a
-    # signal-processing region.  It is represented explicitly along the
-    # lower control edge so it cannot be lost merely because the earlier
-    # seven-region synthesis omitted panel-interface geometry.
-    control_clusters = by_region.get("REG-08", [])
-    if control_clusters:
-        control_region = RegionBox(
-            "REG-08", "Panel-control harness interface",
-            65.0, 128.0, 90.0, 7.0, 80, "edge-local",
-            "Dedicated control-edge corridor; no cartridge or feedback routing.",
-        )
-        ghosts.extend(_pack_region(control_region, control_clusters))
 
     model = GhostPlacementBaseline(
         identifier="G3-GHOST-011",
@@ -230,9 +218,9 @@ def build_ghost_placement_baseline(
         clusters=ghosts,
         invariants=[
             "All sixteen placement clusters appear exactly once.",
-            "Microvolt input clusters remain on the right-side harness edge.",
-            "Balanced-output and regulated-power interfaces remain on the left side.",
-            "Signal direction remains predominantly right-to-left.",
+            "Microvolt input clusters remain on the front harness edge.",
+            "Balanced-output and regulated-power interfaces remain at the rear.",
+            "Signal direction remains predominantly front-to-rear.",
             "Ghost envelopes never imply exact footprint coordinates.",
             "Manual-authority clusters remain subject to human acceptance.",
         ],

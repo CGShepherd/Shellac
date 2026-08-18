@@ -47,7 +47,7 @@ def test_audio_candidate_with_sliding_cover_would_fail():
 def test_preferred_placement_is_valid_and_non_overlapping():
     placement = build_placement_synthesis()
     assert validate_synthesis(placement) == []
-    assert len(placement.regions) == 7
+    assert len(placement.regions) == 9
 
 
 def test_placement_rejects_board_below_minimum_envelope():
@@ -55,8 +55,10 @@ def test_placement_rejects_board_below_minimum_envelope():
         build_placement_synthesis(180.0, 120.0)
 
 
-def test_input_and_output_regions_occupy_opposite_edges():
+def test_input_and_output_regions_occupy_front_and_rear_edges():
     placement = build_placement_synthesis()
     input_region = next(item for item in placement.regions if item.identifier == "REG-01")
-    output_region = next(item for item in placement.regions if item.identifier == "REG-06")
-    assert input_region.x_mm > output_region.x_mm
+    outputs = [item for item in placement.regions if item.identifier in {"REG-06A", "REG-06B"}]
+    assert len(outputs) == 2
+    assert all(output.y_mm > input_region.y_mm for output in outputs)
+    assert all(output.route_direction == "front-to-rear" for output in outputs)

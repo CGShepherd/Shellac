@@ -95,33 +95,13 @@ def footprint_envelope(entry: FootprintEntry) -> FootprintEnvelope:
 
 
 
-_CLU106_MANUAL_CENTRES: dict[str, tuple[float, float, float]] = {
-    # Gate 3A accepted macro-location, locally refined after visual review.
-    # Coordinates are board-local footprint centres in millimetres.
-    "H901": (14.5, 105.0, 90.0),
-    "C901": (31.0, 104.0, 0.0),
-    "C904": (31.0, 120.0, 0.0),
-    "R909": (10.0, 115.0, 0.0),
-    "C902": (16.0, 115.0, 0.0),
-    "C903": (22.0, 115.0, 0.0),
-    "R901": (10.0, 120.0, 0.0),
-    "R902": (15.0, 120.0, 0.0),
-    "R903": (20.0, 120.0, 0.0),
-    "C905": (10.0, 125.0, 0.0),
-    "C906": (16.0, 125.0, 0.0),
-    "C909": (22.0, 125.0, 0.0),
-    "D901": (10.0, 129.5, 0.0),
-    "D902": (16.0, 129.5, 0.0),
-    "R904": (22.0, 129.5, 0.0),
-    "TP901": (27.0, 129.5, 0.0),
-    "TP902": (31.0, 129.5, 0.0),
-    "TP903": (35.0, 129.5, 0.0),
-    "TP904": (23.5, 110.0, 0.0),
-}
-
+# G3-019 invalidates the former left-edge CLU-106 macro coordinates.
+# The rear-centre DC-entry cluster now uses the same deterministic reviewed
+# packer as other manual-authority clusters until exact enclosure/connector
+# datums are frozen.
 def _proposal_rotation(entry: FootprintEntry, cluster: GhostCluster) -> float:
     if entry.ref.startswith("H"):
-        return 90.0 if cluster.harness_edge in {"left", "right"} else 0.0
+        return 90.0 if cluster.harness_edge in {"front", "rear"} else 0.0
     if entry.ref.startswith("TP"):
         return 0.0
     # Signal-flow orientation: long passives predominantly horizontal.
@@ -165,11 +145,6 @@ def _pack_cluster(
         x = ghost.x_mm + margin + (col + 0.5) * pitch_x
         y = ghost.y_mm + margin + (row + 0.5) * pitch_y
         rotation = _proposal_rotation(entry, ghost)
-        if ghost.identifier == "CLU-106":
-            try:
-                x, y, rotation = _CLU106_MANUAL_CENTRES[entry.ref]
-            except KeyError as exc:
-                raise ValueError(f"CLU-106 placement map missing {entry.ref}") from exc
         accepted = not ghost.manual_authority
         proposals.append(PlacementProposal(
             ref=entry.ref,

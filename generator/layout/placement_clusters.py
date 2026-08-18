@@ -10,8 +10,6 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from enum import Enum
 
-from generator.mechanical.placement import build_placement_synthesis
-
 
 class PlacementAuthority(str, Enum):
     MANUAL = "manual"
@@ -20,9 +18,9 @@ class PlacementAuthority(str, Enum):
 
 class EdgeAffinity(str, Enum):
     NONE = "none"
-    LEFT = "left"
-    RIGHT = "right"
-    CONTROL = "control"
+    FRONT = "front"
+    REAR = "rear"
+    TOP = "top"
 
 
 @dataclass(frozen=True, slots=True)
@@ -101,12 +99,16 @@ def build_cluster_placement_baseline(
     width_mm: float = 220.0,
     depth_mm: float = 140.0,
 ) -> ClusterPlacementBaseline:
+    # Local import avoids a generator.layout <-> generator.mechanical package
+    # initialisation cycle when mechanical placement is imported directly.
+    from generator.mechanical.placement import build_placement_synthesis
+
     placement = build_placement_synthesis(width_mm, depth_mm)
 
     clusters = [
         _cluster("CLU-101-A", "Left input RF and connector interface", "SCH101", "REG-01",
                  "H101 R102 R103 C101 C102 C103", "H101",
-                 edge=EdgeAffinity.RIGHT, span=18.0, orientation="Connector-facing RF chain flows inward from right board edge.",
+                 edge=EdgeAffinity.FRONT, span=18.0, orientation="Connector-facing RF chain flows inward from front board edge.",
                  adjacency="RF resistors and capacitors immediately behind the input-harness termination.",
                  keepout="No control, output or power routing inside the cartridge-input keepout.",
                  routing="Manual differential pair; zero signal vias."),
@@ -118,7 +120,7 @@ def build_cluster_placement_baseline(
                  routing="Manual feedback and differential-converter routes; zero vias."),
         _cluster("CLU-101-C", "Right input RF and connector interface", "SCH101", "REG-01",
                  "H201 R202 R203 C201 C202 C203", "H201",
-                 edge=EdgeAffinity.RIGHT, span=18.0, orientation="Connector-facing RF chain flows inward from right board edge.",
+                 edge=EdgeAffinity.FRONT, span=18.0, orientation="Connector-facing RF chain flows inward from front board edge.",
                  adjacency="Mirror functional order of left channel without forcing longer loops.",
                  keepout="No control, output or power routing inside the cartridge-input keepout.",
                  routing="Manual differential pair; zero signal vias."),
@@ -130,7 +132,7 @@ def build_cluster_placement_baseline(
                  routing="Manual feedback and differential-converter routes; zero vias."),
         _cluster("CLU-103-LF-L", "Left active LF replay network", "SCH103", "REG-02",
                  "U3001 R30001 R30002 R30010 R30011 R30012 R30013 C30010 C30011 C30012 C30013 C30014 C30015 C30016 C30017 C30018 C30019 TP3001 TP3002", "U3001", interfaces="SW3001",
-                 after=("CLU-101-B",), span=40.0, orientation="Input, amplifier, bass selector and output progress right-to-left.",
+                 after=("CLU-101-B",), span=40.0, orientation="Input, amplifier, bass selector and output progress front-to-rear.",
                  adjacency="Active feedback within 6 mm; selector RC branches remain grouped by switch position.",
                  keepout="No unrelated copper through selector fan-out or inverting-input region.",
                  routing="Manual only; zero signal vias."),
@@ -142,7 +144,7 @@ def build_cluster_placement_baseline(
                  routing="Manual selector and feedback; reviewed supply routing."),
         _cluster("CLU-103-LF-R", "Right active LF replay network", "SCH103", "REG-03",
                  "U3501 R35001 R35002 R35010 R35011 R35012 R35013 C35010 C35011 C35012 C35013 C35014 C35015 C35016 C35017 C35018 C35019 TP3501 TP3502", "U3501", interfaces="SW3501",
-                 after=("CLU-101-D",), span=40.0, orientation="Input, amplifier, bass selector and output progress right-to-left.",
+                 after=("CLU-101-D",), span=40.0, orientation="Input, amplifier, bass selector and output progress front-to-rear.",
                  adjacency="Active feedback within 6 mm; selector RC branches remain grouped by switch position.",
                  keepout="No unrelated copper through selector fan-out or inverting-input region.",
                  routing="Manual only; zero signal vias."),
@@ -174,33 +176,33 @@ def build_cluster_placement_baseline(
                  "R501 R502 U501 U502 R510 R511 R520 R521 TP501 TP502 TP503 TP504 TP505 C5091 C5092 C5093 C5094", "U501 U502", interfaces="SW501",
                  after=("CLU-104",), span=36.0, orientation="Selector central; channel buffers face output region.",
                  adjacency="Mono averaging pair adjacent and symmetrical; input-bias resistors local to buffer inputs.",
-                 keepout="Control harness approaches from control edge without crossing input or EQ islands.",
+                 keepout="PCB-mounted selector registers vertically to the upper cover without a flying control harness.",
                  routing="Manual summing nodes; constrained automation for control contacts."),
-        _cluster("CLU-108-L", "Left mute, driver and protection", "SCH108", "REG-06",
+        _cluster("CLU-108-L", "Left mute, driver and protection", "SCH108", "REG-06A",
                  "U8001 C80010 C80011 FB8001 FB8002 C80020 C80021 D80030 D80031 D80032 D80033 TP8010 TP8001 TP8002 TP8003 C80040 C80041 C80042 C80043", "U8001", interfaces="SW801 J8001",
-                 after=("CLU-105",), edge=EdgeAffinity.LEFT, span=34.0, orientation="Mute precedes driver; protected outputs face left harness edge.",
+                 after=("CLU-105",), edge=EdgeAffinity.REAR, span=34.0, orientation="Mute precedes driver; protected outputs face rear harness edge.",
                  adjacency="OUT/SNS capacitors within 5 mm; protection components immediately before harness termination.",
                  keepout="No input or EQ routing in output-current region.",
                  routing="Manual OUT/SNS loops; reviewed balanced-output pair."),
-        _cluster("CLU-108-R", "Right mute, driver and protection", "SCH108", "REG-06",
+        _cluster("CLU-108-R", "Right mute, driver and protection", "SCH108", "REG-06B",
                  "TP8011 U9001 C90010 C90011 FB9001 FB9002 C90020 C90021 D90030 D90031 D90032 D90033 TP9001 TP9002 TP9003 C90040 C90041 C90042 C90043", "U9001", interfaces="J9001",
-                 after=("CLU-105",), edge=EdgeAffinity.LEFT, span=34.0, orientation="Mute precedes driver; protected outputs face left harness edge.",
+                 after=("CLU-105",), edge=EdgeAffinity.REAR, span=34.0, orientation="Mute precedes driver; protected outputs face rear harness edge.",
                  adjacency="OUT/SNS capacitors within 5 mm; protection components immediately before harness termination.",
                  keepout="No input or EQ routing in output-current region.",
                  routing="Manual OUT/SNS loops; reviewed balanced-output pair."),
         _cluster("CLU-106", "DC entry, bulk capacitance and chassis bond", "SCH106", "REG-07",
                  "H901 R901 R902 C901 C902 C903 R903 C904 C905 C906 R904 R909 C909 D901 D902 TP901 TP902 TP903 TP904", "H901 R909",
-                 edge=EdgeAffinity.LEFT, span=38.0, orientation="DC connector at left edge; rail links and bulk capacitance feed inward.",
+                 edge=EdgeAffinity.REAR, span=38.0, orientation="DC connector near rear centreline; rail links and bulk capacitance feed inward.",
                  adjacency="Chassis bond remains local and serviceable; rail bypasses group by polarity.",
                  keepout="Separated from cartridge region; reserve mechanical access to bond and rail test points.",
                  routing="Manual 0VA/chassis bond; reviewed rail-spine handoff."),
-        _cluster("CLU-109", "Panel-control harness interface", "SCH109", "REG-08",
+        _cluster("CLU-109", "Top-panel PCB control and indicator interface", "SCH109", "REG-08",
                  "R906 R907 TP9901 TP9902", "TP9901 TP9902", interfaces="SW901 SW902 SW903 SW904 SW905 LED901 LED902",
-                 authority=PlacementAuthority.SYNTHESISED_REVIEW, edge=EdgeAffinity.CONTROL, span=55.0,
-                 orientation="Harness connectors follow front/top panel control order.",
-                 adjacency="Related switch poles grouped into one locking harness interface per control family.",
-                 keepout="Harness bend and connector extraction zones remain clear of test points.",
-                 routing="Constrained automation permitted after harness pinout freeze."),
+                 authority=PlacementAuthority.SYNTHESISED_REVIEW, edge=EdgeAffinity.TOP, span=55.0,
+                 orientation="PCB-mounted controls register vertically to upper-cover drilling datums.",
+                 adjacency="Related PCB-mounted controls remain mechanically aligned to the common upper-cover datum plane.",
+                 keepout="Control bodies, bushings and indicator/light-pipe zones remain clear of test points and service paths.",
+                 routing="Constrained automation permitted after exact control footprints and panel datums freeze."),
     ]
 
     keepouts = [

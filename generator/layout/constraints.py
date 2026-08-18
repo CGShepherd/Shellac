@@ -97,18 +97,18 @@ class LayoutBaseline:
 
 def build_layout_baseline() -> LayoutBaseline:
     regions = [
-        FunctionalRegion("REG-01", "Balanced input and RF protection", 10, "input/right", PlacementPolicy.MANUAL, "No unrelated trace may cross the cartridge-input island."),
-        FunctionalRegion("REG-02", "Replay EQ left", 20, "central/input side", PlacementPolicy.MANUAL, "Keep all left EQ feedback and selector components local."),
-        FunctionalRegion("REG-03", "Replay EQ right", 30, "central/input side", PlacementPolicy.MANUAL, "Keep all right EQ feedback and selector components local."),
-        FunctionalRegion("REG-04", "Rumble filter", 40, "central", PlacementPolicy.MANUAL, "Frequency-setting components remain adjacent to their amplifiers."),
-        FunctionalRegion("REG-05", "Final gain and mode matrix", 50, "central/output side", PlacementPolicy.MANUAL, "Maintain recognisable channel structure and short summing paths."),
-        FunctionalRegion("REG-06", "Mute and balanced output", 60, "output/left", PlacementPolicy.MANUAL, "Keep THAT1646 OUT/SNS loops local and output protection near the harness connector."),
-        FunctionalRegion("REG-07", "DC entry and local bulk decoupling", 70, "output/high-level end", PlacementPolicy.MANUAL, "DC entry must be remote from cartridge inputs and feed a controlled rail spine."),
-        FunctionalRegion("REG-08", "Panel-control harness interfaces", 80, "control edge", PlacementPolicy.CONSTRAINED_ASSISTED, "Control harnesses may not traverse the cartridge-input island."),
+        FunctionalRegion("REG-01", "Balanced input and RF protection", 10, "front/input", PlacementPolicy.MANUAL, "No unrelated trace may cross the cartridge-input island."),
+        FunctionalRegion("REG-02", "Replay EQ left", 20, "front-to-middle/left", PlacementPolicy.MANUAL, "Keep all left EQ feedback and selector components local."),
+        FunctionalRegion("REG-03", "Replay EQ right", 30, "front-to-middle/right", PlacementPolicy.MANUAL, "Keep all right EQ feedback and selector components local."),
+        FunctionalRegion("REG-04", "Rumble filter", 40, "middle", PlacementPolicy.MANUAL, "Frequency-setting components remain adjacent to their amplifiers."),
+        FunctionalRegion("REG-05", "Final gain and mode matrix", 50, "middle-to-rear", PlacementPolicy.MANUAL, "Maintain recognisable channel structure and short summing paths."),
+        FunctionalRegion("REG-06", "Mute and balanced output", 60, "rear/output", PlacementPolicy.MANUAL, "Keep THAT1646 OUT/SNS loops local and output protection near the harness connector."),
+        FunctionalRegion("REG-07", "DC entry and local bulk decoupling", 70, "rear/centre/high-level", PlacementPolicy.MANUAL, "DC entry must be remote from cartridge inputs and feed a controlled rail spine."),
+        FunctionalRegion("REG-08", "Top-panel PCB control and indicator interfaces", 80, "upper-cover registration", PlacementPolicy.CONSTRAINED_ASSISTED, "Operator controls are PCB mounted and register vertically to the upper cover; no flying control harness crosses the analogue regions."),
     ]
 
     critical_nets = [
-        CriticalNet("NET-001", "INPUT_[LR]_(POS|NEG)", NetClass.CARTRIDGE, RoutingPolicy.MANUAL_ONLY, 0, "0VA continuous reference", "Place RF and input components immediately behind the input harness connector.", "Route channel pairs together, avoid stubs, and prohibit unrelated copper beneath or between the pair.", "Visual review plus continuity and pair-symmetry report."),
+        CriticalNet("NET-001", "INPUT_[LR]_(POS|NEG)", NetClass.CARTRIDGE, RoutingPolicy.MANUAL_ONLY, 0, "0VA continuous reference", "Place RF and input components immediately behind the front-panel input harness connector.", "Route channel pairs together, avoid stubs, and prohibit unrelated copper beneath or between the pair.", "Visual review plus continuity and pair-symmetry report."),
         CriticalNet("NET-002", "U*.IN-/feedback nodes", NetClass.FEEDBACK, RoutingPolicy.MANUAL_ONLY, 0, "local 0VA return", "Feedback parts adjacent to the associated amplifier pins.", "Minimise enclosed loop area; no test-point or connector branch inside the loop.", "Loop-area and component-distance audit."),
         CriticalNet("NET-003", "SCH103 selector RC branches", NetClass.FEEDBACK, RoutingPolicy.MANUAL_ONLY, 0, "local 0VA return", "Keep each selector branch within its EQ island.", "No branch sharing or endpoint-on-segment junctions; preserve channel separation.", "Topology regression and visual branch audit."),
         CriticalNet("NET-004", "SCH107 frequency-setting nets", NetClass.FEEDBACK, RoutingPolicy.MANUAL_ONLY, 0, "local 0VA return", "Frequency-setting passives adjacent to OPA1656 pins.", "Shortest practical traces with no unrelated vias or crossings.", "Distance and via-count audit."),
@@ -116,7 +116,7 @@ def build_layout_baseline() -> LayoutBaseline:
         CriticalNet("NET-006", "+18V|-18V", NetClass.POWER, RoutingPolicy.ASSISTED_REVIEW_REQUIRED, 2, "0VA plane", "Use a controlled rail spine with local branches and block-level bulk capacitance.", "Avoid routing rail current through low-level return regions; use paired supply/return vias where needed.", "Voltage-drop and current-return review."),
         CriticalNet("NET-007", "0VA", NetClass.GROUND, RoutingPolicy.MANUAL_ONLY, 0, "self", "Continuous inner reference plane; no arbitrary splits beneath signals.", "Control high-current return entry points and preserve separation from CHASSIS except at the defined bond.", "Plane continuity and return-path review."),
         CriticalNet("NET-008", "CHASSIS", NetClass.GROUND, RoutingPolicy.MANUAL_ONLY, 0, "chassis", "Bond connector shells at entry and localise the 0VA/CHASSIS network.", "No signal-current use of chassis copper; keep bond components serviceable.", "Continuity/isolation test."),
-        CriticalNet("NET-009", "*_SELECT|MUTE_CONTROL|RUMBLE_BYPASS", NetClass.CONTROL, RoutingPolicy.CONSTRAINED_AUTOMATION, 3, "0VA plane", "Group at the control-harness edge.", "Do not run parallel to cartridge inputs; add separation from EQ high-impedance nodes.", "Clearance and coupling review."),
+        CriticalNet("NET-009", "*_SELECT|MUTE_CONTROL|RUMBLE_BYPASS", NetClass.CONTROL, RoutingPolicy.CONSTRAINED_AUTOMATION, 3, "0VA plane", "Group control logic so PCB-mounted operator devices can register to the upper-cover datum plane.", "Do not run parallel to cartridge inputs; add separation from EQ high-impedance nodes.", "Clearance and coupling review."),
         CriticalNet("NET-010", "OUTPUT_[LR]_(POS|NEG)", NetClass.BALANCED_OUTPUT, RoutingPolicy.ASSISTED_REVIEW_REQUIRED, 1, "0VA plane", "Route from output protection directly to the output harness region.", "Maintain pair adjacency and avoid the input region.", "Pair geometry and output-continuity audit."),
     ]
 
@@ -139,17 +139,19 @@ def build_layout_baseline() -> LayoutBaseline:
             preferred_usable_depth_mm=140.0,
             board_edge_clearance_mm=5.0,
             mounting_hole_keepout_mm=10.0,
-            access_rule="Audio enclosure requires vertically removable lid or base after all controls are fitted.",
+            access_rule="Selected audio enclosure family requires vertically removable top/base access after PCB-mounted controls and detachable end-panel harnesses are fitted.",
             status="Provisional until audio enclosure trade study closes.",
         ),
         regions=regions,
         critical_nets=critical_nets,
         global_rules=[
-            "Physical signal flow shall progress from input region to output region without avoidable reversals.",
+            "Physical signal flow shall progress front-to-rear from input region to output region without avoidable reversals.",
             "Component placement shall be accepted before routing begins.",
             "No unrelated route may pass through a low-level input, feedback, or replay-EQ island.",
             "All defined test points and nearby ground probe points shall remain accessible from the component side.",
-            "Panel harnesses shall use locking connectors and remain removable without soldering.",
+            "Front/rear XLR and DC panel harnesses shall use locking PCB connectors and remain removable without soldering.",
+            "Operator switches and potentiometers shall be PCB mounted; threaded panel bushings are preferred where suitable and may support but never align the PCB by force.",
+            "Indicators should be PCB mounted with light pipes where practical; flying indicator leads are an explicit fallback only.",
             "Strategic whitespace is permitted for probing, separation, readable silkscreen, and Revision B flexibility.",
             "A generic autorouter shall not route any manual-only net.",
         ],

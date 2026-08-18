@@ -36,10 +36,12 @@ def test_manual_clusters_dominate_sensitive_signal_path():
 
 def test_input_output_and_power_edge_affinities_are_preserved():
     model = build_cluster_placement_baseline()
-    right = {c.identifier for c in model.clusters if c.edge_affinity is EdgeAffinity.RIGHT}
-    left = {c.identifier for c in model.clusters if c.edge_affinity is EdgeAffinity.LEFT}
-    assert {"CLU-101-A", "CLU-101-C"} <= right
-    assert {"CLU-108-L", "CLU-108-R", "CLU-106"} <= left
+    front = {c.identifier for c in model.clusters if c.edge_affinity is EdgeAffinity.FRONT}
+    rear = {c.identifier for c in model.clusters if c.edge_affinity is EdgeAffinity.REAR}
+    top = {c.identifier for c in model.clusters if c.edge_affinity is EdgeAffinity.TOP}
+    assert {"CLU-101-A", "CLU-101-C"} <= front
+    assert {"CLU-108-L", "CLU-108-R", "CLU-106"} <= rear
+    assert "CLU-109" in top
 
 
 def test_critical_loop_limits_are_no_larger_than_architecture_rules():

@@ -20,6 +20,7 @@ class AccessArchitecture(str, Enum):
     DETACHABLE_PANELS = "detachable_panels"
     SLIDING_COVER = "sliding_cover"
     DIECAST_LID = "diecast_vertical_lid"
+    TOTAL_ACCESS = "removable_top_base_and_end_panels"
 
 
 class CandidateStatus(str, Enum):
@@ -154,10 +155,11 @@ def build_mechanical_baseline() -> MechanicalBaseline:
         conductive_metal_required=True,
         carrier_plate=carrier,
         hard_gates=(
-            "Lid or base removable vertically after all controls and XLRs are fitted.",
+            "Top or base remains removable after PCB-mounted controls and front/rear XLRs are fitted.",
             "Main PCB and all component-side test points remain accessible with enclosure open.",
-            "No control body or harness occupies the PCB removal path.",
-            "Input and output panel harnesses disconnect without desoldering.",
+            "PCB-mounted switch/potentiometer bushings may support the upper cover but must not force PCB alignment.",
+            "Front input and rear output/DC panel harnesses disconnect without desoldering.",
+            "Operator switches and potentiometers use no flying leads; indicators use PCB light pipes where practical.",
         ),
     )
     psu = EnclosureRequirement(
@@ -170,21 +172,25 @@ def build_mechanical_baseline() -> MechanicalBaseline:
         conductive_metal_required=True,
         carrier_plate=carrier,
         hard_gates=(
-            "Protective-earth stud adjacent to the IEC entry.",
-            "Mains and regulated-DC panel hardware remain serviceable.",
+            "Protective-earth stud adjacent to the rear IEC entry.",
+            "Rear mains and front regulated-DC panel hardware remain serviceable.",
             "Transformer fastener cannot create a chassis shorted turn.",
-            "Mains wiring remains confined to the entry end of the enclosure.",
+            "Mains wiring remains confined to the rear entry zone of the enclosure.",
+            "Top/base clamshell panels remain unmachined where the selected size permits the complete PSU layout.",
         ),
     )
     datums = [
         Datum("DAT-001", "Carrier-plate origin", "Lower-left corner of the removable carrier plate viewed from the component side.", "Mechanical drawing and assembly jig."),
-        Datum("DAT-002", "Audio input edge", "Board edge nearest the panel-mounted cartridge input XLR harness.", "Enclosure and PCB overlay review."),
-        Datum("DAT-003", "Audio output edge", "Board edge nearest the mute/output-driver and output-XLR harness.", "Enclosure and PCB overlay review."),
-        Datum("DAT-004", "Control edge", "Board edge carrying locking connectors for panel switches and indicators.", "Harness clearance and lid-removal trial."),
-        Datum("DAT-005", "Chassis bond point", "Single serviceable 0VA/CHASSIS bond region near the DC and shell-entry area.", "Continuity/isolation test."),
-        Datum("DAT-006", "PSU protective-earth point", "Dedicated fastener immediately adjacent to the filtered IEC inlet.", "Protective-earth resistance test."),
+        Datum("DAT-002", "Audio front/input plane", "Front end-panel plane carrying the cartridge input XLRs; board front edge lies immediately behind this plane.", "Manufacturer drawing and enclosure/PCB overlay review."),
+        Datum("DAT-003", "Audio rear/output plane", "Rear end-panel plane carrying balanced output XLRs.", "Manufacturer drawing and enclosure/PCB overlay review."),
+        Datum("DAT-004", "Audio upper-cover control plane", "Removable upper cover through which PCB-mounted switch/potentiometer bushings and indicator light pipes register.", "PCB-to-cover stack-up and drilling-template review."),
+        Datum("DAT-005", "Audio rear-centre DC entry", "Rear-panel regulated-DC inlet near the enclosure centreline with local serviceable 0VA/CHASSIS bond region.", "Connector-clearance and continuity/isolation review."),
+        Datum("DAT-006", "PSU rear protective-earth point", "Dedicated fastener immediately adjacent to the rear filtered IEC inlet.", "Protective-earth resistance test."),
+        Datum("DAT-007", "PSU front DC-output plane", "Front end-panel plane carrying only the regulated low-voltage output interface.", "Panel drawing and segregation review."),
     ]
     candidates = [
+        EnclosureCandidate("ENC-A04", "METCASE", "UNICASE 2 / black RAL 9005 (M5502119)", EnclosureRole.AUDIO, AccessArchitecture.TOTAL_ACCESS, None, None, None, 260.0, "Aluminium metal instrument enclosure", CandidateStatus.DATA_REQUIRED, 5, 5, 4, 5, "Selected enclosure family and finish. Manufacturer confirms 260 x 250 x 90 mm external size and 241 x 229 mm base-PCB capability; usable internal control/bushing stack-up remains drawing-gated before exact order-code freeze."),
+        EnclosureCandidate("ENC-P04", "METCASE", "UNICASE / black RAL 9005", EnclosureRole.PSU, AccessArchitecture.TOTAL_ACCESS, None, None, None, None, "Aluminium metal instrument enclosure", CandidateStatus.DATA_REQUIRED, 5, 5, 4, 5, "Selected enclosure family and finish. Exact PSU size remains open pending toroid, regulator, IEC, mains-segregation and thermal fit."),
         EnclosureCandidate("ENC-A01", "Takachi", "Large AL die-cast family", EnclosureRole.AUDIO, AccessArchitecture.DIECAST_LID, None, None, None, None, "Die-cast aluminium", CandidateStatus.DATA_REQUIRED, 4, 5, 5, 3, "Retained as the rugged audio candidate; exact part and boss-to-boss dimensions remain to be frozen."),
         EnclosureCandidate("ENC-A02", "Takachi", "Detachable-top T/project-box family", EnclosureRole.AUDIO, AccessArchitecture.VERTICAL_LID, 239.0, 133.0, 57.0, 250.0, "Aluminium metal project box", CandidateStatus.CONDITIONAL, 5, 5, 3, 5, "Example compact size is too shallow/depth-limited against the current hard envelope; larger family member remains credible."),
         EnclosureCandidate("ENC-A03", "Custom/Takachi", "Custom detachable-cover aluminium", EnclosureRole.AUDIO, AccessArchitecture.VERTICAL_LID, 250.0, 160.0, 70.0, 280.0, "Aluminium metal instrument case", CandidateStatus.PLAUSIBLE, 5, 5, 4, 5, "Reference geometry only, not an ordered part. Demonstrates the target envelope for supplier comparison."),
@@ -194,17 +200,17 @@ def build_mechanical_baseline() -> MechanicalBaseline:
     ]
     return MechanicalBaseline(
         identifier="G3-MECH-003",
-        revision="Rev A0",
-        status="PROVISIONAL — exact audio and PSU order codes not frozen",
+        revision="Rev A1",
+        status="ENCLOSURE FAMILY FROZEN — METCASE UNICASE black RAL 9005; exact audio/PSU order codes remain drawing-gated",
         audio_requirement=audio,
         psu_requirement=psu,
         datums=datums,
         candidates=candidates,
         open_inputs=[
-            "Exact audio enclosure order code and manufacturer drawing.",
-            "Exact PSU enclosure order code and manufacturer drawing.",
-            "Final panel-switch body dimensions and anti-rotation features.",
-            "Selected filtered IEC inlet, fuse holder, and DPST switch cut-outs.",
-            "Final inter-box XLR connector variants and panel cut-outs.",
+            "Exact black METCASE UNICASE audio order code and authoritative drawing; M5502119 is the current audio-size candidate.",
+            "Exact black METCASE UNICASE PSU order code and authoritative drawing after toroid/regulator/mains/thermal fit.",
+            "Exact PCB-mounted switch/potentiometer parts, anti-rotation features, and bushing-to-upper-cover stack-up.",
+            "Selected filtered IEC inlet, fuse holder/switch, XLR/DC variants and panel cut-outs.",
+            "Released datum-based 1:1 PDF/DXF drilling templates after PCB/control coordinates freeze.",
         ],
     )

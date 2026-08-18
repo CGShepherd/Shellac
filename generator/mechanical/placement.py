@@ -74,57 +74,66 @@ def build_placement_synthesis(width_mm: float = 220.0, depth_mm: float = 140.0) 
     usable_w = width_mm - 2 * edge
     usable_d = depth_mm - 2 * edge
 
-    # The placement model uses two signal-flow rows.  Inputs are at the right
-    # edge, outputs at the left edge, matching the established equipment and
-    # panel-orientation preference.  Sequence increases from input to output,
-    # although x decreases across the board.
-    top_y = edge
-    row_gap = 4.0
-    row_d = (usable_d - row_gap) / 2
-    lower_y = edge + row_d + row_gap
+    # G3-019 freezes front-to-rear equipment flow. Board y=front-to-rear;
+    # x remains left-to-right when viewed from the component side.  Channel
+    # functions may sit side-by-side within a flow band, while processing
+    # sequence increases toward the rear panel.
+    gap = 3.0
+    available = usable_d - 3 * gap
+    input_d = 0.20 * available
+    eq_d = 0.29 * available
+    middle_d = 0.27 * available
+    rear_d = available - input_d - eq_d - middle_d
 
-    widths = {
-        "input": 0.18 * usable_w,
-        "eq": 0.29 * usable_w,
-        "middle": 0.25 * usable_w,
-        "output": 0.20 * usable_w,
-    }
-    reserve = usable_w - sum(widths.values())
-    x_right = width_mm - edge
+    front_y = edge
+    eq_y = front_y + input_d + gap
+    middle_y = eq_y + eq_d + gap
+    rear_y = middle_y + middle_d + gap
 
-    def take(w: float) -> float:
-        nonlocal x_right
-        x_right -= w
-        x = x_right
-        x_right -= reserve / 3 if x_right > edge + widths["output"] else 0
-        return x
+    split_gap = 4.0
+    half_w = (usable_w - split_gap) / 2.0
+    control_gap = 3.0
+    control_w = 0.16 * usable_w
+    side_w = (usable_w - control_w - 2 * control_gap) / 2.0
+    middle_left_w = side_w
+    control_x = edge + middle_left_w + control_gap
+    middle_right_x = control_x + control_w + control_gap
+    middle_right_w = side_w
 
-    input_x = take(widths["input"])
-    eq_x = take(widths["eq"])
-    middle_x = take(widths["middle"])
-    output_x = edge
+    # Rear band reserves a central high-level/DC entry corridor while keeping
+    # the balanced-output region around it. It is a coarse architectural box;
+    # exact rear connector coordinates remain enclosure/order-code dependent.
+    dc_w = 0.38 * usable_w
+    dc_x = edge + (usable_w - dc_w) / 2.0
+    out_left_w = dc_x - edge - split_gap / 2.0
+    out_right_x = dc_x + dc_w + split_gap / 2.0
+    out_right_w = width_mm - edge - out_right_x
 
     regions = [
-        RegionBox("REG-01", "Balanced input and RF protection", input_x, edge, widths["input"], usable_d, 10, "right-to-left", "Closest to the right-side input harness; isolated from control and output routing."),
-        RegionBox("REG-02", "Replay EQ left", eq_x, edge, widths["eq"], row_d, 20, "right-to-left", "Left-channel feedback and selectors remain entirely inside this box."),
-        RegionBox("REG-03", "Replay EQ right", eq_x, lower_y, widths["eq"], row_d, 30, "right-to-left", "Right-channel geometry mirrors the left only where loop-area performance is preserved."),
-        RegionBox("REG-04", "Rumble filter", middle_x, edge, widths["middle"] * 0.46, usable_d, 40, "right-to-left", "Frequency-setting networks remain local and clear of control harnesses."),
-        RegionBox("REG-05", "Final gain and mode matrix", middle_x + widths["middle"] * 0.50, edge, widths["middle"] * 0.50, usable_d, 50, "right-to-left", "Provides the controlled transition from channel processing to mode selection."),
-        RegionBox("REG-06", "Mute and balanced output", output_x, edge, widths["output"], usable_d * 0.64, 60, "right-to-left", "Closest to the left-side output harness."),
-        RegionBox("REG-07", "DC entry and bulk decoupling", output_x, edge + usable_d * 0.70, widths["output"], usable_d * 0.30, 70, "local", "Power enters at the high-level/output end and feeds a controlled rail spine."),
+        RegionBox("REG-01", "Balanced input and RF protection", edge, front_y, usable_w, input_d, 10, "front-to-rear", "Immediately behind the front input XLRs; low-level input islands remain isolated from power and output wiring."),
+        RegionBox("REG-02", "Replay EQ left", edge, eq_y, half_w, eq_d, 20, "front-to-rear", "Left-channel EQ occupies one side of the second flow band."),
+        RegionBox("REG-03", "Replay EQ right", edge + half_w + split_gap, eq_y, half_w, eq_d, 30, "front-to-rear", "Right-channel EQ occupies the opposite side of the second flow band."),
+        RegionBox("REG-04", "Rumble filter", edge, middle_y, middle_left_w, middle_d, 40, "front-to-rear", "Frequency-setting networks remain local; controls register vertically to the upper cover rather than through a harness edge."),
+        RegionBox("REG-08", "Top-panel control and indicator logic", control_x, middle_y, control_w, middle_d, 80, "vertical-registration", "Dedicated PCB control/indicator logic region; operator hardware registers vertically to the upper cover with no flying switch/pot harness."),
+        RegionBox("REG-05", "Final gain and mode matrix", middle_right_x, middle_y, middle_right_w, middle_d, 50, "front-to-rear", "Controlled transition to mode selection and output processing."),
+        RegionBox("REG-06A", "Mute and balanced output left/rear", edge, rear_y, out_left_w, rear_d, 60, "front-to-rear", "Rear output region adjacent to one side of the rear connector field."),
+        RegionBox("REG-07", "DC entry and bulk decoupling", dc_x, rear_y, dc_w, rear_d, 70, "rear-inward", "Regulated DC enters near rear centreline and feeds the rail spine without entering the cartridge-input zone."),
+        RegionBox("REG-06B", "Mute and balanced output right/rear", out_right_x, rear_y, out_right_w, rear_d, 60, "front-to-rear", "Rear output region adjacent to the opposite side of the rear connector field."),
     ]
     model = PlacementSynthesis(
         identifier="G3-PLC-003",
-        revision="Rev A0",
+        revision="Rev A1",
         board_width_mm=width_mm,
         board_depth_mm=depth_mm,
         edge_clearance_mm=edge,
         regions=regions,
         invariants=[
-            "Input region occupies the right-side board edge.",
-            "Output and DC-entry regions occupy the left-side high-level edge.",
+            "Board y-axis represents front-to-rear enclosure flow.",
+            "Input region occupies the front board edge.",
+            "Balanced-output and regulated-DC regions occupy the rear high-level edge.",
+            "Regulated DC entry is reserved near the rear centreline.",
             "Left and right replay-EQ regions do not overlap.",
-            "No control-harness region is permitted inside the cartridge-input island.",
+            "Operator controls register vertically to the upper cover; no control-harness edge is reserved.",
             "All regions remain inside the enclosure-dependent PCB edge clearance.",
         ],
     )

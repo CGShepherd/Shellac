@@ -23,6 +23,10 @@ __all__ = [
     "derive_frozen_outline_contract", "validate_outline_contract",
     "BoardSkeletonResult", "render_board_skeleton",
     "validate_board_skeleton_text", "write_board_skeleton",
+    "EnclosureFace", "InterfaceKind", "MountingMode",
+    "EnclosureFamilyFreeze", "PanelInterface", "DrillingTemplateContract",
+    "InterfaceArchitecture", "build_interface_architecture",
+    "validate_interface_architecture",
 ]
 
 
@@ -43,6 +47,14 @@ def __getattr__(name: str):
     }:
         from . import board_skeleton
         return getattr(board_skeleton, name)
+    if name in {
+        "EnclosureFace", "InterfaceKind", "MountingMode",
+        "EnclosureFamilyFreeze", "PanelInterface", "DrillingTemplateContract",
+        "InterfaceArchitecture", "build_interface_architecture",
+        "validate_interface_architecture",
+    }:
+        from . import interface_architecture
+        return getattr(interface_architecture, name)
     if name in {
         "CarrierPlateFreeze", "DrawingEvidence", "EnclosureDecision",
         "build_enclosure_decision_baseline", "decision_findings",

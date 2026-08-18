@@ -188,8 +188,9 @@ def build_interconnect_architecture() -> InterconnectArchitecture:
         open_items=[
             "freeze exact JST VH housing/header/terminal part numbers after sample-crimp qualification",
             "freeze exact Mini-Fit Jr housing/header/terminal part numbers after sample-crimp qualification",
-            "derive final harness lengths from selected enclosure and panel datums",
-            "define selector, mute, bypass and LED harness pin counts from final panel architecture",
+            "derive final front/rear XLR and DC harness lengths from selected enclosure and panel datums",
+            "operator switches and potentiometers are PCB mounted and therefore require no control harness",
+            "confirm whether all indicators use PCB-mounted LEDs/light pipes; define an indicator harness only for any explicit fallback",
         ],
     )
 
