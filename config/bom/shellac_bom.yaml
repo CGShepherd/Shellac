@@ -1,0 +1,52 @@
+schema_version: 1
+project: shellac
+status: CONTROLLED_PARTIAL_BASELINE
+introduced_by: SR-035
+selection_policy:
+  optimise_whole_bom_cost: true
+  prefer_commonality: true
+  consider_quantity_breaks: true
+  consider_useful_spares: true
+  consider_supplier_consolidation: true
+  premium_part_requires_material_benefit: true
+items:
+  - {id: BOM-ENC-AUDIO, function: audio_enclosure, manufacturer: METCASE, mpn: M5502119, status: FROZEN, decision: DEC-005, commonality_group: enclosure_m5502119}
+  - {id: BOM-ENC-PSU, function: psu_enclosure, manufacturer: METCASE, mpn: M5502119, status: FROZEN, decision: DEC-006, commonality_group: enclosure_m5502119}
+  - {id: BOM-PSU-MAINS, function: filtered_mains_entry_fuse_switch, manufacturer: SCHURTER, mpn: KMF1.1121.11, status: FROZEN, decision: DEC-007}
+  - id: BOM-CTRL-BASS
+    function: bass_characteristic_selector
+    requirement: linked_stereo_2P5_BBM
+    preferred_family: Lorlin adjustable-stop rotary
+    manufacturer: Lorlin
+    mpn: null
+    status: SELECTED_FAMILY_MPN_OPEN
+    decision: DEC-011
+    commonality_group: external_rotary_controls
+    provenance: RECONSTRUCTED_PRIOR_INTENT
+  - id: BOM-CTRL-TREBLE
+    function: treble_characteristic_selector
+    requirement: linked_stereo_2P5_BBM
+    preferred_family: Lorlin adjustable-stop rotary
+    manufacturer: Lorlin
+    mpn: null
+    status: SELECTED_FAMILY_MPN_OPEN
+    decision: DEC-011
+    commonality_group: external_rotary_controls
+    provenance: RECONSTRUCTED_PRIOR_INTENT
+  - id: BOM-CTRL-CHANNEL
+    function: channel_mode_selector
+    requirement: 4P4T_BBM
+    preferred_family: Lorlin where hard requirements permit
+    manufacturer: null
+    mpn: null
+    status: OPEN_EXCEPTION_REVIEW
+    decision: DEC-010
+    commonality_group: external_rotary_controls
+  - id: BOM-GAIN-SELECTOR
+    function: internal_gain_selector
+    requirement: eight_way_DIP_bank
+    manufacturer: null
+    mpn: null
+    status: ELECTRICAL_ARCHITECTURE_FROZEN_MPN_OPEN
+    decision: DEC-004
+    commonality_group: internal_configuration

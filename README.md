@@ -1,22 +1,16 @@
-# Project Shellac — SR-023 Candidate
+# Project Shellac
 
-The repository contains the accepted clean schematic foundation through
-SR-021G1, the accepted SCH105 human-reviewable conversion from SR-022, and the
-SR-023 candidate conversion of SCH108 balanced output and mute.
+Project Shellac is an evidence-driven replay preamplifier design and generator project.
 
-Machine-level schematic readiness remains 8/8. Subject to a clean native KiCad
-ERC, human-reviewable readiness advances to 6/8.
+## Current controlled baseline
+- Release baseline: **SR-034 / G3-023**
+- Audio enclosure: **METCASE UNICASE 2 M5502119, black RAL 9005 — FROZEN**
+- PSU enclosure: **METCASE UNICASE 2 M5502119, black RAL 9005 — FROZEN**
+- PSU mains entry: **SCHURTER KMF1.1121.11 — FROZEN architecture**
+- Audio control physical-part selection and released drilling coordinates remain open.
 
-See `README_SR023.md` and
-`docs/SR-023_SCH108_Human_Reviewable_Rev_A.md`.
+## Project knowledge
+Git is the authoritative project memory. Start with `docs/knowledge/` and the machine-readable `config/bom/` and `config/decisions/` baselines. Detailed AE, SR and G3 documents remain the engineering evidence behind those summaries.
 
-
-Current human-reviewable blocks: 7/8 after SR-024 candidate.
-
-SR-025 candidate: all 8/8 functional sheets are human-reviewable, subject to a clean native KiCad ERC.
-
-## Gate 3 G3-003 mechanical baseline
-
-The repository now contains a provisional two-box mechanical datum model,
-enclosure decision matrix, and scalable functional-region placement synthesis.
-Run `python scripts/report_mechanical_baseline.py`.
+## Reports
+Existing report scripts remain authoritative for their respective engineering gates. For the mechanical baseline run `python scripts/report_mechanical_baseline.py`.

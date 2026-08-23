@@ -1,0 +1,10 @@
+schema_version: 1
+project: shellac
+introduced_by: SR-035
+allowed_status: [PROPOSED, SELECTED, FROZEN, DEFERRED, REJECTED, SUPERSEDED]
+allowed_provenance: [REPOSITORY_EVIDENCE, RECONSTRUCTED_PRIOR_INTENT, NEW_ANALYSIS, PROCUREMENT_SNAPSHOT]
+rules:
+  frozen_requires_superseding_record: true
+  reconstructed_intent_cannot_claim_historical_freeze_without_repository_evidence: true
+  volatile_price_and_stock_are_not_design_invariants: true
+  material_package_updates_knowledge_registers: true
