@@ -2,6 +2,7 @@ schema_version: 1
 project: shellac
 status: CONTROLLED_PARTIAL_BASELINE
 reconciled_by: SR-036
+control_hardware_updated_by: G3-024
 selection_policy:
   optimise_whole_bom_cost: true
   prefer_commonality: true
@@ -10,6 +11,7 @@ items:
   - {id: BOM-ENC-AUDIO, function: audio_enclosure, manufacturer: METCASE, mpn: M5502119, status: FROZEN, decision: DEC-005}
   - {id: BOM-ENC-PSU, function: psu_enclosure, manufacturer: METCASE, mpn: M5502119, status: FROZEN, decision: DEC-006}
   - {id: BOM-PSU-MAINS, function: filtered_mains_entry_fuse_switch, manufacturer: SCHURTER, mpn: KMF1.1121.11, status: FROZEN, decision: DEC-007}
+
   - id: BOM-CTRL-BASS
     function: bass_characteristic_selector
     manufacturer: Grayhill
@@ -19,6 +21,7 @@ items:
     status: SELECTED
     decision: DEC-013
     commonality_group: grayhill_series_71_rotaries
+
   - id: BOM-CTRL-TREBLE
     function: treble_characteristic_selector
     manufacturer: Grayhill
@@ -28,6 +31,7 @@ items:
     status: SELECTED
     decision: DEC-013
     commonality_group: grayhill_series_71_rotaries
+
   - id: BOM-CTRL-CHANNEL
     function: channel_mode_selector
     manufacturer: Grayhill
@@ -37,6 +41,55 @@ items:
     status: SELECTED
     decision: DEC-014
     commonality_group: grayhill_series_71_rotaries
-  - {id: BOM-CTRL-RUMBLE, function: rumble_filter_bypass, requirement: stereo_2P2T_BBM, manufacturer: null, mpn: null, status: EXACT_MPN_OPEN, decision: DEC-018}
-  - {id: BOM-CTRL-MUTE, function: output_input_mute, requirement: stereo_2P2T_BBM, manufacturer: null, mpn: null, status: EXACT_MPN_OPEN, decision: DEC-021}
-  - {id: BOM-CTRL-RIAA-LATE, function: recovered_later_riaa_on_bypass, requirement: on_or_straight_through, manufacturer: null, mpn: null, status: ARCHITECTURE_RECONCILIATION_REQUIRED, decision: DEC-026}
+
+  - id: BOM-CTRL-RUMBLE
+    function: rumble_filter_bypass
+    manufacturer: C&K
+    mpn: 7201SYCBE
+    requirement: stereo_2P2T_BBM
+    status: SELECTED
+    decision: DEC-027
+    commonality_group: ck_7000_external_toggles
+    mounting: pcb_pins_plus_threaded_top_cover_bushing
+
+  - id: BOM-CTRL-MUTE
+    function: output_input_mute
+    manufacturer: C&K
+    mpn: 7201SYCBE
+    requirement: stereo_2P2T_BBM
+    status: SELECTED
+    decision: DEC-027
+    commonality_group: ck_7000_external_toggles
+    mounting: pcb_pins_plus_threaded_top_cover_bushing
+
+  - id: BOM-CTRL-RIAA-LATE
+    function: recovered_later_riaa_on_bypass
+    requirement: on_or_straight_through
+    manufacturer: null
+    mpn: null
+    status: ARCHITECTURE_RECONCILIATION_REQUIRED
+    decision: DEC-026
+
+  - id: BOM-LED-POS
+    function: positive_rail_indicator
+    manufacturer: Vishay
+    mpn: TLLG4401
+    bezel_manufacturer: Arcolectric / Bulgin
+    bezel_mpn: A104700BLACK
+    resistor_ohm: 8200
+    nominal_current_ma: 1.90
+    mounting: audio_top_cover_central_spine_flying_leads
+    status: SELECTED
+    decision: DEC-028
+
+  - id: BOM-LED-NEG
+    function: negative_rail_indicator
+    manufacturer: Vishay
+    mpn: TLLG4401
+    bezel_manufacturer: Arcolectric / Bulgin
+    bezel_mpn: A104700BLACK
+    resistor_ohm: 8200
+    nominal_current_ma: 1.90
+    mounting: audio_top_cover_central_spine_flying_leads
+    status: SELECTED
+    decision: DEC-028
