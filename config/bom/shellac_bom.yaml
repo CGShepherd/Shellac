@@ -63,12 +63,14 @@ items:
     mounting: pcb_pins_plus_threaded_top_cover_bushing
 
   - id: BOM-CTRL-RIAA-LATE
-    function: recovered_later_riaa_on_bypass
-    requirement: on_or_straight_through
+    function: optional_3180us_riaa_section_on_bypass
+    requirement: linked_stereo_dedicated_3180us_section_on_or_straight_through_bypass
+    minimum_linked_signal_paths: 2
+    invariant_terms: 318us_zero_and_75us_pole
     manufacturer: null
     mpn: null
-    status: ARCHITECTURE_RECONCILIATION_REQUIRED
-    decision: DEC-026
+    status: ARCHITECTURE_SELECTED_EXACT_REALISATION_AND_MPN_OPEN
+    decision: DEC-034
 
   - id: BOM-LED-POS
     function: positive_rail_indicator

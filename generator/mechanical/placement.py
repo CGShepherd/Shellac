@@ -114,7 +114,7 @@ def build_placement_synthesis(width_mm: float = 220.0, depth_mm: float = 140.0) 
         RegionBox("REG-02", "Replay EQ left", edge, eq_y, half_w, eq_d, 20, "front-to-rear", "Left-channel EQ occupies one side of the second flow band."),
         RegionBox("REG-03", "Replay EQ right", edge + half_w + split_gap, eq_y, half_w, eq_d, 30, "front-to-rear", "Right-channel EQ occupies the opposite side of the second flow band."),
         RegionBox("REG-04", "Rumble filter", edge, middle_y, middle_left_w, middle_d, 40, "front-to-rear", "Frequency-setting networks remain local; controls register vertically to the upper cover rather than through a harness edge."),
-        RegionBox("REG-08", "Top-panel control and indicator logic", control_x, middle_y, control_w, middle_d, 80, "vertical-registration", "Dedicated PCB control/indicator logic region; operator hardware registers vertically to the upper cover with no flying switch/pot harness."),
+        RegionBox("REG-08", "Top-panel control registration", control_x, middle_y, control_w, middle_d, 80, "vertical-registration", "Dedicated PCB switch-registration region. External switches register vertically to the upper cover with no flying switch harness; rail LEDs are panel-mounted on short flying leads and do not constrain PCB position."),
         RegionBox("REG-05", "Final gain and mode matrix", middle_right_x, middle_y, middle_right_w, middle_d, 50, "front-to-rear", "Controlled transition to mode selection and output processing."),
         RegionBox("REG-06A", "Mute and balanced output left/rear", edge, rear_y, out_left_w, rear_d, 60, "front-to-rear", "Rear output region adjacent to one side of the rear connector field."),
         RegionBox("REG-07", "DC entry and bulk decoupling", dc_x, rear_y, dc_w, rear_d, 70, "rear-inward", "Regulated DC enters near rear centreline and feeds the rail spine without entering the cartridge-input zone."),
@@ -133,7 +133,7 @@ def build_placement_synthesis(width_mm: float = 220.0, depth_mm: float = 140.0) 
             "Balanced-output and regulated-DC regions occupy the rear high-level edge.",
             "Regulated DC entry is reserved near the rear centreline.",
             "Left and right replay-EQ regions do not overlap.",
-            "Operator controls register vertically to the upper cover; no control-harness edge is reserved.",
+            "External switches register vertically to the upper cover; no switch-harness edge is reserved. Rail-indicator flying leads are a controlled exception.",
             "All regions remain inside the enclosure-dependent PCB edge clearance.",
         ],
     )

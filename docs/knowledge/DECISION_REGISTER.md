@@ -31,12 +31,17 @@
 | DEC-023 | +18 V/-18 V indicators are two independent panel LEDs with 8.2 kΩ resistors | FROZEN_ELECTRICAL | REPOSITORY_EVIDENCE | AE-009 |
 | DEC-024 | Indicator physical implementation uses panel LEDs on flying leads, not light pipes | SELECTED | USER_RECONFIRMED_PRIOR_INTENT | Exact LED MPN open |
 | DEC-025 | True RIAA uses Bass=True RIAA plus Treble=2121 Hz RIAA; no mechanical interlock required | FROZEN | REPOSITORY_EVIDENCE | AE-009 |
-| DEC-026 | Separate later RIAA ON/BYPASS straight-through function retained as recovered intent; do not add a third Bass pole merely to implement it | RECOVERED_INTENT_PENDING_REPOSITORY_CLOSURE | USER_RECONFIRMED_PRIOR_INTENT | Exact switch topology still open |
+| DEC-026 | Separate later RIAA ON/BYPASS straight-through function retained; do not add a third Bass pole merely to implement it | SELECTED_ARCHITECTURE | USER_RECONFIRMED_PLUS_G3_025_ANALYSIS | Dedicated stereo 3180 us section; exact RC/gain realisation and MPN remain open |
 | DEC-027 | SW904 Rumble and SW905 Mute use the same C&K 7201SYCBE DPDT ON-ON gold-contact PC-pin toggle with threaded panel bushing | SELECTED | NEW_ANALYSIS | Common low-level toggle family; exact PCB footprint still requires controlled verification |
 | DEC-028 | LED901/LED902 use Vishay TLLG4401 low-current diffused green 3 mm LEDs in Arcolectric/Bulgin A104700BLACK black-brass bezels; retain 8.2 kΩ resistors | SELECTED | NEW_ANALYSIS | Approximately 1.90 mA using 2.4 V design Vf; intentionally subdued indicator |
 | DEC-029 | Rail indicators are fitted only to the audio chassis, on the top-cover central longitudinal spine, as a symmetric +18/-18 pair on short flying leads | SELECTED | USER_RECONFIRMED_AND_NEW_ANALYSIS | PSU receives no duplicate rail LEDs |
 | DEC-030 | All five external switches are PCB-through-hole controls whose threaded bushings pass through the top cover as intentional secondary structural connections; standoffs remain the primary PCB datum/support | SELECTED | RECOVERED_AND_REVALIDATED | Schematic interface symbols remain non-placement authority until verified footprints are released |
-| DEC-031 | G3-024 does not invent the internal 3180 us RIAA switch pole/contact topology; exact node-level ON/BYPASS implementation remains a controlled electrical closure item | DEFERRED | REPOSITORY_EVIDENCE_PLUS_RECOVERED_INTENT | Must reconcile SCH103 before physical MPN selection |
+| DEC-031 | G3-024 did not invent the internal 3180 us RIAA switch topology | SUPERSEDED_BY_G3_025 | REPOSITORY_EVIDENCE_PLUS_RECOVERED_INTENT | Architecture-level reconciliation completed by DEC-033/DEC-034 |
+| DEC-032 | Foundry FDR-001 is the controlled engineering-governance baseline for evidence, decisions, conflicts and manufacturing release | SELECTED | G3_025 | Git remains authoritative project memory |
+| DEC-033 | The current single-RC SCH103 active branch couples the 3180 us pole and 318 us zero; changing/bypassing its capacitor cannot independently bypass only the 3180 us term | FROZEN_ANALYSIS | DERIVED_AND_TESTED | Pole and zero both scale as 1/C |
+| DEC-034 | Optional 3180 us architecture is factorised as invariant 318/75 core times a dedicated 3180 us section; internal BYPASS is straight-through around only that section in both channels | SELECTED | DERIVED_AND_TESTED | Minimum two linked signal paths; exact circuit values/MPN not yet frozen |
+| DEC-035 | G3-025 records control mechanical evidence but does not convert catalogue dimensions into manufacturing authority | SELECTED | FOUNDRY_RULE | Final pad geometry, top-cover Z stack and drilling remain gated |
+| DEC-036 | Panel-bezel rail LEDs on short flying leads explicitly supersede stale light-pipe/no-flying-indicator assumptions | SELECTED | CONTROLLED_DECISIONS_024_029 | External switches remain PCB-mounted |
 
 ## Rotary selection rationale
 

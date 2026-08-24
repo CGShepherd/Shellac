@@ -1,0 +1,34 @@
+schema_version: 1
+foundry_id: FDR-001
+project: shellac
+introduced_by: G3-025
+status: CONTROLLED_CANDIDATE
+authority_order:
+  - safety_regulatory_physical_law
+  - frozen_controlled_artefacts_and_manufacturer_evidence
+  - controlled_decision_register
+  - controlled_design_tenets_and_rules
+  - reproducible_engineering_analysis
+  - procurement_aesthetics_cost
+evidence_levels:
+  E1: manufacturer_drawing_datasheet_official_page
+  E2: controlled_repository_model_test_release
+  E3: authorised_distributor_exact_mpn_data
+  E4: reputable_secondary_technical_source
+  E5: recovered_historical_or_conversation_intent
+  E6: engineering_inference_or_assumption
+decision_states:
+  - OPEN
+  - CANDIDATE
+  - SELECTED
+  - FROZEN
+  - MANUFACTURING_RELEASED
+manufacturing_release_requires:
+  - exact_mpn
+  - verified_footprint
+  - verified_panel_thickness_and_z_datum
+  - hardware_stack
+  - pcb_control_coordinates
+  - tolerance_clearance_check
+  - datum_based_drawing
+  - controlled_review_evidence

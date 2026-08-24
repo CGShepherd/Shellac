@@ -159,7 +159,7 @@ def build_mechanical_baseline() -> MechanicalBaseline:
             "Main PCB and all component-side test points remain accessible with enclosure open.",
             "PCB-mounted switch/potentiometer bushings may support the upper cover but must not force PCB alignment.",
             "Front input and rear output/DC panel harnesses disconnect without desoldering.",
-            "Operator switches and potentiometers use no flying leads; indicators use PCB light pipes where practical.",
+            "Operator switches use no flying leads; selected rail indicators are the controlled exception and use short serviceable flying leads to panel-mounted bezels.",
         ),
     )
     psu = EnclosureRequirement(
@@ -183,7 +183,7 @@ def build_mechanical_baseline() -> MechanicalBaseline:
         Datum("DAT-001", "Carrier-plate origin", "Lower-left corner of the removable carrier plate viewed from the component side.", "Mechanical drawing and assembly jig."),
         Datum("DAT-002", "Audio front/input plane", "Front end-panel plane carrying the cartridge input XLRs; board front edge lies immediately behind this plane.", "Manufacturer drawing and enclosure/PCB overlay review."),
         Datum("DAT-003", "Audio rear/output plane", "Rear end-panel plane carrying balanced output XLRs.", "Manufacturer drawing and enclosure/PCB overlay review."),
-        Datum("DAT-004", "Audio upper-cover control plane", "Removable upper cover through which PCB-mounted switch/potentiometer bushings and indicator light pipes register.", "PCB-to-cover stack-up and drilling-template review."),
+        Datum("DAT-004", "Audio upper-cover control plane", "Removable upper cover through which PCB-mounted switch bushings and independently panel-mounted LED bezels register.", "PCB-to-cover stack-up, bezel clearances and drilling-template review."),
         Datum("DAT-005", "Audio rear-centre DC entry", "Rear-panel regulated-DC inlet near the enclosure centreline with local serviceable 0VA/CHASSIS bond region.", "Connector-clearance and continuity/isolation review."),
         Datum("DAT-006", "PSU rear protective-earth point", "Dedicated fastener immediately adjacent to the rear filtered IEC inlet.", "Protective-earth resistance test."),
         Datum("DAT-007", "PSU front DC-output plane", "Front end-panel plane carrying only the regulated low-voltage output interface.", "Panel drawing and segregation review."),
@@ -210,7 +210,7 @@ def build_mechanical_baseline() -> MechanicalBaseline:
         open_inputs=[
             "Audio M5502119 is frozen; exact upper-cover control stack remains gated by selected control parts.",
             "PSU M5502119 is frozen by G3-023; retain closed-box thermal measurement as first-prototype verification rather than an enclosure-size selection blocker.",
-            "Exact PCB-mounted switch/potentiometer parts, anti-rotation features, and bushing-to-upper-cover stack-up.",
+            "External switch MPNs are selected; verify exact custom footprints, anti-rotation features, upper-cover thickness and bushing/washer/nut/knob stack before drilling release.",
             "SCHURTER KMF1.1121.11 mains-entry architecture is frozen; confirm distributor availability at procurement because stock/price are not design invariants.",
             "Released datum-based 1:1 PDF/DXF drilling templates after PCB/control coordinates freeze.",
         ],

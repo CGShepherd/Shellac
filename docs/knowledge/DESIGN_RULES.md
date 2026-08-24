@@ -14,7 +14,7 @@
 
 ## Mechanical and controls
 - PCB/standoffs establish board position. Threaded control hardware may support/locate only after natural alignment and must not pull PCB or enclosure into position.
-- Prefer PCB-mounted controls when electrical and mechanical requirements permit; prefer PCB LEDs/light pipes when robust geometry can be demonstrated.
+- Prefer PCB-mounted controls when electrical and mechanical requirements permit. Indicator implementation follows the selected mechanical architecture: PCB LEDs/light pipes are preferred when geometry is robust, while deliberately selected panel-bezel LEDs may use short serviceable flying leads.
 - Manufacturing drilling coordinates require exact selected hardware, verified panel thickness/Z datum, PCB/control coordinates and washer/nut/knob stack.
 - Prefer datum-based drilling dimensions to chained dimensions.
 - Preserve deliberate mains, PE and SELV/analogue segregation and service-safe wiring.
