@@ -17,11 +17,11 @@ from generator.model.riaa_optional_pole import (
 )
 
 
-def test_optional_pole_architecture_is_selected_not_component_frozen():
-    assert STATUS is OptionalPoleStatus.ARCHITECTURE_SELECTED
+def test_optional_pole_architecture_has_advanced_to_component_freeze():
+    assert STATUS is OptionalPoleStatus.CIRCUIT_REALISATION_FROZEN
     validate_optional_pole_contract()
-    assert CONTRACT.exact_switch_mpn_frozen is False
-    assert CONTRACT.exact_rc_realisation_frozen is False
+    assert CONTRACT.exact_switch_mpn_frozen is True
+    assert CONTRACT.exact_rc_realisation_frozen is True
 
 
 def test_enabled_architecture_exactly_factorises_canonical_riaa():

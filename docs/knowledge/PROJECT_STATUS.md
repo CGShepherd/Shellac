@@ -1,41 +1,44 @@
 # Project Shellac — Controlled Project Status
 
-**Knowledge baseline:** SR-036 + Foundry FDR-001 candidate
-**Engineering package:** G3-025 Foundry/RIAA/physical-control closure candidate
-**Base commit:** `57716653d9b4c11d1c785863cb2c7ee03953d48a`
+**Knowledge baseline:** SR-036 + Foundry FDR-001
+**Engineering package:** G3-026 optional-RIAA circuit/geometry closure candidate
+**Base commit:** `89dfc9f8493ba6327d5ce175ccaaa75bb410dda4`
 
 ## Frozen / selected
-- G3-024 external control hardware remains selected and unchanged.
-- SW901/SW902: Grayhill 71BDF30-01-2-AJN, five stops.
-- SW903: Grayhill 71BDF30-02-2-AJN, four stops.
-- SW904/SW905: C&K 7201SYCBE common DPDT toggle.
-- LED901/LED902: Vishay TLLG4401 in A104700BLACK black-brass bezels on the audio top-cover centre spine.
-- External-switch bushings are secondary structural connections; PCB standoffs remain primary datum/support.
-- Optional RIAA architecture: invariant 318/75 core plus dedicated stereo 3180 us section with internal ON/straight-through BYPASS.
-- Foundry FDR-001 defines evidence/decision/release governance.
+- G3-024 external control hardware remains selected.
+- G3-025 Foundry and factorised optional-RIAA architecture remain authoritative.
+- Optional 3180 us realisation: RC-before-gain, non-inverting stereo OPA1656 implementation.
+- Timing per channel: 31.5 kΩ with 68 nF + 33 nF C0G/NP0, giving 3181.5 us nominal.
+- Optional-stage gain: 1 + 5.08 kΩ / 267 Ω = 20.0262; approximately unity at 1 kHz after the 3180 us pole.
+- Internal ON/BYPASS switch: Nidec ASE2D-2M-10-Z, DPDT through-hole, gold, BBM.
+- Bypass selects straight-through RIAA core output; ON selects optional-section output.
+- Audio upper cover: 2.0 mm nominal manufacturer-drawing basis for stack analysis.
+- GitHub Actions regression workflow is part of the G3-026 candidate.
 
-## Closed by G3-025
-- The single-RC SCH103 branch cannot independently switch only the 3180 us term; this is proven and tested.
-- The optional-pole requirement is factorised without altering the 318 us or 75 us terms.
-- Selected external-control catalogue dimensions are captured as controlled mechanical evidence.
-- Stale light-pipe/no-flying-indicator assumptions are superseded.
+## Closed by G3-026
+- Component-level 3180 us section topology and nominal values.
+- Exact internal RIAA switch MPN.
+- Polarity continuity between ON and BYPASS.
+- Basic bushing-through-cover reach concern for Grayhill and C&K controls.
+- Automated pushed-branch pytest/compile regression infrastructure.
 
 ## Deliberately open
-- Component-level implementation (RC/gain distribution) of the dedicated 3180 us section.
-- Exact internal RIAA switch MPN after noise/gain/overload closure.
-- Final verified custom footprints/3D models for all external controls.
-- Upper-cover thickness/Z datum and complete washer/nut/knob stack.
+- Final SCH103/KiCad incorporation and native ERC review of the optional section.
+- SPICE/bench confirmation of integrated noise, transient behaviour and overload margin.
+- Final custom footprints/3D models for external controls.
+- Upper-cover sheet-thickness tolerance and complete washer/nut/anti-rotation/knob stack.
 - Final PCB/control coordinates, mounting holes and top-cover drilling release.
 
 ## Next package
-**G3-026 — Optional-RIAA Circuit Realisation & Manufacturing-Control Geometry**
+**G3-027 — SCH103 Integration, Footprint Verification and Machining Datum Closure**
 
-1. synthesise candidate 3180 us section implementations;
-2. compare noise, gain, overload, loading and component practicality;
-3. select exact internal switch hardware after topology is fixed;
-4. verify/create custom external-control footprints;
-5. close upper-cover Z stack;
-6. only then synthesise/review datum-based machining coordinates.
+1. integrate the frozen optional-RIAA realisation into SCH103;
+2. preserve/retune the invariant 318/75 core as required by the factorised architecture;
+3. run electrical curve/headroom/noise regression on the integrated stage;
+4. create/verify exact external-control footprints against manufacturer terminal drawings;
+5. close the hardware stack and Z datum;
+6. synthesise datum-based drilling coordinates only if all manufacturing gates pass.
 
 ## Manufacturing limitation
-No PCB fabrication or top-cover machining is authorised by G3-025.
+G3-026 is an electrical/component freeze and nominal stack closure. It does not
+authorise PCB fabrication or top-cover machining.

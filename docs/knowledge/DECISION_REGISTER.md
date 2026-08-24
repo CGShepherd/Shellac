@@ -42,6 +42,11 @@
 | DEC-034 | Optional 3180 us architecture is factorised as invariant 318/75 core times a dedicated 3180 us section; internal BYPASS is straight-through around only that section in both channels | SELECTED | DERIVED_AND_TESTED | Minimum two linked signal paths; exact circuit values/MPN not yet frozen |
 | DEC-035 | G3-025 records control mechanical evidence but does not convert catalogue dimensions into manufacturing authority | SELECTED | FOUNDRY_RULE | Final pad geometry, top-cover Z stack and drilling remain gated |
 | DEC-036 | Panel-bezel rail LEDs on short flying leads explicitly supersede stale light-pipe/no-flying-indicator assumptions | SELECTED | CONTROLLED_DECISIONS_024_029 | External switches remain PCB-mounted |
+| DEC-037 | Optional 3180 us circuit uses 31.5 kΩ with 68 nF + 33 nF C0G ahead of a non-inverting OPA1656 stage, gain 1 + 5.08 kΩ/267 Ω | FROZEN_ELECTRICAL | G3_026_DERIVED_AND_TESTED | 3181.5 us nominal; +0.0049 dB at 1 kHz; OPA1656 reuses controlled SCH101 family |
+| DEC-038 | Internal RIAA ON/BYPASS switch is Nidec ASE2D-2M-10-Z; DPDT ON-ON, gold, through-hole, non-shorting/BBM | SELECTED | E3_EXACT_MPN_PLUS_G3_026 | Output-path selection gives low-impedance ON and straight-through BYPASS |
+| DEC-039 | Optional RIAA switch selects section output versus direct core output; filter remains driven in BYPASS | FROZEN_ELECTRICAL | G3_026 | Preserves polarity and avoids switching high-impedance timing node |
+| DEC-040 | M5502119 upper cover uses 2.0 mm nominal drawing basis for stack analysis; unspecified thickness tolerance is not invented | SELECTED_NOMINAL | E1_MANUFACTURER_DRAWING | Grayhill leaves 5.92 mm and C&K 6.89 mm nominal thread above cover; machining still gated |
+| DEC-041 | Repository CI runs compileall and full pytest on main/feature pushes and pull requests | SELECTED | G3_026_RISK_REDUCTION | Makes pushed validation inspectable in GitHub |
 
 ## Rotary selection rationale
 

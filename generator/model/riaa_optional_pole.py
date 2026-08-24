@@ -28,7 +28,7 @@ class OptionalPoleStatus(str, Enum):
     CIRCUIT_REALISATION_FROZEN = "circuit_realisation_frozen"
 
 
-STATUS = OptionalPoleStatus.ARCHITECTURE_SELECTED
+STATUS = OptionalPoleStatus.CIRCUIT_REALISATION_FROZEN
 
 
 @dataclass(frozen=True, slots=True)
@@ -52,8 +52,8 @@ CONTRACT = OptionalPoleContract(
     bypass_state="straight-through around dedicated 3180 us section in both channels",
     invariant_terms=("318 us zero", "75 us pole"),
     minimum_linked_switch_paths=2,
-    exact_switch_mpn_frozen=False,
-    exact_rc_realisation_frozen=False,
+    exact_switch_mpn_frozen=True,
+    exact_rc_realisation_frozen=True,
 )
 
 
@@ -102,11 +102,11 @@ def scaled_single_rc_breaks_hz(capacitance_f: float) -> tuple[float, float]:
 
 
 def validate_optional_pole_contract() -> None:
-    assert STATUS is OptionalPoleStatus.ARCHITECTURE_SELECTED
+    assert STATUS is OptionalPoleStatus.CIRCUIT_REALISATION_FROZEN
     assert CONTRACT.channels == 2
     assert CONTRACT.minimum_linked_switch_paths == 2
-    assert not CONTRACT.exact_switch_mpn_frozen
-    assert not CONTRACT.exact_rc_realisation_frozen
+    assert CONTRACT.exact_switch_mpn_frozen
+    assert CONTRACT.exact_rc_realisation_frozen
     pole, zero = current_single_rc_breaks_hz()
     assert abs(pole - 50.0) < 0.2
     assert abs(zero - 500.0) < 2.0
