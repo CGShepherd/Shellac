@@ -47,6 +47,12 @@
 | DEC-039 | Optional RIAA switch selects section output versus direct core output; filter remains driven in BYPASS | FROZEN_ELECTRICAL | G3_026 | Preserves polarity and avoids switching high-impedance timing node |
 | DEC-040 | M5502119 upper cover uses 2.0 mm nominal drawing basis for stack analysis; unspecified thickness tolerance is not invented | SELECTED_NOMINAL | E1_MANUFACTURER_DRAWING | Grayhill leaves 5.92 mm and C&K 6.89 mm nominal thread above cover; machining still gated |
 | DEC-041 | Repository CI runs compileall and full pytest on main/feature pushes and pull requests | SELECTED | G3_026_RISK_REDUCTION | Makes pushed validation inspectable in GitHub |
+| DEC-042 | Third RIAA 3180 us pole is an independent operator-controlled ON/BYPASS stage; no Bass/Treble interlock is required | FROZEN | USER_CLARIFICATION_PLUS_RECOVERED_INTENT | Any Bass/Treble/3180 combination is permitted |
+| DEC-043 | Do not leave the legacy 3180 us term embedded in TRUE-RIAA Bass when adding the independent G3-026 stage | FROZEN_ANALYSIS | G3_027_EXECUTABLE_AUDIT | Resynthesise TRUE-RIAA Bass contribution without 3180 us to prevent duplicate application |
+| DEC-044 | BOM optimisation minimises landed basket cost subject to Foundry and frozen requirements | SELECTED | USER_DIRECTION_PLUS_FOUNDRY | Quantity breaks and shipping evaluated at basket level |
+| DEC-045 | Selected switches are procured at required quantity only by default; no routine spares while parts are active/new-design suitable and supply risk is acceptable | SELECTED | USER_DIRECTION | Reopen for NRND/EOL/obsolete or material supply risk |
+| DEC-046 | shellac_bom.yaml remains a controlled partial baseline, not procurement-complete BOM | SELECTED | G3_027_REPOSITORY_AUDIT | Full schematic-derived inventory required |
+| DEC-047 | Audio-chassis top surface shall carry a permanent etched/engraved replay-configuration key identifying recommended Bass, Treble and independent 3180 us pole settings for supported replay standards; the key is advisory and all control combinations remain electrically permissible | SELECTED | USER_DIRECTION_PLUS_G3_027 | Legend content shall be generated from the controlled replay-curve model; final wording, typography, placement, dimensions and manufacturing process remain gated until replay-curve and top-cover layout closure |
 
 ## Rotary selection rationale
 

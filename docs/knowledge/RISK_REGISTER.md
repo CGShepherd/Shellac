@@ -16,3 +16,6 @@
 | R-012 | Selected external switch MPNs lack final controlled PCB footprints/3D envelopes | PARTIALLY_MITIGATED | G3-026 closes nominal cover penetration; exact pad geometry, tolerance and complete hardware stack remain before drilling release |
 | R-013 | Engineering method/decision hierarchy existed only implicitly across knowledge files and conversation | RESOLVED | FDR-001 Foundry baseline added under configuration control |
 | R-014 | Regression evidence depended on manual local console relay | MITIGATED | G3-026 adds GitHub Actions compile/full-pytest workflow; first pushed run still requires confirmation |
+| R-015 | Legacy TRUE RIAA branch still contains 3180/318 us while G3-026 adds an independent 3180 us stage | OPEN_BLOCKING | G3-027 audit prevents duplicate 3180 application; resynthesise TRUE-RIAA Bass contribution without 3180 us before SCH103 ECO |
+| R-016 | Controlled BOM is not procurement-complete | ACTIVE_MITIGATION | Generate schematic-derived inventory before landed-cost optimisation |
+| R-017 | Etched replay-configuration key could diverge from the controlled electrical replay model | OPEN | Generate recommended Bass/Treble/3180-us combinations and final legend content from controlled replay-curve data; verify correspondence by automated test before artwork or machining release |

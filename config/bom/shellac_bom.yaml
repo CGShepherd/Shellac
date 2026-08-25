@@ -3,6 +3,8 @@ project: shellac
 status: CONTROLLED_PARTIAL_BASELINE
 reconciled_by: SR-036
 control_hardware_updated_by: G3-024
+bom_reviewed_by: G3-027
+procurement_complete: false
 selection_policy:
   optimise_whole_bom_cost: true
   prefer_commonality: true
