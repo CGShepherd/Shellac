@@ -3,13 +3,13 @@ project: shellac
 snapshot_date: 2026-08-24
 currency: GBP
 status: PARTIAL_MARKET_SNAPSHOT
+superseded_items_removed_by: DR-037
 quotes:
   - {mpn: 71BDF30-01-2-AJN, manufacturer: Grayhill, reseller: DigiKey_UK, stock: 563, required_qty: 2, planned_buy_qty: 2, qty1_gbp: 26.95, qty5_gbp: 23.136}
   - {mpn: 71BDF30-02-2-AJN, manufacturer: Grayhill, reseller: DigiKey_UK, required_qty: 1, planned_buy_qty: 1, observed_unit_gbp: 38.48}
   - {mpn: 7201SYCBE, manufacturer: C&K, reseller: DigiKey_UK, stock: 50, required_qty: 2, planned_buy_qty: 2, qty1_gbp: 11.91, qty10_gbp: 10.281, alternative_review_required: true}
   - {mpn: TLLG4401, manufacturer: Vishay, reseller: DigiKey_UK, stock: 6438, required_qty: 2, qty1_gbp: 0.40, qty10_gbp: 0.276}
-  - {mpn: OPA1656IDR, manufacturer: Texas_Instruments, reseller: LCSC, stock: 4228, required_qty: 1, qty1_usd: 1.551, challenger_only: true}
-quote_pending: [M5502119, KMF1.1121.11, ASE2D-2M-10-Z, C1206C683F5GECAUTO7210, C1206C333F5GEC7210, A104700BLACK]
+quote_pending: [M5502119, KMF1.1121.11, A104700BLACK]
 completeness:
   current_controlled_bom_is_procurement_complete: false
   reason: high_level_selected_items_only_not_full_schematic_population

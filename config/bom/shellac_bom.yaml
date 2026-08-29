@@ -3,7 +3,7 @@ project: shellac
 status: CONTROLLED_PARTIAL_BASELINE
 reconciled_by: SR-036
 control_hardware_updated_by: G3-024
-bom_reviewed_by: G3-027
+bom_reviewed_by: DR-037
 procurement_complete: false
 selection_policy:
   optimise_whole_bom_cost: true
@@ -63,52 +63,6 @@ items:
     decision: DEC-027
     commonality_group: ck_7000_external_toggles
     mounting: pcb_pins_plus_threaded_top_cover_bushing
-
-  - id: BOM-CTRL-RIAA-LATE
-    function: optional_3180us_riaa_section_on_bypass
-    requirement: linked_stereo_dedicated_3180us_section_on_or_straight_through_bypass
-    minimum_linked_signal_paths: 2
-    invariant_terms: 318us_zero_and_75us_pole
-    manufacturer: Nidec Components
-    mpn: ASE2D-2M-10-Z
-    contact_finish: gold
-    contact_timing: BBM_non_shorting
-    mounting: through_hole_pc_pin_internal
-    status: SELECTED
-    decision: DEC-038
-
-  - id: BOM-RIAA-3180-OPA
-    function: optional_3180us_stereo_active_stage
-    manufacturer: Texas Instruments
-    mpn: OPA1656
-    quantity: 1
-    status: SELECTED
-    decision: DEC-037
-    commonality_group: opa1656_audio_opamps
-
-  - id: BOM-RIAA-3180-C68
-    function: optional_3180us_timing_capacitor_68n
-    manufacturer: KEMET
-    mpn: C1206C683F5GECAUTO7210
-    quantity: 2
-    value_nf: 68
-    tolerance_pct: 1
-    voltage_v: 50
-    dielectric: C0G_NP0
-    status: SELECTED
-    decision: DEC-037
-
-  - id: BOM-RIAA-3180-C33
-    function: optional_3180us_timing_capacitor_33n
-    manufacturer: KEMET
-    mpn: C1206C333F5GEC7210
-    quantity: 2
-    value_nf: 33
-    tolerance_pct: 1
-    voltage_v: 50
-    dielectric: C0G_NP0
-    status: SELECTED
-    decision: DEC-037
 
   - id: BOM-LED-POS
     function: positive_rail_indicator

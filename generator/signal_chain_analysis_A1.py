@@ -68,19 +68,12 @@ def signal_point(
     rumble_enabled: bool = False,
     cartridge_rms_v: float = NOMINAL_CARTRIDGE_RMS_V,
 ) -> SignalChainPoint:
-    if frequency_hz <= 0:
-        raise ValueError("frequency_hz must be positive")
-    if cartridge_rms_v < 0:
-        raise ValueError("cartridge_rms_v must be non-negative")
-
     lf = _lf(bass, frequency_hz)
     hf = _hf(treble, frequency_hz)
     rumble = abs(filter_transfer(frequency_hz)) if rumble_enabled else 1.0
 
     first_active = cartridge_rms_v * gain_setting.total_gain * lf
     sch103 = first_active * hf * RECOVERY_GAIN
-    # SCH107 contributes only its HP response. SCH104 and SCH105 are unity.
-    # THAT1646 in SCH108 supplies the final 2x differential voltage gain.
     xlr = sch103 * rumble * DIFFERENTIAL_GAIN_LINEAR
 
     return SignalChainPoint(
@@ -110,10 +103,8 @@ def riaa_combination():
     return RIAA_BASS_NETWORK, treble
 
 
-def sweep(
-    frequencies_hz=(5.0, 10.0, 15.0, 20.0, 30.0, 50.0, 100.0,
-                    1000.0, 10000.0, 20000.0),
-):
+def sweep(frequencies_hz=(5.0, 10.0, 15.0, 20.0, 30.0, 50.0, 100.0,
+                          1000.0, 10000.0, 20000.0)):
     points = []
     combinations = list(historical_combinations())
     combinations.append(riaa_combination())
@@ -131,21 +122,13 @@ def sweep(
     return tuple(points)
 
 
-def worst_first_active_margin():
-    return min(sweep(), key=lambda point: point.first_active_margin_db)
-
-
-def worst_xlr_margin():
-    return min(sweep(), key=lambda point: point.xlr_margin_db)
-
-
 def validate_signal_chain() -> None:
     assert abs(RECOVERY_GAIN - 2.1) < 1e-12
     assert DIFFERENTIAL_GAIN_LINEAR == 2.0
 
-    default = next(item for item in GAIN_SETTINGS if item.name == "DEFAULT")
-    flat_bass = next(item for item in BASS_NETWORKS if item.name == "FLAT")
-    flat_treble = next(item for item in TREBLE_NETWORKS if item.name == "FLAT")
+    default = next(x for x in GAIN_SETTINGS if x.name == "DEFAULT")
+    flat_bass = next(x for x in BASS_NETWORKS if x.name == "FLAT")
+    flat_treble = next(x for x in TREBLE_NETWORKS if x.name == "FLAT")
 
     flat = signal_point(
         gain_setting=default,
@@ -161,7 +144,7 @@ def validate_signal_chain() -> None:
     )
     assert abs(flat.xlr_output_rms_v - expected) < 1e-12
 
-    bass_200 = next(item for item in BASS_NETWORKS if item.name == "200 Hz")
+    bass_200 = next(x for x in BASS_NETWORKS if x.name == "200 Hz")
     nominal = signal_point(
         gain_setting=default,
         bass=bass_200,
