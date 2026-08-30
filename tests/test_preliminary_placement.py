@@ -8,7 +8,7 @@ from generator.layout.preliminary_placement import (
 def test_every_approved_board_reference_has_one_coordinate_proposal():
     placement = build_preliminary_placement_baseline()
     contract = build_footprint_contract()
-    assert len(placement.proposals) == len(contract.board_population_refs) == 249
+    assert len(placement.proposals) == len(contract.board_population_refs) == 250
     assert {item.ref for item in placement.proposals} == set(contract.board_population_refs)
 
 

@@ -176,5 +176,7 @@ def test_sch101_builder_emits_real_connectivity():
     from generator.blocks.balanced_input import add_sch101_diff_converter_slice
     sheet = Sheet("SCH101", "SCH101.kicad_sch")
     add_sch101_diff_converter_slice(sheet)
-    assert len(sheet.wires) >= 120
+    refs={component.ref for component in sheet.components}
+    assert {"RN130","RN230","U103","U203"} <= refs
+    assert len(sheet.wires) >= 90
     assert {"PRE_EQ_L", "PRE_EQ_R", "+18V", "-18V", "0VA", "CHASSIS"}.issubset({label.name for label in sheet.labels})

@@ -1,10 +1,10 @@
 """AE-013 SCH101 noise and resistor-tolerance CMRR review.
 
 This module deliberately separates:
-1. the current controlled implementation (0.1% discrete resistors);
+1. the historical pre-DR038 controlled implementation (0.1% discrete resistors);
 2. a candidate lower-impedance / tighter-ratio implementation.
 
-It does not change the active schematic.  Its purpose is to quantify whether
+It is retained as historical assurance evidence and does not define the active schematic.  Its purpose is to quantify whether
 the current resistor policy supports the balanced-cartridge architecture.
 """
 from __future__ import annotations
@@ -13,7 +13,6 @@ from dataclasses import dataclass
 from itertools import product
 from math import log10, sqrt
 
-from .balanced_input import GAIN_SETTINGS
 
 BOLTZMANN = 1.380649e-23
 TEMPERATURE_K = 300.0
@@ -34,6 +33,17 @@ GAIN_RG_OHM = 10_000.0
 CURRENT_RESISTOR_TOLERANCE = 0.001
 CANDIDATE_RATIO_TOLERANCE = 0.0001
 CANDIDATE_IMPEDANCE_SCALE = 0.1
+
+@dataclass(frozen=True, slots=True)
+class _LegacyGainSetting:
+    name: str
+    rf_ohm: float
+
+LEGACY_GAIN_SETTINGS = (
+    _LegacyGainSetting("LOW", 4420.0),
+    _LegacyGainSetting("DEFAULT", 12700.0),
+    _LegacyGainSetting("HIGH", 26100.0),
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -59,7 +69,7 @@ def resistor_noise_nv_rt_hz(resistance_ohm: float) -> float:
 
 
 def _gain_setting(name: str):
-    return next(item for item in GAIN_SETTINGS if item.name == name)
+    return next(item for item in LEGACY_GAIN_SETTINGS if item.name == name)
 
 
 def sch101_input_referred_white_noise(
@@ -170,27 +180,27 @@ def worst_case_cmrr(gain_name: str, *, ratio_tolerance: float) -> CmrrSummary:
 
 
 def current_noise_summaries():
-    return tuple(sch101_input_referred_white_noise(item.name) for item in GAIN_SETTINGS)
+    return tuple(sch101_input_referred_white_noise(item.name) for item in LEGACY_GAIN_SETTINGS)
 
 
 def candidate_noise_summaries():
     return tuple(
         sch101_input_referred_white_noise(item.name, impedance_scale=CANDIDATE_IMPEDANCE_SCALE)
-        for item in GAIN_SETTINGS
+        for item in LEGACY_GAIN_SETTINGS
     )
 
 
 def current_cmrr_summaries():
     return tuple(
         worst_case_cmrr(item.name, ratio_tolerance=CURRENT_RESISTOR_TOLERANCE)
-        for item in GAIN_SETTINGS
+        for item in LEGACY_GAIN_SETTINGS
     )
 
 
 def candidate_cmrr_summaries():
     return tuple(
         worst_case_cmrr(item.name, ratio_tolerance=CANDIDATE_RATIO_TOLERANCE)
-        for item in GAIN_SETTINGS
+        for item in LEGACY_GAIN_SETTINGS
     )
 
 

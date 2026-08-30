@@ -11,7 +11,7 @@ def test_ae013_validation():
     validate_ae013()
 
 
-def test_current_discrete_0p1_percent_cmrr_is_not_precision_balanced():
+def test_historical_discrete_0p1_percent_cmrr_was_not_precision_balanced():
     values = {x.gain_name: x.worst_case_cmrr_db for x in current_cmrr_summaries()}
     assert values["LOW"] < 54.0
     assert values["DEFAULT"] < 51.0

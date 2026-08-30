@@ -3,9 +3,9 @@ from generator.model.post_eq_dc_block import cutoff_hz, magnitude_db, validate_p
 from generator.model.sch101_precision_candidate import validate_ae014
 
 
-def test_active_sch101_remains_pre_cad_baseline():
+def test_active_sch101_is_dr038_implemented_baseline():
     validate_balanced_input()
-    assert DIFF_CONVERTER_GAIN == 3.48
+    assert DIFF_CONVERTER_GAIN == 4.0
 
 
 def test_dr038_selected_candidate_remains_valid():

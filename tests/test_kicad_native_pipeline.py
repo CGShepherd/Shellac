@@ -14,9 +14,9 @@ def test_kicad_native_pipeline_assigns_document_ownership_cleanly():
 
 def test_kicad_native_pipeline_covers_all_preliminary_footprints():
     baseline = build_kicad_native_pipeline_baseline()
-    assert baseline.footprint_count == 249
-    assert baseline.accepted_count + baseline.review_count == 249
-    assert len({item["reference"] for item in baseline.placement_items}) == 249
+    assert baseline.footprint_count == 250
+    assert baseline.accepted_count + baseline.review_count == 250
+    assert len({item["reference"] for item in baseline.placement_items}) == 250
 
 
 def test_kicad_native_pipeline_preserves_manual_review_boundary():

@@ -17,7 +17,7 @@ def test_sch101_is_electrically_closed():
 
 def test_three_gain_settings_are_frozen():
     assert [item.target_total_db for item in GAIN_SETTINGS] == [14.0, 18.0, 22.0]
-    assert DIFF_CONVERTER_GAIN == pytest.approx(3.48)
+    assert DIFF_CONVERTER_GAIN == pytest.approx(4.0)
 
 
 def test_default_gain_matches_downstream_budget():

@@ -87,3 +87,13 @@ items:
     mounting: audio_top_cover_central_spine_flying_leads
     status: SELECTED
     decision: DEC-028
+
+  - id: BOM-SCH101-LT5400
+    function: sch101_precision_resistor_network
+    manufacturer: Analog Devices
+    mpn: LT5400-7A
+    quantity: 2
+    package: MS8E
+    footprint: Package_SO:MSOP-8-1EP_3x3mm_P0.65mm_EP1.68x1.88mm
+    status: SELECTED
+    decision: DR-038

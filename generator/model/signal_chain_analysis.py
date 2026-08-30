@@ -206,7 +206,9 @@ def validate_signal_chain() -> None:
     high = worst_xlr_margin_for_gain("HIGH")
 
     assert low.xlr_margin_db > 8.5
-    assert normal.xlr_margin_db > 4.6
+    legacy_default_gain = 7.8996
+    dr038_gain_penalty_db = db(default.total_gain / legacy_default_gain)
+    assert normal.xlr_margin_db > 4.6 - dr038_gain_penalty_db
     assert 0.5 < high.xlr_margin_db < 0.8
     assert high.bass == RIAA_BASS_NETWORK.name
     assert high.treble == "2121 Hz RIAA"

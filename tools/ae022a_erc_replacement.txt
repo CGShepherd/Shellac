@@ -1,0 +1,65 @@
+from generator.blocks.balanced_input import add_sch101_diff_converter_slice
+from generator.blocks.mode_matrix import add_mode_matrix
+from generator.core.pins import pin_position
+from generator.core.sheet import Sheet
+
+def _edges(sheet):
+    return {frozenset(((w.x1,w.y1),(w.x2,w.y2))) for w in sheet.wires}
+
+def test_sch101_lt5400_converter_pin_routes_are_explicit():
+    sheet=Sheet("SCH101","SCH101.kicad_sch")
+    add_sch101_diff_converter_slice(sheet)
+    c={x.ref:x for x in sheet.components}
+    edges=_edges(sheet)
+    for diff_ref,rn_ref,plus_ref,minus_ref in (
+        ("U103","RN130","U101","U102"),
+        ("U203","RN230","U201","U202"),
+    ):
+        d,rn,po,mo=c[diff_ref],c[rn_ref],c[plus_ref],c[minus_ref]
+        expected=(
+            (pin_position(po,"OUT"),pin_position(rn,"3")),
+            (pin_position(rn,"6"),pin_position(d,"IN+")),
+            (pin_position(rn,"4"),pin_position(d,"IN+")),
+            (pin_position(mo,"OUT"),pin_position(rn,"2")),
+            (pin_position(rn,"7"),pin_position(d,"IN-")),
+            (pin_position(rn,"1"),pin_position(d,"IN-")),
+            (pin_position(rn,"8"),pin_position(d,"OUT")),
+        )
+        for a,b in expected:
+            assert frozenset(((a.x,a.y),(b.x,b.y))) in edges
+
+def test_sch101_no_vertical_conductor_runs_between_both_diff_inputs():
+    sheet=Sheet("SCH101","SCH101.kicad_sch")
+    add_sch101_diff_converter_slice(sheet)
+    c={x.ref:x for x in sheet.components}
+    for d in ("U103","U203"):
+        plus=pin_position(c[d],"IN+")
+        minus=pin_position(c[d],"IN-")
+        lo,hi=sorted((plus.y,minus.y))
+        for w in sheet.wires:
+            if w.x1==w.x2==plus.x:
+                slo,shi=sorted((w.y1,w.y2))
+                assert not (slo < hi and shi > lo)
+
+def test_sch105_bias_resistors_approach_buffer_inputs_vertically():
+    sheet=Sheet("SCH105","SCH105.kicad_sch")
+    add_mode_matrix(sheet)
+    c={x.ref:x for x in sheet.components}
+    edges=_edges(sheet)
+    for br,ur in (("R510","U501"),("R520","U502")):
+        b=pin_position(c[br],"1")
+        i=pin_position(c[ur],"IN")
+        corner=(i.x,b.y)
+        assert frozenset(((b.x,b.y),corner)) in edges
+        assert frozenset((corner,(i.x,i.y))) in edges
+
+def test_sch101_lt5400_reference_and_ep_are_safe():
+    sheet=Sheet("SCH101","SCH101.kicad_sch")
+    add_sch101_diff_converter_slice(sheet)
+    c={x.ref:x for x in sheet.components}
+    labels={(x.name,x.x,x.y) for x in sheet.labels}
+    for rn_ref in ("RN130","RN230"):
+        rn=c[rn_ref]
+        ref=pin_position(rn,"5")
+        assert any(name=="0VA" and x==ref.x for name,x,y in labels)
+        assert pin_position(rn,"9") in sheet.no_connects

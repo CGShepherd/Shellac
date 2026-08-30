@@ -25,7 +25,7 @@ def test_all_measurements_have_unique_identifiers_and_retained_evidence():
 def test_calculated_gain_expectations_preserve_frozen_design():
     model = build_commissioning_baseline()
     expected = {m.parameter: m.expected for stage in model.stages for m in stage.measurements}
-    assert "7.8996 V/V" in expected["SCH101 DEFAULT gain"]
+    assert "7.9960 V/V" in expected["SCH101 DEFAULT gain"]
     assert expected["SCH104 gain"] == "1.000 V/V"
     assert "2.000 V/V" in expected["Differential output gain"]
 

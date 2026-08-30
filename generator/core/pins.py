@@ -40,6 +40,17 @@ SYMBOL_PIN_CONTRACTS: dict[str, dict[str, PinContract]] = {
         "0VA": PinContract("5", Point(-2.54, 10.16)),
     },
     "ProjectShellac:DiffAmp_Block": {"IN+": PinContract("1", Point(-11.43, 2.54)), "IN-": PinContract("2", Point(-11.43, -2.54)), "OUT": PinContract("3", Point(11.43, 0.0)), "+V": PinContract("4", Point(2.54, 10.16)), "-V": PinContract("5", Point(2.54, -10.16))},
+    "ProjectShellac:LT5400_Network": {
+        "1": PinContract("1", Point(-12.70, -7.62)),
+        "2": PinContract("2", Point(-12.70, -2.54)),
+        "3": PinContract("3", Point(-12.70, 2.54)),
+        "4": PinContract("4", Point(-12.70, 7.62)),
+        "5": PinContract("5", Point(12.70, 7.62)),
+        "6": PinContract("6", Point(12.70, 2.54)),
+        "7": PinContract("7", Point(12.70, -2.54)),
+        "8": PinContract("8", Point(12.70, -7.62)),
+        "9": PinContract("9", Point(0.0, 12.70)),
+    },
     "ProjectShellac:TestPoint": {
         "TP": PinContract("1", Point(0.0, -5.08)),
     },

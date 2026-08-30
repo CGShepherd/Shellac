@@ -34,6 +34,7 @@ PIN_COUNTS = {
     "Connector_Generic:Conn_01x06": 6,
     "ProjectShellac:OpAmp_NonInv_Block": 5,
     "ProjectShellac:DiffAmp_Block": 5,
+    "ProjectShellac:LT5400_Network": 9,
     "ProjectShellac:TestPoint": 1,
     "ProjectShellac:Replay_EQ_Core_Block": 5,
     "ProjectShellac:Rotary_Switch_Block": 2,
@@ -217,6 +218,7 @@ def embedded_custom_symbol_ids():
         "ProjectShellac:Replay_EQ_Core_Block",
         "ProjectShellac:Rotary_Switch_Block",
         "ProjectShellac:DiffAmp_Block",
+        "ProjectShellac:LT5400_Network",
         "ProjectShellac:OpAmp_Buffer_Block",
         "ProjectShellac:TestPoint",
         "ProjectShellac:Mode_Switch_Block",
@@ -495,6 +497,22 @@ def local_symbol_library():
         (pin passive line (at -15.24 7.62 0) (length 5.08) (name "R_MUTE" {eff(1.0)}) (number "4" {eff(1.0)}))
         (pin passive line (at 15.24 -3.81 180) (length 5.08) (name "L_OUT" {eff(1.0)}) (number "5" {eff(1.0)}))
         (pin passive line (at 15.24 3.81 180) (length 5.08) (name "R_OUT" {eff(1.0)}) (number "6" {eff(1.0)}))
+      )
+    )
+    (symbol "ProjectShellac:LT5400_Network" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)
+      (property "Reference" "RN" (id 0) (at 0 -10 0) {eff()})
+      (property "Value" "LT5400-7" (id 1) (at 0 10 0) {eff()})
+      (symbol "LT5400_Network_0_1"
+        (rectangle (start -5.08 -6.35) (end 5.08 6.35) (stroke (width 0.1524) (type solid)) (fill (type none)))
+        (pin passive line (at -12.70 -7.62 0) (length 2.54) (name "1" {eff(1.0)}) (number "1" {eff(1.0)}))
+        (pin passive line (at -12.70 -2.54 0) (length 2.54) (name "2" {eff(1.0)}) (number "2" {eff(1.0)}))
+        (pin passive line (at -12.70 2.54 0) (length 2.54) (name "3" {eff(1.0)}) (number "3" {eff(1.0)}))
+        (pin passive line (at -12.70 7.62 0) (length 2.54) (name "4" {eff(1.0)}) (number "4" {eff(1.0)}))
+        (pin passive line (at 12.70 7.62 180) (length 2.54) (name "5" {eff(1.0)}) (number "5" {eff(1.0)}))
+        (pin passive line (at 12.70 2.54 180) (length 2.54) (name "6" {eff(1.0)}) (number "6" {eff(1.0)}))
+        (pin passive line (at 12.70 -2.54 180) (length 2.54) (name "7" {eff(1.0)}) (number "7" {eff(1.0)}))
+        (pin passive line (at 12.70 -7.62 180) (length 2.54) (name "8" {eff(1.0)}) (number "8" {eff(1.0)}))
+        (pin passive line (at 0 12.70 270) (length 1.27) (name "EP" {eff(1.0)}) (number "9" {eff(1.0)}))
       )
     )
     (symbol "ProjectShellac:DIP_Switch_Block" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)

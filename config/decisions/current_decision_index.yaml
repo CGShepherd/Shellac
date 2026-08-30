@@ -26,7 +26,7 @@ decisions:
       - G3-027 resynthesis requirement
   DR-038:
     title: SCH101 precision architecture
-    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    status: CURRENT_IMPLEMENTED
     primary_record: docs/decisions/DR-038_SCH101_Precision_Architecture_SELECTED.md
     proposal_record: docs/decisions/DR-038_SCH101_Precision_Architecture_PROPOSED.md
     evidence:
@@ -34,7 +34,7 @@ decisions:
       - docs/AE-014_SCH101_Precision_Architecture_Downselect_Rev_A0.md
       - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
     implemented_baseline_still:
-      converter_gain: 3.48
+      converter_gain: 4.0
       note: Active SCH101 remains the pre-DR038 implementation until atomic CAD migration.
   DR-039:
     title: Common post-EQ DC block
@@ -47,7 +47,7 @@ decisions:
     implementation: SCH103 includes 1uF film / 330k DC block before SCH107 FILTER/BYPASS.
   DR-040:
     title: Precision CAD primitive staging rule
-    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    status: CURRENT_IMPLEMENTED
     primary_record: docs/decisions/DR-040_Precision_CAD_Primitive_Staging_SELECTED.md
     evidence:
       - docs/AE-017_Atomic_Migration_Dependency_Mapping_Gate_Rev_A0.md

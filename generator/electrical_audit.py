@@ -133,6 +133,18 @@ def audit_sheet_electrical(sheet) -> SheetElectricalAudit:
         for left, right in zip(points, points[1:]):
             dsu.union(_key(left), _key(right))
 
+    # KiCad local labels with the same name on one sheet are electrically
+    # equivalent even when they are not joined by drawn conductor geometry.
+    label_keys_by_name: dict[str, list[tuple[float, float]]] = defaultdict(list)
+    for label in sheet.labels:
+        label_keys_by_name[label.name].append(_key(Point(label.x, label.y)))
+    for keys in label_keys_by_name.values():
+        if len(keys) < 2:
+            continue
+        anchor = keys[0]
+        for other in keys[1:]:
+            dsu.union(anchor, other)
+
     no_connect_keys = {_key(point) for point in sheet.no_connects}
     unterminated: list[PinIssue] = []
     pin_refs_by_root: dict[tuple[float, float], set[str]] = defaultdict(set)
