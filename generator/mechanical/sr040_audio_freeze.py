@@ -54,7 +54,7 @@ def frozen_audio_carrier():
 def frozen_audio_board_outline() -> BoardOutlineContract:
     return derive_frozen_outline_contract(
         frozen_audio_carrier(),
-        hole_inset_x_mm=8.0,
+        hole_inset_x_mm=5.0,
         hole_inset_y_mm=8.0,
         finished_diameter_mm=3.2,
         copper_keepout_diameter_mm=8.0,

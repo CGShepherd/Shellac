@@ -8,7 +8,7 @@ METCASE M5502119 Issue-1 manufacturer drawing.
 The audio PCB is frozen at **220 x 140 mm** on a removable **231 x 219 x 2 mm**
 carrier plate. The PCB lower-left origin is **(5.5, 39.5) mm** from the carrier
 lower-left datum. Four non-plated M3-class PCB mounting holes are frozen at
-8 mm board-edge inset with 8 mm copper keep-out diameters.
+5 mm X inset / 8 mm Y inset with 8 mm copper keep-out diameters.
 
 This is a mechanical datum freeze, not a claim that every critical component
 coordinate is accepted.

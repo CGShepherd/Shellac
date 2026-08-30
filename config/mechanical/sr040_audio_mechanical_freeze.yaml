@@ -22,6 +22,6 @@ pcb:
   mounting_holes:
     finished_diameter_mm: 3.2
     copper_keepout_diameter_mm: 8.0
-    inset_mm: [8.0, 8.0]
+    inset_mm: [5.0, 8.0]
 mechanical_status: FROZEN_FOR_CRITICAL_PLACEMENT
 routing_status: CRITICAL_PLACEMENT_REVIEW_REQUIRED

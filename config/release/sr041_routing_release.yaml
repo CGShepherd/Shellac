@@ -1,0 +1,23 @@
+schema_version: 1
+project: Shellac
+release_gate: SR-041
+revision: Rev_A0
+base_commit: 56c74250507a2f4d4b4dc04641096c7883512740
+status: ROUTING_RELEASED
+controlled_frozen_items:
+  - schematic_and_signal_chain
+  - pcb_outline_220x140_mm
+  - mounting_hole_pattern
+  - placement_cluster_topology
+  - critical_net_routing_authority
+  - four_layer_stackup
+controlled_flexible_items:
+  - exact_component_xy_within_accepted_cluster_envelope
+  - ordinary_noncritical_route_geometry
+  - generic_passive_manufacturer_mpn_where_value_technology_and_footprint_are_frozen
+routing_method:
+  critical_analogue: MANUAL_ONLY
+  ordinary_analogue: ASSISTED_REVIEW_REQUIRED
+  controls: CONSTRAINED_AUTOMATION_ALLOWED
+  power: ASSISTED_REVIEW_REQUIRED
+release_condition: zero_mounting_keepout_collisions

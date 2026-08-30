@@ -21,7 +21,7 @@ def test_sr040_board_outline_is_manufacturing_deterministic():
     assert outline.outline.depth_mm==140.0
     assert len(outline.mounting_holes)==4
     assert [(h.centre.x_mm,h.centre.y_mm) for h in outline.mounting_holes]==[
-        (8.0,8.0),(212.0,8.0),(212.0,132.0),(8.0,132.0)
+        (5.0,8.0),(215.0,8.0),(215.0,132.0),(5.0,132.0)
     ]
 
 def test_sr040_full_bom_census_covers_footprint_contract():
