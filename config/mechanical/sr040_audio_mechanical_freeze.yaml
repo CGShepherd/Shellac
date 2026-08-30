@@ -1,0 +1,27 @@
+schema_version: 1
+project: Shellac
+release_gate: SR-040
+revision: Rev_A0
+base_commit: 75732f3caf582ec580709496c9eb4669ac2eddfa
+audio_enclosure:
+  manufacturer: METCASE
+  mpn: M5502119
+  candidate_id: ENC-A04
+  authoritative_drawing: https://www.metcase.co.uk/en/Unicase/M5502119/M5502119.pdf
+  drawing_issue: 1
+  overall_mm: [260.0, 250.0, 90.0]
+  base_pcb_envelope_mm: [241.0, 229.0]
+  internal_cover_height_mm: 86.2
+carrier:
+  edge_margin_mm: 5.0
+  plate_mm: [231.0, 219.0, 2.0]
+pcb:
+  width_mm: 220.0
+  depth_mm: 140.0
+  carrier_origin_mm: [5.5, 39.5]
+  mounting_holes:
+    finished_diameter_mm: 3.2
+    copper_keepout_diameter_mm: 8.0
+    inset_mm: [8.0, 8.0]
+mechanical_status: FROZEN_FOR_CRITICAL_PLACEMENT
+routing_status: CRITICAL_PLACEMENT_REVIEW_REQUIRED
