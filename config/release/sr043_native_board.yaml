@@ -1,0 +1,13 @@
+schema_version: 1
+project: Shellac
+release_gate: SR-043
+revision: Rev_A0
+base_commit: 6952a3f3895c26835ad4810d00cf7be8ce3eab66
+native_board: out/kicad/ProjectShellac.kicad_pcb
+board_origin_mm: [20.0, 20.0]
+board_size_mm: [220.0, 140.0]
+placement_count: 250
+required_copper_layers: [F.Cu, In1.Cu, In2.Cu, B.Cu]
+inner1_role: continuous_0VA
+inner2_role: power_rails
+routing_before_validation: prohibited

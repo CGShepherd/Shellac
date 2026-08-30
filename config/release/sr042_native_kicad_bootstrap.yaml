@@ -1,0 +1,13 @@
+schema_version: 1
+project: Shellac
+release_gate: SR-042
+revision: Rev_A0
+base_commit: 47f7c01e639f85ebc28d77f7eb2d84718a8caf4b
+status: READY_FOR_NATIVE_KICAD_BOARD_CREATION
+source_schematic: out/kicad/ProjectShellac.kicad_sch
+target_native_board: out/kicad/ProjectShellac.kicad_pcb
+reference_board: out/kicad/ProjectShellac_PlacementReference.kicad_pcb
+placement_count: 250
+mounting_hole_count: 4
+manual_critical_net_count: 10
+native_board_owner: KiCad
