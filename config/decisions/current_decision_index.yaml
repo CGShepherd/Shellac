@@ -1,0 +1,67 @@
+schema_version: 1
+project: Shellac
+authority: This file is the authoritative current decision-status index. Narrative records remain evidence/history.
+baseline:
+  branch: main
+  commit: 1ebb04d078aec05e370c0a899607d5e46ad25958
+  tag: sr-037-signal-chain-revalidation-baseline
+status_vocabulary:
+  - CURRENT_IMPLEMENTED
+  - CURRENT_SELECTED_PENDING_IMPLEMENTATION
+  - SUPERSEDED
+  - REJECTED
+  - HISTORICAL
+decisions:
+  DR-037:
+    title: Restore legacy complete-RIAA architecture
+    status: CURRENT_IMPLEMENTED
+    primary_record: docs/DR-037_Restore_Legacy_Complete_RIAA_Architecture_Rev_A0.md
+    evidence:
+      - docs/AE-011_End_to_End_Signal_Chain_Closure_Rev_A1.md
+      - docs/AE-012_All_State_Gain_Headroom_Closure_Rev_A0.md
+    implementation: Legacy TRUE-RIAA 3180/318 us bass branch plus 2121 Hz treble; independent 3180 us stage removed.
+    supersedes:
+      - G3-025 optional-3180 active architecture
+      - G3-026 optional-3180 implementation
+      - G3-027 resynthesis requirement
+  DR-038:
+    title: SCH101 precision architecture
+    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    primary_record: docs/decisions/DR-038_SCH101_Precision_Architecture_SELECTED.md
+    proposal_record: docs/decisions/DR-038_SCH101_Precision_Architecture_PROPOSED.md
+    evidence:
+      - docs/AE-013_SCH101_Noise_CMRR_Review_Rev_A0.md
+      - docs/AE-014_SCH101_Precision_Architecture_Downselect_Rev_A0.md
+      - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
+    implemented_baseline_still:
+      converter_gain: 3.48
+      note: Active SCH101 remains the pre-DR038 implementation until atomic CAD migration.
+  DR-039:
+    title: Common post-EQ DC block
+    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    primary_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_SELECTED.md
+    proposal_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_PROPOSED.md
+    evidence:
+      - docs/AE-015_Full_Chain_Noise_DC_Review_Rev_A0.md
+      - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
+    implemented_baseline_still: SCH103 remains pre-DR039 until atomic CAD migration.
+  DR-040:
+    title: Precision CAD primitive staging rule
+    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    primary_record: docs/decisions/DR-040_Precision_CAD_Primitive_Staging_SELECTED.md
+    evidence:
+      - docs/AE-017_Atomic_Migration_Dependency_Mapping_Gate_Rev_A0.md
+      - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
+historical_implementation_events:
+  AE-016:
+    disposition: SUPERSEDED
+    reason: Premature DR-038/DR-039 implementation caused regression failures.
+    superseded_by:
+      - AE-016A
+      - AE-016B
+  AE-016A:
+    disposition: HISTORICAL
+    reason: First regression repair; restored active SCH101 baseline.
+  AE-016B:
+    disposition: CURRENT_IMPLEMENTATION_STAGING_EVIDENCE
+    reason: Restored SCH103 baseline and established atomic migration boundary.
