@@ -23,9 +23,14 @@ def test_authoritative_decision_index_is_well_formed():
     for decision in ("DR-038", "DR-039", "DR-040"):
         assert _decision_status(decision) == "CURRENT_IMPLEMENTED"
 
-def test_selected_pending_is_not_claimed_implemented():
+def test_dr038_dr039_are_claimed_as_implemented():
     text=_text()
-    assert re.search(r"(?m)^      converter_gain:\s*4\.0\s*$", text)
+    dr038 = text.split("  DR-038:", 1)[1].split("  DR-039:", 1)[0]
+    assert "status: CURRENT_IMPLEMENTED" in dr038
+    assert re.search(r"(?m)^\s+converter_gain:\s*4\.0\s*$", dr038)
+    assert "network: LT5400-7 A-grade" in dr038
+    assert "pre-DR038 implementation" not in dr038
+
     dr039 = text.split("  DR-039:", 1)[1].split("  DR-040:", 1)[0]
     assert "status: CURRENT_IMPLEMENTED" in dr039
     assert "SCH103 includes 1uF film / 330k DC block" in dr039

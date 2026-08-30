@@ -33,9 +33,13 @@ decisions:
       - docs/AE-013_SCH101_Noise_CMRR_Review_Rev_A0.md
       - docs/AE-014_SCH101_Precision_Architecture_Downselect_Rev_A0.md
       - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
-    implemented_baseline_still:
-      converter_gain: 4.0
-      note: Active SCH101 remains the pre-DR038 implementation until atomic CAD migration.
+    
+  implementation:
+    converter_gain: 4.0
+    network: LT5400-7 A-grade
+    gain_selection: precision service-link population
+    note: DR-038 is implemented in the active SCH101 generator and validated by SR-039.
+  
   DR-039:
     title: Common post-EQ DC block
     status: CURRENT_IMPLEMENTED

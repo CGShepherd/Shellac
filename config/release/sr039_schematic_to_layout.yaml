@@ -1,0 +1,23 @@
+schema_version: 1
+project: Shellac
+release_gate: SR-039
+revision: Rev_A0
+date: 2026-08-30
+validated_design_commit: dce5c0ec36e12f979338d8c46106c44a79c7a023
+integration_branch: develop
+validation:
+  pytest:
+    passed: 374
+    failed: 0
+  native_kicad_erc:
+    errors: 0
+    warnings: 0
+    exit_code: 0
+electrical_release: RELEASED
+placement_release: ALLOWED_WITH_PROVISIONAL_MECHANICAL_KEEP_IN
+routing_release: BLOCKED_PENDING_MECHANICAL_DATUM_FREEZE
+manufacturing_release: BLOCKED_PENDING_MECHANICAL_AND_FULL_BOM_CLOSURE
+controlled_blockers:
+  - exact_board_outline_and_mounting_holes_not_yet_derived_from_verified_mechanical_datums
+  - enclosure_intrusion_and_harness_keepouts_not_yet_frozen
+  - controlled_bom_is_partial_not_full_schematic_population
