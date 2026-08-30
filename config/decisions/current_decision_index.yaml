@@ -3,8 +3,8 @@ project: Shellac
 authority: This file is the authoritative current decision-status index. Narrative records remain evidence/history.
 baseline:
   branch: main
-  commit: 1ebb04d078aec05e370c0a899607d5e46ad25958
-  tag: sr-037-signal-chain-revalidation-baseline
+  commit: dce5c0ec36e12f979338d8c46106c44a79c7a023
+  tag: sr-038-dr038-dr039-validated-baseline
 status_vocabulary:
   - CURRENT_IMPLEMENTED
   - CURRENT_SELECTED_PENDING_IMPLEMENTATION
@@ -33,13 +33,11 @@ decisions:
       - docs/AE-013_SCH101_Noise_CMRR_Review_Rev_A0.md
       - docs/AE-014_SCH101_Precision_Architecture_Downselect_Rev_A0.md
       - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
-    
-  implementation:
-    converter_gain: 4.0
-    network: LT5400-7 A-grade
-    gain_selection: precision service-link population
-    note: DR-038 is implemented in the active SCH101 generator and validated by SR-039.
-  
+    implementation:
+      converter_gain: 4.0
+      network: LT5400-7 A-grade
+      gain_selection: precision service-link population
+      note: DR-038 is implemented in the active SCH101 generator and validated by SR-039.
   DR-039:
     title: Common post-EQ DC block
     status: CURRENT_IMPLEMENTED

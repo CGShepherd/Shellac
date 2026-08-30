@@ -118,12 +118,15 @@ def build_layout_baseline() -> LayoutBaseline:
         CriticalNet("NET-008", "CHASSIS", NetClass.GROUND, RoutingPolicy.MANUAL_ONLY, 0, "chassis", "Bond connector shells at entry and localise the 0VA/CHASSIS network.", "No signal-current use of chassis copper; keep bond components serviceable.", "Continuity/isolation test."),
         CriticalNet("NET-009", "*_SELECT|MUTE_CONTROL|RUMBLE_BYPASS", NetClass.CONTROL, RoutingPolicy.CONSTRAINED_AUTOMATION, 3, "0VA plane", "Group control logic so PCB-mounted operator devices can register to the upper-cover datum plane.", "Do not run parallel to cartridge inputs; add separation from EQ high-impedance nodes.", "Clearance and coupling review."),
         CriticalNet("NET-010", "OUTPUT_[LR]_(POS|NEG)", NetClass.BALANCED_OUTPUT, RoutingPolicy.ASSISTED_REVIEW_REQUIRED, 1, "0VA plane", "Route from output protection directly to the output harness region.", "Maintain pair adjacency and avoid the input region.", "Pair geometry and output-continuity audit."),
+        CriticalNet("NET-011", "SCH101_[LR]_LT5400_(PLUS_SRC|PLUS_SUM|MINUS_SRC|MINUS_SUM)", NetClass.FEEDBACK, RoutingPolicy.MANUAL_ONLY, 0, "continuous 0VA plane", "Keep each LT5400 network immediately adjacent to its OPA1656 converter and associated precision gain legs.", "Short direct routes only; no control/power crossing through the summing region; preserve left/right symmetry.", "LT5400 locality, via-count and return-path audit."),
+        CriticalNet("NET-012", "PRE_EQ_[LR]", NetClass.FEEDBACK, RoutingPolicy.MANUAL_ONLY, 0, "continuous 0VA plane", "Keep the LT5400 feedback/output node local to the differential converter before SCH103 hand-off.", "No unrelated branch or via in the local feedback/output connection.", "Feedback locality and net-continuity audit."),
+        CriticalNet("NET-013", "POST_EQ_[LR]", NetClass.ANALOG, RoutingPolicy.MANUAL_ONLY, 0, "local 0VA return", "Place the DR-039 1u film capacitor and 330k bias resistor at the SCH103 recovery output / SCH107 hand-off.", "Keep raw-EQ to capacitor and capacitor to POST_EQ paths short; bias return directly to quiet 0VA.", "DC-block locality and continuity audit."),
     ]
 
     return LayoutBaseline(
         identifier="G3-LYT-001",
         revision="Rev A0",
-        status="PROVISIONAL — enclosure and board outline not frozen",
+        status="SCHEMATIC RELEASED — provisional placement allowed; final routing/manufacture blocked pending mechanical datum freeze",
         stackup=BoardStackup(
             layer_count=4,
             top_role="Components and critical analogue routing",
@@ -140,7 +143,7 @@ def build_layout_baseline() -> LayoutBaseline:
             board_edge_clearance_mm=5.0,
             mounting_hole_keepout_mm=10.0,
             access_rule="Selected audio enclosure family requires vertically removable top/base access after PCB-mounted controls and detachable end-panel harnesses are fitted.",
-            status="Provisional until audio enclosure trade study closes.",
+            status="Provisional mechanical keep-in; exact outline/mounting/keep-outs require verified enclosure/carrier datums.",
         ),
         regions=regions,
         critical_nets=critical_nets,

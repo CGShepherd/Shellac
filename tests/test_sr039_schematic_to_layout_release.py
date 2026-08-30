@@ -7,6 +7,9 @@ def test_sr039_releases_schematic_but_not_manufacture():
     assert gate.disposition.placement_release.startswith("ALLOWED")
     assert gate.disposition.routing_release.startswith("BLOCKED")
     assert gate.disposition.manufacturing_release.startswith("BLOCKED")
+    from generator.layout.constraints import build_layout_baseline
+    critical_ids={item.identifier for item in build_layout_baseline().critical_nets}
+    assert {"NET-011","NET-012","NET-013"} <= critical_ids
 
 def test_sr039_controlled_validation_evidence():
     text=Path("config/release/sr039_schematic_to_layout.yaml").read_text(encoding="utf-8")
