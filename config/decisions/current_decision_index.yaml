@@ -38,13 +38,13 @@ decisions:
       note: Active SCH101 remains the pre-DR038 implementation until atomic CAD migration.
   DR-039:
     title: Common post-EQ DC block
-    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    status: CURRENT_IMPLEMENTED
     primary_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_SELECTED.md
     proposal_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_PROPOSED.md
     evidence:
       - docs/AE-015_Full_Chain_Noise_DC_Review_Rev_A0.md
       - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
-    implemented_baseline_still: SCH103 remains pre-DR039 until atomic CAD migration.
+    implementation: SCH103 includes 1uF film / 330k DC block before SCH107 FILTER/BYPASS.
   DR-040:
     title: Precision CAD primitive staging rule
     status: CURRENT_SELECTED_PENDING_IMPLEMENTATION

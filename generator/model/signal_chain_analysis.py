@@ -22,6 +22,7 @@ from .replay_eq import (
 from .replay_curve_analysis import realised_bass_transfer, realised_treble_transfer
 from .rumble_filter import filter_transfer
 from .output_driver import DIFFERENTIAL_GAIN_LINEAR, DESIGN_OUTPUT_RMS_V
+from .post_eq_dc_block import magnitude as post_eq_dc_magnitude
 
 
 @dataclass(frozen=True, slots=True)
@@ -91,7 +92,7 @@ def signal_point(
 
     first_active = cartridge_rms_v * gain_setting.total_gain * lf
     sch103 = first_active * hf * RECOVERY_GAIN
-    xlr = sch103 * rumble * DIFFERENTIAL_GAIN_LINEAR
+    xlr = sch103 * post_eq_dc_magnitude(frequency_hz) * rumble * DIFFERENTIAL_GAIN_LINEAR
 
     first_path_gain = first_active / cartridge_rms_v
     xlr_path_gain = xlr / cartridge_rms_v
@@ -179,7 +180,7 @@ def validate_signal_chain() -> None:
         treble=flat_treble,
         frequency_hz=1000.0,
     )
-    expected = NOMINAL_CARTRIDGE_RMS_V * default.total_gain * RECOVERY_GAIN * DIFFERENTIAL_GAIN_LINEAR
+    expected = (NOMINAL_CARTRIDGE_RMS_V * default.total_gain * RECOVERY_GAIN * post_eq_dc_magnitude(1000.0) * DIFFERENTIAL_GAIN_LINEAR)
     assert abs(flat.xlr_output_rms_v - expected) < 1e-12
 
     bass_200 = next(item for item in BASS_NETWORKS if item.name == "200 Hz")

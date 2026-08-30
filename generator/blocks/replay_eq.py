@@ -286,12 +286,33 @@ def _add_channel(sheet, channel, index, y):
     # The test point is connected to the actual passive-EQ/recovery input node.
     sheet.connect_points(hf_tp_pin, u2_in)
 
-    output_end = Point(420, u2_out.y)
+    # DR-039: common post-EQ DC block before SCH107 FILTER/BYPASS.
+    raw_tp = sheet.add_component(testpoint(
+        f"TP{base}4", f"{channel}_EQ_RAW", Point(395, u2_out.y + 5.08)
+    ))
+    raw_tp_pin = pin_position(raw_tp, "TP")
+    dc_cap = sheet.add_component(capacitor(
+        f"C{base}60", "1u", Point(425, u2_out.y),
+        dielectric="PET film", voltage="63V",
+        function="DR-039 common post-EQ DC block; WIMA MKS2 class",
+        rotation=90,
+        footprint="Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm"
+    ))
+    dc_bias = sheet.add_component(resistor(
+        f"R{base}60", "330k", Point(455, u2_out.y + 15),
+        tolerance="1%", function="DR-039 downstream DC reference"
+    ))
     output_tp = sheet.add_component(testpoint(
-        f"TP{base}4", f"{channel}_EQ_OUT", Point(395, u2_out.y + 5.08)
+        f"TP{base}5", f"{channel}_EQ_OUT", Point(455, u2_out.y + 5.08)
     ))
     output_tp_pin = pin_position(output_tp, "TP")
-    _wire_path(sheet, u2_out, output_tp_pin, output_end)
+    output_end = Point(485, u2_out.y)
+    _wire_path(sheet, u2_out, raw_tp_pin, pin_position(dc_cap, "1"))
+    _wire_path(sheet, pin_position(dc_cap, "2"), output_tp_pin, output_end)
+    sheet.connect_points(pin_position(dc_bias, "1"), pin_position(dc_cap, "2"))
+    _label_on_dedicated_stub(
+        sheet, pin_position(dc_bias, "2"), "0VA", dy=5.08, label_dx=5.08,
+    )
     sheet.add_label(post, output_end.x, output_end.y)
 
     # One dual OPA1612 package per channel; local decoupling remains grouped.

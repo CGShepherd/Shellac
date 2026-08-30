@@ -42,6 +42,9 @@ def test_sch103_component_values_remain_frozen():
             assert by_ref[f"R{base}{10+i}"].value == f"{item.rs_ohm:g}"
         assert by_ref[f"R{base}40"].value == "10000"
         assert by_ref[f"R{base}41"].value == "11000"
+        assert by_ref[f"C{base}60"].value == "1u"
+        assert by_ref[f"C{base}60"].footprint == "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm"
+        assert by_ref[f"R{base}60"].value == "330k"
 
 
 def test_sch103_selector_branches_are_directly_wired():
@@ -87,7 +90,7 @@ def test_sch103_testpoints_are_on_real_signal_nodes():
         for point in ((wire.x1, wire.y1), (wire.x2, wire.y2)):
             degree[point] = degree.get(point, 0) + 1
     for base in (300, 350):
-        for index in range(1, 5):
+        for index in range(1, 6):
             pin = pin_position(by_ref[f"TP{base}{index}"], "TP")
             assert degree[(pin.x, pin.y)] >= 1
 
