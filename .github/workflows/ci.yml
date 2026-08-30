@@ -2,10 +2,10 @@ name: Shellac CI
 
 on:
   push:
-branches:
-  - main
-  - develop
-  - 'feature/**'
+    branches:
+      - main
+      - develop
+      - 'feature/**'
   pull_request:
 
 jobs:
