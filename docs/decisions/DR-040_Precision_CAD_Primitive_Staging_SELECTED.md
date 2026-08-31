@@ -1,20 +1,18 @@
 # DR-040 — Precision CAD primitive staging rule
 
-**Status:** IMPLEMENTED / SATISFIED  
-**Date selected:** 29 August 2026  
-**Closure:** SR-039, 30 August 2026
+**Status:** SELECTED  
+**Date:** 29 August 2026
 
-The staging rule required LT5400-7 to exist as a verified physical CAD primitive
-before DR-038 could enter the active SCH101 implementation.
+Before DR-038 changes the active SCH101 implementation, LT5400-7 shall exist as
+a verified physical CAD primitive with:
 
-Closure evidence:
-- correct MS8E package and standard KiCad footprint;
-- correct resistor-terminal pin numbering;
-- exposed pad physically represented and electrically no-connect;
-- unique semantic schematic pin locations;
-- no guessed footprint binding;
-- service-link gain selection instead of ordinary DIP feedback contacts;
-- primitive-level and whole-SCH101 regressions;
-- native KiCad ERC 0 errors / 0 warnings.
+- correct MS8E package;
+- correct 1–8 / 2–7 / 3–6 / 4–5 resistor connectivity;
+- exposed pad physically represented and electrically floating;
+- verified pin-1 orientation;
+- no guessed footprint binding.
 
-The staging condition is now satisfied and remains a maintenance constraint.
+Precision gain selection shall use hard service links/solder bridges, not an
+ordinary DIP contact in the feedback ratio.
+
+This staging decision exists to prevent another partial model/CAD migration.
