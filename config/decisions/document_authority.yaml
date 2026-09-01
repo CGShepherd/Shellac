@@ -1,0 +1,26 @@
+schema_version: 1
+project: Shellac
+current_authority:
+  - README.md
+  - config/decisions/current_decision_index.yaml
+  - config/decisions/decision_status.yaml
+  - docs/knowledge/DESIGN_PACK_INDEX.md
+  - docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md
+  - docs/maintenance/Signal_Chain_Commissioning_and_Maintenance_Baseline_Rev_A0.md
+historical_state_evidence:
+  - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
+  - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md
+  - docs/AE-016B_Full_Regression_Staging_Repair_Rev_A0.md
+  - docs/AE-017_Atomic_Migration_Dependency_Mapping_Gate_Rev_A0.md
+  - docs/AE-017_Generated_Atomic_Migration_Dependency_Map.md
+  - docs/AE-019_Design_Record_Reconciliation_Gate_Rev_A0.md
+  - docs/AE-019_Generated_Design_Record_Reconciliation.md
+  - docs/AE-020_Decision_Register_Reconciliation_and_Design_Pack_Structure_Rev_A0.md
+  - docs/updates/AE016_UPDATE_MANIFEST.md
+  - docs/updates/AE016B_UPDATE_MANIFEST.md
+  - tools/apply_dr038_full_migration.py
+  - tools/apply_dr039_full_closure.py
+rules:
+  current_authority_can_be_reconciled: true
+  historical_state_evidence_is_immutable_by_default: true
+  generated_audits_are_evidence_not_authority: true

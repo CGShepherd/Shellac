@@ -1,101 +1,71 @@
 # Project Shellac — Controlled Design Pack Index
 
-**Authority:** `main` plus the baseline commit/tag identified in `config/decisions/current_decision_index.yaml`.
+**Working authority:** `develop` plus `config/decisions/current_decision_index.yaml`.
 
-This index defines how the repository should be read. Historical documents remain valuable evidence, but the current design is determined by the authoritative decision index and implemented generator baseline.
+**Production authority:** a tagged `main` release after production/reproducibility gates close.
 
 ## 1. Current design baseline
 
-Use these first when determining what is actually implemented:
+Use first:
+- implemented `generator/` source on `develop`;
+- `config/decisions/current_decision_index.yaml`;
+- `config/decisions/document_authority.yaml`;
+- controlled BOM/procurement configuration;
+- latest passing regression suite.
 
-- generator/model and generator/blocks source on `main`
-- `config/decisions/current_decision_index.yaml`
-- controlled BOM/procurement configuration
-- most recent passing regression suite
-- release/baseline tag
-
-A **selected but pending** decision is not the same as implemented hardware.
+Current signal-chain status:
+- DR-037: implemented;
+- DR-038: implemented;
+- DR-039: implemented;
+- DR-040: implemented;
+- AE-023: analytical production signal-chain closure complete;
+- prototype measured acceptance: open.
 
 ## 2. Decision register
 
-Authoritative status:
+Current status:
 - `config/decisions/current_decision_index.yaml`
 
-Narrative rationale/evidence:
-- `docs/decisions/`
-- DR-037 record under `docs/`
+Status semantics:
+- `config/decisions/decision_status.yaml`
 
-The index wins if historical prose contains ambiguous status language.
+Authority classification:
+- `config/decisions/document_authority.yaml`
 
-## 3. Design assurance record
+Historical prose is retained as provenance and is not rewritten merely because a later state exists.
 
-Current evidence chain for the signal path:
+## 3. Assurance chain
 
-- AE-001 through AE-010: block-level synthesis/closure history
-- AE-011 A1: restored end-to-end architecture
-- AE-012: all-state gain/headroom
-- AE-013: SCH101 noise/CMRR weakness
-- AE-014: precision architecture down-selection
-- AE-015: full-chain noise/DC finding
-- AE-016 / A / B: failed migration and controlled repair history
-- AE-017: atomic migration dependency map
-- AE-018: live dependency disposition and LT5400 physical contract
-- AE-019: documentation audit
-- AE-020: authoritative register/design-pack structure
+AE-001 through AE-010: block-level history.
+AE-011/012: end-to-end architecture and headroom.
+AE-013/014: SCH101 precision redesign.
+AE-015: full-chain noise/DC finding.
+AE-016/A/B: failed migration and repair history.
+AE-017/018: atomic migration and LT5400 physical contract.
+AE-019/020: documentation-control structure.
+AE-023: implemented production signal-chain analytical closure.
+AE-024/025: production design-record reconciliation.
 
-## 4. Production and commissioning pack
+## 4. Production/commissioning
 
-Existing:
-- BOM/procurement configuration
-- commissioning generator/output
-- generated KiCad and PCB artifacts
+Still required:
+- measured CMRR/noise/DC/overload/transient acceptance;
+- final PCB/mechanical release;
+- manufacturing release checklist;
+- fabrication outputs frozen to a release commit;
+- complete commissioning sheet;
+- clean-clone reproducibility evidence.
 
-Still required before release:
-- final implemented DR-038/DR-039 BOM
-- manufacturing release checklist
-- final commissioning limits from the implemented baseline
-- signed-off schematic/ERC/PCB checks
+## 5. Maintenance
 
-## 5. Maintenance guide structure
+Current signal-chain baseline:
+`docs/maintenance/Signal_Chain_Commissioning_and_Maintenance_Baseline_Rev_A0.md`
 
-The maintenance guide shall eventually contain:
+## 6. Historical evidence rule
 
-1. equipment identification and revision;
-2. safety and power architecture;
-3. block diagram and signal flow;
-4. configuration/service-link settings;
-5. expected DC voltages;
-6. expected AC signal levels at test points;
-7. replay EQ verification procedure;
-8. noise and CMRR acceptance;
-9. mute/rumble/control checks;
-10. fault-isolation flow;
-11. approved substitutions and obsolete parts;
-12. reassembly/return-to-service test.
-
-See `docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md`.
-
-## 6. Historical archive rule
-
-Documents describing superseded alternatives are never deleted merely because the design changed. They remain provenance.
-
-They must not, however, be used to determine current hardware without checking the current decision index.
-
-Notable examples:
-- optional independent 3180 us RIAA work;
-- original 2x SCH104 concept;
-- AE-016 premature DR-038/DR-039 implementation attempt;
-- pre-precision SCH101 resistor architecture once DR-038 is eventually implemented.
+Superseded/staging records remain provenance and do not determine current hardware.
 
 ## 7. Change-control rule
 
-Every future design change must update, in the same merge:
-
-- implemented source/CAD where applicable;
-- affected tests;
-- decision index status;
-- supporting assurance record;
-- BOM/procurement if parts change;
-- commissioning/maintenance data if service behaviour changes.
-
-This prevents the design pack and implementation from drifting apart again.
+Future implemented changes must update source/CAD, tests, current decision index,
+assurance evidence, BOM/procurement and maintenance information together where applicable.

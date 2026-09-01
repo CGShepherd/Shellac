@@ -1,7 +1,8 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-python APPLY_DECISION_INDEX_RECONCILIATION.py || exit /b 1
-python tools\audit_current_decision_index.py || exit /b 1
-echo AE-023 reconciliation applied. Now run: python -m pytest
+echo AE-025B test-only repair is applied by file extraction.
+echo Run:
+echo   python tools\ae024_design_record_audit.py
+echo   python -m pytest
 endlocal
