@@ -1,0 +1,16 @@
+{
+  "net_count": 126,
+  "zero_va_net_id": 6,
+  "zero_va_name": "0VA",
+  "copper_layers": [
+    "F.Cu",
+    "In1.Cu",
+    "In2.Cu",
+    "B.Cu"
+  ],
+  "segment_count": 0,
+  "via_count": 0,
+  "zone_count": 0,
+  "edge_line_count": 4,
+  "issues": []
+}

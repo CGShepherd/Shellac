@@ -1,7 +1,16 @@
+"""SR-043 native-board audit."""
 from __future__ import annotations
+
 from pathlib import Path
-import json,re
-from dataclasses import asdict,dataclass
+import sys
+
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
+import json
+import re
+from dataclasses import asdict, dataclass
 
 from generator.layout.preliminary_placement import build_preliminary_placement_baseline
 from generator.mechanical.sr040_audio_freeze import frozen_audio_board_outline
