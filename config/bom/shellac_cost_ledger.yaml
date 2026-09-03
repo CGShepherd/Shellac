@@ -1,0 +1,105 @@
+schema_version: 2
+project: shellac
+status: CONTROLLED_COST_LEDGER
+currency: GBP
+vat_policy: prices_ex_vat_unless_explicitly_marked
+price_snapshot_date: 2026-09-03
+quantity_basis:
+  design_bom: one_complete_shellac_system
+  build: realistic_purchase_quantity_for_one_build
+  production_reference: 10_units
+rules:
+  unknown_price_state: UNQUOTED
+  rejected_parts_excluded_from_current_estimate: true
+  prototype_samples_are_nre: true
+  owned_test_equipment_excluded: true
+  eco_reports_unit_cost_delta: true
+  premium_part_requires_material_benefit: true
+  every_price_requires_source_and_date: true
+
+items:
+  - id: COST-CTRL-ROTARY
+    bom_ids: [BOM-CTRL-BASS, BOM-CTRL-TREBLE, BOM-CTRL-CHANNEL]
+    category: controls
+    description: Lorlin PT production rotary set
+    quantity_per_system: 1
+    procurement_status: UNQUOTED
+    design_unit_cost_gbp:
+    build_cost_gbp:
+    production_10_unit_cost_gbp:
+    confidence: OPEN
+    note: Exact gold-contact MPNs and Lorlin quotation pending AE-027/AE-028.
+
+  - id: COST-CTRL-TOGGLES
+    bom_ids: [BOM-CTRL-RUMBLE, BOM-CTRL-MUTE]
+    category: controls
+    description: 2 x C&K 7201SYCBE
+    quantity_per_system: 1
+    procurement_status: VERIFIED_SNAPSHOT
+    design_unit_cost_gbp: 23.82
+    build_cost_gbp: 23.82
+    production_10_unit_cost_gbp: 20.562
+    confidence: HIGH
+    source: DigiKey UK
+    source_url: https://www.digikey.co.uk/en/products/detail/c-k/7201SYCBE/40082
+    checked_date: 2026-09-03
+    note: £11.91 each at qty 1; £10.281 each at qty 10.
+
+  - id: COST-ENC-AUDIO
+    bom_ids: [BOM-ENC-AUDIO]
+    category: enclosure_mechanics
+    description: METCASE M5502119 audio enclosure
+    quantity_per_system: 1
+    procurement_status: VERIFIED_SNAPSHOT
+    design_unit_cost_gbp: 93.55
+    build_cost_gbp: 93.55
+    production_10_unit_cost_gbp:
+    confidence: HIGH
+    source: RS UK
+    source_url: https://uk.rs-online.com/
+    checked_date: 2026-09-03
+    note: Exact M5502119 listing; quantity-break pricing not evidenced in snapshot.
+
+  - id: COST-ENC-PSU
+    bom_ids: [BOM-ENC-PSU]
+    category: enclosure_mechanics
+    description: METCASE M5502119 PSU enclosure
+    quantity_per_system: 1
+    procurement_status: VERIFIED_SNAPSHOT
+    design_unit_cost_gbp: 93.55
+    build_cost_gbp: 93.55
+    production_10_unit_cost_gbp:
+    confidence: HIGH
+    source: RS UK
+    source_url: https://uk.rs-online.com/
+    checked_date: 2026-09-03
+    note: Same enclosure as audio chassis.
+
+  - id: COST-PSU-MAINS
+    bom_ids: [BOM-PSU-MAINS]
+    category: psu
+    description: SCHURTER KMF1.1121.11 filtered mains entry
+    quantity_per_system: 1
+    procurement_status: VERIFIED_SNAPSHOT
+    design_unit_cost_gbp: 22.75
+    build_cost_gbp: 22.75
+    production_10_unit_cost_gbp: 19.76
+    confidence: HIGH
+    source: Farnell UK
+    source_url: https://uk.farnell.com/
+    checked_date: 2026-09-03
+    note: Exact MPN; 1+ £22.75, 10+ £19.76.
+
+nre:
+  - id: NRE-PT-SAMPLES
+    category: prototype_samples
+    description: Lorlin PT mechanical validation samples
+    status: ESTIMATE_ONLY
+    estimated_ex_vat_gbp: 28.00
+    note: AE-028 sample basket; excluded from product BOM.
+
+excluded:
+  - id: EXCL-TEST-EQUIPMENT
+    category: development_equipment
+    description: Existing laboratory instruments and fixtures
+    reason: not_product_bom
