@@ -12,6 +12,7 @@ from enum import Enum
 from generator.core.sheet import Sheet
 from generator.dispatch import shellac_builder_registry
 from generator.model.shellac import build_shellac_model
+from generator.model.opamp_package_allocation import ALLOCATIONS
 
 
 class PopulationStatus(str, Enum):
@@ -48,6 +49,17 @@ class FootprintContract:
     def to_dict(self) -> dict:
         return asdict(self)
 
+
+
+_OPAMP_ALLOCATION = {(a.sheet, a.logical_ref): a for a in ALLOCATIONS}
+
+def _physical_component_identity(sheet_id: str, component):
+    allocation=_OPAMP_ALLOCATION.get((sheet_id,component.ref))
+    if allocation is None:
+        return component.ref,component.value,component.footprint
+    if allocation.logical_ref != allocation.physical_ref:
+        return None
+    return allocation.physical_ref,allocation.device,allocation.footprint
 
 # These connectors are electrically correct in the frozen schematic but their
 # current horizontal PCB footprints conflict with the accepted panel-harness
@@ -101,6 +113,10 @@ def build_footprint_contract() -> FootprintContract:
         sheet = Sheet(registration.title, f"{block.identifier}.kicad_sch")
         registration.builder(sheet)
         for component in sheet.components:
+            physical=_physical_component_identity(block.identifier,component)
+            if physical is None:
+                continue
+            physical_ref,physical_value,physical_footprint=physical
             if component.ref in _MECHANICAL_ECO:
                 status = PopulationStatus.MECHANICAL_ECO_REQUIRED
                 rationale = _MECHANICAL_ECO[component.ref]
@@ -109,18 +125,18 @@ def build_footprint_contract() -> FootprintContract:
                 rationale = "Schematic explicitly declares panel/virtual ownership."
             else:
                 status = PopulationStatus.APPROVED
-                rationale = "PCB-owned component with an assigned schematic footprint."
-            package = _package_family(component.footprint, component.lib_id)
+                rationale = "PCB-owned physical package with an assigned footprint."
+            package = _package_family(physical_footprint, component.lib_id)
             entries.append(FootprintEntry(
-                ref=component.ref,
+                ref=physical_ref,
                 sheet_id=block.identifier,
-                value=component.value,
+                value=physical_value,
                 lib_id=component.lib_id,
-                footprint=component.footprint,
+                footprint=physical_footprint,
                 schematic_on_board=component.on_board,
                 population_status=status,
                 package_family=package,
-                placement_authority=_placement_authority(component.ref, package),
+                placement_authority=_placement_authority(physical_ref, package),
                 rationale=rationale,
             ))
 

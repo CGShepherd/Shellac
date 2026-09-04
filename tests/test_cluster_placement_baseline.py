@@ -1,3 +1,4 @@
+from generator.layout.footprint_contract import build_footprint_contract
 from generator.core.sheet import Sheet
 from generator.dispatch import shellac_builder_registry
 from generator.layout.placement_clusters import (
@@ -8,14 +9,7 @@ from generator.layout.placement_clusters import (
 
 
 def _on_board_refs():
-    registry = shellac_builder_registry()
-    refs = set()
-    for block_id in registry.registered_ids():
-        registration = registry.resolve(block_id)
-        sheet = Sheet(registration.title, f"{block_id}.kicad_sch")
-        registration.builder(sheet)
-        refs.update(component.ref for component in sheet.components if component.on_board)
-    return refs
+    return set(build_footprint_contract().board_population_refs)
 
 
 def test_every_on_board_reference_has_exactly_one_cluster_owner():
