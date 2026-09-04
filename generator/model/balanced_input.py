@@ -1,7 +1,8 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
-from math import log10
+from math import log10, pi
+import cmath
 
 DIFF_CONVERTER_GAIN=4.0
 DIFF_RIN_OHM=1250.0
@@ -13,6 +14,44 @@ GAIN_DEFAULT_ADD_OHM=750.0
 GAIN_HIGH_ADD_OHM=1910.0
 DEFAULT_GAIN_DB=18.0
 SELECTOR="Internal solder-link service configuration; default assembled state = DEFAULT"
+
+# AE-037 cartridge-interface closure.
+INPUT_SERIES_OHM=100.0
+INPUT_LOAD_LEG_OHM=23700.0
+INPUT_DIFFERENTIAL_LOAD_OHM=2.0*INPUT_LOAD_LEG_OHM
+INPUT_CM_SHUNT_PF=47.0
+INPUT_DIFF_SHUNT_PF=22.0
+INPUT_DIFF_SHUNT_FITTED=False
+INPUT_DEFAULT_BOARD_DIFF_CAP_PF=INPUT_CM_SHUNT_PF/2.0
+CABLE_CAP_MIN_PF=50.0
+CABLE_CAP_MAX_PF=300.0
+MAX_BOARD_ADDED_RESPONSE_DB_20K=0.20
+
+@dataclass(frozen=True,slots=True)
+class CartridgeModel:
+    name:str
+    resistance_ohm:float
+    inductance_h:float
+    recommended_load_ohm:float
+
+GRADO_78C=CartridgeModel("Grado 78C",475.0,45e-3,47000.0)
+GRADO_GOLD=CartridgeModel("Grado Gold / 8MZ proxy",660.0,50e-3,47000.0)
+SUPPORTED_CARTRIDGES=(GRADO_78C,GRADO_GOLD)
+
+def _loaded_transfer(cartridge:CartridgeModel,frequency_hz:float,total_cap_pf:float)->complex:
+    w=2.0*pi*frequency_hz
+    z_source=cartridge.resistance_ohm+2.0*INPUT_SERIES_OHM+1j*w*cartridge.inductance_h
+    c=total_cap_pf*1e-12
+    y_load=1.0/INPUT_DIFFERENTIAL_LOAD_OHM + (1j*w*c if c else 0j)
+    z_load=1.0/y_load
+    return z_load/(z_source+z_load)
+
+def board_added_response_db(cartridge:CartridgeModel,frequency_hz:float,cable_cap_pf:float)->float:
+    base=_loaded_transfer(cartridge,frequency_hz,cable_cap_pf)
+    with_board=_loaded_transfer(
+        cartridge,frequency_hz,cable_cap_pf+INPUT_DEFAULT_BOARD_DIFF_CAP_PF
+    )
+    return 20.0*log10(abs(with_board/base))
 
 class BalancedInputStatus(str,Enum):
     ELECTRICALLY_CLOSED="electrically_closed"
@@ -44,3 +83,9 @@ def validate_balanced_input():
     assert DIFF_RFB_OHM/DIFF_RIN_OHM==DIFF_CONVERTER_GAIN
     assert abs(default_setting().realised_total_db-DEFAULT_GAIN_DB)<0.07
     assert all(abs(x.error_db)<0.08 for x in GAIN_SETTINGS)
+    assert abs(INPUT_DIFFERENTIAL_LOAD_OHM-47400.0)<1.0
+    assert INPUT_DIFF_SHUNT_FITTED is False
+    assert INPUT_DEFAULT_BOARD_DIFF_CAP_PF==23.5
+    for cartridge in SUPPORTED_CARTRIDGES:
+        for cable_pf in (CABLE_CAP_MIN_PF,100.0,150.0,200.0,CABLE_CAP_MAX_PF):
+            assert abs(board_added_response_db(cartridge,20000.0,cable_pf)) < MAX_BOARD_ADDED_RESPONSE_DB_20K

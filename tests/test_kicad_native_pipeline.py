@@ -1,3 +1,4 @@
+from generator.layout.footprint_contract import build_footprint_contract
 from generator.layout.kicad_native_pipeline import (
     build_kicad_native_pipeline_baseline,
     validate_kicad_native_pipeline_baseline,
@@ -14,9 +15,10 @@ def test_kicad_native_pipeline_assigns_document_ownership_cleanly():
 
 def test_kicad_native_pipeline_covers_all_preliminary_footprints():
     baseline = build_kicad_native_pipeline_baseline()
-    assert baseline.footprint_count == 250
-    assert baseline.accepted_count + baseline.review_count == 250
-    assert len({item["reference"] for item in baseline.placement_items}) == 250
+    expected=len(build_footprint_contract().board_population_refs)
+    assert baseline.footprint_count == expected
+    assert baseline.accepted_count + baseline.review_count == expected
+    assert len({item["reference"] for item in baseline.placement_items}) == expected
 
 
 def test_kicad_native_pipeline_preserves_manual_review_boundary():

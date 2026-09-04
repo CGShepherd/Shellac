@@ -62,6 +62,8 @@ class PreliminaryPlacementBaseline:
         return asdict(self)
 
 
+INPUT_CLUSTER_MIN_PACKING_MARGIN_MM=2.0
+
 # Conservative body/courtyard approximations sufficient for architectural
 # placement review. Exact KiCad courtyard geometry is deferred to the board
 # population/export stage.
@@ -118,6 +120,8 @@ def _pack_cluster(
         return []
 
     margin = max(1.5, ghost.keepout_mm / 2.0)
+    if ghost.identifier in {"CLU-101-A", "CLU-101-C"}:
+        margin = max(margin, INPUT_CLUSTER_MIN_PACKING_MARGIN_MM)
     usable_w = max(ghost.width_mm - 2 * margin, 1.0)
     usable_d = max(ghost.depth_mm - 2 * margin, 1.0)
     max_w = max(footprint_envelope(e).width_mm for e in entries)
@@ -182,6 +186,8 @@ def _pack_cluster_shelves(
     """
     gap = 1.2
     margin = max(1.5, ghost.keepout_mm / 2.0)
+    if ghost.identifier in {"CLU-101-A", "CLU-101-C"}:
+        margin = max(margin, INPUT_CLUSTER_MIN_PACKING_MARGIN_MM)
     left = ghost.x_mm + margin
     top = ghost.y_mm + margin
     right = ghost.x_mm + ghost.width_mm - margin

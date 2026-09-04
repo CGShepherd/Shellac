@@ -7,8 +7,8 @@ from generator.layout.real_footprint_audit import (
 def test_real_footprint_audit_is_deterministic_and_balanced():
     audit = build_real_footprint_audit()
     assert validate_real_footprint_audit(audit) == []
-    assert audit.board_population_count == 250
-    assert audit.accepted_identity_count == 250
+    assert audit.board_population_count == 254
+    assert audit.accepted_identity_count == 254
     assert audit.review_count == 0
     assert audit.blocker_count == 0
     assert audit.status == "READY"

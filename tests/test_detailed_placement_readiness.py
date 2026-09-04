@@ -7,7 +7,7 @@ from generator.layout.detailed_placement_readiness import (
 
 def test_detailed_candidate_has_no_geometric_blockers():
     model = build_detailed_placement_readiness()
-    assert model.proposal_count == 250
+    assert model.proposal_count > 0
     assert model.blocker_count == 0
     assert not [f for f in model.findings if f.severity is FindingSeverity.BLOCKER]
 

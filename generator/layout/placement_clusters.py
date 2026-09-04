@@ -107,7 +107,7 @@ def build_cluster_placement_baseline(
 
     clusters = [
         _cluster("CLU-101-A", "Left input RF and connector interface", "SCH101", "REG-01",
-                 "H101 R102 R103 C101 C102 C103", "H101",
+                 "H101 R102 R103 R104 R105 C101 C102 C103", "H101",
                  edge=EdgeAffinity.FRONT, span=18.0, orientation="Connector-facing RF chain flows inward from front board edge.",
                  adjacency="RF resistors and capacitors immediately behind the input-harness termination.",
                  keepout="No control, output or power routing inside the cartridge-input keepout.",
@@ -119,7 +119,7 @@ def build_cluster_placement_baseline(
                  keepout="No harness or unrelated trace between paired gain legs.",
                  routing="Manual feedback and differential-converter routes; zero vias."),
         _cluster("CLU-101-C", "Right input RF and connector interface", "SCH101", "REG-01",
-                 "H201 R202 R203 C201 C202 C203", "H201",
+                 "H201 R202 R203 R204 R205 C201 C202 C203", "H201",
                  edge=EdgeAffinity.FRONT, span=18.0, orientation="Connector-facing RF chain flows inward from front board edge.",
                  adjacency="Mirror functional order of left channel without forcing longer loops.",
                  keepout="No control, output or power routing inside the cartridge-input keepout.",

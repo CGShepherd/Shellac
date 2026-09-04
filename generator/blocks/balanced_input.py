@@ -1,8 +1,11 @@
-"""SCH101 DR-038 precision balanced-input schematic builder."""
+"""SCH101 DR-038/AE-037 precision balanced-input schematic builder."""
 from generator.core.components import capacitor,diff_converter_block,opa1656_gain_block,resistor,xlr3,jst_vh_3,lt5400_network
 from generator.core.geometry import Point
 from generator.core.pins import pin_position
-from generator.model.balanced_input import DIFF_CONVERTER_GAIN,GAIN_BASE_RF_OHM,GAIN_DEFAULT_ADD_OHM,GAIN_HIGH_ADD_OHM,GAIN_RG_OHM
+from generator.model.balanced_input import (
+    DIFF_CONVERTER_GAIN,GAIN_BASE_RF_OHM,GAIN_DEFAULT_ADD_OHM,GAIN_HIGH_ADD_OHM,GAIN_RG_OHM,
+    INPUT_CM_SHUNT_PF,INPUT_DIFF_SHUNT_PF,INPUT_DIFF_SHUNT_FITTED,INPUT_LOAD_LEG_OHM
+)
 
 def _wire_path(sheet,*points):
     for a,b in zip(points,points[1:]):
@@ -14,9 +17,12 @@ def _rf_input(sheet,ch,base,cy,py,my):
     for pin in ("1","2","3"): sheet.connect_points(pin_position(panel,pin),pin_position(conn,pin))
     rp=sheet.add_component(resistor(f"R{base}02","100R",Point(75,py),tolerance="0.1%",function="Matched RF series isolation IN+"))
     rm=sheet.add_component(resistor(f"R{base}03","100R",Point(75,my),tolerance="0.1%",function="Matched RF series isolation IN-"))
-    cp=sheet.add_component(capacitor(f"C{base}01","1n",Point(108,py-2.54),dielectric="C0G/NP0",voltage="50V",function="0.5% matched common-mode RF shunt IN+"))
-    cm=sheet.add_component(capacitor(f"C{base}02","1n",Point(108,my+2.54),dielectric="C0G/NP0",voltage="50V",function="0.5% matched common-mode RF shunt IN-"))
-    cd=sheet.add_component(capacitor(f"C{base}03","220p",Point(130,cy),dielectric="C0G/NP0",voltage="50V",function="Differential RF shunt"))
+    cp=sheet.add_component(capacitor(f"C{base}01",f"{INPUT_CM_SHUNT_PF:g}p",Point(108,py-2.54),dielectric="C0G/NP0",voltage="50V",function="1% matched common-mode RF shunt IN+"))
+    cm=sheet.add_component(capacitor(f"C{base}02",f"{INPUT_CM_SHUNT_PF:g}p",Point(108,my+2.54),dielectric="C0G/NP0",voltage="50V",function="1% matched common-mode RF shunt IN-"))
+    cd=sheet.add_component(capacitor(f"C{base}03",f"{INPUT_DIFF_SHUNT_PF:g}p",Point(130,cy),dielectric="C0G/NP0",voltage="50V",function="Optional differential RF tuning shunt; DNP default"))
+    cd.dnp=not INPUT_DIFF_SHUNT_FITTED
+    lp=sheet.add_component(resistor(f"R{base}04",f"{INPUT_LOAD_LEG_OHM:g}",Point(142,py+7.62),tolerance="0.1%",function="Balanced cartridge load + IN+ DC bias return"))
+    lm=sheet.add_component(resistor(f"R{base}05",f"{INPUT_LOAD_LEG_OHM:g}",Point(142,my-7.62),tolerance="0.1%",function="Balanced cartridge load + IN- DC bias return"))
     jp,jm=pin_position(conn,"2"),pin_position(conn,"3")
     sheet.connect_pin_to_net(conn,"1","CHASSIS",stub_dx=-8)
     sheet.add_label(f"INPUT_{ch}_POS",jp.x,jp.y); sheet.add_label(f"INPUT_{ch}_NEG",jm.x,jm.y)
@@ -26,6 +32,8 @@ def _rf_input(sheet,ch,base,cy,py,my):
     _wire_path(sheet,pin_position(rm,"2"),pin_position(cm,"2"),mm)
     sheet.connect_points(pin_position(cd,"2"),pp); sheet.connect_points(pin_position(cd,"1"),mm)
     sheet.connect_pin_to_net(cp,"2","CHASSIS",stub_dy=-6); sheet.connect_pin_to_net(cm,"1","CHASSIS",stub_dy=6)
+    sheet.connect_points(pin_position(lp,"1"),pp); sheet.connect_pin_to_net(lp,"2","0VA",stub_dy=6)
+    sheet.connect_points(pin_position(lm,"2"),mm); sheet.connect_pin_to_net(lm,"1","0VA",stub_dy=-6)
     return pp,mm
 
 def _gain_leg(sheet,name,base,suffix,input_node,y):
@@ -55,33 +63,25 @@ def _diff(sheet,ch,base,cy,po,mo):
     rn=sheet.add_component(lt5400_network(
         f"RN{base}30",f"{ch} LT5400-7 1:4",Point(315,cy)
     ))
-
     plus_src=f"SCH101_{ch}_LT5400_PLUS_SRC"
     plus_sum=f"SCH101_{ch}_LT5400_PLUS_SUM"
     minus_src=f"SCH101_{ch}_LT5400_MINUS_SRC"
     minus_sum=f"SCH101_{ch}_LT5400_MINUS_SUM"
     output_net=f"PRE_EQ_{ch}"
-
     sheet.connect_pin_to_net(po,"OUT",plus_src,stub_dx=6.35)
     sheet.connect_pin_to_net(rn,"3",plus_src,stub_dx=-6.35)
     sheet.connect_pin_to_net(mo,"OUT",minus_src,stub_dx=6.35)
     sheet.connect_pin_to_net(rn,"2",minus_src,stub_dx=-6.35)
-
     sheet.connect_pin_to_net(rn,"6",plus_sum,stub_dx=6.35)
     sheet.connect_pin_to_net(rn,"4",plus_sum,stub_dx=-6.35)
     sheet.connect_pin_to_net(amp,"IN+",plus_sum,stub_dx=-6.35)
-
     sheet.connect_pin_to_net(rn,"5","0VA",stub_dx=6.35)
-
     sheet.connect_pin_to_net(rn,"7",minus_sum,stub_dx=6.35)
     sheet.connect_pin_to_net(rn,"1",minus_sum,stub_dx=-6.35)
     sheet.connect_pin_to_net(amp,"IN-",minus_sum,stub_dx=-6.35)
-
     sheet.connect_pin_to_net(rn,"8",output_net,stub_dx=6.35)
     sheet.connect_pin_to_net(amp,"OUT",output_net,stub_dx=8.89)
-
     sheet.add_no_connect_pin(rn,"9")
-
     sheet.connect_pin_to_net(amp,"+V","+18V",stub_dy=-6.35)
     sheet.connect_pin_to_net(amp,"-V","-18V",stub_dy=6.35)
 
@@ -91,7 +91,8 @@ def _channel(sheet,ch,base,cy):
     _diff(sheet,ch,base,cy,po,mo)
 
 def add_sch101_diff_converter_slice(sheet):
-    sheet.add_note("SCH101 DR-038 IMPLEMENTED: LT5400-7 4x converter + low-impedance precision gain legs.")
+    sheet.add_note("SCH101 AE-037: 47.4k balanced cartridge load + explicit DC bias return.")
+    sheet.add_note("RF default: 47p C0G each leg to CHASSIS; 22p differential footprint DNP.")
     sheet.add_note("Gain settings remain ~14/18/22 dB; default assembled service-link state = 18 dB.")
     sheet.add_note("LT5400-7 A-grade MS8E; EP9 electrically floating.")
     _channel(sheet,"L",1,85); _channel(sheet,"R",2,205)
