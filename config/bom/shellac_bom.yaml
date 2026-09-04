@@ -2,7 +2,7 @@ schema_version: 1
 project: shellac
 status: CONTROLLED_PARTIAL_BASELINE
 reconciled_by: SR-036
-control_hardware_updated_by: G3-024
+control_hardware_updated_by: AE-040B
 bom_reviewed_by: DR-037
 procurement_complete: false
 selection_policy:
@@ -20,8 +20,11 @@ items:
     mpn: 71BDF30-01-2-AJN
     requirement: linked_stereo_2P5_BBM
     configured_positions: 5
-    status: SELECTED
+    status: REJECTED_NOT_FOR_PROCUREMENT
     decision: DEC-013
+    superseded_by: AE-026
+    authority_reconciled_by: AE-040B
+    note: Historical candidate retained for traceability until the AE-027 exact Lorlin production MPN gate closes.
     commonality_group: grayhill_series_71_rotaries
 
   - id: BOM-CTRL-TREBLE
@@ -30,8 +33,11 @@ items:
     mpn: 71BDF30-01-2-AJN
     requirement: linked_stereo_2P5_BBM
     configured_positions: 5
-    status: SELECTED
+    status: REJECTED_NOT_FOR_PROCUREMENT
     decision: DEC-013
+    superseded_by: AE-026
+    authority_reconciled_by: AE-040B
+    note: Historical candidate retained for traceability until the AE-027 exact Lorlin production MPN gate closes.
     commonality_group: grayhill_series_71_rotaries
 
   - id: BOM-CTRL-CHANNEL
@@ -40,8 +46,11 @@ items:
     mpn: 71BDF30-02-2-AJN
     requirement: 4P4T_BBM
     configured_positions: 4
-    status: SELECTED
+    status: REJECTED_NOT_FOR_PROCUREMENT
     decision: DEC-014
+    superseded_by: AE-026
+    authority_reconciled_by: AE-040B
+    note: Historical candidate retained for traceability until the AE-027 exact Lorlin production MPN gate closes.
     commonality_group: grayhill_series_71_rotaries
 
   - id: BOM-CTRL-RUMBLE

@@ -29,7 +29,12 @@ FINDINGS = (
         "CLOSED",False,
         "AE-038/039A/039B/B1/039C/C1/C2B establish 10 physical op-amp packages, real KiCad A/B units, actual SOIC-8 pin semantics, and explicit follower feedback."
     ),
-    Finding("AE036-F04","P1","controls","Grayhill remains selected in live authority after rejection","OPEN",False),
+    Finding(
+        "AE036-F04","P1","controls",
+        "Grayhill remains selected in live authority after rejection",
+        "CLOSED",False,
+        "AE-040B removes Grayhill from current control authority, preserves it only as rejected historical evidence, and makes AE-026/AE-027 Lorlin PT platform selection with exact production MPNs open the live authority."
+    ),
     Finding("AE036-F05","P1","controls-PCB","PCB-mounted controls are not yet physical PCB objects","OPEN",False),
     Finding("AE036-F06","P1","power","nominal ±18 V uses top of key IC recommended range","OPEN",False),
     Finding("AE036-F07","P1","governance","decision/current baseline and indexes are stale","OPEN",False),
@@ -54,7 +59,7 @@ def validate_findings():
     assert len({x.identifier for x in FINDINGS}) == len(FINDINGS)
     assert {x.state for x in FINDINGS} <= {"OPEN","CLOSED"}
     assert {x.identifier for x in closed_findings()} == {
-        "AE036-F01","AE036-F02","AE036-F03"
+        "AE036-F01","AE036-F02","AE036-F03","AE036-F04"
     }
     assert all(x.resolution_evidence for x in closed_findings())
     assert routing_blockers() == ()

@@ -10,15 +10,17 @@ from generator.model.controls import (
     LED_MPN,
     LED_SERIES_RESISTANCE_OHM,
     ROTARY_BASS_TREBLE_MPN,
+    ROTARY_MANUFACTURER,
     ROTARY_MODE_MPN,
+    ROTARY_PLATFORM,
     TOGGLE_MPN,
     ControlsStatus,
     validate_controls,
 )
 
 
-def test_controls_are_physically_selected():
-    assert DESIGN_STATUS is ControlsStatus.PHYSICAL_HARDWARE_SELECTED
+def test_controls_platform_is_selected_but_rotary_procurement_is_open():
+    assert DESIGN_STATUS is ControlsStatus.PLATFORM_SELECTED_PROCUREMENT_OPEN
     validate_controls()
 
 
@@ -53,13 +55,16 @@ def test_mode_electrical_requirement_is_preserved():
     assert CONTROLS[2].switching == "Break-before-make"
 
 
-def test_selected_rotary_hardware_is_overcapable_but_configured_to_required_states():
-    assert CONTROLS[0].control_type == "2P6 rotary configured to 5 positions"
-    assert CONTROLS[1].control_type == "2P6 rotary configured to 5 positions"
-    assert CONTROLS[2].control_type == "4P6 rotary configured to 4 positions"
+def test_lorlin_pt_is_live_rotary_platform_without_inventing_exact_mpns():
+    assert ROTARY_MANUFACTURER == "Lorlin"
+    assert ROTARY_PLATFORM == "PT"
+    assert CONTROLS[0].control_type == "2P5 rotary"
+    assert CONTROLS[1].control_type == "2P5 rotary"
+    assert "two synchronised 2-pole PT wafers" in CONTROLS[2].control_type
     assert CONTROLS[0].mpn == CONTROLS[1].mpn == ROTARY_BASS_TREBLE_MPN
     assert CONTROLS[2].mpn == ROTARY_MODE_MPN
-    assert all(control.manufacturer == "Grayhill" for control in CONTROLS[:3])
+    assert all(control.manufacturer == "Lorlin" for control in CONTROLS[:3])
+    assert all(control.mpn.startswith("OPEN") for control in CONTROLS[:3])
 
 
 def test_toggle_hardware_is_common_and_retains_two_state_functions():
