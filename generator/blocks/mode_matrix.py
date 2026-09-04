@@ -11,7 +11,6 @@ from generator.model.mode_matrix import (
     OUTPUT_ISOLATION_OHM, SUM_RESISTOR_OHM, SWITCH_TYPE,
 )
 
-
 def _mode_switch(ref: str, at: Point) -> Component:
     return Component(
         ref=ref, lib_id="ProjectShellac:Mode_Switch_Block", value="MODE 4P4T",
@@ -26,7 +25,6 @@ def _mode_switch(ref: str, at: Point) -> Component:
         }, on_board=False,
     )
 
-
 def _buffer(ref: str, channel: str, at: Point) -> Component:
     return Component(
         ref=ref, lib_id="ProjectShellac:OpAmp_Buffer_Block",
@@ -40,10 +38,8 @@ def _buffer(ref: str, channel: str, at: Point) -> Component:
         },
     )
 
-
 def _wire_testpoint(sheet, tp, net_name):
     sheet.connect_pin_to_net(tp, "TP", net_name, stub_dy=-3.0)
-
 
 def add_mode_matrix(sheet) -> None:
     sheet.add_note("SCH105 PIN-AWARE: passive 4P4T routing followed by dual OPA1656 unity buffers.")
@@ -107,7 +103,12 @@ def add_mode_matrix(sheet) -> None:
         sheet.connect_pin_to_net(bias, "2", "0VA", stub_dy=6.0)
         sheet.connect_pin_to_net(buf, "+V", "+18V", stub_dy=6.0)
         sheet.connect_pin_to_net(buf, "-V", "-18V", stub_dy=-6.0)
-        sheet.connect_pin_to_net(buf, "0VA", "0VA", stub_dx=-7.0)
+        feedback_pin = pin_position(buf, "IN-")
+        feedback_out = pin_position(buf, "OUT")
+        feedback_corner = Point(feedback_out.x, feedback_pin.y)
+        sheet.connect_points(feedback_out, feedback_corner)
+        sheet.connect_points(feedback_corner, feedback_pin)
+
         sheet.connect_pins(buf, "OUT", out_r, "1")
         sheet.connect_pin_to_net(out_r, "2", f"MODE_{ch}", stub_dx=12.0)
         tp_out = sheet.add_component(testpoint(f"TP{504+idx}", f"{ch}_MODE_OUT", Point(395.0, y + 18.0)))

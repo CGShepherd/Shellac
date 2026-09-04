@@ -1,0 +1,21 @@
+(symbol "ProjectShellac:OpAmp_NonInv_Block" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)
+      (property "Reference" "U" (id 0) (at 0 -9.0 0) {eff()})
+      (property "Value" "OPA_DUAL_NONINV" (id 1) (at 0 9.0 0) {eff()})
+      (symbol "OpAmp_NonInv_Block_0_1"
+        (pin power_in line (at 2.54 10.16 270) (length 3.81) (name "+V" {eff(1.0)}) (number "8" {eff(1.0)}))
+        (pin power_in line (at 2.54 -10.16 90) (length 3.81) (name "-V" {eff(1.0)}) (number "4" {eff(1.0)}))
+      )
+      (symbol "OpAmp_NonInv_Block_1_1"
+        (rectangle (start -7.62 -6.35) (end 7.62 6.35) (stroke (width 0.1524) (type solid)) (fill (type none)))
+        (pin input line (at -11.43 0 0) (length 3.81) (name "IN+" {eff(1.0)}) (number "3" {eff(1.0)}))
+        (pin input line (at -2.54 -10.16 90) (length 3.81) (name "FB-" {eff(1.0)}) (number "2" {eff(1.0)}))
+        (pin output line (at 11.43 0 180) (length 3.81) (name "OUT" {eff(1.0)}) (number "1" {eff(1.0)}))
+      )
+      (symbol "OpAmp_NonInv_Block_2_1"
+        (rectangle (start -7.62 -6.35) (end 7.62 6.35) (stroke (width 0.1524) (type solid)) (fill (type none)))
+        (pin input line (at -11.43 0 0) (length 3.81) (name "IN+" {eff(1.0)}) (number "5" {eff(1.0)}))
+        (pin input line (at -2.54 -10.16 90) (length 3.81) (name "FB-" {eff(1.0)}) (number "6" {eff(1.0)}))
+        (pin output line (at 11.43 0 180) (length 3.81) (name "OUT" {eff(1.0)}) (number "7" {eff(1.0)}))
+      )
+    )
+    

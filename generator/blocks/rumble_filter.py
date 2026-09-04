@@ -23,7 +23,6 @@ from generator.model.rumble_filter import (
     TARGET_CUTOFF_HZ,
 )
 
-
 def _opamp_block(ref: str, channel: str, section: str, at: Point) -> Component:
     return Component(
         ref=ref,
@@ -38,7 +37,6 @@ def _opamp_block(ref: str, channel: str, section: str, at: Point) -> Component:
             "Filter": f"4th-order Butterworth, {TARGET_CUTOFF_HZ:g} Hz nominal",
         },
     )
-
 
 def _bypass_switch(ref: str, at: Point) -> Component:
     return Component(
@@ -55,13 +53,11 @@ def _bypass_switch(ref: str, at: Point) -> Component:
         on_board=False,
     )
 
-
 def _wire_path(sheet, *points: Point) -> None:
     """Draw a conventional endpoint-to-endpoint orthogonal path."""
     for start, end in zip(points, points[1:]):
         if start != end:
             sheet.connect_points(start, end)
-
 
 def _add_section(
     sheet,
@@ -111,6 +107,7 @@ def _add_section(
     c2_out = pin_position(c2, "1")
     opamp_in = pin_position(opamp, "IN")
     opamp_out = pin_position(opamp, "OUT")
+    opamp_inverting = pin_position(opamp, "IN-")
     r1_left = pin_position(r1, "1")
     r1_right = pin_position(r1, "2")
     r2_top = pin_position(r2, "2")
@@ -126,6 +123,7 @@ def _add_section(
     _wire_path(sheet, c1_out, node_1, c2_in)
     _wire_path(sheet, c2_out, node_2, opamp_in)
     _wire_path(sheet, opamp_out, output_branch)
+    _wire_path(sheet, opamp_out, Point(opamp_out.x, opamp_inverting.y), opamp_inverting)
 
     # Visible Sallen-Key feedback and shunt branches.
     _wire_path(
@@ -147,10 +145,8 @@ def _add_section(
     # Explicit local supply/reference connections.
     sheet.connect_pin_to_net(opamp, "+V", "+18V", stub_dy=6.0)
     sheet.connect_pin_to_net(opamp, "-V", "-18V", stub_dy=-6.0)
-    sheet.connect_pin_to_net(opamp, "0VA", "0VA", stub_dx=-10.0)
 
     return output_branch, opamp
-
 
 def _add_decoupling(sheet, channel: str, base: int, *, y_hf: float, y_bulk: float) -> None:
     plus_hf = sheet.add_component(capacitor(
@@ -176,7 +172,6 @@ def _add_decoupling(sheet, channel: str, base: int, *, y_hf: float, y_bulk: floa
         sheet.connect_vertical_two_pin(component, "+18V", "0VA")
     for component in (minus_hf, minus_bulk):
         sheet.connect_vertical_two_pin(component, "0VA", "-18V")
-
 
 def _add_channel(
     sheet,
@@ -272,7 +267,6 @@ def _add_channel(
         "filtered_route_end": Point(filter_lane_x, y),
         "output_testpoint": output_tp,
     }
-
 
 def add_rumble_filter(sheet) -> None:
     sheet.add_note(

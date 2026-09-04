@@ -5,6 +5,7 @@ from math import gcd
 from pathlib import Path
 
 from generator.core.geometry import Point
+from generator.model.opamp_package_allocation import ALLOCATIONS
 from generator.hierarchy import (
     GLOBAL_POWER_DOMAINS,
     HierarchicalPort,
@@ -53,6 +54,22 @@ PIN_COUNTS = {
 }
 
 PROJECT_NAME = "ProjectShellac"
+
+_OPAMP_ALLOCATION_BY_LOGICAL_REF = {a.logical_ref: a for a in ALLOCATIONS}
+if len(_OPAMP_ALLOCATION_BY_LOGICAL_REF) != len(ALLOCATIONS):
+    raise RuntimeError("op-amp logical references must be globally unique")
+
+def opamp_render_identity(component):
+    allocation=_OPAMP_ALLOCATION_BY_LOGICAL_REF.get(component.ref)
+    if allocation is None: return None
+    unit=1 if allocation.unit in {"A","S"} else 2
+    if allocation.device in {"OPA1656","OPA1612"}:
+        pins=("1","2","3","4","8") if unit==1 else ("4","5","6","7","8")
+    elif allocation.device=="OPA1655":
+        pins=("2","3","4","6","7")
+    else: raise ValueError(f"unsupported op-amp device {allocation.device}")
+    return {"reference":allocation.physical_ref,"value":allocation.device,"unit":unit,"pins":pins,"allocation":allocation}
+
 CONNECTION_GRID_MM = 1.27
 
 
@@ -381,14 +398,22 @@ def local_symbol_library():
     )
     (symbol "ProjectShellac:OpAmp_NonInv_Block" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)
       (property "Reference" "U" (id 0) (at 0 -9.0 0) {eff()})
-      (property "Value" "OPA1656_GAIN" (id 1) (at 0 9.0 0) {eff()})
+      (property "Value" "OPA_DUAL_NONINV" (id 1) (at 0 9.0 0) {eff()})
       (symbol "OpAmp_NonInv_Block_0_1"
+        (pin power_in line (at 2.54 10.16 270) (length 3.81) (name "+V" {eff(1.0)}) (number "8" {eff(1.0)}))
+        (pin power_in line (at 2.54 -10.16 90) (length 3.81) (name "-V" {eff(1.0)}) (number "4" {eff(1.0)}))
+      )
+      (symbol "OpAmp_NonInv_Block_1_1"
         (rectangle (start -7.62 -6.35) (end 7.62 6.35) (stroke (width 0.1524) (type solid)) (fill (type none)))
-        (pin input line (at -11.43 0 0) (length 3.81) (name "IN+" {eff(1.0)}) (number "1" {eff(1.0)}))
+        (pin input line (at -11.43 0 0) (length 3.81) (name "IN+" {eff(1.0)}) (number "3" {eff(1.0)}))
         (pin input line (at -2.54 -10.16 90) (length 3.81) (name "FB-" {eff(1.0)}) (number "2" {eff(1.0)}))
-        (pin output line (at 11.43 0 180) (length 3.81) (name "OUT" {eff(1.0)}) (number "3" {eff(1.0)}))
-        (pin power_in line (at 2.54 10.16 270) (length 3.81) (name "+V" {eff(1.0)}) (number "4" {eff(1.0)}))
-        (pin power_in line (at 2.54 -10.16 90) (length 3.81) (name "-V" {eff(1.0)}) (number "5" {eff(1.0)}))
+        (pin output line (at 11.43 0 180) (length 3.81) (name "OUT" {eff(1.0)}) (number "1" {eff(1.0)}))
+      )
+      (symbol "OpAmp_NonInv_Block_2_1"
+        (rectangle (start -7.62 -6.35) (end 7.62 6.35) (stroke (width 0.1524) (type solid)) (fill (type none)))
+        (pin input line (at -11.43 0 0) (length 3.81) (name "IN+" {eff(1.0)}) (number "5" {eff(1.0)}))
+        (pin input line (at -2.54 -10.16 90) (length 3.81) (name "FB-" {eff(1.0)}) (number "6" {eff(1.0)}))
+        (pin output line (at 11.43 0 180) (length 3.81) (name "OUT" {eff(1.0)}) (number "7" {eff(1.0)}))
       )
     )
     (symbol "ProjectShellac:Replay_EQ_Core_Block" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -414,26 +439,34 @@ def local_symbol_library():
     )
     (symbol "ProjectShellac:DiffAmp_Block" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)
       (property "Reference" "U" (id 0) (at 0 -9.0 0) {eff()})
-      (property "Value" "OPA1656_DIFF" (id 1) (at 0 9.0 0) {eff()})
-      (symbol "DiffAmp_Block_0_1"
+      (property "Value" "OPA1655" (id 1) (at 0 9.0 0) {eff()})
+      (symbol "DiffAmp_Block_1_1"
         (rectangle (start -7.62 -6.35) (end 7.62 6.35) (stroke (width 0.1524) (type solid)) (fill (type none)))
-        (pin input line (at -11.43 2.54 0) (length 3.81) (name "IN+" {eff(1.0)}) (number "1" {eff(1.0)}))
+        (pin input line (at -11.43 2.54 0) (length 3.81) (name "IN+" {eff(1.0)}) (number "3" {eff(1.0)}))
         (pin input line (at -11.43 -2.54 0) (length 3.81) (name "IN-" {eff(1.0)}) (number "2" {eff(1.0)}))
-        (pin output line (at 11.43 0 180) (length 3.81) (name "OUT" {eff(1.0)}) (number "3" {eff(1.0)}))
-        (pin power_in line (at 2.54 10.16 270) (length 3.81) (name "+V" {eff(1.0)}) (number "4" {eff(1.0)}))
-        (pin power_in line (at 2.54 -10.16 90) (length 3.81) (name "-V" {eff(1.0)}) (number "5" {eff(1.0)}))
+        (pin output line (at 11.43 0 180) (length 3.81) (name "OUT" {eff(1.0)}) (number "6" {eff(1.0)}))
+        (pin power_in line (at 2.54 10.16 270) (length 3.81) (name "+V" {eff(1.0)}) (number "7" {eff(1.0)}))
+        (pin power_in line (at 2.54 -10.16 90) (length 3.81) (name "-V" {eff(1.0)}) (number "4" {eff(1.0)}))
       )
     )
     (symbol "ProjectShellac:OpAmp_Buffer_Block" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)
       (property "Reference" "U" (id 0) (at 0 -9.0 0) {eff()})
-      (property "Value" "OPA1656_BUFFER" (id 1) (at 0 9.0 0) {eff()})
+      (property "Value" "OPA_DUAL_BUFFER" (id 1) (at 0 9.0 0) {eff()})
       (symbol "OpAmp_Buffer_Block_0_1"
-        (rectangle (start -7.62 -6.35) (end 7.62 6.35) (stroke (width 0.1524) (type solid)) (fill (type none)))
-        (pin input line (at -11.43 0 0) (length 3.81) (name "IN" {eff(1.0)}) (number "1" {eff(1.0)}))
-        (pin output line (at 11.43 0 180) (length 3.81) (name "OUT" {eff(1.0)}) (number "2" {eff(1.0)}))
-        (pin power_in line (at 2.54 -10.16 90) (length 3.81) (name "+V" {eff(1.0)}) (number "3" {eff(1.0)}))
+        (pin power_in line (at 2.54 -10.16 90) (length 3.81) (name "+V" {eff(1.0)}) (number "8" {eff(1.0)}))
         (pin power_in line (at 2.54 10.16 270) (length 3.81) (name "-V" {eff(1.0)}) (number "4" {eff(1.0)}))
-        (pin passive line (at -2.54 10.16 270) (length 3.81) (name "0VA" {eff(1.0)}) (number "5" {eff(1.0)}))
+      )
+      (symbol "OpAmp_Buffer_Block_1_1"
+        (rectangle (start -7.62 -6.35) (end 7.62 6.35) (stroke (width 0.1524) (type solid)) (fill (type none)))
+        (pin input line (at -11.43 0 0) (length 3.81) (name "IN" {eff(1.0)}) (number "3" {eff(1.0)}))
+        (pin input line (at -2.54 10.16 270) (length 3.81) (name "IN-" {eff(1.0)}) (number "2" {eff(1.0)}))
+        (pin output line (at 11.43 0 180) (length 3.81) (name "OUT" {eff(1.0)}) (number "1" {eff(1.0)}))
+      )
+      (symbol "OpAmp_Buffer_Block_2_1"
+        (rectangle (start -7.62 -6.35) (end 7.62 6.35) (stroke (width 0.1524) (type solid)) (fill (type none)))
+        (pin input line (at -11.43 0 0) (length 3.81) (name "IN" {eff(1.0)}) (number "5" {eff(1.0)}))
+        (pin input line (at -2.54 10.16 270) (length 3.81) (name "IN-" {eff(1.0)}) (number "6" {eff(1.0)}))
+        (pin output line (at 11.43 0 180) (length 3.81) (name "OUT" {eff(1.0)}) (number "7" {eff(1.0)}))
       )
     )
     (symbol "ProjectShellac:TestPoint" (pin_names (offset 0.8)) (exclude_from_sim yes) (in_bom no) (on_board yes)
@@ -624,32 +657,46 @@ def symbol_instances(ref, instance_path, unit=1, standalone_path=None):
 def symbol_instance(c, instance_path, standalone_path=None):
     x = snap_coordinate(c.at.x)
     y = snap_coordinate(c.at.y)
+
+    physical=opamp_render_identity(c)
+    if physical is None:
+        reference=c.ref
+        value=c.value
+        unit=1
+        pins=tuple(str(pin) for pin in range(1, PIN_COUNTS.get(c.lib_id, 2) + 1))
+    else:
+        reference=physical["reference"]
+        value=physical["value"]
+        unit=physical["unit"]
+        pins=physical["pins"]
+
     s = (
         f'  (symbol (lib_id "{c.lib_id}") '
-        f'(at {x:.2f} {y:.2f} {c.rotation:.0f}) (unit 1)\n'
+        f'(at {x:.2f} {y:.2f} {c.rotation:.0f}) (unit {unit})\n'
         f'    (exclude_from_sim no) '
         f'(in_bom {"yes" if c.in_bom else "no"}) '
         f'(on_board {"yes" if c.on_board else "no"}) '
         f'(dnp {"yes" if c.dnp else "no"})\n'
         f'    (uuid "{u()}")\n'
-        f'    {prop("Reference", c.ref, x, y - 3.8)}\n'
-        f'    {prop("Value", c.value, x, y + 3.8)}\n'
+        f'    {prop("Reference", reference, x, y - 3.8)}\n'
+        f'    {prop("Value", value, x, y + 3.8)}\n'
     )
 
     if c.footprint:
         s += f'    {prop("Footprint", c.footprint, x, y + 6.0, 1.0, hide=True)}\n'
 
     yy = y + 8.0
-    for key, value in c.fields.items():
-        s += f'    {prop(key, value, x, yy, 1.0, hide=True)}\n'
+    for key, field_value in c.fields.items():
+        s += f'    {prop(key, field_value, x, yy, 1.0, hide=True)}\n'
         yy += 2.0
 
-    for pin in range(1, PIN_COUNTS.get(c.lib_id, 2) + 1):
+    if physical is not None:
+        s += f'    {prop("Logical Function", c.ref, x, yy, 1.0, hide=True)}\n'
+
+    for pin in pins:
         s += f'    (pin "{pin}" (uuid "{u()}"))\n'
 
-    s += symbol_instances(
-        c.ref, instance_path, unit=1, standalone_path=standalone_path
-    )
+    s += symbol_instances(reference, instance_path, unit=unit, standalone_path=standalone_path)
     return s + '  )\n'
 
 

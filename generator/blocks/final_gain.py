@@ -14,7 +14,6 @@ from generator.model.final_gain import (
     DESIGN_OUTPUT_RMS_V, GAIN_DB, OPAMP, OUTPUT_ISOLATION_OHM,
 )
 
-
 def _opamp(ref: str, channel: str, at: Point) -> Component:
     return Component(
         ref=ref,
@@ -30,7 +29,6 @@ def _opamp(ref: str, channel: str, at: Point) -> Component:
             "Design Output Ceiling": f"{DESIGN_OUTPUT_RMS_V:g} V RMS",
         },
     )
-
 
 def _channel(sheet, ch: str, idx: int, y: float) -> None:
     base = 400 + idx * 50
@@ -78,8 +76,11 @@ def _channel(sheet, ch: str, idx: int, y: float) -> None:
     # Explicit power and analogue-reference connections.
     sheet.connect_pin_to_net(opamp, "+V", "+18V", stub_dy=6)
     sheet.connect_pin_to_net(opamp, "-V", "-18V", stub_dy=-6)
-    sheet.connect_pin_to_net(opamp, "0VA", "0VA", stub_dx=-12)
-
+    feedback_pin = pin_position(opamp, "IN-")
+    feedback_out = pin_position(opamp, "OUT")
+    feedback_corner = Point(feedback_out.x, feedback_pin.y)
+    sheet.connect_points(feedback_out, feedback_corner)
+    sheet.connect_points(feedback_corner, feedback_pin)
 
 def _decoupling(sheet) -> None:
     # One dual OPA1656 package serves both channels.
@@ -112,7 +113,6 @@ def _decoupling(sheet) -> None:
     # Negative-rail capacitors are drawn from 0VA to -18V.
     for component in (minus_hf, minus_bulk):
         sheet.connect_vertical_two_pin(component, "0VA", "-18V")
-
 
 def add_final_gain(sheet) -> None:
     sheet.add_note("SCH104 PIN-CONNECTED BY SR-002: stereo unity OPA1656 isolation buffer.")

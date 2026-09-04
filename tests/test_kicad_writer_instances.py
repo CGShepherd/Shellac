@@ -96,8 +96,14 @@ def test_writer_embeds_every_standard_symbol_used_by_shellac():
         assert f'symbol "{symbol_id}"' in library
 
 
-def test_reference_ground_pins_are_passive_not_undriven_power_inputs():
+def test_real_opamp_symbols_have_no_synthetic_ground_pin():
     from generator.writers.kicad9 import local_symbol_library
     library = local_symbol_library()
-    assert '(pin passive line (at -2.54 10.16 270) (length 3.81) (name "0VA"' in library
+    start=library.index('symbol "ProjectShellac:OpAmp_Buffer_Block"')
+    end=library.index('symbol "ProjectShellac:TestPoint"',start)
+    buffer=library[start:end]
+    assert '(name "IN-"' in buffer
+    assert '(name "0VA"' not in buffer
+    assert '(number "8"' in buffer
+    assert '(number "4"' in buffer
     assert '(pin passive line (at -5.08 12.70 270) (length 2.54) (name "GND"' in library

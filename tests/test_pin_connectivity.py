@@ -17,6 +17,7 @@ def test_named_pin_position_uses_semantic_contract():
     )
     origin = align_point(component.at)
     assert pin_position(component, "IN") == align_point(Point(origin.x - 11.43, origin.y))
+    assert pin_position(component, "IN-") == align_point(Point(origin.x - 2.54, origin.y - 10.16))
     assert pin_position(component, "OUT") == align_point(Point(origin.x + 11.43, origin.y))
 
 

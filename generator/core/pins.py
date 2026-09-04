@@ -33,11 +33,11 @@ SYMBOL_PIN_CONTRACTS: dict[str, dict[str, PinContract]] = {
         "-V": PinContract("5", Point(2.54, -10.16)),
     },
     "ProjectShellac:OpAmp_Buffer_Block": {
-        "IN": PinContract("1", Point(-11.43, 0.0)),
-        "OUT": PinContract("2", Point(11.43, 0.0)),
-        "+V": PinContract("3", Point(2.54, -10.16)),
-        "-V": PinContract("4", Point(2.54, 10.16)),
-        "0VA": PinContract("5", Point(-2.54, 10.16)),
+        "IN": PinContract("IN", Point(-11.43, 0.0)),
+        "IN-": PinContract("IN-", Point(-2.54, 10.16)),
+        "OUT": PinContract("OUT", Point(11.43, 0.0)),
+        "+V": PinContract("V+", Point(2.54, -10.16)),
+        "-V": PinContract("V-", Point(2.54, 10.16)),
     },
     "ProjectShellac:DiffAmp_Block": {"IN+": PinContract("1", Point(-11.43, 2.54)), "IN-": PinContract("2", Point(-11.43, -2.54)), "OUT": PinContract("3", Point(11.43, 0.0)), "+V": PinContract("4", Point(2.54, 10.16)), "-V": PinContract("5", Point(2.54, -10.16))},
     "ProjectShellac:LT5400_Network": {
