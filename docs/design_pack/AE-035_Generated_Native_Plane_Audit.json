@@ -1,0 +1,13 @@
+{
+  "zero_va": [
+    6,
+    "0VA"
+  ],
+  "positive_rail": null,
+  "negative_rail": null,
+  "in1_zone_present": true,
+  "zone_count": 0,
+  "segment_count": 0,
+  "via_count": 0,
+  "issues": []
+}

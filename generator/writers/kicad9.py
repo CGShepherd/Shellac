@@ -685,21 +685,32 @@ def outward_label_justify(x, y, wires):
     return None
 
 
-def clean_output(out_dir, *, attempts=6, initial_delay_s=0.20):
-    """Remove generated output, tolerating brief Windows/Dropbox file locks.
-
-    Windows Explorer, KiCad, antivirus and Dropbox can hold transient handles on
-    freshly generated files.  Retry only PermissionError; all other failures are
-    surfaced immediately.
-    """
+def clean_output(
+    out_dir,
+    *,
+    attempts=6,
+    initial_delay_s=0.20,
+    preserve_patterns=("*.kicad_pcb", "*.kicad_dru"),
+):
+    """Remove generator-owned output while preserving native PCB authority."""
     out_dir = Path(out_dir)
     if not out_dir.exists():
         return
+
+    preserved = {}
+    for pattern in preserve_patterns:
+        for path in out_dir.glob(pattern):
+            if path.is_file():
+                preserved[path.name] = path.read_bytes()
 
     last_error = None
     for attempt in range(1, attempts + 1):
         try:
             shutil.rmtree(out_dir)
+            if preserved:
+                out_dir.mkdir(parents=True, exist_ok=True)
+                for name, payload in preserved.items():
+                    (out_dir / name).write_bytes(payload)
             return
         except PermissionError as error:
             last_error = error
