@@ -5,6 +5,7 @@ current_authority:
   - config/decisions/current_decision_index.yaml
   - config/decisions/decision_status.yaml
   - docs/knowledge/DESIGN_PACK_INDEX.md
+  - docs/knowledge/INDEPENDENT_REVIEW_AND_DESIGN_ASSURANCE_PLAN.md
   - docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md
   - docs/maintenance/Signal_Chain_Commissioning_and_Maintenance_Baseline_Rev_A0.md
 historical_state_evidence:
