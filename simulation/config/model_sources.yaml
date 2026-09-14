@@ -1,5 +1,5 @@
 schema_version: 1
-authority: AE-061
+authority: AE-062
 purpose: Controlled upstream provenance and ingestion state for integrated Shellac SPICE models.
 policy:
   vendor_originals_silently_rewritten: false
@@ -17,11 +17,13 @@ sources:
     revision: C
     package_id: SBOMAW6C.ZIP
     source_url: https://www.ti.com/product/OPA1656
-    status: SOURCE_IDENTIFIED_PENDING_INGESTION
-    sha256: null
+    status: QUALIFIED_LOCAL_SOURCE
+    sha256: 9847ed60c62e792ee6f1c84899278a3c11ce71a6d21804bdd88f51199f1ba055
     local_path: null
-    subckt_name: null
-    pin_mapping_verified: false
+    subckt_name: OPA1656
+    pin_mapping_verified: true
+    wrapper_path: simulation/models/wrappers/opa1656_shellac.lib
+    qualification_record: simulation/config/model_qualification.yaml
     redistribution_reviewed: false
 
   OPA1612:
@@ -32,11 +34,13 @@ sources:
     revision: G
     package_id: SBOM396G.ZIP
     source_url: https://www.ti.com/product/OPA1612
-    status: SOURCE_IDENTIFIED_PENDING_INGESTION
-    sha256: null
+    status: QUALIFIED_LOCAL_SOURCE
+    sha256: c86df5d4b2d26ec196c0a6158a61004a6747aec5440fcc2031674ad62a448ef7
     local_path: null
-    subckt_name: null
-    pin_mapping_verified: false
+    subckt_name: OPA161x
+    pin_mapping_verified: true
+    wrapper_path: simulation/models/wrappers/opa1612_shellac.lib
+    qualification_record: simulation/config/model_qualification.yaml
     redistribution_reviewed: false
 
   LT5400:
@@ -46,11 +50,13 @@ sources:
     source_type: VENDOR_LTSPICE_LIBRARY
     model_title: LT5400 LTspice model/library entry
     source_url: https://www.analog.com/en/products/lt5400.html
-    status: SOURCE_IDENTIFIED_PENDING_LIBRARY_CAPTURE
-    sha256: null
+    status: QUALIFIED_LOCAL_LIBRARY_SOURCE
+    sha256: 259c543f774e7467ebf522c3345e6b7bfccdf35ce43d2373355d0b2b5d183671
     local_path: null
-    model_name: null
-    pin_mapping_verified: false
+    model_name: LT5400-7
+    pin_mapping_verified: true
+    wrapper_path: simulation/models/wrappers/lt5400_7_shellac.lib
+    qualification_record: simulation/config/model_qualification.yaml
     redistribution_reviewed: false
 
   THAT1646:
@@ -60,11 +66,13 @@ sources:
     model_title: THAT Corporation Device Models
     revision: "05"
     source_url: https://thatcorp.com/device-models/
-    status: SOURCE_IDENTIFIED_PENDING_INGESTION
-    sha256: null
+    status: QUALIFIED_LOCAL_SOURCE
+    sha256: 9abb4f6762935415db6f485de62687fe98b2ef7ea015ed4a320bd158ff264159
     local_path: null
-    subckt_name: null
-    pin_mapping_verified: false
+    subckt_name: THAT1646
+    pin_mapping_verified: true
+    wrapper_path: simulation/models/wrappers/that1646_shellac.lib
+    qualification_record: simulation/config/model_qualification.yaml
     redistribution_reviewed: false
 
   DIODE_1N4004:

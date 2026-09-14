@@ -1,0 +1,71 @@
+schema_version: 1
+authority: AE-062
+status: CONTROLLED_MODEL_QUALIFICATION
+
+ltspice:
+  executable: 'C:\Users\chris\AppData\Local\Programs\ADI\LTspice\LTspice.exe'
+  executable_sha256: "a94eb1789084db9f46375cce05110e03578f9cdb931867a0faaca5b200793f06"
+
+qualification_semantics:
+  vendor_model_smoke: PASS
+  shellac_wrapper_smoke: PASS
+  note: Vendor macro models and the controlled Shellac wrappers have both executed successfully in LTspice smoke qualification.
+
+sources:
+  OPA1656:
+    vendor: Texas Instruments
+    archive_sha256: "8f696ee73bfb9a5d7d15b70ed27629dfe5b92ba54e8da894aa25fe51d3cb312f"
+    archive_member: "OPA1656.LIB"
+    model_file_sha256: "9847ed60c62e792ee6f1c84899278a3c11ce71a6d21804bdd88f51199f1ba055"
+    subckt: OPA1656
+    pins: "IN+ IN- VCC VEE OUT"
+    wrapper: simulation/models/wrappers/opa1656_shellac.lib
+    vendor_smoke_test: PASS
+    wrapper_smoke_test: PASS
+    status: QUALIFIED_LOCAL_SOURCE
+    redistribution_status: NOT_YET_APPROVED
+
+  OPA1612:
+    vendor: Texas Instruments
+    archive_sha256: "8b567b729dd8bdc459650d41a5af84a5f7082a7ea06ea77406ba8a9db1348440"
+    archive_member: "OPA161x.LIB"
+    model_file_sha256: "c86df5d4b2d26ec196c0a6158a61004a6747aec5440fcc2031674ad62a448ef7"
+    subckt: OPA161x
+    pins: "IN+ IN- VCC VEE OUT"
+    wrapper: simulation/models/wrappers/opa1612_shellac.lib
+    vendor_smoke_test: PASS
+    wrapper_smoke_test: PASS
+    status: QUALIFIED_LOCAL_SOURCE
+    redistribution_status: NOT_YET_APPROVED
+
+  LT5400:
+    vendor: Analog Devices / LTspice
+    source_library: 'C:\Users\chris\AppData\Local\LTspice\lib\sub\LT5400.lib'
+    source_library_sha256: "f2c8ec58c2573983a8211393f7bcd27792769155b9ecf494ad027155b3e1d553"
+    extract_sha256: "259c543f774e7467ebf522c3345e6b7bfccdf35ce43d2373355d0b2b5d183671"
+    subckt: LT5400-7
+    pins: "1 2 3 4 5 6 7 8 9"
+    wrapper: simulation/models/wrappers/lt5400_7_shellac.lib
+    vendor_smoke_test: PASS
+    wrapper_smoke_test: PASS
+    status: QUALIFIED_LOCAL_LIBRARY_SOURCE
+    redistribution_status: NOT_YET_APPROVED
+
+  THAT1646:
+    vendor: THAT Corporation
+    archive_sha256: "a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b"
+    archive_member: "1646_Macro_02.lib"
+    model_file_sha256: "9abb4f6762935415db6f485de62687fe98b2ef7ea015ed4a320bd158ff264159"
+    subckt: THAT1646
+    pins: "OUT- SNS- GND IN Vee Vcc SNS+ OUT+"
+    wrapper: simulation/models/wrappers/that1646_shellac.lib
+    vendor_smoke_test: PASS
+    wrapper_smoke_test: PASS
+    status: QUALIFIED_LOCAL_SOURCE
+    redistribution_status: NOT_YET_APPROVED
+
+unresolved:
+  DIODE_1N4004:
+    status: SOURCE_PROVENANCE_OPEN
+    installed_ltspice_hits: 0
+    rule: DO_NOT_SUBSTITUTE_GENERIC_DIODE_WITHOUT_CONTROLLED_PROVENANCE

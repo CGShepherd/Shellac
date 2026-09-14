@@ -1,0 +1,6 @@
+* Shellac controlled wrapper: LT5400-7
+* Required vendor/library subcircuit: .SUBCKT LT5400-7 1 2 3 4 5 6 7 8 9
+* Pin numbering intentionally preserved.
+.SUBCKT SHELLAC_LT5400_7 P1 P2 P3 P4 P5 P6 P7 P8 P9
+XU P1 P2 P3 P4 P5 P6 P7 P8 P9 LT5400-7
+.ENDS SHELLAC_LT5400_7
