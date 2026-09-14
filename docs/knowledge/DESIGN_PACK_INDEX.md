@@ -19,7 +19,7 @@ Current signal-chain status:
 - DR-039: requirement current — AE-052 selects branch-local DC blocking as the preferred SPICE candidate: 1 uF / 330 kOhm only in the direct bypass branch, with the existing SCH107 high-pass branch providing intrinsic DC blocking; implementation remains pending full-system LTspice qualification;
 - DR-040: current subject to the live implementation and subsequent assurance records;
 - AE-041 Rev A1: current control authority — 3P4T switched-summing matrix and current top-cover control architecture;
-- AE-042 through AE-059: current pre-SPICE assurance/evidence chain;
+- AE-042 through AE-061: current pre-SPICE assurance/evidence chain;
 - prototype measured acceptance: open.
 
 This is not yet a manufacturing baseline. The next intended configuration milestone is the **Shellac Pre-SPICE Architecture Baseline** after repository reconciliation, clean regression and configuration-control closure.
@@ -68,7 +68,9 @@ AE-054 through AE-058 establish implemented LTspice/Python execution and analyti
 
 AE-060 establishes the fail-closed integrated-model contract and model-source preflight. It does not claim that SHELLAC_TOP is yet implemented or qualified.
 
-AE-042 through AE-060 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-061 establishes controlled model-source provenance, corrects the primary Grado cartridge identity to Prestige 78C, and keeps model ingestion fail-closed until artefacts are captured and verified.
+
+AE-042 through AE-061 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048, AE-049 and AE-050 remain respectively the qualification, numerical-acceptance and execution authorities for the simulation campaign. AE-053 defines the toolchain architecture used to execute those authorities and does not replace them.
 

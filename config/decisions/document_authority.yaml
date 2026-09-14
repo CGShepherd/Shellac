@@ -30,6 +30,7 @@ pre_spice_assurance_evidence:
   - docs/design_pack/AE-058_Shellac_LTspice26_Correlation_Numerical_Closure_Rev_A2.md
   - docs/design_pack/AE-059_Pre-SPICE_Configuration_Control_Reconciliation_Rev_A0.md
   - docs/design_pack/AE-060_Integrated_SPICE_Model_Contract_and_Preflight_Rev_A0.md
+  - docs/design_pack/AE-061_Controlled_SPICE_Model_Source_Manifest_and_Cartridge_Identity_Rev_A0.md
 historical_state_evidence:
   - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
   - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md

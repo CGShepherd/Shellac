@@ -115,13 +115,12 @@ selected_next_contract:
     automatic_sequencing: false
 
 required_model_sources:
-  - {id: SCH101_INPUT_OPAMP, status: REQUIRED_UNRESOLVED}
   - {id: LT5400, status: REQUIRED_UNRESOLVED}
   - {id: OPA1612, status: REQUIRED_UNRESOLVED}
   - {id: OPA1656, status: REQUIRED_UNRESOLVED}
   - {id: THAT1646, status: REQUIRED_UNRESOLVED}
   - {id: DIODE_1N4004, status: REQUIRED_UNRESOLVED}
-  - {id: CARTRIDGE_GRADO_78E, status: REQUIRED_UNRESOLVED}
+  - {id: CARTRIDGE_GRADO_78C, status: REQUIRED_UNRESOLVED}
   - {id: CARTRIDGE_AT_VM95SP, status: REQUIRED_UNRESOLVED}
 
 integrated_run00:

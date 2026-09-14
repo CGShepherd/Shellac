@@ -1,0 +1,109 @@
+schema_version: 1
+authority: AE-061
+purpose: Controlled upstream provenance and ingestion state for integrated Shellac SPICE models.
+policy:
+  vendor_originals_silently_rewritten: false
+  resolve_requires_sha256: true
+  resolve_requires_pin_mapping: true
+  resolve_requires_wrapper_or_direct_use_record: true
+  resolve_requires_sanity_regression: true
+
+sources:
+  OPA1656:
+    roles: [SCH101_GAIN, SCH101_DIFF_CONVERTER, SCH104_BUFFER, SCH105_BUFFER]
+    manufacturer: Texas Instruments
+    source_type: VENDOR_PSPICE
+    model_title: OPA1656 PSpice Model
+    revision: C
+    package_id: SBOMAW6C.ZIP
+    source_url: https://www.ti.com/product/OPA1656
+    status: SOURCE_IDENTIFIED_PENDING_INGESTION
+    sha256: null
+    local_path: null
+    subckt_name: null
+    pin_mapping_verified: false
+    redistribution_reviewed: false
+
+  OPA1612:
+    roles: [SCH103_ACTIVE_LF]
+    manufacturer: Texas Instruments
+    source_type: VENDOR_PSPICE
+    model_title: OPA161x PSpice Model
+    revision: G
+    package_id: SBOM396G.ZIP
+    source_url: https://www.ti.com/product/OPA1612
+    status: SOURCE_IDENTIFIED_PENDING_INGESTION
+    sha256: null
+    local_path: null
+    subckt_name: null
+    pin_mapping_verified: false
+    redistribution_reviewed: false
+
+  LT5400:
+    roles: [SCH101_PRECISION_RESISTOR_NETWORK]
+    manufacturer: Analog Devices
+    variant: LT5400-7
+    source_type: VENDOR_LTSPICE_LIBRARY
+    model_title: LT5400 LTspice model/library entry
+    source_url: https://www.analog.com/en/products/lt5400.html
+    status: SOURCE_IDENTIFIED_PENDING_LIBRARY_CAPTURE
+    sha256: null
+    local_path: null
+    model_name: null
+    pin_mapping_verified: false
+    redistribution_reviewed: false
+
+  THAT1646:
+    roles: [SCH108_BALANCED_OUTPUT]
+    manufacturer: THAT Corporation
+    source_type: VENDOR_SPICE_PACKAGE
+    model_title: THAT Corporation Device Models
+    revision: "05"
+    source_url: https://thatcorp.com/device-models/
+    status: SOURCE_IDENTIFIED_PENDING_INGESTION
+    sha256: null
+    local_path: null
+    subckt_name: null
+    pin_mapping_verified: false
+    redistribution_reviewed: false
+
+  DIODE_1N4004:
+    roles: [SCH108_PHANTOM_RAIL_CLAMP]
+    manufacturer: MULTISOURCE
+    source_type: CONTROLLED_LTSPICE_OR_DOCUMENTED_EQUIVALENT
+    status: RESOLUTION_PATH_DEFINED_PENDING_CAPTURE
+    sha256: null
+    local_path: null
+    model_name: null
+    qualification_limit: Generic diode behaviour must not be used to overclaim pulse-energy or recovery behaviour.
+
+  CARTRIDGE_GRADO_78C:
+    roles: [PRIMARY_78RPM_CARTRIDGE]
+    manufacturer: Grado Labs
+    source_type: BEHAVIOURAL_RL_SOURCE
+    identity_authority: PROJECT_HARDWARE_BASELINE
+    status: PARAMETERS_IDENTIFIED_BENCH_TOPOLOGY_OPEN
+    electrical:
+      output_v_rms_at_1khz_5cms: 0.005
+      dc_resistance_ohm: 475
+      inductance_h: 0.045
+      recommended_load_ohm: 47000
+    evidence:
+      quality: SECONDARY_CORROBORATED
+      note: Multiple dealer/archive sources agree on nominal R/L/load/output; manufacturer-primary electrical source not yet captured.
+    bench_required: [coil_return_topology, body_isolation, left_right_independence]
+
+  CARTRIDGE_AT_VM95SP:
+    roles: [SECONDARY_78RPM_CARTRIDGE]
+    manufacturer: Audio-Technica
+    source_type: BEHAVIOURAL_RL_SOURCE
+    source_url: https://docs.audio-technica.com/all/AT-VM95SP_H_UM_112301455_V2_11L_web_180801%20%281%29.pdf
+    status: PARAMETERS_IDENTIFIED_OFFICIAL_SOURCE
+    electrical:
+      output_v_rms_at_1khz_5cms: 0.0027
+      dc_resistance_ohm: 485
+      inductance_h_at_1khz: 0.550
+      recommended_load_ohm: 47000
+      recommended_load_capacitance_pf_min: 100
+      recommended_load_capacitance_pf_max: 200
+    bench_required: [body_isolation_confirmation]
