@@ -66,7 +66,9 @@ AE-053: LTspice/Python simulation-toolchain architecture; LTspice is the authori
 
 AE-054 through AE-058 establish implemented LTspice/Python execution and analytical-correlation infrastructure. AE-059 reconciles configuration-control semantics without implementing AE-042 or AE-052.
 
-AE-042 through AE-059 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-060 establishes the fail-closed integrated-model contract and model-source preflight. It does not claim that SHELLAC_TOP is yet implemented or qualified.
+
+AE-042 through AE-060 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048, AE-049 and AE-050 remain respectively the qualification, numerical-acceptance and execution authorities for the simulation campaign. AE-053 defines the toolchain architecture used to execute those authorities and does not replace them.
 

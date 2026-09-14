@@ -1,0 +1,129 @@
+schema_version: 1
+authority:
+  qualification: AE-048
+  acceptance: AE-049
+  execution: AE-050
+  toolchain: AE-053
+  configuration_semantics: AE-059
+  integrated_contract: AE-060
+
+top_level: SHELLAC_TOP
+nominal_rails_v:
+  plus: 18.0
+  minus: -18.0
+
+model_semantics:
+  product_generator: LIVE_IMPLEMENTATION
+  integrated_spice: SELECTED_NEXT_CANDIDATE_ANALYSIS
+  generator_migration_implied: false
+
+required_hierarchy:
+  - SRC_CARTRIDGE_L
+  - SRC_CARTRIDGE_R
+  - SCH101_L
+  - SCH101_R
+  - SCH103_L
+  - SCH103_R
+  - DR039_SCH107_L
+  - DR039_SCH107_R
+  - SCH104_L
+  - SCH104_R
+  - SCH105_MATRIX
+  - SCH105_BUF_L
+  - SCH105_BUF_R
+  - SW905_MUTE
+  - SCH108_L
+  - SCH108_R
+  - LOAD_BALANCED_L
+  - LOAD_BALANCED_R
+  - PSU_PLUS18
+  - PSU_MINUS18
+  - CHASSIS_GROUND_MODEL
+
+canonical_nodes:
+  - VIN_CART_L
+  - VIN_CART_R
+  - N101_L_OUT
+  - N101_R_OUT
+  - N103_L_LF
+  - N103_R_LF
+  - N103_L_OUT
+  - N103_R_OUT
+  - N107_L_IN
+  - N107_R_IN
+  - N107_L_OUT
+  - N107_R_OUT
+  - N107_L_BYPASS
+  - N107_R_BYPASS
+  - N104_L_OUT
+  - N104_R_OUT
+  - MONO_AVG
+  - MONO_R_LEG
+  - N105_L_IN
+  - N105_R_IN
+  - N105_L_OUT
+  - N105_R_OUT
+  - N108_L_IN
+  - N108_R_IN
+  - XLR_L_POS
+  - XLR_L_NEG
+  - XLR_R_POS
+  - XLR_R_NEG
+  - VPLUS18
+  - VMINUS18
+  - ZERO_VA
+  - CHASSIS
+
+required_parameters:
+  - CARTRIDGE
+  - GAIN
+  - BASS
+  - TREBLE
+  - RUMBLE
+  - MODE
+  - MUTE
+  - CABLE_PF
+  - LOAD_CAP_STATE
+  - OUTPUT_LOAD
+  - OUTPUT_CABLE_PF
+  - LF_TOPOLOGY
+  - RAIL_PLUS
+  - RAIL_MINUS
+  - RAIL_RIPPLE
+  - BBM_TIME
+  - SWITCH_PARASITIC_PF
+  - TEMP
+  - TOLERANCE_MODE
+  - MC_SEED
+
+selected_next_contract:
+  sch101:
+    authority: AE-042
+    gain_db: [14, 18, 22]
+    no_shunt_state_db: 18
+    converter_gain: 4.0
+  dr039_sch107:
+    authority: AE-052
+    preferred_candidate: BRANCH_LOCAL_DIRECT_BYPASS_BLOCK
+    direct_branch_c_f: 1.0e-6
+    direct_branch_r_ohm: 330000
+  mute:
+    authority: AE-059
+    type: MECHANICAL_DPDT_INPUT_MUTE
+    run_source: CHANNEL_MODE_SIGNAL
+    mute_source: ZERO_VA
+    automatic_sequencing: false
+
+required_model_sources:
+  - {id: SCH101_INPUT_OPAMP, status: REQUIRED_UNRESOLVED}
+  - {id: LT5400, status: REQUIRED_UNRESOLVED}
+  - {id: OPA1612, status: REQUIRED_UNRESOLVED}
+  - {id: OPA1656, status: REQUIRED_UNRESOLVED}
+  - {id: THAT1646, status: REQUIRED_UNRESOLVED}
+  - {id: DIODE_1N4004, status: REQUIRED_UNRESOLVED}
+  - {id: CARTRIDGE_GRADO_78E, status: REQUIRED_UNRESOLVED}
+  - {id: CARTRIDGE_AT_VM95SP, status: REQUIRED_UNRESOLVED}
+
+integrated_run00:
+  status: BLOCKED_PENDING_MODEL_IMPLEMENTATION
+  existing_divider_run00_is_toolchain_only: true

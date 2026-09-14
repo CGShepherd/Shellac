@@ -95,6 +95,7 @@ pre_spice_assurance:
   AE-057: docs/design_pack/AE-057_Shellac_LTspice_Windows_Compatibility_Rev_A1.md
   AE-058: docs/design_pack/AE-058_Shellac_LTspice26_Correlation_Numerical_Closure_Rev_A2.md
   AE-059: docs/design_pack/AE-059_Pre-SPICE_Configuration_Control_Reconciliation_Rev_A0.md
+  AE-060: docs/design_pack/AE-060_Integrated_SPICE_Model_Contract_and_Preflight_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED
