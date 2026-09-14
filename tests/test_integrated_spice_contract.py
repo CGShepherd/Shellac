@@ -36,9 +36,11 @@ def test_mute_remains_mechanical_without_automatic_sequence():
     assert m["mute_source"] == "ZERO_VA"
     assert m["automatic_sequencing"] is False
 
-def test_model_source_gate_is_closed_but_shellac_top_run00_is_not_claimed():
+def test_model_source_gate_remains_closed_and_ae065_run00_is_claimed():
     r = data()["integrated_run00"]
-    assert r["status"] == "READY_FOR_SHELLAC_TOP_IMPLEMENTATION"
+    assert r["status"] == "PASSED_NOMINAL_SANITY"
+    assert r["authority"] == "AE-065"
     assert r["existing_divider_run00_is_toolchain_only"] is True
-    assert r["shellac_top_implemented"] is False
-    assert r["shellac_top_run00_executed"] is False
+    assert r["shellac_top_implemented"] is True
+    assert r["shellac_top_run00_executed"] is True
+    assert r["result_record"] == "simulation/results/run00_sanity/ae065_integrated_run00.json"

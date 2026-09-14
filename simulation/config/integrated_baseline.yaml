@@ -125,7 +125,9 @@ required_model_sources:
   - {id: CARTRIDGE_AT_VM95SP, status: RESOLVED}
 
 integrated_run00:
-  status: READY_FOR_SHELLAC_TOP_IMPLEMENTATION
+  status: PASSED_NOMINAL_SANITY
+  authority: AE-065
   existing_divider_run00_is_toolchain_only: true
-  shellac_top_implemented: false
-  shellac_top_run00_executed: false
+  shellac_top_implemented: true
+  shellac_top_run00_executed: true
+  result_record: simulation/results/run00_sanity/ae065_integrated_run00.json

@@ -48,13 +48,14 @@ def test_grado_78c_model_remains_bench_topology_open():
     assert g["electrical"]["inductance_h"] == 0.045
     assert g["electrical"]["recommended_load_ohm"] == 47000
 
-def test_ae064_required_model_source_gate_is_resolved():
+def test_required_model_source_gate_remains_resolved_after_ae065_run00():
     integrated = load_integrated()
     required = integrated["required_model_sources"]
     assert required
     assert integrated["authority"]["model_source_closure"] == "AE-064"
     assert all(x["status"] == "RESOLVED" for x in required)
     run00 = integrated["integrated_run00"]
-    assert run00["status"] == "READY_FOR_SHELLAC_TOP_IMPLEMENTATION"
-    assert run00["shellac_top_implemented"] is False
-    assert run00["shellac_top_run00_executed"] is False
+    assert run00["status"] == "PASSED_NOMINAL_SANITY"
+    assert run00["authority"] == "AE-065"
+    assert run00["shellac_top_implemented"] is True
+    assert run00["shellac_top_run00_executed"] is True

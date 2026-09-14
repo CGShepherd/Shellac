@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -49,10 +50,40 @@ def main():
             unresolved.append(f"{source_id}: qualification status={actual!r}")
 
     run00 = data["integrated_run00"]
-    if run00.get("shellac_top_implemented") is not False:
-        errors.append("AE-064 must not claim SHELLAC_TOP is implemented")
-    if run00.get("shellac_top_run00_executed") is not False:
-        errors.append("AE-064 must not claim integrated RUN00 has executed")
+    run00_status = run00.get("status")
+    if run00_status == "READY_FOR_SHELLAC_TOP_IMPLEMENTATION":
+        if run00.get("shellac_top_implemented") is not False:
+            errors.append("pre-AE065 state must not claim SHELLAC_TOP is implemented")
+        if run00.get("shellac_top_run00_executed") is not False:
+            errors.append("pre-AE065 state must not claim integrated RUN00 has executed")
+    elif run00_status == "PASSED_NOMINAL_SANITY":
+        if run00.get("authority") != "AE-065":
+            errors.append("PASSED_NOMINAL_SANITY requires AE-065 authority")
+        if run00.get("shellac_top_implemented") is not True:
+            errors.append("AE-065 passed state requires SHELLAC_TOP implementation")
+        if run00.get("shellac_top_run00_executed") is not True:
+            errors.append("AE-065 passed state requires genuine integrated RUN00 execution")
+        result_rel = run00.get("result_record")
+        if not result_rel:
+            errors.append("AE-065 passed state requires a RUN00 result record")
+        else:
+            result_path = ROOT / result_rel
+            if not result_path.is_file():
+                errors.append("AE-065 RUN00 result record is missing")
+            else:
+                try:
+                    result = json.loads(result_path.read_text(encoding="utf-8"))
+                except Exception as exc:
+                    errors.append(f"AE-065 RUN00 result record is unreadable: {exc}")
+                else:
+                    if result.get("authority") != "AE-065":
+                        errors.append("AE-065 RUN00 result authority mismatch")
+                    if result.get("run_id") != "RUN00_INTEGRATED":
+                        errors.append("AE-065 RUN00 result run_id mismatch")
+                    if result.get("pass") is not True:
+                        errors.append("AE-065 RUN00 result is not PASS")
+    else:
+        errors.append(f"integrated RUN00 has uncontrolled status {run00_status!r}")
 
     if errors:
         print("Integrated preflight: CONTRACT ERROR")
@@ -68,7 +99,11 @@ def main():
         return 2
 
     print("Model-source gate RESOLVED by controlled qualification evidence.")
-    print("SHELLAC_TOP implementation may proceed; integrated RUN00 has NOT yet executed.")
+    if run00_status == "PASSED_NOMINAL_SANITY":
+        print("SHELLAC_TOP implemented; genuine integrated RUN00 nominal sanity PASSED.")
+        print("Full RUN01-RUN14 qualification remains open.")
+    else:
+        print("SHELLAC_TOP implementation may proceed; integrated RUN00 has NOT yet executed.")
     return 0
 
 if __name__ == "__main__":

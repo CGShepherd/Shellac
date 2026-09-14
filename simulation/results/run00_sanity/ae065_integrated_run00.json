@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "authority": "AE-065",
+  "run_id": "RUN00_INTEGRATED",
+  "model": "SHELLAC_TOP",
+  "model_semantics": "SELECTED_NEXT_CANDIDATE_ANALYSIS",
+  "repository_commit_before_ae065": "e83eee5a16ac35ef81046f93e9b37ffd5ce83f3b",
+  "timestamp_utc": "2026-09-14T20:05:10.164394+00:00",
+  "simulator": "LTspice",
+  "simulator_executable_sha256": "a94eb1789084db9f46375cce05110e03578f9cdb931867a0faaca5b200793f06",
+  "source_resolution": {
+    "OPA1656": {
+      "path": "C:\\Users\\chris\\Dropbox\\000_Projects\\000_Audio\\Shellac\\.ae065_integrated_run00_tmp\\vendor\\OPA1656.LIB",
+      "sha256": "9847ed60c62e792ee6f1c84899278a3c11ce71a6d21804bdd88f51199f1ba055"
+    },
+    "OPA1612": {
+      "path": "C:\\Users\\chris\\Dropbox\\000_Projects\\000_Audio\\Shellac\\.ae065_integrated_run00_tmp\\vendor\\OPA161x.LIB",
+      "sha256": "c86df5d4b2d26ec196c0a6158a61004a6747aec5440fcc2031674ad62a448ef7"
+    },
+    "THAT1646": {
+      "path": "C:\\Users\\chris\\Dropbox\\000_Projects\\000_Audio\\Shellac\\.ae065_integrated_run00_tmp\\vendor\\1646_Macro_02.lib",
+      "sha256": "9abb4f6762935415db6f485de62687fe98b2ef7ea015ed4a320bd158ff264159"
+    },
+    "S1G": {
+      "path": "C:\\Users\\chris\\Dropbox\\000_Projects\\000_Audio\\Shellac\\.ae065_integrated_run00_tmp\\vendor\\s1g.txt",
+      "sha256": "ffd79ea06d6ab712987b44e577c8787dbe54d25a90de58e3f6901a1b89642ed4"
+    },
+    "LT5400": {
+      "path": "C:\\Users\\chris\\AppData\\Local\\LTspice\\lib\\sub\\LT5400.lib",
+      "sha256": "f2c8ec58c2573983a8211393f7bcd27792769155b9ecf494ad027155b3e1d553"
+    }
+  },
+  "configuration": {
+    "cartridge": "GRADO_78C",
+    "gain": "DEFAULT_18DB",
+    "bass": "TRUE_RIAA",
+    "treble": "2121HZ_RIAA",
+    "rumble": "BYPASS",
+    "mode": "STEREO",
+    "mute": "RUN",
+    "cable_pf": 100,
+    "load_cap_state": "BASE",
+    "output_load_ohm": 100000,
+    "rail_plus_v": 18.0,
+    "rail_minus_v": -18.0,
+    "lf_topology": "BRANCH_LOCAL_DIRECT_BYPASS_BLOCK"
+  },
+  "returncode": 0,
+  "fatal_terms": [],
+  "parse_error": null,
+  "measurements_v": {
+    "V_N101_L": 0.00250091962516,
+    "V_N103_L": 0.215635433793,
+    "V_N104_L": 0.000496870954521,
+    "V_N105_L": 0.00103649729863,
+    "V_N108_L": 0.00103649729863,
+    "V_XLR_L_DIFF": -0.0019083461666,
+    "V_XLR_L_CM": -0.000585026413319,
+    "V_XLR_R_DIFF": -0.0019083461666,
+    "V_XLR_R_CM": -0.000585026413319
+  },
+  "checks": {
+    "V_N101_L": true,
+    "V_N103_L": true,
+    "V_N104_L": true,
+    "V_N105_L": true,
+    "V_N108_L": true,
+    "V_XLR_L_DIFF": true,
+    "V_XLR_R_DIFF": true,
+    "V_XLR_L_CM": true,
+    "V_XLR_R_CM": true
+  },
+  "pass": true,
+  "limitations": [
+    "RUN00 is structural/DC sanity only, not AC qualification.",
+    "SCH108 ferrites use 0.05-ohm DC equivalents; HF behaviour is deferred to RUN06.",
+    "1 GOhm sense-cap leakage resistors are numerical aids only, not BOM items.",
+    "Only DEFAULT/RIAA/BYPASS/STEREO/RUN is exercised.",
+    "AE-042/AE-052 remain selected-next candidate analysis; no generator migration."
+  ]
+}

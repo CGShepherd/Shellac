@@ -204,3 +204,10 @@ shellac_cleanup_detritus_v*.py
 shellac_reconcile_git_v*.py
 shellac_commit_reconciliation_v*.py
 # END SHELLAC RECONCILIATION MANAGED
+
+# Controlled simulation evidence exceptions
+!simulation/results/
+simulation/results/*
+!simulation/results/run00_sanity/
+simulation/results/run00_sanity/*
+!simulation/results/run00_sanity/ae065_integrated_run00.json

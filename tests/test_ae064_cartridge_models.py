@@ -20,13 +20,22 @@ def test_ae064_cartridge_files_and_interfaces():
         for needle in needles:
             assert needle in text
 
-def test_ae064_required_sources_are_resolved_but_run00_not_claimed():
+def test_ae064_required_sources_remain_resolved_after_later_run00_progress():
     cfg = load_yaml("simulation/config/integrated_baseline.yaml")
     assert all(item["status"] == "RESOLVED" for item in cfg["required_model_sources"])
+    assert cfg["authority"]["model_source_closure"] == "AE-064"
     run00 = cfg["integrated_run00"]
-    assert run00["status"] == "READY_FOR_SHELLAC_TOP_IMPLEMENTATION"
-    assert run00["shellac_top_implemented"] is False
-    assert run00["shellac_top_run00_executed"] is False
+    assert run00["status"] in {
+        "READY_FOR_SHELLAC_TOP_IMPLEMENTATION",
+        "PASSED_NOMINAL_SANITY",
+    }
+    if run00["status"] == "READY_FOR_SHELLAC_TOP_IMPLEMENTATION":
+        assert run00["shellac_top_implemented"] is False
+        assert run00["shellac_top_run00_executed"] is False
+    else:
+        assert run00["authority"] == "AE-065"
+        assert run00["shellac_top_implemented"] is True
+        assert run00["shellac_top_run00_executed"] is True
 
 def test_ae064_qualification_evidence_is_cross_referenced():
     qual = load_yaml("simulation/config/model_qualification.yaml")
