@@ -54,8 +54,9 @@ def board_added_response_db(cartridge:CartridgeModel,frequency_hz:float,cable_ca
     return 20.0*log10(abs(with_board/base))
 
 class BalancedInputStatus(str,Enum):
-    ELECTRICALLY_CLOSED="electrically_closed"
-DESIGN_STATUS=BalancedInputStatus.ELECTRICALLY_CLOSED
+    ELECTRICALLY_CLOSED="electrically_closed"  # compatibility label for historical tools/tests
+    LIVE_IMPLEMENTATION_REQUALIFICATION_OPEN="live_implementation_requalification_open"
+DESIGN_STATUS=BalancedInputStatus.LIVE_IMPLEMENTATION_REQUALIFICATION_OPEN
 
 @dataclass(frozen=True,slots=True)
 class GainSetting:
@@ -79,7 +80,7 @@ GAIN_SETTINGS=(
 )
 def default_setting(): return next(x for x in GAIN_SETTINGS if x.name=="DEFAULT")
 def validate_balanced_input():
-    assert DESIGN_STATUS is BalancedInputStatus.ELECTRICALLY_CLOSED
+    assert DESIGN_STATUS is BalancedInputStatus.LIVE_IMPLEMENTATION_REQUALIFICATION_OPEN
     assert DIFF_RFB_OHM/DIFF_RIN_OHM==DIFF_CONVERTER_GAIN
     assert abs(default_setting().realised_total_db-DEFAULT_GAIN_DB)<0.07
     assert all(abs(x.error_db)<0.08 for x in GAIN_SETTINGS)

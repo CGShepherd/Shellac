@@ -49,3 +49,9 @@ def test_dr038_dr039_record_current_pre_spice_disposition():
 def test_design_pack_and_maintenance_structure_exist():
     assert Path("docs/knowledge/DESIGN_PACK_INDEX.md").exists()
     assert Path("docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md").exists()
+
+
+def test_pre_spice_assurance_chain_reaches_ae059():
+    text = _text()
+    for n in range(42, 60):
+        assert f"  AE-{n:03d}:" in text

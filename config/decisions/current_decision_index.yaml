@@ -89,6 +89,12 @@ pre_spice_assurance:
   AE-051: docs/design_pack/AE-051_Pre-SPICE_Non-Simulation_Issue_Reconciliation_Rev_A0.md
   AE-052: docs/design_pack/AE-052_DR039_SCH107_Pre-SPICE_Architectural_Downselect_Rev_A0.md
   AE-053: docs/design_pack/AE-053_Shellac_LTspice_Python_Simulation_Toolchain_Architecture_Rev_A0.md
+  AE-054: docs/design_pack/AE-054_Shellac_RUN00_Toolchain_Implementation_Rev_A0.md
+  AE-055: docs/design_pack/AE-055_Shellac_Early_Analytical_Correlation_Rev_A0.md
+  AE-056: docs/design_pack/AE-056_Shellac_LTspice_Analytical_Correlation_Implementation_Rev_A0.md
+  AE-057: docs/design_pack/AE-057_Shellac_LTspice_Windows_Compatibility_Rev_A1.md
+  AE-058: docs/design_pack/AE-058_Shellac_LTspice26_Correlation_Numerical_Closure_Rev_A2.md
+  AE-059: docs/design_pack/AE-059_Pre-SPICE_Configuration_Control_Reconciliation_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

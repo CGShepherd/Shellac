@@ -27,7 +27,7 @@ CONTROLS=(
  ControlDefinition("SW902R","Treble characteristic R","5-position rotary",TREBLE_POSITIONS,"Independent right-channel selection of the SCH103 passive treble networks.",EQ_ROTARY_MANUFACTURER,EQ_ROTARY_MPN,"R"),
  ControlDefinition("SW903","Channel mode","3P4T rotary",("DUAL LEFT","STEREO","L+R MONO","DUAL RIGHT"),"Two poles select L/R/MONO_AVG outputs; third pole connects the R 4.7k averaging leg only in L+R, eliminating intentional L-R coupling in other modes.",MATRIX_MANUFACTURER,MATRIX_MPN),
  ControlDefinition("SW904","Rumble filter","DPDT toggle",("BYPASS","IN"),"Selects direct or SCH107-filtered path for both channels.",TOGGLE_MANUFACTURER,TOGGLE_MPN),
- ControlDefinition("SW905","Output mute","DPDT toggle",("RUN","MUTE"),"Manual output-mute command; exact downstream contact implementation remains subject to mute fail-safe review.",TOGGLE_MANUFACTURER,TOGGLE_MPN))
+ ControlDefinition("SW905","Output mute","DPDT toggle",("RUN","MUTE"),"Mechanical DPDT input mute immediately before THAT1646; RUN selects channel-mode signal and MUTE selects 0VA; no relay/timer/comparator architecture.",TOGGLE_MANUFACTURER,TOGGLE_MPN))
 INDICATORS=(IndicatorDefinition("LED901","+18 V","+18V",LED_SERIES_RESISTANCE_OHM,LED_CURRENT_A),IndicatorDefinition("LED902","-18 V","-18V",LED_SERIES_RESISTANCE_OHM,LED_CURRENT_A))
 def validate_controls()->None:
     assert DESIGN_STATUS is ControlsStatus.ARCHITECTURE_SELECTED_PROCUREMENT_PARTIAL

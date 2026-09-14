@@ -150,7 +150,7 @@ def _connect_power_entry(sheet, parts) -> None:
 def add_power_entry(sheet):
     sheet.add_note("SCH106 POWER ENTRY: regulated dual rails from the external PSU into the audio enclosure.")
     sheet.add_note("SR-020 HUMAN-REVIEW CAPTURE: continuous +18 V, 0VA, -18 V and chassis conductors.")
-    sheet.add_note("Initial fit: 0R rail links and R909 direct 0VA-to-chassis bond; clamp diodes remain DNP.")
+    sheet.add_note("Selected direct-bond fit: R909=0R; C909, D901 and D902 remain DNP.")
     sheet.add_note("0VA and CHASSIS are distinct everywhere except the four clearly shown configurable bond branches.")
 
     components = [
@@ -214,7 +214,7 @@ def add_power_entry(sheet):
 
     components.extend([
         resistor("R909", "0R", Point(140, 125), tolerance="1%", function="Initial direct 0VA-CHASSIS bond", rotation=270),
-        capacitor("C909", "100n", Point(160, 125), dielectric="Film", voltage="100V", function="HF chassis bond", rotation=180),
+        capacitor("C909", "100n", Point(160, 125), dielectric="Film", voltage="100V", function="Optional HF chassis bond; DNP in selected R909=0R direct-bond build", rotation=180, dnp=True),
         diode("D901", "DNP", Point(180, 125), function="Ground-lift clamp A", dnp=True, rotation=270),
         diode("D902", "DNP", Point(200, 125), function="Ground-lift clamp B", dnp=True, rotation=90),
     ])

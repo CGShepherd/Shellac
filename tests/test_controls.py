@@ -37,3 +37,21 @@ def test_rail_indicators_unchanged():
     assert LED_SERIES_RESISTANCE_OHM == pytest.approx(8200.0)
     assert ASSUMED_LED_FORWARD_V == pytest.approx(2.4)
     assert LED_CURRENT_A * 1000 == pytest.approx(1.9024, rel=1e-3)
+
+
+def test_ae059_sw905_selected_mechanical_mute_contract():
+    from generator.model.controls import CONTROLS
+    mute = next(control for control in CONTROLS if control.identifier == "SW905")
+    assert mute.control_type == "DPDT toggle"
+    assert mute.mpn == "7201SYCBE"
+    desc = mute.electrical_function.lower()
+    assert "that1646" in desc
+    assert "0va" in desc
+    assert "no relay/timer/comparator" in desc
+
+
+def test_ae059_balanced_output_source_keeps_mechanical_input_mute():
+    from pathlib import Path
+    text = Path("generator/blocks/balanced_output.py").read_text(encoding="utf-8")
+    assert "Select MODE_L/R or 0VA into each THAT1646 input" in text
+    assert "Both line-driver inputs connected to 0VA" in text

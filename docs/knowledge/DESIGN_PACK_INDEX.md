@@ -19,7 +19,7 @@ Current signal-chain status:
 - DR-039: requirement current — AE-052 selects branch-local DC blocking as the preferred SPICE candidate: 1 uF / 330 kOhm only in the direct bypass branch, with the existing SCH107 high-pass branch providing intrinsic DC blocking; implementation remains pending full-system LTspice qualification;
 - DR-040: current subject to the live implementation and subsequent assurance records;
 - AE-041 Rev A1: current control authority — 3P4T switched-summing matrix and current top-cover control architecture;
-- AE-042 through AE-053: current pre-SPICE assurance/evidence chain;
+- AE-042 through AE-059: current pre-SPICE assurance/evidence chain;
 - prototype measured acceptance: open.
 
 This is not yet a manufacturing baseline. The next intended configuration milestone is the **Shellac Pre-SPICE Architecture Baseline** after repository reconciliation, clean regression and configuration-control closure.
@@ -64,14 +64,16 @@ AE-051: pre-SPICE non-simulation issue reconciliation.
 AE-052: DR-039 / SCH107 pre-SPICE architectural downselect; branch-local direct-path DC block is the preferred SPICE candidate while the existing SCH107 filtered branch provides intrinsic DC blocking. This is a preferred candidate, not implemented authority, until integrated qualification closes.
 AE-053: LTspice/Python simulation-toolchain architecture; LTspice is the authoritative integrated analogue solver, Python is the controlled orchestration/extraction/acceptance/reporting layer, and the existing analytical Python remains an independent cross-check. Reference LTspice models shall not be silently rewritten.
 
-AE-042 through AE-053 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-054 through AE-058 establish implemented LTspice/Python execution and analytical-correlation infrastructure. AE-059 reconciles configuration-control semantics without implementing AE-042 or AE-052.
+
+AE-042 through AE-059 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048, AE-049 and AE-050 remain respectively the qualification, numerical-acceptance and execution authorities for the simulation campaign. AE-053 defines the toolchain architecture used to execute those authorities and does not replace them.
 
 ## 4. Production/commissioning
 
 Still required:
-- controlled-register reconciliation with the live design;
+- integrated full-system configuration qualification following AE-059 reconciliation;
 - Shellac Pre-SPICE Architecture Baseline configuration milestone;
 - full-system LTspice qualification and sensitivity/value-engineering work;
 - measured CMRR/noise/DC/overload/transient acceptance;

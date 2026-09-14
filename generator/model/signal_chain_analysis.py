@@ -1,8 +1,10 @@
-"""AE-011/AE-012 complete signal-chain gain and headroom analysis.
+"""Live-implementation analytical regression/correlation model.
 
-DR-037 restores the legacy complete-RIAA architecture. This module composes
-the controlled block models and provides deterministic spot checks plus dense
-logarithmic all-state sweeps.
+This module composes the circuitry currently represented by the controlled
+Python block models. It is useful for deterministic regression and analytical
+cross-checking, but it is not final integrated qualification authority.
+Selected-next AE-042 and AE-052 architectures remain pending controlled
+qualification/migration and are intentionally not substituted here.
 """
 from __future__ import annotations
 

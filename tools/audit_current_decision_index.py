@@ -1,9 +1,11 @@
-"""Guard the authoritative decision index against implementation-status drift."""
+"""Audit current Shellac configuration authority."""
 from pathlib import Path
 import re
-import sys
 
-INDEX = Path("config/decisions/current_decision_index.yaml")
+ROOT = Path(__file__).resolve().parents[1]
+INDEX = ROOT / "config/decisions/current_decision_index.yaml"
+STATUS = ROOT / "config/decisions/decision_status.yaml"
+AUTHORITY = ROOT / "config/decisions/document_authority.yaml"
 
 BAD_IMPLEMENTED_PHRASES = (
     "remains the pre-DR038 implementation",
@@ -12,10 +14,8 @@ BAD_IMPLEMENTED_PHRASES = (
     "not yet substituted",
 )
 
-
-def audit(text: str):
-    errors = []
-    # Narrow guard for the currently implemented DR-038/039 production baseline.
+def audit(text: str) -> list[str]:
+    errors: list[str] = []
     for decision in ("DR-038", "DR-039"):
         match = re.search(
             rf"(?ms)^  {re.escape(decision)}:\n(.*?)(?=^  DR-\d+:|^historical_implementation_events:|\Z)",
@@ -30,19 +30,113 @@ def audit(text: str):
         lower = block.lower()
         for phrase in BAD_IMPLEMENTED_PHRASES:
             if phrase.lower() in lower:
-                errors.append(
-                    f"{decision}: CURRENT_IMPLEMENTED conflicts with phrase {phrase!r}"
-                )
+                errors.append(f"{decision}: CURRENT_IMPLEMENTED conflicts with phrase {phrase!r}")
+    return errors
+
+EXPECTED = {
+    "DR-037": "CURRENT_IMPLEMENTED",
+    "DR-038": "CURRENT_SELECTED_PENDING_IMPLEMENTATION",
+    "DR-039": "CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION",
+    "DR-040": "CURRENT_IMPLEMENTED",
+    "AE-041-A1": "CURRENT_ARCHITECTURE_QUALIFICATION_OPEN",
+}
+
+
+def list_values(text: str, key: str) -> set[str]:
+    match = re.search(
+        rf"(?ms)^{re.escape(key)}:\s*\n(.*?)(?=^[A-Za-z_][A-Za-z0-9_]*:|\Z)",
+        text,
+    )
+    if not match:
+        return set()
+    values = set()
+    for raw in match.group(1).splitlines():
+        line = raw.strip()
+        if line.startswith("- "):
+            values.add(line[2:].strip())
+    return values
+
+
+def decision_status(text: str, decision: str) -> str | None:
+    match = re.search(
+        rf"(?ms)^  {re.escape(decision)}:\n"
+        rf"(.*?)(?=^  (?:DR-\d+|AE-\d+-A\d+):|^pre_spice_assurance:)",
+        text,
+    )
+    if not match:
+        return None
+    status = re.search(r"(?m)^    status:\s*(\S+)\s*$", match.group(1))
+    return status.group(1) if status else None
+
+
+def authority_paths(text: str, section: str) -> list[str]:
+    match = re.search(
+        rf"(?ms)^{re.escape(section)}:\s*\n"
+        rf"(.*?)(?=^[A-Za-z_][A-Za-z0-9_]*:|\Z)",
+        text,
+    )
+    if not match:
+        return []
+    paths = []
+    for raw in match.group(1).splitlines():
+        line = raw.strip()
+        if line.startswith("- "):
+            paths.append(line[2:].strip())
+    return paths
+
+
+def audit_repository() -> list[str]:
+    errors = []
+    index = INDEX.read_text(encoding="utf-8")
+    status = STATUS.read_text(encoding="utf-8")
+    authority = AUTHORITY.read_text(encoding="utf-8")
+
+    allowed = list_values(status, "allowed_status")
+    current = list_values(status, "authoritative_current_status")
+
+    for decision, expected in EXPECTED.items():
+        actual = decision_status(index, decision)
+        if actual != expected:
+            errors.append(f"{decision}: expected {expected}, found {actual}")
+        if expected not in allowed:
+            errors.append(f"{decision}: {expected} missing from allowed_status")
+        if expected not in current:
+            errors.append(f"{decision}: {expected} missing from authoritative_current_status")
+
+    for n in range(42, 60):
+        if not re.search(rf"(?m)^  AE-{n:03d}:", index):
+            errors.append(f"AE-{n:03d}: missing from pre_spice_assurance")
+
+    for section in (
+        "current_authority",
+        "pre_spice_assurance_evidence",
+        "historical_state_evidence",
+    ):
+        for rel in authority_paths(authority, section):
+            if not (ROOT / rel).exists():
+                errors.append(f"{section}: missing path {rel}")
+
+    if "historical_deleted_artefacts:" not in authority:
+        errors.append("historical_deleted_artefacts section missing")
+
+    for rel in (
+        "tools/apply_dr038_full_migration.py",
+        "tools/apply_dr039_full_closure.py",
+    ):
+        if rel not in authority:
+            errors.append(f"historical-deleted artefact absent: {rel}")
+        if (ROOT / rel).exists():
+            errors.append(f"historical-deleted artefact unexpectedly exists: {rel}")
+
     return errors
 
 
-def main():
-    text = INDEX.read_text(encoding="utf-8")
-    errors = audit(text)
+def main() -> int:
+    errors = audit_repository()
     if errors:
-        print("\n".join(f"ERROR: {e}" for e in errors))
+        print("\n".join(f"ERROR: {error}" for error in errors))
         return 1
-    print("Decision-index implementation-status audit passed.")
+    print("Shellac decision/configuration authority audit passed.")
     return 0
 
 

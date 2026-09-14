@@ -7,8 +7,9 @@ from generator.model.balanced_input import (
     board_added_response_db,default_setting,validate_balanced_input,
 )
 
-def test_sch101_is_electrically_closed():
-    assert DESIGN_STATUS is BalancedInputStatus.ELECTRICALLY_CLOSED
+def test_sch101_live_implementation_is_open_for_requalification():
+    assert DESIGN_STATUS is BalancedInputStatus.LIVE_IMPLEMENTATION_REQUALIFICATION_OPEN
+    assert BalancedInputStatus.ELECTRICALLY_CLOSED.value == "electrically_closed"
     validate_balanced_input()
 
 def test_three_gain_settings_are_frozen():

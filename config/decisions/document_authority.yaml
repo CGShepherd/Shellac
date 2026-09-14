@@ -22,6 +22,13 @@ pre_spice_assurance_evidence:
   - docs/design_pack/AE-051_Pre-SPICE_Non-Simulation_Issue_Reconciliation_Rev_A0.md
   - docs/design_pack/AE-052_DR039_SCH107_Pre-SPICE_Architectural_Downselect_Rev_A0.md
   - docs/design_pack/AE-053_Shellac_LTspice_Python_Simulation_Toolchain_Architecture_Rev_A0.md
+  - docs/design_pack/AE-054_Shellac_RUN00_Toolchain_Implementation_Rev_A0.md
+  - docs/design_pack/AE-055_Shellac_Early_Analytical_Correlation_Rev_A0.md
+  - docs/design_pack/AE-056_Shellac_LTspice_Analytical_Correlation_Implementation_Rev_A0.md
+  - docs/design_pack/AE-057_Shellac_LTspice_Windows_Compatibility_Rev_A1.md
+  - docs/design_pack/AE-058_Shellac_LTspice26_Correlation_Compatibility_and_RUN00_Correction_Rev_A2.md
+  - docs/design_pack/AE-058_Shellac_LTspice26_Correlation_Numerical_Closure_Rev_A2.md
+  - docs/design_pack/AE-059_Pre-SPICE_Configuration_Control_Reconciliation_Rev_A0.md
 historical_state_evidence:
   - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
   - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md
@@ -33,9 +40,11 @@ historical_state_evidence:
   - docs/AE-020_Decision_Register_Reconciliation_and_Design_Pack_Structure_Rev_A0.md
   - docs/updates/AE016_UPDATE_MANIFEST.md
   - docs/updates/AE016B_UPDATE_MANIFEST.md
+  - docs/design_pack/AE-041_DP4_Matrix_and_Top_Cover_Control_Authority_Rev_A0.md
+historical_deleted_artefacts:
   - tools/apply_dr038_full_migration.py
   - tools/apply_dr039_full_closure.py
-  - docs/design_pack/AE-041_DP4_Matrix_and_Top_Cover_Control_Authority_Rev_A0.md
+historical_deleted_artefact_rule: These are provenance references to deliberately removed implementation utilities and are not expected to resolve in the live tree.
 rules:
   current_authority_can_be_reconciled: true
   historical_state_evidence_is_immutable_by_default: true

@@ -20,6 +20,7 @@ def test_ground_clamp_diodes_are_dnp_initially():
     assert by_ref["D901"].dnp is True
     assert by_ref["D902"].dnp is True
     assert by_ref["R909"].value == "0R"
+    assert by_ref["C909"].dnp is True
 
 
 def test_power_entry_emits_semantic_pin_connectivity():

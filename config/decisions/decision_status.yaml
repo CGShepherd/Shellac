@@ -1,14 +1,46 @@
-schema_version: 2
+schema_version: 3
 project: shellac
-introduced_by: SR-035
-narrative_status: [PROPOSED, SELECTED, FROZEN, DEFERRED, REJECTED, SUPERSEDED, HISTORICAL]
-authoritative_current_status: [CURRENT_IMPLEMENTED, CURRENT_SELECTED_PENDING_IMPLEMENTATION, SUPERSEDED, REJECTED, HISTORICAL]
-allowed_status: [PROPOSED, SELECTED, FROZEN, DEFERRED, REJECTED, SUPERSEDED, HISTORICAL, CURRENT_IMPLEMENTED, CURRENT_SELECTED_PENDING_IMPLEMENTATION, CURRENT_IMPLEMENTATION_STAGING_EVIDENCE]
-allowed_provenance: [REPOSITORY_EVIDENCE, RECONSTRUCTED_PRIOR_INTENT, NEW_ANALYSIS, PROCUREMENT_SNAPSHOT]
+introduced_by: AE-059
+narrative_status:
+  - PROPOSED
+  - SELECTED
+  - FROZEN
+  - DEFERRED
+  - REJECTED
+  - SUPERSEDED
+  - HISTORICAL
+authoritative_current_status:
+  - CURRENT_IMPLEMENTED
+  - CURRENT_SELECTED_PENDING_IMPLEMENTATION
+  - CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION
+  - CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
+  - SUPERSEDED
+  - REJECTED
+  - HISTORICAL
+allowed_status:
+  - PROPOSED
+  - SELECTED
+  - FROZEN
+  - DEFERRED
+  - REJECTED
+  - SUPERSEDED
+  - HISTORICAL
+  - CURRENT_IMPLEMENTED
+  - CURRENT_SELECTED_PENDING_IMPLEMENTATION
+  - CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION
+  - CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
+  - CURRENT_IMPLEMENTATION_STAGING_EVIDENCE
+allowed_provenance:
+  - REPOSITORY_EVIDENCE
+  - RECONSTRUCTED_PRIOR_INTENT
+  - NEW_ANALYSIS
+  - PROCUREMENT_SNAPSHOT
 rules:
   frozen_requires_superseding_record: true
   reconstructed_intent_cannot_claim_historical_freeze_without_repository_evidence: true
   volatile_price_and_stock_are_not_design_invariants: true
   material_package_updates_knowledge_registers: true
   historical_records_are_not_rewritten_to_match_later_status: true
-  current_authority_must_be_consistent_with_implemented_source: true
+  live_implementation_may_differ_from_selected_next_only_when_explicitly_recorded: true
+  selected_pending_implementation_must_not_be_claimed_as_implemented: true
+  current_authority_and_live_source_must_not_conflict_without_explicit_requalification_or_pending_migration_status: true
