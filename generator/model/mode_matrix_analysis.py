@@ -1,20 +1,10 @@
-"""Analysis helpers for AE-007 SCH105."""
-
+"""Analysis helpers for AE-041 SCH105 switched-summing matrix."""
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 from .mode_matrix import (
-    MODE_TABLE,
-    INPUT_BIAS_RESISTOR_OHM,
-    SUM_RESISTOR_OHM,
-    mono_average_error_db,
-    mono_average_gain_for_equal_inputs,
-    mono_source_impedance_ohm,
-    output_margin_db,
-    resistor_noise_nv_per_rt_hz,
+    mono_average_error_db, mono_average_gain_for_equal_inputs,
+    mono_source_impedance_ohm, output_margin_db, resistor_noise_nv_per_rt_hz,
 )
-
 
 @dataclass(frozen=True, slots=True)
 class MatrixAnalysis:
@@ -31,7 +21,5 @@ def analyse_mode_matrix() -> MatrixAnalysis:
         mono_error_db=mono_average_error_db(),
         mono_source_impedance_ohm=mono_source_impedance_ohm(),
         severe_output_margin_db=output_margin_db(),
-        summing_resistor_noise_nv_per_rt_hz=resistor_noise_nv_per_rt_hz(
-            mono_source_impedance_ohm()
-        ),
+        summing_resistor_noise_nv_per_rt_hz=resistor_noise_nv_per_rt_hz(mono_source_impedance_ohm()),
     )

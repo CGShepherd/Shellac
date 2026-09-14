@@ -6,7 +6,7 @@ from collections.abc import Iterable
 import re
 
 
-_ANNOTATED_REFERENCE = re.compile(r"^[A-Za-z#]+[0-9]+$")
+_ANNOTATED_REFERENCE = re.compile(r"^[A-Za-z#]+[0-9]+(?:[LR])?$")
 
 
 def duplicate_references(sheets: Iterable[tuple[str, object]]) -> dict[str, tuple[str, ...]]:

@@ -1,0 +1,12 @@
+* AE-056/AE-058 equal-resistor mono-average LTspice correlation
+.param R_SUM={{R_SUM}}
+
+VLEFT L 0 {{LEFT_V}}
+VRIGHT R 0 {{RIGHT_V}}
+RL L AVG {R_SUM}
+RR R AVG {R_SUM}
+
+.op
+.meas OP {{MEAS_NAME}} PARAM V(AVG)
+
+.end

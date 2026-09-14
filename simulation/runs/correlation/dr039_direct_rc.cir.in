@@ -1,0 +1,15 @@
+* AE-056/AE-058 DR039 direct-path RC LTspice correlation
+.param R_DC={{R_DC}}
+.param C_DC={{C_DC}}
+
+VIN IN 0 AC 1
+C1 IN OUT {C_DC}
+R1 OUT 0 {R_DC}
+
+* Dense sweep is deliberate: the cutoff crossing is compared against the
+* closed-form analytical value at microhertz-level absolute tolerance.
+.ac dec 2000 0.05 200
+.meas AC CORR_RC_FC_HZ WHEN mag(V(OUT))=0.7071067812 CROSS=1
+.meas AC CORR_RC_DB_20HZ FIND mag(V(OUT)) AT=20
+
+.end

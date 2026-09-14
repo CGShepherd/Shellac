@@ -1,8 +1,8 @@
 schema_version: 1
 project: shellac
 status: CONTROLLED_PARTIAL_BASELINE
-reconciled_by: SR-036
-control_hardware_updated_by: AE-040B
+reconciled_by: AE-041-A1
+control_hardware_updated_by: AE-041-A1
 bom_reviewed_by: DR-037
 procurement_complete: false
 selection_policy:
@@ -13,66 +13,69 @@ items:
   - {id: BOM-ENC-AUDIO, function: audio_enclosure, manufacturer: METCASE, mpn: M5502119, status: FROZEN, decision: DEC-005}
   - {id: BOM-ENC-PSU, function: psu_enclosure, manufacturer: METCASE, mpn: M5502119, status: FROZEN, decision: DEC-006}
   - {id: BOM-PSU-MAINS, function: filtered_mains_entry_fuse_switch, manufacturer: SCHURTER, mpn: KMF1.1121.11, status: FROZEN, decision: DEC-007}
-
   - id: BOM-CTRL-BASS
-    function: bass_characteristic_selector
-    manufacturer: Grayhill
-    mpn: 71BDF30-01-2-AJN
-    requirement: linked_stereo_2P5_BBM
+    function: bass_characteristic_selector_dual_mono
+    manufacturer: NKK
+    mpn: NR01-family
+    quantity: 2
+    requirement: independent_L_R_5_position_BBM
     configured_positions: 5
-    status: REJECTED_NOT_FOR_PROCUREMENT
-    decision: DEC-013
-    superseded_by: AE-026
-    authority_reconciled_by: AE-040B
-    note: Historical candidate retained for traceability until the AE-027 exact Lorlin production MPN gate closes.
-    commonality_group: grayhill_series_71_rotaries
-
+    status: FAMILY_SELECTED_EXACT_MPN_OPEN
+    authority_reconciled_by: AE-041
+    knob_colour: red
+    note: One independent selector per channel; exact NR01 production order code remains open.
   - id: BOM-CTRL-TREBLE
-    function: treble_characteristic_selector
-    manufacturer: Grayhill
-    mpn: 71BDF30-01-2-AJN
-    requirement: linked_stereo_2P5_BBM
+    function: treble_characteristic_selector_dual_mono
+    manufacturer: NKK
+    mpn: NR01-family
+    quantity: 2
+    requirement: independent_L_R_5_position_BBM
     configured_positions: 5
-    status: REJECTED_NOT_FOR_PROCUREMENT
-    decision: DEC-013
-    superseded_by: AE-026
-    authority_reconciled_by: AE-040B
-    note: Historical candidate retained for traceability until the AE-027 exact Lorlin production MPN gate closes.
-    commonality_group: grayhill_series_71_rotaries
-
+    status: FAMILY_SELECTED_EXACT_MPN_OPEN
+    authority_reconciled_by: AE-041
+    knob_colour: black
+    note: One independent selector per channel; exact NR01 production order code remains open.
   - id: BOM-CTRL-CHANNEL
     function: channel_mode_selector
-    manufacturer: Grayhill
-    mpn: 71BDF30-02-2-AJN
-    requirement: 4P4T_BBM
+    manufacturer: C&K
+    mpn: A30403RNCB
+    fallback_manufacturer: TE/Alcoswitch
+    fallback_mpn: MRJE3404
+    quantity: 1
+    requirement: 3P4T_4_position_BBM_non_shorting_low_level_gold
     configured_positions: 4
-    status: REJECTED_NOT_FOR_PROCUREMENT
-    decision: DEC-014
-    superseded_by: AE-026
-    authority_reconciled_by: AE-040B
-    note: Historical candidate retained for traceability until the AE-027 exact Lorlin production MPN gate closes.
-    commonality_group: grayhill_series_71_rotaries
-
+    status: PREFERRED_PART_SELECTED_PROCUREMENT_PARTIAL
+    authority_reconciled_by: AE-041-A1
+    knob_manufacturer: TE/Alcoswitch
+    knob_mpn: KN900B1/4
+    note: CCW to CW DUAL L, STEREO, L+R, DUAL R. Exact production-switch detent-to-terminal mapping requires continuity confirmation before manufacturing release.
+  - id: BOM-MATRIX-SUM-R
+    function: switched_mono_averaging_resistors
+    manufacturer: OPEN
+    mpn: OPEN
+    quantity: 2
+    resistance_ohm: 4700
+    tolerance: 0.1%
+    status: VALUE_FROZEN_PART_OPEN
+    authority_reconciled_by: AE-041-A1
+    placement: SCH104_OPA1656_outputs_before_100R_isolation
+    topology: left_leg_to_MONO_AVG_permanent_right_leg_to_MONO_R_LEG_switched_only_in_L+R
   - id: BOM-CTRL-RUMBLE
     function: rumble_filter_bypass
     manufacturer: C&K
     mpn: 7201SYCBE
-    requirement: stereo_2P2T_BBM
+    requirement: stereo_DPDT_BBM
     status: SELECTED
     decision: DEC-027
-    commonality_group: ck_7000_external_toggles
     mounting: pcb_pins_plus_threaded_top_cover_bushing
-
   - id: BOM-CTRL-MUTE
-    function: output_input_mute
+    function: output_mute_command
     manufacturer: C&K
     mpn: 7201SYCBE
-    requirement: stereo_2P2T_BBM
+    requirement: stereo_DPDT_BBM
     status: SELECTED
     decision: DEC-027
-    commonality_group: ck_7000_external_toggles
     mounting: pcb_pins_plus_threaded_top_cover_bushing
-
   - id: BOM-LED-POS
     function: positive_rail_indicator
     manufacturer: Vishay
@@ -84,7 +87,6 @@ items:
     mounting: audio_top_cover_central_spine_flying_leads
     status: SELECTED
     decision: DEC-028
-
   - id: BOM-LED-NEG
     function: negative_rail_indicator
     manufacturer: Vishay
@@ -96,7 +98,6 @@ items:
     mounting: audio_top_cover_central_spine_flying_leads
     status: SELECTED
     decision: DEC-028
-
   - id: BOM-SCH101-LT5400
     function: sch101_precision_resistor_network
     manufacturer: Analog Devices

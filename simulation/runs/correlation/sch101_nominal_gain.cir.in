@@ -1,0 +1,11 @@
+* AE-056/AE-058 SCH101 nominal gain arithmetic LTspice correlation
+.param GAIN={{GAIN}}
+
+VIN IN 0 AC 1
+EGAIN OUT 0 VALUE={GAIN*V(IN)}
+RLOAD OUT 0 100k
+
+.ac lin 1 1000 1000
+.meas AC CORR_GAIN_DB FIND mag(V(OUT)) AT=1000
+
+.end

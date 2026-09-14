@@ -25,7 +25,7 @@ def test_physical_opamp_package_census_is_ten():
 
 def test_board_population_reduces_by_eight_packages():
     contract=build_footprint_contract()
-    assert len(contract.board_population_refs)==246
+    assert len(contract.board_population_refs)==247
 
 def test_absorbed_refs_are_removed_from_cluster_authority():
     model=build_cluster_placement_baseline()
@@ -36,4 +36,4 @@ def test_every_physical_package_receives_one_placement():
     contract=build_footprint_contract()
     placement=build_preliminary_placement_baseline()
     assert {p.ref for p in placement.proposals}==set(contract.board_population_refs)
-    assert len(placement.proposals)==246
+    assert len(placement.proposals)==247

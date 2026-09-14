@@ -1,0 +1,16 @@
+schema_version: 1
+tool: LTspice
+executable_environment_variable: LTSPICE_EXE
+windows_candidates:
+  - C:/Users/chris/AppData/Local/Programs/ADI/LTspice/LTspice.exe
+  - C:/Program Files/ADI/LTspice/LTspice.exe
+  - C:/Program Files/LTC/LTspiceXVII/XVIIx64.exe
+  - C:/Program Files/LTC/LTspiceXVII/XVIIx86.exe
+batch_arguments:
+  - -b
+  - -run
+  - "{netlist}"
+notes:
+  - LTSPICE_EXE takes precedence over candidate-path discovery.
+  - LTspice 26 batch simulation uses the documented explicit -b -run contract.
+  - Batch arguments are controlled data and may be revised if the installed LTspice generation requires a different command line.

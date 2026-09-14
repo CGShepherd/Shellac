@@ -1,52 +1,22 @@
-# Project Shellac
+# Shellac AE-058 Rev A4 — numerical correlation closure
 
-Project Shellac is an evidence-driven replay preamplifier design and generator project.
+This increment addresses the two remaining numerical correlation mismatches
+without weakening acceptance tolerances.
 
-## Current controlled state
+Changes:
+- removes the artificial 1 GΩ matrix-node load so LTspice correlates the same
+  unloaded ideal averaging quantity as AE-055;
+- increases DR039 AC sweep density from 200 to 2000 points/decade;
+- adds regression assertions for both numerical-contract choices;
+- adds AE-058 Rev A2 numerical-closure evidence.
 
-Development authority is maintained on the **`develop`** branch until a
-production release is promoted to `main`.
+Apply from the Shellac repository root:
 
-- Implemented signal-chain baseline: **DR-037 / DR-038 / DR-039 / DR-040**
-- Validated implementation commit: **`dce5c0e`**
-- Production signal-chain analytical closure: **AE-023**
-- Current documentation/design-pack reconciliation: **AE-024 / AE-025**
-- Audio enclosure: **METCASE UNICASE 2 M5502119, black RAL 9005 — FROZEN**
-- PSU enclosure: **METCASE UNICASE 2 M5502119, black RAL 9005 — FROZEN**
-- PSU mains entry: **SCHURTER KMF1.1121.11 — FROZEN architecture**
-- Final production PCB/mechanical release and prototype measured acceptance remain open.
+    python <extracted-folder>\APPLY_AE058_A4.py
 
-## What is authoritative?
+Then run:
 
-For the current design, read in this order:
-
-1. `config/decisions/current_decision_index.yaml`
-2. implemented source under `generator/`
-3. `docs/knowledge/DESIGN_PACK_INDEX.md`
-4. controlled BOM/procurement configuration
-5. latest passing regression suite
-6. current assurance/commissioning records
-
-Historical AE, SR, G3 and migration documents remain engineering evidence but
-do not override the authoritative current index.
-
-## Build and validation
-
-Run:
-
-```text
-python -m pytest
-```
-
-Normal build entry point:
-
-```text
-build_shellac.bat
-```
-
-## Production close-out
-
-Before production release Shellac still requires prototype measured acceptance,
-final PCB/mechanical closure, manufacturing release files, complete maintenance
-documentation, a clean-clone reproducibility audit, repository hygiene, and a
-tagged production baseline.
+    python -m pytest tests/test_ltspice_correlation.py -q
+    python -m simulation.scripts.ltspice_correlation
+    python -m pytest -q
+    git diff --check

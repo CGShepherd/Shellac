@@ -1,15 +1,9 @@
 # Python environments and caches
-.venv/
-__pycache__/
 *.py[cod]
-.pytest_cache/
 
 # Generated build outputs
-out/
 
 # Local archives and transferred patches
-*.zip
-*.patch
 
 # KiCad transient and backup files
 *-backups/
@@ -24,3 +18,189 @@ out/
 Thumbs.db
 .vscode/
 .idea/
+
+# Shellac local environments and caches
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+
+# Generated build / simulation runtime output
+
+# Patch transport / extracted payload / temporary backups
+payload/
+payload_*/
+.ae*_backup/
+
+# Reconciliation and installer transport
+*.reconcile.tmp.*
+*.reconcile.v2.tmp.*
+APPLY_*.py
+README_APPLY*
+delete_shellac_*.py
+MANIFEST_SHA256.json
+shellac_cleanup_detritus.py
+shellac_cleanup_detritus_v2.py
+shellac_cleanup_detritus_v3.py
+shellac_reconcile_git.py
+shellac_reconcile_git_v2.py
+shellac_reconcile_git_v3.py
+python
+
+# Shellac local environments and caches
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+
+# Generated build / simulation runtime output
+
+# Patch transport / extracted payload / temporary backups
+payload/
+payload_*/
+.ae*_backup/
+
+# Reconciliation and installer transport
+*.reconcile.tmp.*
+*.reconcile.v2.tmp.*
+APPLY_*.py
+README_APPLY*
+delete_shellac_*.py
+MANIFEST_SHA256.json
+shellac_cleanup_detritus.py
+shellac_cleanup_detritus_v2.py
+shellac_cleanup_detritus_v3.py
+shellac_reconcile_git.py
+shellac_reconcile_git_v2.py
+shellac_reconcile_git_v3.py
+python
+
+# Shellac local environments and caches
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+
+# Generated build / simulation runtime output
+
+# Patch transport / extracted payload / temporary backups
+payload/
+payload_*/
+.ae*_backup/
+
+# Reconciliation and installer transport
+*.reconcile.tmp.*
+*.reconcile.v2.tmp.*
+APPLY_*.py
+README_APPLY*
+delete_shellac_*.py
+MANIFEST_SHA256.json
+shellac_cleanup_detritus.py
+shellac_cleanup_detritus_v2.py
+shellac_cleanup_detritus_v3.py
+shellac_reconcile_git.py
+shellac_reconcile_git_v2.py
+shellac_reconcile_git_v3.py
+python
+
+# Shellac local environments and caches
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+
+# Generated build / simulation runtime output
+
+# Patch transport / extracted payload / temporary backups
+payload/
+payload_*/
+.ae*_backup/
+
+# Reconciliation and installer transport
+*.reconcile.tmp.*
+*.reconcile.v2.tmp.*
+APPLY_*.py
+README_APPLY*
+delete_shellac_*.py
+MANIFEST_SHA256.json
+shellac_cleanup_detritus.py
+shellac_cleanup_detritus_v2.py
+shellac_cleanup_detritus_v3.py
+shellac_reconcile_git.py
+shellac_reconcile_git_v2.py
+shellac_reconcile_git_v3.py
+python
+
+# Shellac local environments and caches
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+
+# Generated build / simulation runtime output
+
+# Patch transport / extracted payload / temporary backups
+payload/
+payload_*/
+.ae*_backup/
+
+# Reconciliation and installer transport
+*.reconcile.tmp.*
+*.reconcile.v2.tmp.*
+APPLY_*.py
+README_APPLY*
+delete_shellac_*.py
+MANIFEST_SHA256.json
+shellac_cleanup_detritus.py
+shellac_cleanup_detritus_v2.py
+shellac_cleanup_detritus_v3.py
+shellac_reconcile_git.py
+shellac_reconcile_git_v2.py
+shellac_reconcile_git_v3.py
+python
+
+
+# Shellac local environments and caches
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+
+# Generated build / simulation runtime output
+
+# Patch transport / extracted payload / temporary backups
+payload/
+payload_*/
+.ae*_backup/
+
+# Reconciliation and installer transport
+*.reconcile.tmp.*
+*.reconcile.v2.tmp.*
+APPLY_*.py
+README_APPLY*
+delete_shellac_*.py
+MANIFEST_SHA256.json
+shellac_cleanup_detritus.py
+shellac_cleanup_detritus_v2.py
+shellac_cleanup_detritus_v3.py
+shellac_reconcile_git.py
+shellac_reconcile_git_v2.py
+shellac_reconcile_git_v3.py
+python
+
+# BEGIN SHELLAC RECONCILIATION MANAGED
+.venv/
+.pytest_cache/
+__pycache__/
+*.pyc
+out/
+simulation/generated/
+simulation/logs/
+simulation/plots/
+simulation/results/
+payload*/
+.ae058_*_backup/
+.shellac_reconciliation/
+patches/
+*.zip
+*.patch
+*.tmp
+*.reconcile.*
+shellac_cleanup_detritus_v*.py
+shellac_reconcile_git_v*.py
+shellac_commit_reconciliation_v*.py
+# END SHELLAC RECONCILIATION MANAGED

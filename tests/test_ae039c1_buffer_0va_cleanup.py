@@ -23,13 +23,13 @@ def test_no_synthetic_opamp_0va_builder_connections_remain():
 
 def test_all_buffer_builders_explicitly_reference_inverting_input():
     expectations={
-        'final_gain.py':'pin_position(opamp, "IN-")',
-        'mode_matrix.py':'pin_position(buf, "IN-")',
-        'rumble_filter.py':'pin_position(opamp, "IN-")',
+        'final_gain.py':'pin_position(opamp,"IN-")',
+        'mode_matrix.py':'pin_position(buf,"IN-")',
+        'rumble_filter.py':'pin_position(opamp,"IN-")',
     }
     for path in FILES:
-        text=path.read_text(encoding='utf-8')
-        assert expectations[path.name] in text
+        text=path.read_text(encoding='utf-8').replace(' ','').replace('\t','')
+        assert expectations[path.name].replace(' ','') in text
 
 def test_real_buffer_pin_contract_has_no_0va():
     from generator.core.pins import SYMBOL_PIN_CONTRACTS

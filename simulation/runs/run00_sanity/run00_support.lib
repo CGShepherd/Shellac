@@ -1,0 +1,6 @@
+* Project Shellac RUN00 support include
+* Project-owned sanity include; not a vendor/reference macro-model.
+.subckt SHELLAC_RUN00_DIV IN OUT RETURN PARAMS: RLOAD=10k
+R1 IN OUT {RLOAD}
+R2 OUT RETURN {RLOAD}
+.ends SHELLAC_RUN00_DIV

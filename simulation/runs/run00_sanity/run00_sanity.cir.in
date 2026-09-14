@@ -1,0 +1,19 @@
+* Project Shellac — RUN00 toolchain sanity
+* Generated from controlled template. Do not hand-edit generated copy.
+.param R_LOAD={{R_LOAD}}
+.param V_RAIL={{V_RAIL}}
+
+.include ../runs/run00_sanity/run00_support.lib
+
+VPLUS VPLUS18 0 {V_RAIL}
+VMINUS VMINUS18 0 {-V_RAIL}
+XDIV VPLUS18 VMID VMINUS18 SHELLAC_RUN00_DIV RLOAD={R_LOAD}
+
+VSWEEP NSWEEP 0 0
+.dc VSWEEP 0 0 1
+
+.meas DC RUN00_VPLUS18 FIND V(VPLUS18) AT=0
+.meas DC RUN00_VMINUS18 FIND V(VMINUS18) AT=0
+.meas DC RUN00_VMID FIND V(VMID) AT=0
+
+.end

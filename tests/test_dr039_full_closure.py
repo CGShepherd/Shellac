@@ -12,4 +12,6 @@ def test_dr039_source_and_response():
 def test_dr039_authoritative_status():
     text = Path("config/decisions/current_decision_index.yaml").read_text(encoding="utf-8")
     block = text.split("  DR-039:", 1)[1].split("  DR-040:", 1)[0]
-    assert "status: CURRENT_IMPLEMENTED" in block
+    assert "status: CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION" in block
+    assert "AE-052 selects branch-local DC blocking as the preferred SPICE candidate" in block
+    assert "not yet implemented authority" in block

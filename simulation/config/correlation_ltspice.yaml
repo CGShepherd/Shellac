@@ -1,0 +1,76 @@
+schema_version: 1
+authority:
+  architecture: AE-053
+  execution: AE-050
+  analytical_evidence: AE-055
+  implementation: AE-056
+
+cases:
+  dr039_direct_rc:
+    template: simulation/runs/correlation/dr039_direct_rc.cir.in
+    generated: simulation/generated/correlation/dr039_direct_rc.cir
+    log: simulation/logs/correlation/dr039_direct_rc.log
+    measurements:
+      CORR_RC_FC_HZ:
+        analytical_path: cases.dr039_direct_rc.corner_hz
+        extraction: when_at
+        abs_tolerance: 1.0e-6
+      CORR_RC_DB_20HZ:
+        analytical_checkpoint_hz: 20.0
+        extraction: complex_db
+        abs_tolerance: 1.0e-6
+    parameters:
+      R_DC: 330000
+      C_DC: 1u
+
+  sch101_nominal_gain:
+    template: simulation/runs/correlation/sch101_nominal_gain.cir.in
+    generated: simulation/generated/correlation/sch101_nominal_gain.cir
+    log: simulation/logs/correlation/sch101_nominal_gain.log
+    measurements:
+      CORR_GAIN_DB:
+        analytical_path: cases.sch101_nominal_gain.gain_db
+        extraction: complex_db
+        abs_tolerance: 1.0e-6
+    parameters:
+      GAIN: 4
+
+  matrix_left_only:
+    template: simulation/runs/correlation/matrix_mono_average.cir.in
+    generated: simulation/generated/correlation/matrix_left_only.cir
+    log: simulation/logs/correlation/matrix_left_only.log
+    measurements:
+      CORR_MATRIX_LEFT_ONLY:
+        analytical_stimulus: left_only
+        abs_tolerance: 1.0e-9
+    parameters: {R_SUM: 4700, LEFT_V: 1, RIGHT_V: 0, MEAS_NAME: CORR_MATRIX_LEFT_ONLY}
+
+  matrix_right_only:
+    template: simulation/runs/correlation/matrix_mono_average.cir.in
+    generated: simulation/generated/correlation/matrix_right_only.cir
+    log: simulation/logs/correlation/matrix_right_only.log
+    measurements:
+      CORR_MATRIX_RIGHT_ONLY:
+        analytical_stimulus: right_only
+        abs_tolerance: 1.0e-9
+    parameters: {R_SUM: 4700, LEFT_V: 0, RIGHT_V: 1, MEAS_NAME: CORR_MATRIX_RIGHT_ONLY}
+
+  matrix_equal:
+    template: simulation/runs/correlation/matrix_mono_average.cir.in
+    generated: simulation/generated/correlation/matrix_equal.cir
+    log: simulation/logs/correlation/matrix_equal.log
+    measurements:
+      CORR_MATRIX_EQUAL:
+        analytical_stimulus: equal
+        abs_tolerance: 1.0e-9
+    parameters: {R_SUM: 4700, LEFT_V: 1, RIGHT_V: 1, MEAS_NAME: CORR_MATRIX_EQUAL}
+
+  matrix_opposite:
+    template: simulation/runs/correlation/matrix_mono_average.cir.in
+    generated: simulation/generated/correlation/matrix_opposite.cir
+    log: simulation/logs/correlation/matrix_opposite.log
+    measurements:
+      CORR_MATRIX_OPPOSITE:
+        analytical_stimulus: opposite_phase
+        abs_tolerance: 1.0e-9
+    parameters: {R_SUM: 4700, LEFT_V: 1, RIGHT_V: -1, MEAS_NAME: CORR_MATRIX_OPPOSITE}

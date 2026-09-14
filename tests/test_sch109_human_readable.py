@@ -19,7 +19,7 @@ def _edges(sheet):
 def test_sch109_uses_only_control_interface_and_domain_labels():
     labels = {label.name for label in _sheet().labels}
     assert labels == {
-        "BASS_SELECT", "TREBLE_SELECT", "MODE_SELECT",
+        "BASS_L_SELECT", "BASS_R_SELECT", "TREBLE_L_SELECT", "TREBLE_R_SELECT", "MODE_SELECT",
         "RUMBLE_BYPASS", "MUTE_CONTROL", "+18V", "-18V", "0VA",
     }
 
@@ -30,8 +30,10 @@ def test_sch109_control_interfaces_are_visible_single_stubs():
     labels = {label.name: (label.x, label.y) for label in sheet.labels}
     edges = _edges(sheet)
     expected = {
-        "SW901": "BASS_SELECT",
-        "SW902": "TREBLE_SELECT",
+        "SW901L": "BASS_L_SELECT",
+        "SW901R": "BASS_R_SELECT",
+        "SW902L": "TREBLE_L_SELECT",
+        "SW902R": "TREBLE_R_SELECT",
         "SW903": "MODE_SELECT",
         "SW904": "RUMBLE_BYPASS",
         "SW905": "MUTE_CONTROL",

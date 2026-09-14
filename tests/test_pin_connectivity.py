@@ -148,7 +148,7 @@ def test_sch109_builder_emits_real_connectivity():
     from generator.blocks.controls import add_controls
     sheet=Sheet("SCH109","SCH109.kicad_sch"); add_controls(sheet)
     assert len(sheet.wires)>=13
-    assert {"BASS_SELECT","TREBLE_SELECT","MODE_SELECT","RUMBLE_BYPASS","MUTE_CONTROL","+18V","-18V","0VA"}.issubset({x.name for x in sheet.labels})
+    assert {"BASS_L_SELECT","BASS_R_SELECT","TREBLE_L_SELECT","TREBLE_R_SELECT","MODE_SELECT","RUMBLE_BYPASS","MUTE_CONTROL","+18V","-18V","0VA"}.issubset({x.name for x in sheet.labels})
 
 
 def test_sch103_builder_emits_real_connectivity():

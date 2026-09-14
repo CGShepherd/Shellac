@@ -123,7 +123,7 @@ def _add_section(
     _wire_path(sheet, c1_out, node_1, c2_in)
     _wire_path(sheet, c2_out, node_2, opamp_in)
     _wire_path(sheet, opamp_out, output_branch)
-    _wire_path(sheet, opamp_out, Point(opamp_out.x, opamp_inverting.y), opamp_inverting)
+    _wire_path(sheet, opamp_out, Point(opamp_inverting.x, opamp_out.y), opamp_inverting)
 
     # Visible Sallen-Key feedback and shunt branches.
     _wire_path(

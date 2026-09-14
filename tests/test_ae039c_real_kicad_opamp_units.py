@@ -74,9 +74,11 @@ def test_buffer_builders_have_explicit_follower_feedback():
         sheet=Sheet(title,f"{title}.kicad_sch"); builder(sheet)
         for ref in refs:
             op=_component(sheet,ref)
-            out=pin_position(op,"OUT"); inv=pin_position(op,"IN-"); corner=Point(out.x,inv.y)
+            out=pin_position(op,"OUT")
+            inv=pin_position(op,"IN-")
+            corner=Point(inv.x,out.y)
             assert _wire_touches(sheet,out,corner)
             assert _wire_touches(sheet,corner,inv)
 
 def test_physical_population_unchanged():
-    assert len(build_footprint_contract().board_population_refs)==246
+    assert len(build_footprint_contract().board_population_refs)==247

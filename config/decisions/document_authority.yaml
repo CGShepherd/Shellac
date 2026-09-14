@@ -8,6 +8,20 @@ current_authority:
   - docs/knowledge/INDEPENDENT_REVIEW_AND_DESIGN_ASSURANCE_PLAN.md
   - docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md
   - docs/maintenance/Signal_Chain_Commissioning_and_Maintenance_Baseline_Rev_A0.md
+  - docs/design_pack/AE-041_3P4T_Matrix_and_Top_Cover_Control_Authority_Rev_A1.md
+pre_spice_assurance_evidence:
+  - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
+  - docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
+  - docs/design_pack/AE-044_DR039_SCH107_Coupled_Pre-SPICE_Review_Rev_A0.md
+  - docs/design_pack/AE-045_SCH104_Isolation_Mono_Preparation_Pre-SPICE_Review_Rev_A0.md
+  - docs/design_pack/AE-046_SCH105_Mode_Matrix_Pre-SPICE_Review_Rev_A0.md
+  - docs/design_pack/AE-047_System_Headroom_Power_Ground_Pre-SPICE_Reconciliation_Rev_A0.md
+  - docs/design_pack/AE-048_Shellac_Full_System_SPICE_Qualification_Matrix_Rev_A0.md
+  - docs/design_pack/AE-049_Shellac_SPICE_Numerical_Acceptance_Criteria_Rev_A0.md
+  - docs/design_pack/AE-050_Shellac_SPICE_Execution_Package_Rev_A0.md
+  - docs/design_pack/AE-051_Pre-SPICE_Non-Simulation_Issue_Reconciliation_Rev_A0.md
+  - docs/design_pack/AE-052_DR039_SCH107_Pre-SPICE_Architectural_Downselect_Rev_A0.md
+  - docs/design_pack/AE-053_Shellac_LTspice_Python_Simulation_Toolchain_Architecture_Rev_A0.md
 historical_state_evidence:
   - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
   - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md
@@ -21,7 +35,9 @@ historical_state_evidence:
   - docs/updates/AE016B_UPDATE_MANIFEST.md
   - tools/apply_dr038_full_migration.py
   - tools/apply_dr039_full_closure.py
+  - docs/design_pack/AE-041_DP4_Matrix_and_Top_Cover_Control_Authority_Rev_A0.md
 rules:
   current_authority_can_be_reconciled: true
   historical_state_evidence_is_immutable_by_default: true
   generated_audits_are_evidence_not_authority: true
+  pre_spice_evidence_is_not_manufacturing_baseline: true

@@ -1,0 +1,23 @@
+schema_version: 1
+authority: AE-049
+criteria:
+  run00_positive_rail:
+    kind: range
+    minimum: 17.999999
+    maximum: 18.000001
+    unit: V
+  run00_negative_rail:
+    kind: range
+    minimum: -18.000001
+    maximum: -17.999999
+    unit: V
+  run00_midpoint:
+    kind: absolute_max
+    maximum_abs: 1.0e-9
+    unit: V
+
+# Stage-1 policy:
+# Only RUN00 toolchain-sanity criteria are encoded here.
+# AE-049 production qualification limits must be added explicitly as the real
+# integrated model/runs are implemented; do not distribute undocumented limits
+# through Python source.

@@ -2,20 +2,27 @@
 
 | ID | Item | State | Closure |
 |---|---|---|---|
-| R-001 | Older panel/off-board control representation conflicts with PCB-established control-stack intent | MITIGATED | G3-024 engineering model carries PCB/panel ownership; generic schematic interface symbols remain non-placement authority until footprint ECO |
-| R-002 | Bass/Treble rotary MPNs not frozen | RESOLVED | Grayhill 71BDF30-01-2-AJN selected for both, five stops |
-| R-003 | Exact 4P4T Channel Mode implementation not frozen | RESOLVED | Grayhill 71BDF30-02-2-AJN selected, four stops |
-| R-004 | Rumble/Mute toggle MPNs not frozen | RESOLVED | Common C&K 7201SYCBE selected |
-| R-005 | Rail LED physical implementation/MPNs not frozen | RESOLVED | Vishay TLLG4401 + A104700BLACK; audio top-cover centre spine |
-| R-006 | Manufacturing mounting-hole authority absent from current review board | OPEN | Next physical-board package: verified footprints + mounting-hole synthesis |
-| R-007 | Final drilling coordinates/templates intentionally gated | DEFERRED | Release after verified controls/PCB datums |
-| R-008 | Closed-box PSU temperature not analytically predicted from controlled load/Rth data | VERIFY_ON_PROTOTYPE | First powered prototype per G3-023 |
-| R-009 | Historical BOM/design rationale previously lived partly outside Git | ACTIVE_MITIGATION | Controlled registers/BOM updated with each decision lock |
-| R-010 | Separate later RIAA ON/BYPASS architecture conflicted with the single-RC SCH103 branch | ELECTRICALLY_RESOLVED | G3-026 freezes factorised RC-before-gain OPA1656 realisation and exact DPDT switch; SCH103 integration/verification remains |
-| R-011 | Old BOM mute-relay entry conflicts with later AE-008 mechanical input mute | RESOLVED_BY_CONTROLLED_EVIDENCE | AE-008 mechanical input mute controls |
-| R-012 | Selected external switch MPNs lack final controlled PCB footprints/3D envelopes | PARTIALLY_MITIGATED | G3-026 closes nominal cover penetration; exact pad geometry, tolerance and complete hardware stack remain before drilling release |
-| R-013 | Engineering method/decision hierarchy existed only implicitly across knowledge files and conversation | RESOLVED | FDR-001 Foundry baseline added under configuration control |
-| R-014 | Regression evidence depended on manual local console relay | MITIGATED | G3-026 adds GitHub Actions compile/full-pytest workflow; first pushed run still requires confirmation |
-| R-015 | Legacy TRUE RIAA branch still contains 3180/318 us while G3-026 adds an independent 3180 us stage | OPEN_BLOCKING | G3-027 audit prevents duplicate 3180 application; resynthesise TRUE-RIAA Bass contribution without 3180 us before SCH103 ECO |
-| R-016 | Controlled BOM is not procurement-complete | ACTIVE_MITIGATION | Generate schematic-derived inventory before landed-cost optimisation |
-| R-017 | Etched replay-configuration key could diverge from the controlled electrical replay model | OPEN | Generate recommended Bass/Treble/3180-us combinations and final legend content from controlled replay-curve data; verify correspondence by automated test before artwork or machining release |
+| R-001 | Older panel/off-board control representation conflicts with PCB-established control-stack intent | MITIGATED | Current control authority is AE-041 A1 plus live generator/BOM. Historical interface/control records remain provenance only. |
+| R-002 | Bass/Treble rotary exact production MPNs not frozen | OPEN_NONBLOCKING | Dual-mono architecture is closed: four independent NKK NR01-family 5-position BBM gold-contact PCB controls. Exact production suffix remains open pending mechanical stack, actuator projection, knob and footprint verification. |
+| R-003 | Exact Channel Mode implementation | RESOLVED_ARCHITECTURE / QUALIFICATION_OPEN | AE-041 A1 selects C&K A30403RNCB 3P4T BBM gold THT, TE/Alcoswitch MRJE3404 fallback. Production sample continuity/detent mapping and switching qualification remain before manufacturing release. |
+| R-004 | Rumble/Mute toggle MPNs not frozen | RESOLVED | Common C&K 7201SYCBE selected. |
+| R-005 | Rail LED physical implementation/MPNs not frozen | RESOLVED | Vishay TLLG4401 + A104700BLACK; audio top-cover centre spine. |
+| R-006 | Manufacturing mounting-hole authority absent from current review board | OPEN | Close with verified footprints + mounting-hole synthesis after controls and PCB datums are frozen. |
+| R-007 | Final drilling coordinates/templates intentionally gated | DEFERRED | Release after verified controls/PCB datums and REG-08 registration closure. |
+| R-008 | Closed-box PSU temperature not analytically predicted from controlled load/Rth data | VERIFY_ON_PROTOTYPE | First powered prototype. |
+| R-009 | Historical BOM/design rationale previously lived partly outside Git | ACTIVE_MITIGATION | Controlled registers/BOM updated with each decision lock. |
+| R-010 | Separate later RIAA ON/BYPASS architecture conflicted with the complete SCH103 branch | RESOLVED / SUPERSEDED | DR-037 restores complete RIAA in SCH103 and removes the independent downstream 3180 us stage. |
+| R-011 | Old BOM mute-relay entry conflicts with selected mechanical input mute | RESOLVED | SW905 mechanical DPDT input mute immediately before THAT1646; no relay/timer/comparator architecture. |
+| R-012 | Selected external switch MPNs lack final controlled PCB footprints/3D envelopes | PARTIALLY_MITIGATED | Matrix/toggles selected; EQ rotary exact suffix and all final production footprints/hardware stack remain gated before drilling release. |
+| R-013 | Engineering method/decision hierarchy existed only implicitly across knowledge files and conversation | RESOLVED | FDR-001 and controlled authority structure established. |
+| R-014 | Regression evidence depended on manual local console relay | MITIGATED | Automated compile/full-pytest workflow exists; release still requires clean-clone/current regression evidence. |
+| R-015 | Legacy TRUE RIAA branch duplicates an independent 3180 us stage | CLOSED_SUPERSEDED | DR-037 explicitly removes the independent 3180 us stage. Complete RIAA remains in SCH103. |
+| R-016 | Controlled BOM is not procurement-complete | ACTIVE_MITIGATION | Complete after SPICE sensitivity/value engineering, cross-design rationalisation and landed-cost optimisation. |
+| R-017 | Replay-configuration key could diverge from controlled electrical replay model | OPEN | Generate final legend/content from the controlled replay-curve data; all 25 Bass x Treble combinations remain intentional adjustment states. |
+| R-018 | DR-039/SCH107 LF coupling architecture not yet simulation-qualified | OPEN_BLOCKING_PRE_BASELINE | AE-052 selects branch-local DC blocking as the preferred SPICE candidate: 1 uF/330 k only in the direct bypass branch, with the existing SCH107 high-pass branch providing intrinsic DC blocking. This is not yet implemented authority; full-system LTspice qualification is required before controlled implementation/baseline. |
+| R-019 | SCH101 live model still represents the earlier gain-programming network rather than selected fail-safe 14/18/22 dB shunt architecture | OPEN_IMPLEMENTATION | AE-042 records selected fail-safe topology. Update generator/model/CAD/BOM only after SPICE/configuration gate. |
+| R-020 | Output phantom-power clamps can inject fault energy into nominal ±18 V rails whose regulators are not demonstrated current sinks | OPEN_SYSTEM_QUALIFICATION | Full non-ideal phantom fault simulation and powered/unpowered bench verification required before baseline. |
+| R-021 | Primary cartridge return/body isolation not fully established from manufacturer documentation | VERIFY_ON_BENCH | Measure AT-VM95SP and Grado 78E coil/return/body continuity before prototype qualification; model actual topology. |
+| R-022 | 0VA-to-CHASSIS alternative components can create redundant population in direct-bond build | MITIGATED / CONFIGURATION_OPEN | With R909=0 Ohm selected, C909 is DNP; D901/D902 remain DNP. Final grounding/hum/EMC choice requires prototype evidence. |
+| R-023 | Historical/current authority registers lagged live AE-041 A1 and AE-042–AE-053 findings | MITIGATED_BY_RECONCILIATION | Current decision, design-pack and authority indices have been reconciled to AE-041 A1 and AE-042–AE-053. Historical records remain immutable provenance. |
+| R-024 | No implemented LTspice simulation toolchain yet exists in the controlled repository | OPEN_PRE_SPICE_INFRASTRUCTURE | Historical simulation engine is LTspice. Establish a controlled LTspice model hierarchy plus Python orchestration/reporting harness before qualification; analytical Python remains an independent cross-check. |

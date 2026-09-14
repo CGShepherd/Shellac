@@ -1,101 +1,39 @@
 import pytest
-
 from generator.model.controls import (
-    ASSUMED_LED_FORWARD_V,
-    CONTROLS,
-    DESIGN_STATUS,
-    INDICATORS,
-    LED_BEZEL_MPN,
-    LED_CURRENT_A,
-    LED_MPN,
-    LED_SERIES_RESISTANCE_OHM,
-    ROTARY_BASS_TREBLE_MPN,
-    ROTARY_MANUFACTURER,
-    ROTARY_MODE_MPN,
-    ROTARY_PLATFORM,
-    TOGGLE_MPN,
-    ControlsStatus,
-    validate_controls,
+    ASSUMED_LED_FORWARD_V, CONTROLS, DESIGN_STATUS, INDICATORS,
+    EQ_ROTARY_FAMILY, EQ_ROTARY_MANUFACTURER, EQ_ROTARY_MPN,
+    MATRIX_MPN, TOGGLE_MPN, LED_CURRENT_A, LED_MPN, LED_BEZEL_MPN,
+    LED_SERIES_RESISTANCE_OHM, ControlsStatus, validate_controls,
 )
 
-
-def test_controls_platform_is_selected_but_rotary_procurement_is_open():
-    assert DESIGN_STATUS is ControlsStatus.PLATFORM_SELECTED_PROCUREMENT_OPEN
+def test_controls_architecture_is_ae041():
+    assert DESIGN_STATUS is ControlsStatus.ARCHITECTURE_SELECTED_PROCUREMENT_PARTIAL
     validate_controls()
 
-
-def test_external_control_inventory_is_frozen():
-    assert [control.identifier for control in CONTROLS] == [
-        "SW901",
-        "SW902",
-        "SW903",
-        "SW904",
-        "SW905",
+def test_control_inventory_is_dual_mono_plus_shared_controls():
+    assert [c.identifier for c in CONTROLS] == [
+        "SW901L","SW901R","SW902L","SW902R","SW903","SW904","SW905"
     ]
-    assert [len(control.positions) for control in CONTROLS] == [5, 5, 4, 2, 2]
+    assert [len(c.positions) for c in CONTROLS] == [5,5,5,5,4,2,2]
 
-
-def test_bass_and_treble_electrical_functions_are_preserved():
+def test_eq_controls_are_four_independent_nkk_nr01_family_controls():
+    assert all(c.manufacturer == EQ_ROTARY_MANUFACTURER == "NKK" for c in CONTROLS[:4])
+    assert all(c.mpn == EQ_ROTARY_MPN for c in CONTROLS[:4])
+    assert EQ_ROTARY_FAMILY == "NR01"
+    assert [c.channel for c in CONTROLS[:4]] == ["L","R","L","R"]
     assert "TRUE RIAA" in CONTROLS[0].positions
-    assert "2121 Hz RIAA" in CONTROLS[1].positions
-    assert "Linked stereo" in CONTROLS[0].electrical_function
-    assert "Linked stereo" in CONTROLS[1].electrical_function
-    assert CONTROLS[0].switching == "Break-before-make"
-    assert CONTROLS[1].switching == "Break-before-make"
+    assert "2121 Hz RIAA" in CONTROLS[2].positions
 
+def test_matrix_and_toggle_authority():
+    assert CONTROLS[4].mpn == MATRIX_MPN == "A30403RNCB"
+    assert CONTROLS[4].positions == ("DUAL LEFT","STEREO","L+R MONO","DUAL RIGHT")
+    assert CONTROLS[5].positions == ("BYPASS","IN")
+    assert CONTROLS[6].positions == ("RUN","MUTE")
+    assert CONTROLS[5].mpn == CONTROLS[6].mpn == TOGGLE_MPN == "7201SYCBE"
 
-def test_mode_electrical_requirement_is_preserved():
-    assert CONTROLS[2].positions == (
-        "STEREO",
-        "DUAL LEFT",
-        "DUAL RIGHT",
-        "L+R MONO",
-    )
-    assert "passive routing and mono-averaging matrix" in CONTROLS[2].electrical_function
-    assert CONTROLS[2].switching == "Break-before-make"
-
-
-def test_lorlin_pt_is_live_rotary_platform_without_inventing_exact_mpns():
-    assert ROTARY_MANUFACTURER == "Lorlin"
-    assert ROTARY_PLATFORM == "PT"
-    assert CONTROLS[0].control_type == "2P5 rotary"
-    assert CONTROLS[1].control_type == "2P5 rotary"
-    assert "two synchronised 2-pole PT wafers" in CONTROLS[2].control_type
-    assert CONTROLS[0].mpn == CONTROLS[1].mpn == ROTARY_BASS_TREBLE_MPN
-    assert CONTROLS[2].mpn == ROTARY_MODE_MPN
-    assert all(control.manufacturer == "Lorlin" for control in CONTROLS[:3])
-    assert all(control.mpn.startswith("OPEN") for control in CONTROLS[:3])
-
-
-def test_toggle_hardware_is_common_and_retains_two_state_functions():
-    assert CONTROLS[3].positions == ("FILTER", "BYPASS")
-    assert CONTROLS[4].positions == ("PLAY", "MUTE")
-    assert CONTROLS[3].mpn == CONTROLS[4].mpn == TOGGLE_MPN
-    assert CONTROLS[3].manufacturer == CONTROLS[4].manufacturer == "C&K"
-    assert CONTROLS[3].switching == "Break-before-make"
-    assert CONTROLS[4].switching == "Break-before-make"
-
-
-def test_external_controls_are_secondary_structural_connections():
-    assert all("PCB through-hole" in control.mounting for control in CONTROLS)
-    assert all("secondary structural connection" in control.mounting for control in CONTROLS)
-
-
-def test_rail_indicators_are_independent_and_common():
-    assert [indicator.rail for indicator in INDICATORS] == ["+18V", "-18V"]
-    assert all(
-        indicator.resistor_ohm == pytest.approx(8200.0)
-        for indicator in INDICATORS
-    )
-    assert all(indicator.mpn == LED_MPN for indicator in INDICATORS)
-    assert all(indicator.bezel_mpn == LED_BEZEL_MPN for indicator in INDICATORS)
-    assert all(
-        "central longitudinal spine" in indicator.mounting
-        for indicator in INDICATORS
-    )
-
-
-def test_selected_led_current_is_low():
+def test_rail_indicators_unchanged():
+    assert [i.rail for i in INDICATORS] == ["+18V","-18V"]
+    assert all(i.mpn == LED_MPN and i.bezel_mpn == LED_BEZEL_MPN for i in INDICATORS)
     assert LED_SERIES_RESISTANCE_OHM == pytest.approx(8200.0)
     assert ASSUMED_LED_FORWARD_V == pytest.approx(2.4)
     assert LED_CURRENT_A * 1000 == pytest.approx(1.9024, rel=1e-3)

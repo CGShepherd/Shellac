@@ -18,7 +18,7 @@ def test_every_on_board_reference_has_exactly_one_cluster_owner():
     interfaces = [ref for cluster in model.clusters for ref in cluster.interface_refs]
     assert len(clustered + interfaces) == len(set(clustered + interfaces))
     assert set(clustered) == _on_board_refs()
-    assert {"SW3001", "SW501", "SW801", "SW901", "J8001", "J9001"} <= set(interfaces)
+    assert {"SW3001", "SW501", "SW801", "SW901L", "SW901R", "SW902L", "SW902R", "J8001", "J9001"} <= set(interfaces)
 
 
 def test_manual_clusters_dominate_sensitive_signal_path():

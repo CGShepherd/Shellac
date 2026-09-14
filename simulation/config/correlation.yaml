@@ -1,0 +1,30 @@
+schema_version: 1
+authority:
+  architecture: AE-053
+  execution: AE-050
+  acceptance: AE-049
+  implementation: AE-055
+
+cases:
+  dr039_direct_rc:
+    description: Direct-path 1 uF / 330 kOhm branch-local DC block candidate
+    kind: high_pass_rc
+    resistance_ohm: 330000.0
+    capacitance_f: 1.0e-6
+    checkpoints_hz: [10.0, 20.0, 30.0, 50.0]
+
+  sch101_nominal_gain:
+    description: Selected nominal converter gain arithmetic cross-check
+    kind: fixed_gain_db
+    voltage_gain: 4.0
+
+  matrix_mono_average:
+    description: Equal 4.7 kOhm L/R averaging arithmetic for L+R state
+    kind: equal_resistor_average
+    resistor_left_ohm: 4700.0
+    resistor_right_ohm: 4700.0
+    stimuli:
+      - {name: left_only, left_v: 1.0, right_v: 0.0}
+      - {name: right_only, left_v: 0.0, right_v: 1.0}
+      - {name: equal, left_v: 1.0, right_v: 1.0}
+      - {name: opposite_phase, left_v: 1.0, right_v: -1.0}

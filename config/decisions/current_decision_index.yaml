@@ -5,9 +5,12 @@ baseline:
   branch: main
   commit: dce5c0ec36e12f979338d8c46106c44a79c7a023
   tag: sr-038-dr038-dr039-validated-baseline
+  note: Historical tagged baseline only; later develop authority contains pre-SPICE design changes not yet promoted to production baseline.
 status_vocabulary:
   - CURRENT_IMPLEMENTED
   - CURRENT_SELECTED_PENDING_IMPLEMENTATION
+  - CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION
+  - CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
   - SUPERSEDED
   - REJECTED
   - HISTORICAL
@@ -19,34 +22,39 @@ decisions:
     evidence:
       - docs/AE-011_End_to_End_Signal_Chain_Closure_Rev_A1.md
       - docs/AE-012_All_State_Gain_Headroom_Closure_Rev_A0.md
-    implementation: Legacy TRUE-RIAA 3180/318 us bass branch plus 2121 Hz treble; independent 3180 us stage removed.
+      - docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
+    implementation: Complete RIAA remains in SCH103 as the legacy TRUE-RIAA 3180/318 us bass branch plus 2121 Hz treble; independent downstream 3180 us stage is removed.
     supersedes:
       - G3-025 optional-3180 active architecture
       - G3-026 optional-3180 implementation
       - G3-027 resynthesis requirement
   DR-038:
     title: SCH101 precision architecture
-    status: CURRENT_IMPLEMENTED
+    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
     primary_record: docs/decisions/DR-038_SCH101_Precision_Architecture_SELECTED.md
     proposal_record: docs/decisions/DR-038_SCH101_Precision_Architecture_PROPOSED.md
     evidence:
       - docs/AE-013_SCH101_Noise_CMRR_Review_Rev_A0.md
       - docs/AE-014_SCH101_Precision_Architecture_Downselect_Rev_A0.md
       - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
+      - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
     implementation:
       converter_gain: 4.0
-      network: LT5400-7 A-grade
-      gain_selection: precision service-link population
-      note: DR-038 is implemented in the active SCH101 generator and validated by SR-039.
+      network: LT5400-7 A-grade retained provisionally pending full tolerance/value review
+      gain_selection: fail-safe removable gold service-shunt topology, approximately 14/18/22 dB; no-shunt state is 18 dB
+      note: Core LT5400 precision architecture remains current. The older service-link gain implementation in the live generator is superseded by AE-042 and requires controlled implementation after SPICE/configuration review.
   DR-039:
-    title: Common post-EQ DC block
-    status: CURRENT_IMPLEMENTED
+    title: State-independent post-EQ DC blocking
+    status: CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION
     primary_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_SELECTED.md
     proposal_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_PROPOSED.md
     evidence:
       - docs/AE-015_Full_Chain_Noise_DC_Review_Rev_A0.md
       - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
-    implementation: SCH103 includes 1uF film / 330k DC block before SCH107 FILTER/BYPASS.
+      - docs/design_pack/AE-044_DR039_SCH107_Coupled_Pre-SPICE_Review_Rev_A0.md
+      - docs/design_pack/AE-049_Shellac_SPICE_Numerical_Acceptance_Criteria_Rev_A0.md
+      - docs/design_pack/AE-052_DR039_SCH107_Pre-SPICE_Architectural_Downselect_Rev_A0.md
+    implementation: Requirement retained. AE-052 selects branch-local DC blocking as the preferred SPICE candidate: retain the 1 uF / 330 kOhm network only in the direct bypass branch while the existing SCH107 high-pass branch provides intrinsic DC blocking. This is not yet implemented authority; full-system LTspice qualification is required before controlled implementation/baseline.
   DR-040:
     title: Precision CAD primitive staging rule
     status: CURRENT_IMPLEMENTED
@@ -54,6 +62,33 @@ decisions:
     evidence:
       - docs/AE-017_Atomic_Migration_Dependency_Mapping_Gate_Rev_A0.md
       - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
+  AE-041-A1:
+    title: 3P4T matrix and top-cover control authority
+    status: CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
+    primary_record: docs/design_pack/AE-041_3P4T_Matrix_and_Top_Cover_Control_Authority_Rev_A1.md
+    evidence:
+      - generator/model/control_architecture.py
+      - generator/model/controls.py
+      - config/bom/shellac_bom.yaml
+      - docs/design_pack/AE-046_SCH105_Mode_Matrix_Pre-SPICE_Review_Rev_A0.md
+    implementation:
+      eq_controls: Four independent NKK NR01-family 5-position BBM controls; exact production suffix remains open.
+      channel_matrix: C&K A30403RNCB 3P4T BBM gold THT preferred; TE/Alcoswitch MRJE3404 fallback.
+      mute_rumble: C&K 7201SYCBE.
+      note: Absolute mechanical coordinates, switch detent mapping and transient qualification remain open.
+pre_spice_assurance:
+  AE-042: docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
+  AE-043: docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
+  AE-044: docs/design_pack/AE-044_DR039_SCH107_Coupled_Pre-SPICE_Review_Rev_A0.md
+  AE-045: docs/design_pack/AE-045_SCH104_Isolation_Mono_Preparation_Pre-SPICE_Review_Rev_A0.md
+  AE-046: docs/design_pack/AE-046_SCH105_Mode_Matrix_Pre-SPICE_Review_Rev_A0.md
+  AE-047: docs/design_pack/AE-047_System_Headroom_Power_Ground_Pre-SPICE_Reconciliation_Rev_A0.md
+  AE-048: docs/design_pack/AE-048_Shellac_Full_System_SPICE_Qualification_Matrix_Rev_A0.md
+  AE-049: docs/design_pack/AE-049_Shellac_SPICE_Numerical_Acceptance_Criteria_Rev_A0.md
+  AE-050: docs/design_pack/AE-050_Shellac_SPICE_Execution_Package_Rev_A0.md
+  AE-051: docs/design_pack/AE-051_Pre-SPICE_Non-Simulation_Issue_Reconciliation_Rev_A0.md
+  AE-052: docs/design_pack/AE-052_DR039_SCH107_Pre-SPICE_Architectural_Downselect_Rev_A0.md
+  AE-053: docs/design_pack/AE-053_Shellac_LTspice_Python_Simulation_Toolchain_Architecture_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

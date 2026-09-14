@@ -1,0 +1,9 @@
+schema_version: 1
+project: Shellac
+authority: AE-053
+reference_models: []
+project_models:
+  - path: simulation/runs/run00_sanity/run00_support.lib
+    owner: Project Shellac
+    purpose: RUN00 include-resolution and deterministic DC sanity proof
+    limitations: Not an analogue device macro-model and supports no product-performance claim.

@@ -15,7 +15,7 @@ def test_every_approved_board_reference_has_one_coordinate_proposal():
 def test_panel_and_virtual_items_are_never_placed():
     placement = build_preliminary_placement_baseline()
     assert not ({item.ref for item in placement.proposals} & set(placement.excluded_refs))
-    assert len(placement.excluded_refs) == 21
+    assert len(placement.excluded_refs) == 23
 
 
 def test_manual_authority_clusters_are_not_auto_accepted():
