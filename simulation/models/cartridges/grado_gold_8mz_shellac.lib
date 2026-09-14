@@ -1,0 +1,9 @@
+* Project Shellac AE-064
+* Grado Gold / 8MZ compatibility behavioural cartridge source.
+* Non-gating compatibility model controlled from AE-037 values.
+* Interface: P N DRIVE
+.SUBCKT SHELLAC_GRADO_GOLD_8MZ P N DRIVE
+EGEN NGEN N DRIVE N 1
+RCOIL NGEN NRL 660
+LCOIL NRL P 50m
+.ENDS SHELLAC_GRADO_GOLD_8MZ

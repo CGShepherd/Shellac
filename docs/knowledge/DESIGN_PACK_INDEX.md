@@ -19,7 +19,7 @@ Current signal-chain status:
 - DR-039: requirement current — AE-052 selects branch-local DC blocking as the preferred SPICE candidate: 1 uF / 330 kOhm only in the direct bypass branch, with the existing SCH107 high-pass branch providing intrinsic DC blocking; implementation remains pending full-system LTspice qualification;
 - DR-040: current subject to the live implementation and subsequent assurance records;
 - AE-041 Rev A1: current control authority — 3P4T switched-summing matrix and current top-cover control architecture;
-- AE-042 through AE-063: current pre-SPICE assurance/evidence chain;
+- AE-042 through AE-064: current pre-SPICE assurance/evidence chain;
 - prototype measured acceptance: open.
 
 This is not yet a manufacturing baseline. The next intended configuration milestone is the **Shellac Pre-SPICE Architecture Baseline** after repository reconciliation, clean regression and configuration-control closure.
@@ -74,13 +74,16 @@ AE-062 qualifies the locally acquired OPA1656, OPA161x/OPA1612, LT5400-7 and THA
 
 AE-063 reconciles the live SCH108 clamp identity from generic axial 1N4004 to Vishay S1G, matching the existing SMA footprint, and qualifies the manufacturer S1G SPICE model as a controlled external reference. System phantom-fault qualification remains open.
 
-AE-042 through AE-063 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-064 qualifies controlled behavioural electrical source equivalents for Grado Prestige 78C and Audio-Technica AT-VM95SP, adds a non-gating Grado Gold/8MZ compatibility model, and closes the integrated model-source gate. Cartridge body/return bench verification remains open and SHELLAC_TOP itself is not yet implemented.
+
+AE-042 through AE-064 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048, AE-049 and AE-050 remain respectively the qualification, numerical-acceptance and execution authorities for the simulation campaign. AE-053 defines the toolchain architecture used to execute those authorities and does not replace them.
 
 ## 4. Production/commissioning
 
 Still required:
+- implementation of the integrated SHELLAC_TOP candidate-analysis model and genuine RUN00;
 - integrated full-system configuration qualification following AE-059 reconciliation;
 - Shellac Pre-SPICE Architecture Baseline configuration milestone;
 - full-system LTspice qualification and sensitivity/value-engineering work;

@@ -1,0 +1,57 @@
+schema_version: 1
+authority: AE-064
+status: CONTROLLED_BEHAVIOURAL_CARTRIDGE_MODELS
+
+interface:
+  pins: [P, N, DRIVE]
+  semantics: >
+    P and N are the floating cartridge terminals. DRIVE is an ideal generated
+    EMF referenced to N and is converted internally to a Thevenin source behind
+    the controlled series resistance and inductance. Cable and interface
+    capacitance remain external SHELLAC_TOP parameters.
+  intrinsic_acoustic_response_modelled: false
+  body_return_isolation_modelled: false
+
+models:
+  GRADO_78C:
+    role: PRIMARY_78RPM
+    subckt: SHELLAC_GRADO_78C
+    file: simulation/models/cartridges/grado_78c_shellac.lib
+    source_resistance_ohm: 475
+    source_inductance_h: 0.045
+    recommended_load_ohm: 47000
+    nominal_output_v_1khz_5cms: 0.005
+    parameter_authority: AE-061
+    evidence_quality: SECONDARY_CORROBORATED
+    status: QUALIFIED_BEHAVIOURAL_REFERENCE_MODEL
+    limitation: >
+      Electrical R-L source equivalence only. Cartridge body/return/isolation
+      topology remains a bench-verification obligation under R-021.
+
+  AT_VM95SP:
+    role: SECONDARY_78RPM
+    subckt: SHELLAC_AT_VM95SP
+    file: simulation/models/cartridges/at_vm95sp_shellac.lib
+    source_resistance_ohm: 485
+    source_inductance_h: 0.550
+    recommended_load_ohm: 47000
+    recommended_load_capacitance_pf: [100, 200]
+    nominal_output_v_1khz_5cms: 0.0027
+    parameter_authority: AE-061
+    evidence_quality: MANUFACTURER_PRIMARY
+    status: QUALIFIED_BEHAVIOURAL_REFERENCE_MODEL
+    limitation: >
+      Electrical R-L source equivalence only. Cable capacitance is external and
+      swept by the integrated model.
+
+  GRADO_GOLD_8MZ:
+    role: COMPATIBILITY_LP
+    subckt: SHELLAC_GRADO_GOLD_8MZ
+    file: simulation/models/cartridges/grado_gold_8mz_shellac.lib
+    source_resistance_ohm: 660
+    source_inductance_h: 0.050
+    recommended_load_ohm: 47000
+    parameter_authority: AE-037
+    evidence_quality: CONTROLLED_PROJECT_COMPATIBILITY_VALUE
+    status: QUALIFIED_COMPATIBILITY_BEHAVIOURAL_MODEL
+    gating_for_integrated_run00: false

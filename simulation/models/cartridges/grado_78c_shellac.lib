@@ -1,0 +1,10 @@
+* Project Shellac AE-064
+* Grado Prestige 78C controlled behavioural cartridge source.
+* Interface: P N DRIVE
+* DRIVE is an ideal generated EMF referenced to N; the cartridge remains a
+* floating two-terminal source at P/N.  Series impedance is 475 ohm + 45 mH.
+.SUBCKT SHELLAC_GRADO_78C P N DRIVE
+EGEN NGEN N DRIVE N 1
+RCOIL NGEN NRL 475
+LCOIL NRL P 45m
+.ENDS SHELLAC_GRADO_78C

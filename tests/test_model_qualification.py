@@ -6,9 +6,9 @@ ROOT = Path(__file__).resolve().parents[1]
 def load_yaml(rel):
     return yaml.safe_load((ROOT / rel).read_text(encoding="utf-8"))
 
-def test_ae063_model_qualification_preserves_ae062_wrapped_sources():
+def test_ae064_model_qualification_preserves_ae062_wrapped_sources():
     q = load_yaml("simulation/config/model_qualification.yaml")
-    assert q["authority"] == "AE-063"
+    assert q["authority"] == "AE-064"
     assert q["qualification_semantics"]["vendor_model_smoke"] == "PASS"
     assert q["qualification_semantics"]["shellac_wrapper_smoke"] == "PASS"
     src = q["sources"]

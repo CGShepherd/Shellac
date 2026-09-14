@@ -6,6 +6,7 @@ authority:
   toolchain: AE-053
   configuration_semantics: AE-059
   integrated_contract: AE-060
+  model_source_closure: AE-064
 
 top_level: SHELLAC_TOP
 nominal_rails_v:
@@ -115,14 +116,16 @@ selected_next_contract:
     automatic_sequencing: false
 
 required_model_sources:
-  - {id: LT5400, status: REQUIRED_UNRESOLVED}
-  - {id: OPA1612, status: REQUIRED_UNRESOLVED}
-  - {id: OPA1656, status: REQUIRED_UNRESOLVED}
-  - {id: THAT1646, status: REQUIRED_UNRESOLVED}
-  - {id: DIODE_S1G, status: REQUIRED_UNRESOLVED}
-  - {id: CARTRIDGE_GRADO_78C, status: REQUIRED_UNRESOLVED}
-  - {id: CARTRIDGE_AT_VM95SP, status: REQUIRED_UNRESOLVED}
+  - {id: LT5400, status: RESOLVED}
+  - {id: OPA1612, status: RESOLVED}
+  - {id: OPA1656, status: RESOLVED}
+  - {id: THAT1646, status: RESOLVED}
+  - {id: DIODE_S1G, status: RESOLVED}
+  - {id: CARTRIDGE_GRADO_78C, status: RESOLVED}
+  - {id: CARTRIDGE_AT_VM95SP, status: RESOLVED}
 
 integrated_run00:
-  status: BLOCKED_PENDING_MODEL_IMPLEMENTATION
+  status: READY_FOR_SHELLAC_TOP_IMPLEMENTATION
   existing_divider_run00_is_toolchain_only: true
+  shellac_top_implemented: false
+  shellac_top_run00_executed: false

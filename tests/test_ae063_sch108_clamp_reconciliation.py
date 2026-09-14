@@ -37,9 +37,10 @@ def test_s1g_model_provenance_is_controlled_but_not_resolved():
     assert s1g["direct_use"] is True
     assert s1g["status"] != "RESOLVED"
 
-def test_s1g_qualification_smoke_is_recorded():
+def test_s1g_qualification_smoke_is_preserved_after_ae064():
     q = load_yaml("simulation/config/model_qualification.yaml")
-    assert q["authority"] == "AE-063"
+    assert q["authority"] == "AE-064"
     s1g = q["sources"]["S1G"]
     assert s1g["vendor_smoke_test"] == "PASS"
+    assert s1g["status"] == "QUALIFIED_LOCAL_REFERENCE_SOURCE"
     assert s1g["model_file_sha256"] == "ffd79ea06d6ab712987b44e577c8787dbe54d25a90de58e3f6901a1b89642ed4"

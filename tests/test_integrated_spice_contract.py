@@ -36,7 +36,9 @@ def test_mute_remains_mechanical_without_automatic_sequence():
     assert m["mute_source"] == "ZERO_VA"
     assert m["automatic_sequencing"] is False
 
-def test_existing_run00_is_explicitly_toolchain_only():
+def test_model_source_gate_is_closed_but_shellac_top_run00_is_not_claimed():
     r = data()["integrated_run00"]
-    assert r["status"] == "BLOCKED_PENDING_MODEL_IMPLEMENTATION"
+    assert r["status"] == "READY_FOR_SHELLAC_TOP_IMPLEMENTATION"
     assert r["existing_divider_run00_is_toolchain_only"] is True
+    assert r["shellac_top_implemented"] is False
+    assert r["shellac_top_run00_executed"] is False

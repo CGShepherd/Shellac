@@ -1,5 +1,5 @@
 schema_version: 1
-authority: AE-063
+authority: AE-064
 status: CONTROLLED_MODEL_QUALIFICATION
 
 ltspice:
@@ -9,7 +9,11 @@ ltspice:
 qualification_semantics:
   vendor_model_smoke: PASS
   shellac_wrapper_smoke: PASS
-  note: Vendor macro models and the controlled Shellac wrappers have both executed successfully in LTspice smoke qualification.
+  cartridge_behavioural_model_smoke: PASS
+  note: >
+    Vendor macro models, controlled Shellac wrappers, S1G reference model and
+    controlled cartridge behavioural source equivalents have executed through
+    their applicable LTspice qualification gates.
 
 sources:
   OPA1656:
@@ -75,5 +79,51 @@ sources:
     vendor_smoke_test: PASS
     status: QUALIFIED_LOCAL_REFERENCE_SOURCE
     redistribution_status: NOT_YET_APPROVED
-    qualification_limit: Smoke execution establishes model usability/provenance only. Phantom-fault pulse-energy, reverse-recovery relevance, rail injection, powered/unpowered survival and final procured-part equivalence remain subject to AE-049/AE-050 and BOM freeze.
+    qualification_limit: >
+      Smoke execution establishes model usability/provenance only. Phantom-fault
+      pulse-energy, reverse-recovery relevance, rail injection, powered/unpowered
+      survival and final procured-part equivalence remain subject to AE-049/AE-050
+      and BOM freeze.
 
+  GRADO_78C:
+    model_class: CONTROLLED_BEHAVIOURAL_SOURCE
+    parameter_authority: AE-061
+    model_file: simulation/models/cartridges/grado_78c_shellac.lib
+    subckt: SHELLAC_GRADO_78C
+    pins: "P N DRIVE"
+    source_resistance_ohm: 475
+    source_inductance_h: 0.045
+    nominal_output_v_1khz_5cms: 0.005
+    behavioural_smoke_test: PASS
+    status: QUALIFIED_BEHAVIOURAL_REFERENCE_MODEL
+    qualification_limit: >
+      R-L Thevenin electrical source equivalence only. Manufacturer-primary
+      parameter documentation and cartridge body/return/isolation topology remain
+      open; R-021 requires bench verification.
+
+  AT_VM95SP:
+    model_class: CONTROLLED_BEHAVIOURAL_SOURCE
+    parameter_authority: AE-061
+    model_file: simulation/models/cartridges/at_vm95sp_shellac.lib
+    subckt: SHELLAC_AT_VM95SP
+    pins: "P N DRIVE"
+    source_resistance_ohm: 485
+    source_inductance_h: 0.550
+    nominal_output_v_1khz_5cms: 0.0027
+    behavioural_smoke_test: PASS
+    status: QUALIFIED_BEHAVIOURAL_REFERENCE_MODEL
+    qualification_limit: >
+      R-L Thevenin electrical source equivalence. Cable/load capacitance remains
+      an external integrated-model sweep parameter.
+
+  GRADO_GOLD_8MZ:
+    model_class: CONTROLLED_COMPATIBILITY_BEHAVIOURAL_SOURCE
+    parameter_authority: AE-037
+    model_file: simulation/models/cartridges/grado_gold_8mz_shellac.lib
+    subckt: SHELLAC_GRADO_GOLD_8MZ
+    pins: "P N DRIVE"
+    source_resistance_ohm: 660
+    source_inductance_h: 0.050
+    behavioural_smoke_test: PASS
+    status: QUALIFIED_COMPATIBILITY_BEHAVIOURAL_MODEL
+    gating_for_integrated_run00: false
