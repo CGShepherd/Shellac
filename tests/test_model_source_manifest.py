@@ -27,8 +27,9 @@ def test_sch101_input_opamp_role_resolves_to_opa1656():
 
 def test_vendor_sources_are_not_prematurely_resolved():
     src = load_manifest()["sources"]
-    for key in ("OPA1656", "OPA1612", "LT5400", "THAT1646", "DIODE_1N4004"):
+    for key in ("OPA1656", "OPA1612", "LT5400", "THAT1646", "DIODE_S1G"):
         assert src[key]["status"] != "RESOLVED"
+    assert "DIODE_1N4004" not in src
 
 def test_at_vm95sp_official_electrical_values():
     e = load_manifest()["sources"]["CARTRIDGE_AT_VM95SP"]["electrical"]

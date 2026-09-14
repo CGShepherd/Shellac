@@ -107,3 +107,14 @@ items:
     footprint: Package_SO:MSOP-8-1EP_3x3mm_P0.65mm_EP1.68x1.88mm
     status: SELECTED
     decision: DR-038
+  - id: BOM-SCH108-CLAMP
+    function: sch108_phantom_fault_rail_clamp
+    manufacturer: Vishay General Semiconductor
+    mpn: S1G
+    quantity: 8
+    package: SMA_DO-214AC
+    footprint: Diode_SMD:D_SMA
+    rating: 1A_400V_standard_rectifier
+    status: FAMILY_SELECTED_EXACT_ORDER_CODE_OPEN
+    authority_reconciled_by: AE-063
+    note: Replaces incoherent generic 1N4004 identity on an SMA footprint. Final tape/reel order suffix and fault-energy acceptance remain open until procurement and AE-049/050 qualification close.

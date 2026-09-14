@@ -1,5 +1,5 @@
 schema_version: 1
-authority: AE-062
+authority: AE-063
 status: CONTROLLED_MODEL_QUALIFICATION
 
 ltspice:
@@ -64,8 +64,16 @@ sources:
     status: QUALIFIED_LOCAL_SOURCE
     redistribution_status: NOT_YET_APPROVED
 
-unresolved:
-  DIODE_1N4004:
-    status: SOURCE_PROVENANCE_OPEN
-    installed_ltspice_hits: 0
-    rule: DO_NOT_SUBSTITUTE_GENERIC_DIODE_WITHOUT_CONTROLLED_PROVENANCE
+  S1G:
+    vendor: Vishay General Semiconductor
+    device: S1G
+    source_url: https://www.vishay.com/docs/89655/s1g.txt
+    model_file_sha256: "ffd79ea06d6ab712987b44e577c8787dbe54d25a90de58e3f6901a1b89642ed4"
+    declaration_type: MODEL
+    model_name: s1g
+    direct_use: true
+    vendor_smoke_test: PASS
+    status: QUALIFIED_LOCAL_REFERENCE_SOURCE
+    redistribution_status: NOT_YET_APPROVED
+    qualification_limit: Smoke execution establishes model usability/provenance only. Phantom-fault pulse-energy, reverse-recovery relevance, rail injection, powered/unpowered survival and final procured-part equivalence remain subject to AE-049/AE-050 and BOM freeze.
+

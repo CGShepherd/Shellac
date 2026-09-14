@@ -1,5 +1,5 @@
 schema_version: 1
-authority: AE-062
+authority: AE-063
 purpose: Controlled upstream provenance and ingestion state for integrated Shellac SPICE models.
 policy:
   vendor_originals_silently_rewritten: false
@@ -75,15 +75,21 @@ sources:
     qualification_record: simulation/config/model_qualification.yaml
     redistribution_reviewed: false
 
-  DIODE_1N4004:
+  DIODE_S1G:
     roles: [SCH108_PHANTOM_RAIL_CLAMP]
-    manufacturer: MULTISOURCE
-    source_type: CONTROLLED_LTSPICE_OR_DOCUMENTED_EQUIVALENT
-    status: RESOLUTION_PATH_DEFINED_PENDING_CAPTURE
-    sha256: null
+    manufacturer: Vishay General Semiconductor
+    source_type: VENDOR_SPICE_MODEL
+    model_title: Vishay S1G SPICE model
+    source_url: https://www.vishay.com/docs/89655/s1g.txt
+    status: QUALIFIED_LOCAL_REFERENCE_SOURCE
+    sha256: ffd79ea06d6ab712987b44e577c8787dbe54d25a90de58e3f6901a1b89642ed4
     local_path: null
-    model_name: null
-    qualification_limit: Generic diode behaviour must not be used to overclaim pulse-energy or recovery behaviour.
+    model_name: s1g
+    pin_mapping_verified: true
+    direct_use: true
+    qualification_record: simulation/config/model_qualification.yaml
+    redistribution_reviewed: false
+    qualification_limit: Reference-model provenance and LTspice execution are controlled. Pulse-energy, reverse-recovery relevance, rail injection, powered/unpowered survival and final procured-part equivalence remain open.
 
   CARTRIDGE_GRADO_78C:
     roles: [PRIMARY_78RPM_CARTRIDGE]

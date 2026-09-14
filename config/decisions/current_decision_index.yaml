@@ -98,6 +98,7 @@ pre_spice_assurance:
   AE-060: docs/design_pack/AE-060_Integrated_SPICE_Model_Contract_and_Preflight_Rev_A0.md
   AE-061: docs/design_pack/AE-061_Controlled_SPICE_Model_Source_Manifest_and_Cartridge_Identity_Rev_A0.md
   AE-062: docs/design_pack/AE-062_SPICE_Model_Ingestion_and_Wrapper_Qualification_Rev_A0.md
+  AE-063: docs/design_pack/AE-063_SCH108_SMA_Clamp_and_SPICE_Model_Reconciliation_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED
