@@ -1,0 +1,100 @@
+schema_version: 1
+authority: AE-067
+title: RUN04 DR039/SCH107 LF topology trade
+baseline_commit: c29bbadaff34ee8f05668701d5031994f9243a5a
+model_semantics: SELECTED_NEXT_CANDIDATE_ANALYSIS
+generator_migration_implied: false
+
+execution:
+  ac:
+    reference_hz: 1000
+    direct_report_hz: [10, 15, 20, 30, 50]
+    filter_report_hz: [5, 10, 15, 20, 30, 50, 1000, 20000]
+    group_delay_hz: [10, 15, 20, 30, 50]
+    f3_grid_start_hz: 10.0
+    f3_grid_stop_hz: 22.0
+    f3_grid_step_hz: 0.1
+  noise:
+    low_hz: 20
+    high_hz: 20000
+    output_load_ohm: 100000
+    comparative_only: true
+    later_full_system_authority: RUN09
+  dc_offset_stress:
+    input_offset_v: 0.25
+    rationale: >
+      Conservative round-number stress above the approximately 215.6 mV
+      integrated RUN00 SCH103 operating-point observation.
+    step_time_s: 0.01
+    direct_one_percent_v: 0.0025
+  switch_discrimination:
+    source_dc_offset_v: 0.25
+    filter_open_s: 0.100
+    direct_close_s: 0.101
+    bbm_interval_s: 0.001
+    internal_selector_peak_objective_v: 0.10
+    note: >
+      Candidate-discrimination objective only. Full SW904-to-XLR switching
+      qualification remains RUN12 and AE-049 remains authoritative there.
+
+criteria:
+  direct:
+    loss_20_db_preferred_max: 0.10
+    loss_20_db_absolute_max: 0.20
+    loss_50_db_preferred_max: 0.05
+  filter:
+    f3_hz_nominal: 15.0
+    f3_percent_max: 5.0
+    gain_20_db_min: -0.60
+    gain_30_db_min: -0.10
+    gain_10_db_max: -13.5
+    gain_5_db_max: -36.0
+    passband_peak_db_max: 0.10
+  noise_delta:
+    generally_acceptable_db_max: 0.25
+    trade_study_db_max: 0.75
+    above_trade_study_presumptive_reject_without_benefit: true
+
+candidates:
+  CURRENT_COMMON_PRE_SPLIT:
+    subckt: AE067_CURRENT_COMMON
+    prior_disposition: REJECTED_BY_AE052_ANALYTICAL
+    dedicated_dc_block_cap_uf: 1.0
+    dedicated_return_kohm: 330
+    sch107_impedance_scale: 1.0
+    notes: Common block continuously loaded by SCH107 input.
+  POST_SWITCH_COMMON:
+    subckt: AE067_POST_STATIC
+    prior_disposition: REJECTED_BY_AE052_TRANSIENT_RISK
+    dedicated_dc_block_cap_uf: 1.0
+    dedicated_return_kohm: 330
+    sch107_impedance_scale: 1.0
+    notes: Static path copies use one post-switch block each for transfer/noise equivalence; transient deck models one physical common block after selector.
+  BRANCH_LOCAL_DIRECT_BYPASS_BLOCK:
+    subckt: AE067_BRANCH_LOCAL
+    prior_disposition: PREFERRED_BY_AE052
+    dedicated_dc_block_cap_uf: 1.0
+    dedicated_return_kohm: 330
+    sch107_impedance_scale: 1.0
+    notes: Direct branch explicit block; filtered branch relies on intrinsic SCH107 DC blocking.
+  RUMBLE_SCALE10_COMMON_1P2UF:
+    subckt: AE067_SCALE10_COMMON
+    prior_disposition: DEPRIORITISED_BY_AE052
+    dedicated_dc_block_cap_uf: 1.2
+    dedicated_return_kohm: 330
+    sch107_impedance_scale: 10.0
+    notes: R values x10 and timing C divided by 10 to preserve nominal filter shape.
+
+decision_policy:
+  automatic_topology_promotion: false
+  phase_a_disposition: EVIDENCE_COMPLETE_REVIEW_REQUIRED
+  required_review_dimensions:
+    - LF_acceptance
+    - integrated_noise_delta
+    - DC_offset_settling
+    - selector_charge_transient
+    - component_count_and_value_engineering
+  later_open_runs:
+    - RUN09
+    - RUN10
+    - RUN12

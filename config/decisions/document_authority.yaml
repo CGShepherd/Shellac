@@ -36,6 +36,7 @@ pre_spice_assurance_evidence:
   - docs/design_pack/AE-064_Cartridge_Behavioural_Model_Qualification_and_Integrated_Source_Gate_Closure_Rev_A0.md
   - docs/design_pack/AE-065_SHELLAC_TOP_Implementation_and_Integrated_RUN00_Rev_A0.md
   - docs/design_pack/AE-066_Integrated_AC_RUN01_RUN03_and_Infrastructure_Rev_A0.md
+  - docs/design_pack/AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md
 historical_state_evidence:
   - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
   - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md

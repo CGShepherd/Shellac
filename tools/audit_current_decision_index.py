@@ -36,7 +36,7 @@ def audit(text: str) -> list[str]:
 EXPECTED = {
     "DR-037": "CURRENT_IMPLEMENTED",
     "DR-038": "CURRENT_SELECTED_PENDING_IMPLEMENTATION",
-    "DR-039": "CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION",
+    "DR-039": "CURRENT_SELECTED_PENDING_IMPLEMENTATION",
     "DR-040": "CURRENT_IMPLEMENTED",
     "AE-041-A1": "CURRENT_ARCHITECTURE_QUALIFICATION_OPEN",
 }
@@ -103,9 +103,23 @@ def audit_repository() -> list[str]:
         if expected not in current:
             errors.append(f"{decision}: {expected} missing from authoritative_current_status")
 
-    for n in range(42, 60):
+    for n in range(42, 68):
         if not re.search(rf"(?m)^  AE-{n:03d}:", index):
             errors.append(f"AE-{n:03d}: missing from pre_spice_assurance")
+
+    dr039_match = re.search(r"(?ms)^  DR-039:\n(.*?)(?=^  DR-040:)", index)
+    if not dr039_match:
+        errors.append("DR-039: authority block missing")
+    else:
+        dr039_block = dr039_match.group(1)
+        current_record = "primary_record: docs/decisions/DR-039_Branch_Local_DC_Block_SELECTED.md"
+        history_record = "historical_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_SELECTED.md"
+        if current_record not in dr039_block:
+            errors.append("DR-039: current branch-local primary record missing")
+        if history_record not in dr039_block:
+            errors.append("DR-039: prior common-block record is not retained as historical provenance")
+        if not (ROOT / "docs/decisions/DR-039_Branch_Local_DC_Block_SELECTED.md").exists():
+            errors.append("DR-039: branch-local primary record file missing")
 
     for section in (
         "current_authority",

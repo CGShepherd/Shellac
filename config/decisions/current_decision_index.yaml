@@ -45,8 +45,9 @@ decisions:
       note: Core LT5400 precision architecture remains current. The older service-link gain implementation in the live generator is superseded by AE-042 and requires controlled implementation after SPICE/configuration review.
   DR-039:
     title: State-independent post-EQ DC blocking
-    status: CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION
-    primary_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_SELECTED.md
+    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    primary_record: docs/decisions/DR-039_Branch_Local_DC_Block_SELECTED.md
+    historical_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_SELECTED.md
     proposal_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_PROPOSED.md
     evidence:
       - docs/AE-015_Full_Chain_Noise_DC_Review_Rev_A0.md
@@ -54,7 +55,14 @@ decisions:
       - docs/design_pack/AE-044_DR039_SCH107_Coupled_Pre-SPICE_Review_Rev_A0.md
       - docs/design_pack/AE-049_Shellac_SPICE_Numerical_Acceptance_Criteria_Rev_A0.md
       - docs/design_pack/AE-052_DR039_SCH107_Pre-SPICE_Architectural_Downselect_Rev_A0.md
-    implementation: Requirement retained. AE-052 selects branch-local DC blocking as the preferred SPICE candidate: retain the 1 uF / 330 kOhm network only in the direct bypass branch while the existing SCH107 high-pass branch provides intrinsic DC blocking. This is not yet implemented authority; full-system LTspice qualification is required before controlled implementation/baseline.
+      - docs/design_pack/AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md
+    implementation: >
+      AE-067 selects branch-local DC blocking for controlled implementation: retain the 1 uF / 330 kOhm
+      network only in the direct bypass branch while the existing SCH107 high-pass branch provides
+      intrinsic DC blocking. RUN04 rejects the loaded common pre-split topology, the post-switch common
+      block on charge-transient grounds, and the x10 impedance-scaled alternative on
+      LF/noise/value-engineering grounds. The selected topology is not yet migrated into the live product
+      generator; RUN09, RUN10, RUN12 and bench correlation remain open before manufacturing baseline.
   DR-040:
     title: Precision CAD primitive staging rule
     status: CURRENT_IMPLEMENTED
@@ -102,6 +110,7 @@ pre_spice_assurance:
   AE-064: docs/design_pack/AE-064_Cartridge_Behavioural_Model_Qualification_and_Integrated_Source_Gate_Closure_Rev_A0.md
   AE-065: docs/design_pack/AE-065_SHELLAC_TOP_Implementation_and_Integrated_RUN00_Rev_A0.md
   AE-066: docs/design_pack/AE-066_Integrated_AC_RUN01_RUN03_and_Infrastructure_Rev_A0.md
+  AE-067: docs/design_pack/AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

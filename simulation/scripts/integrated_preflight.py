@@ -119,6 +119,61 @@ def main():
                         if integrated_ac_campaign.get(key) != value:
                             errors.append(f"AE-066 {key} does not match result summary")
 
+    run04_lf_trade = data.get("run04_lf_trade")
+    if run04_lf_trade is not None:
+        if run04_lf_trade.get("authority") != "AE-067":
+            errors.append("RUN04 LF trade requires AE-067 authority")
+        if run04_lf_trade.get("status") != "SELECTED_BRANCH_LOCAL_QUALIFICATION_OPEN":
+            errors.append("RUN04 LF trade has uncontrolled status")
+        if run04_lf_trade.get("selected_topology") != "BRANCH_LOCAL_DIRECT_BYPASS_BLOCK":
+            errors.append("AE-067 selected topology mismatch")
+        if run04_lf_trade.get("generator_migration_implied") is not False:
+            errors.append("AE-067 must not imply generator migration")
+        result_rel = run04_lf_trade.get("result_record")
+        if not result_rel:
+            errors.append("AE-067 requires a RUN04 result record")
+        else:
+            result_path = ROOT / result_rel
+            if not result_path.is_file():
+                errors.append("AE-067 RUN04 result record is missing")
+            else:
+                try:
+                    run04 = json.loads(result_path.read_text(encoding="utf-8"))
+                except Exception as exc:
+                    errors.append(f"AE-067 RUN04 result unreadable: {exc}")
+                else:
+                    if run04.get("authority") != "AE-067" or run04.get("run_id") != "RUN04":
+                        errors.append("AE-067 RUN04 authority/run_id mismatch")
+                    if run04.get("generator_migration_implied") is not False:
+                        errors.append("AE-067 result incorrectly implies generator migration")
+                    cases = run04.get("candidates", {})
+                    branch = cases.get("BRANCH_LOCAL_DIRECT_BYPASS_BLOCK", {})
+                    post = cases.get("POST_SWITCH_COMMON", {})
+                    current = cases.get("CURRENT_COMMON_PRE_SPLIT", {})
+                    scale10 = cases.get("RUMBLE_SCALE10_COMMON_1P2UF", {})
+                    if branch.get("ac", {}).get("lf_hard_pass") is not True:
+                        errors.append("AE-067 branch-local LF gate is not PASS")
+                    if branch.get("switch", {}).get("internal_selector_objective_pass") is not True:
+                        errors.append("AE-067 branch-local switch discriminator is not PASS")
+                    settle = branch.get("offset_step", {}).get("direct_settle_to_1pct_s_after_step")
+                    if settle is None or not (1.55 <= settle <= 1.65):
+                        errors.append("AE-067 branch-local settling evidence mismatch")
+                    if post.get("switch", {}).get("internal_selector_objective_pass") is not False:
+                        errors.append("AE-067 post-switch reject evidence missing")
+                    if current.get("ac", {}).get("lf_hard_pass") is not False:
+                        errors.append("AE-067 current-common reject evidence missing")
+                    if scale10.get("ac", {}).get("lf_hard_pass") is not False:
+                        errors.append("AE-067 x10 reject evidence missing")
+        dr039 = data.get("selected_next_contract", {}).get("dr039_sch107", {})
+        if dr039.get("authority") != "AE-067":
+            errors.append("DR039 selected-next contract requires AE-067 authority")
+        if dr039.get("selected_topology") != run04_lf_trade.get("selected_topology"):
+            errors.append("DR039 contract and RUN04 selected topology disagree")
+        if dr039.get("status") != "CURRENT_SELECTED_PENDING_IMPLEMENTATION":
+            errors.append("DR039 contract status mismatch")
+        if dr039.get("generator_migration_implied") is not False:
+            errors.append("DR039 selected-next contract must not imply generator migration")
+
     if errors:
         print("Integrated preflight: CONTRACT ERROR")
         for e in errors:
@@ -140,7 +195,11 @@ def main():
                 "AE-066 RUN01-RUN03 campaign evidence present: "
                 + str(integrated_ac_campaign.get("status"))
             )
-            print("RUN04-RUN14 and explicit open findings remain under R-024.")
+            if run04_lf_trade is not None:
+                print("AE-067 RUN04 selected topology: " + str(run04_lf_trade.get("selected_topology")))
+                print("RUN05-RUN14 and explicit open findings remain under R-024.")
+            else:
+                print("RUN04-RUN14 and explicit open findings remain under R-024.")
         else:
             print("Full RUN01-RUN14 qualification remains open.")
     else:

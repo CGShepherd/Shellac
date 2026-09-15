@@ -1,0 +1,458 @@
+{
+  "schema_version": 1,
+  "authority": "AE-067",
+  "run_id": "RUN04",
+  "title": "DR039/SCH107 LF topology trade",
+  "repository_commit_before_ae067": "c29bbadaff34ee8f05668701d5031994f9243a5a",
+  "model_semantics": "SELECTED_NEXT_CANDIDATE_ANALYSIS",
+  "generator_migration_implied": false,
+  "status": "EVIDENCE_COMPLETE_REVIEW_REQUIRED",
+  "candidate_count": 4,
+  "candidates": {
+    "CURRENT_COMMON_PRE_SPLIT": {
+      "prior_disposition": "REJECTED_BY_AE052_ANALYTICAL",
+      "component_summary": {
+        "subckt": "AE067_CURRENT_COMMON",
+        "prior_disposition": "REJECTED_BY_AE052_ANALYTICAL",
+        "dedicated_dc_block_cap_uf": 1.0,
+        "dedicated_return_kohm": 330,
+        "sch107_impedance_scale": 1.0,
+        "notes": "Common block continuously loaded by SCH107 input."
+      },
+      "ac": {
+        "direct_db_rel_1khz": {
+          "10": -2.7156362214757896,
+          "15": -2.0671438327057894,
+          "20": -1.510435083655789,
+          "30": -0.8284659390327888,
+          "50": -0.33096028531978905
+        },
+        "filter_db_rel_1khz": {
+          "5": -41.45705077391451,
+          "10": -17.00878097151451,
+          "15": -5.12912337322451,
+          "20": -1.9714130754645103,
+          "30": -0.8712768346295097,
+          "50": -0.3412239801265097,
+          "1000": 0.0,
+          "20000": 0.0009792182083104683
+        },
+        "filter_f3_hz": 17.36332736795352,
+        "filter_peak_20hz_20khz_db_rel_1khz": 0.0009792182083104683,
+        "group_delay": {
+          "direct_ms": {
+            "10": -0.9310246486111212,
+            "15": -0.17936368796295807,
+            "20": 0.24269709305555337,
+            "30": 0.4742517504629475,
+            "50": 0.40953447666666815
+          },
+          "filter_ms": {
+            "10": -3.138997181944398,
+            "15": -2.017807610185193,
+            "20": 1.3947656166666562,
+            "30": 0.8286651898148101,
+            "50": 0.4829652602777814
+          }
+        },
+        "direct_checks": {
+          "20hz_absolute": false,
+          "20hz_preferred": false,
+          "50hz_preferred": false
+        },
+        "filter_checks": {
+          "f3": false,
+          "20hz": false,
+          "30hz": false,
+          "10hz": true,
+          "5hz": true,
+          "passband_peak": true
+        },
+        "lf_hard_pass": false,
+        "lf_preferred_pass": false
+      },
+      "noise": {
+        "direct_v_rms": 5.36120967505e-07,
+        "filter_v_rms": 9.71808968045e-07,
+        "direct_delta_db_vs_branch_local": 0.03354781407887249,
+        "direct_decision_band": "GENERALLY_ACCEPTABLE",
+        "filter_delta_db_vs_branch_local": 0.0990461691844021,
+        "filter_decision_band": "GENERALLY_ACCEPTABLE"
+      },
+      "offset_step": {
+        "direct_peak_v": 0.251953542233,
+        "filter_peak_v": 0.254224658012,
+        "direct_residual_v": {
+          "100ms": 0.137134539347,
+          "500ms": 0.0607217286164,
+          "1000ms": 0.0221250297002,
+          "2000ms": 0.00328531527155
+        },
+        "filter_residual_v": {
+          "100ms": 0.00303153577723,
+          "500ms": 0.000999008395431,
+          "1000ms": 0.000999001886593,
+          "2000ms": 0.000998999189338
+        },
+        "direct_settle_to_1pct_s_after_step": 2.16163539446,
+        "physical_lf_coupling_settling_note": "This is a DC-step charge-settling discriminator, not the RUN08 10x audio-burst recovery criterion."
+      },
+      "switch": {
+        "direct_input_pre_switch_v": 3.29562394636e-10,
+        "filter_input_pre_switch_v": 0.000499603454955,
+        "selector_pre_switch_v": 0.000499603454955,
+        "selector_peak_abs_v": 0.00378824514337,
+        "sch104_output_peak_abs_v": 0.00328476168215,
+        "selector_residual_v": {
+          "9ms_after_direct_close": -8.19890592809e-08,
+          "99ms_after_direct_close": -6.26598282951e-07,
+          "299ms_after_direct_close": -1.52445054845e-06
+        },
+        "internal_selector_peak_objective_v": 0.1,
+        "internal_selector_objective_pass": true,
+        "scope_note": "Candidate-discrimination only. Full muted/live switching at balanced output remains RUN12."
+      }
+    },
+    "POST_SWITCH_COMMON": {
+      "prior_disposition": "REJECTED_BY_AE052_TRANSIENT_RISK",
+      "component_summary": {
+        "subckt": "AE067_POST_STATIC",
+        "prior_disposition": "REJECTED_BY_AE052_TRANSIENT_RISK",
+        "dedicated_dc_block_cap_uf": 1.0,
+        "dedicated_return_kohm": 330,
+        "sch107_impedance_scale": 1.0,
+        "notes": "Static path copies use one post-switch block each for transfer/noise equivalence; transient deck models one physical common block after selector."
+      },
+      "ac": {
+        "direct_db_rel_1khz": {
+          "10": -0.010089074325759905,
+          "15": -0.004487425745459749,
+          "20": -0.0025240680619588863,
+          "30": -0.0011215893281298372,
+          "50": -0.00040315930650963706
+        },
+        "filter_db_rel_1khz": {
+          "5": -38.25606723730501,
+          "10": -14.30323382460501,
+          "15": -3.0667825877950112,
+          "20": -0.4635040927790104,
+          "30": -0.04386217769691039,
+          "50": -0.010644539050511007,
+          "1000": 0.0,
+          "20000": 0.00010843598283846444
+        },
+        "filter_f3_hz": 15.04858175115897,
+        "filter_peak_20hz_20khz_db_rel_1khz": 0.00010843598283846444,
+        "group_delay": {
+          "direct_ms": {
+            "10": 2.40902321875,
+            "15": 1.6098501089814734,
+            "20": 1.2072699736111174,
+            "30": 0.8033428401064795,
+            "50": 0.4820733644444427
+          },
+          "filter_ms": {
+            "10": -3.039930083333264,
+            "15": -1.7248957074073528,
+            "20": 1.510104240277772,
+            "30": 0.8771225074073936,
+            "50": 0.4948004291666703
+          }
+        },
+        "direct_checks": {
+          "20hz_absolute": true,
+          "20hz_preferred": true,
+          "50hz_preferred": true
+        },
+        "filter_checks": {
+          "f3": true,
+          "20hz": true,
+          "30hz": true,
+          "10hz": true,
+          "5hz": true,
+          "passband_peak": true
+        },
+        "lf_hard_pass": true,
+        "lf_preferred_pass": true
+      },
+      "noise": {
+        "direct_v_rms": 5.34054282503e-07,
+        "filter_v_rms": 9.60798946993e-07,
+        "direct_delta_db_vs_branch_local": 0.0,
+        "direct_decision_band": "GENERALLY_ACCEPTABLE",
+        "filter_delta_db_vs_branch_local": 7.848759669477596e-05,
+        "filter_decision_band": "GENERALLY_ACCEPTABLE"
+      },
+      "offset_step": {
+        "direct_peak_v": 0.251959532499,
+        "filter_peak_v": 0.253728449345,
+        "direct_residual_v": {
+          "100ms": 0.184955444465,
+          "500ms": 0.055384403543,
+          "1000ms": 0.0125587342667,
+          "2000ms": 0.00107821439996
+        },
+        "filter_residual_v": {
+          "100ms": 0.00109977792802,
+          "500ms": 0.000496657794217,
+          "1000ms": 0.000496610317077,
+          "2000ms": 0.000496598770773
+        },
+        "direct_settle_to_1pct_s_after_step": 1.59224717298,
+        "physical_lf_coupling_settling_note": "This is a DC-step charge-settling discriminator, not the RUN08 10x audio-burst recovery criterion."
+      },
+      "switch": {
+        "direct_input_pre_switch_v": 0.25,
+        "filter_input_pre_switch_v": 0.000499603454955,
+        "selector_pre_switch_v": -3.29870163841e-06,
+        "selector_peak_abs_v": 0.249497413635,
+        "sch104_output_peak_abs_v": 0.272445082664,
+        "selector_residual_v": {
+          "9ms_after_direct_close": 0.242784390926,
+          "99ms_after_direct_close": 0.184831082076,
+          "299ms_after_direct_close": 0.10082304966
+        },
+        "internal_selector_peak_objective_v": 0.1,
+        "internal_selector_objective_pass": false,
+        "scope_note": "Candidate-discrimination only. Full muted/live switching at balanced output remains RUN12."
+      }
+    },
+    "BRANCH_LOCAL_DIRECT_BYPASS_BLOCK": {
+      "prior_disposition": "PREFERRED_BY_AE052",
+      "component_summary": {
+        "subckt": "AE067_BRANCH_LOCAL",
+        "prior_disposition": "PREFERRED_BY_AE052",
+        "dedicated_dc_block_cap_uf": 1.0,
+        "dedicated_return_kohm": 330,
+        "sch107_impedance_scale": 1.0,
+        "notes": "Direct branch explicit block; filtered branch relies on intrinsic SCH107 DC blocking."
+      },
+      "ac": {
+        "direct_db_rel_1khz": {
+          "10": -0.010089074235940396,
+          "15": -0.0044874256547400735,
+          "20": -0.0025240679675401874,
+          "30": -0.0011215892412896151,
+          "50": -0.000403159235940735
+        },
+        "filter_db_rel_1khz": {
+          "5": -38.21583048817012,
+          "10": -14.29314481737012,
+          "15": -3.0622372266801188,
+          "20": -0.46096274276911925,
+          "30": -0.04272858214982048,
+          "50": -0.010239302683719743,
+          "1000": 0.0,
+          "20000": 0.00010742345354937364
+        },
+        "filter_f3_hz": 15.044700048475532,
+        "filter_peak_20hz_20khz_db_rel_1khz": 0.00010742345354937364,
+        "group_delay": {
+          "direct_ms": {
+            "10": 2.409023216249999,
+            "15": 1.6098501107407328,
+            "20": 1.2072699839583374,
+            "30": 0.8033428460787017,
+            "50": 0.48207335538888885
+          },
+          "filter_ms": {
+            "10": -2.900936040277744,
+            "15": -0.05938993981481454,
+            "20": 1.5134488472222087,
+            "30": 0.8779922962962737,
+            "50": 0.49495538250001503
+          }
+        },
+        "direct_checks": {
+          "20hz_absolute": true,
+          "20hz_preferred": true,
+          "50hz_preferred": true
+        },
+        "filter_checks": {
+          "f3": true,
+          "20hz": true,
+          "30hz": true,
+          "10hz": true,
+          "5hz": true,
+          "passband_peak": true
+        },
+        "lf_hard_pass": true,
+        "lf_preferred_pass": true
+      },
+      "noise": {
+        "direct_v_rms": 5.34054282503e-07,
+        "filter_v_rms": 9.60790265043e-07,
+        "direct_delta_db_vs_branch_local": 0.0,
+        "direct_decision_band": "GENERALLY_ACCEPTABLE",
+        "filter_delta_db_vs_branch_local": 0.0,
+        "filter_decision_band": "GENERALLY_ACCEPTABLE"
+      },
+      "offset_step": {
+        "direct_peak_v": 0.251959532499,
+        "filter_peak_v": 0.254231601954,
+        "direct_residual_v": {
+          "100ms": 0.18495550255,
+          "500ms": 0.0553844544072,
+          "1000ms": 0.0125587794544,
+          "2000ms": 0.00107825951849
+        },
+        "filter_residual_v": {
+          "100ms": 0.00139090813802,
+          "500ms": 0.00099898826416,
+          "1000ms": 0.000998990087803,
+          "2000ms": 0.000998991649365
+        },
+        "direct_settle_to_1pct_s_after_step": 1.59223534729,
+        "physical_lf_coupling_settling_note": "This is a DC-step charge-settling discriminator, not the RUN08 10x audio-burst recovery criterion."
+      },
+      "switch": {
+        "direct_input_pre_switch_v": 3.29820504241e-10,
+        "filter_input_pre_switch_v": 0.000499603454955,
+        "selector_pre_switch_v": 0.000499603454955,
+        "selector_peak_abs_v": 0.00378824514337,
+        "sch104_output_peak_abs_v": 0.00328476168215,
+        "selector_residual_v": {
+          "9ms_after_direct_close": -9.54286455563e-08,
+          "99ms_after_direct_close": -8.59932163438e-07,
+          "299ms_after_direct_close": -1.96798996366e-06
+        },
+        "internal_selector_peak_objective_v": 0.1,
+        "internal_selector_objective_pass": true,
+        "scope_note": "Candidate-discrimination only. Full muted/live switching at balanced output remains RUN12."
+      }
+    },
+    "RUMBLE_SCALE10_COMMON_1P2UF": {
+      "prior_disposition": "DEPRIORITISED_BY_AE052",
+      "component_summary": {
+        "subckt": "AE067_SCALE10_COMMON",
+        "prior_disposition": "DEPRIORITISED_BY_AE052",
+        "dedicated_dc_block_cap_uf": 1.2,
+        "dedicated_return_kohm": 330,
+        "sch107_impedance_scale": 10.0,
+        "notes": "R values x10 and timing C divided by 10 to preserve nominal filter shape."
+      },
+      "ac": {
+        "direct_db_rel_1khz": {
+          "10": -0.25622561099248975,
+          "15": -0.17878663457349026,
+          "20": -0.12189666295548898,
+          "30": -0.06156719021999042,
+          "50": -0.023176692640990232
+        },
+        "filter_db_rel_1khz": {
+          "5": -38.5568094470208,
+          "10": -14.548438778620799,
+          "15": -3.2410774665507986,
+          "20": -0.5831311076168001,
+          "30": -0.10438769807979997,
+          "50": -0.03342976906739911,
+          "1000": 0.0,
+          "20000": 0.00016610384120049903
+        },
+        "filter_f3_hz": 15.203466042763887,
+        "filter_peak_20hz_20khz_db_rel_1khz": 0.00016610384120049903,
+        "group_delay": {
+          "direct_ms": {
+            "10": 1.2080708666666617,
+            "15": 0.857983986018508,
+            "20": 0.7963737776388927,
+            "30": 0.6706617144444407,
+            "50": 0.4551569702111111
+          },
+          "filter_ms": {
+            "10": -3.029976459722199,
+            "15": -1.9265494731481247,
+            "20": 1.5005900451388847,
+            "30": 0.8736542796296337,
+            "50": 0.4940576794444398
+          }
+        },
+        "direct_checks": {
+          "20hz_absolute": true,
+          "20hz_preferred": false,
+          "50hz_preferred": true
+        },
+        "filter_checks": {
+          "f3": true,
+          "20hz": true,
+          "30hz": false,
+          "10hz": true,
+          "5hz": true,
+          "passband_peak": true
+        },
+        "lf_hard_pass": false,
+        "lf_preferred_pass": false
+      },
+      "noise": {
+        "direct_v_rms": 5.34150088304e-07,
+        "filter_v_rms": 1.16291180439e-06,
+        "direct_delta_db_vs_branch_local": 0.001558051322660288,
+        "direct_decision_band": "GENERALLY_ACCEPTABLE",
+        "filter_delta_db_vs_branch_local": 1.6583636980187169,
+        "filter_decision_band": "PRESUMPTIVE_REJECT_WITHOUT_COMPELLING_BENEFIT"
+      },
+      "offset_step": {
+        "direct_peak_v": 0.25197416544,
+        "filter_peak_v": 0.254193037748,
+        "direct_residual_v": {
+          "100ms": 0.188677451242,
+          "500ms": 0.0717508441535,
+          "1000ms": 0.021660227203,
+          "2000ms": 0.00236267086074
+        },
+        "filter_residual_v": {
+          "100ms": 0.0017745231863,
+          "500ms": 0.000993760305796,
+          "1000ms": 0.00099373925377,
+          "2000ms": 0.000993732514622
+        },
+        "direct_settle_to_1pct_s_after_step": 1.97118660742,
+        "physical_lf_coupling_settling_note": "This is a DC-step charge-settling discriminator, not the RUN08 10x audio-burst recovery criterion."
+      },
+      "switch": {
+        "direct_input_pre_switch_v": 3.2609215328e-10,
+        "filter_input_pre_switch_v": 0.000494295556564,
+        "selector_pre_switch_v": 0.000494295556564,
+        "selector_peak_abs_v": 0.00379136996344,
+        "sch104_output_peak_abs_v": 0.00328788347542,
+        "selector_residual_v": {
+          "9ms_after_direct_close": -7.8634058823e-08,
+          "99ms_after_direct_close": -7.11377573096e-07,
+          "299ms_after_direct_close": -1.70631907108e-06
+        },
+        "internal_selector_peak_objective_v": 0.1,
+        "internal_selector_objective_pass": true,
+        "scope_note": "Candidate-discrimination only. Full muted/live switching at balanced output remains RUN12."
+      }
+    }
+  },
+  "branch_local_filter_analytical_correlation": {
+    "errors_db": {
+      "5": 0.0016243002483733449,
+      "10": 0.00013001358600917,
+      "15": -0.004853400365035121,
+      "20": -0.00136592360760307,
+      "30": -0.0005980027869574717,
+      "50": -9.046693450063398e-05
+    },
+    "max_abs_error_db": 0.004853400365035121
+  },
+  "decision": {
+    "automatic_topology_promotion": false,
+    "preferred_topology": null,
+    "runner_up": null,
+    "review_required": true
+  },
+  "open_qualification": [
+    "RUN09",
+    "RUN10",
+    "RUN12"
+  ],
+  "model_sources": {
+    "OPA1656": {
+      "path": "OPA1656.LIB",
+      "sha256": "9847ed60c62e792ee6f1c84899278a3c11ce71a6d21804bdd88f51199f1ba055"
+    },
+    "qualification_model_sha256": "efcf5e814c0e8f4285f24c4483afab25d089c4c8714572c0a62dc35ba2123e80"
+  }
+}

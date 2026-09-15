@@ -104,10 +104,15 @@ selected_next_contract:
     no_shunt_state_db: 18
     converter_gain: 4.0
   dr039_sch107:
-    authority: AE-052
+    authority: AE-067
     preferred_candidate: BRANCH_LOCAL_DIRECT_BYPASS_BLOCK
+    selected_topology: BRANCH_LOCAL_DIRECT_BYPASS_BLOCK
+    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    generator_migration_implied: false
     direct_branch_c_f: 1.0e-6
     direct_branch_r_ohm: 330000
+    filtered_branch_dc_blocking: INTRINSIC_SCH107_HIGHPASS
+    follow_on_qualification: [RUN09, RUN10, RUN12, BENCH]
   mute:
     authority: AE-059
     type: MECHANICAL_DPDT_INPUT_MUTE
@@ -140,4 +145,18 @@ integrated_ac_campaign:
   run03_status: QUALIFIED_NOMINAL_ALL_25_STATES
   generator_migration_implied: false
   result_summary: simulation/results/ae066_summary.json
-  remaining_runs: [RUN04, RUN05, RUN06, RUN07, RUN08, RUN09, RUN10, RUN11, RUN12, RUN13, RUN14]
+  remaining_runs: [RUN05, RUN06, RUN07, RUN08, RUN09, RUN10, RUN11, RUN12, RUN13, RUN14]
+
+run04_lf_trade:
+  authority: AE-067
+  status: SELECTED_BRANCH_LOCAL_QUALIFICATION_OPEN
+  selected_topology: BRANCH_LOCAL_DIRECT_BYPASS_BLOCK
+  rejected_topologies:
+    - CURRENT_COMMON_PRE_SPLIT
+    - POST_SWITCH_COMMON
+    - RUMBLE_SCALE10_COMMON_1P2UF
+  generator_migration_implied: false
+  result_record: simulation/results/run04_lf_trade/ae067_run04.json
+  direct_branch_c_f: 1.0e-6
+  direct_branch_r_ohm: 330000
+  follow_on_qualification: [RUN09, RUN10, RUN12, BENCH]

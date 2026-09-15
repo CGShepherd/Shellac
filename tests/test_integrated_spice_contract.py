@@ -23,12 +23,16 @@ def test_sch101_candidate_contract_is_ae042():
     assert s["no_shunt_state_db"] == 18
     assert s["converter_gain"] == 4.0
 
-def test_dr039_candidate_contract_is_ae052():
+def test_dr039_selected_contract_is_ae067():
     s = data()["selected_next_contract"]["dr039_sch107"]
-    assert s["authority"] == "AE-052"
+    assert s["authority"] == "AE-067"
     assert s["preferred_candidate"] == "BRANCH_LOCAL_DIRECT_BYPASS_BLOCK"
+    assert s["selected_topology"] == "BRANCH_LOCAL_DIRECT_BYPASS_BLOCK"
+    assert s["status"] == "CURRENT_SELECTED_PENDING_IMPLEMENTATION"
+    assert s["generator_migration_implied"] is False
     assert s["direct_branch_c_f"] == 1.0e-6
     assert s["direct_branch_r_ohm"] == 330000
+    assert s["filtered_branch_dc_blocking"] == "INTRINSIC_SCH107_HIGHPASS"
 
 def test_mute_remains_mechanical_without_automatic_sequence():
     m = data()["selected_next_contract"]["mute"]

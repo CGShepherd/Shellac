@@ -29,7 +29,7 @@ def test_authoritative_decision_index_is_well_formed():
     assert "commit: dce5c0ec36e12f979338d8c46106c44a79c7a023" in text
     assert _decision_status("DR-037", "DR-038") == "CURRENT_IMPLEMENTED"
     assert _decision_status("DR-038", "DR-039") == "CURRENT_SELECTED_PENDING_IMPLEMENTATION"
-    assert _decision_status("DR-039", "DR-040") == "CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION"
+    assert _decision_status("DR-039", "DR-040") == "CURRENT_SELECTED_PENDING_IMPLEMENTATION"
     assert _decision_status("DR-040") == "CURRENT_IMPLEMENTED"
 
 def test_dr038_dr039_record_current_pre_spice_disposition():
@@ -42,16 +42,19 @@ def test_dr038_dr039_record_current_pre_spice_disposition():
     assert "pre-DR038 implementation" not in dr038
 
     dr039 = _decision_block("DR-039", "DR-040")
-    assert "status: CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION" in dr039
-    assert "AE-052 selects branch-local DC blocking as the preferred SPICE candidate" in dr039
-    assert "not yet implemented authority" in dr039
+    assert "status: CURRENT_SELECTED_PENDING_IMPLEMENTATION" in dr039
+    assert "primary_record: docs/decisions/DR-039_Branch_Local_DC_Block_SELECTED.md" in dr039
+    assert "historical_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_SELECTED.md" in dr039
+    assert "AE-067 selects branch-local DC blocking for controlled implementation" in dr039
+    assert "not yet migrated into the live product" in dr039
+    assert "RUN09, RUN10, RUN12 and bench correlation remain open" in dr039
 
 def test_design_pack_and_maintenance_structure_exist():
     assert Path("docs/knowledge/DESIGN_PACK_INDEX.md").exists()
     assert Path("docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md").exists()
 
 
-def test_pre_spice_assurance_chain_reaches_ae059():
+def test_pre_spice_assurance_chain_reaches_ae067():
     text = _text()
-    for n in range(42, 60):
+    for n in range(42, 68):
         assert f"  AE-{n:03d}:" in text
