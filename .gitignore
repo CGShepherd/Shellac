@@ -38,6 +38,12 @@ simulation/results/run05_matrix/*
 !simulation/results/run05_matrix/ae068_run05.csv
 !simulation/results/run05_matrix/ae068_run05.md
 
+!simulation/results/run06_output/
+simulation/results/run06_output/*
+!simulation/results/run06_output/ae069_run06.json
+!simulation/results/run06_output/ae069_run06.csv
+!simulation/results/run06_output/ae069_run06.md
+
 # Local simulator/vendor caches and transient qualification work
 .shellac_reconciliation/
 .ae*_backup/

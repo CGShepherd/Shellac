@@ -1,0 +1,165 @@
+schema_version: 1
+authority: AE-069
+run_id: RUN06
+title: SCH108 nominal balanced-output qualification
+baseline_commit: 79d3520eb0ff132ce7ebb0618cef3cfc0dd80d3c
+model_semantics: SELECTED_NEXT_CANDIDATE_ANALYSIS
+generator_migration_implied: false
+
+execution:
+  rails_v: 18.0
+  normal_loads_ohm: [100000, 20000, 10000]
+  stress_load_ohm: 600
+  cable_capacitance_per_leg_pf:
+    low: 100
+    nominal: 500
+    high: 2000
+  ac_report_hz: [20, 1000, 20000]
+  ac_start_hz: 10
+  ac_stop_hz: 1000000
+  ac_points_per_decade: 150
+  stability_step_input_v: 0.01
+  stability_edge_s: 5.0e-8
+  stability_high_cable_pf_per_leg: 2000
+  stability_step_delay_s: 1.0e-5
+  stability_early_end_s: 4.0e-5
+  stability_final_sample_s: 8.0e-5
+  stability_late_start_s: 7.0e-5
+  stability_late_end_s: 9.0e-5
+  stability_stop_s: 1.0e-4
+  stability_max_timestep_s: 5.0e-9
+  headroom_input_rms_v: [0.321, 3.21, 5.0]
+  quasistatic_validated_input_rms_v_max: 5.0
+  headroom_loads_ohm: [10000, 600]
+  distortion_input_rms_v: 5.0
+  quasistatic_distortion_samples: 64
+  quasistatic_distortion_harmonics: 10
+  dc_transfer_step_v: 0.02
+  dc_transfer_input_limit_v: 13.0
+
+murata_small_signal_ferrite_models:
+  source: MURATA_BLM21_SPICE_V21
+  official_archive_url: https://www.murata.com/-/media/webrenewal/tool/netlist/ferritebeads/v21/blm21-n-v21.ashx?cvid=20260416064718000000&la=en
+  archive_sha256: cc7f162faa8312a71124ea20c3120c65c11af71d5849079fcc83af4ae6502547
+  applicable_frequency_hz: [1000000, 3000000000]
+  declared_temperature_c: 25
+  declared_dc_bias_a: 0
+  declared_operation: SMALL_SIGNAL
+  stability_step_v: 0.01
+  stability_edge_s: 5.0e-8
+  stability_cable_pf_per_leg: 2000
+  existing_rfi_pf_per_leg: 100
+  parts:
+    LOW_60OHM_100MHZ:
+      part: BLM21PG600SN1
+      model_sha256: fb80b04d43a5765b63a7b47c7bfca3ad2ec69d77e127020db1a193cb1d3cfaa4
+    HIGH_220OHM_100MHZ:
+      part: BLM21PG221SN1
+      model_sha256: dadfd9eaa6e424071efbcacbe186fb921c0986ca6e26b6da6b9536de9776256a
+  interpretation: >
+    Official Murata models are used only for high-frequency small-signal
+    stability probing inside their declared 1 MHz-3 GHz, 25 C, zero-DC-bias
+    applicability. Audio-band AC and quasi-static work retain the existing
+    engineering brackets. Larger-signal cable/load stability remains a bench
+    qualification obligation.
+
+vendor_macro_limitation:
+  status: PERIODIC_LARGE_SIGNAL_CONVERGENCE_LIMIT_CONFIRMED
+  controlled_model: THAT1646 Rev02 manufacturer macro
+  evidence_date: "2026-09-15"
+  observed:
+    minimal_periodic_0p321vrms_10k:
+      completed: true
+      output_rms_v: 0.634959869
+      gain_linear: 1.97806813
+    minimal_periodic_3p21vrms_10k:
+      completed: false
+      failure: TIMEOUT_AT_ZERO_CROSSING_TOLERANCE_COLLAPSE
+    gear_periodic_3p21vrms_10k:
+      completed: false
+      failure: TIMEOUT_AT_ZERO_CROSSING_TOLERANCE_COLLAPSE
+    minimal_dc_transfer_10k:
+      input_plus_3p21_v_output_v: 6.36930322
+      input_minus_3p21_v_output_v: -6.37721850
+      input_plus_5_v_output_v: 9.92324018
+      input_minus_5_v_output_v: -9.93115520
+      max_output_v_over_plusminus9v_input_sweep: 17.8649979
+      min_output_v_over_plusminus9v_input_sweep: -17.8729143
+  disposition: >
+    Do not treat periodic large-signal timeout as hardware overload. Use the
+    controlled macro for AC and operating point. Fast load/capacitance transient
+    results are diagnostic/supportive only where they converge reproducibly.
+    Quasi-static nonlinear transfer is used only through 5 Vrms input; 7.5 and
+    9 Vrms points produced non-physical output beyond the +/-18 V rails and are
+    excluded. Any quasi-static distortion result is an engineering estimate,
+    not transient 1 kHz THD, and requires bench correlation before release.
+
+stability_model_limitation:
+  status: TRANSIENT_SOLVER_NONREPRODUCIBILITY_CONFIRMED
+  exact_case: BLM21PG221SN1 / 100k / 10mV / 50ns / 2nF+100pF_per_leg / S1G
+  evidence:
+    exact_electrical_deck_completed_once:
+      overshoot_percent: 23.7979
+      late_residual_fraction: 1.758e-6
+    same_electrical_deck_timed_out_on_other_runs: true
+    solver_reproducibility:
+      normal_threads_1: 0_of_3_completed
+      alternate_threads_1: 0_of_3_completed
+    small_signal_matrix_without_exact_rfi_clamp_additions:
+      all_10mV_cases_completed: true
+      late_residual_fraction_range: [1.617e-6, 1.736e-6]
+      low_60ohm_overshoot_percent_range: [8.802, 9.794]
+      high_220ohm_overshoot_percent_range: [20.826, 24.627]
+  disposition: >
+    Do not use retry-until-pass logic. Do not claim reproducible transient
+    stability qualification from this combined vendor-model stack. Preserve
+    the converged transient results as supportive evidence only; use exact-
+    topology official-Murata small-signal AC evidence plus mandatory prototype
+    load/cable stability bench verification for the qualification boundary.
+
+ferrite_brackets:
+  LOW_60OHM_100MHZ:
+    source_candidate: Murata BLM21PG600SN1D
+    dcr_ohm: 0.020
+    impedance_100mhz_ohm: 60.0
+    inductance_h: 9.549296055e-8
+    semantics: RL_ENGINEERING_BRACKET_MATCHED_TO_DCR_AND_100MHZ_MAGNITUDE_NOT_MANUFACTURER_EQUIVALENT
+  HIGH_220OHM_100MHZ:
+    source_candidate: Murata BLM21PG221SN1D
+    dcr_ohm: 0.045
+    impedance_100mhz_ohm: 220.0
+    inductance_h: 3.501408675e-7
+    semantics: RL_ENGINEERING_BRACKET_MATCHED_TO_DCR_AND_100MHZ_MAGNITUDE_NOT_MANUFACTURER_EQUIVALENT
+
+criteria:
+  normal_load_gain_variation_db_max: 0.10
+  passband_peak_db_max: 0.10
+  dc_diff_v_preferred_max: 0.010
+  dc_diff_v_absolute_max: 0.025
+  dc_cm_v_preferred_max: 0.100
+  dc_cm_v_absolute_max: 0.250
+  normal_headroom_margin_db_preferred: 6.0
+  normal_headroom_margin_db_min: 3.0
+  local_compression_fraction_max: 0.01
+  stability_late_pp_fraction_max: 0.01
+
+methodology:
+  normal_gain_peaking_common_mode: AC_SMALL_SIGNAL
+  dc_offset: OPERATING_POINT
+  stability: MODEL_LIMITED_TRANSIENT_EVIDENCE_PLUS_OFFICIAL_MURATA_EXACT_TOPOLOGY_HF_AC_WITH_BENCH_GATE
+  local_headroom: QUASI_STATIC_DC_TRANSFER
+  stress_distortion: QUASI_STATIC_TRANSFER_DERIVED_HARMONIC_ESTIMATE
+  transient_large_signal_thd: NOT_SUPPORTED_BY_CONTROLLED_VENDOR_MACRO
+  bench_thd_correlation_required: true
+
+decision_policy:
+  ferrite_selection_automatic: false
+  ferrite_manufacturer_model_still_required: false
+  ferrite_final_selection_status: OPEN_PENDING_EMC_LAYOUT_BENCH
+  sense_capacitor_mechanical_freeze: false
+  full_system_overload_deferred_to: RUN08
+  full_system_noise_deferred_to: RUN09
+  sensitivity_tolerance_deferred_to: RUN10
+  rail_variation_deferred_to: RUN13
+  phantom_fault_deferred_to: RUN14
+  bench_correlation_required: true

@@ -225,6 +225,63 @@ def main():
                     if mm.get("0.5", {}).get("pass_max_0p25_percent") is not False:
                         errors.append("AE-068 0.5% mono-pair rejection evidence missing")
 
+
+    run06_output = data.get("run06_output")
+    if run06_output is not None:
+        if run06_output.get("authority") != "AE-069":
+            errors.append("RUN06 output requires AE-069 authority")
+        if run06_output.get("status") != "SIMULATION_EVIDENCE_COMPLETE_BENCH_GATES_OPEN":
+            errors.append("RUN06 output has uncontrolled status")
+        if run06_output.get("generator_migration_implied") is not False:
+            errors.append("AE-069 must not imply generator migration")
+        if run06_output.get("ferrite_selected") is not False:
+            errors.append("AE-069 must not freeze a ferrite")
+        if run06_output.get("sense_capacitor_mechanical_freeze") is not False:
+            errors.append("AE-069 must not freeze sense-cap mechanical implementation")
+        if run06_output.get("transient_stability_reproducibly_qualified") is not False:
+            errors.append("AE-069 must retain transient stability bench gate")
+        if run06_output.get("bench_load_stability_required") is not True:
+            errors.append("AE-069 load-stability bench obligation missing")
+        if run06_output.get("dynamic_large_signal_thd_qualified") is not False:
+            errors.append("AE-069 must not claim dynamic large-signal THD qualification")
+        if run06_output.get("bench_dynamic_thd_required") is not True:
+            errors.append("AE-069 dynamic-THD bench obligation missing")
+        result_rel = run06_output.get("result_record")
+        if not result_rel:
+            errors.append("AE-069 requires a RUN06 result record")
+        else:
+            result_path = ROOT / result_rel
+            if not result_path.is_file():
+                errors.append("AE-069 RUN06 result record is missing")
+            else:
+                try:
+                    run06 = json.loads(result_path.read_text(encoding="utf-8"))
+                except Exception as exc:
+                    errors.append(f"AE-069 RUN06 result unreadable: {exc}")
+                else:
+                    if run06.get("authority") != "AE-069" or run06.get("run_id") != "RUN06":
+                        errors.append("AE-069 RUN06 authority/run_id mismatch")
+                    if run06.get("status") != "SIMULATION_EVIDENCE_COMPLETE_BENCH_GATES_OPEN_REVIEW_REQUIRED":
+                        errors.append("AE-069 RUN06 result status mismatch")
+                    if run06.get("generator_migration_implied") is not False:
+                        errors.append("AE-069 result incorrectly implies generator migration")
+                    gates = run06.get("analysis", {}).get("gates", {})
+                    if gates.get("simulation_evidence_complete") is not True:
+                        errors.append("AE-069 reproducible simulation evidence is not complete")
+                    if gates.get("run06_fully_qualified") is not False:
+                        errors.append("AE-069 result incorrectly claims RUN06 full qualification")
+                    if gates.get("transient_stability_reproducibly_qualified") is not False:
+                        errors.append("AE-069 result incorrectly claims transient stability qualification")
+                    if gates.get("bench_load_stability_required") is not True:
+                        errors.append("AE-069 result missing bench load-stability gate")
+                    if gates.get("transient_large_signal_thd_qualified") is not False:
+                        errors.append("AE-069 result incorrectly claims dynamic THD qualification")
+                    if gates.get("bench_dynamic_thd_required") is not True:
+                        errors.append("AE-069 result missing bench dynamic-THD gate")
+                    execution = run06.get("execution", {})
+                    if execution.get("headroom_input_rms_v") != [0.321, 3.21, 5.0]:
+                        errors.append("AE-069 validated quasi-static input envelope mismatch")
+
     if errors:
         print("Integrated preflight: CONTRACT ERROR")
         for e in errors:
@@ -250,7 +307,11 @@ def main():
                 print("AE-067 RUN04 selected topology: " + str(run04_lf_trade.get("selected_topology")))
                 if run05_matrix is not None:
                     print("AE-068 RUN05 matrix steady-state qualification: " + str(run05_matrix.get("status")))
-                    print("RUN06-RUN14 and explicit open findings remain under R-024.")
+                    if run06_output is not None:
+                        print("AE-069 RUN06 simulation evidence: " + str(run06_output.get("status")))
+                        print("RUN07-RUN14 remain; RUN06 load-stability/dynamic-THD bench gates remain under R-024.")
+                    else:
+                        print("RUN06-RUN14 and explicit open findings remain under R-024.")
                 else:
                     print("RUN05-RUN14 and explicit open findings remain under R-024.")
             else:

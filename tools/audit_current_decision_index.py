@@ -103,7 +103,7 @@ def audit_repository() -> list[str]:
         if expected not in current:
             errors.append(f"{decision}: {expected} missing from authoritative_current_status")
 
-    for n in range(42, 69):
+    for n in range(42, 70):
         if not re.search(rf"(?m)^  AE-{n:03d}:", index):
             errors.append(f"AE-{n:03d}: missing from pre_spice_assurance")
 

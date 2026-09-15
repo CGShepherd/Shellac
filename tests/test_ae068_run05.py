@@ -63,8 +63,9 @@ def test_ae068_integrated_contract_retains_open_follow_on_work():
     assert run05["switch_parasitic_qualification_pf"] == 5.0
     assert run05["generator_migration_implied"] is False
     assert set(run05["follow_on_qualification"]) == {"RUN09", "RUN10", "RUN12", "BENCH"}
+    # AE-068 owns closure of RUN05. Do not freeze the later campaign
+    # pointer here; subsequent assurance records legitimately advance it.
     assert "RUN05" not in b["integrated_ac_campaign"]["remaining_runs"]
-    assert b["integrated_ac_campaign"]["remaining_runs"][0] == "RUN06"
 
 def test_ae041_remains_qualification_open_after_run05():
     idx = yaml.safe_load(

@@ -1,0 +1,31 @@
+* Project Shellac AE-069 RUN06 SCH108 qualification model.
+* Nominal RUN/MUTE state is RUN.  Phantom-fault behaviour is explicitly NOT RUN06.
+* Ferrites use transparent R-L engineering brackets only.
+*
+* THAT1646 wrapper pin order:
+*   OUTM SNSM GND IN VMINUS VPLUS SNSP OUTP
+
+.SUBCKT AE069_SCH108 IN XLRP XLRM VPLUS VMINUS ZERO CHASSIS
++ PARAMS: RFB=0.02 LFB=95.49296055n
+XDRV OUTM SNSM ZERO IN VMINUS VPLUS SNSP OUTP SHELLAC_THAT1646
+
+* Existing OUT-to-SNS non-polar common-mode coupling capacitors.
+CSP OUTP SNSP 10u
+CSM OUTM SNSM 10u
+
+* Connector-side ferrite engineering brackets.
+RFBP OUTP PFB {RFB}
+LFBP PFB XLRP {LFB}
+RFBM OUTM MFB {RFB}
+LFBM MFB XLRM {LFB}
+
+* Existing connector-side RF shunts.
+CRFIP XLRP CHASSIS 100p
+CRFIM XLRM CHASSIS 100p
+
+* Existing S1G rail clamps; nominal RUN06 should keep them off.
+DHP XLRP VPLUS s1g
+DHM XLRM VPLUS s1g
+DLP VMINUS XLRP s1g
+DLM VMINUS XLRM s1g
+.ENDS AE069_SCH108

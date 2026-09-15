@@ -234,8 +234,16 @@ def execute_deck(name: str, deck: str, workdir: Path) -> str:
                 timeout=60,
             )
         except subprocess.TimeoutExpired as exc:
+            # Preserve the exact timeout stimulus and any partial LTspice log
+            # before TemporaryDirectory cleanup. This is diagnostic evidence,
+            # not a successful simulation result.
+            log = cir.with_suffix(".log")
+            shutil.copy2(cir, workdir / cir.name)
+            if log.exists():
+                shutil.copy2(log, workdir / log.name)
             raise RuntimeError(
                 f"{name}: LTspice batch execution timed out after 60 s; "
+                f"diagnostic deck/log retained under {workdir}; "
                 "treat any persistent interactive LTspice window as a launch failure"
             ) from exc
         log = cir.with_suffix(".log")

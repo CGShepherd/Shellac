@@ -145,7 +145,7 @@ integrated_ac_campaign:
   run03_status: QUALIFIED_NOMINAL_ALL_25_STATES
   generator_migration_implied: false
   result_summary: simulation/results/ae066_summary.json
-  remaining_runs: [RUN06, RUN07, RUN08, RUN09, RUN10, RUN11, RUN12, RUN13, RUN14]
+  remaining_runs: [RUN07, RUN08, RUN09, RUN10, RUN11, RUN12, RUN13, RUN14]
 
 run04_lf_trade:
   authority: AE-067
@@ -175,3 +175,22 @@ run05_matrix:
   switch_parasitic_qualification_pf: 5.0
   generator_migration_implied: false
   follow_on_qualification: [RUN09, RUN10, RUN12, BENCH]
+
+run06_output:
+  authority: AE-069
+  status: SIMULATION_EVIDENCE_COMPLETE_BENCH_GATES_OPEN
+  result_record: simulation/results/run06_output/ae069_run06.json
+  normal_loads_ohm: [100000, 20000, 10000]
+  stress_load_ohm: 600
+  worst_normal_gain_variation_db: 0.03880949524
+  worst_normal_passband_peak_db: 0.00041935904
+  severe_10k_margin_min_db: 3.91280224685
+  exact_topology_hf_ac_evidence_complete: true
+  transient_stability_reproducibly_qualified: false
+  bench_load_stability_required: true
+  dynamic_large_signal_thd_qualified: false
+  bench_dynamic_thd_required: true
+  ferrite_selected: false
+  sense_capacitor_mechanical_freeze: false
+  generator_migration_implied: false
+  follow_on_qualification: [BENCH_LOAD_STABILITY, BENCH_DYNAMIC_THD, FERRITE_SELECTION, SENSE_CAP_MECHANICAL]
