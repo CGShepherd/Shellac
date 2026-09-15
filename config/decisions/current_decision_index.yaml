@@ -79,11 +79,12 @@ decisions:
       - generator/model/controls.py
       - config/bom/shellac_bom.yaml
       - docs/design_pack/AE-046_SCH105_Mode_Matrix_Pre-SPICE_Review_Rev_A0.md
+      - docs/design_pack/AE-068_RUN05_SCH104_SCH105_Matrix_Evidence_Rev_A0.md
     implementation:
       eq_controls: Four independent NKK NR01-family 5-position BBM controls; exact production suffix remains open.
       channel_matrix: C&K A30403RNCB 3P4T BBM gold THT preferred; TE/Alcoswitch MRJE3404 fallback.
       mute_rumble: C&K 7201SYCBE.
-      note: Absolute mechanical coordinates, switch detent mapping and transient qualification remain open.
+      note: AE-068 qualifies RUN05 steady-state routing, insertion, mono weighting and crosstalk. RUN12 BBM transient qualification, exact production-switch continuity/detent mapping, mechanical coordinates, parasitic bench correlation and final procurement choice remain open.
 pre_spice_assurance:
   AE-042: docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
   AE-043: docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
@@ -111,6 +112,7 @@ pre_spice_assurance:
   AE-065: docs/design_pack/AE-065_SHELLAC_TOP_Implementation_and_Integrated_RUN00_Rev_A0.md
   AE-066: docs/design_pack/AE-066_Integrated_AC_RUN01_RUN03_and_Infrastructure_Rev_A0.md
   AE-067: docs/design_pack/AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md
+  AE-068: docs/design_pack/AE-068_RUN05_SCH104_SCH105_Matrix_Evidence_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

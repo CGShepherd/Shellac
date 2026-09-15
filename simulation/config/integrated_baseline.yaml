@@ -145,7 +145,7 @@ integrated_ac_campaign:
   run03_status: QUALIFIED_NOMINAL_ALL_25_STATES
   generator_migration_implied: false
   result_summary: simulation/results/ae066_summary.json
-  remaining_runs: [RUN05, RUN06, RUN07, RUN08, RUN09, RUN10, RUN11, RUN12, RUN13, RUN14]
+  remaining_runs: [RUN06, RUN07, RUN08, RUN09, RUN10, RUN11, RUN12, RUN13, RUN14]
 
 run04_lf_trade:
   authority: AE-067
@@ -159,4 +159,19 @@ run04_lf_trade:
   result_record: simulation/results/run04_lf_trade/ae067_run04.json
   direct_branch_c_f: 1.0e-6
   direct_branch_r_ohm: 330000
+  follow_on_qualification: [RUN09, RUN10, RUN12, BENCH]
+
+run05_matrix:
+  authority: AE-068
+  status: QUALIFIED_STEADY_STATE_TRANSIENT_OPEN
+  architecture: AE041_A1_3P4T_PASSIVE_MATRIX
+  result_record: simulation/results/run05_matrix/ae068_run05.json
+  input_return_ohm: 2200000
+  mono_resistor_ohm: 4700
+  mono_resistor_current_tolerance_percent: 0.1
+  derived_pair_match_percent_preferred_for_run10: 0.10
+  derived_pair_match_percent_max_for_run10: 0.25
+  tolerance_relaxation_authorised: false
+  switch_parasitic_qualification_pf: 5.0
+  generator_migration_implied: false
   follow_on_qualification: [RUN09, RUN10, RUN12, BENCH]

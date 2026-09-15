@@ -1,0 +1,42 @@
+schema_version: 1
+authority: AE-068
+run_id: RUN05
+title: SCH104/SCH105 matrix qualification
+baseline_commit: 69ecf0118d2ff733247f9468e620a05b606c3eff
+model_semantics: SELECTED_NEXT_CANDIDATE_ANALYSIS
+generator_migration_implied: false
+
+execution:
+  report_hz: [20, 1000, 20000]
+  crosstalk_hz: [1000, 20000]
+  measurement_load_ohm: 10000000
+  qualification_parasitic_pf: 5.0
+  parasitic_sweep_pf: [0.001, 1.0, 2.0, 5.0, 10.0]
+  return_sweep_ohm: [470000, 1000000, 2200000, 4700000]
+  mono_pair_mismatch_percent: [0.0, 0.1, 0.2, 0.25, 0.5]
+  nominal_sum_resistor_ohm: 4700
+  nominal_return_ohm: 2200000
+
+stimuli:
+  L_ONLY: {left_mag: 1.0, left_phase_deg: 0.0, right_mag: 0.0, right_phase_deg: 0.0}
+  R_ONLY: {left_mag: 0.0, left_phase_deg: 0.0, right_mag: 1.0, right_phase_deg: 0.0}
+  EQUAL: {left_mag: 1.0, left_phase_deg: 0.0, right_mag: 1.0, right_phase_deg: 0.0}
+  UNEQUAL: {left_mag: 1.0, left_phase_deg: 0.0, right_mag: 0.5, right_phase_deg: 0.0}
+  OPPOSITE: {left_mag: 1.0, left_phase_deg: 0.0, right_mag: 1.0, right_phase_deg: 180.0}
+
+criteria:
+  direct_insertion_db_max: 0.01
+  mono_equal_insertion_db_preferred: 0.05
+  mono_equal_insertion_db_max: 0.10
+  mono_weight_mismatch_percent_preferred: 0.10
+  mono_weight_mismatch_percent_max: 0.25
+  stereo_separation_db_1khz_preferred: 80.0
+  stereo_separation_db_1khz_min: 70.0
+  stereo_separation_db_20khz_min: 60.0
+
+decision_policy:
+  automatic_architecture_promotion: false
+  full_switching_transient_deferred_to: RUN12
+  full_system_noise_deferred_to: RUN09
+  sensitivity_tolerance_deferred_to: RUN10
+  bench_correlation_required: true

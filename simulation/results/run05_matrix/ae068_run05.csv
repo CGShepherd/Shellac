@@ -1,0 +1,6 @@
+metric,value,unit,pass
+direct_worst_abs_insertion,0.0008611790180171259,dB,True
+mono_equal_left,-0.018608121037099794,dB,True
+mono_weight_mismatch,0.0,%,True
+stereo_sep_1khz,98.01609783489155,dB,True
+stereo_sep_20khz,71.9956387871812,dB,True

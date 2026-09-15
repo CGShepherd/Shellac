@@ -32,6 +32,11 @@ simulation/results/run04_lf_trade/*
 !simulation/results/run04_lf_trade/ae067_run04.json
 !simulation/results/run04_lf_trade/ae067_run04.csv
 !simulation/results/run04_lf_trade/ae067_run04.md
+!simulation/results/run05_matrix/
+simulation/results/run05_matrix/*
+!simulation/results/run05_matrix/ae068_run05.json
+!simulation/results/run05_matrix/ae068_run05.csv
+!simulation/results/run05_matrix/ae068_run05.md
 
 # Local simulator/vendor caches and transient qualification work
 .shellac_reconciliation/

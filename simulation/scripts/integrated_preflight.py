@@ -174,6 +174,57 @@ def main():
         if dr039.get("generator_migration_implied") is not False:
             errors.append("DR039 selected-next contract must not imply generator migration")
 
+    run05_matrix = data.get("run05_matrix")
+    if run05_matrix is not None:
+        if run05_matrix.get("authority") != "AE-068":
+            errors.append("RUN05 matrix requires AE-068 authority")
+        if run05_matrix.get("status") != "QUALIFIED_STEADY_STATE_TRANSIENT_OPEN":
+            errors.append("RUN05 matrix has uncontrolled status")
+        if run05_matrix.get("architecture") != "AE041_A1_3P4T_PASSIVE_MATRIX":
+            errors.append("AE-068 matrix architecture mismatch")
+        if run05_matrix.get("generator_migration_implied") is not False:
+            errors.append("AE-068 must not imply generator migration")
+        if run05_matrix.get("input_return_ohm") != 2200000:
+            errors.append("AE-068 input-return contract mismatch")
+        if run05_matrix.get("mono_resistor_ohm") != 4700:
+            errors.append("AE-068 mono-resistor contract mismatch")
+        result_rel = run05_matrix.get("result_record")
+        if not result_rel:
+            errors.append("AE-068 requires a RUN05 result record")
+        else:
+            result_path = ROOT / result_rel
+            if not result_path.is_file():
+                errors.append("AE-068 RUN05 result record is missing")
+            else:
+                try:
+                    run05 = json.loads(result_path.read_text(encoding="utf-8"))
+                except Exception as exc:
+                    errors.append(f"AE-068 RUN05 result unreadable: {exc}")
+                else:
+                    if run05.get("authority") != "AE-068" or run05.get("run_id") != "RUN05":
+                        errors.append("AE-068 RUN05 authority/run_id mismatch")
+                    if run05.get("generator_migration_implied") is not False:
+                        errors.append("AE-068 result incorrectly implies generator migration")
+                    direct = run05.get("direct_insertion", {})
+                    mono = run05.get("mono_nominal", {})
+                    xtalk = run05.get("stereo_crosstalk", {})
+                    if direct.get("pass") is not True:
+                        errors.append("AE-068 direct insertion is not PASS")
+                    if mono.get("hard_pass") is not True or mono.get("preferred_pass") is not True:
+                        errors.append("AE-068 mono steady-state gate is not PASS")
+                    if xtalk.get("hard_pass") is not True:
+                        errors.append("AE-068 crosstalk gate is not PASS")
+                    ps = xtalk.get("parasitic_sweep_pf", {}).get("10.0", {})
+                    l20 = ps.get("l_to_r_separation_db", {}).get("20000")
+                    r20 = ps.get("r_to_l_separation_db", {}).get("20000")
+                    if l20 is None or r20 is None or min(l20, r20) <= 60.0:
+                        errors.append("AE-068 10 pF 20 kHz parasitic bracket evidence missing/failing")
+                    mm = run05.get("mono_pair_mismatch_sweep", {})
+                    if mm.get("0.25", {}).get("pass_max_0p25_percent") is not True:
+                        errors.append("AE-068 0.25% mono-pair matching evidence missing")
+                    if mm.get("0.5", {}).get("pass_max_0p25_percent") is not False:
+                        errors.append("AE-068 0.5% mono-pair rejection evidence missing")
+
     if errors:
         print("Integrated preflight: CONTRACT ERROR")
         for e in errors:
@@ -197,7 +248,11 @@ def main():
             )
             if run04_lf_trade is not None:
                 print("AE-067 RUN04 selected topology: " + str(run04_lf_trade.get("selected_topology")))
-                print("RUN05-RUN14 and explicit open findings remain under R-024.")
+                if run05_matrix is not None:
+                    print("AE-068 RUN05 matrix steady-state qualification: " + str(run05_matrix.get("status")))
+                    print("RUN06-RUN14 and explicit open findings remain under R-024.")
+                else:
+                    print("RUN05-RUN14 and explicit open findings remain under R-024.")
             else:
                 print("RUN04-RUN14 and explicit open findings remain under R-024.")
         else:

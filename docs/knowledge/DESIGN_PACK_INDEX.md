@@ -18,8 +18,8 @@ Current signal-chain status:
 - DR-038: architectural intent current — LT5400 precision SCH101 architecture retained; gain-selection implementation is under pre-SPICE reconciliation;
 - DR-039: selected pending implementation — AE-067 RUN04 confirms branch-local DC blocking: 1 uF / 330 kOhm only in the direct bypass branch, with the existing SCH107 high-pass branch providing intrinsic DC blocking; product-generator migration plus RUN09/RUN10/RUN12 and bench correlation remain open;
 - DR-040: current subject to the live implementation and subsequent assurance records;
-- AE-041 Rev A1: current control authority — 3P4T switched-summing matrix and current top-cover control architecture;
-- AE-042 through AE-067: current pre-SPICE/integrated-simulation assurance/evidence chain;
+- AE-041 Rev A1: current control authority — 3P4T switched-summing matrix and current top-cover control architecture; AE-068 qualifies RUN05 steady-state matrix behaviour while switching/mechanical qualification remains open;
+- AE-042 through AE-068: current pre-SPICE/integrated-simulation assurance/evidence chain;
 - prototype measured acceptance: open.
 
 This is not yet a manufacturing baseline. The next intended configuration milestone is the **Shellac Pre-SPICE Architecture Baseline** after repository reconciliation, clean regression and configuration-control closure.
@@ -82,14 +82,16 @@ AE-066 executes integrated AC RUN01-RUN03. RUN01 resolves the loading matrix whi
 
 AE-067 executes RUN04 and closes the DR-039/SCH107 architectural down-select. The branch-local direct-path 1 uF / 330 kOhm block passes the AE-049 LF criteria with nominal SCH107 values, adds no material noise penalty relative to the post-switch alternative, and limits the internal selector transient to about 3.79 mV under the RUN04 discriminator. The current common pre-split topology fails LF criteria; the post-switch common topology is rejected by its approximately 249.5 mV charge transient; and the x10-scaled alternative is rejected by LF/noise/value-engineering evidence. The topology is selected pending product-generator implementation; RUN09, RUN10, RUN12 and bench correlation remain open.
 
-AE-042 through AE-067 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-068 executes RUN05 for SCH104/SCH105. All four matrix states are exercised with L-only, R-only, equal, unequal and opposite-phase stimuli. Direct insertion, mono insertion/weighting and stereo crosstalk pass AE-049. A 5 pF lumped selector/PCB parasitic bracket gives approximately 98 dB separation at 1 kHz and 72 dB at 20 kHz; even 10 pF remains above the 60 dB 20 kHz minimum. The 2.2 MOhm returns are retained. The existing AE-041 A1 4.7 kOhm / 0.1% mono-resistor implementation remains current; RUN05 derives <=0.10% preferred / <=0.25% maximum pair mismatch as an input to RUN10 tolerance/value engineering, not as an AE-068 BOM relaxation. RUN09/RUN10/RUN12 and bench switch/parasitic correlation remain open.
+
+AE-042 through AE-068 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048, AE-049 and AE-050 remain respectively the qualification, numerical-acceptance and execution authorities for the simulation campaign. AE-053 defines the toolchain architecture used to execute those authorities and does not replace them.
 
 ## 4. Production/commissioning
 
 Still required:
-- completion of remaining integrated RUN05-RUN14 qualification under AE-048/049/050, plus the open Grado extended-band model/bench finding;
+- completion of remaining integrated RUN06-RUN14 qualification under AE-048/049/050, plus the open Grado extended-band model/bench finding;
 - integrated full-system configuration qualification following AE-059 reconciliation;
 - Shellac Pre-SPICE Architecture Baseline configuration milestone;
 - full-system LTspice qualification and sensitivity/value-engineering work;
