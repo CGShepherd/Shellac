@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "authority": "AE-066",
+  "run_id": "RUN02",
+  "status": "QUALIFIED_NOMINAL",
+  "pass": true,
+  "case_count": 3,
+  "cases": [
+    {
+      "gain": "LOW",
+      "nominal_gain_db": 14.0,
+      "rf_program_ohm": 332.0,
+      "rg_program_ohm": 1000000000000.0,
+      "gain_db": {
+        "20": 13.9371876071,
+        "1000": 13.9371881396,
+        "20000": 13.9374019118
+      },
+      "cmrr_db": {
+        "20": 120.8984116371,
+        "1000": 118.4549390176,
+        "20000": 96.08005498330002
+      },
+      "gain_checks": {
+        "20": true,
+        "1000": true,
+        "20000": true
+      },
+      "cmrr_checks": {
+        "20": true,
+        "1000": true,
+        "20000": true
+      },
+      "pass": true
+    },
+    {
+      "gain": "DEFAULT",
+      "nominal_gain_db": 18.0,
+      "rf_program_ohm": 1000000000000.0,
+      "rg_program_ohm": 1000000000000.0,
+      "gain_db": {
+        "20": 18.0208936509,
+        "1000": 18.020894244,
+        "20000": 18.0211324131
+      },
+      "cmrr_db": {
+        "20": 120.8984116299,
+        "1000": 118.454939016,
+        "20000": 96.08005498620001
+      },
+      "gain_checks": {
+        "20": true,
+        "1000": true,
+        "20000": true
+      },
+      "cmrr_checks": {
+        "20": true,
+        "1000": true,
+        "20000": true
+      },
+      "pass": true
+    },
+    {
+      "gain": "HIGH",
+      "nominal_gain_db": 22.0,
+      "rf_program_ohm": 1000000000000.0,
+      "rg_program_ohm": 866.0,
+      "gain_db": {
+        "20": 21.977958766,
+        "1000": 21.9779594407,
+        "20000": 21.9782307658
+      },
+      "cmrr_db": {
+        "20": 120.8984116332,
+        "1000": 118.45493901260001,
+        "20000": 96.0800549907
+      },
+      "gain_checks": {
+        "20": true,
+        "1000": true,
+        "20000": true
+      },
+      "cmrr_checks": {
+        "20": true,
+        "1000": true,
+        "20000": true
+      },
+      "pass": true
+    }
+  ],
+  "qualification_limit": "Nominal models only; tolerance/mismatch sensitivity remains RUN10."
+}

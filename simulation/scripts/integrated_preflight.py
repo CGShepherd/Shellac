@@ -85,6 +85,40 @@ def main():
     else:
         errors.append(f"integrated RUN00 has uncontrolled status {run00_status!r}")
 
+    integrated_ac_campaign = data.get("integrated_ac_campaign")
+    if integrated_ac_campaign is not None:
+        if integrated_ac_campaign.get("authority") != "AE-066":
+            errors.append("integrated AC campaign requires AE-066 authority")
+        if integrated_ac_campaign.get("generator_migration_implied") is not False:
+            errors.append("AE-066 integrated AC campaign must not imply generator migration")
+        summary_rel = integrated_ac_campaign.get("result_summary")
+        if not summary_rel:
+            errors.append("AE-066 integrated AC campaign requires a result summary")
+        else:
+            summary_path = ROOT / summary_rel
+            if not summary_path.is_file():
+                errors.append("AE-066 result summary is missing")
+            else:
+                try:
+                    ac_summary = json.loads(summary_path.read_text(encoding="utf-8"))
+                except Exception as exc:
+                    errors.append(f"AE-066 result summary is unreadable: {exc}")
+                else:
+                    if ac_summary.get("authority") != "AE-066":
+                        errors.append("AE-066 result summary authority mismatch")
+                    if ac_summary.get("hard_gate_pass") is not True:
+                        errors.append("AE-066 hard gate is not PASS")
+                    if ac_summary.get("generator_migration_implied") is not False:
+                        errors.append("AE-066 result incorrectly implies generator migration")
+                    expected = {
+                        "run01_status": ac_summary.get("run01", {}).get("status"),
+                        "run02_status": ac_summary.get("run02", {}).get("status"),
+                        "run03_status": ac_summary.get("run03", {}).get("status"),
+                    }
+                    for key, value in expected.items():
+                        if integrated_ac_campaign.get(key) != value:
+                            errors.append(f"AE-066 {key} does not match result summary")
+
     if errors:
         print("Integrated preflight: CONTRACT ERROR")
         for e in errors:
@@ -101,7 +135,14 @@ def main():
     print("Model-source gate RESOLVED by controlled qualification evidence.")
     if run00_status == "PASSED_NOMINAL_SANITY":
         print("SHELLAC_TOP implemented; genuine integrated RUN00 nominal sanity PASSED.")
-        print("Full RUN01-RUN14 qualification remains open.")
+        if integrated_ac_campaign is not None:
+            print(
+                "AE-066 RUN01-RUN03 campaign evidence present: "
+                + str(integrated_ac_campaign.get("status"))
+            )
+            print("RUN04-RUN14 and explicit open findings remain under R-024.")
+        else:
+            print("Full RUN01-RUN14 qualification remains open.")
     else:
         print("SHELLAC_TOP implementation may proceed; integrated RUN00 has NOT yet executed.")
     return 0

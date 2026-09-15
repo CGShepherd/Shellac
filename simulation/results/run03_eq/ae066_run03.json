@@ -1,0 +1,1062 @@
+{
+  "schema_version": 1,
+  "authority": "AE-066",
+  "run_id": "RUN03",
+  "status": "QUALIFIED_NOMINAL_ALL_25_STATES",
+  "pass": true,
+  "state_count": 25,
+  "execution_note": "Each state uses separate AC and zero-input transient decks because LTspice 26.0.2 batch execution rejects multiple analyses in one deck.",
+  "states": [
+    {
+      "case_id": "FLAT__FLAT",
+      "bass": "FLAT",
+      "treble": "FLAT",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "FLAT",
+      "max_model_vs_analytical_error_db": 4.0580840001475124e-05,
+      "target_max_error_db": 2.2797489999429e-05,
+      "max_lr_mismatch_db": 2.3080000624162398e-08,
+      "phase_l_deg": {
+        "20": -91.159469698,
+        "50": -83.2484589759,
+        "100": -77.3416546446,
+        "1000": -57.6560518336,
+        "10000": -37.6651122942,
+        "20000": -31.6445752848
+      },
+      "phase_r_deg": {
+        "20": -91.1587706265,
+        "50": -83.2480208683,
+        "100": -77.3418389104,
+        "1000": -57.656024858,
+        "10000": -37.6651098329,
+        "20000": -31.6445559335
+      },
+      "dc": {
+        "lf_l_v": 0.000100569021015,
+        "out_l_v": 0.00071290001506,
+        "lf_r_v": 0.000100569021015,
+        "out_r_v": 0.00071290001506
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_00_ac",
+        "dc_deck": "run03_00_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "FLAT__1600_Hz",
+      "bass": "FLAT",
+      "treble": "1600 Hz",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.001117910659747423,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 2.7489998943863725e-08,
+      "phase_l_deg": {
+        "20": -2.94142812194,
+        "50": 5.01502076274,
+        "100": 11.0272379069,
+        "1000": 30.070617782,
+        "10000": 38.1533766816,
+        "20000": 38.6258501877
+      },
+      "phase_r_deg": {
+        "20": -2.94142813472,
+        "50": 5.01502070998,
+        "100": 11.0272379523,
+        "1000": 30.0706177832,
+        "10000": 38.1533766836,
+        "20000": 38.625850187
+      },
+      "dc": {
+        "lf_l_v": 0.000100569021015,
+        "out_l_v": 0.00071290001506,
+        "lf_r_v": 0.000100569021015,
+        "out_r_v": 0.00071290001506
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_01_ac",
+        "dc_deck": "run03_01_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "FLAT__2121_Hz_RIAA",
+      "bass": "FLAT",
+      "treble": "2121 Hz RIAA",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.0010499461283899336,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 1.7990001044410064e-08,
+      "phase_l_deg": {
+        "20": -5.35282373219,
+        "50": 2.60462801962,
+        "100": 8.62041564448,
+        "1000": 28.0382924602,
+        "10000": 37.8418739524,
+        "20000": 38.4759181393
+      },
+      "phase_r_deg": {
+        "20": -5.352823726,
+        "50": 2.60462808613,
+        "100": 8.62041566417,
+        "1000": 28.038292453,
+        "10000": 37.8418739479,
+        "20000": 38.475918134
+      },
+      "dc": {
+        "lf_l_v": 0.000100569021015,
+        "out_l_v": 0.00071290001506,
+        "lf_r_v": 0.000100569021015,
+        "out_r_v": 0.00071290001506
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_02_ac",
+        "dc_deck": "run03_02_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "FLAT__3400_Hz",
+      "bass": "FLAT",
+      "treble": "3400 Hz",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.0008562554443667381,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 2.383000197170304e-08,
+      "phase_l_deg": {
+        "20": -9.47712886125,
+        "50": -1.51884755866,
+        "100": 4.4998959856,
+        "1000": 24.2623584077,
+        "10000": 37.0425857092,
+        "20000": 38.0924489796
+      },
+      "phase_r_deg": {
+        "20": -9.47712889381,
+        "50": -1.51884782386,
+        "100": 4.49989590149,
+        "1000": 24.2623584033,
+        "10000": 37.042585709,
+        "20000": 38.0924489846
+      },
+      "dc": {
+        "lf_l_v": 0.000100569021015,
+        "out_l_v": 0.00071290001506,
+        "lf_r_v": 0.000100569021015,
+        "out_r_v": 0.00071290001506
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_03_ac",
+        "dc_deck": "run03_03_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "FLAT__5800_Hz",
+      "bass": "FLAT",
+      "treble": "5800 Hz",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.000494701112101481,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 1.739000157763293e-08,
+      "phase_l_deg": {
+        "20": -14.0837503621,
+        "50": -6.12512461322,
+        "100": -0.105155307995,
+        "1000": 19.8106631669,
+        "10000": 35.5450435312,
+        "20000": 37.3607779116
+      },
+      "phase_r_deg": {
+        "20": -14.0837503963,
+        "50": -6.1251244322,
+        "100": -0.10515544128,
+        "1000": 19.8106631461,
+        "10000": 35.5450435284,
+        "20000": 37.3607779124
+      },
+      "dc": {
+        "lf_l_v": 0.000100569021015,
+        "out_l_v": 0.00071290001506,
+        "lf_r_v": 0.000100569021015,
+        "out_r_v": 0.00071290001506
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_04_ac",
+        "dc_deck": "run03_04_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "200_Hz__FLAT",
+      "bass": "200 Hz",
+      "treble": "FLAT",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-200-FLAT",
+      "max_model_vs_analytical_error_db": 0.0008432786795200542,
+      "target_max_error_db": 0.011458166827775784,
+      "max_lr_mismatch_db": 9.999803762816839e-11,
+      "phase_l_deg": {
+        "20": 31.8877309039,
+        "50": 34.6723599851,
+        "100": 34.336183234,
+        "1000": 20.1269584602,
+        "10000": 0.168072346772,
+        "20000": -6.11071447995
+      },
+      "phase_r_deg": {
+        "20": 31.8877309039,
+        "50": 34.6723599851,
+        "100": 34.336183234,
+        "1000": 20.1269584602,
+        "10000": 0.168072347693,
+        "20000": -6.11071447551
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_05_ac",
+        "dc_deck": "run03_05_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "200_Hz__1600_Hz",
+      "bass": "200 Hz",
+      "treble": "1600 Hz",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-200-1600",
+      "max_model_vs_analytical_error_db": 0.0010805259314317084,
+      "target_max_error_db": 0.030833289777845607,
+      "max_lr_mismatch_db": 4.000000330961484e-11,
+      "phase_l_deg": {
+        "20": 32.0438541424,
+        "50": 34.9534774252,
+        "100": 34.9102179343,
+        "1000": 32.4711005941,
+        "10000": 38.2636218407,
+        "20000": 38.6787041318
+      },
+      "phase_r_deg": {
+        "20": 32.0438541424,
+        "50": 34.9534774252,
+        "100": 34.9102179343,
+        "1000": 32.4711005941,
+        "10000": 38.2636218407,
+        "20000": 38.6787041318
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_06_ac",
+        "dc_deck": "run03_06_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "200_Hz__2121_Hz_RIAA",
+      "bass": "200 Hz",
+      "treble": "2121 Hz RIAA",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.001018544243066799,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 2.4002133613976184e-11,
+      "phase_l_deg": {
+        "20": 32.0062655659,
+        "50": 34.8861875991,
+        "100": 34.7747363504,
+        "1000": 30.9747784546,
+        "10000": 37.956118338,
+        "20000": 38.5296895997
+      },
+      "phase_r_deg": {
+        "20": 32.0062655659,
+        "50": 34.8861875991,
+        "100": 34.7747363504,
+        "1000": 30.9747784546,
+        "10000": 37.956118338,
+        "20000": 38.5296895997
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_07_ac",
+        "dc_deck": "run03_07_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "200_Hz__3400_Hz",
+      "bass": "200 Hz",
+      "treble": "3400 Hz",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-200-3400",
+      "max_model_vs_analytical_error_db": 0.0008784347696639827,
+      "target_max_error_db": 0.027245133758093232,
+      "max_lr_mismatch_db": 3.000089066063083e-11,
+      "phase_l_deg": {
+        "20": 31.9616507536,
+        "50": 34.8059933944,
+        "100": 34.6116782809,
+        "1000": 28.4595158589,
+        "10000": 37.1677630058,
+        "20000": 38.1486399433
+      },
+      "phase_r_deg": {
+        "20": 31.9616507536,
+        "50": 34.8059933944,
+        "100": 34.6116782809,
+        "1000": 28.459515859,
+        "10000": 37.1677630058,
+        "20000": 38.1486399434
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_08_ac",
+        "dc_deck": "run03_08_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "200_Hz__5800_Hz",
+      "bass": "200 Hz",
+      "treble": "5800 Hz",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-200-5800",
+      "max_model_vs_analytical_error_db": 0.0008591225875109743,
+      "target_max_error_db": 0.011359070104644431,
+      "max_lr_mismatch_db": 1.000017846308765e-10,
+      "phase_l_deg": {
+        "20": 31.9313036136,
+        "50": 34.7512455622,
+        "100": 34.4993775705,
+        "1000": 25.9914228257,
+        "10000": 35.693573994,
+        "20000": 37.4218902828
+      },
+      "phase_r_deg": {
+        "20": 31.9313036136,
+        "50": 34.7512455622,
+        "100": 34.4993775705,
+        "1000": 25.9914228257,
+        "10000": 35.693573994,
+        "20000": 37.4218902828
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_09_ac",
+        "dc_deck": "run03_09_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "400_Hz__FLAT",
+      "bass": "400 Hz",
+      "treble": "FLAT",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-400-FLAT",
+      "max_model_vs_analytical_error_db": 0.0008950537345633336,
+      "target_max_error_db": 0.007184108679394896,
+      "max_lr_mismatch_db": 9.999956418482725e-11,
+      "phase_l_deg": {
+        "20": 32.4946982162,
+        "50": 35.7179540053,
+        "100": 36.2135681539,
+        "1000": 26.3076634393,
+        "10000": 6.69474528951,
+        "20000": 0.473789977492
+      },
+      "phase_r_deg": {
+        "20": 32.4946982162,
+        "50": 35.7179540053,
+        "100": 36.2135681539,
+        "1000": 26.3076634393,
+        "10000": 6.69474528932,
+        "20000": 0.47378997798
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_10_ac",
+        "dc_deck": "run03_10_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "400_Hz__1600_Hz",
+      "bass": "400 Hz",
+      "treble": "1600 Hz",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-400-1600",
+      "max_model_vs_analytical_error_db": 0.0009939161918524064,
+      "target_max_error_db": 0.029203915689027582,
+      "max_lr_mismatch_db": 2.999911430379143e-11,
+      "phase_l_deg": {
+        "20": 32.6403718703,
+        "50": 35.9676409369,
+        "100": 36.6789493065,
+        "1000": 34.4121728372,
+        "10000": 38.3839187232,
+        "20000": 38.7352730511
+      },
+      "phase_r_deg": {
+        "20": 32.6403718703,
+        "50": 35.9676409369,
+        "100": 36.6789493065,
+        "1000": 34.4121728372,
+        "10000": 38.3839187232,
+        "20000": 38.7352730511
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_11_ac",
+        "dc_deck": "run03_11_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "400_Hz__2121_Hz_RIAA",
+      "bass": "400 Hz",
+      "treble": "2121 Hz RIAA",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.0009410609304900674,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 2.000177801164682e-11,
+      "phase_l_deg": {
+        "20": 32.6052831628,
+        "50": 35.9077924349,
+        "100": 36.5685888571,
+        "1000": 33.2368605736,
+        "10000": 38.0807191101,
+        "20000": 38.587234084
+      },
+      "phase_r_deg": {
+        "20": 32.6052831628,
+        "50": 35.9077924349,
+        "100": 36.5685888571,
+        "1000": 33.2368605736,
+        "10000": 38.0807191101,
+        "20000": 38.587234084
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_12_ac",
+        "dc_deck": "run03_12_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "400_Hz__3400_Hz",
+      "bass": "400 Hz",
+      "treble": "3400 Hz",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-400-3400",
+      "max_model_vs_analytical_error_db": 0.0009095200761208844,
+      "target_max_error_db": 0.025638462279276908,
+      "max_lr_mismatch_db": 1.000008964524568e-10,
+      "phase_l_deg": {
+        "20": 32.5636486414,
+        "50": 35.836533782,
+        "100": 36.4361907545,
+        "1000": 31.3659746285,
+        "10000": 37.3041087617,
+        "20000": 38.2087560359
+      },
+      "phase_r_deg": {
+        "20": 32.5636486414,
+        "50": 35.836533782,
+        "100": 36.4361907545,
+        "1000": 31.3659746285,
+        "10000": 37.3041087617,
+        "20000": 38.2087560359
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_13_ac",
+        "dc_deck": "run03_13_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "400_Hz__5800_Hz",
+      "bass": "400 Hz",
+      "treble": "5800 Hz",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-400-5800",
+      "max_model_vs_analytical_error_db": 0.0008990159933226494,
+      "target_max_error_db": 0.007268854384467005,
+      "max_lr_mismatch_db": 9.999934214022232e-11,
+      "phase_l_deg": {
+        "20": 32.5353368826,
+        "50": 35.7879283854,
+        "100": 36.3452790684,
+        "1000": 29.6739368267,
+        "10000": 35.8549058938,
+        "20000": 37.4872328232
+      },
+      "phase_r_deg": {
+        "20": 32.5353368826,
+        "50": 35.7879283854,
+        "100": 36.3452790684,
+        "1000": 29.6739368267,
+        "10000": 35.8549058938,
+        "20000": 37.4872328232
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_14_ac",
+        "dc_deck": "run03_14_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "500_Hz_78__FLAT",
+      "bass": "500 Hz 78",
+      "treble": "FLAT",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-500-FLAT",
+      "max_model_vs_analytical_error_db": 0.000874227859647192,
+      "target_max_error_db": 0.004374188092377551,
+      "max_lr_mismatch_db": 9.999956418482725e-11,
+      "phase_l_deg": {
+        "20": 32.6108329405,
+        "50": 35.9153775003,
+        "100": 36.5698016366,
+        "1000": 28.0980812792,
+        "10000": 8.72204577344,
+        "20000": 2.5477597951
+      },
+      "phase_r_deg": {
+        "20": 32.6108329405,
+        "50": 35.9153775003,
+        "100": 36.5698016366,
+        "1000": 28.0980812792,
+        "10000": 8.72204577335,
+        "20000": 2.54775979518
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_15_ac",
+        "dc_deck": "run03_15_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "500_Hz_78__1600_Hz",
+      "bass": "500 Hz 78",
+      "treble": "1600 Hz",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-500-1600",
+      "max_model_vs_analytical_error_db": 0.0009581754065166592,
+      "target_max_error_db": 0.03129395893104814,
+      "max_lr_mismatch_db": 1.000017846308765e-10,
+      "phase_l_deg": {
+        "20": 32.7545877387,
+        "50": 36.1595312158,
+        "100": 37.0169547541,
+        "1000": 35.161029094,
+        "10000": 38.4431653334,
+        "20000": 38.7638414507
+      },
+      "phase_r_deg": {
+        "20": 32.7545877387,
+        "50": 36.1595312158,
+        "100": 37.0169547541,
+        "1000": 35.161029094,
+        "10000": 38.4431653334,
+        "20000": 38.7638414507
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_16_ac",
+        "dc_deck": "run03_16_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "500_Hz_78__2121_Hz_RIAA",
+      "bass": "500 Hz 78",
+      "treble": "2121 Hz RIAA",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.0009096501551510983,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 2.999911430379143e-11,
+      "phase_l_deg": {
+        "20": 32.7199583306,
+        "50": 36.100994858,
+        "100": 36.9108324011,
+        "1000": 34.0890586489,
+        "10000": 38.1420628581,
+        "20000": 38.6162927321
+      },
+      "phase_r_deg": {
+        "20": 32.7199583306,
+        "50": 36.100994858,
+        "100": 36.9108324011,
+        "1000": 34.0890586489,
+        "10000": 38.1420628581,
+        "20000": 38.6162927321
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_17_ac",
+        "dc_deck": "run03_17_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "500_Hz_78__3400_Hz",
+      "bass": "500 Hz 78",
+      "treble": "3400 Hz",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-500-3400",
+      "max_model_vs_analytical_error_db": 0.0008804311012973187,
+      "target_max_error_db": 0.02773898039129641,
+      "max_lr_mismatch_db": 2.000000165480742e-11,
+      "phase_l_deg": {
+        "20": 32.6788711717,
+        "50": 36.0313100831,
+        "100": 36.7835874618,
+        "1000": 32.4111136079,
+        "10000": 37.3711675657,
+        "20000": 38.2391065863
+      },
+      "phase_r_deg": {
+        "20": 32.6788711717,
+        "50": 36.0313100831,
+        "100": 36.7835874618,
+        "1000": 32.4111136079,
+        "10000": 37.3711675657,
+        "20000": 38.2391065863
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_18_ac",
+        "dc_deck": "run03_18_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "500_Hz_78__5800_Hz",
+      "bass": "500 Hz 78",
+      "treble": "5800 Hz",
+      "target_kind": "NAMED_HISTORICAL",
+      "target_identifier": "78-500-5800",
+      "max_model_vs_analytical_error_db": 0.0008736122246659761,
+      "target_max_error_db": 0.004292359613792485,
+      "max_lr_mismatch_db": 2.000177801164682e-11,
+      "phase_l_deg": {
+        "20": 32.6509331048,
+        "50": 35.9837854905,
+        "100": 36.6962581698,
+        "1000": 30.9283206668,
+        "10000": 35.9340846429,
+        "20000": 37.5202071968
+      },
+      "phase_r_deg": {
+        "20": 32.6509331048,
+        "50": 35.9837854905,
+        "100": 36.6962581698,
+        "1000": 30.9283206668,
+        "10000": 35.9340846429,
+        "20000": 37.5202071968
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_19_ac",
+        "dc_deck": "run03_19_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "TRUE_RIAA_3180_318_us__FLAT",
+      "bass": "TRUE RIAA 3180/318 us",
+      "treble": "FLAT",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.0007647150995957475,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 1.0000200667548143e-10,
+      "phase_l_deg": {
+        "20": 25.7992315481,
+        "50": 31.880395459,
+        "100": 34.3376846308,
+        "1000": 27.4935024171,
+        "10000": 8.18278757758,
+        "20000": 2.06596490346
+      },
+      "phase_r_deg": {
+        "20": 25.7992315481,
+        "50": 31.880395459,
+        "100": 34.3376846308,
+        "1000": 27.4935024171,
+        "10000": 8.18278757766,
+        "20000": 2.06596490191
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_20_ac",
+        "dc_deck": "run03_20_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "TRUE_RIAA_3180_318_us__1600_Hz",
+      "bass": "TRUE RIAA 3180/318 us",
+      "treble": "1600 Hz",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.0009637579106005489,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 4.000355602329364e-11,
+      "phase_l_deg": {
+        "20": 26.1111085437,
+        "50": 32.2657644171,
+        "100": 34.9116236089,
+        "1000": 34.8981008693,
+        "10000": 38.426075896,
+        "20000": 38.7565961839
+      },
+      "phase_r_deg": {
+        "20": 26.1111085437,
+        "50": 32.2657644171,
+        "100": 34.9116236089,
+        "1000": 34.8981008693,
+        "10000": 38.426075896,
+        "20000": 38.756596184
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_21_ac",
+        "dc_deck": "run03_21_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "TRUE_RIAA_3180_318_us__2121_Hz_RIAA",
+      "bass": "TRUE RIAA 3180/318 us",
+      "treble": "2121 Hz RIAA",
+      "target_kind": "RIAA",
+      "target_identifier": "RIAA",
+      "max_model_vs_analytical_error_db": 0.0009136258272413045,
+      "target_max_error_db": 0.008280034049128915,
+      "max_lr_mismatch_db": 2.999911430379143e-11,
+      "phase_l_deg": {
+        "20": 26.0365291081,
+        "50": 32.1739394302,
+        "100": 34.7761641992,
+        "1000": 33.7909959722,
+        "10000": 38.1243701936,
+        "20000": 38.6089233643
+      },
+      "phase_r_deg": {
+        "20": 26.0365291081,
+        "50": 32.1739394302,
+        "100": 34.7761641992,
+        "1000": 33.7909959722,
+        "10000": 38.1243701936,
+        "20000": 38.6089233643
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_22_ac",
+        "dc_deck": "run03_22_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "TRUE_RIAA_3180_318_us__3400_Hz",
+      "bass": "TRUE RIAA 3180/318 us",
+      "treble": "3400 Hz",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.0007801893805794435,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 2.000177801164682e-11,
+      "phase_l_deg": {
+        "20": 25.9475937125,
+        "50": 32.064163489,
+        "100": 34.6131331545,
+        "1000": 32.0481903312,
+        "10000": 37.3518314656,
+        "20000": 38.2314101912
+      },
+      "phase_r_deg": {
+        "20": 25.9475937125,
+        "50": 32.064163489,
+        "100": 34.6131331545,
+        "1000": 32.0481903312,
+        "10000": 37.3518314656,
+        "20000": 38.2314101912
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_23_ac",
+        "dc_deck": "run03_23_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    },
+    {
+      "case_id": "TRUE_RIAA_3180_318_us__5800_Hz",
+      "bass": "TRUE RIAA 3180/318 us",
+      "treble": "5800 Hz",
+      "target_kind": "UNNAMED_ADJUSTMENT",
+      "target_identifier": null,
+      "max_model_vs_analytical_error_db": 0.0007696589107961671,
+      "target_max_error_db": null,
+      "max_lr_mismatch_db": 4.000000330961484e-11,
+      "phase_l_deg": {
+        "20": 25.8868386741,
+        "50": 31.9890043438,
+        "100": 34.5008512757,
+        "1000": 30.4961325513,
+        "10000": 35.911265562,
+        "20000": 37.5118466379
+      },
+      "phase_r_deg": {
+        "20": 25.8868386741,
+        "50": 31.9890043438,
+        "100": 34.5008512757,
+        "1000": 30.4961325513,
+        "10000": 35.911265562,
+        "20000": 37.5118466379
+      },
+      "dc": {
+        "lf_l_v": 0.00732487253845,
+        "out_l_v": 0.0158838890493,
+        "lf_r_v": 0.00732487253845,
+        "out_r_v": 0.0158838890493
+      },
+      "analysis_execution": {
+        "ac_deck": "run03_24_ac",
+        "dc_deck": "run03_24_dc",
+        "reason": "LTspice 26.0.2 batch mode permits one analysis per deck"
+      },
+      "correlation_pass": true,
+      "target_pass": true,
+      "lr_pass": true,
+      "dc_pass": true,
+      "pass": true
+    }
+  ],
+  "qualification_limit": "Nominal component values only; tolerance/Monte Carlo/headroom/noise remain later runs."
+}

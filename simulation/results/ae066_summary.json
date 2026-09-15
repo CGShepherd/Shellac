@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "authority": "AE-066",
+  "title": "Integrated AC RUN01-RUN03 campaign",
+  "repository_commit_before_ae066": "269f1273993ac40ccb51f6cab54fc46daf02e091",
+  "timestamp_utc": "2026-09-15T08:04:09.884543+00:00",
+  "simulator": "LTspice",
+  "simulator_executable_sha256": "a94eb1789084db9f46375cce05110e03578f9cdb931867a0faaca5b200793f06",
+  "model_semantics": "SELECTED_NEXT_CANDIDATE_ANALYSIS",
+  "generator_migration_implied": false,
+  "run01": {
+    "status": "PARTIAL_GRADO_EXTENDED_BAND_MODEL_VALIDITY_OPEN",
+    "hard_gate_pass": true,
+    "result_record": "simulation/results/run01_input_loading/ae066_run01.json"
+  },
+  "run02": {
+    "status": "QUALIFIED_NOMINAL",
+    "pass": true,
+    "result_record": "simulation/results/run02_gain_cmrr/ae066_run02.json"
+  },
+  "run03": {
+    "status": "QUALIFIED_NOMINAL_ALL_25_STATES",
+    "pass": true,
+    "result_record": "simulation/results/run03_eq/ae066_run03.json"
+  },
+  "campaign_status": "PASS_WITH_GRADO_EXTENDED_BAND_OPEN",
+  "hard_gate_pass": true,
+  "open_findings": [
+    "GRADO_78C_EXTENDED_20_TO_50KHZ_MODEL_VALIDITY",
+    "RUN01_LOADING_MATRIX_CONTAINS_REJECTED_OR_REVIEW_COMBINATIONS"
+  ],
+  "source_resolution": {
+    "OPA1656": {
+      "filename": "OPA1656.LIB",
+      "sha256": "9847ed60c62e792ee6f1c84899278a3c11ce71a6d21804bdd88f51199f1ba055"
+    },
+    "OPA1612": {
+      "filename": "OPA161x.LIB",
+      "sha256": "c86df5d4b2d26ec196c0a6158a61004a6747aec5440fcc2031674ad62a448ef7"
+    },
+    "LT5400": {
+      "filename": "LT5400.lib",
+      "sha256": "f2c8ec58c2573983a8211393f7bcd27792769155b9ecf494ad027155b3e1d553"
+    }
+  },
+  "remaining_runs": [
+    "RUN04",
+    "RUN05",
+    "RUN06",
+    "RUN07",
+    "RUN08",
+    "RUN09",
+    "RUN10",
+    "RUN11",
+    "RUN12",
+    "RUN13",
+    "RUN14"
+  ]
+}

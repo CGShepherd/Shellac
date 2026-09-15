@@ -101,6 +101,7 @@ pre_spice_assurance:
   AE-063: docs/design_pack/AE-063_SCH108_SMA_Clamp_and_SPICE_Model_Reconciliation_Rev_A0.md
   AE-064: docs/design_pack/AE-064_Cartridge_Behavioural_Model_Qualification_and_Integrated_Source_Gate_Closure_Rev_A0.md
   AE-065: docs/design_pack/AE-065_SHELLAC_TOP_Implementation_and_Integrated_RUN00_Rev_A0.md
+  AE-066: docs/design_pack/AE-066_Integrated_AC_RUN01_RUN03_and_Infrastructure_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

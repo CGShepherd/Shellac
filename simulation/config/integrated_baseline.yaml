@@ -131,3 +131,13 @@ integrated_run00:
   shellac_top_implemented: true
   shellac_top_run00_executed: true
   result_record: simulation/results/run00_sanity/ae065_integrated_run00.json
+
+integrated_ac_campaign:
+  authority: AE-066
+  status: PASS_WITH_GRADO_EXTENDED_BAND_OPEN
+  run01_status: PARTIAL_GRADO_EXTENDED_BAND_MODEL_VALIDITY_OPEN
+  run02_status: QUALIFIED_NOMINAL
+  run03_status: QUALIFIED_NOMINAL_ALL_25_STATES
+  generator_migration_implied: false
+  result_summary: simulation/results/ae066_summary.json
+  remaining_runs: [RUN04, RUN05, RUN06, RUN07, RUN08, RUN09, RUN10, RUN11, RUN12, RUN13, RUN14]

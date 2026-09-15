@@ -1,0 +1,177 @@
+schema_version: 1
+authority: AE-066
+research_date: 2026-09-14
+purpose: Forward source preparation for RUN04-RUN06. No candidate below is manufacturing authority.
+
+sch108_output_ferrite:
+  current_product_state: GENERIC_0805_FERRITE_OPEN
+  reason_for_study: >
+    RUN06 requires frequency-dependent connector/output isolation behaviour;
+    AE-065 used a 0.05 ohm DC equivalent only.
+  candidates:
+    - manufacturer: Murata
+      mpn: BLM21PG600SN1D
+      package: 2012_0805
+      impedance_100mhz_ohm: 60
+      dc_resistance_max_ohm: 0.020
+      rated_current_ma: 3500
+      manufacturer_simulation_range: 1MHz_to_3GHz
+      source: https://www.murata.com/-/media/webrenewal/tool/library/common-pdf/static-model/component-list-fb-s-2602.ashx
+      status: CANDIDATE_LOW_IMPEDANCE_BRACKET
+    - manufacturer: Murata
+      mpn: BLM21PG221SN1D
+      package: 2012_0805
+      impedance_100mhz_ohm: 220
+      dc_resistance_max_ohm: 0.045
+      rated_current_ma: 2000
+      manufacturer_simulation_range: 1MHz_to_3GHz
+      source: https://www.murata.com/en-eu/api/pdfdownloadapi?cate=cgsubChipFerriBead&partno=BLM21PG221SN1D
+      status: CANDIDATE_HIGH_IMPEDANCE_BRACKET
+  model_policy: >
+    Use manufacturer simulation/S-parameter data locally for RUN06 when acquired.
+    Do not commit Murata payloads unless redistribution rights are established.
+
+that1646_sense_capacitor:
+  electrical_requirement: 10uF_bipolar_nonpolar_35V_min_20pct
+  current_generator_footprint: Capacitor_THT:C_Radial_D5.0mm_H5.0mm_P2.00mm
+  preferred_candidate:
+    manufacturer: Panasonic
+    mpn: ECEA1VN100U
+    series: SU-A
+    capacitance_uf: 10
+    voltage_v: 35
+    polarity: BIPOLAR
+    tolerance_percent: 20
+    body_diameter_mm: 5.0
+    body_length_mm: 11.0
+    lead_pitch_mm: 2.0
+    manufacturer_source: https://industrial.panasonic.com/ww/products/pt/aluminum-cap-lead/models/ECEA1VN100U
+    uk_distribution_source: https://uk.farnell.com/panasonic/ecea1vn100u/cap-10-f-35v-20/dp/2326033
+    status: PREFERRED_MECHANICAL_CANDIDATE_NOT_FROZEN
+  finding: >
+    Electrical diameter/pitch policy is viable, but the current H5.0 footprint
+    height is inconsistent with the sourced 11 mm body. Reconcile before PCB
+    mechanical freeze; do not silently change the product generator in AE-066.
+
+eq_rotary:
+  current_authority: NKK_NR01_FAMILY_EXACT_SUFFIX_OPEN
+  base_candidate:
+    manufacturer: NKK
+    mpn: NR01105ANG13
+    poles: 1
+    throws_positions: 5
+    timing: NON_SHORTING_BBM
+    contacts: GOLD
+    mounting: THROUGH_HOLE
+    angle_deg: 45
+    source: https://www.digikey.co.uk/en/products/detail/nkk-switches/NR01105ANG13/7491313
+  knobbed_candidates:
+    treble_black_no_flange: NR01105ANG13-1A
+    bass_red_flanged: NR01105ANG13-2C
+    black_flanged: NR01105ANG13-2A
+    note: Final flange/integral-knob geometry and the project's external-knob strategy must be reconciled; no suffix is frozen by AE-066.
+  official_family_source: https://www.nkk.com/pdf/rotary_NR01.pdf
+  status: CANDIDATES_IDENTIFIED_EXACT_MECHANICAL_SUFFIX_OPEN
+
+sch101_gain_service_hardware:
+  shunt:
+    manufacturer: Samtec
+    mpn: MNT-104-BK-G
+    positions: 4
+    pitch_mm: 2.54
+    source: https://www.samtec.com/products/mnt
+  header:
+    manufacturer: Samtec
+    mpn: TSW-104-07-G-D
+    pins: 8
+    rows: 2
+    pitch_mm: 2.54
+    plating: 10uin_gold_flash
+    source: https://www.samtec.com/products/tsw-104-07-g-d
+  status: AE042_CANDIDATES_CORROBORATED_PAIRING_ORIENTATION_STILL_REQUIRES_VERIFICATION
+
+dr039_sch107_passive_candidates:
+  direct_branch_dc_block:
+    requirement: 1uF_film_330k_return
+    capacitor_family_candidate:
+      manufacturer: WIMA
+      series: MKS_2
+      dielectric: PET_FILM
+      capacitance_uf: 1.0
+      voltage_candidate_vdc: 63
+      tolerance_candidate_percent: 5
+      pitch_mm: 5
+      manufacturer_datasheet: https://www.wima.de/wp-content/uploads/media/e_WIMA_MKS_2.pdf
+      status: FAMILY_CANDIDATE_EXACT_ORDER_CODE_OPEN
+    note: >
+      63 V is ample for the nominal audio path; RUN04 must still judge LF
+      settling/interaction before the branch-local topology is product-migrated.
+
+  rumble_filter_timing_capacitors:
+    requirement: 470nF_film_50V_min_left_right_match_1pct_or_better
+    capacitor_family_candidate:
+      manufacturer: WIMA
+      series: MKS_2
+      dielectric: PET_FILM
+      capacitance_nf: 470
+      voltage_candidate_vdc: 63
+      standard_tolerance_candidate_percent: 5
+      pitch_mm: 5
+      manufacturer_datasheet: https://www.wima.de/wp-content/uploads/media/e_WIMA_MKS_2.pdf
+      status: FAMILY_CANDIDATE_HAND_MATCH_STUDY
+    selection_policy: >
+      Do not pay automatically for unnecessary absolute precision. For the
+      one-off build, evaluate ordinary 5% film parts plus measured left/right
+      matching against RUN04/RUN10 sensitivity before specifying a premium
+      tolerance.
+
+sch103_timing_capacitor_source_feasibility:
+  policy_context: >
+    Current generator policy requests C0G/NP0 and 1% timing capacitors with
+    50 V minimum rating, normally 1206 at 27 nF and above. AE-066 does not
+    change that policy; this section records current sourcing evidence and
+    value-engineering candidates for RUN10/procurement closure.
+  verified_current_candidates:
+    - {value_nf: 33, package: 1206, voltage_v: 50, tolerance_percent: 1, dielectric: C0G, manufacturer: KEMET, mpn: C1206C333F5GECAUTO7210}
+    - {value_nf: 56, package: 1206, voltage_v: 50, tolerance_percent: 1, dielectric: C0G, manufacturer: KEMET, mpn: C1206C563F5GACTU}
+    - {value_nf: 68, package: 1206, voltage_v: 50, tolerance_percent: 1, dielectric: C0G, manufacturer: KEMET, mpn: C1206C683F5GACTU}
+    - {value_nf: 100, package: 1206, voltage_v: 50, tolerance_percent: 1, dielectric: C0G, manufacturer: Murata, mpn: GCM31C5C1H104FA16L}
+    - {value_nf: 12, package: 0805, voltage_v: 50, tolerance_percent: 1, dielectric: C0G, manufacturer: Murata, mpn: GCM2195C1H123FA16D}
+    - {value_nf: 4.7, package: 0805, voltage_v: 50, tolerance_percent: 1, dielectric: C0G, manufacturer: KEMET, mpn: C0805C472F5GECTU}
+    - {value_nf: 2.4, package: 0603, voltage_v: 50, tolerance_percent: 1, dielectric: C0G, manufacturer: KEMET, mpn: C0603C242F5GACTU}
+  open_source_findings:
+    - >
+      A current 120 nF, 1206, 50 V, C0G, 1% part was not identified in the
+      AE-066 UK distributor/manufacturer search. Murata 120 nF C0G 1206 parts
+      are readily identifiable at 25 V / 5%, so the capacitance itself is not
+      exotic; the present 50 V / 1% / 1206 combination is the sourcing issue.
+    - >
+      27 nF, 1206, 50 V C0G is readily identifiable at 5%, but AE-066 did not
+      identify a current 1% example in the searched UK channels. This affects
+      the existing TRUE-RIAA 27 nF + 2.4 nF decomposition and should be
+      reconciled by sourcing, hand-selection, or an alternative decomposition.
+  value_engineering_candidates:
+    treble_1600:
+      current_aggregate_nf: 132.0
+      current_parts_nf: [120.0, 12.0]
+      current_nominal_pole_hz: 1607.6257
+      candidate_aggregate_nf: 133.0
+      candidate_parts_nf: [100.0, 33.0]
+      candidate_nominal_pole_hz: 1595.5383
+      analytical_target_error_30hz_15khz_db_current_approx: 0.0293
+      analytical_target_error_30hz_15khz_db_candidate_approx: 0.0172
+      source_advantage: BOTH_CANDIDATE_PARTS_VERIFIED_50V_C0G_1PCT_1206
+      status: RUN10_VALUE_ENGINEERING_CANDIDATE_NOT_AUTHORITY
+      note: >
+        The 100 nF + 33 nF option appears both easier to source and nominally
+        closer to the 1600 Hz target than 120 nF + 12 nF. It must not replace
+        the current electrically-closed network until controlled SPICE /
+        sensitivity review confirms system-level equivalence and cost/area.
+  source_urls:
+    33n_kemet: https://www.mouser.co.uk/en/ProductDetail/KEMET/C1206C333F5GECAUTO7210
+    56n_kemet: https://www.mouser.co.uk/en/ProductDetail/KEMET/C1206C563F5GACTU
+    68n_kemet: https://www.mouser.co.uk/en/ProductDetail/KEMET/C1206C683F5GACTU
+    100n_murata: https://www.mouser.co.uk/en/ProductDetail/Murata-Electronics/GCM31C5C1H104FA16L
+    12n_murata: https://www.mouser.co.uk/en/ProductDetail/Murata-Electronics/GCM2195C1H123FA16D
+    4n7_kemet: https://www.mouser.co.uk/en/ProductDetail/KEMET/C0805C472F5GECTU
+    2n4_kemet: https://www.mouser.co.uk/en/ProductDetail/KEMET/C0603C242F5GACTU

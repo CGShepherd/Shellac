@@ -1,0 +1,55 @@
+schema_version: 1
+authority: AE-066
+purpose: Reusable exact-hash acquisition metadata for externally controlled SPICE sources.
+ltspice:
+  executable_user_relative_path: AppData/Local/Programs/ADI/LTspice/LTspice.exe
+  executable_sha256: a94eb1789084db9f46375cce05110e03578f9cdb931867a0faaca5b200793f06
+
+policy:
+  vendor_payloads_committed_to_repository: false
+  exact_hash_required_before_use: true
+  redistribution_review_required_before_commit: true
+  search_local_qualification_caches_first: true
+
+sources:
+  OPA1656:
+    source_type: ZIP_MEMBER
+    vendor: Texas Instruments
+    archive_url: https://www.ti.com/lit/zip/SBOMAW6
+    archive_sha256: 8f696ee73bfb9a5d7d15b70ed27629dfe5b92ba54e8da894aa25fe51d3cb312f
+    member: OPA1656.LIB
+    model_sha256: 9847ed60c62e792ee6f1c84899278a3c11ce71a6d21804bdd88f51199f1ba055
+    redistribution_status: NOT_YET_APPROVED
+
+  OPA1612:
+    source_type: ZIP_MEMBER
+    vendor: Texas Instruments
+    archive_url: https://www.ti.com/lit/zip/SBOM396
+    archive_sha256: 8b567b729dd8bdc459650d41a5af84a5f7082a7ea06ea77406ba8a9db1348440
+    member: OPA161x.LIB
+    model_sha256: c86df5d4b2d26ec196c0a6158a61004a6747aec5440fcc2031674ad62a448ef7
+    redistribution_status: NOT_YET_APPROVED
+
+  THAT1646:
+    source_type: ZIP_MEMBER
+    vendor: THAT Corporation
+    archive_url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    member: 1646_Macro_02.lib
+    model_sha256: 9abb4f6762935415db6f485de62687fe98b2ef7ea015ed4a320bd158ff264159
+    redistribution_status: NOT_YET_APPROVED
+
+  S1G:
+    source_type: DIRECT_FILE
+    vendor: Vishay General Semiconductor
+    file_url: https://www.vishay.com/docs/89655/s1g.txt
+    filename: s1g.txt
+    model_sha256: ffd79ea06d6ab712987b44e577c8787dbe54d25a90de58e3f6901a1b89642ed4
+    redistribution_status: NOT_YET_APPROVED
+
+  LT5400:
+    source_type: INSTALLED_LTSPICE_LIBRARY
+    vendor: Analog Devices
+    user_relative_path: AppData/Local/LTspice/lib/sub/LT5400.lib
+    library_sha256: f2c8ec58c2573983a8211393f7bcd27792769155b9ecf494ad027155b3e1d553
+    redistribution_status: NOT_YET_APPROVED

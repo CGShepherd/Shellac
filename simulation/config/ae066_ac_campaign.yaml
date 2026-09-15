@@ -1,0 +1,79 @@
+schema_version: 1
+authority: AE-066
+title: Integrated AC RUN01-RUN03 campaign
+model_semantics: SELECTED_NEXT_CANDIDATE_ANALYSIS
+generator_migration_implied: false
+nominal_rails_v: {plus: 18.0, minus: -18.0}
+
+execution:
+  run01:
+    purpose: SCH101 cartridge loading and candidate capacitance qualification matrix
+    cartridges: [GRADO_78C, AT_VM95SP, GRADO_GOLD_8MZ]
+    cable_pf: [50, 100, 150, 200, 300]
+    service_cap_pf: [0, 47, 100]
+    sweep_hz: [10, 100000]
+    selected_gain: DEFAULT
+    service_cap_location: POST_100R_DIFFERENTIAL_INPUT_NODES
+    criteria:
+      peak_below_20khz_db_max: 1.0
+      peak_below_50khz_db_max: 2.0
+      at_vm95sp_official_total_capacitance_pf: [100, 200]
+    qualification_policy:
+      AT_VM95SP: >
+        Cases whose bookkeeping total capacitance (cable + service + 23.5 pF
+        differential equivalent of the symmetric 47 pF leg capacitors) lies
+        inside the official 100-200 pF envelope are gating and must meet both
+        AE-049 peaking limits.
+      GRADO_78C: >
+        All cases are characterised. The nominal 100 pF cable / BASE service
+        state must meet the AE-049 below-20-kHz criterion. The 20-50-kHz result
+        is recorded but remains an OPEN model-validity finding because the
+        qualified AE-064 cartridge model is an R-L electrical Thevenin
+        equivalent without manufacturer-authoritative capacitive/mechanical
+        high-frequency behaviour. This does not waive AE-049; it leaves that
+        part of RUN01 unqualified pending better model/bench evidence under
+        R-021/R-024.
+      GRADO_GOLD_8MZ: compatibility_non_gating
+
+  run02:
+    purpose: SCH101 nominal gain and common-mode rejection
+    gains:
+      LOW: {nominal_db: 14.0, rf_program_ohm: 332.0, rg_program_ohm: 1.0e12}
+      DEFAULT: {nominal_db: 18.0, rf_program_ohm: 1.0e12, rg_program_ohm: 1.0e12}
+      HIGH: {nominal_db: 22.0, rf_program_ohm: 1.0e12, rg_program_ohm: 866.0}
+    frequencies_hz: [20, 1000, 20000]
+    criteria:
+      gain_error_db_max: 0.10
+      cmrr_db_min_20hz: 70.0
+      cmrr_db_min_1khz: 70.0
+      cmrr_db_min_20khz: 60.0
+    qualification_limit: Nominal models only; tolerance/mismatch sensitivity remains RUN10.
+
+  run03:
+    purpose: SCH103 all-state nominal AC replay qualification and DC sanity
+    bass: [FLAT, 200_HZ, 400_HZ, 500_HZ_78, TRUE_RIAA]
+    treble: [FLAT, 1600_HZ, 2121_HZ_RIAA, 3400_HZ, 5800_HZ]
+    sweep_hz: [20, 20000]
+    reference_hz: 1000
+    criteria:
+      model_vs_analytical_correlation_db_max: 0.10
+      riaa_error_db_max_20hz_20khz: 0.10
+      historical_error_db_max_30hz_15khz: 0.50
+      riaa_lr_mismatch_db_max: 0.10
+      historical_lr_mismatch_db_max: 0.25
+      unnamed_lr_mismatch_db_max: 0.25
+      representative_internal_dc_v_abs_max: 1.0
+    qualification_limit: >
+      Nominal component values only. RUN10/RUN11 retain tolerance and Monte Carlo
+      authority. Headroom/noise/overload remain later runs.
+
+campaign_gate:
+  hard_fail:
+    - simulator_or_model_execution_error
+    - any_gating_AT_VM95SP_case_violates_AE049
+    - nominal_GRADO_78C_100pF_BASE_violates_20kHz_AE049
+    - RUN02_nominal_gain_or_CMRR_failure
+    - RUN03_RIAA_or_named_historical_or_correlation_failure
+  allowed_open_finding:
+    - GRADO_78C_extended_20_to_50kHz_model_validity_pending
+    - rejected_non_gating_or_out_of-envelope_RUN01_loading_combinations
