@@ -44,6 +44,14 @@ simulation/results/run06_output/*
 !simulation/results/run06_output/ae069_run06.csv
 !simulation/results/run06_output/ae069_run06.md
 
+!simulation/results/run07_end_to_end/
+simulation/results/run07_end_to_end/*
+!simulation/results/run07_end_to_end/ae070_run07.json
+!simulation/results/run07_end_to_end/ae070_run07.csv
+!simulation/results/run07_end_to_end/ae070_run07.md
+!simulation/results/run07_end_to_end/ae070_output_phase_correlation.json
+!simulation/results/run07_end_to_end/ae070_model_composition_discriminator.json
+
 # Local simulator/vendor caches and transient qualification work
 .shellac_reconciliation/
 .ae*_backup/

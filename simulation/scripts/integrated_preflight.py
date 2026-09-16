@@ -282,6 +282,63 @@ def main():
                     if execution.get("headroom_input_rms_v") != [0.321, 3.21, 5.0]:
                         errors.append("AE-069 validated quasi-static input envelope mismatch")
 
+
+    run07_end_to_end = data.get("run07_end_to_end")
+    if run07_end_to_end is not None:
+        if run07_end_to_end.get("authority") != "AE-070":
+            errors.append("RUN07 end-to-end requires AE-070 authority")
+        if run07_end_to_end.get("status") != "QUALIFIED_NOMINAL_REPRESENTATIVE_STATES":
+            errors.append("RUN07 end-to-end has uncontrolled status")
+        if run07_end_to_end.get("generator_migration_implied") is not False:
+            errors.append("AE-070 must not imply generator migration")
+        if run07_end_to_end.get("ferrite_selected") is not False:
+            errors.append("AE-070 must not select a ferrite")
+        if run07_end_to_end.get("nominal_lr_tracking_semantics") != "NOMINAL_MODEL_SYMMETRY_ONLY":
+            errors.append("AE-070 nominal L/R symmetry semantics mismatch")
+        if run07_end_to_end.get("tolerance_tracking_deferred_to") != ["RUN10", "RUN11"]:
+            errors.append("AE-070 tolerance tracking deferral mismatch")
+
+        result_rel = run07_end_to_end.get("result_record")
+        phase_rel = run07_end_to_end.get("phase_correlation_record")
+        comp_rel = run07_end_to_end.get("model_composition_discriminator_record")
+        for label, relpath in (("RUN07", result_rel), ("phase", phase_rel), ("composition", comp_rel)):
+            if not relpath or not (ROOT / relpath).is_file():
+                errors.append(f"AE-070 {label} evidence record is missing")
+
+        if result_rel and (ROOT / result_rel).is_file():
+            try:
+                run07 = json.loads((ROOT / result_rel).read_text(encoding="utf-8"))
+            except Exception as exc:
+                errors.append(f"AE-070 RUN07 result unreadable: {exc}")
+            else:
+                if run07.get("authority") != "AE-070" or run07.get("run_id") != "RUN07":
+                    errors.append("AE-070 RUN07 authority/run_id mismatch")
+                if run07.get("status") != "QUALIFIED_NOMINAL_REPRESENTATIVE_STATES":
+                    errors.append("AE-070 RUN07 status mismatch")
+                if run07.get("generator_migration_implied") is not False:
+                    errors.append("AE-070 RUN07 incorrectly implies generator migration")
+                gates = run07.get("gates", {})
+                if gates.get("run07_nominal_ac_pass") is not True:
+                    errors.append("AE-070 RUN07 nominal AC gate is not PASS")
+                if gates.get("overload_qualified") is not False:
+                    errors.append("AE-070 must defer overload to RUN08")
+                if gates.get("noise_qualified") is not False:
+                    errors.append("AE-070 must defer noise to RUN09")
+                if gates.get("ferrite_selected") is not False:
+                    errors.append("AE-070 result must not select ferrite")
+                if run07.get("model_composition_discriminator", {}).get("pattern_match") is not True:
+                    errors.append("AE-070 composition discriminator is not PASS in RUN07 result")
+
+        if phase_rel and (ROOT / phase_rel).is_file():
+            phase = json.loads((ROOT / phase_rel).read_text(encoding="utf-8"))
+            if phase.get("acceptance", {}).get("pass") is not True:
+                errors.append("AE-070 output phase correlation is not PASS")
+
+        if comp_rel and (ROOT / comp_rel).is_file():
+            comp = json.loads((ROOT / comp_rel).read_text(encoding="utf-8"))
+            if comp.get("status") != "MODEL_COMPOSITION_LIMIT_CONFIRMED" or comp.get("pattern_match") is not True:
+                errors.append("AE-070 controlled composition discriminator is not PASS")
+
     if errors:
         print("Integrated preflight: CONTRACT ERROR")
         for e in errors:
@@ -309,7 +366,11 @@ def main():
                     print("AE-068 RUN05 matrix steady-state qualification: " + str(run05_matrix.get("status")))
                     if run06_output is not None:
                         print("AE-069 RUN06 simulation evidence: " + str(run06_output.get("status")))
-                        print("RUN07-RUN14 remain; RUN06 load-stability/dynamic-THD bench gates remain under R-024.")
+                        if run07_end_to_end is not None:
+                            print("AE-070 RUN07 nominal end-to-end evidence: " + str(run07_end_to_end.get("status")))
+                            print("RUN08-RUN14 remain; RUN06 load-stability/dynamic-THD bench gates remain under R-024.")
+                        else:
+                            print("RUN07-RUN14 remain; RUN06 load-stability/dynamic-THD bench gates remain under R-024.")
                     else:
                         print("RUN06-RUN14 and explicit open findings remain under R-024.")
                 else:

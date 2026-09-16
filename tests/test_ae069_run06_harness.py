@@ -56,13 +56,14 @@ def test_ae069_renderer_has_no_transient_stability_overclaim():
     assert "Fast transient results are supportive diagnostic evidence where they converge, not a reproducible qualification gate." in r
     assert "wider exploratory sweeps are not used to infer the physical clipping limit" in r
 
-def test_ae069_integrated_campaign_advances_to_run07_with_bench_gates_open():
+def test_ae069_bench_gates_remain_open_after_ae070_advances_campaign_to_run08():
     baseline_path = ROOT / "simulation/config/integrated_baseline.yaml"
     baseline = yaml.safe_load(baseline_path.read_text(encoding="utf-8"))
 
     remaining = baseline["integrated_ac_campaign"]["remaining_runs"]
     assert "RUN06" not in remaining
-    assert remaining[0] == "RUN07"
+    assert "RUN07" not in remaining
+    assert remaining[0] == "RUN08"
 
     run06 = baseline["run06_output"]
     assert run06["authority"] == "AE-069"
@@ -74,3 +75,9 @@ def test_ae069_integrated_campaign_advances_to_run07_with_bench_gates_open():
     assert run06["ferrite_selected"] is False
     assert run06["sense_capacitor_mechanical_freeze"] is False
     assert run06["generator_migration_implied"] is False
+
+    run07 = baseline["run07_end_to_end"]
+    assert run07["authority"] == "AE-070"
+    assert run07["status"] == "QUALIFIED_NOMINAL_REPRESENTATIVE_STATES"
+    assert run07["generator_migration_implied"] is False
+    assert run07["ferrite_selected"] is False

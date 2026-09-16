@@ -1,0 +1,176 @@
+schema_version: 1
+authority: AE-070
+run_id: RUN07
+title: End-to-end nominal chain qualification
+baseline_commit: 2f1446881db130f91dbc7820f61a5887abe1ee97
+model_semantics: SELECTED_NEXT_CANDIDATE_ANALYSIS
+generator_migration_implied: false
+
+execution:
+  rails_v: 18.0
+  output_load_ohm: 20000
+  output_cable_pf_per_leg: 500
+  switch_parasitic_pf: 5.0
+  ac_start_hz: 5
+  ac_stop_hz: 100000
+  ac_points_per_decade: 100
+  cartridge_service_cap_pf: 0
+
+ferrite_brackets:
+  LOW_60OHM_100MHZ:
+    r_ohm: 0.020
+    l_h: 9.549296055e-8
+  HIGH_220OHM_100MHZ:
+    r_ohm: 0.045
+    l_h: 3.501408675e-7
+  interpretation: >
+    Both AE-069 audio-band engineering brackets are swept. RUN07 does not
+    select or freeze a ferrite.
+
+cases:
+  - id: GRADO78_500_3400_BYPASS_STEREO
+    role: REPRESENTATIVE_78_NOMINAL
+    cartridge: GRADO_78C
+    source_rms_v: 0.005
+    source_level_semantics: AE064_NOMINAL_1KHZ_5CMS
+    cable_pf: 100
+    gain: DEFAULT
+    bass: 500 Hz 78
+    treble: 3400 Hz
+    target_id: 78-500-3400
+    rumble: BYPASS
+    mode: STEREO
+    replay_gate: HISTORICAL
+  - id: GRADO78_500_3400_FILTER_STEREO
+    role: REPRESENTATIVE_RUMBLE_IN
+    cartridge: GRADO_78C
+    source_rms_v: 0.005
+    source_level_semantics: AE064_NOMINAL_1KHZ_5CMS
+    cable_pf: 100
+    gain: DEFAULT
+    bass: 500 Hz 78
+    treble: 3400 Hz
+    target_id: 78-500-3400
+    rumble: FILTER
+    mode: STEREO
+    replay_gate: RUMBLE_PAIR_ONLY
+    compare_bypass_case: GRADO78_500_3400_BYPASS_STEREO
+  - id: AT78_200_5800_BYPASS_STEREO
+    role: REPRESENTATIVE_78_ALTERNATE_EQ
+    cartridge: AT_VM95SP
+    source_rms_v: 0.0027
+    source_level_semantics: AE064_NOMINAL_1KHZ_5CMS
+    cable_pf: 150
+    gain: DEFAULT
+    bass: 200 Hz
+    treble: 5800 Hz
+    target_id: 78-200-5800
+    rumble: BYPASS
+    mode: STEREO
+    replay_gate: HISTORICAL
+  - id: GOLD8MZ_RIAA_BYPASS_STEREO
+    role: RIAA_COMPATIBILITY
+    cartridge: GRADO_GOLD_8MZ
+    source_rms_v: 0.005
+    source_level_semantics: PROJECT_5MV_REFERENCE_NOT_MANUFACTURER_OUTPUT_CLAIM
+    cable_pf: 100
+    gain: DEFAULT
+    bass: TRUE RIAA 3180/318 us
+    treble: 2121 Hz RIAA
+    target_id: RIAA
+    rumble: BYPASS
+    mode: STEREO
+    replay_gate: RIAA
+  - id: GRADO78_500_3400_BYPASS_MONO
+    role: REPRESENTATIVE_MONO
+    cartridge: GRADO_78C
+    source_rms_v: 0.005
+    source_level_semantics: AE064_NOMINAL_1KHZ_5CMS
+    cable_pf: 100
+    gain: DEFAULT
+    bass: 500 Hz 78
+    treble: 3400 Hz
+    target_id: 78-500-3400
+    rumble: BYPASS
+    mode: MONO
+    replay_gate: MONO_PAIR_ONLY
+    compare_stereo_case: GRADO78_500_3400_BYPASS_STEREO
+
+criteria:
+  historical_error_db_max_30hz_15khz: 0.50
+  riaa_error_db_max_20hz_20khz: 0.10
+  historical_lr_tracking_db_max: 0.25
+  riaa_lr_tracking_db_max: 0.10
+  rumble_f3_hz_min: 14.25
+  rumble_f3_hz_max: 15.75
+  rumble_20hz_attenuation_db_min: -0.60
+  rumble_30hz_attenuation_db_min: -0.10
+  rumble_10hz_attenuation_db_max: -13.5
+  rumble_5hz_attenuation_db_max: -36.0
+  rumble_passband_peaking_db_max: 0.10
+  mono_insertion_abs_db_max: 0.10
+  mono_insertion_abs_db_preferred: 0.05
+
+decision_policy:
+  overload_deferred_to: RUN08
+  noise_deferred_to: RUN09
+  sensitivity_deferred_to: RUN10
+  switching_deferred_to: RUN12
+  rail_variation_deferred_to: RUN13
+  phantom_fault_deferred_to: RUN14
+  ferrite_selection_automatic: false
+  product_generator_migration: false
+  bench_correlation_required: true
+
+run07_output_model:
+  controlled_vendor_model: THAT1646 Rev02 manufacturer macro
+  integrated_vendor_macro_status: OPERATING_POINT_COMPOSITION_NONCONVERGENCE_CONFIRMED
+  discriminator:
+    script: simulation/scripts/ae070_model_composition_discriminator.py
+    result: simulation/results/run07_end_to_end/ae070_model_composition_discriminator.json
+    qualification_semantics: CONTROLLED_REPRODUCIBLE_MODEL_COMPOSITION_DIAGNOSTIC
+    expected:
+      output_pair_only: PASS
+      dual_upstream_no_that: PASS
+      dual_full_ideal_output: PASS
+      dual_full_vendor_that: TIMEOUT
+  interpretation: >
+    The vendor THAT1646 macro and the upstream chain each solve independently,
+    while their integrated composition does not reproducibly reach an operating
+    point. RUN07 therefore uses a controlled qualification-only small-signal
+    AC surrogate correlated against AE-069 vendor-macro AC evidence. This is a
+    model-composition limitation, not evidence of a hardware instability.
+  surrogate:
+    file: simulation/models/qualification/sch108_ae070_ac_surrogate.lib
+    subckt: AE070_SCH108_AC_SURROGATE
+    input_impedance_ohm: 5000
+    open_circuit_differential_gain_linear_fit: 1.98791389931215
+    fitted_internal_resistance_per_leg_ohm: 24.8457461554223
+    fitted_resistance_semantics: AE069_SMALL_SIGNAL_AC_LOAD_RESPONSE_FIT_NOT_HARDWARE_SPECIFICATION
+    correlation_source: simulation/results/run06_output/ae069_run06.json
+    correlation_tolerance_db_max: 0.005
+  phase_correlation:
+    required_before_governance: true
+    method: OUTPUT_ONLY_VENDOR_MACRO_VS_SURROGATE
+    frequencies_hz: [20, 1000, 20000]
+    max_abs_delta_deg: 1.0
+    result: simulation/results/run07_end_to_end/ae070_output_phase_correlation.json
+    interpretation: >
+      RUN07's qualification-only surrogate is intentionally not phase authority
+      for the THAT1646. The isolated vendor macro is therefore compared with the
+      surrogate under the same 20k load, 500 pF/leg cable and both ferrite
+      brackets. The measured vendor-minus-surrogate phase is retained as
+      supporting evidence; phase is informative in RUN07 rather than a separate
+      AE-049 pass/fail product criterion.
+  supported_claims:
+    - nominal_small_signal_end_to_end_ac_transfer
+    - nominal_1khz_node_levels
+    - THAT1646_input_loading_in_run07
+    - balanced_output_load_response_correlated_to_ae069
+  excluded_claims:
+    - dc_offset_or_output_common_mode_accuracy
+    - transient_or_capacitive_load_stability
+    - distortion_or_dynamic_thd
+    - clipping_overload_or_recovery
+    - switching_transients
+    - phantom_or_fault_survival

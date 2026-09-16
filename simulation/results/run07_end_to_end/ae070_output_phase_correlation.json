@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "authority": "AE-070",
+  "run_id": "RUN07_PHASE_CORRELATION",
+  "purpose": "Output-only THAT1646 vendor-macro phase correlation for the RUN07 AC surrogate.",
+  "model_semantics": "SUPPORTING_CORRELATION_EVIDENCE_NOT_PRODUCT_MODEL",
+  "configuration": {
+    "output_load_ohm": 20000.0,
+    "output_cable_pf_per_leg": 500,
+    "frequencies_hz": [
+      20,
+      1000,
+      20000
+    ],
+    "ferrite_brackets": [
+      "LOW_60OHM_100MHZ",
+      "HIGH_220OHM_100MHZ"
+    ]
+  },
+  "acceptance": {
+    "max_abs_delta_deg": 1.0,
+    "worst_abs_delta_deg": 0.0,
+    "pass": true
+  },
+  "rows": [
+    {
+      "ferrite_bracket": "LOW_60OHM_100MHZ",
+      "frequency_hz": 20,
+      "vendor_phase_deg": 180.0,
+      "surrogate_phase_deg": 180.0,
+      "vendor_minus_surrogate_deg": 0.0
+    },
+    {
+      "ferrite_bracket": "LOW_60OHM_100MHZ",
+      "frequency_hz": 1000,
+      "vendor_phase_deg": 180.0,
+      "surrogate_phase_deg": 180.0,
+      "vendor_minus_surrogate_deg": 0.0
+    },
+    {
+      "ferrite_bracket": "LOW_60OHM_100MHZ",
+      "frequency_hz": 20000,
+      "vendor_phase_deg": 180.0,
+      "surrogate_phase_deg": 180.0,
+      "vendor_minus_surrogate_deg": 0.0
+    },
+    {
+      "ferrite_bracket": "HIGH_220OHM_100MHZ",
+      "frequency_hz": 20,
+      "vendor_phase_deg": 180.0,
+      "surrogate_phase_deg": 180.0,
+      "vendor_minus_surrogate_deg": 0.0
+    },
+    {
+      "ferrite_bracket": "HIGH_220OHM_100MHZ",
+      "frequency_hz": 1000,
+      "vendor_phase_deg": 180.0,
+      "surrogate_phase_deg": 180.0,
+      "vendor_minus_surrogate_deg": 0.0
+    },
+    {
+      "ferrite_bracket": "HIGH_220OHM_100MHZ",
+      "frequency_hz": 20000,
+      "vendor_phase_deg": 180.0,
+      "surrogate_phase_deg": 180.0,
+      "vendor_minus_surrogate_deg": 0.0
+    }
+  ],
+  "interpretation": "The phase delta is the isolated output-stage correction omitted by the qualification-only RUN07 surrogate. RUN07 phase is informative rather than a separate AE-049 product gate; this record prevents a zero-phase surrogate from being mistaken for vendor-macro phase authority."
+}

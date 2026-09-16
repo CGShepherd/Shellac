@@ -145,7 +145,7 @@ integrated_ac_campaign:
   run03_status: QUALIFIED_NOMINAL_ALL_25_STATES
   generator_migration_implied: false
   result_summary: simulation/results/ae066_summary.json
-  remaining_runs: [RUN07, RUN08, RUN09, RUN10, RUN11, RUN12, RUN13, RUN14]
+  remaining_runs: [RUN08, RUN09, RUN10, RUN11, RUN12, RUN13, RUN14]
 
 run04_lf_trade:
   authority: AE-067
@@ -194,3 +194,24 @@ run06_output:
   sense_capacitor_mechanical_freeze: false
   generator_migration_implied: false
   follow_on_qualification: [BENCH_LOAD_STABILITY, BENCH_DYNAMIC_THD, FERRITE_SELECTION, SENSE_CAP_MECHANICAL]
+
+run07_end_to_end:
+  authority: AE-070
+  status: QUALIFIED_NOMINAL_REPRESENTATIVE_STATES
+  result_record: simulation/results/run07_end_to_end/ae070_run07.json
+  phase_correlation_record: simulation/results/run07_end_to_end/ae070_output_phase_correlation.json
+  model_composition_discriminator_record: simulation/results/run07_end_to_end/ae070_model_composition_discriminator.json
+  model_composition_limit_confirmed: true
+  surrogate_correlation_pass: true
+  output_phase_correlation_pass: true
+  replay_and_nominal_symmetry_pass: true
+  nominal_lr_tracking_semantics: NOMINAL_MODEL_SYMMETRY_ONLY
+  tolerance_tracking_deferred_to: [RUN10, RUN11]
+  rumble_pass: true
+  mono_pass: true
+  overload_qualified: false
+  noise_qualified: false
+  ferrite_selected: false
+  bench_correlation_required: true
+  generator_migration_implied: false
+  follow_on_qualification: [RUN08, RUN09, RUN10, RUN11, RUN12, RUN13, RUN14, BENCH_CORRELATION]

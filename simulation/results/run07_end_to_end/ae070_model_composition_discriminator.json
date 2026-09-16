@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "authority": "AE-070",
+  "run_id": "RUN07_MODEL_COMPOSITION_DISCRIMINATOR",
+  "purpose": "Reproducible isolation of the THAT1646 vendor-macro integrated operating-point composition limitation.",
+  "expected": {
+    "output_pair_only": "PASS",
+    "dual_upstream_no_that": "PASS",
+    "dual_full_ideal_output": "PASS",
+    "dual_full_vendor_that": "TIMEOUT"
+  },
+  "actual": {
+    "output_pair_only": "PASS",
+    "dual_upstream_no_that": "PASS",
+    "dual_full_ideal_output": "PASS",
+    "dual_full_vendor_that": "TIMEOUT"
+  },
+  "pattern_match": true,
+  "status": "MODEL_COMPOSITION_LIMIT_CONFIRMED",
+  "interpretation": "The AE-069 THAT1646 output pair and the complete upstream dual-channel chain solve independently. The same upstream chain also solves with an ideal balanced output. The complete upstream chain with the controlled AE-069/THAT1646 output stage does not reproducibly reach the AC operating point inside the controlled timeout. This supports the explicit qualification-only RUN07 AC surrogate; it is not evidence of physical hardware instability.",
+  "cases": [
+    {
+      "case": "output_pair_only",
+      "status": "PASS",
+      "timeout_s": 20,
+      "returncode": 0,
+      "measurement_present": true,
+      "direct_newton_failed": true,
+      "gmin_failed": true,
+      "source_stepping_started": true,
+      "fatal_terms": [],
+      "launch_failures": [],
+      "stdout_tail": "",
+      "stderr_tail": ""
+    },
+    {
+      "case": "dual_upstream_no_that",
+      "status": "PASS",
+      "timeout_s": 20,
+      "returncode": 0,
+      "measurement_present": true,
+      "direct_newton_failed": false,
+      "gmin_failed": false,
+      "source_stepping_started": false,
+      "fatal_terms": [],
+      "launch_failures": [],
+      "stdout_tail": "",
+      "stderr_tail": ""
+    },
+    {
+      "case": "dual_full_ideal_output",
+      "status": "PASS",
+      "timeout_s": 20,
+      "returncode": 0,
+      "measurement_present": true,
+      "direct_newton_failed": false,
+      "gmin_failed": false,
+      "source_stepping_started": false,
+      "fatal_terms": [],
+      "launch_failures": [],
+      "stdout_tail": "",
+      "stderr_tail": ""
+    },
+    {
+      "case": "dual_full_vendor_that",
+      "status": "TIMEOUT",
+      "timeout_s": 20,
+      "returncode": null,
+      "measurement_present": false,
+      "direct_newton_failed": true,
+      "gmin_failed": false,
+      "source_stepping_started": false,
+      "fatal_terms": [],
+      "launch_failures": [],
+      "stdout_tail": "",
+      "stderr_tail": ""
+    }
+  ]
+}

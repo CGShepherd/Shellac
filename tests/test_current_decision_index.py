@@ -54,7 +54,7 @@ def test_design_pack_and_maintenance_structure_exist():
     assert Path("docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md").exists()
 
 
-def test_pre_spice_assurance_chain_reaches_ae069():
+def test_pre_spice_assurance_chain_reaches_ae070():
     text = _text()
-    for n in range(42, 70):
+    for n in range(42, 71):
         assert f"  AE-{n:03d}:" in text

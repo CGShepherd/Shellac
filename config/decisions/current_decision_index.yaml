@@ -114,6 +114,7 @@ pre_spice_assurance:
   AE-067: docs/design_pack/AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md
   AE-068: docs/design_pack/AE-068_RUN05_SCH104_SCH105_Matrix_Evidence_Rev_A0.md
   AE-069: docs/design_pack/AE-069_RUN06_SCH108_Nominal_Output_Evidence_Rev_A0.md
+  AE-070: docs/design_pack/AE-070_RUN07_End_to_End_Nominal_Chain_Evidence_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

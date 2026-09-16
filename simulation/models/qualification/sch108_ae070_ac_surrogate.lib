@@ -1,0 +1,49 @@
+* Project Shellac AE-070 RUN07 small-signal AC surrogate for THAT1646/SCH108.
+* Qualification-only model. NOT product-generator or hardware authority.
+*
+* Purpose:
+* - avoid the confirmed vendor-macro operating-point composition failure when
+*   THAT1646 Rev02 is coupled to the full upstream integrated chain;
+* - preserve RUN07 small-signal AC input loading and output/load behaviour;
+* - correlate against controlled AE-069 RUN06 vendor-macro AC evidence.
+*
+* Explicit exclusions:
+* - DC offset / common-mode accuracy;
+* - transient or capacitive-load stability;
+* - distortion / THD;
+* - clipping / overload / recovery;
+* - switching behaviour;
+* - phantom/fault behaviour.
+*
+* RIN=5k follows the controlled Shellac THAT1646 engineering model.
+* GDIFF_OPEN and RDRV are fitted AC-surrogate parameters chosen to reproduce
+* AE-069 differential load behaviour. RDRV is NOT a hardware output-impedance
+* specification and does not supersede the project 50-ohm/leg engineering data.
+.SUBCKT AE070_SCH108_AC_SURROGATE IN XLRP XLRM VPLUS VMINUS ZERO CHASSIS
++ PARAMS: RFB=0.02 LFB=95.49296055n
+
+RIN IN ZERO 5k
+
+* Fitted open-circuit differential gain = 1.98791389931215 V/V.
+* Symmetric legs each carry half that gain.
+EPLUS NDRV_P ZERO IN ZERO 0.993956949656075
+EMINUS NDRV_M ZERO IN ZERO -0.993956949656075
+
+* Fitted internal small-signal resistance per leg. External ferrite DCR is
+* added separately below. This is a behavioural fit, not hardware authority.
+RDRV_P NDRV_P OUTP 24.8457461554223
+RDRV_M NDRV_M OUTM 24.8457461554223
+
+RFBP OUTP PFB {RFB}
+LFBP PFB XLRP {LFB}
+RFBM OUTM MFB {RFB}
+LFBM MFB XLRM {LFB}
+
+CRFIP XLRP CHASSIS 100p
+CRFIM XLRM CHASSIS 100p
+
+DHP XLRP VPLUS s1g
+DHM XLRM VPLUS s1g
+DLP VMINUS XLRP s1g
+DLM VMINUS XLRM s1g
+.ENDS AE070_SCH108_AC_SURROGATE

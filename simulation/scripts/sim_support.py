@@ -178,8 +178,18 @@ def parse_measure(text: str, name: str) -> float:
                 return 10.0 ** (float(m.group(1)) / 20.0)
 
         # Preserve signed phase in degrees.
+        # LTspice 26 can render ph(...) as a complex tuple such as:
+        #   ph(V(OUT)/V(IN))=(-36.1795dB,180°)
+        # The first member is magnitude in dB; phase is the second member.
         if "ph(" in lower:
-            m = re.search(rf"=\s*\(\s*({number})", line, re.I)
+            m = re.search(
+                rf"=\s*\(\s*{number}\s*(?:dB)?\s*,\s*({number})\s*(?:°|deg)",
+                line,
+                re.I,
+            )
+            if m:
+                return float(m.group(1))
+            m = re.search(rf"=\s*({number})\s*(?:°|deg)", line, re.I)
             if m:
                 return float(m.group(1))
 

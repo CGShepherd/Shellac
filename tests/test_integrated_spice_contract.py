@@ -48,3 +48,16 @@ def test_model_source_gate_remains_closed_and_ae065_run00_is_claimed():
     assert r["shellac_top_implemented"] is True
     assert r["shellac_top_run00_executed"] is True
     assert r["result_record"] == "simulation/results/run00_sanity/ae065_integrated_run00.json"
+
+
+def test_run07_end_to_end_is_ae070_and_non_migrating():
+    r = data()["run07_end_to_end"]
+    assert r["authority"] == "AE-070"
+    assert r["status"] == "QUALIFIED_NOMINAL_REPRESENTATIVE_STATES"
+    assert r["generator_migration_implied"] is False
+    assert r["ferrite_selected"] is False
+    assert r["replay_and_nominal_symmetry_pass"] is True
+    assert r["nominal_lr_tracking_semantics"] == "NOMINAL_MODEL_SYMMETRY_ONLY"
+    assert r["tolerance_tracking_deferred_to"] == ["RUN10", "RUN11"]
+    assert r["overload_qualified"] is False
+    assert r["noise_qualified"] is False
