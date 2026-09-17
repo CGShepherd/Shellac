@@ -136,3 +136,13 @@ def test_sch107_true_branches_get_deterministic_junction_points():
         assert (round(align_coordinate(35), 8), round(sy, 8)) in points
         for x in (90, 120, 230, 260):
             assert (round(align_coordinate(x), 8), round(sy, 8)) in points
+
+def test_sch107_frequency_setting_caps_use_real_film_tht_footprints():
+    sheet = _sch107()
+    components = {component.ref: component for component in sheet.components}
+    refs = ("C7001","C7002","C7201","C7202","C7501","C7502","C7701","C7702")
+    for ref in refs:
+        cap = components[ref]
+        assert cap.value == "470n"
+        assert cap.fields["Dielectric"] == "Film"
+        assert cap.footprint == "Capacitor_THT:C_Rect_L7.2mm_W3.5mm_P5.00mm_FKS2_FKP2_MKS2_MKP2"

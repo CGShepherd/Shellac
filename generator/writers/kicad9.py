@@ -309,8 +309,9 @@ def write_project_library_tables(out_dir):
         encoding="utf-8",
     )
     footprint_libraries = (
-        "Button_Switch_THT", "Capacitor_SMD", "Connector_Audio", "Diode_SMD",
-        "Inductor_SMD", "Package_SO", "Resistor_SMD", "TestPoint",
+        "Button_Switch_THT", "Capacitor_SMD", "Capacitor_THT",
+        "Connector_Audio", "Diode_SMD", "Inductor_SMD", "Package_SO",
+        "Resistor_SMD", "TestPoint",
     )
     rows = "\n".join(
         f'  (lib (name "{name}")(type "KiCad")(uri "${{KICAD9_FOOTPRINT_DIR}}/{name}.pretty")(options "")(descr ""))'

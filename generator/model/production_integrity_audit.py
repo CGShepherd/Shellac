@@ -35,7 +35,7 @@ FINDINGS = (
         "CLOSED",False,
         "AE-040B removes Grayhill from current control authority, preserves it only as rejected historical evidence, and makes AE-026/AE-027 Lorlin PT platform selection with exact production MPNs open the live authority."
     ),
-    Finding("AE036-F05","P1","controls-PCB","PCB-mounted controls are not yet physical PCB objects","OPEN",False),
+    Finding("AE036-F05","P1","controls-PCB","PCB-mounted controls are not yet physical PCB objects","OPEN",True),
     Finding("AE036-F06","P1","power","nominal ±18 V uses top of key IC recommended range","OPEN",False),
     Finding("AE036-F07","P1","governance","decision/current baseline and indexes are stale","OPEN",False),
     Finding("AE036-F08","P1","PCB-authority","native pipeline retains superseded mounting-hole state","OPEN",False),
@@ -44,6 +44,13 @@ FINDINGS = (
     Finding("AE036-F11","P2","CI","CI omits production build and KiCad gates","OPEN",False),
     Finding("AE036-F12","P2","mechanical","final connector/interface arrangement needs confirmation","OPEN",False),
     Finding("AE036-F13","P2","maintenance","maintenance/release pack awaits physical evidence","OPEN",False),
+    Finding("AE071-F01","P0","product-migration","AE-042 SCH101 selected-next implementation not yet migrated into live product generator","OPEN",True),
+    Finding("AE071-F02","P0","product-migration","AE-067 branch-local DR-039 selected topology not yet migrated into live product generator","OPEN",True),
+    Finding("AE071-F03","P1","precision-CAD","LT5400-7 B-grade RUN10 tolerance acceptance and exposed-pad disposition remain open","OPEN",True),
+    Finding("AE071-F04","P1","SCH108-physical","THAT1646 10uF sense-capacitor body/footprint correlation remains open","OPEN",True),
+    Finding("AE071-F05","P1","EMC-interface","XLR pin-1 local chassis termination is not yet represented as controlled physical implementation","OPEN",True),
+    Finding("AE071-F06","P1","low-level-interconnect","cartridge input harness contact system requires low-level signal suitability review","OPEN",True),
+    Finding("AE071-F07","P1","simulation-model","THAT1646 output impedance model semantics require 25-ohm-per-leg / 50-ohm-balanced correction before RUN08","OPEN",False),
 )
 
 def open_findings():
@@ -62,4 +69,8 @@ def validate_findings():
         "AE036-F01","AE036-F02","AE036-F03","AE036-F04"
     }
     assert all(x.resolution_evidence for x in closed_findings())
-    assert routing_blockers() == ()
+    assert {x.identifier for x in routing_blockers()} == {
+        "AE036-F05",
+        "AE071-F01","AE071-F02","AE071-F03",
+        "AE071-F04","AE071-F05","AE071-F06",
+    }

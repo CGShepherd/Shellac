@@ -38,11 +38,12 @@ decisions:
       - docs/AE-014_SCH101_Precision_Architecture_Downselect_Rev_A0.md
       - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
       - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
+      - docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
     implementation:
       converter_gain: 4.0
-      network: LT5400-7 A-grade retained provisionally pending full tolerance/value review
+      network: LT5400-7 B-grade procurement candidate; RUN10 tolerance/CMRR acceptance and exact temperature-grade MPN remain open
       gain_selection: fail-safe removable gold service-shunt topology, approximately 14/18/22 dB; no-shunt state is 18 dB
-      note: Core LT5400 precision architecture remains current. The older service-link gain implementation in the live generator is superseded by AE-042 and requires controlled implementation after SPICE/configuration review.
+      note: Core LT5400 precision architecture remains current. AE-071 corrects the previously encoded nonexistent A-grade -7 procurement identity to the procurable B-grade -7 family without changing the DR-038 architecture. The older service-link gain implementation in the live generator is superseded by AE-042 and requires controlled implementation after SPICE/configuration review.
   DR-039:
     title: State-independent post-EQ DC blocking
     status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
@@ -115,6 +116,7 @@ pre_spice_assurance:
   AE-068: docs/design_pack/AE-068_RUN05_SCH104_SCH105_Matrix_Evidence_Rev_A0.md
   AE-069: docs/design_pack/AE-069_RUN06_SCH108_Nominal_Output_Evidence_Rev_A0.md
   AE-070: docs/design_pack/AE-070_RUN07_End_to_End_Nominal_Chain_Evidence_Rev_A0.md
+  AE-071: docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

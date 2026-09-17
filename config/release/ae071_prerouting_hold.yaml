@@ -1,0 +1,62 @@
+schema_version: 1
+project: Shellac
+authority: AE-071
+baseline_commit: 67b2101474bc1db10deb7784a0cc7131ed20e2ef
+status: ROUTING_HELD_PENDING_PRODUCT_RECONCILIATION
+historical_release:
+  record: config/release/sr041_routing_release.yaml
+  base_commit: 56c74250507a2f4d4b4dc04641096c7883512740
+  historical_status: ROUTING_RELEASED
+  current_authority: false
+  preserve_unchanged: true
+resolved_in_ae071:
+- SCH101_LOCAL_HF_DECOUPLING_MISSING
+- SCH103_NEGATIVE_BULK_POLARITY
+- SCH108_NEGATIVE_BULK_POLARITY
+- SCH107_470NF_FILM_FOOTPRINT_AND_CAPACITOR_THT_LIBRARY
+- SCH101_CONVERTER_OPA1655_IDENTITY
+- LT5400_7A_NONEXISTENT_PROCUREMENT_IDENTITY
+- ROOT_HIERARCHY_DUAL_MONO_CONTROL_AND_MONO_AVERAGING_CONNECTIVITY
+- SCH101_LOCAL_BYPASS_PLACEMENT_AUTHORITY_RECONCILIATION
+routing_blockers:
+- id: AE071-B01
+  item: AE042_SCH101_SELECTED_NEXT_PRODUCT_MIGRATION
+  required_before_final_routing: true
+- id: AE071-B02
+  item: AE067_BRANCH_LOCAL_DR039_PRODUCT_MIGRATION
+  required_before_final_routing: true
+- id: AE071-B03
+  item: PCB_MOUNTED_CONTROL_FOOTPRINTS_AND_KEEP_OUTS
+  required_before_final_routing: true
+- id: AE071-B04
+  item: LT5400_B_GRADE_RUN10_TOLERANCE_AND_EP_DISPOSITION
+  required_before_final_routing: true
+- id: AE071-B05
+  item: SCH108_SENSE_CAP_BODY_TO_FOOTPRINT_CORRELATION
+  required_before_final_routing: true
+- id: AE071-B06
+  item: XLR_PIN1_LOCAL_CHASSIS_IMPLEMENTATION
+  required_before_final_routing: true
+- id: AE071-B07
+  item: CARTRIDGE_INPUT_LOW_LEVEL_HARNESS_CONTACT_SYSTEM_REVIEW
+  required_before_final_routing: true
+pre_run08_prerequisites:
+- id: AE071-S01
+  item: THAT1646_OUTPUT_IMPEDANCE_MODEL_SEMANTICS_25OHM_PER_LEG_50OHM_BALANCED
+  status: OPEN
+system_release_prerequisites:
+- id: AE071-SYS01
+  item: EXTERNAL_PSU_ELECTRICAL_SCHEMATIC_SETPOINT_DROPOUT_STARTUP_AND_FAULT_QUALIFICATION
+  status: OPEN
+  target_run: RUN13_RUN14
+final_design_assurance:
+  authority: AE-072_PENDING
+  required_before_layout_freeze: true
+  required_before_bom_freeze: true
+  required_before_manufacturing_baseline: true
+permissions:
+  analysis_and_nonbinding_placement_work: true
+  final_routing: false
+  layout_freeze: false
+  bom_freeze: false
+  manufacturing_release: false

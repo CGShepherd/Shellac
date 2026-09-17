@@ -101,12 +101,18 @@ items:
   - id: BOM-SCH101-LT5400
     function: sch101_precision_resistor_network
     manufacturer: Analog Devices
-    mpn: LT5400-7A
+    mpn: OPEN_B_GRADE_-7
+    candidate_mpns:
+      - LT5400BCMS8E-7#PBF
+      - LT5400BIMS8E-7#PBF
     quantity: 2
     package: MS8E
     footprint: Package_SO:MSOP-8-1EP_3x3mm_P0.65mm_EP1.68x1.88mm
-    status: SELECTED
+    ratio_option: LT5400-7
+    available_grade: B
+    status: GRADE_RATIO_SELECTED_RUN10_AND_EXACT_MPN_OPEN
     decision: DR-038
+    note: The -7 ratio is procurable in B grade, not the previously encoded A grade. RUN10 must accept the complete B-grade tolerance/CMRR stack and final temperature-grade MPN before BOM freeze.
   - id: BOM-SCH108-CLAMP
     function: sch108_phantom_fault_rail_clamp
     manufacturer: Vishay General Semiconductor

@@ -58,7 +58,7 @@ def _gain_leg(sheet,name,base,suffix,input_node,y):
 def _diff(sheet,ch,base,cy,po,mo):
     amp=sheet.add_component(diff_converter_block(
         f"U{base}03",f"{ch} DIFF {DIFF_CONVERTER_GAIN:.2f}x",
-        Point(360,cy),f"{ch} OPA1656 differential converter"
+        Point(360,cy),f"{ch} OPA1655 differential converter"
     ))
     rn=sheet.add_component(lt5400_network(
         f"RN{base}30",f"{ch} LT5400-7 1:4",Point(315,cy)
@@ -85,16 +85,37 @@ def _diff(sheet,ch,base,cy,po,mo):
     sheet.connect_pin_to_net(amp,"+V","+18V",stub_dy=-6.35)
     sheet.connect_pin_to_net(amp,"-V","-18V",stub_dy=6.35)
 
+def _add_local_decoupling(sheet,ch,base,cy):
+    # One dual OPA1656 gain package plus one single OPA1655 converter package
+    # per channel. Each physical package receives one 100 nF bypass on each rail.
+    for package_name, ref_plus, ref_minus, x in (
+        ("OPA1656 gain package", f"C{base}91", f"C{base}92", 190),
+        ("OPA1655 converter package", f"C{base}93", f"C{base}94", 360),
+    ):
+        plus = sheet.add_component(capacitor(
+            ref_plus, "100n", Point(x, cy+48), dielectric="C0G/X7R",
+            voltage="50V min", function=f"{ch} {package_name} +18V local HF bypass",
+        ))
+        minus = sheet.add_component(capacitor(
+            ref_minus, "100n", Point(x+20, cy+48), dielectric="C0G/X7R",
+            voltage="50V min", function=f"{ch} {package_name} -18V local HF bypass",
+        ))
+        sheet.connect_vertical_two_pin(plus, "+18V", "0VA")
+        sheet.connect_vertical_two_pin(minus, "0VA", "-18V")
+
+
 def _channel(sheet,ch,base,cy):
     py,my=cy-20,cy+20; pp,mm=_rf_input(sheet,ch,base,cy,py,my)
     po=_gain_leg(sheet,f"{ch}_PLUS",base,1,pp,py); mo=_gain_leg(sheet,f"{ch}_MINUS",base,2,mm,my)
     _diff(sheet,ch,base,cy,po,mo)
+    _add_local_decoupling(sheet,ch,base,cy)
 
 def add_sch101_diff_converter_slice(sheet):
     sheet.add_note("SCH101 AE-037: 47.4k balanced cartridge load + explicit DC bias return.")
     sheet.add_note("RF default: 47p C0G each leg to CHASSIS; 22p differential footprint DNP.")
     sheet.add_note("Gain settings remain ~14/18/22 dB; default assembled service-link state = 18 dB.")
-    sheet.add_note("LT5400-7 A-grade MS8E; EP9 electrically floating.")
+    sheet.add_note("LT5400-7 B-grade procurement candidate; RUN10 tolerance acceptance open; EP9 remains live-implementation floating pending final EP disposition.")
+    sheet.add_note("Each physical SCH101 op-amp package has local 100 nF bypassing from each rail to 0VA.")
     _channel(sheet,"L",1,85); _channel(sheet,"R",2,205)
 
 def add_sch101_rf_slice(sheet): return add_sch101_diff_converter_slice(sheet)

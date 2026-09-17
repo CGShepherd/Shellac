@@ -9,7 +9,10 @@ at the stereo bypass selector.
 
 from __future__ import annotations
 
-from generator.component_selection import bulk_decoupling_capacitor_requirements
+from generator.component_selection import (
+    bulk_decoupling_capacitor_requirements,
+    rumble_filter_capacitor_footprint,
+)
 from generator.core.components import Component, capacitor, resistor, testpoint
 from generator.core.geometry import Point
 from generator.core.pins import pin_position
@@ -81,12 +84,12 @@ def _add_section(
     c1 = sheet.add_component(capacitor(
         f"C{base}1", CAPACITANCE_VALUE, Point(x, y), dielectric="Film",
         voltage="50V min", function=f"{channel} HP{section.identifier} C1",
-        rotation=90.0,
+        rotation=90.0, footprint=rumble_filter_capacitor_footprint(),
     ))
     c2 = sheet.add_component(capacitor(
         f"C{base}2", CAPACITANCE_VALUE, Point(x + 30, y), dielectric="Film",
         voltage="50V min", function=f"{channel} HP{section.identifier} C2",
-        rotation=90.0,
+        rotation=90.0, footprint=rumble_filter_capacitor_footprint(),
     ))
     opamp = sheet.add_component(_opamp_block(
         f"U{base}", channel, section.identifier, Point(x + 75, y),

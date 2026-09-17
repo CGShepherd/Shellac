@@ -36,7 +36,10 @@ def test_dr038_dr039_record_current_pre_spice_disposition():
     dr038 = _decision_block("DR-038", "DR-039")
     assert "    implementation:" in dr038
     assert "      converter_gain: 4.0" in dr038
-    assert "LT5400-7 A-grade retained provisionally" in dr038
+    assert "LT5400-7 B-grade procurement candidate" in dr038
+    assert "RUN10 tolerance/CMRR acceptance" in dr038
+    assert "nonexistent A-grade -7 procurement identity" in dr038
+    assert "LT5400-7 A-grade retained provisionally" not in dr038
     assert "fail-safe removable gold service-shunt topology" in dr038
     assert "approximately 14/18/22 dB" in dr038
     assert "pre-DR038 implementation" not in dr038
@@ -54,7 +57,7 @@ def test_design_pack_and_maintenance_structure_exist():
     assert Path("docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md").exists()
 
 
-def test_pre_spice_assurance_chain_reaches_ae070():
+def test_pre_spice_assurance_chain_reaches_ae071():
     text = _text()
-    for n in range(42, 71):
+    for n in range(42, 72):
         assert f"  AE-{n:03d}:" in text

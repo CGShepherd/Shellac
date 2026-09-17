@@ -19,7 +19,7 @@ Current signal-chain status:
 - DR-039: selected pending implementation — AE-067 RUN04 confirms branch-local DC blocking: 1 uF / 330 kOhm only in the direct bypass branch, with the existing SCH107 high-pass branch providing intrinsic DC blocking; product-generator migration plus RUN09/RUN10/RUN12 and bench correlation remain open;
 - DR-040: current subject to the live implementation and subsequent assurance records;
 - AE-041 Rev A1: current control authority — 3P4T switched-summing matrix and current top-cover control architecture; AE-068 qualifies RUN05 steady-state matrix behaviour while switching/mechanical qualification remains open;
-- AE-042 through AE-070: current pre-SPICE/integrated-simulation assurance/evidence chain; AE-070 completes RUN07 nominal end-to-end AC evidence while RUN08-RUN14 and prototype/bench obligations remain open;
+- AE-042 through AE-071: current pre-SPICE/integrated-simulation/physical-integrity assurance chain; AE-070 completes RUN07 nominal end-to-end AC evidence and AE-071 reconciles pre-routing physical CAD, hierarchy and placement integrity while routing remains explicitly held; RUN08-RUN14 and prototype/bench obligations remain open;
 - prototype measured acceptance: open.
 
 This is not yet a manufacturing baseline. The next intended configuration milestone is the **Shellac Pre-SPICE Architecture Baseline** after repository reconciliation, clean regression and configuration-control closure.
@@ -88,7 +88,9 @@ AE-069 executes RUN06 for SCH108. Normal 100 kOhm / 20 kOhm / 10 kOhm load gain 
 
 AE-070 executes RUN07 for representative end-to-end nominal states. Historical 78 and RIAA replay accuracy, integrated rumble response and nominal mono insertion pass AE-049. L/R comparison is nominal model symmetry only; tolerance tracking remains RUN10/RUN11. The controlled THAT1646 output pair and complete upstream chain each solve independently, while the full integrated composition reproducibly times out; RUN07 therefore uses an explicit qualification-only small-signal AC surrogate after controlled composition discrimination plus magnitude/load and isolated phase correlation. The surrogate cannot support DC/common-mode, transient stability, distortion, overload/recovery, switching or phantom/fault claims. No ferrite or product-generator migration is selected by AE-070.
 
-AE-042 through AE-070 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-071 performs the post-RUN07 pre-routing integrity reconciliation. It corrects SCH101 local package bypassing and OPA1655/LT5400 physical identity, SCH103/SCH108 negative-bulk polarity representation, SCH107 470 nF film footprints and generated Capacitor_THT exposure. Native hierarchical ERC then exposed six genuine engineering-model hierarchy omissions: four dual-mono EQ control signals plus MONO_AVG and MONO_R_LEG. AE-071 carries those signals explicitly across SCH103/SCH109 and SCH104/SCH105, reconciles the resulting 74 hierarchical pins / 23 cross-sheet signals, and assigns the eight new SCH101 bypass capacitors to their existing gain/converter placement clusters. Historical SR-041 remains provenance only; current routing authority is held by config/release/ae071_prerouting_hold.yaml until the listed product, procurement, mechanical and interface blockers close.
+
+AE-042 through AE-071 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048, AE-049 and AE-050 remain respectively the qualification, numerical-acceptance and execution authorities for the simulation campaign. AE-053 defines the toolchain architecture used to execute those authorities and does not replace them.
 

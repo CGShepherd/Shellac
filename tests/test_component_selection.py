@@ -104,3 +104,13 @@ def test_common_mode_sense_policy_is_nonpolar_and_signal_path():
     assert req.signal_path is True
     assert req.selected_footprint == NONPOLAR_FEEDBACK_10UF_THT
     assert "0805" not in req.selected_footprint
+
+def test_rumble_filter_film_footprint_is_real_tht_envelope():
+    from generator.component_selection import (
+        RUMBLE_FILTER_FILM_470NF_THT,
+        rumble_filter_capacitor_footprint,
+    )
+    assert RUMBLE_FILTER_FILM_470NF_THT == "Capacitor_THT:C_Rect_L7.2mm_W3.5mm_P5.00mm_FKS2_FKP2_MKS2_MKP2"
+    assert rumble_filter_capacitor_footprint() == RUMBLE_FILTER_FILM_470NF_THT
+    assert RUMBLE_FILTER_FILM_470NF_THT.startswith("Capacitor_THT:")
+    assert "0805" not in RUMBLE_FILTER_FILM_470NF_THT

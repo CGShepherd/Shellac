@@ -80,5 +80,11 @@ def test_buffer_builders_have_explicit_follower_feedback():
             assert _wire_touches(sheet,out,corner)
             assert _wire_touches(sheet,corner,inv)
 
-def test_physical_population_unchanged():
-    assert len(build_footprint_contract().board_population_refs)==247
+def test_ae039_physical_opamp_population_remains_ten_packages():
+    contract=build_footprint_contract()
+    opamps=[
+        entry for entry in contract.entries
+        if entry.value in {"OPA1656","OPA1655","OPA1612"}
+        and entry.ref in contract.board_population_refs
+    ]
+    assert len(opamps)==10

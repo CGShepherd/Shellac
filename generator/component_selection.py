@@ -70,6 +70,7 @@ TIMING_CAPACITOR_0805 = "Capacitor_SMD:C_0805_2012Metric"
 TIMING_CAPACITOR_1206 = "Capacitor_SMD:C_1206_3216Metric"
 BULK_DECOUPLING_10UF_SMD = "Capacitor_SMD:CP_Elec_6.3x5.8"
 NONPOLAR_FEEDBACK_10UF_THT = "Capacitor_THT:C_Radial_D5.0mm_H5.0mm_P2.00mm"
+RUMBLE_FILTER_FILM_470NF_THT = "Capacitor_THT:C_Rect_L7.2mm_W3.5mm_P5.00mm_FKS2_FKP2_MKS2_MKP2"
 
 
 def timing_capacitor_requirements(value_nf: float) -> ComponentRequirements:
@@ -147,3 +148,13 @@ def common_mode_sense_capacitor_requirements() -> ComponentRequirements:
         signal_path=True,
         notes="THAT1646 OUT-to-SNS 10 uF non-polar capacitor; manufacturer part not frozen.",
     )
+
+def rumble_filter_capacitor_footprint() -> str:
+    """Return the controlled physical envelope for each SCH107 470 nF film capacitor.
+
+    WIMA MKS2 0.47 uF / 63 V uses a 7.2 x 3.5 mm body on 5 mm lead
+    spacing. The footprint closes the impossible generic-0805 representation;
+    manufacturer/tolerance procurement remains open to RUN10/BOM freeze.
+    """
+
+    return RUMBLE_FILTER_FILM_470NF_THT

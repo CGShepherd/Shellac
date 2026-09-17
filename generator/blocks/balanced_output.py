@@ -372,8 +372,13 @@ def _add_channel(
             function=f"{ch} local {rail} bulk decoupling",
             footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
         ))
-        sheet.connect_vertical_two_pin(hf, rail, "0VA")
-        sheet.connect_vertical_two_pin(bulk, rail, "0VA")
+        if rail == "+18V":
+            sheet.connect_vertical_two_pin(hf, "+18V", "0VA")
+            sheet.connect_vertical_two_pin(bulk, "+18V", "0VA")
+        else:
+            # Pin 1 is the positive terminal for the electrolytic footprint.
+            sheet.connect_vertical_two_pin(hf, "0VA", "-18V")
+            sheet.connect_vertical_two_pin(bulk, "0VA", "-18V")
 
 
 def add_balanced_output(sheet) -> None:

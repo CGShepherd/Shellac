@@ -331,12 +331,19 @@ def _add_channel(sheet, channel, index, y):
             footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
         ))
         for cap in (hf_dec, bulk):
+            if rail == "+18V":
+                pin1_net, pin2_net = "+18V", "0VA"
+            else:
+                # Pin 1 is the positive terminal on the polarized bulk footprint.
+                # Keep it at 0VA; pin 2 goes to -18V. The ceramic bypass is
+                # unpolarized but follows the same rail/reference orientation.
+                pin1_net, pin2_net = "0VA", "-18V"
             _label_on_dedicated_stub(
-                sheet, pin_position(cap, "1"), rail,
+                sheet, pin_position(cap, "1"), pin1_net,
                 dy=4.0, label_dx=5.08,
             )
             _label_on_dedicated_stub(
-                sheet, pin_position(cap, "2"), "0VA",
+                sheet, pin_position(cap, "2"), pin2_net,
                 dy=-4.0, label_dx=5.08,
             )
 

@@ -79,3 +79,51 @@ def test_feedback_ladders_are_physical_series_connections():
                 (pin_position(default, "2").x, pin_position(default, "2").y),
                 (pin_position(base, "1").x, pin_position(base, "1").y),
             )) in edges
+
+def _connected_label_names(sheet, start):
+    point = (start.x, start.y)
+    adjacency = {}
+    for wire in sheet.wires:
+        a = (wire.x1, wire.y1); b = (wire.x2, wire.y2)
+        adjacency.setdefault(a, set()).add(b)
+        adjacency.setdefault(b, set()).add(a)
+    labels_by_point = {}
+    for label in sheet.labels:
+        labels_by_point.setdefault((label.x, label.y), set()).add(label.name)
+    seen = {point}; stack = [point]; labels = set()
+    while stack:
+        current = stack.pop()
+        labels |= labels_by_point.get(current, set())
+        for nxt in adjacency.get(current, ()):
+            if nxt not in seen:
+                seen.add(nxt); stack.append(nxt)
+    return labels
+
+
+def test_sch101_every_physical_opamp_package_has_local_hf_bypassing():
+    sheet = _sch101()
+    components = {component.ref: component for component in sheet.components}
+    expected = {
+        "C191": ("+18V", "0VA"), "C192": ("0VA", "-18V"),
+        "C193": ("+18V", "0VA"), "C194": ("0VA", "-18V"),
+        "C291": ("+18V", "0VA"), "C292": ("0VA", "-18V"),
+        "C293": ("+18V", "0VA"), "C294": ("0VA", "-18V"),
+    }
+    for ref, (pin1_net, pin2_net) in expected.items():
+        cap = components[ref]
+        assert cap.value == "100n"
+        assert pin1_net in _connected_label_names(sheet, pin_position(cap, "1"))
+        assert pin2_net in _connected_label_names(sheet, pin_position(cap, "2"))
+
+
+def test_sch101_live_converter_and_lt5400_annotations_are_procurement_realistic():
+    sheet = _sch101()
+    components = {component.ref: component for component in sheet.components}
+    assert "OPA1655" in components["U103"].fields["Function"]
+    assert "OPA1655" in components["U203"].fields["Function"]
+    for ref in ("RN130", "RN230"):
+        rn = components[ref]
+        assert rn.fields["Device"] == "LT5400-7"
+        assert "B-grade" in rn.fields["Grade"]
+        assert "RUN10" in rn.fields["Grade"]
+        assert "final EP disposition open" in rn.fields["EP"]

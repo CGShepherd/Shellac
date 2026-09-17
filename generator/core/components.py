@@ -79,8 +79,19 @@ def diff_converter_block(ref, label, at, function="Precision differential conver
         {"Function": function, "Intended Device": "OPA1656 / OPA1655 class",
          "Topology": "Four-resistor precision differential amplifier",
          "Gain": "External LT5400 network defines gain",
-         "Resistor Network": "LT5400-7 A-grade"})
+         "Resistor Network": "LT5400-7 B-grade candidate; RUN10 tolerance qualification open"})
 
 
 def lt5400_network(ref,label,at):
-    return Component(ref,"ProjectShellac:LT5400_Network",label,at,"Package_SO:MSOP-8-1EP_3x3mm_P0.65mm_EP1.68x1.88mm",{"Function":"DR-038 matched resistor network","Device":"LT5400-7 A-grade","R1/R4":"5k","R2/R3":"1.25k","EP":"Pin 9 floating"})
+    return Component(
+        ref,"ProjectShellac:LT5400_Network",label,at,
+        "Package_SO:MSOP-8-1EP_3x3mm_P0.65mm_EP1.68x1.88mm",
+        {
+            "Function":"DR-038 matched resistor network",
+            "Device":"LT5400-7",
+            "Grade":"B-grade procurement candidate; RUN10 acceptance open",
+            "R1/R4":"5k",
+            "R2/R3":"1.25k",
+            "EP":"Pin 9 presently floating; final EP disposition open",
+        },
+    )

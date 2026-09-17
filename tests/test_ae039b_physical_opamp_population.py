@@ -23,17 +23,18 @@ def test_physical_opamp_package_census_is_ten():
         by_value[e.value]=by_value.get(e.value,0)+1
     assert by_value==package_counts()=={"OPA1656":6,"OPA1655":2,"OPA1612":2}
 
-def test_board_population_reduces_by_eight_packages():
+def test_ae039_absorbs_eight_logical_opamp_units_without_reintroducing_them():
     contract=build_footprint_contract()
-    assert len(contract.board_population_refs)==247
+    assert len(ABSORBED)==8
+    assert ABSORBED.isdisjoint(contract.board_population_refs)
 
 def test_absorbed_refs_are_removed_from_cluster_authority():
     model=build_cluster_placement_baseline()
     owned={r for c in model.clusters for r in c.member_refs}
     assert ABSORBED.isdisjoint(owned)
 
-def test_every_physical_package_receives_one_placement():
+def test_every_current_physical_package_receives_one_placement():
     contract=build_footprint_contract()
     placement=build_preliminary_placement_baseline()
     assert {p.ref for p in placement.proposals}==set(contract.board_population_refs)
-    assert len(placement.proposals)==247
+    assert len(placement.proposals)==len(contract.board_population_refs)

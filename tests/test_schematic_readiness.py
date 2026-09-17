@@ -18,8 +18,8 @@ def test_readiness_audit_does_not_mistake_functional_sheets_for_connected_schema
     assert not any("reference annotation" in item for item in audit.project_blockers)
     assert any("electrical-rules checking" in item for item in audit.project_blockers)
     assert audit.hierarchical_sheets == 8
-    assert audit.hierarchical_pins == 66
-    assert audit.cross_sheet_signals == 19
+    assert audit.hierarchical_pins == 74
+    assert audit.cross_sheet_signals == 23
 
 
 def test_only_existing_wired_slices_have_nonzero_wire_counts():
