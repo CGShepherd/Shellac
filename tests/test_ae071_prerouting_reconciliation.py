@@ -75,9 +75,9 @@ def test_lt5400_bom_no_longer_claims_nonexistent_a_grade_minus7():
 
 def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
     hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    assert hold["authority"] == "AE-071A"
-    assert hold["previous_authority"] == "AE-071"
-    assert hold["baseline_commit"] == "87769300eaa51aff20f560d2850b0d0433b9217b"
+    assert hold["authority"] == "AE-071B"
+    assert hold["previous_authority"] == "AE-071A"
+    assert hold["baseline_commit"] == "6067c6535cc40694a45b496c287c8068978fba8a"
     assert hold["status"] == "ROUTING_HELD_PENDING_PRODUCT_RECONCILIATION"
     assert hold["historical_release"]["record"] == "config/release/sr041_routing_release.yaml"
     assert hold["historical_release"]["current_authority"] is False
@@ -87,6 +87,11 @@ def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
     assert hold["permissions"]["manufacturing_release"] is False
     assert hold["final_design_assurance"]["authority"] == "AE-072_PENDING"
     assert hold["resolved_after_ae071"][0]["id"] == "AE071-B01"
+    assert hold["resolved_after_ae071a"] == [{
+        "id": "AE071-M01",
+        "item": "NATIVE_PCB_MOUNTING_HOLE_BOARD_ONLY_OWNERSHIP",
+        "resolution": "AE071B_MH1_MH4_BOARD_ONLY_LOCKED_AND_BOM_POS_EXCLUDED",
+    }]
     assert {x["id"] for x in hold["routing_blockers"]} == {
         "AE071-B02","AE071-B03","AE071-B04",
         "AE071-B05","AE071-B06","AE071-B07","AE071-B08",

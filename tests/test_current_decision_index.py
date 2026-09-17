@@ -59,8 +59,9 @@ def test_design_pack_and_maintenance_structure_exist():
     assert Path("docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md").exists()
 
 
-def test_pre_spice_assurance_chain_reaches_ae071a():
+def test_pre_spice_assurance_chain_reaches_ae071b():
     text = _text()
     for n in range(42, 72):
         assert f"  AE-{n:03d}:" in text
     assert "  AE-071A:" in text
+    assert "  AE-071B:" in text

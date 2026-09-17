@@ -57751,6 +57751,7 @@
 	(embedded_fonts no)
 
 (footprint "MountingHole:MountingHole_3.2mm_M3"
+		(locked yes)
 		(layer "F.Cu")
 		(uuid "0eaf4706-b5b6-5926-b4ad-636b1e492f47")
 		(at 25 28)
@@ -57801,7 +57802,7 @@
 				)
 			)
 		)
-		(attr exclude_from_pos_files exclude_from_bom)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 4 0)
@@ -57824,6 +57825,7 @@
 	)
 
 (footprint "MountingHole:MountingHole_3.2mm_M3"
+		(locked yes)
 		(layer "F.Cu")
 		(uuid "b3c71ad8-bbfa-573c-956d-97ac203e9624")
 		(at 235 28)
@@ -57874,7 +57876,7 @@
 				)
 			)
 		)
-		(attr exclude_from_pos_files exclude_from_bom)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 4 0)
@@ -57897,6 +57899,7 @@
 	)
 
 (footprint "MountingHole:MountingHole_3.2mm_M3"
+		(locked yes)
 		(layer "F.Cu")
 		(uuid "089630ef-972e-5812-8d05-f088b6e5b934")
 		(at 235 152)
@@ -57947,7 +57950,7 @@
 				)
 			)
 		)
-		(attr exclude_from_pos_files exclude_from_bom)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 4 0)
@@ -57970,6 +57973,7 @@
 	)
 
 (footprint "MountingHole:MountingHole_3.2mm_M3"
+		(locked yes)
 		(layer "F.Cu")
 		(uuid "b2f7d0e3-1069-5502-a348-89e72d094258")
 		(at 25 152)
@@ -58020,7 +58024,7 @@
 				)
 			)
 		)
-		(attr exclude_from_pos_files exclude_from_bom)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 4 0)

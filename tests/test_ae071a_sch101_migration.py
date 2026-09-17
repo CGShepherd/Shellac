@@ -53,8 +53,11 @@ def test_population_remains_255_but_new_service_hardware_is_owned():
 
 def test_governance_closes_migration_but_not_routing():
     hold=yaml.safe_load((ROOT/"config/release/ae071_prerouting_hold.yaml").read_text(encoding="utf-8"))
-    assert hold["authority"]=="AE-071A"
+    assert hold["authority"]=="AE-071B"
+    assert hold["previous_authority"]=="AE-071A"
+    assert hold["baseline_commit"]=="6067c6535cc40694a45b496c287c8068978fba8a"
     assert {x["id"] for x in hold["resolved_after_ae071"]}=={"AE071-B01"}
+    assert {x["id"] for x in hold["resolved_after_ae071a"]}=={"AE071-M01"}
     blockers={x["id"] for x in hold["routing_blockers"]}
     assert "AE071-B01" not in blockers
     assert "AE071-B02" in blockers

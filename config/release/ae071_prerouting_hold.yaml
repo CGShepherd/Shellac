@@ -1,8 +1,8 @@
 schema_version: 1
 project: Shellac
-authority: AE-071A
-previous_authority: AE-071
-baseline_commit: 87769300eaa51aff20f560d2850b0d0433b9217b
+authority: AE-071B
+previous_authority: AE-071A
+baseline_commit: 6067c6535cc40694a45b496c287c8068978fba8a
 status: ROUTING_HELD_PENDING_PRODUCT_RECONCILIATION
 historical_release:
   record: config/release/sr041_routing_release.yaml
@@ -23,6 +23,10 @@ resolved_after_ae071:
 - id: AE071-B01
   item: AE042_SCH101_SELECTED_NEXT_PRODUCT_MIGRATION
   resolution: AE071A_PRODUCT_GENERATOR_MODEL_CAD_BOM_GOVERNANCE_MIGRATION
+resolved_after_ae071a:
+- id: AE071-M01
+  item: NATIVE_PCB_MOUNTING_HOLE_BOARD_ONLY_OWNERSHIP
+  resolution: AE071B_MH1_MH4_BOARD_ONLY_LOCKED_AND_BOM_POS_EXCLUDED
 routing_blockers:
 - id: AE071-B02
   item: AE067_BRANCH_LOCAL_DR039_PRODUCT_MIGRATION
