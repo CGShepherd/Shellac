@@ -114,7 +114,7 @@ Evidence at qualification:
   - `MH1=(25,28)`, `MH2=(235,28)`, `MH3=(235,152)`, `MH4=(25,152)` after
     board-local-to-native coordinate translation;
 - focused governance regression: **18 passed**;
-- focused AE-071B/native regression: **11 passed**;
+- focused AE-071B/native regression: **12 passed**;
 - native-board audit: product population, board outline, mounting-hole presence,
   pose, board ownership, locks, output exclusions, unrouted state and four-layer
   presence all passed;
@@ -124,7 +124,7 @@ Evidence at qualification:
   parse-only gate; these are not DRC-closure evidence and are expected while the
   board is deliberately unrouted;
 - configuration authority audit: PASS;
-- full repository regression: **632 passed**;
+- full repository regression: **633 passed**;
 - integrated preflight: PASS through the currently qualified RUN00–RUN07 evidence;
   RUN08–RUN14 and the remaining RUN06 bench gates remain open;
 - `git diff --check`: PASS;
