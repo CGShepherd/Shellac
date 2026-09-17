@@ -47,8 +47,10 @@ With a symmetrical low-impedance test source:
 - >=70 dB, 20 Hz to 1 kHz, at LOW/DEFAULT/HIGH;
 - >=60 dB at 20 kHz.
 
-The production tolerance model includes RF-series resistor, common-mode
-capacitor, gain-leg and LT5400 ratio errors.
+AE-066 RUN02 establishes the nominal gain/CMRR evidence. RUN10 owns the
+current tolerance/mismatch qualification for RF-series, service-gain and
+LT5400 B-grade ratio errors; the historical AE-023 A-grade tolerance model is
+not current production acceptance authority.
 
 ## DC offset
 
@@ -68,5 +70,9 @@ the nominal output. 78-rpm record/surface noise will normally dominate.
 ## Service caution
 
 Do not substitute an ordinary DIP switch into the SCH101 precision feedback
-path. LOW/DEFAULT/HIGH are hard service-link configurations and all
-corresponding gain legs must be configured identically.
+path. One four-gang removable gold shunt configures all gain legs together:
+LOW bridges the 332 ohm RF-parallel branches, HIGH bridges the 866 ohm
+RG-parallel branches, and DEFAULT leaves both active branches open with the
+shunt parked. Verify production shunt pairing/orientation before relying on
+silkscreen position. A separate two-gang shunt selects BASE/+47/+100 pF
+cartridge loading.

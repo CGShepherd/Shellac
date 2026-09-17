@@ -100,9 +100,15 @@ required_parameters:
 selected_next_contract:
   sch101:
     authority: AE-042
+    product_migration_authority: AE-071A
+    product_generator_status: CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
+    product_generator_migrated: true
+    candidate_analysis_remains_qualification_evidence: true
     gain_db: [14, 18, 22]
     no_shunt_state_db: 18
     converter_gain: 4.0
+    service_cap_pf: [0, 47, 100]
+    follow_on_qualification: [RUN10, BENCH]
   dr039_sch107:
     authority: AE-067
     preferred_candidate: BRANCH_LOCAL_DIRECT_BYPASS_BLOCK

@@ -61,24 +61,64 @@ def test_sch101_main_signal_paths_use_visible_conductors():
         )
 
 
-def test_feedback_ladders_are_physical_series_connections():
+def test_ae042_gain_programming_is_fail_safe_parallel_topology():
     sheet = _sch101()
     components = {component.ref: component for component in sheet.components}
     edges = _edges(sheet)
+    no_connects = {(point.x, point.y) for point in sheet.no_connects}
 
-    for refbase in (1, 2):
-        for suffix in (1, 2):
+    for refbase, channel in ((1, "L"), (2, "R")):
+        for suffix, polarity in ((1, "PLUS"), (2, "MINUS")):
+            pair_index = (refbase - 1) * 2 + suffix
+            pair_a = f"A{pair_index}"
+            pair_b = f"B{pair_index}"
+            op = components[f"U{refbase}0{suffix}"]
+            rg = components[f"R{refbase}{suffix}1"]
+            rf = components[f"R{refbase}{suffix}2"]
+            low = components[f"R{refbase}{suffix}3"]
             high = components[f"R{refbase}{suffix}4"]
-            default = components[f"R{refbase}{suffix}3"]
-            base = components[f"R{refbase}{suffix}2"]
+
+            assert rg.value == "1000"
+            assert rf.value == "999"
+            assert low.value == "332"
+            assert high.value == "866"
+
             assert frozenset((
-                (pin_position(high, "2").x, pin_position(high, "2").y),
-                (pin_position(default, "1").x, pin_position(default, "1").y),
+                (pin_position(rf, "1").x, pin_position(rf, "1").y),
+                (pin_position(op, "FB-").x, pin_position(op, "FB-").y),
             )) in edges
             assert frozenset((
-                (pin_position(default, "2").x, pin_position(default, "2").y),
-                (pin_position(base, "1").x, pin_position(base, "1").y),
+                (pin_position(rf, "2").x, pin_position(rf, "2").y),
+                (pin_position(op, "OUT").x, pin_position(op, "OUT").y),
             )) in edges
+
+            assert frozenset((
+                (pin_position(low, "1").x, pin_position(low, "1").y),
+                (pin_position(op, "OUT").x, pin_position(op, "OUT").y),
+            )) in edges
+            low_branch = f"SCH101_{channel}_{polarity}_LOW_BRANCH"
+            assert low_branch in _connected_label_names(sheet, pin_position(low, "2"))
+            assert low_branch in _connected_label_names(sheet, pin_position(components["H110"], pair_a))
+            fb_net = f"SCH101_{channel}_{polarity}_FB"
+            assert fb_net in _connected_label_names(sheet, pin_position(components["H110"], pair_b))
+
+            assert frozenset((
+                (pin_position(high, "1").x, pin_position(high, "1").y),
+                (pin_position(op, "FB-").x, pin_position(op, "FB-").y),
+            )) in edges
+            high_branch = f"SCH101_{channel}_{polarity}_HIGH_BRANCH"
+            assert high_branch in _connected_label_names(sheet, pin_position(high, "2"))
+            assert high_branch in _connected_label_names(sheet, pin_position(components["H111"], pair_a))
+            assert "0VA" in _connected_label_names(sheet, pin_position(components["H111"], pair_b))
+
+            assert (
+                pin_position(components["H112"], pair_a).x,
+                pin_position(components["H112"], pair_a).y,
+            ) in no_connects
+            assert (
+                pin_position(components["H112"], pair_b).x,
+                pin_position(components["H112"], pair_b).y,
+            ) in no_connects
 
 def _connected_label_names(sheet, start):
     point = (start.x, start.y)

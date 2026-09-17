@@ -113,6 +113,42 @@ items:
     status: GRADE_RATIO_SELECTED_RUN10_AND_EXACT_MPN_OPEN
     decision: DR-038
     note: The -7 ratio is procurable in B grade, not the previously encoded A grade. RUN10 must accept the complete B-grade tolerance/CMRR stack and final temperature-grade MPN before BOM freeze.
+  - id: BOM-SCH101-GAIN-SHUNT
+    function: sch101_gain_service_shunt
+    manufacturer: Samtec
+    mpn: MNT-104-BK-G
+    quantity: 1
+    pitch_mm: 2.54
+    status: CANDIDATE_CORROBORATED_PAIRING_ORIENTATION_OPEN
+    decision: DR-038
+  - id: BOM-SCH101-GAIN-HEADERS
+    function: sch101_gain_service_headers_low_high_park
+    manufacturer: Samtec
+    mpn: TSW-104-07-G-D
+    quantity: 3
+    pitch_mm: 2.54
+    plating: 10uin_gold_flash
+    status: CANDIDATE_CORROBORATED_PAIRING_ORIENTATION_OPEN
+    decision: DR-038
+    refs: [H110, H111, H112]
+  - id: BOM-SCH101-LOAD-SHUNT
+    function: sch101_cartridge_capacitance_service_shunt
+    manufacturer: Samtec
+    mpn: MNT-102-BK-G
+    quantity: 1
+    pitch_mm: 2.54
+    status: CANDIDATE_CORROBORATED_PAIRING_ORIENTATION_OPEN
+    decision: DR-038
+  - id: BOM-SCH101-LOAD-HEADERS
+    function: sch101_cartridge_capacitance_headers_47_base_100
+    manufacturer: Samtec
+    mpn: TSW-102-07-G-D
+    quantity: 3
+    pitch_mm: 2.54
+    plating: 10uin_gold_flash
+    status: CANDIDATE_CORROBORATED_PAIRING_ORIENTATION_OPEN
+    decision: DR-038
+    refs: [H120, H121, H122]
   - id: BOM-SCH108-CLAMP
     function: sch108_phantom_fault_rail_clamp
     manufacturer: Vishay General Semiconductor

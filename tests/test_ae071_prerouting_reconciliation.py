@@ -75,8 +75,9 @@ def test_lt5400_bom_no_longer_claims_nonexistent_a_grade_minus7():
 
 def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
     hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    assert hold["authority"] == "AE-071"
-    assert hold["baseline_commit"] == "67b2101474bc1db10deb7784a0cc7131ed20e2ef"
+    assert hold["authority"] == "AE-071A"
+    assert hold["previous_authority"] == "AE-071"
+    assert hold["baseline_commit"] == "87769300eaa51aff20f560d2850b0d0433b9217b"
     assert hold["status"] == "ROUTING_HELD_PENDING_PRODUCT_RECONCILIATION"
     assert hold["historical_release"]["record"] == "config/release/sr041_routing_release.yaml"
     assert hold["historical_release"]["current_authority"] is False
@@ -85,9 +86,10 @@ def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
     assert hold["permissions"]["bom_freeze"] is False
     assert hold["permissions"]["manufacturing_release"] is False
     assert hold["final_design_assurance"]["authority"] == "AE-072_PENDING"
+    assert hold["resolved_after_ae071"][0]["id"] == "AE071-B01"
     assert {x["id"] for x in hold["routing_blockers"]} == {
-        "AE071-B01","AE071-B02","AE071-B03","AE071-B04",
-        "AE071-B05","AE071-B06","AE071-B07",
+        "AE071-B02","AE071-B03","AE071-B04",
+        "AE071-B05","AE071-B06","AE071-B07","AE071-B08",
     }
     historical = yaml.safe_load(OLD_RELEASE.read_text(encoding="utf-8"))
     assert historical["base_commit"] == "56c74250507a2f4d4b4dc04641096c7883512740"

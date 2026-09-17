@@ -5,10 +5,12 @@ from generator.layout.ghost_placement import (
 )
 
 
-def test_ghost_placement_contains_all_sixteen_clusters():
+def test_ghost_placement_contains_all_eighteen_clusters():
     model = build_ghost_placement_baseline()
-    assert len(model.clusters) == 16
-    assert len({cluster.identifier for cluster in model.clusters}) == 16
+    identifiers = {cluster.identifier for cluster in model.clusters}
+    assert len(model.clusters) == 18
+    assert len(identifiers) == 18
+    assert {"CLU-101-E", "CLU-101-F"} <= identifiers
 
 
 def test_ghost_placement_respects_board_and_architecture_invariants():

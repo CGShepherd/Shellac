@@ -12,8 +12,10 @@ External PSU isolation, stored energy, chassis/0VA rules, ESD and safe probing.
 Cartridge input -> SCH101 -> SCH103 -> SCH107 -> SCH104 -> SCH105 -> SCH108 -> XLR.
 
 ## Configuration
-DR-038 service links are implemented. LOW/DEFAULT/HIGH are hard population states;
-DEFAULT is normal. Do not substitute an ordinary DIP contact into the precision feedback path.
+DR-038 uses one removable four-gang gold service shunt for LOW/DEFAULT/HIGH programming.
+DEFAULT is normal and electrically complete with no LOW/HIGH branch bridged; park the shunt
+on the inert DEFAULT/PARK header. Do not substitute an ordinary DIP contact into the precision
+feedback path. A separate two-gang shunt selects BASE/+47/+100 pF cartridge loading.
 
 ## DC checks
 DR-039 blocks SCH101/SCH103 static DC before the SCH107 FILTER/BYPASS split.

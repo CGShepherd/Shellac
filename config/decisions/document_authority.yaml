@@ -41,6 +41,7 @@ pre_spice_assurance_evidence:
   - docs/design_pack/AE-069_RUN06_SCH108_Nominal_Output_Evidence_Rev_A0.md
   - docs/design_pack/AE-070_RUN07_End_to_End_Nominal_Chain_Evidence_Rev_A0.md
   - docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
+  - docs/design_pack/AE-071A_SCH101_Product_Migration_Rev_A0.md
 historical_state_evidence:
   - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
   - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md

@@ -15,11 +15,11 @@ Use first:
 
 Current signal-chain status:
 - DR-037: current — complete canonical RIAA retained in SCH103; duplicate independent 3180 us stage removed;
-- DR-038: architectural intent current — LT5400 precision SCH101 architecture retained; gain-selection implementation is under pre-SPICE reconciliation;
+- DR-038: current architecture qualification open — AE-071A migrates the AE-042 fail-safe gain and service-capacitance topology into the live SCH101 generator; RUN10, LT5400 EP/MPN, service-hardware mapping and bench qualification remain open;
 - DR-039: selected pending implementation — AE-067 RUN04 confirms branch-local DC blocking: 1 uF / 330 kOhm only in the direct bypass branch, with the existing SCH107 high-pass branch providing intrinsic DC blocking; product-generator migration plus RUN09/RUN10/RUN12 and bench correlation remain open;
 - DR-040: current subject to the live implementation and subsequent assurance records;
 - AE-041 Rev A1: current control authority — 3P4T switched-summing matrix and current top-cover control architecture; AE-068 qualifies RUN05 steady-state matrix behaviour while switching/mechanical qualification remains open;
-- AE-042 through AE-071: current pre-SPICE/integrated-simulation/physical-integrity assurance chain; AE-070 completes RUN07 nominal end-to-end AC evidence and AE-071 reconciles pre-routing physical CAD, hierarchy and placement integrity while routing remains explicitly held; RUN08-RUN14 and prototype/bench obligations remain open;
+- AE-042 through AE-071 plus AE-071A: current pre-SPICE/integrated-simulation/physical-integrity chain; AE-071A migrates SCH101 selected-next product implementation while retaining the routing hold; RUN08-RUN14 and prototype/bench obligations remain open;
 - prototype measured acceptance: open.
 
 This is not yet a manufacturing baseline. The next intended configuration milestone is the **Shellac Pre-SPICE Architecture Baseline** after repository reconciliation, clean regression and configuration-control closure.
@@ -90,7 +90,9 @@ AE-070 executes RUN07 for representative end-to-end nominal states. Historical 7
 
 AE-071 performs the post-RUN07 pre-routing integrity reconciliation. It corrects SCH101 local package bypassing and OPA1655/LT5400 physical identity, SCH103/SCH108 negative-bulk polarity representation, SCH107 470 nF film footprints and generated Capacitor_THT exposure. Native hierarchical ERC then exposed six genuine engineering-model hierarchy omissions: four dual-mono EQ control signals plus MONO_AVG and MONO_R_LEG. AE-071 carries those signals explicitly across SCH103/SCH109 and SCH104/SCH105, reconciles the resulting 74 hierarchical pins / 23 cross-sheet signals, and assigns the eight new SCH101 bypass capacitors to their existing gain/converter placement clusters. Historical SR-041 remains provenance only; current routing authority is held by config/release/ae071_prerouting_hold.yaml until the listed product, procurement, mechanical and interface blockers close.
 
-AE-042 through AE-071 are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-071A migrates the AE-042 SCH101 selected-next topology into the live product generator after AE-066 nominal evidence. The eight old 0-ohm service links are removed; six PCB service headers and two additional load capacitors preserve the 255-reference population while changing its identity set. Production Samtec shunt pairing/orientation and cartridge-load header parasitic/layout behaviour remain routing blockers; RUN10 retains tolerance/CMRR authority.
+
+AE-042 through AE-071 plus AE-071A are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048, AE-049 and AE-050 remain respectively the qualification, numerical-acceptance and execution authorities for the simulation campaign. AE-053 defines the toolchain architecture used to execute those authorities and does not replace them.
 

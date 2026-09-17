@@ -51,6 +51,8 @@ PIN_COUNTS = {
     "ProjectShellac:Panel_LED_Block": 2,
     "ProjectShellac:Bass_Select_Block": 6,
     "ProjectShellac:Treble_Select_Block": 5,
+    "ProjectShellac:Service_Header_4Gang": 8,
+    "ProjectShellac:Service_Header_2Gang": 4,
 }
 
 PROJECT_NAME = "ProjectShellac"
@@ -249,6 +251,8 @@ def embedded_custom_symbol_ids():
         "ProjectShellac:Panel_LED_Block",
         "ProjectShellac:Bass_Select_Block",
         "ProjectShellac:Treble_Select_Block",
+        "ProjectShellac:Service_Header_4Gang",
+        "ProjectShellac:Service_Header_2Gang",
     })
 
 
@@ -310,7 +314,7 @@ def write_project_library_tables(out_dir):
     )
     footprint_libraries = (
         "Button_Switch_THT", "Capacitor_SMD", "Capacitor_THT",
-        "Connector_Audio", "Diode_SMD", "Inductor_SMD", "Package_SO",
+        "Connector_Audio", "Connector_PinHeader_2.54mm", "Diode_SMD", "Inductor_SMD", "Package_SO",
         "Resistor_SMD", "TestPoint",
     )
     rows = "\n".join(
@@ -603,6 +607,32 @@ def local_symbol_library():
         (rectangle (start -3.81 -3.81) (end 3.81 3.81) (stroke (width 0.1524) (type solid)) (fill (type none)))
         (pin passive line (at 0 -8.89 90) (length 5.08) (name "A" {eff(1.0)}) (number "1" {eff(1.0)}))
         (pin passive line (at 0 8.89 270) (length 5.08) (name "K" {eff(1.0)}) (number "2" {eff(1.0)}))
+      )
+    )
+    (symbol "ProjectShellac:Service_Header_4Gang" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)
+      (property "Reference" "H" (id 0) (at 0 -13.97 0) {eff()})
+      (property "Value" "SERVICE_4GANG" (id 1) (at 0 13.97 0) {eff()})
+      (symbol "Service_Header_4Gang_0_1"
+        (rectangle (start -7.62 -10.16) (end 7.62 10.16) (stroke (width 0.1524) (type solid)) (fill (type none)))
+        (pin passive line (at -12.70 -7.62 0) (length 5.08) (name "A1" {eff(1.0)}) (number "1" {eff(1.0)}))
+        (pin passive line (at 12.70 -7.62 180) (length 5.08) (name "B1" {eff(1.0)}) (number "2" {eff(1.0)}))
+        (pin passive line (at -12.70 -2.54 0) (length 5.08) (name "A2" {eff(1.0)}) (number "3" {eff(1.0)}))
+        (pin passive line (at 12.70 -2.54 180) (length 5.08) (name "B2" {eff(1.0)}) (number "4" {eff(1.0)}))
+        (pin passive line (at -12.70 2.54 0) (length 5.08) (name "A3" {eff(1.0)}) (number "5" {eff(1.0)}))
+        (pin passive line (at 12.70 2.54 180) (length 5.08) (name "B3" {eff(1.0)}) (number "6" {eff(1.0)}))
+        (pin passive line (at -12.70 7.62 0) (length 5.08) (name "A4" {eff(1.0)}) (number "7" {eff(1.0)}))
+        (pin passive line (at 12.70 7.62 180) (length 5.08) (name "B4" {eff(1.0)}) (number "8" {eff(1.0)}))
+      )
+    )
+    (symbol "ProjectShellac:Service_Header_2Gang" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)
+      (property "Reference" "H" (id 0) (at 0 -8.89 0) {eff()})
+      (property "Value" "SERVICE_2GANG" (id 1) (at 0 8.89 0) {eff()})
+      (symbol "Service_Header_2Gang_0_1"
+        (rectangle (start -7.62 -5.08) (end 7.62 5.08) (stroke (width 0.1524) (type solid)) (fill (type none)))
+        (pin passive line (at -12.70 -2.54 0) (length 5.08) (name "A1" {eff(1.0)}) (number "1" {eff(1.0)}))
+        (pin passive line (at 12.70 -2.54 180) (length 5.08) (name "B1" {eff(1.0)}) (number "2" {eff(1.0)}))
+        (pin passive line (at -12.70 2.54 0) (length 5.08) (name "A2" {eff(1.0)}) (number "3" {eff(1.0)}))
+        (pin passive line (at 12.70 2.54 180) (length 5.08) (name "B2" {eff(1.0)}) (number "4" {eff(1.0)}))
       )
     )
     (symbol "ProjectShellac:Bass_Select_Block" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom no) (on_board no)

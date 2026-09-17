@@ -131,6 +131,22 @@ SYMBOL_PIN_CONTRACTS: dict[str, dict[str, PinContract]] = {
         "6": PinContract("6", Point(-5.08, 6.35)),
     },
     "Connector_Generic:Conn_01x05": {"1": PinContract("1", Point(-5.08, -5.08)), "2": PinContract("2", Point(-5.08, -2.54)), "3": PinContract("3", Point(-5.08, 0.0)), "4": PinContract("4", Point(-5.08, 2.54)), "5": PinContract("5", Point(-5.08, 5.08))},
+    "ProjectShellac:Service_Header_4Gang": {
+        "A1": PinContract("1", Point(-12.70, -7.62)),
+        "B1": PinContract("2", Point(12.70, -7.62)),
+        "A2": PinContract("3", Point(-12.70, -2.54)),
+        "B2": PinContract("4", Point(12.70, -2.54)),
+        "A3": PinContract("5", Point(-12.70, 2.54)),
+        "B3": PinContract("6", Point(12.70, 2.54)),
+        "A4": PinContract("7", Point(-12.70, 7.62)),
+        "B4": PinContract("8", Point(12.70, 7.62)),
+    },
+    "ProjectShellac:Service_Header_2Gang": {
+        "A1": PinContract("1", Point(-12.70, -2.54)),
+        "B1": PinContract("2", Point(12.70, -2.54)),
+        "A2": PinContract("3", Point(-12.70, 2.54)),
+        "B2": PinContract("4", Point(12.70, 2.54)),
+    },
     "Device:Ferrite_Bead": {
         "1": PinContract("1", Point(-2.54, 0.0)),
         "2": PinContract("2", Point(2.54, 0.0)),

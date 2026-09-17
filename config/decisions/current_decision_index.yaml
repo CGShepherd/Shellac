@@ -30,7 +30,7 @@ decisions:
       - G3-027 resynthesis requirement
   DR-038:
     title: SCH101 precision architecture
-    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    status: CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
     primary_record: docs/decisions/DR-038_SCH101_Precision_Architecture_SELECTED.md
     proposal_record: docs/decisions/DR-038_SCH101_Precision_Architecture_PROPOSED.md
     evidence:
@@ -39,11 +39,13 @@ decisions:
       - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
       - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
       - docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
+      - docs/design_pack/AE-071A_SCH101_Product_Migration_Rev_A0.md
     implementation:
       converter_gain: 4.0
       network: LT5400-7 B-grade procurement candidate; RUN10 tolerance/CMRR acceptance and exact temperature-grade MPN remain open
-      gain_selection: fail-safe removable gold service-shunt topology, approximately 14/18/22 dB; no-shunt state is 18 dB
-      note: Core LT5400 precision architecture remains current. AE-071 corrects the previously encoded nonexistent A-grade -7 procurement identity to the procurable B-grade -7 family without changing the DR-038 architecture. The older service-link gain implementation in the live generator is superseded by AE-042 and requires controlled implementation after SPICE/configuration review.
+      gain_selection: AE-071A live fail-safe removable gold service-shunt topology, approximately 14/18/22 dB; no LOW/HIGH shunt state is 18 dB
+      cartridge_load_selection: AE-071A live BASE/+47/+100 pF ganged L/R service-capacitance programming; fixed 47 pF leg-to-chassis RF shunts retained
+      note: AE-071A migrates the AE-042 electrical topology into the live generator after AE-066 nominal qualification. AE-071 previously corrected the nonexistent A-grade -7 procurement identity to the procurable LT5400-7 B-grade family. RUN10 tolerance/CMRR acceptance, exact temperature-grade MPN, EP disposition, production Samtec shunt pairing/orientation and service-header parasitic/layout correlation remain open.
   DR-039:
     title: State-independent post-EQ DC blocking
     status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
@@ -117,6 +119,7 @@ pre_spice_assurance:
   AE-069: docs/design_pack/AE-069_RUN06_SCH108_Nominal_Output_Evidence_Rev_A0.md
   AE-070: docs/design_pack/AE-070_RUN07_End_to_End_Nominal_Chain_Evidence_Rev_A0.md
   AE-071: docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
+  AE-071A: docs/design_pack/AE-071A_SCH101_Product_Migration_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

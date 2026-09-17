@@ -1,7 +1,8 @@
 schema_version: 1
 project: Shellac
-authority: AE-071
-baseline_commit: 67b2101474bc1db10deb7784a0cc7131ed20e2ef
+authority: AE-071A
+previous_authority: AE-071
+baseline_commit: 87769300eaa51aff20f560d2850b0d0433b9217b
 status: ROUTING_HELD_PENDING_PRODUCT_RECONCILIATION
 historical_release:
   record: config/release/sr041_routing_release.yaml
@@ -18,10 +19,11 @@ resolved_in_ae071:
 - LT5400_7A_NONEXISTENT_PROCUREMENT_IDENTITY
 - ROOT_HIERARCHY_DUAL_MONO_CONTROL_AND_MONO_AVERAGING_CONNECTIVITY
 - SCH101_LOCAL_BYPASS_PLACEMENT_AUTHORITY_RECONCILIATION
-routing_blockers:
+resolved_after_ae071:
 - id: AE071-B01
   item: AE042_SCH101_SELECTED_NEXT_PRODUCT_MIGRATION
-  required_before_final_routing: true
+  resolution: AE071A_PRODUCT_GENERATOR_MODEL_CAD_BOM_GOVERNANCE_MIGRATION
+routing_blockers:
 - id: AE071-B02
   item: AE067_BRANCH_LOCAL_DR039_PRODUCT_MIGRATION
   required_before_final_routing: true
@@ -39,6 +41,9 @@ routing_blockers:
   required_before_final_routing: true
 - id: AE071-B07
   item: CARTRIDGE_INPUT_LOW_LEVEL_HARNESS_CONTACT_SYSTEM_REVIEW
+  required_before_final_routing: true
+- id: AE071-B08
+  item: SCH101_SERVICE_SHUNT_PAIRING_ORIENTATION_AND_LOAD_HEADER_PARASITIC_LAYOUT_VERIFICATION
   required_before_final_routing: true
 pre_run08_prerequisites:
 - id: AE071-S01

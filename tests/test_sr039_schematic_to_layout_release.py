@@ -32,7 +32,7 @@ def test_dr038_dr039_records_are_not_pending_after_release():
 def test_current_decision_index_describes_active_dr038():
     text=Path("config/decisions/current_decision_index.yaml").read_text(encoding="utf-8")
     block=text.split("  DR-038:",1)[1].split("  DR-039:",1)[0]
-    assert "status: CURRENT_SELECTED_PENDING_IMPLEMENTATION" in block
+    assert "status: CURRENT_ARCHITECTURE_QUALIFICATION_OPEN" in block
     assert "converter_gain: 4.0" in block
     assert "fail-safe removable gold service-shunt topology" in block
     assert "pre-DR038 implementation" not in block

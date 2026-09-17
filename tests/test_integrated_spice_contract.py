@@ -19,9 +19,15 @@ def test_nominal_shellac_rails_remain_plus_minus_18v():
 def test_sch101_candidate_contract_is_ae042():
     s = data()["selected_next_contract"]["sch101"]
     assert s["authority"] == "AE-042"
+    assert s["product_migration_authority"] == "AE-071A"
+    assert s["product_generator_status"] == "CURRENT_ARCHITECTURE_QUALIFICATION_OPEN"
+    assert s["product_generator_migrated"] is True
+    assert s["candidate_analysis_remains_qualification_evidence"] is True
     assert s["gain_db"] == [14, 18, 22]
     assert s["no_shunt_state_db"] == 18
     assert s["converter_gain"] == 4.0
+    assert s["service_cap_pf"] == [0, 47, 100]
+    assert s["follow_on_qualification"] == ["RUN10", "BENCH"]
 
 def test_dr039_selected_contract_is_ae067():
     s = data()["selected_next_contract"]["dr039_sch107"]

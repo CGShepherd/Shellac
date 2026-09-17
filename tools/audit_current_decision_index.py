@@ -35,7 +35,7 @@ def audit(text: str) -> list[str]:
 
 EXPECTED = {
     "DR-037": "CURRENT_IMPLEMENTED",
-    "DR-038": "CURRENT_SELECTED_PENDING_IMPLEMENTATION",
+    "DR-038": "CURRENT_ARCHITECTURE_QUALIFICATION_OPEN",
     "DR-039": "CURRENT_SELECTED_PENDING_IMPLEMENTATION",
     "DR-040": "CURRENT_IMPLEMENTED",
     "AE-041-A1": "CURRENT_ARCHITECTURE_QUALIFICATION_OPEN",
@@ -103,9 +103,12 @@ def audit_repository() -> list[str]:
         if expected not in current:
             errors.append(f"{decision}: {expected} missing from authoritative_current_status")
 
-    for n in range(42, 70):
+    for n in range(42, 72):
         if not re.search(rf"(?m)^  AE-{n:03d}:", index):
             errors.append(f"AE-{n:03d}: missing from pre_spice_assurance")
+
+    if not re.search(r"(?m)^  AE-071A:", index):
+        errors.append("AE-071A: missing from pre_spice_assurance")
 
     dr039_match = re.search(r"(?ms)^  DR-039:\n(.*?)(?=^  DR-040:)", index)
     if not dr039_match:

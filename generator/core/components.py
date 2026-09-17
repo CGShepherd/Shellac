@@ -67,6 +67,28 @@ def minifit_6(ref, label, at, function="Regulated DC harness interface", rotatio
         rotation=rotation,
     )
 
+def service_header_4gang(ref, label, at, function="SCH101 four-gang service programming", rotation=0.0):
+    return Component(
+        ref, "ProjectShellac:Service_Header_4Gang", label, at,
+        "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical",
+        {"Function": function, "Header candidate": "Samtec TSW-104-07-G-D",
+         "Shunt candidate": "Samtec MNT-104-BK-G", "Pitch": "2.54 mm",
+         "Contacts": "gold",
+         "Pairing authority": "Logical A/B pairs only; verify production MNT pairing/orientation before final routing"},
+        rotation=rotation,
+    )
+
+def service_header_2gang(ref, label, at, function="SCH101 two-gang service programming", rotation=0.0):
+    return Component(
+        ref, "ProjectShellac:Service_Header_2Gang", label, at,
+        "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical",
+        {"Function": function, "Header candidate": "Samtec TSW-102-07-G-D",
+         "Shunt candidate": "Samtec MNT-102-BK-G", "Pitch": "2.54 mm",
+         "Contacts": "gold",
+         "Pairing authority": "Logical A/B pairs only; verify production MNT pairing/orientation before final routing"},
+        rotation=rotation,
+    )
+
 def opa1656_gain_block(ref, label, at, function="JFET input non-inverting gain stage"):
     return Component(ref, "ProjectShellac:OpAmp_NonInv_Block", label, at,
         "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",

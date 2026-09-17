@@ -28,7 +28,7 @@ def test_authoritative_decision_index_is_well_formed():
     assert re.search(r"(?m)^  branch:\s*main\s*$", text)
     assert "commit: dce5c0ec36e12f979338d8c46106c44a79c7a023" in text
     assert _decision_status("DR-037", "DR-038") == "CURRENT_IMPLEMENTED"
-    assert _decision_status("DR-038", "DR-039") == "CURRENT_SELECTED_PENDING_IMPLEMENTATION"
+    assert _decision_status("DR-038", "DR-039") == "CURRENT_ARCHITECTURE_QUALIFICATION_OPEN"
     assert _decision_status("DR-039", "DR-040") == "CURRENT_SELECTED_PENDING_IMPLEMENTATION"
     assert _decision_status("DR-040") == "CURRENT_IMPLEMENTED"
 
@@ -40,8 +40,10 @@ def test_dr038_dr039_record_current_pre_spice_disposition():
     assert "RUN10 tolerance/CMRR acceptance" in dr038
     assert "nonexistent A-grade -7 procurement identity" in dr038
     assert "LT5400-7 A-grade retained provisionally" not in dr038
-    assert "fail-safe removable gold service-shunt topology" in dr038
+    assert "AE-071A live fail-safe removable gold service-shunt topology" in dr038
     assert "approximately 14/18/22 dB" in dr038
+    assert "BASE/+47/+100 pF" in dr038
+    assert "Samtec shunt pairing/orientation" in dr038
     assert "pre-DR038 implementation" not in dr038
 
     dr039 = _decision_block("DR-039", "DR-040")
@@ -57,7 +59,8 @@ def test_design_pack_and_maintenance_structure_exist():
     assert Path("docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md").exists()
 
 
-def test_pre_spice_assurance_chain_reaches_ae071():
+def test_pre_spice_assurance_chain_reaches_ae071a():
     text = _text()
     for n in range(42, 72):
         assert f"  AE-{n:03d}:" in text
+    assert "  AE-071A:" in text

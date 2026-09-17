@@ -15,7 +15,13 @@ def test_detailed_candidate_has_no_geometric_blockers():
 def test_human_authority_is_preserved_as_explicit_review_gate():
     model = build_detailed_placement_readiness()
     manual = [f for f in model.findings if f.kind is FindingKind.MANUAL_CLUSTER]
-    assert len(manual) == model.manual_review_cluster_count == 15
+    assert len(manual) == model.manual_review_cluster_count == 17
+    manual_cluster_ids = {
+        cluster_id
+        for finding in manual
+        for cluster_id in finding.cluster_ids
+    }
+    assert {"CLU-101-E", "CLU-101-F"} <= manual_cluster_ids
     assert all(f.severity is FindingSeverity.REVIEW for f in manual)
     assert model.status == "HUMAN_REVIEW_REQUIRED"
 

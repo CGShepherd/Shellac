@@ -6,46 +6,45 @@ def _sheet():
     add_sch101_rf_slice(s)
     return s
 
-def test_rf_slice_components():
+def test_rf_slice_components_and_service_headers():
     refs={c.ref for c in _sheet().components}
-    for ref in ("J101","J201","R102","R103","R104","R105","C101","C103","R202","R204","R205","C203"):
+    for ref in (
+        "J101","J201","R102","R103","R104","R105","C101","C102","C103","C104",
+        "R202","R203","R204","R205","C201","C202","C203","C204",
+        "H110","H111","H112","H120","H121","H122",
+    ):
         assert ref in refs
 
-def test_ae037_load_and_rf_values_are_rendered():
+def test_ae042_load_values_are_rendered_and_old_22p_dnp_is_gone():
     by_ref={c.ref:c for c in _sheet().components}
-    assert by_ref["R104"].value=="23700"
-    assert by_ref["R105"].value=="23700"
-    assert by_ref["R204"].value=="23700"
-    assert by_ref["R205"].value=="23700"
     assert by_ref["C101"].value=="47p"
     assert by_ref["C102"].value=="47p"
-    assert by_ref["C103"].value=="22p" and by_ref["C103"].dnp
-    assert by_ref["C203"].value=="22p" and by_ref["C203"].dnp
+    assert by_ref["C103"].value=="47p" and not by_ref["C103"].dnp
+    assert by_ref["C104"].value=="100p" and not by_ref["C104"].dnp
+    assert by_ref["C203"].value=="47p" and not by_ref["C203"].dnp
+    assert by_ref["C204"].value=="100p" and not by_ref["C204"].dnp
+    assert all(c.value!="22p" for c in by_ref.values())
 
-def test_rf_slice_uses_only_true_signal_interfaces_as_audio_labels():
-    sheet=_sheet()
-    labels=[label.name for label in sheet.labels]
-    for name in ("INPUT_L_POS","INPUT_L_NEG","INPUT_R_POS","INPUT_R_NEG"):
-        assert labels.count(name)==1
-    assert labels.count("PRE_EQ_L")==2
-    assert labels.count("PRE_EQ_R")==2
-    assert "L_IN_FILT_PLUS" not in labels
-    assert "L_IN_FILT_MINUS" not in labels
-    assert "R_IN_FILT_PLUS" not in labels
-    assert "R_IN_FILT_MINUS" not in labels
-
-def test_gain_selector_and_values_are_rendered():
+def test_ae042_gain_resistors_replace_old_series_link_topology():
     by_ref={component.ref:component for component in _sheet().components}
-    assert "SW1011" not in by_ref
-    assert "RN130" in by_ref and "RN230" in by_ref
-    assert by_ref["R112"].value=="249"
-    assert by_ref["R113"].value=="750"
-    assert by_ref["R114"].value=="1910"
+    assert by_ref["R112"].value=="999"
+    assert by_ref["R113"].value=="332"
+    assert by_ref["R114"].value=="866"
+    assert by_ref["R122"].value=="999"
+    assert by_ref["R123"].value=="332"
+    assert by_ref["R124"].value=="866"
+    for ref in ("R115","R116","R125","R126","R215","R216","R225","R226"):
+        assert ref not in by_ref
 
-def test_gain_selector_segments_realise_validated_feedback_values():
-    sheet=_sheet()
-    by_ref={component.ref:component for component in sheet.components}
-    base=float(by_ref["R112"].value)
-    assert base+float(by_ref["R113"].value)==999.0
-    assert base+float(by_ref["R114"].value)==2159.0
-    assert len(sheet.wires)>100
+def test_service_header_candidates_and_footprints_are_explicit():
+    by_ref={component.ref:component for component in _sheet().components}
+    for ref in ("H110","H111","H112"):
+        c=by_ref[ref]
+        assert c.footprint=="Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical"
+        assert c.fields["Header candidate"]=="Samtec TSW-104-07-G-D"
+        assert c.fields["Shunt candidate"]=="Samtec MNT-104-BK-G"
+    for ref in ("H120","H121","H122"):
+        c=by_ref[ref]
+        assert c.footprint=="Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical"
+        assert c.fields["Header candidate"]=="Samtec TSW-102-07-G-D"
+        assert c.fields["Shunt candidate"]=="Samtec MNT-102-BK-G"

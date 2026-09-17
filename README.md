@@ -17,7 +17,7 @@ Historical records are provenance and do not override later current authority.
 ## Live implementation versus selected-next architecture
 
 - DR-037 complete RIAA: implemented.
-- DR-038/SCH101: LT5400 4x converter is live; AE-042 fail-safe 14/18/22 dB service-shunt gain architecture remains pending qualification and controlled migration.
+- DR-038/SCH101: AE-071A migrates the AE-042 fail-safe 14/18/22 dB removable-shunt gain architecture and BASE/+47/+100 pF service loading into the live product generator; RUN10, Samtec pairing/orientation, EP and bench qualification remain open.
 - DR-039/SCH107: the common post-EQ DC block is live; AE-052 branch-local DC blocking is the selected preferred SPICE candidate and is not yet implemented.
 - AE-041 A1 controls: four independent NKK NR01-family EQ controls, C&K A30403RNCB 3P4T matrix, C&K 7201SYCBE rumble and mute toggles.
 - SW905 mute: mechanical DPDT signal/0VA selection immediately before the THAT1646 drivers. No relay/timer/comparator architecture.

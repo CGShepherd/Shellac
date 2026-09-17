@@ -1,6 +1,8 @@
-"""AE-023 production SCH101 CMRR and signal-chain assurance model.
+"""AE-023 historical SCH101 CMRR and signal-chain assurance model.
 
-Uses the implemented DR-038 values, not the earlier candidate baseline.
+This remains regression/provenance evidence only. Its tolerance assumptions are
+not current RUN10 authority after AE-071A. Nominal current gain/CMRR authority
+is AE-066 RUN02.
 The frequency-dependent CMRR corner model includes:
 - 100 ohm RF series pair at 0.1%;
 - 1 nF common-mode C0G pair at 0.5%;
@@ -32,6 +34,7 @@ RF_CM_CAP_TOL = 0.005
 GAIN_RATIO_TOL = 0.0001
 LT5400_CMRR_MATCH_TOL = 0.00005
 CMRR_TEST_SOURCE_OHM_PER_LEG = 50.0
+HISTORICAL_AE023_TOLERANCE_MODEL_ONLY = True
 
 CMRR_REQUIREMENT_LOW_MID_DB = 70.0
 CMRR_REQUIREMENT_20KHZ_DB = 60.0
@@ -69,12 +72,14 @@ def worst_case_cmrr(gain_name: str, frequency_hz: float) -> CmrrPoint:
         cm = RF_CM_CAP_F * (1.0 + s[3] * RF_CM_CAP_TOL)
 
         gp = 1.0 + (
-            setting.rf_ohm * (1.0 + s[4] * GAIN_RATIO_TOL)
-            / (GAIN_RG_OHM * (1.0 + s[5] * GAIN_RATIO_TOL))
+            (setting.per_leg_gain - 1.0)
+            * (1.0 + s[4] * GAIN_RATIO_TOL)
+            / (1.0 + s[5] * GAIN_RATIO_TOL)
         )
         gm = 1.0 + (
-            setting.rf_ohm * (1.0 + s[6] * GAIN_RATIO_TOL)
-            / (GAIN_RG_OHM * (1.0 + s[7] * GAIN_RATIO_TOL))
+            (setting.per_leg_gain - 1.0)
+            * (1.0 + s[6] * GAIN_RATIO_TOL)
+            / (1.0 + s[7] * GAIN_RATIO_TOL)
         )
 
         r1 = DIFF_RIN_OHM * (1.0 + s[8] * LT5400_CMRR_MATCH_TOL)

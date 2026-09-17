@@ -25,7 +25,7 @@ CRITICAL_MANUAL_NET_GROUPS = (
     "SCH101 balanced cartridge input pair",
     "SCH101 RF/common-mode network",
     "LT5400 precision ratio connections",
-    "SCH101 gain feedback/service-link paths",
+    "SCH101 gain feedback/service-programming paths",
     "SCH103 EQ timing networks",
     "SCH105 channel summing/mode paths",
     "SCH108 THAT1646 balanced-output pair",
