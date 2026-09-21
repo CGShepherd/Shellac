@@ -1,0 +1,13 @@
+schema_version: 2
+authority: PSU-RUN00
+status: RUN00_EXECUTION_QUALIFIED_FAIL_CLOSED
+required_measurements:
+  LM317: [VOUT_AVG, VOUT_MIN, VOUT_MAX]
+  LM337: [VOUT_AVG, VOUT_MIN, VOUT_MAX]
+  LF353: [OA_HI, OB_HI, OA_LO, OB_LO]
+acceptance:
+  regulator_nominal_abs_v: {minimum: 4.5, maximum: 5.5}
+  regulator_steady_span_max_v: 0.10
+  lf353_high_v: {minimum: 0.15, maximum: 0.25}
+  lf353_low_abs_max_v: 0.02
+  lf353_channel_delta_max_v: 0.01

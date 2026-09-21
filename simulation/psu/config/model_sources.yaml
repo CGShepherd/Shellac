@@ -1,0 +1,31 @@
+schema_version: 1
+authority: PSU-P1R
+status: SOURCE_CONTROLLED_PENDING_RUN00
+sources:
+  LM317:
+    archive: SLVMC40.ZIP
+    archive_sha256: 3691eac9792c92d8c49722441f3a783db987a28acff788220bc71358f8d8f299
+    model_file: LM317_TRANS.LIB
+    model_sha256: 9b56d7c68b75d3c0fd1e0b55f5ddc448f89f82984f026ff31acdf89bde4bd7e1
+    subckt: LM317_TRANS
+    pins: [IN, ADJ, OUT_0, OUT_1]
+    anomaly: OUT_1_UNREFERENCED_IN_CONTROLLED_BODY
+  LM337:
+    archive: SNVMAP4.ZIP
+    archive_sha256: b011e3cfeab581e1fd40d57a8681cee5eb26938b57133dba8834a5e550071ffc
+    model_file: LM337_N_TRANS.LIB
+    model_sha256: dc9fd0b650ce944f69654e7c5ebe1bb68dae541b25d92633825973afe2c7d4ff
+    subckt: LM337_N_TRANS
+    pins: [IN, ADJ, OUT]
+  LF353:
+    archive: SLOJ039.ZIP
+    archive_sha256: db73796479fd22ae50cd29ec5913fda48853bfd93d4993748afe12e3940a108d
+    model_file: LF353.301
+    model_sha256: 6400af2ea481076dfadcead7bfa4949657f298fac95affd0b8f44bcfbd8be51a
+    subckt: LF353
+    pins: ['1', '2', '3', '4', '5']
+pin_meaning: [INP, INM, VPLUS, VMINUS, OUT]
+policy:
+  vendor_payloads_committed: false
+  generic_fallback_allowed: false
+  physical_limits_authority: DATASHEET_AND_BENCH_NOT_MACROMODEL

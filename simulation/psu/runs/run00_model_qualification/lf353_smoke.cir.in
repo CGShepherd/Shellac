@@ -1,0 +1,18 @@
+* Shellac PSU RUN00 LF353 controlled smoke qualification
+.include "{{LF353_MODEL}}"
+.include "{{LF353_WRAPPER}}"
+VP VP 0 15
+VN VN 0 -15
+VIN IN 0 PULSE(0 0.1 1m 1u 1u 4m 10m)
+RGA NA 0 10k
+RFA OA NA 10k
+XUA IN NA VP VN OA SHELLAC_LF353
+RGB NB 0 10k
+RFB OB NB 10k
+XUB IN NB VP VN OB SHELLAC_LF353
+.tran 0 30m 0 10u
+.meas tran OA_HI AVG V(OA) FROM 2m TO 4m
+.meas tran OB_HI AVG V(OB) FROM 2m TO 4m
+.meas tran OA_LO AVG V(OA) FROM 7m TO 9m
+.meas tran OB_LO AVG V(OB) FROM 7m TO 9m
+.end

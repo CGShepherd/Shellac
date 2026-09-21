@@ -1,0 +1,5 @@
+* Controlled wrapper: TI LM317_TRANS
+* Vendor interface IN ADJ OUT_0 OUT_1. OUT_1 is unreferenced in the frozen payload.
+.SUBCKT SHELLAC_LM317 IN ADJ OUT
+XREG IN ADJ OUT NC_OUT1 LM317_TRANS
+.ENDS SHELLAC_LM317

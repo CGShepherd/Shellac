@@ -1,0 +1,11 @@
+schema_version: 1
+configuration_id: AIYIMA-P1R
+status: RECONSTRUCTED_NOT_AS_BUILT_AUTHORITY
+target_output_v: 17.0
+qualification_load_a_per_rail: 0.100
+mains: {nominal_v: 230, frequency_hz: 50}
+transformer: {identity: TI-69043-ME, model_tier: T1_DATASHEET_EQUIVALENT_PENDING_FREEZE}
+rectifier: {published_reference: 1N4007, fitted_candidate: BYV26E_UNCONFIRMED}
+reservoir_uF_per_rail: 4700
+servo: {opamp: LF353P_FITTED, feedback_ohm: 33000, input_ohm: 1000, compensation_pF: 30}
+capacitors: {servo_coupling_uF: 33, regulator_adj_uF: 22, output_uF: 120, diode_bypass_nF_each: 100, output_bypass_nF_each: 100}

@@ -1,0 +1,82 @@
+schema_version: 1
+configuration_id: AIYIMA-P1V
+status: PHYSICALLY_RECONSTRUCTED_PENDING_POWERED_VALIDATION
+target_output_v: 17.0
+qualification_load_a_per_rail: 0.100
+evidence_classes:
+  VERIFIED: physical continuity, polarity, topology, or resistance corroboration
+  IDENTIFIED: manufacturer/series/value substantiated sufficiently for modelling
+  CONSTRAINED: value/construction known but exact series or parasitics unresolved
+  SURROGATE: deliberate simulation substitute, not asserted as fitted identity
+transformer:
+  identity: TI-69043-ME
+  model_tier: T1_DATASHEET_EQUIVALENT_PENDING_FREEZE
+  secondary: {topology: CENTRE_TAPPED, centre_tap_node: 0V}
+rectifier:
+  topology: CENTRE_TAPPED_FULL_WAVE_PLUS_MINUS
+  topology_evidence: VERIFIED
+  fitted_identity: UNKNOWN
+  simulation_surrogate: BYV26E
+  published_reference: 1N4007
+  diode_bypass_nF_each: 100
+  diode_bypass_count: 4
+  diode_bypass_evidence: VERIFIED
+reservoirs: {capacitance_uF_per_rail: 4700, voltage_rating_v: 50, manufacturer_marking: JCCON, evidence: CONSTRAINED}
+regulators:
+  positive: LM317T
+  negative: LM337T
+  output_adjust_resistor_ohm_nominal: 220
+  output_adjust_resistor_measured_in_circuit_ohm: {positive: 217, negative: 214}
+servo:
+  opamp: LF353P
+  supply: {positive: PLUS_DC_OUT, negative: MINUS_DC_OUT, evidence: VERIFIED}
+  positive_rail_channel: U1B
+  negative_rail_channel: U1A
+  noninverting_inputs_to_0v: true
+  sense_resistor_ohm_nominal: 1000
+  sense_resistor_measured_in_circuit_ohm: {positive: 973, negative: 974}
+  feedback_resistor_ohm_nominal: 33000
+  feedback_resistor_measured_in_circuit_ohm: {positive: 32600, negative: 32700}
+  compensation_pF_nominal: 30
+  coupling_capacitor:
+    capacitance_uF_nominal: 33
+    voltage_rating_v: 50
+    temperature_rating_c: 85
+    construction: NON_POLAR_ALUMINIUM_ELECTROLYTIC
+    designation: CD71
+    manufacturer: UNRESOLVED
+    evidence: CONSTRAINED
+adjustment:
+  trimmer_family: BI_67W
+  resistance_ohm_nominal: 5000
+  connection: RHEOSTAT_WIPER_STRAPPED_TO_ONE_END
+  nominal_fraction: 0.5
+  nominal_effective_resistance_ohm: 2500
+  qualification_effective_resistance_range_ohm: [0, 5000]
+  as_found_in_circuit_ohm: {positive: 2260, negative: 2160}
+  as_found_authority: OBSERVATIONAL_ONLY_NOT_DESIGN_NOMINAL
+adjust_bypass: {capacitance_uF_nominal: 22, voltage_rating_v: 100, series: Rubycon_RX30, evidence: IDENTIFIED}
+outputs:
+  electrolytic: {capacitance_uF_nominal: 120, voltage_rating_v: 63, series: Lelon_RZW, evidence: IDENTIFIED}
+  film_bypass: {capacitance_nF_nominal: 100, voltage_rating_v: 100, tolerance_percent: 5, manufacturer: WIMA, exact_series: UNRESOLVED}
+indicators:
+  location: AC_SECONDARY
+  branches:
+    - {source: AC1, return: CT_0V, resistor_ohm_nominal: 4700, resistor_measured_in_circuit_ohm: 4710}
+    - {source: AC2, return: CT_0V, resistor_ohm_nominal: 4700, resistor_measured_in_circuit_ohm: 4730}
+verified_servo_paths:
+  positive:
+    sense: PLUS_DC_OUT -> CD71_33uF_NP -> 1k -> LF353_PIN6_U1B_MINUS
+    feedback: LF353_PIN7_U1B_OUT -> 33k_parallel_30pF -> LF353_PIN6
+    control: LF353_PIN7 -> 5k_RHEOSTAT -> LM317_ADJ
+    noninverting: LF353_PIN5 -> 0V
+  negative:
+    sense: MINUS_DC_OUT -> CD71_33uF_NP -> 1k -> LF353_PIN2_U1A_MINUS
+    feedback: LF353_PIN1_U1A_OUT -> 33k_parallel_30pF -> LF353_PIN2
+    control: LF353_PIN1 -> 5k_RHEOSTAT -> LM337_ADJ
+    noninverting: LF353_PIN3 -> 0V
+qualification_policy:
+  use_as_fitted_unless_material_deficiency_found: true
+  run01_requires_run00_pass: true
+  run00_gate_status: PASS
+  run00_evidence: simulation/psu/RUN00_QUALIFICATION.md

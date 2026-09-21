@@ -1,0 +1,14 @@
+* LM337 execution qualification only; canonical R1 OUT-ADJ, R2 ADJ-0 topology.
+.include "{{LM337_MODEL}}"
+.include "{{LM337_WRAPPER}}"
+VRAW IN 0 -12
+R1 OUT ADJ 240
+R2 ADJ 0 720
+COUT 0 OUT 10u
+RLOAD OUT 0 100
+XU IN ADJ OUT SHELLAC_LM337
+.tran 0 30m 0 10u
+.meas tran VOUT_AVG AVG V(OUT) FROM 20m TO 30m
+.meas tran VOUT_MIN MIN V(OUT) FROM 20m TO 30m
+.meas tran VOUT_MAX MAX V(OUT) FROM 20m TO 30m
+.end

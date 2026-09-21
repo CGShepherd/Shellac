@@ -53,6 +53,7 @@ simulation/results/run07_end_to_end/*
 !simulation/results/run07_end_to_end/ae070_model_composition_discriminator.json
 
 # Local simulator/vendor caches and transient qualification work
+.vendor_models/
 .shellac_reconciliation/
 .ae*_backup/
 .ae*_tmp/
@@ -94,3 +95,11 @@ python
 Thumbs.db
 .vscode/
 .idea/
+
+# PSU generated simulator evidence/work products
+simulation/psu/results/
+simulation/psu/**/*.raw
+simulation/psu/**/*.log
+simulation/psu/**/*.db
+simulation/psu/**/*.op.raw
+simulation/psu/**/*_combined.txt

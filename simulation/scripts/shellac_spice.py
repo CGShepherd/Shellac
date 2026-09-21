@@ -116,17 +116,25 @@ def build_command(exe: Path, netlist: Path) -> list[str]:
     return [str(exe), *args]
 
 
-_MEAS_RE = re.compile(
-    r"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*(?::|=)\s*"
-    r"([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?)",
-    re.MULTILINE,
-)
+_NUMBER_RE = r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?"
+_MEAS_DIRECT_RE = re.compile(rf"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*:\s*({_NUMBER_RE})(?:\s|$)", re.MULTILINE)
+_MEAS_EXPR_RE = re.compile(rf"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*:\s*.+?=\s*({_NUMBER_RE})(?:\s|$)", re.MULTILINE)
 
+_MEAS_EQUALS_RE = re.compile(rf"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*({_NUMBER_RE})\s*$", re.MULTILINE)
+_LTSPICE_SETTING_NAMES = frozenset({"TNOM", "TEMP"})
 
 def parse_measurements(text: str) -> dict[str, float]:
-    return {name.upper(): float(value) for name, value in _MEAS_RE.findall(text)}
-
-
+    out: dict[str, float] = {}
+    for regex in (_MEAS_DIRECT_RE, _MEAS_EXPR_RE):
+        for name, value in regex.findall(text):
+            out[name.upper()] = float(value)
+    # Controlled/legacy Shellac logs also use scalar NAME = number
+    # measurements. Exclude known LTspice numeric operating settings.
+    for name, value in _MEAS_EQUALS_RE.findall(text):
+        key = name.upper()
+        if key not in _LTSPICE_SETTING_NAMES:
+            out[key] = float(value)
+    return out
 def evaluate(value: float, criterion: dict[str, Any]) -> tuple[bool, str]:
     kind = criterion["kind"]
     if kind == "range":
