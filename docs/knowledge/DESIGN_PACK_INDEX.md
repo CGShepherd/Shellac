@@ -20,6 +20,7 @@ Current signal-chain status:
 - DR-040: current subject to the live implementation and subsequent assurance records;
 - AE-041 Rev A1: current control authority — 3P4T switched-summing matrix and current top-cover control architecture; AE-068 qualifies RUN05 steady-state matrix behaviour while switching/mechanical qualification remains open;
 - AE-042 through AE-071 plus AE-071A/AE-071B: current pre-SPICE/integrated-simulation/physical-integrity chain; AE-071A migrates SCH101 selected-next product implementation and AE-071B hardens board-owned MH1-MH4 mechanical ownership while retaining the routing hold; RUN08-RUN14 and prototype/bench obligations remain open;
+- AE-072/AE-073: current PSU assurance chain — AE-072 establishes the AIYIMA P1-V reconstruction and RUN00 model-execution qualification; AE-073 closes the long-settle discriminator and confirms that the exploratory 400 ms low-output condition was a startup-settling artefact. Powered hardware qualification remains open; neither record changes the historical Shellac rail authority;
 - prototype measured acceptance: open.
 
 This is not yet a manufacturing baseline. The next intended configuration milestone is the **Shellac Pre-SPICE Architecture Baseline** after repository reconciliation, clean regression and configuration-control closure.
@@ -94,7 +95,11 @@ AE-071A migrates the AE-042 SCH101 selected-next topology into the live product 
 
 AE-071B closes the native-PCB mechanical-ownership defect exposed during AE-071A F8 reconciliation. MH1-MH4 remain at the frozen SR-040/SR-043 identity and coordinates, but are now explicitly board-only, locked and excluded from BOM/POS output so future delete-unused-footprint updates cannot remove them.
 
-AE-042 through AE-071 plus AE-071A/AE-071B are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-072 establishes the physically reconstructed AIYIMA P1-V PSU authority and qualifies controlled RUN00 manufacturer-macromodel execution. It does not constitute powered hardware qualification or change the Shellac nominal rail requirement.
+
+AE-073 executes the long-settle RUN01 discriminator and confirms that the exploratory 400 ms apparent ~±15.6 V ceiling is a startup-settling artefact. The target-17 investigation settles to about +16.843 V / -16.804 V with the LF353 outputs near zero. Powered set-point, dropout, ripple, startup and thermal qualification remain open, and no rail-authority change is made.
+
+AE-042 through AE-071 plus AE-071A/AE-071B, together with AE-072/AE-073 PSU assurance records, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048, AE-049 and AE-050 remain respectively the qualification, numerical-acceptance and execution authorities for the simulation campaign. AE-053 defines the toolchain architecture used to execute those authorities and does not replace them.
 

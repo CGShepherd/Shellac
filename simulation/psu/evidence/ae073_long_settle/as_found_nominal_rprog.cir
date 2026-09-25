@@ -1,0 +1,440 @@
+* Shellac PSU RUN01 nominal P1-V operating-point sweep
+.param RSETP_DIAG=2260
+.param RSETN_DIAG=2160
+.param FLINE=50
+.param VSEC=15
+.param RSEC=1.41
+.param CRES=4700u
+.param RESR=0.10
+.param CCOUP=33u
+.param CCOUP_ESR=1
+.param CADJ=22u
+.param CADJ_ESR=1
+.param COUT=120u
+.param COUT_ESR=0.20
+
+* Centre-tapped transformer secondary, T1 on-load nominal representation
+VACP AC_P 0 SINE(0 {VSEC*sqrt(2)} {FLINE})
+VACN AC_N 0 SINE(0 {-VSEC*sqrt(2)} {FLINE})
+RSECP AC_P ACP {RSEC}
+RSECN AC_N ACN {RSEC}
+
+* Rectifier surrogate: BYV26E-like fast silicon diode using controlled generic execution model.
+* Identity is explicitly surrogate; RUN06 will compare rectifier families.
+.model DRECT D(Is=5n Rs=0.08 N=1.8 Cjo=15p M=0.33 Tt=75n Bv=1000 Ibv=5u)
+DPP ACP RAWP DRECT
+DPN ACN RAWP DRECT
+DNP RAWN ACP DRECT
+DNN RAWN ACN DRECT
+CDPP ACP RAWP 100n
+CDPN ACN RAWP 100n
+CDNP RAWN ACP 100n
+CDNN RAWN ACN 100n
+
+* Reservoirs with explicit ESR
+RRESP RAWP PRESP {RESR}
+CRESP PRESP 0 {CRES}
+RRESN RAWN PRESN {RESR}
+CRESN PRESN 0 {CRES}
+
+* Regulator manufacturer models
+.include "C:/Users/chris/Dropbox/000_Projects/000_Audio/Shellac/simulation/psu/models/wrappers/lm317_shellac_psu.lib"
+.include "C:/Users/chris/Dropbox/000_Projects/000_Audio/Shellac/simulation/psu/models/wrappers/lm337_shellac_psu.lib"
+
+XREGP RAWP ADJP VOUTP SHELLAC_LM317
+XREGN RAWN ADJN VOUTN SHELLAC_LM337
+
+* OUT-ADJ resistors, as-fitted 220 ohm nominal
+RADJP VOUTP ADJP 220
+RADJN VOUTN ADJN 220
+
+* Rubycon RX30 ADJ bypass, polarity represented electrically
+RADJESRP ADJP CADJP {CADJ_ESR}
+CADJP CADJP 0 {CADJ}
+RADJESRN ADJN CADJN {CADJ_ESR}
+CADJN 0 CADJN {CADJ}
+
+* LF353 servo
+
+* Positive rail is U1B: +IN=0, -IN receives AC-coupled output error
+RCOUPP VOUTP SCP {CCOUP_ESR}
+CCOUPP SCP NSP {CCOUP}
+RSENP NSP NMP 1k
+RFBP OP NMP 33k
+CFBP OP NMP 30p
+XU1B 0 NMP VOUTP VOUTN OP SHELLAC_LF353
+RSETP OP ADJP {RSETP_DIAG}
+
+* Negative rail is U1A
+RCOUPN VOUTN SCN {CCOUP_ESR}
+CCOUPN SCN NSN {CCOUP}
+RSENN NSN NMN 1k
+RFBN ON NMN 33k
+CFBN ON NMN 30p
+XU1A 0 NMN VOUTP VOUTN ON SHELLAC_LF353
+RSETN ON ADJN {RSETN_DIAG}
+
+* Output capacitors and 100nF WIMA bypasses
+ROUTESRP VOUTP COP {COUT_ESR}
+COUTP COP 0 {COUT}
+CFILMP VOUTP 0 100n
+ROUTESRN VOUTN CON {COUT_ESR}
+COUTN 0 CON {COUT}
+CFILMN VOUTN 0 100n
+
+* Qualification load, 100mA per rail
+RLOADP VOUTP 0 170
+RLOADN 0 VOUTN 170
+
+.tran 0 8 0 100u uic
+
+
+
+
+
+
+
+* BEGIN SHA-VERIFIED TI LF353 VENDOR PAYLOAD
+* LF353 OPERATIONAL AMPLIFIER "MACROMODEL" SUBCIRCUIT
+* CREATED USING PARTS RELEASE 4.01 ON 06/27/89 AT 08:19
+* (REV N/A)      SUPPLY VOLTAGE: +/-15V
+* CONNECTIONS:   NON-INVERTING INPUT
+*                | INVERTING INPUT
+*                | | POSITIVE POWER SUPPLY
+*                | | | NEGATIVE POWER SUPPLY
+*                | | | | OUTPUT
+*                | | | | |
+.SUBCKT LF353    1 2 3 4 5
+*
+  C1   11 12 3.498E-12
+  C2    6  7 15.00E-12
+  DC    5 53 DX
+  DE   54  5 DX
+  DLP  90 91 DX
+  DLN  92 90 DX
+  DP    4  3 DX
+  EGND 99  0 POLY(2) (3,0) (4,0) 0 .5 .5
+  FB    7 99 POLY(5) VB VC VE VLP VLN 0 28.29E6 -30E6 30E6 30E6 -30E6
+  GA    6  0 11 12 282.8E-6
+  GCM   0  6 10 99 1.590E-9
+  ISS   3 10 DC 195.0E-6
+  HLIM 90  0 VLIM 1K
+  J1   11  2 10 JX
+  J2   12  1 10 JX
+  R2    6  9 100.0E3
+  RD1   4 11 3.536E3
+  RD2   4 12 3.536E3
+  RO1   8  5 50
+  RO2 7 99 11.62
+  RP    3  4 15.00E3
+  RSS  10 99 1.026E6
+  VB    9  0 DC 0
+  VC    3 53 DC 2.200
+  VE   54  4 DC 2.200
+  VLIM  7  8 DC 0
+  VLP  91  0 DC 30
+  VLN   0 92 DC 30
+.MODEL DX D(IS=800.0E-18)
+.MODEL JX PJF(IS=12.50E-12 BETA=250.1E-6 VTO=-1)
+.ENDS
+
+* END SHA-VERIFIED TI LF353 VENDOR PAYLOAD
+
+
+* BEGIN CONTROLLED SHELLAC LF353 WRAPPER
+* Controlled wrapper: TI LF353
+.SUBCKT SHELLAC_LF353 INP INM VPLUS VMINUS OUT
+XOP INP INM VPLUS VMINUS OUT LF353
+.ENDS SHELLAC_LF353
+* END CONTROLLED SHELLAC LF353 WRAPPER
+
+
+* BEGIN SHA-VERIFIED LM317 VENDOR PAYLOAD (HELPERS NAMESPACED)
+* PSpice Model Editor - Version 16.2.0
+*$
+* LM317
+*****************************************************************************
+* (C) Copyright 2014 Texas Instruments Incorporated. All rights reserved.
+*****************************************************************************
+** This model is designed as an aid for customers of Texas Instruments.
+** TI and its licensors and suppliers make no warranties, either expressed
+** or implied, with respect to this model, including the warranties of
+** merchantability or fitness for a particular purpose. The model is
+** provided solely on an "as is" basis. The entire risk as to its quality
+** and performance is with the customer.
+*****************************************************************************
+*
+** Released by: WEBENCH Design Center, Texas Instruments Inc.
+* Part: LM317
+* Date: 11DEC2014 
+* Model Type: TRANSIENT
+* Simulator: PSPICE
+* Simulator Version: 16.2.0.p001
+* EVM Order Number:
+* EVM Users Guide:
+* Datasheet:SLVS044V–SEPTEMBER 1997–REVISED FEBRUARY 2013
+*
+* Model Version: Final 1.00
+*
+*****************************************************************************
+*
+* Updates:
+*
+* Final 1.00
+* Release to Web
+*
+*****************************************************************************
+.SUBCKT LM317_TRANS IN ADJ OUT_0 OUT_1
+R_R1         VXX IN  {RINP}  
+R_R6         N242982 VYY  10 TC=0,0 
+R_R5         VZZ VYY  {ROUT}  
+E_ABM1         N242982 0 VALUE { MIN(V(VXX), (V(Vzz)+(ILIM*ROUT)))    }
+R_R2         N222524 VXX  {PSRR*RINP}  
+R_U1_R2         0 U1_N26728  1G  
+E_U1_ABM5         U1_N31197 0 VALUE { MIN(V(U1_N26728),  
++ MAX(V(IN) - {DROP}, 0))   }
+C_U1_C2         0 U1_N26728  1n  
+R_U1_R1         0 U1_N08257  1G  
+R_U1_R4         U1_N28933 U1_N26728  10 TC=0,0 
+R_U1_R5         U1_N31197 N222524  10 TC=0,0 
+C_U1_C3         0 N222524  1n  
+X_U1_U2         IN U1_N12783 U1_N12664 U1_UVLO_OK S317_COMPHYS_BASIC_GEN PARAMS:
++  VDD=1 VSS=0 VTHRESH=0.5
+C_U1_C1         0 U1_N08257  {1e-6*SQRT(TTRN)}  
+V_U1_V4         U1_N12783 0 {UVLO}
+V_U1_V3         U1_N12664 0 {UHYS}
+E_U1_ABM6         U1_EN_OUT 0 VALUE { IF(V(U1_UVLO_OK)> 0.6, {VREF}, 0)    }
+R_U1_R3         U1_EN_OUT U1_N08257  {3.333e5*SQRT(TTRN)} TC=0,0 
+E_U1_ABM4         U1_N28933 0 VALUE { V(U1_N08257)*
++  (ABS(V(OUT_0))/(ABS(V(OUT_0)-v(ADJ))))    }
+X_U2         0 OUT_0 S317_D_D PARAMS:
+X_F1    VZZ OUT_0 IN VYY S317_LM317_TRANS_F1 
+C_C1         VXX IN  {1/(6.28*RINP*POLE)}  
+C_C2         VXX N222524  {1/(6.28*PSRR*RINP*ZERO)}  
+C_C3         0 VYY  1n  
+.PARAM  psrr=7.9432e-4 uvlo=0 ilim=2.2 pole=15k rinp=1e7 zero=100e6 rout=0.4m
++  ttrn=1e-4 vref=1.25 uhys=0 drop=.5
+.ENDS LM317_TRANS
+*$
+.SUBCKT S317_LM317_TRANS_F1 1 2 3 4  
+F_F1         3 4 VF_F1 1
+VF_F1         1 2 0V
+.ENDS S317_LM317_TRANS_F1
+*$
+.SUBCKT S317_COMP_BASIC_GEN INP INM Y PARAMS: VDD=1 VSS=0 VTHRESH=0.5	
+E_ABM Yint 0 VALUE {IF (V(INP) > 
++ V(INM), {VDD},{VSS})}
+R1 Yint Y 1
+C1 Y 0 1n
+.ENDS S317_COMP_BASIC_GEN
+*$
+.SUBCKT S317_COMPHYS_BASIC_GEN INP INM HYS OUT PARAMS: VDD=1 VSS=0 VTHRESH=0.5	
+EIN INP1 INM1 INP INM 1 
+EHYS INP1 INP2 VALUE { IF( V(1) > {VTHRESH},-V(HYS),0) }
+EOUT OUT 0 VALUE { IF( V(INP2)>V(INM1), {VDD} ,{VSS}) }
+R1 OUT 1 1
+C1 1 0 5n
+RINP1 INP1 0 1K
+.ENDS S317_COMPHYS_BASIC_GEN
+*$
+.SUBCKT S317_COMPHYS2_BASIC_GEN INP INM HYS OUT PARAMS: VDD=1 VSS=0 VTHRESH=0.5	
++ T=10
+EIN INP1 INM1 INP INM 1 
+EHYS INM2 INM1 VALUE { IF( V(1) > {VTHRESH},-V(HYS)/2,V(HYS)/2) }
+EOUT OUT 0 VALUE { IF( V(INP1)>V(INM2), {VDD} ,{VSS}) }
+R1 OUT 1 1
+C1 1 0 {T*1e-9}
+RINP1 INP1 0 10K
+RINM2 INM2 0 10K
+.ENDS S317_COMPHYS2_BASIC_GEN
+*$
+.SUBCKT S317_D_D 1 2
+D1 1 2 DD
+.MODEL DD D (IS=1E-015 N=0.01 TT=1e-011)
+.ENDS S317_D_D
+*$
+* END SHA-VERIFIED LM317 VENDOR PAYLOAD
+
+
+* BEGIN SHA-VERIFIED LM337 VENDOR PAYLOAD (HELPERS NAMESPACED)
+*$
+*LM337-N_TRANS
+*****************************************************************************
+* (C) Copyright 2015 Texas Instruments Incorporated. All rights reserved.
+*****************************************************************************
+** This model is designed as an aid for customers of Texas Instruments.
+** TI and its licensors and suppliers make no warranties, either expressed
+** or implied, with respect to this model, including the warranties of
+** merchantability or fitness for a particular purpose. The model is
+** provided solely on an "as is" basis. The entire risk as to its quality
+** and performance is with the customer
+*****************************************************************************
+*
+** Released by: WEBENCH Design Center, Texas Instruments Inc.
+* Part: LM337-N
+* Date: 31MAR2016 
+* Model Type: Transient
+* Simulator: PSPICE
+* Simulator Version: 16.2.0.p001
+* EVM Order Number: 
+* EVM Users Guide:  
+* Datasheet: SNVS778E –MAY 1999–REVISED JANUARY 2016
+*
+* Model Version: Final 1.00
+*
+*****************************************************************************
+*
+* Updates:
+*
+* Final 1.00
+* Release to Web
+*
+******************************************************************************
+*
+*Model Usage Notes:
+*
+*1.The following features have been modeled
+*   a. Startup
+*   b. PSRR.
+*   C. Current limit response.
+*   d. Dropout v/s Iout variation.
+*   e. Transient responses. 
+*2. Temperature effects are not been modeled.
+*   
+*****************************************************************************
+.SUBCKT LM337_N_TRANS IN ADJ OUT
+C_C5         0 N315027  1n  
+X_F1    OUT VZZ N315027 N310601 S337_LM337_N_F1 
+C_U1_C2         0 U1_ERROR_AMP_OUT  1n  
+E_U1_ABM4         U1_N09035 0 VALUE { V(U1_REF)  
++ * (V(OUT) + 1e-6)  
++ / ((V(OUT)-V(ADJ)) + 1e-6)  }
+C_U1_C1         0 U1_REF  {1e-6*SQRT(TTRN)}  
+R_U1_R1         0 U1_REF  1G  
+V_U1_V5         U1_N11113 0 1
+X_U1_U2         U1_N12560 IN U1_N48025 VEN S337_COMPHYS_BASIC_GEN PARAMS: VDD=1
++  VSS=0 VTHRESH=0.5
+V_U1_V3         U1_N48025 0 {UHYS}
+V_U1_V4         U1_N12560 0 {UVLO}
+R_U1_R5         U1_N09745 N222524  10 TC=0,0 
+R_U1_R3         U1_N08164 U1_REF  {3.333e5*SQRT(TTRN)} TC=0,0 
+C_U1_C3         0 N222524  1n  
+R_U1_R2         0 U1_ERROR_AMP_OUT  1G  
+E_U1_E1         U1_VDROP 0 TABLE { V(ILOAD, 0) } 
++ ( (-1.5, 2.4) (-1, 2.2) (-0.5, 1.9) (-0.2, 1.7) (-0.02, 1.55) )
+E_U1_ABM6         U1_N08164 0 VALUE { IF(V(VEN)> 0.6 & V(U1_N11113) > 0.6, 
++ {VREF}, 0)    }
+E_U1_ABM5         U1_N09745 0 VALUE { MAX(V(U1_ERROR_AMP_OUT),  
++ MIN(V(IN) + V(U1_VDROP), 0))   }
+R_U1_R4         U1_N09035 U1_ERROR_AMP_OUT  10 TC=0,0 
+R_R5         VZZ N334642  {ROUT}  
+X_H1    N334642 N315027 0 ILOAD S337_LM337_N_H1 
+R_R6         VYY N315027  10 TC=0,0 
+R_R3         N310601 IN  3.5  
+R_R2         N222524 VXX  {PSRR*RINP}  
+R_R1         VXX N310601  {RINP}  
+C_C2         VXX N222524  {1/(6.28*PSRR*RINP*ZERO)}  
+C_C1         VXX N310601  {1/(6.28*RINP*POLE)}  
+E_ABM1         VYY 0 VALUE { {MAX(V(VXX), (V(Vzz)+(ILIM*ROUT)))}    }
+E_ABM2         N350468 0 VALUE { (V(Vzz)+(ILIM*ROUT))    }
+.PARAM  psrr=0.08e-2 uvlo=-1.9 venb=-0.9 ilim=-2.2 pole=300 rinp=1e7 zero=1e5
++  rout=10m ttrn=100n ehys=0.4 vref=-1.25 uhys=0 drop=-250m
+.ENDS LM337_N_TRANS
+.subckt S337_LM337_N_F1 1 2 3 4  
+F_F1         3 4 VF_F1 1
+VF_F1         1 2 0V
+.ends S337_LM337_N_F1
+*$
+.subckt S337_LM337_N_H1 1 2 3 4  
+H_H1         3 4 VH_H1 1
+VH_H1         1 2 0V
+.ends S337_LM337_N_H1
+*$
+.SUBCKT S337_COMPHYS_BASIC_GEN INP INM HYS OUT PARAMS: VDD=1 VSS=0 VTHRESH=0.5	
+EIN INP1 INM1 INP INM 1 
+EHYS INP1 INP2 VALUE { IF( V(1) > {VTHRESH},-V(HYS),0) }
+EOUT OUT 0 VALUE { IF( V(INP2)>V(INM1), {VDD} ,{VSS}) }
+R1 OUT 1 1
+C1 1 0 5n
+RINP1 INP1 0 1K
+.ENDS S337_COMPHYS_BASIC_GEN
+*$
+* END SHA-VERIFIED LM337 VENDOR PAYLOAD
+
+* AE-073 long-settle discriminator measurements
+.meas tran W04_VP AVG V(VOUTP) FROM 0.3 TO 0.4
+.meas tran W04_VN AVG V(VOUTN) FROM 0.3 TO 0.4
+.meas tran W04_OP AVG V(OP) FROM 0.3 TO 0.4
+.meas tran W04_ON AVG V(ON) FROM 0.3 TO 0.4
+.meas tran W04_ADJP AVG V(ADJP) FROM 0.3 TO 0.4
+.meas tran W04_ADJN AVG V(ADJN) FROM 0.3 TO 0.4
+.meas tran W04_RAWP AVG V(RAWP) FROM 0.3 TO 0.4
+.meas tran W04_RAWN AVG V(RAWN) FROM 0.3 TO 0.4
+.meas tran W04_NMP AVG V(NMP) FROM 0.3 TO 0.4
+.meas tran W04_NMN AVG V(NMN) FROM 0.3 TO 0.4
+.meas tran W04_IPROG_P AVG I(RADJP) FROM 0.3 TO 0.4
+.meas tran W04_IPROG_N AVG I(RADJN) FROM 0.3 TO 0.4
+.meas tran W04_IRSET_P AVG I(RSETP) FROM 0.3 TO 0.4
+.meas tran W04_IRSET_N AVG I(RSETN) FROM 0.3 TO 0.4
+.meas tran W10_VP AVG V(VOUTP) FROM 0.9 TO 1
+.meas tran W10_VN AVG V(VOUTN) FROM 0.9 TO 1
+.meas tran W10_OP AVG V(OP) FROM 0.9 TO 1
+.meas tran W10_ON AVG V(ON) FROM 0.9 TO 1
+.meas tran W10_ADJP AVG V(ADJP) FROM 0.9 TO 1
+.meas tran W10_ADJN AVG V(ADJN) FROM 0.9 TO 1
+.meas tran W10_RAWP AVG V(RAWP) FROM 0.9 TO 1
+.meas tran W10_RAWN AVG V(RAWN) FROM 0.9 TO 1
+.meas tran W10_NMP AVG V(NMP) FROM 0.9 TO 1
+.meas tran W10_NMN AVG V(NMN) FROM 0.9 TO 1
+.meas tran W10_IPROG_P AVG I(RADJP) FROM 0.9 TO 1
+.meas tran W10_IPROG_N AVG I(RADJN) FROM 0.9 TO 1
+.meas tran W10_IRSET_P AVG I(RSETP) FROM 0.9 TO 1
+.meas tran W10_IRSET_N AVG I(RSETN) FROM 0.9 TO 1
+.meas tran W20_VP AVG V(VOUTP) FROM 1.9 TO 2
+.meas tran W20_VN AVG V(VOUTN) FROM 1.9 TO 2
+.meas tran W20_OP AVG V(OP) FROM 1.9 TO 2
+.meas tran W20_ON AVG V(ON) FROM 1.9 TO 2
+.meas tran W20_ADJP AVG V(ADJP) FROM 1.9 TO 2
+.meas tran W20_ADJN AVG V(ADJN) FROM 1.9 TO 2
+.meas tran W20_RAWP AVG V(RAWP) FROM 1.9 TO 2
+.meas tran W20_RAWN AVG V(RAWN) FROM 1.9 TO 2
+.meas tran W20_NMP AVG V(NMP) FROM 1.9 TO 2
+.meas tran W20_NMN AVG V(NMN) FROM 1.9 TO 2
+.meas tran W20_IPROG_P AVG I(RADJP) FROM 1.9 TO 2
+.meas tran W20_IPROG_N AVG I(RADJN) FROM 1.9 TO 2
+.meas tran W20_IRSET_P AVG I(RSETP) FROM 1.9 TO 2
+.meas tran W20_IRSET_N AVG I(RSETN) FROM 1.9 TO 2
+.meas tran W40_VP AVG V(VOUTP) FROM 3.9 TO 4
+.meas tran W40_VN AVG V(VOUTN) FROM 3.9 TO 4
+.meas tran W40_OP AVG V(OP) FROM 3.9 TO 4
+.meas tran W40_ON AVG V(ON) FROM 3.9 TO 4
+.meas tran W40_ADJP AVG V(ADJP) FROM 3.9 TO 4
+.meas tran W40_ADJN AVG V(ADJN) FROM 3.9 TO 4
+.meas tran W40_RAWP AVG V(RAWP) FROM 3.9 TO 4
+.meas tran W40_RAWN AVG V(RAWN) FROM 3.9 TO 4
+.meas tran W40_NMP AVG V(NMP) FROM 3.9 TO 4
+.meas tran W40_NMN AVG V(NMN) FROM 3.9 TO 4
+.meas tran W40_IPROG_P AVG I(RADJP) FROM 3.9 TO 4
+.meas tran W40_IPROG_N AVG I(RADJN) FROM 3.9 TO 4
+.meas tran W40_IRSET_P AVG I(RSETP) FROM 3.9 TO 4
+.meas tran W40_IRSET_N AVG I(RSETN) FROM 3.9 TO 4
+.meas tran W80_VP AVG V(VOUTP) FROM 7.9 TO 8
+.meas tran W80_VN AVG V(VOUTN) FROM 7.9 TO 8
+.meas tran W80_OP AVG V(OP) FROM 7.9 TO 8
+.meas tran W80_ON AVG V(ON) FROM 7.9 TO 8
+.meas tran W80_ADJP AVG V(ADJP) FROM 7.9 TO 8
+.meas tran W80_ADJN AVG V(ADJN) FROM 7.9 TO 8
+.meas tran W80_RAWP AVG V(RAWP) FROM 7.9 TO 8
+.meas tran W80_RAWN AVG V(RAWN) FROM 7.9 TO 8
+.meas tran W80_NMP AVG V(NMP) FROM 7.9 TO 8
+.meas tran W80_NMN AVG V(NMN) FROM 7.9 TO 8
+.meas tran W80_IPROG_P AVG I(RADJP) FROM 7.9 TO 8
+.meas tran W80_IPROG_N AVG I(RADJN) FROM 7.9 TO 8
+.meas tran W80_IRSET_P AVG I(RSETP) FROM 7.9 TO 8
+.meas tran W80_IRSET_N AVG I(RSETN) FROM 7.9 TO 8
+.meas tran W80_VP_MIN MIN V(VOUTP) FROM 7.9 TO 8
+.meas tran W80_VP_MAX MAX V(VOUTP) FROM 7.9 TO 8
+.meas tran W80_VN_MIN MIN V(VOUTN) FROM 7.9 TO 8
+.meas tran W80_VN_MAX MAX V(VOUTN) FROM 7.9 TO 8
+
+.end

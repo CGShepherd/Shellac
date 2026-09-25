@@ -85,7 +85,7 @@ def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
     assert hold["permissions"]["layout_freeze"] is False
     assert hold["permissions"]["bom_freeze"] is False
     assert hold["permissions"]["manufacturing_release"] is False
-    assert hold["final_design_assurance"]["authority"] == "AE-072_PENDING"
+    assert hold["final_design_assurance"]["authority"] == "AE-074_PENDING"
     assert hold["resolved_after_ae071"][0]["id"] == "AE071-B01"
     assert hold["resolved_after_ae071a"] == [{
         "id": "AE071-M01",

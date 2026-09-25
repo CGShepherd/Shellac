@@ -1,0 +1,103 @@
+LTspice 26.0.2 for Windows
+Circuit: C:\Users\chris\AppData\Local\Temp\ae073_long_cepbw93k\case.cir
+Start Time: Thu Sep 24 16:49:13 2026
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = trap
+dd: Emission coefficient, N=0.01, too small, this might lead to numerical problems.
+Per .tran options, skipping operating point for transient analysis.
+Changing Tseed to 1e-08
+Changing Tseed to 1e-10
+Changing Tseed to 1e-07
+Changing Tseed to 1e-11
+Changing Tseed to 1e-06
+Changing Tseed to 1e-12
+Changing Tseed to 1e-05
+Changing Tseed to 1e-13
+Changing Tseed to 0.0001
+Changing Tseed to 1e-14
+Changing Tseed to 0.001
+Changing Tseed to 1e-15
+Total elapsed time: 2.529 seconds.
+
+Files loaded:
+C:\Users\chris\AppData\Local\Temp\ae073_long_cepbw93k\case.cir
+C:\Users\chris\Dropbox\000_Projects\000_Audio\Shellac\simulation\psu\models\wrappers\lm317_shellac_psu.lib
+C:\Users\chris\Dropbox\000_Projects\000_Audio\Shellac\simulation\psu\models\wrappers\lm337_shellac_psu.lib
+
+w04_vp: AVG(V(VOUTP) )=9.05821161603 FROM 0.3 TO 0.4
+w04_vn: AVG(V(VOUTN) )=-6.42728510261 FROM 0.3 TO 0.4
+w04_op: AVG(V(OP) )=-4.90411158236 FROM 0.3 TO 0.4
+w04_on: AVG(V(ON) )=7.5353644222 FROM 0.3 TO 0.4
+w04_adjp: AVG(V(ADJP) )=7.80706470239 FROM 0.3 TO 0.4
+w04_adjn: AVG(V(ADJN) )=-5.17532559281 FROM 0.3 TO 0.4
+w04_rawp: AVG(V(RAWP) )=19.5649318278 FROM 0.3 TO 0.4
+w04_rawn: AVG(V(RAWN) )=-19.7038990499 FROM 0.3 TO 0.4
+w04_nmp: AVG(V(NMP) )=5.22475104345 FROM 0.3 TO 0.4
+w04_nmn: AVG(V(NMN) )=-2.55510566491 FROM 0.3 TO 0.4
+w04_iprog_p: AVG(I(RADJP) )=0.00571299959507 FROM 0.3 TO 0.4
+w04_iprog_n: AVG(I(RADJN) )=-0.00579610884544 FROM 0.3 TO 0.4
+w04_irset_p: AVG(I(RSETP) )=-0.00562441428924 FROM 0.3 TO 0.4
+w04_irset_n: AVG(I(RSETN) )=0.00588457871113 FROM 0.3 TO 0.4
+w10_vp: AVG(V(VOUTP) )=8.23578249139 FROM 0.9 TO 1
+w10_vn: AVG(V(VOUTN) )=-7.90423316964 FROM 0.9 TO 1
+w10_op: AVG(V(OP) )=-5.88411645157 FROM 0.9 TO 1
+w10_on: AVG(V(ON) )=5.62243666025 FROM 0.9 TO 1
+w10_adjp: AVG(V(ADJP) )=6.98441631293 FROM 0.9 TO 1
+w10_adjn: AVG(V(ADJN) )=-6.65285735634 FROM 0.9 TO 1
+w10_rawp: AVG(V(RAWP) )=19.6025321369 FROM 0.9 TO 1
+w10_rawn: AVG(V(RAWN) )=-19.6332971747 FROM 0.9 TO 1
+w10_nmp: AVG(V(NMP) )=0.0845424649922 FROM 0.9 TO 1
+w10_nmn: AVG(V(NMN) )=-5.36836943382e-05 FROM 0.9 TO 1
+w10_iprog_p: AVG(I(RADJP) )=0.00571400072552 FROM 0.9 TO 1
+w10_iprog_n: AVG(I(RADJN) )=-0.00579340653617 FROM 0.9 TO 1
+w10_irset_p: AVG(I(RSETP) )=-0.00569404105345 FROM 0.9 TO 1
+w10_irset_n: AVG(I(RSETN) )=0.00568300649001 FROM 0.9 TO 1
+w20_vp: AVG(V(VOUTP) )=11.6017770715 FROM 1.9 TO 2
+w20_vn: AVG(V(VOUTN) )=-11.2716324137 FROM 1.9 TO 2
+w20_op: AVG(V(OP) )=-2.44670221866 FROM 1.9 TO 2
+w20_on: AVG(V(ON) )=2.38406908491 FROM 1.9 TO 2
+w20_adjp: AVG(V(ADJP) )=10.3511141268 FROM 1.9 TO 2
+w20_adjn: AVG(V(ADJN) )=-10.0210137842 FROM 1.9 TO 2
+w20_rawp: AVG(V(RAWP) )=19.4217494057 FROM 1.9 TO 2
+w20_rawn: AVG(V(RAWN) )=-19.4378633003 FROM 1.9 TO 2
+w20_nmp: AVG(V(NMP) )=3.15453580547e-05 FROM 1.9 TO 2
+w20_nmn: AVG(V(NMN) )=-2.2282199078e-05 FROM 1.9 TO 2
+w20_iprog_p: AVG(I(RADJP) )=0.00571078973505 FROM 1.9 TO 2
+w20_iprog_n: AVG(I(RADJN) )=-0.00578990093761 FROM 1.9 TO 2
+w20_irset_p: AVG(I(RSETP) )=-0.0056627505893 FROM 1.9 TO 2
+w20_irset_n: AVG(I(RSETN) )=0.00574309392781 FROM 1.9 TO 2
+w40_vp: AVG(V(VOUTP) )=13.6924512193 FROM 3.9 TO 4
+w40_vn: AVG(V(VOUTN) )=-13.3062905323 FROM 3.9 TO 4
+w40_op: AVG(V(OP) )=-0.442014755622 FROM 3.9 TO 4
+w40_on: AVG(V(ON) )=0.429332412702 FROM 3.9 TO 4
+w40_adjp: AVG(V(ADJP) )=12.4420505005 FROM 3.9 TO 4
+w40_adjn: AVG(V(ADJN) )=-12.0559424114 FROM 3.9 TO 4
+w40_rawp: AVG(V(RAWP) )=19.3129095735 FROM 3.9 TO 4
+w40_rawn: AVG(V(RAWN) )=-19.3308087014 FROM 3.9 TO 4
+w40_nmp: AVG(V(NMP) )=1.25131599176e-05 FROM 3.9 TO 4
+w40_nmn: AVG(V(NMN) )=-2.90661832868e-06 FROM 3.9 TO 4
+w40_iprog_p: AVG(I(RADJP) )=0.00570959236887 FROM 3.9 TO 4
+w40_iprog_n: AVG(I(RADJN) )=-0.00578864870884 FROM 3.9 TO 4
+w40_irset_p: AVG(I(RSETP) )=-0.00570091383588 FROM 3.9 TO 4
+w40_irset_n: AVG(I(RSETN) )=0.0057802198161 FROM 3.9 TO 4
+w80_vp: AVG(V(VOUTP) )=14.1384927012 FROM 7.9 TO 8
+w80_vn: AVG(V(VOUTN) )=-13.7387846634 FROM 7.9 TO 8
+w80_op: AVG(V(OP) )=-0.0144273866847 FROM 7.9 TO 8
+w80_on: AVG(V(ON) )=0.0139358075214 FROM 7.9 TO 8
+w80_adjp: AVG(V(ADJP) )=12.8881378003 FROM 7.9 TO 8
+w80_adjn: AVG(V(ADJN) )=-12.4884836311 FROM 7.9 TO 8
+w80_rawp: AVG(V(RAWP) )=19.2905040574 FROM 7.9 TO 8
+w80_rawn: AVG(V(RAWN) )=-19.3088505573 FROM 7.9 TO 8
+w80_nmp: AVG(V(NMP) )=8.4655235336e-06 FROM 7.9 TO 8
+w80_nmn: AVG(V(NMN) )=1.22263996201e-06 FROM 7.9 TO 8
+w80_iprog_p: AVG(I(RADJP) )=0.00570938308238 FROM 7.9 TO 8
+w80_iprog_n: AVG(I(RADJN) )=-0.00578843068755 FROM 7.9 TO 8
+w80_irset_p: AVG(I(RSETP) )=-0.00570909964525 FROM 7.9 TO 8
+w80_irset_n: AVG(I(RSETN) )=0.00578815714192 FROM 7.9 TO 8
+w80_vp_min: MIN(V(VOUTP) )=14.1378192902 FROM 7.9 TO 8
+w80_vp_max: MAX(V(VOUTP) )=14.1391324997 FROM 7.9 TO 8
+w80_vn_min: MIN(V(VOUTN) )=-13.7393960953 FROM 7.9 TO 8
+w80_vn_max: MAX(V(VOUTN) )=-13.7381524978 FROM 7.9 TO 8

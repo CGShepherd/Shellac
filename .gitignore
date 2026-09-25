@@ -103,3 +103,7 @@ simulation/psu/**/*.log
 simulation/psu/**/*.db
 simulation/psu/**/*.op.raw
 simulation/psu/**/*_combined.txt
+
+# Controlled PSU evidence
+!simulation/psu/evidence/
+!simulation/psu/evidence/**

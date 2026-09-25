@@ -59,7 +59,7 @@ system_release_prerequisites:
   status: OPEN
   target_run: RUN13_RUN14
 final_design_assurance:
-  authority: AE-072_PENDING
+  authority: AE-074_PENDING
   required_before_layout_freeze: true
   required_before_bom_freeze: true
   required_before_manufacturing_baseline: true
