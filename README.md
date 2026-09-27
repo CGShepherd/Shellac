@@ -18,7 +18,7 @@ Historical records are provenance and do not override later current authority.
 
 - DR-037 complete RIAA: implemented.
 - DR-038/SCH101: AE-071A migrates the AE-042 fail-safe 14/18/22 dB removable-shunt gain architecture and BASE/+47/+100 pF service loading into the live product generator; RUN10, Samtec pairing/orientation, EP and bench qualification remain open.
-- DR-039/SCH107: AE-067 selects branch-local DC blocking — retain the 1 uF / 330 kOhm network only in the direct bypass branch while the existing SCH107 high-pass branch provides intrinsic DC blocking. Product-generator migration plus RUN09, RUN10, RUN12 and bench correlation remain open.
+- DR-039/SCH107: AE-074 migrates the AE-067 branch-local topology into the live generator: the retained 1 uF / 330 kOhm network exists only in each DIRECT/BYPASS branch, while the existing SCH107 high-pass branch provides intrinsic DC blocking. Native-PCB F8/net reconciliation is closed by AE-074; RUN09, RUN10, RUN12 and bench correlation remain open.
 - AE-041 A1 controls: four independent NKK NR01-family EQ controls, C&K A30403RNCB 3P4T matrix, C&K 7201SYCBE rumble and mute toggles.
 - SW905 mute: mechanical DPDT signal/0VA selection immediately before the THAT1646 drivers. No relay/timer/comparator architecture.
 

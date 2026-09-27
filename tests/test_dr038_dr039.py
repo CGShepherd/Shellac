@@ -12,7 +12,7 @@ def test_dr038_selected_candidate_remains_valid():
     validate_ae014()
 
 
-def test_dr039_selected_model_remains_valid_pending_atomic_cad_migration():
+def test_dr039_branch_local_model_remains_valid_after_product_migration():
     validate_post_eq_dc_block()
     assert cutoff_hz() < 0.6
     assert magnitude_db(20.0) > -0.01

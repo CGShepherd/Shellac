@@ -18,10 +18,10 @@ on the inert DEFAULT/PARK header. Do not substitute an ordinary DIP contact into
 feedback path. A separate two-gang shunt selects BASE/+47/+100 pF cartridge loading.
 
 ## DC checks
-DR-039 blocks SCH101/SCH103 static DC before the SCH107 FILTER/BYPASS split.
+AE-074 DR-039 blocks SCH101/SCH103 static DC only in the SCH107 DIRECT/BYPASS branch; the FILTER branch is intrinsically DC-blocked by the SCH107 high-pass capacitors.
 
 ## Signal-level checks
-Reference cartridge-equivalent input and expected PRE_EQ, EQ_RAW, POST_EQ and output levels.
+Reference cartridge-equivalent input and expected PRE_EQ, RECOVERY_OUT, POST_EQ and output levels.
 
 ## Equalisation verification
 Historical curves and complete RIAA verification.

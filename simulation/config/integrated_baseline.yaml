@@ -111,13 +111,16 @@ selected_next_contract:
     follow_on_qualification: [RUN10, BENCH]
   dr039_sch107:
     authority: AE-067
+    product_migration_authority: AE-074
+    product_generator_status: CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
+    product_generator_migrated: true
+    candidate_analysis_remains_qualification_evidence: true
     preferred_candidate: BRANCH_LOCAL_DIRECT_BYPASS_BLOCK
     selected_topology: BRANCH_LOCAL_DIRECT_BYPASS_BLOCK
-    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
-    generator_migration_implied: false
     direct_branch_c_f: 1.0e-6
     direct_branch_r_ohm: 330000
     filtered_branch_dc_blocking: INTRINSIC_SCH107_HIGHPASS
+    native_pcb_f8_reconciliation: RECONCILED_BY_AE074
     follow_on_qualification: [RUN09, RUN10, RUN12, BENCH]
   mute:
     authority: AE-059

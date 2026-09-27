@@ -1,18 +1,18 @@
 # Project Shellac — Signal-Chain Commissioning and Maintenance Baseline
 
 **Status:** PRE-PRODUCTION MAINTENANCE BASELINE  
-**Evidence:** DR-037, DR-038, DR-039, AE-012 through AE-023
+**Evidence:** DR-037, DR-038, DR-039, AE-012 through AE-023, AE-066, AE-067, AE-074
 
 ## Normal configuration
 
 - SCH101 gain: DEFAULT / approximately 18 dB.
 - HIGH gain is reserved for lower-output cartridges and has reduced low-frequency headroom.
-- Rumble filter may be FILTER or BYPASS; DR-039 provides DC isolation in both states.
+- Rumble filter may be FILTER or BYPASS; AE-074 DR-039 provides branch-local DC isolation in BYPASS, while SCH107's high-pass capacitors provide intrinsic DC isolation in FILTER.
 - Full RIAA replay uses TRUE RIAA 3180/318 us bass plus 2121 Hz treble.
 
 ## Power sequencing
 
-The DR-039 1 µF / 330 kΩ network has a time constant of approximately 0.33 s.
+The DR-039 DIRECT/BYPASS 1 µF / 330 kΩ network has a time constant of approximately 0.33 s.
 
 For commissioning and conservative operation:
 
@@ -21,8 +21,10 @@ For commissioning and conservative operation:
 3. allow at least 2 s before releasing MUTE;
 4. before power-down, engage MUTE first.
 
-Two seconds corresponds to more than six DR-039 time constants and leaves less
-than 0.3% of an initial post-EQ DC-block charging transient.
+Two seconds corresponds to more than six DR-039 DIRECT/BYPASS time constants
+and leaves less than 0.3% of an initial direct-branch DC-block charging
+transient. FILTER has its own SCH107 high-pass dynamics; RUN12 and prototype
+evidence retain authority for final switching/transient acceptance.
 
 This is an operating/commissioning recommendation, not an automatic timing
 function; Shellac retains its mechanical mute philosophy.
@@ -54,8 +56,9 @@ not current production acceptance authority.
 
 ## DC offset
 
-With DR-039 fitted, upstream SCH101/SCH103 static offset is blocked before the
-rumble FILTER/BYPASS split.
+With AE-074 fitted, upstream SCH101/SCH103 static offset is blocked by DR-039
+in the DIRECT/BYPASS branch and by the intrinsic SCH107 high-pass capacitors in
+the FILTER branch.
 
 A conservative analytical downstream differential DC limit is approximately
 20 mV. A tighter measured production acceptance value should be frozen after

@@ -51,8 +51,10 @@ def test_ae067_run04_evidence_and_selected_contract():
     assert contract["authority"] == "AE-067"
     assert contract["selected_topology"] == "BRANCH_LOCAL_DIRECT_BYPASS_BLOCK"
     assert contract["preferred_candidate"] == "BRANCH_LOCAL_DIRECT_BYPASS_BLOCK"
-    assert contract["status"] == "CURRENT_SELECTED_PENDING_IMPLEMENTATION"
-    assert contract["generator_migration_implied"] is False
+    assert contract["product_migration_authority"] == "AE-074"
+    assert contract["product_generator_status"] == "CURRENT_ARCHITECTURE_QUALIFICATION_OPEN"
+    assert contract["product_generator_migrated"] is True
+    assert contract["candidate_analysis_remains_qualification_evidence"] is True
 
     run04 = baseline["run04_lf_trade"]
     assert run04["authority"] == "AE-067"
@@ -62,15 +64,18 @@ def test_ae067_run04_evidence_and_selected_contract():
     assert run04["result_record"] == "simulation/results/run04_lf_trade/ae067_run04.json"
     assert set(run04["follow_on_qualification"]) == {"RUN09", "RUN10", "RUN12", "BENCH"}
 
-def test_dr039_decision_index_promotes_selection_not_implementation():
+def test_dr039_decision_index_records_product_migration_with_qualification_open():
     data = yaml.safe_load(
         (ROOT / "config/decisions/current_decision_index.yaml").read_text(encoding="utf-8")
     )
     dr039 = data["decisions"]["DR-039"]
-    assert dr039["status"] == "CURRENT_SELECTED_PENDING_IMPLEMENTATION"
+    assert dr039["status"] == "CURRENT_ARCHITECTURE_QUALIFICATION_OPEN"
     assert dr039["primary_record"] == "docs/decisions/DR-039_Branch_Local_DC_Block_SELECTED.md"
     assert dr039["historical_record"] == "docs/decisions/DR-039_Common_Post_EQ_DC_Block_SELECTED.md"
-    assert "AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md" in "\n".join(dr039["evidence"])
+    evidence = "\n".join(dr039["evidence"])
+    assert "AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md" in evidence
+    assert "AE-074_DR039_Branch_Local_Product_Migration_Rev_A0.md" in evidence
     impl = dr039["implementation"]
     assert "branch-local" in impl.lower()
-    assert "not yet migrated" in impl.lower()
+    assert "ae-074 migrates" in impl.lower()
+    assert "run09, run10, run12 and bench correlation remain open" in impl.lower()

@@ -42,9 +42,8 @@ def test_sch103_component_values_remain_frozen():
             assert by_ref[f"R{base}{10+i}"].value == f"{item.rs_ohm:g}"
         assert by_ref[f"R{base}40"].value == "10000"
         assert by_ref[f"R{base}41"].value == "11000"
-        assert by_ref[f"C{base}60"].value == "1u"
-        assert by_ref[f"C{base}60"].footprint == "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm"
-        assert by_ref[f"R{base}60"].value == "330k"
+        assert f"C{base}60" not in by_ref
+        assert f"R{base}60" not in by_ref
 
 
 def test_sch103_selector_branches_are_directly_wired():

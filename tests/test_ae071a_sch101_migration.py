@@ -53,14 +53,15 @@ def test_population_remains_255_but_new_service_hardware_is_owned():
 
 def test_governance_closes_migration_but_not_routing():
     hold=yaml.safe_load((ROOT/"config/release/ae071_prerouting_hold.yaml").read_text(encoding="utf-8"))
-    assert hold["authority"]=="AE-071B"
-    assert hold["previous_authority"]=="AE-071A"
-    assert hold["baseline_commit"]=="6067c6535cc40694a45b496c287c8068978fba8a"
+    assert hold["authority"]=="AE-074"
+    assert hold["previous_authority"]=="AE-071B"
+    assert hold["baseline_commit"]=="82bb77c683e779c8a6bd82ccbd11799beb9893de"
     assert {x["id"] for x in hold["resolved_after_ae071"]}=={"AE071-B01"}
     assert {x["id"] for x in hold["resolved_after_ae071a"]}=={"AE071-M01"}
-    blockers={x["id"] for x in hold["routing_blockers"]}
+    assert {x["id"] for x in hold["resolved_after_ae074"]} == {"AE071-B02"}
+    blockers={x["id"]:x for x in hold["routing_blockers"]}
     assert "AE071-B01" not in blockers
-    assert "AE071-B02" in blockers
+    assert "AE071-B02" not in blockers
     assert "AE071-B08" in blockers
     assert hold["permissions"]["final_routing"] is False
 
@@ -98,6 +99,9 @@ def test_sch101_internal_label_anchors_clear_kicad_multiwire_geometry():
     assert offenders == []
 
 
-def test_dr039_product_generator_is_deliberately_untouched():
+def test_dr039_product_generator_is_now_migrated_by_ae074():
     replay=(ROOT/"generator/blocks/replay_eq.py").read_text(encoding="utf-8")
-    assert "DR-039: common post-EQ DC block before SCH107 FILTER/BYPASS." in replay
+    rumble=(ROOT/"generator/blocks/rumble_filter.py").read_text(encoding="utf-8")
+    assert "DR-039: common post-EQ DC block before SCH107 FILTER/BYPASS." not in replay
+    assert "def _add_dr039_direct_block(" in rumble
+    assert "DR-039: 1 uF / 330 kOhm DC blocking is DIRECT/BYPASS-branch local" in rumble

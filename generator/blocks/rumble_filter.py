@@ -16,6 +16,14 @@ from generator.component_selection import (
 from generator.core.components import Component, capacitor, resistor, testpoint
 from generator.core.geometry import Point
 from generator.core.pins import pin_position
+from generator.model.post_eq_dc_block import (
+    BIAS_RESISTANCE_VALUE as DR039_BIAS_RESISTANCE_VALUE,
+    CAPACITANCE_VALUE as DR039_CAPACITANCE_VALUE,
+    CAPACITOR_DIELECTRIC as DR039_CAPACITOR_DIELECTRIC,
+    CAPACITOR_FOOTPRINT as DR039_CAPACITOR_FOOTPRINT,
+    CAPACITOR_VOLTAGE as DR039_CAPACITOR_VOLTAGE,
+    DIRECT_BRANCH_REFS as DR039_DIRECT_BRANCH_REFS,
+)
 from generator.model.rumble_filter import (
     BYPASS_SWITCH,
     CAPACITANCE_VALUE,
@@ -61,6 +69,62 @@ def _wire_path(sheet, *points: Point) -> None:
     for start, end in zip(points, points[1:]):
         if start != end:
             sheet.connect_points(start, end)
+
+
+def _add_dr039_direct_block(
+    sheet,
+    *,
+    channel: str,
+    input_branch: Point,
+    route_end: Point,
+) -> None:
+    """Insert the selected DR-039 block only in the DIRECT/BYPASS branch."""
+    cap_ref, bias_ref = DR039_DIRECT_BRANCH_REFS[channel]
+    cap = sheet.add_component(capacitor(
+        cap_ref,
+        DR039_CAPACITANCE_VALUE,
+        Point(route_end.x - 25.0, route_end.y),
+        dielectric=DR039_CAPACITOR_DIELECTRIC,
+        voltage=DR039_CAPACITOR_VOLTAGE,
+        function=f"DR-039 {channel} DIRECT/BYPASS branch DC block; WIMA MKS2 class",
+        rotation=90.0,
+        footprint=DR039_CAPACITOR_FOOTPRINT,
+    ))
+    cap_in = pin_position(cap, "2")
+    cap_out = pin_position(cap, "1")
+
+    # Keep the return resistor away from the active-filter/decoupling region:
+    # below the upper DIRECT lane and above the lower DIRECT lane.
+    bias_offset = 15.0 if channel == "L" else -15.0
+    bias = sheet.add_component(resistor(
+        bias_ref,
+        DR039_BIAS_RESISTANCE_VALUE,
+        Point(route_end.x - 8.0, route_end.y + bias_offset),
+        tolerance="1%",
+        function=f"DR-039 {channel} DIRECT/BYPASS downstream DC reference",
+        # Preserve the existing PCB pad convention: pad 1 is signal, pad 2 is 0VA.
+        # Mirrored rotations keep the body away from the two DIRECT lanes.
+        rotation=270.0 if channel == "L" else 90.0,
+    ))
+    bias_signal = pin_position(bias, "1")
+    bias_ground = pin_position(bias, "2")
+    if channel == "L":
+        ground_end = Point(bias_ground.x, bias_ground.y + 7.62)
+    else:
+        ground_end = Point(bias_ground.x, bias_ground.y - 7.62)
+
+    _wire_path(
+        sheet,
+        input_branch,
+        Point(input_branch.x, route_end.y),
+        cap_in,
+    )
+    branch_node = Point(bias_signal.x, cap_out.y)
+    _wire_path(sheet, cap_out, branch_node, route_end)
+    _wire_path(sheet, branch_node, bias_signal)
+    _wire_path(sheet, bias_ground, ground_end)
+    sheet.add_label("0VA", ground_end.x, ground_end.y)
+
 
 def _add_section(
     sheet,
@@ -247,11 +311,12 @@ def _add_channel(
         direct_lane_x = 365
         filter_lane_x = 360
 
-    _wire_path(
+    direct_route_end = Point(direct_lane_x, direct_lane_y)
+    _add_dr039_direct_block(
         sheet,
-        input_branch,
-        Point(input_branch.x, direct_lane_y),
-        Point(direct_lane_x, direct_lane_y),
+        channel=channel,
+        input_branch=input_branch,
+        route_end=direct_route_end,
     )
     _wire_path(
         sheet,
@@ -266,7 +331,7 @@ def _add_channel(
         _add_decoupling(sheet, channel, base, y_hf=220, y_bulk=242)
 
     return {
-        "direct_route_end": Point(direct_lane_x, direct_lane_y),
+        "direct_route_end": direct_route_end,
         "filtered_route_end": Point(filter_lane_x, y),
         "output_testpoint": output_tp,
     }
@@ -282,6 +347,10 @@ def add_rumble_filter(sheet) -> None:
     )
     sheet.add_note(
         "The stereo 2P2T break-before-make bypass selector leaves both filter channels driven."
+    )
+    sheet.add_note(
+        "DR-039: 1 uF / 330 kOhm DC blocking is DIRECT/BYPASS-branch local; "
+        "the FILTER branch uses the intrinsic SCH107 high-pass capacitors."
     )
     sheet.add_note("Match left/right capacitors to 1% or better; 0.1% resistors preferred.")
 

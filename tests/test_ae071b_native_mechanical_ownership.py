@@ -143,7 +143,7 @@ def test_ae071b_native_audit_enforces_mechanical_ownership_and_pose():
 
 def test_ae071b_retains_routing_hold():
     text = HOLD.read_text(encoding="utf-8")
-    assert "authority: AE-071B" in text
-    assert "previous_authority: AE-071A" in text
-    assert "status: ROUTING_HELD_PENDING_PRODUCT_RECONCILIATION" in text
+    assert "authority: AE-074" in text
+    assert "previous_authority: AE-071B" in text
+    assert "status: ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS" in text
     assert "  final_routing: false" in text

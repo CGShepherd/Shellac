@@ -29,16 +29,19 @@ def test_sch101_candidate_contract_is_ae042():
     assert s["service_cap_pf"] == [0, 47, 100]
     assert s["follow_on_qualification"] == ["RUN10", "BENCH"]
 
-def test_dr039_selected_contract_is_ae067():
+def test_dr039_selected_contract_is_ae067_with_ae074_product_migration():
     s = data()["selected_next_contract"]["dr039_sch107"]
     assert s["authority"] == "AE-067"
+    assert s["product_migration_authority"] == "AE-074"
+    assert s["product_generator_status"] == "CURRENT_ARCHITECTURE_QUALIFICATION_OPEN"
+    assert s["product_generator_migrated"] is True
+    assert s["candidate_analysis_remains_qualification_evidence"] is True
     assert s["preferred_candidate"] == "BRANCH_LOCAL_DIRECT_BYPASS_BLOCK"
     assert s["selected_topology"] == "BRANCH_LOCAL_DIRECT_BYPASS_BLOCK"
-    assert s["status"] == "CURRENT_SELECTED_PENDING_IMPLEMENTATION"
-    assert s["generator_migration_implied"] is False
     assert s["direct_branch_c_f"] == 1.0e-6
     assert s["direct_branch_r_ohm"] == 330000
     assert s["filtered_branch_dc_blocking"] == "INTRINSIC_SCH107_HIGHPASS"
+    assert s["native_pcb_f8_reconciliation"] == "RECONCILED_BY_AE074"
 
 def test_mute_remains_mechanical_without_automatic_sequence():
     m = data()["selected_next_contract"]["mute"]

@@ -169,10 +169,16 @@ def main():
             errors.append("DR039 selected-next contract requires AE-067 authority")
         if dr039.get("selected_topology") != run04_lf_trade.get("selected_topology"):
             errors.append("DR039 contract and RUN04 selected topology disagree")
-        if dr039.get("status") != "CURRENT_SELECTED_PENDING_IMPLEMENTATION":
-            errors.append("DR039 contract status mismatch")
-        if dr039.get("generator_migration_implied") is not False:
-            errors.append("DR039 selected-next contract must not imply generator migration")
+        if dr039.get("product_migration_authority") != "AE-074":
+            errors.append("DR039 product migration requires AE-074 authority")
+        if dr039.get("product_generator_status") != "CURRENT_ARCHITECTURE_QUALIFICATION_OPEN":
+            errors.append("DR039 product-generator status mismatch")
+        if dr039.get("product_generator_migrated") is not True:
+            errors.append("DR039 live generator migration is not recorded")
+        if dr039.get("candidate_analysis_remains_qualification_evidence") is not True:
+            errors.append("DR039 AE-067 candidate evidence boundary is not preserved")
+        if dr039.get("native_pcb_f8_reconciliation") != "RECONCILED_BY_AE074":
+            errors.append("DR039 native PCB F8 reconciliation is not closed by AE-074")
 
     run05_matrix = data.get("run05_matrix")
     if run05_matrix is not None:

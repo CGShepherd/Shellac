@@ -16,10 +16,10 @@ Use first:
 Current signal-chain status:
 - DR-037: current — complete canonical RIAA retained in SCH103; duplicate independent 3180 us stage removed;
 - DR-038: current architecture qualification open — AE-071A migrates the AE-042 fail-safe gain and service-capacitance topology into the live SCH101 generator; RUN10, LT5400 EP/MPN, service-hardware mapping and bench qualification remain open;
-- DR-039: selected pending implementation — AE-067 RUN04 confirms branch-local DC blocking: 1 uF / 330 kOhm only in the direct bypass branch, with the existing SCH107 high-pass branch providing intrinsic DC blocking; product-generator migration plus RUN09/RUN10/RUN12 and bench correlation remain open;
+- DR-039: current architecture qualification open — AE-074 migrates the AE-067 branch-local topology into the live generator while preserving C30060/R30060/C35060/R35060 identities: 1 uF / 330 kOhm only in DIRECT/BYPASS, with intrinsic SCH107 high-pass DC blocking in FILTER; native-PCB F8/net/metadata reconciliation is complete; RUN09/RUN10/RUN12 and bench correlation remain open;
 - DR-040: current subject to the live implementation and subsequent assurance records;
 - AE-041 Rev A1: current control authority — 3P4T switched-summing matrix and current top-cover control architecture; AE-068 qualifies RUN05 steady-state matrix behaviour while switching/mechanical qualification remains open;
-- AE-042 through AE-071 plus AE-071A/AE-071B: current pre-SPICE/integrated-simulation/physical-integrity chain; AE-071A migrates SCH101 selected-next product implementation and AE-071B hardens board-owned MH1-MH4 mechanical ownership while retaining the routing hold; RUN08-RUN14 and prototype/bench obligations remain open;
+- AE-042 through AE-074, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance chain: current assurance chain; AE-071A migrates SCH101 selected-next product implementation, AE-071B hardens board-owned MH1-MH4 mechanical ownership, and AE-074 migrates DR-039 branch-local DC blocking while retaining the routing hold; RUN08-RUN14 and prototype/bench obligations remain open;
 - AE-072/AE-073: current PSU assurance chain — AE-072 establishes the AIYIMA P1-V reconstruction and RUN00 model-execution qualification; AE-073 closes the long-settle discriminator and confirms that the exploratory 400 ms low-output condition was a startup-settling artefact. Powered hardware qualification remains open; neither record changes the historical Shellac rail authority;
 - prototype measured acceptance: open.
 
@@ -99,7 +99,9 @@ AE-072 establishes the physically reconstructed AIYIMA P1-V PSU authority and qu
 
 AE-073 executes the long-settle RUN01 discriminator and confirms that the exploratory 400 ms apparent ~±15.6 V ceiling is a startup-settling artefact. The target-17 investigation settles to about +16.843 V / -16.804 V with the LF353 outputs near zero. Powered set-point, dropout, ripple, startup and thermal qualification remain open, and no rail-authority change is made.
 
-AE-042 through AE-071 plus AE-071A/AE-071B, together with AE-072/AE-073 PSU assurance records, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-074 migrates the AE-067 DR-039 branch-local topology into the live product generator and generated schematic source while preserving C30060/R30060/C35060/R35060 physical identities. The common SCH103 pre-split block is removed; the same 1 uF / 330 kOhm networks exist only in the SCH107 DIRECT/BYPASS branches, while FILTER uses its intrinsic high-pass capacitors. AE-074 closes native-PCB F8 reference relink, net and metadata reconciliation and resolves AE071-B02; RUN09/RUN10/RUN12 and bench correlation remain open.
+
+AE-042 through AE-074, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance records, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048, AE-049 and AE-050 remain respectively the qualification, numerical-acceptance and execution authorities for the simulation campaign. AE-053 defines the toolchain architecture used to execute those authorities and does not replace them.
 

@@ -75,26 +75,32 @@ def test_lt5400_bom_no_longer_claims_nonexistent_a_grade_minus7():
 
 def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
     hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    assert hold["authority"] == "AE-071B"
-    assert hold["previous_authority"] == "AE-071A"
-    assert hold["baseline_commit"] == "6067c6535cc40694a45b496c287c8068978fba8a"
-    assert hold["status"] == "ROUTING_HELD_PENDING_PRODUCT_RECONCILIATION"
+    assert hold["authority"] == "AE-074"
+    assert hold["previous_authority"] == "AE-071B"
+    assert hold["baseline_commit"] == "82bb77c683e779c8a6bd82ccbd11799beb9893de"
+    assert hold["status"] == "ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS"
     assert hold["historical_release"]["record"] == "config/release/sr041_routing_release.yaml"
     assert hold["historical_release"]["current_authority"] is False
     assert hold["permissions"]["final_routing"] is False
     assert hold["permissions"]["layout_freeze"] is False
     assert hold["permissions"]["bom_freeze"] is False
     assert hold["permissions"]["manufacturing_release"] is False
-    assert hold["final_design_assurance"]["authority"] == "AE-074_PENDING"
+    assert hold["final_design_assurance"]["authority"] == "AE-075_PENDING"
     assert hold["resolved_after_ae071"][0]["id"] == "AE071-B01"
     assert hold["resolved_after_ae071a"] == [{
         "id": "AE071-M01",
         "item": "NATIVE_PCB_MOUNTING_HOLE_BOARD_ONLY_OWNERSHIP",
         "resolution": "AE071B_MH1_MH4_BOARD_ONLY_LOCKED_AND_BOM_POS_EXCLUDED",
     }]
-    assert {x["id"] for x in hold["routing_blockers"]} == {
-        "AE071-B02","AE071-B03","AE071-B04",
-        "AE071-B05","AE071-B06","AE071-B07","AE071-B08",
+    assert hold["resolved_after_ae074"] == [{
+        "id": "AE071-B02",
+        "item": "AE074_DR039_NATIVE_PCB_F8_RECONCILIATION_AND_NET_AUDIT",
+        "resolution": "AE074_NATIVE_PCB_F8_REFERENCE_RELINK_NET_AND_METADATA_RECONCILIATION_COMPLETE",
+    }]
+    blockers = {x["id"]: x for x in hold["routing_blockers"]}
+    assert set(blockers) == {
+        "AE071-B03","AE071-B04","AE071-B05",
+        "AE071-B06","AE071-B07","AE071-B08",
     }
     historical = yaml.safe_load(OLD_RELEASE.read_text(encoding="utf-8"))
     assert historical["base_commit"] == "56c74250507a2f4d4b4dc04641096c7883512740"
@@ -120,7 +126,7 @@ def test_ae071_is_registered_in_current_authority_and_dr038_uses_b_grade_identit
     )
 
     index_text = DESIGN_PACK_INDEX.read_text(encoding="utf-8")
-    assert "AE-042 through AE-071" in index_text
+    assert "AE-042 through AE-074" in index_text
     assert "74 hierarchical pins / 23 cross-sheet signals" in index_text
 
     record_text = AE071_RECORD.read_text(encoding="utf-8")

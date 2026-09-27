@@ -1,12 +1,13 @@
 # DR-039 — Branch-local post-EQ DC blocking
 
-**Status:** CURRENT_SELECTED_PENDING_IMPLEMENTATION
+**Status:** CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
 **Selection authority:** AE-067 / RUN04
+**Product-migration authority:** AE-074
 **Selected topology:** `BRANCH_LOCAL_DIRECT_BYPASS_BLOCK`
 
 ## Decision
 
-The current selected DR-039 architecture is branch-local DC blocking:
+The current DR-039 architecture is branch-local DC blocking:
 
 - DIRECT/BYPASS branch: retain a dedicated 1.0 uF series capacitor and 330 kOhm downstream return to 0VA;
 - FILTER branch: do not add a second common DC-block network; use the intrinsic DC blocking already provided by SCH107;
@@ -29,13 +30,26 @@ AE-067 RUN04 provides the selection evidence. At nominal values the branch-local
 
 `RUMBLE_SCALE10_COMMON_1P2UF` is rejected because it does not preserve the preferred direct-path LF target and adds approximately 1.658 dB integrated filter-path noise relative to the branch-local reference without compensating system benefit.
 
-## Implementation boundary
+## Implemented product migration
 
-This decision is **selected but not yet implemented in the live product generator**.
+AE-074 migrates the selected topology into the live product generator and generated schematic source.
 
-The existing live generator may still contain the earlier common pre-split implementation described by `DR-039_Common_Post_EQ_DC_Block_SELECTED.md`. That document remains historical provenance for the previously implemented state; it is superseded as current DR-039 design authority by this record and AE-067.
+- SCH103 now hands each recovery-amplifier output directly to `POST_EQ_L` / `POST_EQ_R`; there is no common DR-039 capacitor or 330 kOhm return before the SCH107 split.
+- SCH107 owns the branch-local DIRECT/BYPASS blocks.
+- Existing physical identities are deliberately preserved:
+  - left: `C30060` / `R30060`;
+  - right: `C35060` / `R35060`.
+- The 1 uF PET-film / 63 V / WIMA-MKS2-class footprint contract and 330 kOhm / 1% return are retained.
+- The FILTER branch remains the existing two-section SCH107 high-pass and provides intrinsic DC blocking.
+- Placement ownership transfers from `CLU-103-HF-L/R` to `CLU-107-L/R` without forcing component renumbering.
 
-Controlled product-generator/CAD/BOM migration must be performed as a separate implementation event. AE-067 by itself does not authorise a manufacturing baseline.
+The earlier common pre-split implementation record `DR-039_Common_Post_EQ_DC_Block_SELECTED.md` remains historical provenance and is not rewritten.
+
+## Native PCB boundary
+
+AE-074 has completed the controlled native KiCad F8 reconciliation using reference-designator relinking. `C30060/R30060/C35060/R35060` retain their accepted physical positions, are owned by SCH107, and carry the selected branch-local net assignments. The corresponding native-PCB `Function` metadata was reconciled without altering geometry or connectivity. `AE071-B02` is therefore resolved by AE-074.
+
+The board remains intentionally unrouted and AE-074 does not authorise routing, layout freeze, BOM freeze or manufacturing release. Remaining pre-routing blockers and the RUN09/RUN10/RUN12/bench obligations remain authoritative.
 
 ## Qualification still open
 
@@ -49,6 +63,7 @@ The following remain open before manufacturing release:
 ## Evidence
 
 - `docs/design_pack/AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md`
+- `docs/design_pack/AE-074_DR039_Branch_Local_Product_Migration_Rev_A0.md`
 - `simulation/results/run04_lf_trade/ae067_run04.json`
 - `simulation/results/run04_lf_trade/ae067_run04.csv`
 - `simulation/results/run04_lf_trade/ae067_run04.md`

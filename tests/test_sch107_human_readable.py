@@ -146,3 +146,30 @@ def test_sch107_frequency_setting_caps_use_real_film_tht_footprints():
         assert cap.value == "470n"
         assert cap.fields["Dielectric"] == "Film"
         assert cap.footprint == "Capacitor_THT:C_Rect_L7.2mm_W3.5mm_P5.00mm_FKS2_FKP2_MKS2_MKP2"
+
+
+def test_sch107_component_rotations_are_kicad_canonical():
+    sheet = _sch107()
+    allowed = {0.0, 90.0, 180.0, 270.0}
+    offenders = {component.ref: component.rotation for component in sheet.components if component.rotation not in allowed}
+    assert offenders == {}
+
+
+def test_sch107_has_no_collinear_overlapping_wires():
+    sheet = _sch107()
+    segments = []
+    for index, wire in enumerate(sheet.wires):
+        if wire.y1 == wire.y2:
+            segments.append(('H', wire.y1, min(wire.x1, wire.x2), max(wire.x1, wire.x2), index))
+        elif wire.x1 == wire.x2:
+            segments.append(('V', wire.x1, min(wire.y1, wire.y2), max(wire.y1, wire.y2), index))
+    overlaps = []
+    for i, left in enumerate(segments):
+        for right in segments[i + 1:]:
+            if left[0] != right[0] or left[1] != right[1]:
+                continue
+            lo = max(left[2], right[2])
+            hi = min(left[3], right[3])
+            if hi > lo:
+                overlaps.append((left, right, lo, hi))
+    assert overlaps == []
