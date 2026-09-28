@@ -60,7 +60,11 @@ items:
     authority_reconciled_by: AE-041-A1
     knob_manufacturer: TE/Alcoswitch
     knob_mpn: KN900B1/4
-    note: CCW to CW DUAL L, STEREO, L+R, DUAL R. Exact production-switch detent-to-terminal mapping requires continuity confirmation before manufacturing release.
+    mounting: pcb_through_hole_plus_3/8-32_threaded_top_cover_bushing
+    physical_ownership: DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED
+    physical_architecture_reconciled_by: AE-075E
+    physical_partition: OPEN_LOCAL_MODULE_PARTITION_SUBJECT_TO_ANALOGUE_LOCALITY
+    note: CCW to CW DUAL L, STEREO, L+R, DUAL R. Exact production-switch detent-to-terminal mapping requires continuity confirmation before manufacturing release. AE-075E selects distributed local control-PCB ownership; exact board partition, installed Z stack, support and inter-board connection remain B03-open.
   - id: BOM-MATRIX-SUM-R
     function: switched_mono_averaging_resistors
     manufacturer: OPEN
@@ -79,7 +83,10 @@ items:
     requirement: stereo_DPDT_BBM
     status: SELECTED
     decision: DEC-027
-    mounting: pcb_pins_plus_threaded_top_cover_bushing
+    mounting: pcb_through_hole_plus_1/4-40_threaded_top_cover_bushing
+    physical_ownership: DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED
+    physical_architecture_reconciled_by: AE-075E
+    physical_partition: OPEN_LOCAL_MODULE_PARTITION_SUBJECT_TO_ANALOGUE_LOCALITY
   - id: BOM-CTRL-MUTE
     function: output_mute_command
     manufacturer: C&K
@@ -87,7 +94,10 @@ items:
     requirement: stereo_DPDT_BBM
     status: SELECTED
     decision: DEC-027
-    mounting: pcb_pins_plus_threaded_top_cover_bushing
+    mounting: pcb_through_hole_plus_1/4-40_threaded_top_cover_bushing
+    physical_ownership: DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED
+    physical_architecture_reconciled_by: AE-075E
+    physical_partition: OPEN_LOCAL_MODULE_PARTITION_SUBJECT_TO_ANALOGUE_LOCALITY
   - id: BOM-LED-POS
     function: positive_rail_indicator
     manufacturer: Vishay

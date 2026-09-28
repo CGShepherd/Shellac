@@ -4,9 +4,9 @@ from typing import Tuple
 
 ARCHITECTURE_RECORD="AE-041"
 ARCHITECTURE_REVISION="A1"
-HARDWARE_RECONCILIATION_RECORD="AE-075D"
+HARDWARE_RECONCILIATION_RECORD="AE-075E"
 MANUFACTURING_COORDINATES_RELEASED=False
-CONTROL_STACK_STATUS="EQ_LOCAL_MEZZANINE_SELECTED_SHARED_CK_STACK_OPEN"
+CONTROL_STACK_STATUS="ALL_OPERATOR_CONTROLS_LOCAL_PCB_OWNERSHIP_SELECTED_STACK_PARTITION_OPEN"
 
 SIGNAL_FLOW=("INPUT","BASS","TREBLE","RUMBLE","MATRIX","MUTE","OUTPUT")
 TOP_COVER_DIRECTION="FRONT_TO_REAR"
@@ -88,7 +88,7 @@ OPEN_QUALIFICATION=(
     "matrix_mono_accuracy_spice_and_bench",
     "production_switch_detent_terminal_continuity_confirmation",
     "main_pcb_carrier_z_and_top_cover_thickness",
-    "shared_ck_direct_main_pcb_vs_local_control_pcb_ownership",
+    "shared_ck_local_control_pcb_partition_installed_stack_support_interconnect",
     "eq_mezzanine_interconnect_stack_support_and_switch_local_passive_ownership",
     "exact_part_footprints_pin_mapping_and_courtyards",
     "absolute_top_cover_coordinates",
@@ -109,5 +109,5 @@ def validate_control_architecture()->None:
     assert MATRIX.mode_order_ccw_to_cw==("DUAL L","STEREO","L+R","DUAL R")
     assert MATRIX.switched_leg_node=="MONO_R_LEG" and MATRIX.switched_leg_mode=="L+R"
     assert MATRIX.averaging_resistor_count==2 and MATRIX.averaging_resistance_ohm==4700.0
-    assert CONTROL_STACK_STATUS=="EQ_LOCAL_MEZZANINE_SELECTED_SHARED_CK_STACK_OPEN"
+    assert CONTROL_STACK_STATUS=="ALL_OPERATOR_CONTROLS_LOCAL_PCB_OWNERSHIP_SELECTED_STACK_PARTITION_OPEN"
     assert MANUFACTURING_COORDINATES_RELEASED is False

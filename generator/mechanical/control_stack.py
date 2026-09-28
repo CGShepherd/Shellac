@@ -20,10 +20,12 @@ TOP_COVER_THICKNESS_MM=None
 CARRIER_OR_CONTROL_PLANE_Z_MM=None
 
 EQ_CONTROL_OWNERSHIP="TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
-SHARED_CK_CONTROL_OWNERSHIP="OPEN_DIRECT_MAIN_PCB_OR_LOCAL_CONTROL_PCB"
-CONTROL_BOARD_OWNERSHIP="EQ_LOCAL_MEZZANINES_SELECTED_SHARED_CK_OPEN"
+SHARED_CK_CONTROL_OWNERSHIP="DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED"
+CONTROL_BOARD_OWNERSHIP="ALL_OPERATOR_CONTROLS_LOCAL_PCB_OWNERSHIP_SELECTED_PARTITION_OPEN"
+SHARED_CK_CONTROL_PCB_PARTITION="OPEN_LOCAL_MODULE_PARTITION_SUBJECT_TO_ANALOGUE_LOCALITY"
+DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED=False
 CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED=False
-B03_STATUS="EQ_MEZZANINE_ARCHITECTURE_SELECTED_SHARED_CK_AND_PHYSICAL_DETAIL_OPEN"
+B03_STATUS="ALL_CONTROL_LOCAL_PCB_OWNERSHIP_SELECTED_Z_PARTITION_INTERCONNECT_FOOTPRINT_XY_OPEN"
 
 @dataclass(frozen=True, slots=True)
 class ControlStackPart:
@@ -42,19 +44,19 @@ PARTS=(
         "channel-local EQ mezzanine; REG-08 mechanical registration; THT straight PC with support bracket"),
     ControlStackPart("CHANNEL",1,"A30403RNCB",
         "3/8-32 threaded bushing and nut; exact PCB-plane stack still to freeze",
-        "THT PC pins; direct-main-PCB versus local control-PCB ownership open"),
+        "THT PC pins; distributed local control PCB selected; exact module partition/support/interconnect open"),
     ControlStackPart("RUMBLE",1,"7201SYCBE",
         "1/4-40 threaded bushing and nut; exact PCB-plane stack still to freeze",
-        "THT PC pins; direct-main-PCB versus local control-PCB ownership open"),
+        "THT PC pins; distributed local control PCB selected; exact module partition/support/interconnect open"),
     ControlStackPart("MUTE",1,"7201SYCBE",
         "1/4-40 threaded bushing and nut; exact PCB-plane stack still to freeze",
-        "THT PC pins; direct-main-PCB versus local control-PCB ownership open"),
+        "THT PC pins; distributed local control PCB selected; exact module partition/support/interconnect open"),
 )
 
 REQUIRED_BEFORE_B03_CLOSURE=(
     "freeze main PCB/carrier Z relative to upper-cover inner face",
     "freeze top-cover thickness and finished aperture/clearance stack",
-    "freeze exact C&K installed PCB-plane stack and shared-control ownership",
+    "freeze exact C&K installed PCB-plane stack and distributed local-control PCB partition/support/interconnect",
     "downselect EQ mezzanine interconnect (rigid board-to-board versus short low-parasitic flex/harness), stack height and mechanical support",
     "freeze switch-local passive ownership and bound RUN10 parasitic/stability effect",
     "create and verify exact part footprints, pin maps, courtyards and 3D/body envelopes",
@@ -76,9 +78,11 @@ def validate_control_stack()->None:
     assert TOP_COVER_THICKNESS_MM is None
     assert CARRIER_OR_CONTROL_PLANE_Z_MM is None
     assert EQ_CONTROL_OWNERSHIP=="TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
-    assert SHARED_CK_CONTROL_OWNERSHIP=="OPEN_DIRECT_MAIN_PCB_OR_LOCAL_CONTROL_PCB"
-    assert CONTROL_BOARD_OWNERSHIP=="EQ_LOCAL_MEZZANINES_SELECTED_SHARED_CK_OPEN"
+    assert SHARED_CK_CONTROL_OWNERSHIP=="DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED"
+    assert CONTROL_BOARD_OWNERSHIP=="ALL_OPERATOR_CONTROLS_LOCAL_PCB_OWNERSHIP_SELECTED_PARTITION_OPEN"
+    assert SHARED_CK_CONTROL_PCB_PARTITION=="OPEN_LOCAL_MODULE_PARTITION_SUBJECT_TO_ANALOGUE_LOCALITY"
+    assert DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED is False
     assert CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED is False
     assert len(PARTS)==5
     assert sum(part.quantity for part in PARTS)==7
-    assert B03_STATUS=="EQ_MEZZANINE_ARCHITECTURE_SELECTED_SHARED_CK_AND_PHYSICAL_DETAIL_OPEN"
+    assert B03_STATUS=="ALL_CONTROL_LOCAL_PCB_OWNERSHIP_SELECTED_Z_PARTITION_INTERCONNECT_FOOTPRINT_XY_OPEN"

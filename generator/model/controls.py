@@ -1,4 +1,4 @@
-"""AE-075C / AE-041 SCH109 controls and user-interface engineering model."""
+"""Current AE-041/SCH109 controls and user-interface engineering model."""
 from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
@@ -35,14 +35,16 @@ MATRIX_MPN="A30403RNCB"
 MATRIX_FALLBACK_MPN="TE/Alcoswitch MRJE3404"
 MATRIX_MOUNTING=(
     "PCB through-hole PC pins with 3/8-32 threaded bushing through top cover; "
-    "PCB/control-plane datum establishes alignment before nut is tightened"
+    "distributed local control PCB selected; exact module partition/support/interconnect "
+    "and installed PCB plane remain open; PCB datum establishes alignment before nut is tightened"
 )
 
 TOGGLE_MANUFACTURER="C&K"
 TOGGLE_MPN="7201SYCBE"
 TOGGLE_MOUNTING=(
     "PCB through-hole PC pins with 1/4-40 threaded bushing through top cover; "
-    "PCB/control-plane datum establishes alignment before nut is tightened"
+    "distributed local control PCB selected; exact module partition/support/interconnect "
+    "and installed PCB plane remain open; PCB datum establishes alignment before nut is tightened"
 )
 
 LED_MANUFACTURER="Vishay"
