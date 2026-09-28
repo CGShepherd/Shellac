@@ -1,6 +1,6 @@
 """SCH101 DR-038 / AE-042 precision balanced-input schematic builder."""
 from generator.core.components import (
-    capacitor,diff_converter_block,opa1656_gain_block,resistor,xlr3,jst_vh_3,
+    capacitor,diff_converter_block,opa1656_gain_block,resistor,xlr3,molex_microlock_plus_3,
     lt5400_network,service_header_4gang,service_header_2gang,
 )
 from generator.core.geometry import Point
@@ -51,7 +51,7 @@ def _service_headers(sheet):
 
 def _rf_input(sheet,ch,base,cy,py,my,headers,pair_index):
     panel=sheet.add_component(xlr3(f"J{base}01",f"{ch} PANEL INPUT XLR",Point(25,cy),f"{ch} balanced cartridge input"))
-    conn=sheet.add_component(jst_vh_3(f"H{base}01",f"{ch} INPUT HARNESS",Point(48,cy),f"{ch} panel-XLR to PCB harness"))
+    conn=sheet.add_component(molex_microlock_plus_3(f"H{base}01",f"{ch} INPUT HARNESS",Point(48,cy),f"{ch} panel-XLR to PCB low-level harness"))
     for pin in ("1","2","3"):
         sheet.connect_points(pin_position(panel,pin),pin_position(conn,pin))
     rp=sheet.add_component(resistor(f"R{base}02","100R",Point(75,py),tolerance="0.1%",function="Matched RF series isolation IN+"))

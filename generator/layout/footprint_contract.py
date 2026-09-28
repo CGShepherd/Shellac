@@ -61,10 +61,9 @@ def _physical_component_identity(sheet_id: str, component):
         return None
     return allocation.physical_ref,allocation.device,allocation.footprint
 
-# These connectors are electrically correct in the frozen schematic but their
-# current horizontal PCB footprints conflict with the accepted panel-harness
-# mechanical architecture.  Keep the discrepancy visible until a controlled
-# ECO changes the schematic ownership/footprint fields.
+# Controlled mechanical ECOs that must be resolved before preliminary PCB
+# population is considered ready. AE-075 B07 closed the former H101/H201
+# Micro-Lock Plus migration after exact-part footprint and native F8 validation.
 _MECHANICAL_ECO: dict[str, str] = {}
 
 

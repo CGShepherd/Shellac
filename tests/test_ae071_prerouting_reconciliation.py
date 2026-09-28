@@ -97,10 +97,22 @@ def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
         "item": "AE074_DR039_NATIVE_PCB_F8_RECONCILIATION_AND_NET_AUDIT",
         "resolution": "AE074_NATIVE_PCB_F8_REFERENCE_RELINK_NET_AND_METADATA_RECONCILIATION_COMPLETE",
     }]
+    assert hold["resolved_after_ae075"] == [{
+        "id": "AE071-B07",
+        "item": "CARTRIDGE_INPUT_MICROLOCK_PLUS_FOOTPRINT_NATIVE_MIGRATION_AND_HARNESS_VERIFICATION",
+        "resolution": "AE075_B07_MICROLOCK_PLUS_EXACT_PART_FOOTPRINT_NATIVE_F8_NET_KEEPOUT_AND_SYMMETRY_VALIDATED",
+        "pcb_header": "MOLEX_5055780321",
+        "housing": "MOLEX_5055700301",
+        "crimp_terminal": "MOLEX_5055721200",
+        "pin_contract": "PIN1_CHASSIS_SHIELD_PIN2_HOT_POS_PIN3_COLD_NEG",
+        "native_validation": "PASS",
+        "physical_harness_build_check": "RETAINED_FOR_MANUFACTURING_AND_COMMISSIONING",
+        "xlr_pin1_local_chassis_authority": "AE071-B06",
+    }]
     blockers = {x["id"]: x for x in hold["routing_blockers"]}
     assert set(blockers) == {
         "AE071-B03","AE071-B04","AE071-B05",
-        "AE071-B06","AE071-B07","AE071-B08",
+        "AE071-B06","AE071-B08",
     }
     historical = yaml.safe_load(OLD_RELEASE.read_text(encoding="utf-8"))
     assert historical["base_commit"] == "56c74250507a2f4d4b4dc04641096c7883512740"

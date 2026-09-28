@@ -57,6 +57,25 @@ def jst_vh_3(ref, label, at, function="Panel audio harness interface", rotation=
     )
 
 
+def molex_microlock_plus_3(ref, label, at, function="Low-level balanced panel harness interface", rotation=0.0):
+    # AE-075 B07 selected low-level harness interface. Final PCB footprint
+    # remains intentionally unassigned until manufacturer-drawing verification.
+    return Component(
+        ref, "Connector_Generic:Conn_01x03", label, at,
+        "ProjectShellac:Molex_MicroLockPlus_5055780321_1x03_P2.00mm_Horizontal",
+        {"Function": function,
+         "Connector family": "Molex Micro-Lock Plus 2.00 mm",
+         "PCB header": "5055780321",
+         "Harness housing": "5055700301",
+         "Harness terminal": "5055721200",
+         "Wire": "22-26 AWG; 24-26 AWG preferred for Shellac signal harness",
+         "Contact finish": "0.38 um Au mating interface",
+         "Pin 1": "CHASSIS/SHIELD", "Pin 2": "HOT/+", "Pin 3": "COLD/-",
+         "Footprint authority": "AE-075 B07 exact-part EDA footprint and native-board migration validated"},
+        rotation=rotation,
+    )
+
+
 def minifit_6(ref, label, at, function="Regulated DC harness interface", rotation=0.0):
     return Component(
         ref, "Connector_Generic:Conn_01x06", label, at,

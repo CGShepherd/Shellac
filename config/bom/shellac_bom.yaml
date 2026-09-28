@@ -160,3 +160,38 @@ items:
     status: FAMILY_SELECTED_EXACT_ORDER_CODE_OPEN
     authority_reconciled_by: AE-063
     note: Replaces incoherent generic 1N4004 identity on an SMA footprint. Final tape/reel order suffix and fault-energy acceptance remain open until procurement and AE-049/050 qualification close.
+  - id: BOM-SCH101-INPUT-HARNESS-PCB
+    function: sch101_low_level_input_harness_pcb_header
+    manufacturer: Molex
+    mpn: "5055780321"
+    quantity: 2
+    family: Micro-Lock_Plus_2.00mm
+    circuits: 3
+    orientation: right_angle
+    termination: SMT
+    mating_plating_um_gold: 0.38
+    refs: [H101, H201]
+    status: SELECTED_IMPLEMENTED_NATIVE_VALIDATED
+    authority_reconciled_by: AE-075-B07
+    note: Pin 1 CHASSIS/SHIELD; pin 2 HOT/+; pin 3 COLD/-. Exact-part footprint and native F8 migration validated under AE-075-B07. Physical harness assembly/continuity inspection remains a manufacturing/commissioning check.
+  - id: BOM-SCH101-INPUT-HARNESS-HOUSING
+    function: sch101_low_level_input_harness_receptacle
+    manufacturer: Molex
+    mpn: "5055700301"
+    quantity: 2
+    family: Micro-Lock_Plus_2.00mm
+    circuits: 3
+    positive_lock: true
+    status: SELECTED
+    authority_reconciled_by: AE-075-B07
+  - id: BOM-SCH101-INPUT-HARNESS-CONTACT
+    function: sch101_low_level_input_harness_female_crimp_contact
+    manufacturer: Molex
+    mpn: "5055721200"
+    quantity_design: 6
+    procurement_quantity: OPEN_COMBINED_SHELLAC_PHOENIX_BASKET
+    wire_awg: [22, 24, 26]
+    mating_plating_um_gold: 0.38
+    status: SELECTED
+    authority_reconciled_by: AE-075-B07
+    note: Combined procurement with Phoenix is encouraged if Phoenix mechanical verification accepts the same connector family; Phoenix design authority is not changed by this record.

@@ -312,6 +312,12 @@ def write_project_library_tables(out_dir):
         ')\n',
         encoding="utf-8",
     )
+    project_footprint_source = Path(__file__).resolve().parents[1] / "footprints" / "ProjectShellac.pretty"
+    project_footprint_destination = out_dir / "ProjectShellac.pretty"
+    if project_footprint_destination.exists():
+        shutil.rmtree(project_footprint_destination)
+    shutil.copytree(project_footprint_source, project_footprint_destination)
+
     footprint_libraries = (
         "Button_Switch_THT", "Capacitor_SMD", "Capacitor_THT",
         "Connector_Audio", "Connector_PinHeader_2.54mm", "Diode_SMD", "Inductor_SMD", "Package_SO",
@@ -320,6 +326,11 @@ def write_project_library_tables(out_dir):
     rows = "\n".join(
         f'  (lib (name "{name}")(type "KiCad")(uri "${{KICAD9_FOOTPRINT_DIR}}/{name}.pretty")(options "")(descr ""))'
         for name in footprint_libraries
+    )
+    rows += (
+        '\n  (lib (name "ProjectShellac")(type "KiCad")'
+        '(uri "${KIPRJMOD}/ProjectShellac.pretty")(options "")'
+        '(descr "Project Shellac controlled footprints"))'
     )
     (out_dir / "fp-lib-table").write_text(
         f'(fp_lib_table\n  (version 7)\n{rows}\n)\n',
