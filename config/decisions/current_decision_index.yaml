@@ -86,11 +86,12 @@ decisions:
       - docs/design_pack/AE-046_SCH105_Mode_Matrix_Pre-SPICE_Review_Rev_A0.md
       - docs/design_pack/AE-068_RUN05_SCH104_SCH105_Matrix_Evidence_Rev_A0.md
       - docs/design_pack/AE-075C_Control_Hardware_and_Vertical_Stack_Reconciliation_Rev_A0.md
+      - docs/design_pack/AE-075D_B03_Control_Z_Stack_and_EQ_Mezzanine_Discriminator_Rev_A0.md
     implementation:
       eq_controls: Four independent NKK NR01105ANG13 five-position BBM gold-contact controls; Bass uses -2C red flanged-knob configuration and Treble uses -2A black flanged-knob configuration.
       channel_matrix: C&K A30403RNCB 3P4T BBM gold THT preferred; TE/Alcoswitch MRJE3404 fallback.
       mute_rumble: C&K 7201SYCBE.
-      note: AE-068 qualifies RUN05 steady-state routing, insertion, mono weighting and crosstalk. AE-075C freezes exact external control MPNs and corrects the NR01 no-threaded-bushing mounting semantics. B03 remains open for control-plane Z/top-cover stack, direct-main-PCB versus REG-08 control-PCB ownership, exact footprints/pin maps/courtyards, XY keep-outs and physical ownership migration. RUN12 switching and bench qualification remain open.
+      note: AE-068 qualifies RUN05 steady-state routing, insertion, mono weighting and crosstalk. AE-075C freezes exact external control MPNs. AE-075D distinguishes the NKK 10.5 mm switch depth from the 12.3 mm installed panel-to-PCB plane, rejects the 2.0 mm carrier as a 1.6 mm UNICASE guide-rail path, rejects a long-run central analogue control strip, and selects two channel-local EQ mezzanines mechanically registered by REG-08. B03 remains open for main-board/carrier Z, shared C&K ownership, mezzanine interconnect/support/passive partition, exact footprints/pin maps/courtyards, XY keep-outs and RUN10 parasitics. RUN12 switching and bench qualification remain open.
 pre_spice_assurance:
   AE-042: docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
   AE-043: docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
@@ -129,6 +130,7 @@ pre_spice_assurance:
   AE-075A: docs/design_pack/AE-075A_Post_SR043_Placement_and_SCH108_Sense_Cap_Reconciliation_Rev_A0.md
   AE-075B: docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
   AE-075C: docs/design_pack/AE-075C_Control_Hardware_and_Vertical_Stack_Reconciliation_Rev_A0.md
+  AE-075D: docs/design_pack/AE-075D_B03_Control_Z_Stack_and_EQ_Mezzanine_Discriminator_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

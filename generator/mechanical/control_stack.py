@@ -1,14 +1,29 @@
-"""AE-075C control-stack mechanical contract for routing blocker B03."""
+"""Current Shellac control-stack mechanical contract for routing blocker B03."""
 from __future__ import annotations
 from dataclasses import dataclass
 
 ENCLOSURE_MPN="M5502119"
 ENCLOSURE_INTERNAL_COVER_HEIGHT_MM=86.2
+UNICASE_GUIDE_PCB_THICKNESS_MM=1.6
+CARRIER_THICKNESS_MM=2.0
+CARRIER_GUIDE_RAIL_COMPATIBLE=False
 MAIN_PCB_CARRIER_STANDOFF_MM=8.0
+
+NKK_SWITCH_DEPTH_BEHIND_PANEL_MM=10.5
+NKK_INSTALLED_PANEL_TO_PCB_MM=12.3
+KNOWN_MAIN_BOARD_COMPONENT_HEIGHT_MM=11.0
+NKK_NOMINAL_CLEARANCE_TO_KNOWN_11MM_PART_MM=round(
+    NKK_INSTALLED_PANEL_TO_PCB_MM-KNOWN_MAIN_BOARD_COMPONENT_HEIGHT_MM, 1
+)
+
 TOP_COVER_THICKNESS_MM=None
 CARRIER_OR_CONTROL_PLANE_Z_MM=None
-CONTROL_BOARD_OWNERSHIP="OPEN_DIRECT_MAIN_PCB_OR_REG08_CONTROL_PCB"
-B03_STATUS="EXACT_PARTS_FROZEN_VERTICAL_STACK_AND_FOOTPRINTS_OPEN"
+
+EQ_CONTROL_OWNERSHIP="TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
+SHARED_CK_CONTROL_OWNERSHIP="OPEN_DIRECT_MAIN_PCB_OR_LOCAL_CONTROL_PCB"
+CONTROL_BOARD_OWNERSHIP="EQ_LOCAL_MEZZANINES_SELECTED_SHARED_CK_OPEN"
+CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED=False
+B03_STATUS="EQ_MEZZANINE_ARCHITECTURE_SELECTED_SHARED_CK_AND_PHYSICAL_DETAIL_OPEN"
 
 @dataclass(frozen=True, slots=True)
 class ControlStackPart:
@@ -20,39 +35,50 @@ class ControlStackPart:
 
 PARTS=(
     ControlStackPart("BASS",2,"NR01105ANG13-2C",
-        "AT3009 flanged knob beneath panel; no threaded bushing",
-        "THT straight PC with support bracket"),
+        "AT3009 flanged knob beneath panel; installed panel-to-PCB plane 12.3 mm",
+        "channel-local EQ mezzanine; REG-08 mechanical registration; THT straight PC with support bracket"),
     ControlStackPart("TREBLE",2,"NR01105ANG13-2A",
-        "AT3009 flanged knob beneath panel; no threaded bushing",
-        "THT straight PC with support bracket"),
+        "AT3009 flanged knob beneath panel; installed panel-to-PCB plane 12.3 mm",
+        "channel-local EQ mezzanine; REG-08 mechanical registration; THT straight PC with support bracket"),
     ControlStackPart("CHANNEL",1,"A30403RNCB",
-        "3/8-32 threaded bushing and nut",
-        "THT PC pins"),
+        "3/8-32 threaded bushing and nut; exact PCB-plane stack still to freeze",
+        "THT PC pins; direct-main-PCB versus local control-PCB ownership open"),
     ControlStackPart("RUMBLE",1,"7201SYCBE",
-        "1/4-40 threaded bushing and nut",
-        "THT PC pins"),
+        "1/4-40 threaded bushing and nut; exact PCB-plane stack still to freeze",
+        "THT PC pins; direct-main-PCB versus local control-PCB ownership open"),
     ControlStackPart("MUTE",1,"7201SYCBE",
-        "1/4-40 threaded bushing and nut",
-        "THT PC pins"),
+        "1/4-40 threaded bushing and nut; exact PCB-plane stack still to freeze",
+        "THT PC pins; direct-main-PCB versus local control-PCB ownership open"),
 )
 
 REQUIRED_BEFORE_B03_CLOSURE=(
-    "freeze carrier/control PCB plane Z relative to upper-cover inner face",
+    "freeze main PCB/carrier Z relative to upper-cover inner face",
     "freeze top-cover thickness and finished aperture/clearance stack",
-    "downselect direct main PCB versus REG-08 control PCB ownership",
+    "freeze exact C&K installed PCB-plane stack and shared-control ownership",
+    "downselect EQ mezzanine interconnect (rigid board-to-board versus short low-parasitic flex/harness), stack height and mechanical support",
+    "freeze switch-local passive ownership and bound RUN10 parasitic/stability effect",
     "create and verify exact part footprints, pin maps, courtyards and 3D/body envelopes",
     "freeze control XY coordinates and keep-outs against adjacent components",
     "verify actuator/knob projection, tool access, anti-rotation features and service removal",
-    "migrate physical switch instances from panel-excluded representation only after ownership is frozen",
+    "migrate physical switch instances only after ownership and Z stack are frozen",
 )
 
 def validate_control_stack()->None:
     assert ENCLOSURE_MPN=="M5502119"
     assert ENCLOSURE_INTERNAL_COVER_HEIGHT_MM==86.2
+    assert UNICASE_GUIDE_PCB_THICKNESS_MM==1.6
+    assert CARRIER_THICKNESS_MM==2.0
+    assert CARRIER_GUIDE_RAIL_COMPATIBLE is False
     assert MAIN_PCB_CARRIER_STANDOFF_MM==8.0
+    assert NKK_SWITCH_DEPTH_BEHIND_PANEL_MM==10.5
+    assert NKK_INSTALLED_PANEL_TO_PCB_MM==12.3
+    assert NKK_NOMINAL_CLEARANCE_TO_KNOWN_11MM_PART_MM==1.3
     assert TOP_COVER_THICKNESS_MM is None
     assert CARRIER_OR_CONTROL_PLANE_Z_MM is None
-    assert CONTROL_BOARD_OWNERSHIP.startswith("OPEN_")
+    assert EQ_CONTROL_OWNERSHIP=="TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
+    assert SHARED_CK_CONTROL_OWNERSHIP=="OPEN_DIRECT_MAIN_PCB_OR_LOCAL_CONTROL_PCB"
+    assert CONTROL_BOARD_OWNERSHIP=="EQ_LOCAL_MEZZANINES_SELECTED_SHARED_CK_OPEN"
+    assert CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED is False
     assert len(PARTS)==5
     assert sum(part.quantity for part in PARTS)==7
-    assert B03_STATUS=="EXACT_PARTS_FROZEN_VERTICAL_STACK_AND_FOOTPRINTS_OPEN"
+    assert B03_STATUS=="EQ_MEZZANINE_ARCHITECTURE_SELECTED_SHARED_CK_AND_PHYSICAL_DETAIL_OPEN"

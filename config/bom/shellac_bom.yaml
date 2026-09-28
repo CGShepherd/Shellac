@@ -26,7 +26,10 @@ items:
     knob: AT3009_flanged
     mounting: pcb_through_hole_bracket_no_threaded_bushing_flange_beneath_panel
     depth_behind_panel_mm: 10.5
-    note: Exact five-position non-shorting gold-contact NR01 configuration selected. Vertical stack, exact footprint/pin map and board ownership remain under B03.
+    installed_panel_to_pcb_mm: 12.3
+    physical_ownership: CHANNEL_LOCAL_EQ_MEZZANINE_SELECTED
+    physical_architecture_reconciled_by: AE-075D
+    note: Exact five-position non-shorting gold-contact NR01 configuration selected. AE-075D distinguishes 10.5 mm catalogue depth from 12.3 mm installed panel-to-PCB plane and selects channel-local EQ mezzanine ownership; interconnect/stack, mechanical support, footprint/pin map and parasitic qualification remain under B03.
   - id: BOM-CTRL-TREBLE
     function: treble_characteristic_selector_dual_mono
     manufacturer: NKK
@@ -40,7 +43,10 @@ items:
     knob: AT3009_flanged
     mounting: pcb_through_hole_bracket_no_threaded_bushing_flange_beneath_panel
     depth_behind_panel_mm: 10.5
-    note: Exact five-position non-shorting gold-contact NR01 configuration selected. Vertical stack, exact footprint/pin map and board ownership remain under B03.
+    installed_panel_to_pcb_mm: 12.3
+    physical_ownership: CHANNEL_LOCAL_EQ_MEZZANINE_SELECTED
+    physical_architecture_reconciled_by: AE-075D
+    note: Exact five-position non-shorting gold-contact NR01 configuration selected. AE-075D distinguishes 10.5 mm catalogue depth from 12.3 mm installed panel-to-PCB plane and selects channel-local EQ mezzanine ownership; interconnect/stack, mechanical support, footprint/pin map and parasitic qualification remain under B03.
   - id: BOM-CTRL-CHANNEL
     function: channel_mode_selector
     manufacturer: C&K

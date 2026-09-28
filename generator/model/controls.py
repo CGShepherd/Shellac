@@ -22,10 +22,12 @@ EQ_ROTARY_BASE_MPN="NR01105ANG13"
 EQ_BASS_MPN="NR01105ANG13-2C"
 EQ_TREBLE_MPN="NR01105ANG13-2A"
 EQ_ROTARY_DEPTH_BEHIND_PANEL_MM=10.5
+EQ_ROTARY_INSTALLED_PANEL_TO_PCB_MM=12.3
 EQ_ROTARY_BODY_XY_MM=(10.7,10.7)
 EQ_ROTARY_MOUNTING=(
     "PCB through-hole straight-PC NR01 with bracket; AT3009 flanged knob beneath "
-    "top cover; no threaded bushing; control-plane Z and panel clearance must be verified"
+    "top cover; no threaded bushing; installed panel-to-PCB plane 12.3 mm; "
+"channel-local EQ mezzanine selected; final interconnect/stack qualification open"
 )
 
 MATRIX_MANUFACTURER="C&K"

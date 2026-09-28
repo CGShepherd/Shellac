@@ -72,6 +72,7 @@ def test_pre_spice_assurance_chain_contains_required_records():
     assert "  AE-075A:" in text
     assert "  AE-075B:" in text
     assert "  AE-075C:" in text
+    assert "  AE-075D:" in text
 
 def test_live_routing_hold_authority_is_registered_and_fail_closed():
     decisions = yaml.safe_load(INDEX.read_text(encoding="utf-8"))
@@ -81,9 +82,69 @@ def test_live_routing_hold_authority_is_registered_and_fail_closed():
     assert re.fullmatch(r"[0-9a-f]{40}", hold["baseline_commit"])
     blockers = {item["id"]: item for item in hold["routing_blockers"]}
     assert set(blockers) == {"AE071-B03", "AE071-B04", "AE071-B08"}
-    assert blockers["AE071-B03"]["ownership_status"] == "OPEN_DIRECT_MAIN_PCB_OR_REG08_CONTROL_PCB"
+    assert blockers["AE071-B03"]["ownership_status"] == "EQ_LOCAL_MEZZANINES_SELECTED_SHARED_CK_OPEN"
+    assert blockers["AE071-B03"]["eq_control_ownership"] == "TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
+    assert blockers["AE071-B03"]["shared_ck_ownership"] == "OPEN_DIRECT_MAIN_PCB_OR_LOCAL_CONTROL_PCB"
     assert hold["status"] == "ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS"
     assert hold["permissions"]["final_routing"] is False
     assert hold["permissions"]["layout_freeze"] is False
     assert hold["permissions"]["bom_freeze"] is False
     assert hold["permissions"]["manufacturing_release"] is False
+
+
+
+def test_current_control_hardware_and_b03_architecture_are_coherent():
+    from generator.mechanical.control_stack import (
+        B03_STATUS,
+        CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED,
+        CONTROL_BOARD_OWNERSHIP,
+        EQ_CONTROL_OWNERSHIP,
+        NKK_INSTALLED_PANEL_TO_PCB_MM,
+        PARTS,
+        SHARED_CK_CONTROL_OWNERSHIP,
+        validate_control_stack,
+    )
+    from generator.model.controls import CONTROLS
+
+    validate_control_stack()
+
+    assert [c.mpn for c in CONTROLS] == [
+        "NR01105ANG13-2C",
+        "NR01105ANG13-2C",
+        "NR01105ANG13-2A",
+        "NR01105ANG13-2A",
+        "A30403RNCB",
+        "7201SYCBE",
+        "7201SYCBE",
+    ]
+
+    assert NKK_INSTALLED_PANEL_TO_PCB_MM == 12.3
+    assert EQ_CONTROL_OWNERSHIP == "TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
+    assert CONTROL_BOARD_OWNERSHIP == "EQ_LOCAL_MEZZANINES_SELECTED_SHARED_CK_OPEN"
+    assert SHARED_CK_CONTROL_OWNERSHIP == "OPEN_DIRECT_MAIN_PCB_OR_LOCAL_CONTROL_PCB"
+    assert CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED is False
+    assert B03_STATUS == "EQ_MEZZANINE_ARCHITECTURE_SELECTED_SHARED_CK_AND_PHYSICAL_DETAIL_OPEN"
+    eq_parts = [part for part in PARTS if part.function in {"BASS", "TREBLE"}]
+    assert len(eq_parts) == 2
+    assert all("REG-08 EQ mezzanine" not in part.pcb_mounting for part in PARTS)
+    assert all("REG-08 mechanical registration" in part.pcb_mounting for part in eq_parts)
+
+    hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
+    assert hold["authority"] == "AE-075D"
+    assert hold["previous_authority"] == "AE-075C"
+    assert hold["baseline_commit"] == "22f651f78c9448671b9305db70c7fbd0ddf74993"
+
+    b03 = next(x for x in hold["routing_blockers"] if x["id"] == "AE071-B03")
+    assert b03["eq_control_ownership"] == "TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
+    assert b03["shared_ck_ownership"] == "OPEN_DIRECT_MAIN_PCB_OR_LOCAL_CONTROL_PCB"
+    assert b03["central_remote_control_strip"] == "REJECTED_ANALOGUE_LOCALITY"
+    assert "EQ_MEZZANINE_INTERCONNECT_STACK_AND_SUPPORT" in b03["remaining_scope"]
+
+    bom = yaml.safe_load(
+        Path("config/bom/shellac_bom.yaml").read_text(encoding="utf-8")
+    )
+    for item_id in ("BOM-CTRL-BASS", "BOM-CTRL-TREBLE"):
+        item = next(x for x in bom["items"] if x["id"] == item_id)
+        assert item["installed_panel_to_pcb_mm"] == 12.3
+        assert item["physical_ownership"] == "CHANNEL_LOCAL_EQ_MEZZANINE_SELECTED"
+        assert item["physical_architecture_reconciled_by"] == "AE-075D"
