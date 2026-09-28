@@ -42,15 +42,23 @@ resolved_after_ae075:
   native_validation: PASS
   physical_harness_build_check: RETAINED_FOR_MANUFACTURING_AND_COMMISSIONING
   xlr_pin1_local_chassis_authority: AE071-B06
+- id: AE071-B05
+  item: SCH108_SENSE_CAP_BODY_TO_FOOTPRINT_CORRELATION
+  resolution: AE075A_PANASONIC_ECEA1VN100U_BODY_PITCH_AND_CONTROLLED_FOOTPRINT_RECONCILED
+  manufacturer: Panasonic
+  mpn: ECEA1VN100U
+  value: 10uF_bipolar_35V
+  body: D5.0mm_H11.0mm
+  lead_pitch_mm: 2.0
+  footprint: ProjectShellac:Panasonic_ECEA1VN100U_D5.0mm_H11.0mm_P2.00mm
+  native_validation: PASS
+
 routing_blockers:
 - id: AE071-B03
   item: PCB_MOUNTED_CONTROL_FOOTPRINTS_AND_KEEP_OUTS
   required_before_final_routing: true
 - id: AE071-B04
   item: LT5400_B_GRADE_RUN10_TOLERANCE_AND_EP_DISPOSITION
-  required_before_final_routing: true
-- id: AE071-B05
-  item: SCH108_SENSE_CAP_BODY_TO_FOOTPRINT_CORRELATION
   required_before_final_routing: true
 - id: AE071-B06
   item: XLR_PIN1_LOCAL_CHASSIS_IMPLEMENTATION

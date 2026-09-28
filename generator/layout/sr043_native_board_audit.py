@@ -33,6 +33,7 @@ ROUTING_HOLD = Path("config/release/ae071_prerouting_hold.yaml")
 @dataclass(frozen=True)
 class NativeBoardAudit:
     footprint_population_ok: bool
+    footprint_origins_inside_outline_ok: bool
     board_outline_ok: bool
     mounting_holes_ok: bool
     mounting_holes_pose_ok: bool
@@ -170,6 +171,13 @@ def audit_native_board() -> NativeBoardAudit:
     population_ok = all(p.ref in refs for p in placement.proposals)
 
     edge_min_x, edge_min_y, edge_max_x, edge_max_y, edge_count = _edgecuts_rectangle(text)
+    placement_refs = {p.ref for p in placement.proposals}
+    origin_inside_ok = all(
+        (block := _footprint_by_ref(text, ref)) is not None
+        and edge_min_x <= _footprint_pose(block)[0] <= edge_max_x
+        and edge_min_y <= _footprint_pose(block)[1] <= edge_max_y
+        for ref in placement_refs
+    )
     board_outline_ok = (
         edge_count == 4
         and abs((edge_max_x - edge_min_x) - outline.outline.width_mm) <= 1e-9
@@ -217,6 +225,7 @@ def audit_native_board() -> NativeBoardAudit:
     integrity_ok = all(
         (
             population_ok,
+            origin_inside_ok,
             board_outline_ok,
             holes_ok,
             pose_ok,
@@ -230,6 +239,7 @@ def audit_native_board() -> NativeBoardAudit:
 
     return NativeBoardAudit(
         footprint_population_ok=population_ok,
+        footprint_origins_inside_outline_ok=origin_inside_ok,
         board_outline_ok=board_outline_ok,
         mounting_holes_ok=holes_ok,
         mounting_holes_pose_ok=pose_ok,

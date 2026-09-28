@@ -58,8 +58,8 @@ def jst_vh_3(ref, label, at, function="Panel audio harness interface", rotation=
 
 
 def molex_microlock_plus_3(ref, label, at, function="Low-level balanced panel harness interface", rotation=0.0):
-    # AE-075 B07 selected low-level harness interface. Final PCB footprint
-    # remains intentionally unassigned until manufacturer-drawing verification.
+    # AE-075 B07 selected and native-validated the exact Micro-Lock Plus
+    # 5055780321 PCB footprint; harness assembly remains a manufacturing check.
     return Component(
         ref, "Connector_Generic:Conn_01x03", label, at,
         "ProjectShellac:Molex_MicroLockPlus_5055780321_1x03_P2.00mm_Horizontal",

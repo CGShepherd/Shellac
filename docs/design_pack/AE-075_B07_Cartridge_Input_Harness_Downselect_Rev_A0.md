@@ -1,7 +1,7 @@
 # AE-075 B07 — Cartridge Input Harness Contact-System Downselect — Rev A0
 
-**Project:** Shellac  
-**Status:** CLOSED — PRE-ROUTING DESIGN IMPLEMENTATION VALIDATED  
+**Project:** Shellac
+**Status:** CLOSED — PRE-ROUTING DESIGN IMPLEMENTATION VALIDATED
 **Baseline:** `025f33f1442dc1d57e17b7d69c71d0da060c6cb4`
 
 ## Purpose

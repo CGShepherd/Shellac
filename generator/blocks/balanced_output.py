@@ -142,6 +142,10 @@ def _sense_capacitor(
         function=function,
         footprint=common_mode_sense_capacitor_requirements().selected_footprint,
     ))
+    cap.fields["Manufacturer"] = "Panasonic"
+    cap.fields["MPN"] = "ECEA1VN100U"
+    cap.fields["Body"] = "D5.0mm x H11.0mm"
+    cap.fields["Lead pitch"] = "2.0mm"
     pin_1 = pin_position(cap, "1")
     pin_2 = pin_position(cap, "2")
 

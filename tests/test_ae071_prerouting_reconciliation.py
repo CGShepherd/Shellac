@@ -97,7 +97,9 @@ def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
         "item": "AE074_DR039_NATIVE_PCB_F8_RECONCILIATION_AND_NET_AUDIT",
         "resolution": "AE074_NATIVE_PCB_F8_REFERENCE_RELINK_NET_AND_METADATA_RECONCILIATION_COMPLETE",
     }]
-    assert hold["resolved_after_ae075"] == [{
+    resolved_ae075 = {item["id"]: item for item in hold["resolved_after_ae075"]}
+    assert set(resolved_ae075) == {"AE071-B07", "AE071-B05"}
+    assert resolved_ae075["AE071-B07"] == {
         "id": "AE071-B07",
         "item": "CARTRIDGE_INPUT_MICROLOCK_PLUS_FOOTPRINT_NATIVE_MIGRATION_AND_HARNESS_VERIFICATION",
         "resolution": "AE075_B07_MICROLOCK_PLUS_EXACT_PART_FOOTPRINT_NATIVE_F8_NET_KEEPOUT_AND_SYMMETRY_VALIDATED",
@@ -108,10 +110,12 @@ def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
         "native_validation": "PASS",
         "physical_harness_build_check": "RETAINED_FOR_MANUFACTURING_AND_COMMISSIONING",
         "xlr_pin1_local_chassis_authority": "AE071-B06",
-    }]
+    }
+    assert resolved_ae075["AE071-B05"]["item"] == "SCH108_SENSE_CAP_BODY_TO_FOOTPRINT_CORRELATION"
+    assert resolved_ae075["AE071-B05"]["mpn"] == "ECEA1VN100U"
     blockers = {x["id"]: x for x in hold["routing_blockers"]}
     assert set(blockers) == {
-        "AE071-B03","AE071-B04","AE071-B05",
+        "AE071-B03","AE071-B04",
         "AE071-B06","AE071-B08",
     }
     historical = yaml.safe_load(OLD_RELEASE.read_text(encoding="utf-8"))

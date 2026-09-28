@@ -26,3 +26,8 @@ def test_ae071b_distinguishes_board_integrity_from_routing_authority():
     result = audit_native_board()
     assert result.native_board_integrity_ok
     assert result.routing_authorized is False
+
+
+def test_ae075a_product_footprint_origins_must_be_inside_native_edgecuts():
+    result = audit_native_board()
+    assert result.footprint_origins_inside_outline_ok

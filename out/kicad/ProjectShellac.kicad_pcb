@@ -823,7 +823,7 @@
 				)
 			)
 		)
-		(property "Logical Function" "U700"
+		(property "Logical Function" "U720"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4745,7 +4745,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "19d49cb2-b4ad-45fa-bee1-498fdeeff96d")
-		(at 8.865 16.225)
+		(at 77.428 32)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C191"
@@ -6482,12 +6482,12 @@
 			)
 		)
 	)
-	(footprint "Capacitor_THT:C_Radial_D5.0mm_H5.0mm_P2.00mm"
+	(footprint "ProjectShellac:Panasonic_ECEA1VN100U_D5.0mm_H11.0mm_P2.00mm"
 		(layer "F.Cu")
 		(uuid "1f67b918-676b-42c3-9227-ab69d988ea31")
 		(at 187.7 132.215)
-		(descr "C, Radial series, Radial, pin pitch=2.00mm, diameter=5mm, height=5mm, Non-Polar Electrolytic Capacitor")
-		(tags "C Radial series Radial pin pitch 2.00mm diameter 5mm height 5mm Non-Polar Electrolytic Capacitor")
+		(descr "Panasonic ECEA1VN100U 10uF 35V bipolar; D5.0mm H11.0mm; P2.0mm")
+		(tags "Panasonic ECEA1VN100U bipolar nonpolar D5 H11 P2")
 		(property "Reference" "C90010"
 			(at 1 -3.75 0)
 			(layer "F.SilkS")
@@ -6573,15 +6573,67 @@
 				)
 			)
 		)
+		(property "Manufacturer" "Panasonic"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0f766fec-7fa0-4384-b0b2-83b13ffd8002")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "ECEA1VN100U"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "45cc7ed9-0331-4599-8df5-91f8ee1c5010")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Body" "D5.0mm x H11.0mm"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c10aacd1-e892-4252-b2ea-210df976ba71")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Lead pitch" "2.0mm"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5c2e37e3-dec7-44c4-bba8-990c6e2820e1")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(path "/d6ff0551-fb4e-547a-81dd-2b7c206d8dc9/c38a6e1e-75f1-5fda-8061-e37f4f0d456d")
 		(sheetname "/SCH108 Balanced Output and Mute/")
 		(sheetfile "ProjectShellac_SCH108.kicad_sch")
 		(attr through_hole)
 		(fp_circle
 			(center 1 0)
-			(end 3.62 0)
+			(end 3.5 0)
 			(stroke
-				(width 0.12)
+				(width 0.25)
 				(type solid)
 			)
 			(fill no)
@@ -6610,6 +6662,16 @@
 			(layer "F.Fab")
 			(uuid "61472e0c-9151-4a37-a840-c6eea6ba38f4")
 		)
+		(fp_text user "H=11.0mm"
+			(at 1 3.6 0)
+			(layer "F.Fab")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
 		(fp_text user "${REFERENCE}"
 			(at 1 0 0)
 			(layer "F.Fab")
@@ -6621,10 +6683,10 @@
 				)
 			)
 		)
-		(pad "1" thru_hole circle
+		(pad "1" thru_hole rect
 			(at 0 0)
-			(size 1.2 1.2)
-			(drill 0.6)
+			(size 1.6 1.6)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 48 "Net-(U9001-OUT+)")
@@ -6634,8 +6696,8 @@
 		)
 		(pad "2" thru_hole circle
 			(at 2 0)
-			(size 1.2 1.2)
-			(drill 0.6)
+			(size 1.6 1.6)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 47 "Net-(U9001-SNS+)")
@@ -6644,22 +6706,12 @@
 			(uuid "4645a6cd-bab1-4fa9-84ef-1f8adf905333")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Radial_D5.0mm_H5.0mm_P2.00mm.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
+
 	)
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "20933baa-7a98-4809-8afa-77137ef2ecd0")
-		(at 1.795 1.795)
+		(at 209.24 32.1 90)
 		(descr "Through hole straight pin header, 2x02, 2.54mm pitch, double rows")
 		(tags "Through hole pin header THT 2x02 2.54mm double row")
 		(property "Reference" "H120"
@@ -6791,6 +6843,26 @@
 		(sheetfile "ProjectShellac_SCH101.kicad_sch")
 		(attr through_hole)
 		(fp_line
+			(start 3.92 -1.38)
+			(end 3.92 3.92)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "f809e61f-2351-40dd-9120-85e59f05d77b")
+		)
+		(fp_line
+			(start 1.27 -1.38)
+			(end 3.92 -1.38)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "4003f37c-7a9f-403b-b353-75dbdb98dea4")
+		)
+		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
 			(stroke
@@ -6811,14 +6883,14 @@
 			(uuid "2ccae7ef-0bd4-44c9-8958-7b9cb9b18c22")
 		)
 		(fp_line
-			(start -1.38 1.27)
-			(end -1.38 3.92)
+			(start 1.27 1.27)
+			(end 1.27 -1.38)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "b3a4ea87-e879-4b42-943d-886f743e6473")
+			(uuid "244741ff-55f3-452c-8f55-8b7a8023798a")
 		)
 		(fp_line
 			(start -1.38 1.27)
@@ -6831,6 +6903,16 @@
 			(uuid "697a5b95-e5f9-4483-a357-fcf0edbf4e24")
 		)
 		(fp_line
+			(start -1.38 1.27)
+			(end -1.38 3.92)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "b3a4ea87-e879-4b42-943d-886f743e6473")
+		)
+		(fp_line
 			(start -1.38 3.92)
 			(end 3.92 3.92)
 			(stroke
@@ -6839,36 +6921,6 @@
 			)
 			(layer "F.SilkS")
 			(uuid "70e3c682-557c-4eaf-86fa-d500936d7c62")
-		)
-		(fp_line
-			(start 1.27 -1.38)
-			(end 3.92 -1.38)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "4003f37c-7a9f-403b-b353-75dbdb98dea4")
-		)
-		(fp_line
-			(start 1.27 1.27)
-			(end 1.27 -1.38)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "244741ff-55f3-452c-8f55-8b7a8023798a")
-		)
-		(fp_line
-			(start 3.92 -1.38)
-			(end 3.92 3.92)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "f809e61f-2351-40dd-9120-85e59f05d77b")
 		)
 		(fp_rect
 			(start -1.77 -1.77)
@@ -6882,24 +6934,14 @@
 			(uuid "87a09b7b-694a-4475-82e8-476d93df7ff3")
 		)
 		(fp_line
-			(start -1.27 0)
-			(end 0 -1.27)
+			(start 3.81 -1.27)
+			(end 3.81 3.81)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "3fadc99c-344d-4aac-8222-a8b83437f576")
-		)
-		(fp_line
-			(start -1.27 3.81)
-			(end -1.27 0)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "a2e0855f-3cff-4bed-ad0a-9a2a8c992a1f")
+			(uuid "fbb09606-4999-4206-8168-81e113378dc5")
 		)
 		(fp_line
 			(start 0 -1.27)
@@ -6912,14 +6954,14 @@
 			(uuid "2876c12d-3a1f-438b-81b1-b33cb036b1f7")
 		)
 		(fp_line
-			(start 3.81 -1.27)
-			(end 3.81 3.81)
+			(start -1.27 0)
+			(end 0 -1.27)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "fbb09606-4999-4206-8168-81e113378dc5")
+			(uuid "3fadc99c-344d-4aac-8222-a8b83437f576")
 		)
 		(fp_line
 			(start 3.81 3.81)
@@ -6930,6 +6972,16 @@
 			)
 			(layer "F.Fab")
 			(uuid "8bab3f8f-9820-4294-b46f-8d39c51654ba")
+		)
+		(fp_line
+			(start -1.27 3.81)
+			(end -1.27 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "a2e0855f-3cff-4bed-ad0a-9a2a8c992a1f")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 1.27 1.27 90)
@@ -7002,7 +7054,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "2103d5a8-8d67-4b80-b2c2-8059c4cd448e")
-		(at 8.865 22.245)
+		(at 86.228 32)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C193"
@@ -7364,7 +7416,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "2430cee6-ee52-4845-81e2-9ce0b395a9aa")
-		(at 13.315 22.245)
+		(at 154.658 32)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C293"
@@ -8168,7 +8220,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "30b4a602-eeeb-4208-a502-7a1db81094fd")
-		(at 13.315 19.235)
+		(at 150.258 32)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C292"
@@ -9000,12 +9052,12 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "Capacitor_THT:C_Radial_D5.0mm_H5.0mm_P2.00mm"
+	(footprint "ProjectShellac:Panasonic_ECEA1VN100U_D5.0mm_H11.0mm_P2.00mm"
 		(layer "F.Cu")
 		(uuid "366a562c-5d18-40f3-9e28-19181939fdd3")
 		(at 40.8 132.215)
-		(descr "C, Radial series, Radial, pin pitch=2.00mm, diameter=5mm, height=5mm, Non-Polar Electrolytic Capacitor")
-		(tags "C Radial series Radial pin pitch 2.00mm diameter 5mm height 5mm Non-Polar Electrolytic Capacitor")
+		(descr "Panasonic ECEA1VN100U 10uF 35V bipolar; D5.0mm H11.0mm; P2.0mm")
+		(tags "Panasonic ECEA1VN100U bipolar nonpolar D5 H11 P2")
 		(property "Reference" "C80010"
 			(at 1 -3.75 0)
 			(layer "F.SilkS")
@@ -9091,15 +9143,67 @@
 				)
 			)
 		)
+		(property "Manufacturer" "Panasonic"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "318f0ce2-f441-41ef-b804-75009cb9ddf3")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "ECEA1VN100U"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "866dfef4-eed7-41fd-be5d-b3e117a91536")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Body" "D5.0mm x H11.0mm"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "887aaf32-99d5-4294-ba41-ce65835dfdf5")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Lead pitch" "2.0mm"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "784df7f5-a9b0-4644-879c-eda72189f8d6")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(path "/d6ff0551-fb4e-547a-81dd-2b7c206d8dc9/bb6889b5-d06e-56fe-98db-121623e10ef5")
 		(sheetname "/SCH108 Balanced Output and Mute/")
 		(sheetfile "ProjectShellac_SCH108.kicad_sch")
 		(attr through_hole)
 		(fp_circle
 			(center 1 0)
-			(end 3.62 0)
+			(end 3.5 0)
 			(stroke
-				(width 0.12)
+				(width 0.25)
 				(type solid)
 			)
 			(fill no)
@@ -9128,6 +9232,16 @@
 			(layer "F.Fab")
 			(uuid "a43df573-d9e4-4df6-901c-c354b6867e90")
 		)
+		(fp_text user "H=11.0mm"
+			(at 1 3.6 0)
+			(layer "F.Fab")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
 		(fp_text user "${REFERENCE}"
 			(at 1 0 0)
 			(layer "F.Fab")
@@ -9139,10 +9253,10 @@
 				)
 			)
 		)
-		(pad "1" thru_hole circle
+		(pad "1" thru_hole rect
 			(at 0 0)
-			(size 1.2 1.2)
-			(drill 0.6)
+			(size 1.6 1.6)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 42 "Net-(U8001-OUT+)")
@@ -9152,8 +9266,8 @@
 		)
 		(pad "2" thru_hole circle
 			(at 2 0)
-			(size 1.2 1.2)
-			(drill 0.6)
+			(size 1.6 1.6)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 41 "Net-(U8001-SNS+)")
@@ -9162,17 +9276,7 @@
 			(uuid "617b8ffe-899f-4a6e-b2fc-6ea7782e76f8")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Radial_D5.0mm_H5.0mm_P2.00mm.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
+
 	)
 	(footprint "Diode_SMD:D_SMA"
 		(layer "F.Cu")
@@ -9798,7 +9902,7 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "39839021-417d-4a4a-89d7-72bfab58cc2a")
-		(at 17.745 16.135)
+		(at 35 42)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R105"
@@ -9966,7 +10070,7 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "3afe41d0-93f1-4c5a-b9a3-376f15dec2fb")
-		(at 32.265 0.975)
+		(at 200.9 97.29)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R4002"
@@ -10625,7 +10729,7 @@
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "3e9975ea-aefb-476d-a449-433c72d584d3")
-		(at 16.075 1.795)
+		(at 182.16 32.1)
 		(descr "Through hole straight pin header, 2x04, 2.54mm pitch, double rows")
 		(tags "Through hole pin header THT 2x04 2.54mm double row")
 		(property "Reference" "H111"
@@ -13957,7 +14061,7 @@
 				)
 			)
 		)
-		(property "Logical Function" "U750"
+		(property "Logical Function" "U770"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -14285,7 +14389,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "4deba951-8788-44c2-b629-327d937c38aa")
-		(at 8.865 25.255)
+		(at 54.828 37.9)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C194"
@@ -17301,7 +17405,7 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "5b3267b0-5c10-433c-a03b-a0a1c4218398")
-		(at 17.745 13.185)
+		(at 30.6 42)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R104"
@@ -19766,7 +19870,7 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "68b96fd7-f0de-428a-8991-2cbc9c406225")
-		(at 17.745 22.035)
+		(at 103.43 42)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R205"
@@ -20296,7 +20400,7 @@
 	(footprint "TestPoint:TestPoint_Pad_D1.5mm"
 		(layer "F.Cu")
 		(uuid "6da32d92-8f55-4c36-beb3-3436ead65521")
-		(at 31.835 9.175)
+		(at 185.7 116.23)
 		(descr "SMD pad as test Point, diameter 1.5mm")
 		(tags "test point SMD pad")
 		(property "Reference" "TP506"
@@ -23509,7 +23613,7 @@
 				)
 			)
 		)
-		(property "Logical Function" "U401"
+		(property "Logical Function" "U402"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -24018,7 +24122,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "7fb2634c-7ee4-43b7-bf59-acb66e4794d7")
-		(at 8.865 19.235)
+		(at 81.828 32)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C192"
@@ -27415,7 +27519,7 @@
 				)
 			)
 		)
-		(property "Footprint authority" "AE-075 B07 exact-part EDA footprint cross-checked; native-board migration pending"
+		(property "Footprint authority" "AE-075 B07 exact-part EDA footprint and native-board migration validated"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -27787,7 +27891,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "83630a70-0a7a-4fc2-8082-d953ce7e2499")
-		(at 13.315 25.255)
+		(at 123.258 37.9)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C294"
@@ -27968,7 +28072,7 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "84ce5129-d15e-4cf2-8692-243ba3f96eb7")
-		(at 17.745 19.085)
+		(at 99.03 42)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R204"
@@ -29277,7 +29381,7 @@
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "8d98fc4d-8b75-409c-99ee-417dd543f2c8")
-		(at 1.795 16.075)
+		(at 209.24 39.3 90)
 		(descr "Through hole straight pin header, 2x02, 2.54mm pitch, double rows")
 		(tags "Through hole pin header THT 2x02 2.54mm double row")
 		(property "Reference" "H122"
@@ -29409,6 +29513,26 @@
 		(sheetfile "ProjectShellac_SCH101.kicad_sch")
 		(attr through_hole)
 		(fp_line
+			(start 3.92 -1.38)
+			(end 3.92 3.92)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "846f979c-4d9a-4ae3-892d-c91ce371dcea")
+		)
+		(fp_line
+			(start 1.27 -1.38)
+			(end 3.92 -1.38)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "8bbc65dd-7a8c-404b-9acd-90f1e7f8777b")
+		)
+		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
 			(stroke
@@ -29429,14 +29553,14 @@
 			(uuid "1bd005b7-3fb3-4490-b628-bf2c774c633c")
 		)
 		(fp_line
-			(start -1.38 1.27)
-			(end -1.38 3.92)
+			(start 1.27 1.27)
+			(end 1.27 -1.38)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "a77a2281-7675-4bef-8486-b9de144dcf4d")
+			(uuid "bad6dd02-f5e2-4fa0-829d-79b50925806e")
 		)
 		(fp_line
 			(start -1.38 1.27)
@@ -29449,6 +29573,16 @@
 			(uuid "aa1216fc-e2df-40b5-a626-2c8d7660a129")
 		)
 		(fp_line
+			(start -1.38 1.27)
+			(end -1.38 3.92)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "a77a2281-7675-4bef-8486-b9de144dcf4d")
+		)
+		(fp_line
 			(start -1.38 3.92)
 			(end 3.92 3.92)
 			(stroke
@@ -29457,36 +29591,6 @@
 			)
 			(layer "F.SilkS")
 			(uuid "2a99cc23-173f-4717-bc3a-f2c25b5313ab")
-		)
-		(fp_line
-			(start 1.27 -1.38)
-			(end 3.92 -1.38)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "8bbc65dd-7a8c-404b-9acd-90f1e7f8777b")
-		)
-		(fp_line
-			(start 1.27 1.27)
-			(end 1.27 -1.38)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "bad6dd02-f5e2-4fa0-829d-79b50925806e")
-		)
-		(fp_line
-			(start 3.92 -1.38)
-			(end 3.92 3.92)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "846f979c-4d9a-4ae3-892d-c91ce371dcea")
 		)
 		(fp_rect
 			(start -1.77 -1.77)
@@ -29500,24 +29604,14 @@
 			(uuid "33471fd8-5141-4b34-a5bc-bb2ae41b01c8")
 		)
 		(fp_line
-			(start -1.27 0)
-			(end 0 -1.27)
+			(start 3.81 -1.27)
+			(end 3.81 3.81)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "906ea49b-cc71-4769-b7bd-8447883c69b7")
-		)
-		(fp_line
-			(start -1.27 3.81)
-			(end -1.27 0)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "0297ee2c-037f-460a-becf-7cdd9fe3ec59")
+			(uuid "1a7bea46-b65b-40c5-8aae-261a47b17162")
 		)
 		(fp_line
 			(start 0 -1.27)
@@ -29530,14 +29624,14 @@
 			(uuid "a076ca59-5331-4664-8b57-43d08d897e92")
 		)
 		(fp_line
-			(start 3.81 -1.27)
-			(end 3.81 3.81)
+			(start -1.27 0)
+			(end 0 -1.27)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "1a7bea46-b65b-40c5-8aae-261a47b17162")
+			(uuid "906ea49b-cc71-4769-b7bd-8447883c69b7")
 		)
 		(fp_line
 			(start 3.81 3.81)
@@ -29548,6 +29642,16 @@
 			)
 			(layer "F.Fab")
 			(uuid "0bde2647-d973-4e20-b746-9157a4d9cb84")
+		)
+		(fp_line
+			(start -1.27 3.81)
+			(end -1.27 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "0297ee2c-037f-460a-becf-7cdd9fe3ec59")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 1.27 1.27 90)
@@ -31903,7 +32007,7 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "99f33e68-e51d-4e25-827d-13134f3ddcf6")
-		(at 32.265 3.925)
+		(at 209.7 97.29)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R4502"
@@ -33188,7 +33292,7 @@
 				)
 			)
 		)
-		(property "Logical Function" "U502"
+		(property "Logical Function" "U501"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -37164,7 +37268,7 @@
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "adc5643b-a106-47a8-91e2-dcaf6ee065a4")
-		(at 23.215 1.795)
+		(at 170.96 39.3)
 		(descr "Through hole straight pin header, 2x04, 2.54mm pitch, double rows")
 		(tags "Through hole pin header THT 2x04 2.54mm double row")
 		(property "Reference" "H112"
@@ -38068,7 +38172,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "b15ddad0-783c-47f5-8bad-f83a3d72146a")
-		(at 13.315 16.225)
+		(at 145.858 32)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C291"
@@ -39528,7 +39632,7 @@
 				)
 			)
 		)
-		(property "Footprint authority" "AE-075 B07 exact-part EDA footprint cross-checked; native-board migration pending"
+		(property "Footprint authority" "AE-075 B07 exact-part EDA footprint and native-board migration validated"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -41033,7 +41137,7 @@
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "bb085723-9cf0-4ee5-82ac-ce341729f087")
-		(at 8.935 1.795)
+		(at 170.96 32.1)
 		(descr "Through hole straight pin header, 2x04, 2.54mm pitch, double rows")
 		(tags "Through hole pin header THT 2x04 2.54mm double row")
 		(property "Reference" "H110"
@@ -47030,12 +47134,12 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "Capacitor_THT:C_Radial_D5.0mm_H5.0mm_P2.00mm"
+	(footprint "ProjectShellac:Panasonic_ECEA1VN100U_D5.0mm_H11.0mm_P2.00mm"
 		(layer "F.Cu")
 		(uuid "cd1a715c-7976-4b37-bc45-6457d3e6d251")
 		(at 49 132.215)
-		(descr "C, Radial series, Radial, pin pitch=2.00mm, diameter=5mm, height=5mm, Non-Polar Electrolytic Capacitor")
-		(tags "C Radial series Radial pin pitch 2.00mm diameter 5mm height 5mm Non-Polar Electrolytic Capacitor")
+		(descr "Panasonic ECEA1VN100U 10uF 35V bipolar; D5.0mm H11.0mm; P2.0mm")
+		(tags "Panasonic ECEA1VN100U bipolar nonpolar D5 H11 P2")
 		(property "Reference" "C80011"
 			(at 1 -3.75 0)
 			(layer "F.SilkS")
@@ -47121,15 +47225,67 @@
 				)
 			)
 		)
+		(property "Manufacturer" "Panasonic"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "423fa327-2f91-44b6-a76e-2ccff2d34221")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "ECEA1VN100U"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e24c6854-4e58-4c75-8c4d-94ac432ef6a4")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Body" "D5.0mm x H11.0mm"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b5cd2b9e-51d5-40b1-9f01-4852aebfd07e")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Lead pitch" "2.0mm"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3957962c-04af-4e36-b1fd-5512ea0d694a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(path "/d6ff0551-fb4e-547a-81dd-2b7c206d8dc9/5671c16d-b727-541f-8a03-2e2e8cb7dfa2")
 		(sheetname "/SCH108 Balanced Output and Mute/")
 		(sheetfile "ProjectShellac_SCH108.kicad_sch")
 		(attr through_hole)
 		(fp_circle
 			(center 1 0)
-			(end 3.62 0)
+			(end 3.5 0)
 			(stroke
-				(width 0.12)
+				(width 0.25)
 				(type solid)
 			)
 			(fill no)
@@ -47158,6 +47314,16 @@
 			(layer "F.Fab")
 			(uuid "8a8a2537-3ff3-4ed7-95b2-68490b8550d8")
 		)
+		(fp_text user "H=11.0mm"
+			(at 1 3.6 0)
+			(layer "F.Fab")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
 		(fp_text user "${REFERENCE}"
 			(at 1 0 0)
 			(layer "F.Fab")
@@ -47169,10 +47335,10 @@
 				)
 			)
 		)
-		(pad "1" thru_hole circle
+		(pad "1" thru_hole rect
 			(at 0 0)
-			(size 1.2 1.2)
-			(drill 0.6)
+			(size 1.6 1.6)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 43 "Net-(U8001-OUT-)")
@@ -47182,8 +47348,8 @@
 		)
 		(pad "2" thru_hole circle
 			(at 2 0)
-			(size 1.2 1.2)
-			(drill 0.6)
+			(size 1.6 1.6)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 44 "Net-(U8001-SNS-)")
@@ -47192,17 +47358,7 @@
 			(uuid "1e4b2ef7-3765-45ed-86bf-e38b1c55705c")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Radial_D5.0mm_H5.0mm_P2.00mm.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
+
 	)
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "F.Cu")
@@ -50104,12 +50260,12 @@
 			)
 		)
 	)
-	(footprint "Capacitor_THT:C_Radial_D5.0mm_H5.0mm_P2.00mm"
+	(footprint "ProjectShellac:Panasonic_ECEA1VN100U_D5.0mm_H11.0mm_P2.00mm"
 		(layer "F.Cu")
 		(uuid "dffb6085-ffb9-4cd0-b478-728738b7c2c9")
 		(at 195.9 132.215)
-		(descr "C, Radial series, Radial, pin pitch=2.00mm, diameter=5mm, height=5mm, Non-Polar Electrolytic Capacitor")
-		(tags "C Radial series Radial pin pitch 2.00mm diameter 5mm height 5mm Non-Polar Electrolytic Capacitor")
+		(descr "Panasonic ECEA1VN100U 10uF 35V bipolar; D5.0mm H11.0mm; P2.0mm")
+		(tags "Panasonic ECEA1VN100U bipolar nonpolar D5 H11 P2")
 		(property "Reference" "C90011"
 			(at 1 -3.75 0)
 			(layer "F.SilkS")
@@ -50195,15 +50351,67 @@
 				)
 			)
 		)
+		(property "Manufacturer" "Panasonic"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "cafd36ec-11f5-4693-b63e-ded4c3b52d76")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "ECEA1VN100U"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7cb55ab1-9dd2-45df-b4d3-0833fa177f17")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Body" "D5.0mm x H11.0mm"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f5d0c3c3-e8fa-48d8-9f5b-b7604e701446")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Lead pitch" "2.0mm"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "14c21e7b-8f39-4c51-8c5a-e711163991fe")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(path "/d6ff0551-fb4e-547a-81dd-2b7c206d8dc9/af7cdb07-7f76-5a95-97be-e07cde070eeb")
 		(sheetname "/SCH108 Balanced Output and Mute/")
 		(sheetfile "ProjectShellac_SCH108.kicad_sch")
 		(attr through_hole)
 		(fp_circle
 			(center 1 0)
-			(end 3.62 0)
+			(end 3.5 0)
 			(stroke
-				(width 0.12)
+				(width 0.25)
 				(type solid)
 			)
 			(fill no)
@@ -50232,6 +50440,16 @@
 			(layer "F.Fab")
 			(uuid "663ed0bb-7bfa-4b3c-bcd4-b5dcc097d73b")
 		)
+		(fp_text user "H=11.0mm"
+			(at 1 3.6 0)
+			(layer "F.Fab")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
 		(fp_text user "${REFERENCE}"
 			(at 1 0 0)
 			(layer "F.Fab")
@@ -50243,10 +50461,10 @@
 				)
 			)
 		)
-		(pad "1" thru_hole circle
+		(pad "1" thru_hole rect
 			(at 0 0)
-			(size 1.2 1.2)
-			(drill 0.6)
+			(size 1.6 1.6)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 49 "Net-(U9001-OUT-)")
@@ -50256,8 +50474,8 @@
 		)
 		(pad "2" thru_hole circle
 			(at 2 0)
-			(size 1.2 1.2)
-			(drill 0.6)
+			(size 1.6 1.6)
+			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 50 "Net-(U9001-SNS-)")
@@ -50266,17 +50484,7 @@
 			(uuid "b954538c-e480-42cb-8f5e-dfd757487350")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Radial_D5.0mm_H5.0mm_P2.00mm.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
+
 	)
 	(footprint "Capacitor_THT:C_Rect_L7.2mm_W3.5mm_P5.00mm_FKS2_FKP2_MKS2_MKP2"
 		(layer "F.Cu")
@@ -53616,7 +53824,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "ec39ed59-7427-42e6-b194-90a0d4d43227")
-		(at 8.865 13.215)
+		(at 35 38.4)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C104"
@@ -55783,7 +55991,7 @@
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "f8cd42b9-a05d-4470-920f-5d8534ef0940")
-		(at 1.795 8.935)
+		(at 220.44 32.1 90)
 		(descr "Through hole straight pin header, 2x02, 2.54mm pitch, double rows")
 		(tags "Through hole pin header THT 2x02 2.54mm double row")
 		(property "Reference" "H121"
@@ -55915,6 +56123,26 @@
 		(sheetfile "ProjectShellac_SCH101.kicad_sch")
 		(attr through_hole)
 		(fp_line
+			(start 3.92 -1.38)
+			(end 3.92 3.92)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "2ffcfdbf-d9b2-471e-b27f-02406b20c077")
+		)
+		(fp_line
+			(start 1.27 -1.38)
+			(end 3.92 -1.38)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "3b707e1f-9d3c-42bd-a096-9c0120157f80")
+		)
+		(fp_line
 			(start -1.38 -1.38)
 			(end 0 -1.38)
 			(stroke
@@ -55935,14 +56163,14 @@
 			(uuid "8e5ccf3a-b249-49c9-b463-9f97d66d93c0")
 		)
 		(fp_line
-			(start -1.38 1.27)
-			(end -1.38 3.92)
+			(start 1.27 1.27)
+			(end 1.27 -1.38)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "0d2c83e9-b2f2-403f-8b58-d8e295a50785")
+			(uuid "6b126020-a268-4709-977b-28e1332899b4")
 		)
 		(fp_line
 			(start -1.38 1.27)
@@ -55955,6 +56183,16 @@
 			(uuid "a4236dc3-ed16-4689-9015-ada73e95025a")
 		)
 		(fp_line
+			(start -1.38 1.27)
+			(end -1.38 3.92)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "0d2c83e9-b2f2-403f-8b58-d8e295a50785")
+		)
+		(fp_line
 			(start -1.38 3.92)
 			(end 3.92 3.92)
 			(stroke
@@ -55963,36 +56201,6 @@
 			)
 			(layer "F.SilkS")
 			(uuid "ef085b64-5749-446d-9940-9404e318d667")
-		)
-		(fp_line
-			(start 1.27 -1.38)
-			(end 3.92 -1.38)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "3b707e1f-9d3c-42bd-a096-9c0120157f80")
-		)
-		(fp_line
-			(start 1.27 1.27)
-			(end 1.27 -1.38)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "6b126020-a268-4709-977b-28e1332899b4")
-		)
-		(fp_line
-			(start 3.92 -1.38)
-			(end 3.92 3.92)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "2ffcfdbf-d9b2-471e-b27f-02406b20c077")
 		)
 		(fp_rect
 			(start -1.77 -1.77)
@@ -56006,24 +56214,14 @@
 			(uuid "b0e96859-19f9-4cd5-bae6-856f502c7685")
 		)
 		(fp_line
-			(start -1.27 0)
-			(end 0 -1.27)
+			(start 3.81 -1.27)
+			(end 3.81 3.81)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "e1c4d46b-7afd-46c1-b11a-9f92872f8fc6")
-		)
-		(fp_line
-			(start -1.27 3.81)
-			(end -1.27 0)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "f0b2dd02-1bc5-4bd8-bec1-c21cf9fd67d3")
+			(uuid "8f88afee-26bf-49ea-8bf3-64094fc52bc2")
 		)
 		(fp_line
 			(start 0 -1.27)
@@ -56036,14 +56234,14 @@
 			(uuid "5253889d-515f-484a-b152-792a033c6a96")
 		)
 		(fp_line
-			(start 3.81 -1.27)
-			(end 3.81 3.81)
+			(start -1.27 0)
+			(end 0 -1.27)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "8f88afee-26bf-49ea-8bf3-64094fc52bc2")
+			(uuid "e1c4d46b-7afd-46c1-b11a-9f92872f8fc6")
 		)
 		(fp_line
 			(start 3.81 3.81)
@@ -56054,6 +56252,16 @@
 			)
 			(layer "F.Fab")
 			(uuid "142f8aab-bd96-4b35-8a2d-c1ab820812c8")
+		)
+		(fp_line
+			(start -1.27 3.81)
+			(end -1.27 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "f0b2dd02-1bc5-4bd8-bec1-c21cf9fd67d3")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 1.27 1.27 90)
@@ -57312,7 +57520,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "fc8c2ec6-b7a2-4967-99d8-ea593e7295ed")
-		(at 13.315 13.215)
+		(at 103.43 38.4)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C204"

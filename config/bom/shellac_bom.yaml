@@ -195,3 +195,19 @@ items:
     status: SELECTED
     authority_reconciled_by: AE-075-B07
     note: Combined procurement with Phoenix is encouraged if Phoenix mechanical verification accepts the same connector family; Phoenix design authority is not changed by this record.
+  - id: BOM-SCH108-SENSE-CAP
+    function: that1646_output_to_sense_common_mode_feedback
+    manufacturer: Panasonic
+    mpn: ECEA1VN100U
+    quantity: 4
+    capacitance_uf: 10
+    voltage_v: 35
+    polarity: bipolar_nonpolar
+    body_diameter_mm: 5.0
+    body_height_mm: 11.0
+    lead_pitch_mm: 2.0
+    footprint: ProjectShellac:Panasonic_ECEA1VN100U_D5.0mm_H11.0mm_P2.00mm
+    refs: [C80010, C80011, C90010, C90011]
+    status: SELECTED_IMPLEMENTED_NATIVE_VALIDATED
+    authority_reconciled_by: AE-075A
+    note: Exact body/pitch controlled; retain 11 mm Z envelope in cover-clearance review.

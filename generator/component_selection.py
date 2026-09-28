@@ -69,7 +69,7 @@ class ComponentRequirements:
 TIMING_CAPACITOR_0805 = "Capacitor_SMD:C_0805_2012Metric"
 TIMING_CAPACITOR_1206 = "Capacitor_SMD:C_1206_3216Metric"
 BULK_DECOUPLING_10UF_SMD = "Capacitor_SMD:CP_Elec_6.3x5.8"
-NONPOLAR_FEEDBACK_10UF_THT = "Capacitor_THT:C_Radial_D5.0mm_H5.0mm_P2.00mm"
+NONPOLAR_FEEDBACK_10UF_THT = "ProjectShellac:Panasonic_ECEA1VN100U_D5.0mm_H11.0mm_P2.00mm"
 RUMBLE_FILTER_FILM_470NF_THT = "Capacitor_THT:C_Rect_L7.2mm_W3.5mm_P5.00mm_FKS2_FKP2_MKS2_MKP2"
 
 
@@ -135,8 +135,8 @@ def common_mode_sense_capacitor_requirements() -> ComponentRequirements:
 
     These are signal-path/common-mode feedback parts and are explicitly
     non-polar electrolytics in the approved SCH108 design intent.  A
-    conventional 5 mm radial, 2 mm pitch footprint replaces the generic 0805
-    placeholder while manufacturer selection remains deferred.
+    Panasonic ECEA1VN100U is the selected implementation: 10 uF, 35 V bipolar,
+    5.0 mm diameter, 11.0 mm body height and 2.0 mm lead pitch.
     """
 
     return ComponentRequirements(
@@ -146,7 +146,7 @@ def common_mode_sense_capacitor_requirements() -> ComponentRequirements:
         minimum_voltage_v=35.0,
         preferred_footprints=(NONPOLAR_FEEDBACK_10UF_THT,),
         signal_path=True,
-        notes="THAT1646 OUT-to-SNS 10 uF non-polar capacitor; manufacturer part not frozen.",
+        notes="THAT1646 OUT-to-SNS 10 uF non-polar capacitor; Panasonic ECEA1VN100U selected; D5.0 x H11.0 mm, P2.0 mm.",
     )
 
 def rumble_filter_capacitor_footprint() -> str:
