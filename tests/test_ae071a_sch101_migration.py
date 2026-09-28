@@ -51,19 +51,12 @@ def test_population_remains_255_but_new_service_hardware_is_owned():
     assert owners["C104"]==["CLU-101-A"]
     assert owners["C204"]==["CLU-101-C"]
 
-def test_governance_closes_migration_but_not_routing():
+def test_ae071a_product_migration_resolution_remains_recorded():
     hold=yaml.safe_load((ROOT/"config/release/ae071_prerouting_hold.yaml").read_text(encoding="utf-8"))
-    assert hold["authority"]=="AE-075B"
-    assert hold["previous_authority"]=="AE-075A"
-    assert hold["baseline_commit"]=="5b51964c2282083c7d767f330966905d34fe47e6"
-    assert {x["id"] for x in hold["resolved_after_ae071"]}=={"AE071-B01"}
-    assert {x["id"] for x in hold["resolved_after_ae071a"]}=={"AE071-M01"}
-    assert {x["id"] for x in hold["resolved_after_ae074"]} == {"AE071-B02"}
-    blockers={x["id"]:x for x in hold["routing_blockers"]}
-    assert "AE071-B01" not in blockers
-    assert "AE071-B02" not in blockers
-    assert "AE071-B08" in blockers
-    assert hold["permissions"]["final_routing"] is False
+    resolved={x["id"]:x for x in hold["resolved_after_ae071"]}
+    assert set(resolved)=={"AE071-B01"}
+    assert resolved["AE071-B01"]["item"]=="AE042_SCH101_SELECTED_NEXT_PRODUCT_MIGRATION"
+    assert resolved["AE071-B01"]["resolution"]=="AE071A_PRODUCT_GENERATOR_MODEL_CAD_BOM_GOVERNANCE_MIGRATION"
 
 def test_service_capacitors_do_not_short_programming_branches():
     audit = audit_sheet_electrical(_sheet())

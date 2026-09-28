@@ -85,11 +85,12 @@ decisions:
       - config/bom/shellac_bom.yaml
       - docs/design_pack/AE-046_SCH105_Mode_Matrix_Pre-SPICE_Review_Rev_A0.md
       - docs/design_pack/AE-068_RUN05_SCH104_SCH105_Matrix_Evidence_Rev_A0.md
+      - docs/design_pack/AE-075C_Control_Hardware_and_Vertical_Stack_Reconciliation_Rev_A0.md
     implementation:
-      eq_controls: Four independent NKK NR01-family 5-position BBM controls; exact production suffix remains open.
+      eq_controls: Four independent NKK NR01105ANG13 five-position BBM gold-contact controls; Bass uses -2C red flanged-knob configuration and Treble uses -2A black flanged-knob configuration.
       channel_matrix: C&K A30403RNCB 3P4T BBM gold THT preferred; TE/Alcoswitch MRJE3404 fallback.
       mute_rumble: C&K 7201SYCBE.
-      note: AE-068 qualifies RUN05 steady-state routing, insertion, mono weighting and crosstalk. RUN12 BBM transient qualification, exact production-switch continuity/detent mapping, mechanical coordinates, parasitic bench correlation and final procurement choice remain open.
+      note: AE-068 qualifies RUN05 steady-state routing, insertion, mono weighting and crosstalk. AE-075C freezes exact external control MPNs and corrects the NR01 no-threaded-bushing mounting semantics. B03 remains open for control-plane Z/top-cover stack, direct-main-PCB versus REG-08 control-PCB ownership, exact footprints/pin maps/courtyards, XY keep-outs and physical ownership migration. RUN12 switching and bench qualification remain open.
 pre_spice_assurance:
   AE-042: docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
   AE-043: docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
@@ -127,6 +128,7 @@ pre_spice_assurance:
   AE-074: docs/design_pack/AE-074_DR039_Branch_Local_Product_Migration_Rev_A0.md
   AE-075A: docs/design_pack/AE-075A_Post_SR043_Placement_and_SCH108_Sense_Cap_Reconciliation_Rev_A0.md
   AE-075B: docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
+  AE-075C: docs/design_pack/AE-075C_Control_Hardware_and_Vertical_Stack_Reconciliation_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

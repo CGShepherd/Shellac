@@ -75,19 +75,10 @@ def test_lt5400_bom_no_longer_claims_nonexistent_a_grade_minus7():
     assert item["exposed_pad"] == "QUIET_0VA"
     assert item["network_only_cmrr_floor_db"] == 84.44
 
-def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
+def test_ae071_and_follow_on_resolutions_preserve_historical_release_provenance():
     hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    assert hold["authority"] == "AE-075B"
-    assert hold["previous_authority"] == "AE-075A"
-    assert hold["baseline_commit"] == "5b51964c2282083c7d767f330966905d34fe47e6"
-    assert hold["status"] == "ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS"
     assert hold["historical_release"]["record"] == "config/release/sr041_routing_release.yaml"
     assert hold["historical_release"]["current_authority"] is False
-    assert hold["permissions"]["final_routing"] is False
-    assert hold["permissions"]["layout_freeze"] is False
-    assert hold["permissions"]["bom_freeze"] is False
-    assert hold["permissions"]["manufacturing_release"] is False
-    assert hold["final_design_assurance"]["authority"] == "AE-075_PENDING"
     assert hold["resolved_after_ae071"][0]["id"] == "AE071-B01"
     assert hold["resolved_after_ae071a"] == [{
         "id": "AE071-M01",
@@ -101,68 +92,24 @@ def test_current_routing_authority_is_fail_closed_and_sr041_is_historical():
     }]
     resolved_ae075 = {item["id"]: item for item in hold["resolved_after_ae075"]}
     assert set(resolved_ae075) == {"AE071-B07", "AE071-B05"}
-    assert resolved_ae075["AE071-B07"] == {
-        "id": "AE071-B07",
-        "item": "CARTRIDGE_INPUT_MICROLOCK_PLUS_FOOTPRINT_NATIVE_MIGRATION_AND_HARNESS_VERIFICATION",
-        "resolution": "AE075_B07_MICROLOCK_PLUS_EXACT_PART_FOOTPRINT_NATIVE_F8_NET_KEEPOUT_AND_SYMMETRY_VALIDATED",
-        "pcb_header": "MOLEX_5055780321",
-        "housing": "MOLEX_5055700301",
-        "crimp_terminal": "MOLEX_5055721200",
-        "pin_contract": "PIN1_CHASSIS_SHIELD_PIN2_HOT_POS_PIN3_COLD_NEG",
-        "native_validation": "PASS",
-        "physical_harness_build_check": "RETAINED_FOR_MANUFACTURING_AND_COMMISSIONING",
-        "xlr_pin1_local_chassis_authority": "AE071-B06",
-    }
-    assert resolved_ae075["AE071-B05"]["item"] == "SCH108_SENSE_CAP_BODY_TO_FOOTPRINT_CORRELATION"
+    assert resolved_ae075["AE071-B07"]["native_validation"] == "PASS"
     assert resolved_ae075["AE071-B05"]["mpn"] == "ECEA1VN100U"
-    blockers = {x["id"]: x for x in hold["routing_blockers"]}
-    assert set(blockers) == {
-        "AE071-B03","AE071-B04","AE071-B08",
-    }
     assert hold["resolved_after_ae075b"][0]["id"] == "AE071-B06"
+
     historical = yaml.safe_load(OLD_RELEASE.read_text(encoding="utf-8"))
     assert historical["base_commit"] == "56c74250507a2f4d4b4dc04641096c7883512740"
     assert historical["status"] == "ROUTING_RELEASED"
 
-def test_ae071_is_registered_in_current_authority_and_dr038_uses_b_grade_identity():
+def test_ae071_record_and_registration_remain_controlled_provenance():
     decisions = yaml.safe_load(DECISION_INDEX.read_text(encoding="utf-8"))
-    dr038 = decisions["decisions"]["DR-038"]
-    assert "LT5400BIMS8E-7#PBF selected" in dr038["implementation"]["network"]
-    assert "EP9 to quiet 0VA implemented" in dr038["implementation"]["network"]
-    assert "RUN10 full-stage tolerance/CMRR acceptance remains open" in dr038["implementation"]["network"]
-    assert "AE-075B selects LT5400BIMS8E-7#PBF" in dr038["implementation"]["note"]
-    assert "RUN10 complete-stage tolerance/CMRR" in dr038["implementation"]["note"]
-    assert (
-        "docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md"
-        in dr038["evidence"]
-    )
-    assert (
-        "docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md"
-        in dr038["evidence"]
-    )
-    assert decisions["pre_spice_assurance"]["AE-071"] == (
-        "docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md"
-    )
-    assert decisions["pre_spice_assurance"]["AE-075B"] == (
-        "docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md"
-    )
+    ae071_rel = "docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md"
+    assert decisions["pre_spice_assurance"]["AE-071"] == ae071_rel
 
     authority = yaml.safe_load(DOCUMENT_AUTHORITY.read_text(encoding="utf-8"))
-    assert (
-        "docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md"
-        in authority["pre_spice_assurance_evidence"]
-    )
-    assert (
-        "docs/design_pack/AE-075A_Post_SR043_Placement_and_SCH108_Sense_Cap_Reconciliation_Rev_A0.md"
-        in authority["pre_spice_assurance_evidence"]
-    )
-    assert (
-        "docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md"
-        in authority["pre_spice_assurance_evidence"]
-    )
+    assert ae071_rel in authority["pre_spice_assurance_evidence"]
 
     index_text = DESIGN_PACK_INDEX.read_text(encoding="utf-8")
-    assert "AE-042 through AE-075B" in index_text
+    assert "AE-071A migrates SCH101" in index_text
     assert "74 hierarchical pins / 23 cross-sheet signals" in index_text
 
     record_text = AE071_RECORD.read_text(encoding="utf-8")

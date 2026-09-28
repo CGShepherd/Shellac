@@ -15,6 +15,7 @@ def _control_component(control,at):
     return Component(control.identifier,"ProjectShellac:Panel_Control_Block",
         f"{control.name.upper()} - {control.control_type}",at,footprint="",
         fields={"Function":control.electrical_function,"Positions":" / ".join(control.positions),
+                "Manufacturer":control.manufacturer,"MPN":control.mpn,
                 "Switching":control.switching,"Mounting":control.mounting},on_board=False)
 
 def _indicator_component(indicator,at):

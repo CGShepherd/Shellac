@@ -47,6 +47,7 @@ pre_spice_assurance_evidence:
   - docs/design_pack/AE-074_DR039_Branch_Local_Product_Migration_Rev_A0.md
   - docs/design_pack/AE-075A_Post_SR043_Placement_and_SCH108_Sense_Cap_Reconciliation_Rev_A0.md
   - docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
+  - docs/design_pack/AE-075C_Control_Hardware_and_Vertical_Stack_Reconciliation_Rev_A0.md
 historical_state_evidence:
   - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
   - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md

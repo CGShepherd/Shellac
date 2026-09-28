@@ -1,43 +1,48 @@
-"""AE-027 exact procurement gate for the preferred Lorlin PT platform."""
+"""AE-075C exact procurement gate for the current NKK NR01 EQ controls.
 
-FAMILY = "Lorlin PT"
-STANDARD_BASS_TREBLE_MPN = "PT6004"
-STANDARD_BASS_TREBLE = {
-    "mount": "PCB",
-    "metric": True,
-    "poles": 2,
-    "positions": 5,
-    "index_deg": 30,
-    "action": "BBM",
-    "contact_finish": "standard silver",
+Historical AE-026/AE-027 Lorlin PT records remain provenance only. This live
+module follows AE-041 A1 and AE-075C current control authority.
+"""
+
+FAMILY="NKK NR01"
+BASE_SWITCH_MPN="NR01105ANG13"
+BASS_MPN="NR01105ANG13-2C"
+TREBLE_MPN="NR01105ANG13-2A"
+
+ELECTRICAL={
+    "poles":1,
+    "positions":5,
+    "index_deg":45,
+    "action":"BBM_NON_SHORTING",
+    "contact_finish":"gold",
+    "rating_va":0.4,
+    "rating_v":28,
 }
 
-STOCKED_PROXY_MPN = "PT6422/BMH"
-STOCKED_PROXY_CONTACT_FINISH = "silver / Ag-plated standard construction"
-
-PRODUCTION_CONTACT_FINISH = "gold plated preferred"
-PRODUCTION_BASS_TREBLE_MPN = "OPEN — Lorlin non-standard order code required"
-
-CHANNEL = {
-    "architecture": "two synchronised 2-pole PT wafers",
-    "positions": 4,
-    "action": "BBM",
-    "contact_finish": "gold plated preferred",
-    "mpn": "OPEN — Lorlin multi-wafer order code required",
+MECHANICAL={
+    "mount":"PCB_THT_STRAIGHT_PC_WITH_BRACKET",
+    "threaded_bushing":False,
+    "body_xy_mm":(10.7,10.7),
+    "depth_behind_panel_mm":10.5,
+    "knob_family":"AT3009",
+    "knob_mount":"FLANGE_BENEATH_PANEL",
 }
 
-CONTACT_RESISTANCE_INITIAL_MAX_MOHM = 20.0
-INSULATION_RESISTANCE_INITIAL_MIN_MOHM = 999.0
-LIFE_MIN_CYCLES = 10_000
-PANEL_HOLE_MM = 10.0
-PCB_TERMINAL_PITCH_MM = 2.54
+BASS_KNOB_COLOUR="RED"
+TREBLE_KNOB_COLOUR="BLACK"
+VERTICAL_STACK_STATUS="OPEN_BEFORE_B03_CLOSURE"
+FOOTPRINT_STATUS="OPEN_BEFORE_B03_CLOSURE"
 
 def validate_procurement_gate():
-    assert STANDARD_BASS_TREBLE_MPN == "PT6004"
-    assert STANDARD_BASS_TREBLE["poles"] == 2
-    assert STANDARD_BASS_TREBLE["positions"] == 5
-    assert STANDARD_BASS_TREBLE["action"] == "BBM"
-    assert "gold" in PRODUCTION_CONTACT_FINISH
-    assert PRODUCTION_BASS_TREBLE_MPN.startswith("OPEN")
-    assert CHANNEL["mpn"].startswith("OPEN")
-    assert CONTACT_RESISTANCE_INITIAL_MAX_MOHM == 20.0
+    assert FAMILY=="NKK NR01"
+    assert BASE_SWITCH_MPN=="NR01105ANG13"
+    assert BASS_MPN=="NR01105ANG13-2C"
+    assert TREBLE_MPN=="NR01105ANG13-2A"
+    assert ELECTRICAL["poles"]==1
+    assert ELECTRICAL["positions"]==5
+    assert ELECTRICAL["action"]=="BBM_NON_SHORTING"
+    assert ELECTRICAL["contact_finish"]=="gold"
+    assert MECHANICAL["threaded_bushing"] is False
+    assert MECHANICAL["knob_mount"]=="FLANGE_BENEATH_PANEL"
+    assert VERTICAL_STACK_STATUS.startswith("OPEN")
+    assert FOOTPRINT_STATUS.startswith("OPEN")

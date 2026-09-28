@@ -4,12 +4,18 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 
-def test_ae075b_routing_hold_header_and_blockers_are_current():
+def test_ae075b_resolutions_remain_present_after_later_authority_advances():
     hold = yaml.safe_load((ROOT / "config/release/ae071_prerouting_hold.yaml").read_text(encoding="utf-8"))
-    assert hold["authority"] == "AE-075B"
-    assert hold["previous_authority"] == "AE-075A"
-    assert hold["baseline_commit"] == "5b51964c2282083c7d767f330966905d34fe47e6"
-    assert {x["id"] for x in hold["routing_blockers"]} == {"AE071-B03", "AE071-B04", "AE071-B08"}
+    # AE-075B owns its resolutions and fail-closed boundaries, not the identity
+    # of whichever later assurance increment owns the live routing-hold header.
+    resolved = {x["id"]: x for x in hold["resolved_after_ae075b"]}
+    assert resolved["AE071-B06"]["resolution"] == "AE075B_NEUTRIK_DL_EXACT_PART_PIN1_AND_SHELL_LOCAL_CHASSIS_CONTRACT"
+    blockers = {x["id"]: x for x in hold["routing_blockers"]}
+    assert "AE071-B06" not in blockers
+    assert {"AE071-B04", "AE071-B08"}.issubset(blockers)
+    assert blockers["AE071-B04"]["exact_mpn"] == "LT5400BIMS8E-7#PBF"
+    assert blockers["AE071-B04"]["ep_disposition"] == "PIN9_TO_QUIET_0VA_IMPLEMENTED"
+    assert blockers["AE071-B08"]["hardware_selection"] == "SELECTED_COMPATIBLE"
     assert hold["permissions"]["final_routing"] is False
 
 def test_pre_spice_index_is_registered_in_document_authority():
@@ -20,13 +26,15 @@ def test_pre_spice_index_is_registered_in_document_authority():
         assert rel in registered, (record, rel)
         assert (ROOT / rel).exists(), (record, rel)
 
-def test_current_facing_documents_reflect_ae075b_state():
+def test_current_facing_documents_retain_ae075b_engineering_state():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     index = (ROOT / "docs/knowledge/DESIGN_PACK_INDEX.md").read_text(encoding="utf-8")
     maintenance = (ROOT / "docs/maintenance/Signal_Chain_Commissioning_and_Maintenance_Baseline_Rev_A0.md").read_text(encoding="utf-8")
-    for text in (readme, index, maintenance):
-        assert "LT5400BIMS8E-7#PBF" in text
-    assert "AE-042 through AE-075B" in index
+    for current_text in (readme, index, maintenance):
+        assert "LT5400BIMS8E-7#PBF" in current_text
+    # Later assurance increments may extend the chain tail; AE-075B's actual
+    # engineering contribution must remain represented instead.
+    assert "AE-075B closes B06" in index
 
 def test_native_pcb_is_not_ignored_by_rule():
     p = subprocess.run(["git", "check-ignore", "--no-index", "-q", "out/kicad/ProjectShellac.kicad_pcb"], cwd=ROOT)

@@ -1,7 +1,9 @@
 from pathlib import Path
 import re
+import yaml
 
 INDEX = Path("config/decisions/current_decision_index.yaml")
+HOLD = Path("config/release/ae071_prerouting_hold.yaml")
 
 def _text():
     return INDEX.read_text(encoding="utf-8")
@@ -60,7 +62,7 @@ def test_design_pack_and_maintenance_structure_exist():
     assert Path("docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md").exists()
 
 
-def test_pre_spice_assurance_chain_reaches_ae075b():
+def test_pre_spice_assurance_chain_contains_required_records():
     text = _text()
     for n in range(42, 72):
         assert f"  AE-{n:03d}:" in text
@@ -69,3 +71,19 @@ def test_pre_spice_assurance_chain_reaches_ae075b():
     assert "  AE-074:" in text
     assert "  AE-075A:" in text
     assert "  AE-075B:" in text
+    assert "  AE-075C:" in text
+
+def test_live_routing_hold_authority_is_registered_and_fail_closed():
+    decisions = yaml.safe_load(INDEX.read_text(encoding="utf-8"))
+    hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
+    assert hold["authority"] in decisions["pre_spice_assurance"]
+    assert hold["previous_authority"] in decisions["pre_spice_assurance"]
+    assert re.fullmatch(r"[0-9a-f]{40}", hold["baseline_commit"])
+    blockers = {item["id"]: item for item in hold["routing_blockers"]}
+    assert set(blockers) == {"AE071-B03", "AE071-B04", "AE071-B08"}
+    assert blockers["AE071-B03"]["ownership_status"] == "OPEN_DIRECT_MAIN_PCB_OR_REG08_CONTROL_PCB"
+    assert hold["status"] == "ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS"
+    assert hold["permissions"]["final_routing"] is False
+    assert hold["permissions"]["layout_freeze"] is False
+    assert hold["permissions"]["bom_freeze"] is False
+    assert hold["permissions"]["manufacturing_release"] is False

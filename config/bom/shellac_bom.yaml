@@ -1,8 +1,8 @@
 schema_version: 1
 project: shellac
 status: CONTROLLED_PARTIAL_BASELINE
-reconciled_by: AE-075B
-control_hardware_updated_by: AE-041-A1
+reconciled_by: AE-075C
+control_hardware_updated_by: AE-075C
 bom_reviewed_by: DR-037
 procurement_complete: false
 selection_policy:
@@ -16,25 +16,31 @@ items:
   - id: BOM-CTRL-BASS
     function: bass_characteristic_selector_dual_mono
     manufacturer: NKK
-    mpn: NR01-family
+    mpn: NR01105ANG13-2C
     quantity: 2
-    requirement: independent_L_R_5_position_BBM
+    requirement: independent_L_R_5_position_BBM_gold
     configured_positions: 5
-    status: FAMILY_SELECTED_EXACT_MPN_OPEN
-    authority_reconciled_by: AE-041
+    status: EXACT_PART_SELECTED_B03_PHYSICAL_IMPLEMENTATION_OPEN
+    authority_reconciled_by: AE-075C
     knob_colour: red
-    note: One independent selector per channel; exact NR01 production order code remains open.
+    knob: AT3009_flanged
+    mounting: pcb_through_hole_bracket_no_threaded_bushing_flange_beneath_panel
+    depth_behind_panel_mm: 10.5
+    note: Exact five-position non-shorting gold-contact NR01 configuration selected. Vertical stack, exact footprint/pin map and board ownership remain under B03.
   - id: BOM-CTRL-TREBLE
     function: treble_characteristic_selector_dual_mono
     manufacturer: NKK
-    mpn: NR01-family
+    mpn: NR01105ANG13-2A
     quantity: 2
-    requirement: independent_L_R_5_position_BBM
+    requirement: independent_L_R_5_position_BBM_gold
     configured_positions: 5
-    status: FAMILY_SELECTED_EXACT_MPN_OPEN
-    authority_reconciled_by: AE-041
+    status: EXACT_PART_SELECTED_B03_PHYSICAL_IMPLEMENTATION_OPEN
+    authority_reconciled_by: AE-075C
     knob_colour: black
-    note: One independent selector per channel; exact NR01 production order code remains open.
+    knob: AT3009_flanged
+    mounting: pcb_through_hole_bracket_no_threaded_bushing_flange_beneath_panel
+    depth_behind_panel_mm: 10.5
+    note: Exact five-position non-shorting gold-contact NR01 configuration selected. Vertical stack, exact footprint/pin map and board ownership remain under B03.
   - id: BOM-CTRL-CHANNEL
     function: channel_mode_selector
     manufacturer: C&K
