@@ -53,9 +53,9 @@ def test_population_remains_255_but_new_service_hardware_is_owned():
 
 def test_governance_closes_migration_but_not_routing():
     hold=yaml.safe_load((ROOT/"config/release/ae071_prerouting_hold.yaml").read_text(encoding="utf-8"))
-    assert hold["authority"]=="AE-074"
-    assert hold["previous_authority"]=="AE-071B"
-    assert hold["baseline_commit"]=="82bb77c683e779c8a6bd82ccbd11799beb9893de"
+    assert hold["authority"]=="AE-075B"
+    assert hold["previous_authority"]=="AE-075A"
+    assert hold["baseline_commit"]=="5b51964c2282083c7d767f330966905d34fe47e6"
     assert {x["id"] for x in hold["resolved_after_ae071"]}=={"AE071-B01"}
     assert {x["id"] for x in hold["resolved_after_ae071a"]}=={"AE071-M01"}
     assert {x["id"] for x in hold["resolved_after_ae074"]} == {"AE071-B02"}

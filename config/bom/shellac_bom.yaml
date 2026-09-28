@@ -1,7 +1,7 @@
 schema_version: 1
 project: shellac
 status: CONTROLLED_PARTIAL_BASELINE
-reconciled_by: AE-041-A1
+reconciled_by: AE-075B
 control_hardware_updated_by: AE-041-A1
 bom_reviewed_by: DR-037
 procurement_complete: false
@@ -101,7 +101,7 @@ items:
   - id: BOM-SCH101-LT5400
     function: sch101_precision_resistor_network
     manufacturer: Analog Devices
-    mpn: OPEN_B_GRADE_-7
+    mpn: LT5400BIMS8E-7#PBF
     candidate_mpns:
       - LT5400BCMS8E-7#PBF
       - LT5400BIMS8E-7#PBF
@@ -110,16 +110,19 @@ items:
     footprint: Package_SO:MSOP-8-1EP_3x3mm_P0.65mm_EP1.68x1.88mm
     ratio_option: LT5400-7
     available_grade: B
-    status: GRADE_RATIO_SELECTED_RUN10_AND_EXACT_MPN_OPEN
+    status: EXACT_MPN_SELECTED_EP_IMPLEMENTED_RUN10_OPEN
     decision: DR-038
-    note: The -7 ratio is procurable in B grade, not the previously encoded A grade. RUN10 must accept the complete B-grade tolerance/CMRR stack and final temperature-grade MPN before BOM freeze.
+    temperature_range_c: [-40, 85]
+    exposed_pad: QUIET_0VA
+    network_only_cmrr_floor_db: 84.44
+    note: Industrial-temperature B-grade -7 selected. EP9 is bonded to quiet 0VA per ADI guidance. The 84.44 dB figure is resistor-network-only from the B-grade 0.015% CMRR-matching limit; full-stage RUN10 remains mandatory before BOM freeze.
   - id: BOM-SCH101-GAIN-SHUNT
     function: sch101_gain_service_shunt
     manufacturer: Samtec
     mpn: MNT-104-BK-G
     quantity: 1
     pitch_mm: 2.54
-    status: CANDIDATE_CORROBORATED_PAIRING_ORIENTATION_OPEN
+    status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
     decision: DR-038
   - id: BOM-SCH101-GAIN-HEADERS
     function: sch101_gain_service_headers_low_high_park
@@ -128,7 +131,7 @@ items:
     quantity: 3
     pitch_mm: 2.54
     plating: 10uin_gold_flash
-    status: CANDIDATE_CORROBORATED_PAIRING_ORIENTATION_OPEN
+    status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
     decision: DR-038
     refs: [H110, H111, H112]
   - id: BOM-SCH101-LOAD-SHUNT
@@ -137,7 +140,7 @@ items:
     mpn: MNT-102-BK-G
     quantity: 1
     pitch_mm: 2.54
-    status: CANDIDATE_CORROBORATED_PAIRING_ORIENTATION_OPEN
+    status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
     decision: DR-038
   - id: BOM-SCH101-LOAD-HEADERS
     function: sch101_cartridge_capacitance_headers_47_base_100
@@ -146,9 +149,39 @@ items:
     quantity: 3
     pitch_mm: 2.54
     plating: 10uin_gold_flash
-    status: CANDIDATE_CORROBORATED_PAIRING_ORIENTATION_OPEN
+    status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
     decision: DR-038
     refs: [H120, H121, H122]
+  - id: BOM-XLR-INPUT
+    function: balanced_cartridge_panel_input
+    manufacturer: Neutrik
+    mpn: NC3FD-L-B-1
+    quantity: 2
+    gender: female
+    termination: solder_cup
+    housing: black_metal
+    contacts: gold
+    pin1: CHASSIS
+    shell_front_panel_contact: CHASSIS_EXPLICIT_LOCAL_BOND
+    local_0va_connection: NONE
+    status: SELECTED
+    authority_reconciled_by: AE-075B
+    note: Separate shell/front-panel ground contact and pin 1 are both bonded to CHASSIS locally. Do not rely on anodised panel contact; continuity is a manufacturing/commissioning check.
+  - id: BOM-XLR-OUTPUT
+    function: balanced_line_panel_output
+    manufacturer: Neutrik
+    mpn: NC3MD-L-B-1
+    quantity: 2
+    gender: male
+    termination: solder_cup
+    housing: black_metal
+    contacts: gold
+    pin1: CHASSIS
+    shell_front_panel_contact: CHASSIS_EXPLICIT_LOCAL_BOND
+    local_0va_connection: NONE
+    status: SELECTED
+    authority_reconciled_by: AE-075B
+    note: Separate shell/front-panel ground contact and pin 1 are both bonded to CHASSIS locally. No connector-local 0VA bond.
   - id: BOM-SCH108-CLAMP
     function: sch108_phantom_fault_rail_clamp
     manufacturer: Vishay General Semiconductor

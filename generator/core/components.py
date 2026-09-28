@@ -41,8 +41,12 @@ def testpoint(ref, label, at):
 def xlr3(ref, label, at, function="Balanced XLR input"):
     return Component(
         ref, "Connector_Generic:Conn_01x03", label, at, "",
-        {"Function": function, "Pin 1": "CHASSIS", "Pin 2": "HOT/+",
-         "Pin 3": "COLD/-", "Ownership": "Panel-mounted; harnessed to PCB"},
+        {"Function": function,
+         "Manufacturer": "Neutrik", "MPN": "NC3FD-L-B-1",
+         "Pin 1": "CHASSIS", "Pin 2": "HOT/+", "Pin 3": "COLD/-",
+         "Shell/front-panel contact": "CHASSIS via explicit local bond",
+         "Local 0VA": "NONE",
+         "Ownership": "Panel-mounted female input XLR; harnessed to PCB"},
         on_board=False,
     )
 
@@ -130,9 +134,11 @@ def lt5400_network(ref,label,at):
         {
             "Function":"DR-038 matched resistor network",
             "Device":"LT5400-7",
-            "Grade":"B-grade procurement candidate; RUN10 acceptance open",
+            "Grade":"B grade; LT5400BIMS8E-7#PBF selected; RUN10 full-stage acceptance open",
+            "MPN":"LT5400BIMS8E-7#PBF",
+            "Temperature range":"-40C to +85C",
             "R1/R4":"5k",
             "R2/R3":"1.25k",
-            "EP":"Pin 9 presently floating; final EP disposition open",
+            "EP":"Pin 9 -> quiet 0VA; ADI-recommended AC shield disposition",
         },
     )

@@ -36,14 +36,14 @@ def test_dr038_dr039_record_current_pre_spice_disposition():
     dr038 = _decision_block("DR-038", "DR-039")
     assert "    implementation:" in dr038
     assert "      converter_gain: 4.0" in dr038
-    assert "LT5400-7 B-grade procurement candidate" in dr038
-    assert "RUN10 tolerance/CMRR acceptance" in dr038
-    assert "nonexistent A-grade -7 procurement identity" in dr038
+    assert "LT5400BIMS8E-7#PBF selected" in dr038
+    assert "EP9 to quiet 0VA implemented" in dr038
+    assert "RUN10 full-stage tolerance/CMRR acceptance remains open" in dr038
     assert "LT5400-7 A-grade retained provisionally" not in dr038
     assert "AE-071A live fail-safe removable gold service-shunt topology" in dr038
     assert "approximately 14/18/22 dB" in dr038
     assert "BASE/+47/+100 pF" in dr038
-    assert "Samtec shunt pairing/orientation" in dr038
+    assert "Samtec physical pairing/orientation" in dr038
     assert "pre-DR038 implementation" not in dr038
 
     dr039 = _decision_block("DR-039", "DR-040")
@@ -60,10 +60,12 @@ def test_design_pack_and_maintenance_structure_exist():
     assert Path("docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md").exists()
 
 
-def test_pre_spice_assurance_chain_reaches_ae074():
+def test_pre_spice_assurance_chain_reaches_ae075b():
     text = _text()
     for n in range(42, 72):
         assert f"  AE-{n:03d}:" in text
     assert "  AE-071A:" in text
     assert "  AE-071B:" in text
     assert "  AE-074:" in text
+    assert "  AE-075A:" in text
+    assert "  AE-075B:" in text

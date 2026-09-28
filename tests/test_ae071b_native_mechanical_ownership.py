@@ -143,7 +143,9 @@ def test_ae071b_native_audit_enforces_mechanical_ownership_and_pose():
 
 def test_ae071b_retains_routing_hold():
     text = HOLD.read_text(encoding="utf-8")
-    assert "authority: AE-074" in text
-    assert "previous_authority: AE-071B" in text
+    # AE-071B owns the mechanical-resolution invariant, not the identity of
+    # whichever later assurance record currently owns the live routing hold.
+    assert "id: AE071-M01" in text
+    assert "resolution: AE071B_MH1_MH4_BOARD_ONLY_LOCKED_AND_BOM_POS_EXCLUDED" in text
     assert "status: ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS" in text
     assert "  final_routing: false" in text

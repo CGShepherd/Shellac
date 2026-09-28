@@ -42,7 +42,10 @@ def test_sch101_lt5400_reference_and_ep_are_safe():
         matching=[(x,y) for name,x,y in labels if name=="0VA" and y==ref.y and x>ref.x]
         assert matching
         assert all(x != ref.x for x,y in matching)
-        assert pin_position(rn,"9") in sheet.no_connects
+        ep=pin_position(rn,"9")
+        assert ep not in sheet.no_connects
+        ep_0va=[(x,y) for name,x,y in labels if name=="0VA" and x==ep.x and y>ep.y]
+        assert ep_0va
 
 def test_sch101_converter_named_nets_remain_separate():
     from generator.electrical_audit import audit_sheet_electrical

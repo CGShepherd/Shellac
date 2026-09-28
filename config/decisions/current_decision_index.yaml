@@ -40,12 +40,13 @@ decisions:
       - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
       - docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
       - docs/design_pack/AE-071A_SCH101_Product_Migration_Rev_A0.md
+      - docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
     implementation:
       converter_gain: 4.0
-      network: LT5400-7 B-grade procurement candidate; RUN10 tolerance/CMRR acceptance and exact temperature-grade MPN remain open
+      network: LT5400BIMS8E-7#PBF selected; EP9 to quiet 0VA implemented; RUN10 full-stage tolerance/CMRR acceptance remains open
       gain_selection: AE-071A live fail-safe removable gold service-shunt topology, approximately 14/18/22 dB; no LOW/HIGH shunt state is 18 dB
       cartridge_load_selection: AE-071A live BASE/+47/+100 pF ganged L/R service-capacitance programming; fixed 47 pF leg-to-chassis RF shunts retained
-      note: AE-071A migrates the AE-042 electrical topology into the live generator after AE-066 nominal qualification. AE-071 previously corrected the nonexistent A-grade -7 procurement identity to the procurable LT5400-7 B-grade family. RUN10 tolerance/CMRR acceptance, exact temperature-grade MPN, EP disposition, production Samtec shunt pairing/orientation and service-header parasitic/layout correlation remain open.
+      note: AE-071A migrates the AE-042 electrical topology into the live generator after AE-066 nominal qualification. AE-075B selects LT5400BIMS8E-7#PBF, implements EP9 to quiet 0VA, and selects the compatible Samtec TSW/MNT hardware families. The resistor-network-only B-grade CMRR floor is 84.44 dB; RUN10 complete-stage tolerance/CMRR and 20 kHz parasitic acceptance remain open. Samtec physical pairing/orientation and short symmetric service-header routing/parasitic verification also remain open.
   DR-039:
     title: State-independent post-EQ DC blocking
     status: CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
@@ -124,6 +125,8 @@ pre_spice_assurance:
   AE-071B: docs/design_pack/AE-071B_Native_PCB_Mechanical_Ownership_Hardening_Rev_A0.md
   AE-073: docs/design_pack/AE-073_PSU_Long_Settle_Discriminator_Rev_A0.md
   AE-074: docs/design_pack/AE-074_DR039_Branch_Local_Product_Migration_Rev_A0.md
+  AE-075A: docs/design_pack/AE-075A_Post_SR043_Placement_and_SCH108_Sense_Cap_Reconciliation_Rev_A0.md
+  AE-075B: docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

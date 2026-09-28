@@ -43,9 +43,10 @@ def test_ae075_b07_bom_and_hold_encode_closed_selected_hardware():
     assert "native_validation: PASS" in hold
     routing = hold.split("routing_blockers:", 1)[1].split("pre_run08_prerequisites:", 1)[0]
     assert "AE071-B07" not in routing
-    for blocker in ("AE071-B03", "AE071-B04", "AE071-B06", "AE071-B08"):
+    for blocker in ("AE071-B03", "AE071-B04", "AE071-B08"):
         assert blocker in routing
     assert "AE071-B05" not in routing
+    assert "AE071-B06" not in routing
 
 
 def test_ae075_b07_exact_part_footprint_geometry_is_controlled():

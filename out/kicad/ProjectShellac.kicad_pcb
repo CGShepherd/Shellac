@@ -226,14 +226,12 @@
 	(net 83 "Net-(TP3503-TP)")
 	(net 84 "Net-(R70090-Pad2)")
 	(net 85 "Net-(R75090-Pad2)")
-	(net 86 "unconnected-(RN130-EP-Pad9)")
 	(net 87 "ROOT__PRE_EQ_L")
 	(net 88 "/SCH101 Balanced Input and Differential Conversion/SCH101_L_LT5400_MINUS_SUM")
 	(net 89 "/SCH101 Balanced Input and Differential Conversion/SCH101_L_LT5400_PLUS_SUM")
 	(net 90 "/SCH101 Balanced Input and Differential Conversion/SCH101_R_LT5400_PLUS_SUM")
 	(net 91 "/SCH101 Balanced Input and Differential Conversion/SCH101_R_LT5400_MINUS_SUM")
 	(net 92 "ROOT__PRE_EQ_R")
-	(net 93 "unconnected-(RN230-EP-Pad9)")
 	(net 94 "Net-(U700B-IN)")
 	(net 95 "ROOT__FILTERED_L")
 	(net 96 "ROOT__FILTERED_R")
@@ -22036,7 +22034,7 @@
 				)
 			)
 		)
-		(property "EP" "Pin 9 presently floating; final EP disposition open"
+		(property "EP" "Pin 9 bonded to quiet 0VA per ADI LT5400 exposed-pad guidance"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -22049,7 +22047,7 @@
 				)
 			)
 		)
-		(property "Grade" "B-grade procurement candidate; RUN10 acceptance open"
+		(property "Grade" "LT5400BIMS8E-7#PBF selected; B grade; RUN10 full-stage acceptance open"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -22394,9 +22392,9 @@
 			(size 1.68 1.88)
 			(property pad_prop_heatsink)
 			(layers "F.Cu" "F.Mask")
-			(net 86 "unconnected-(RN130-EP-Pad9)")
+			(net 4 "0VA")
 			(pinfunction "EP")
-			(pintype "passive+no_connect")
+			(pintype "passive")
 			(zone_connect 2)
 			(uuid "213df572-dd74-4a58-9f4f-1ed27c24aa80")
 		)
@@ -36631,7 +36629,7 @@
 				)
 			)
 		)
-		(property "EP" "Pin 9 presently floating; final EP disposition open"
+		(property "EP" "Pin 9 bonded to quiet 0VA per ADI LT5400 exposed-pad guidance"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -36644,7 +36642,7 @@
 				)
 			)
 		)
-		(property "Grade" "B-grade procurement candidate; RUN10 acceptance open"
+		(property "Grade" "LT5400BIMS8E-7#PBF selected; B grade; RUN10 full-stage acceptance open"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -36989,9 +36987,9 @@
 			(size 1.68 1.88)
 			(property pad_prop_heatsink)
 			(layers "F.Cu" "F.Mask")
-			(net 93 "unconnected-(RN230-EP-Pad9)")
+			(net 4 "0VA")
 			(pinfunction "EP")
-			(pintype "passive+no_connect")
+			(pintype "passive")
 			(zone_connect 2)
 			(uuid "66224ad6-475a-4980-b924-a25d30402ae3")
 		)

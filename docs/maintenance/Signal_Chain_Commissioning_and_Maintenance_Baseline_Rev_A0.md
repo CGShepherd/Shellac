@@ -1,7 +1,7 @@
 # Project Shellac — Signal-Chain Commissioning and Maintenance Baseline
 
 **Status:** PRE-PRODUCTION MAINTENANCE BASELINE  
-**Evidence:** DR-037, DR-038, DR-039, AE-012 through AE-023, AE-066, AE-067, AE-074
+**Evidence:** DR-037, DR-038, DR-039, AE-012 through AE-023, AE-066, AE-067, AE-074, AE-075A, AE-075B
 
 ## Normal configuration
 
@@ -49,10 +49,11 @@ With a symmetrical low-impedance test source:
 - >=70 dB, 20 Hz to 1 kHz, at LOW/DEFAULT/HIGH;
 - >=60 dB at 20 kHz.
 
-AE-066 RUN02 establishes the nominal gain/CMRR evidence. RUN10 owns the
-current tolerance/mismatch qualification for RF-series, service-gain and
-LT5400 B-grade ratio errors; the historical AE-023 A-grade tolerance model is
-not current production acceptance authority.
+AE-066 RUN02 establishes the nominal gain/CMRR evidence. AE-075B selects
+LT5400BIMS8E-7#PBF and bonds EP9 to quiet 0VA; RUN10 still owns complete-stage
+tolerance/mismatch qualification for RF-series, service-gain, LT5400 ratio
+errors and 20 kHz parasitic behaviour. The historical AE-023 A-grade tolerance
+model is not current production acceptance authority.
 
 ## DC offset
 
@@ -76,6 +77,8 @@ Do not substitute an ordinary DIP switch into the SCH101 precision feedback
 path. One four-gang removable gold shunt configures all gain legs together:
 LOW bridges the 332 ohm RF-parallel branches, HIGH bridges the 866 ohm
 RG-parallel branches, and DEFAULT leaves both active branches open with the
-shunt parked. Verify production shunt pairing/orientation before relying on
-silkscreen position. A separate two-gang shunt selects BASE/+47/+100 pF
-cartridge loading.
+shunt parked. AE-075B selects Samtec TSW-104-07-G-D/MNT-104-BK-G for gain and
+TSW-102-07-G-D/MNT-102-BK-G for loading. Verify production shunt
+pairing/orientation before relying on silkscreen position and retain the
+short/symmetric routing-parasitic check. A separate two-gang shunt selects
+BASE/+47/+100 pF cartridge loading.

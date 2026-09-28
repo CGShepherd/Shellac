@@ -187,7 +187,7 @@ def _diff(sheet,ch,base,cy,po,mo):
     sheet.connect_pin_to_net(amp,"IN-",minus_sum,stub_dx=-6.35)
     sheet.connect_pin_to_net(rn,"8",output_net,stub_dx=6.35)
     sheet.connect_pin_to_net(amp,"OUT",output_net,stub_dx=8.89)
-    sheet.add_no_connect_pin(rn,"9")
+    sheet.connect_pin_to_net(rn,"9","0VA",stub_dy=6.35)
     sheet.connect_pin_to_net(amp,"+V","+18V",stub_dy=-6.35)
     sheet.connect_pin_to_net(amp,"-V","-18V",stub_dy=6.35)
 
@@ -221,7 +221,7 @@ def add_sch101_diff_converter_slice(sheet):
     sheet.add_note("AE-042 gain: fixed RF=999R, RG=1k; LOW adds 332R || RF; HIGH adds 866R || RG; DEFAULT has no active shunt.")
     sheet.add_note("Gain shunt candidate MNT-104-BK-G moves among LOW/HIGH/PARK headers; load shunt MNT-102-BK-G moves among +47/BASE/+100 headers.")
     sheet.add_note("Production shunt pairing/orientation and service-header parasitic/layout correlation remain routing blockers.")
-    sheet.add_note("LT5400-7 B-grade procurement candidate; RUN10 tolerance acceptance open; EP9 remains floating pending final EP disposition.")
+    sheet.add_note("LT5400BIMS8E-7#PBF selected; EP9 bonds to quiet 0VA per ADI guidance; full-stage RUN10 tolerance/CMRR acceptance remains open.")
     sheet.add_note("Each physical SCH101 op-amp package has local 100 nF bypassing from each rail to 0VA.")
     headers=_service_headers(sheet)
     _channel(sheet,"L",1,85,headers,1,1)

@@ -164,6 +164,7 @@ def test_sch101_live_converter_and_lt5400_annotations_are_procurement_realistic(
     for ref in ("RN130", "RN230"):
         rn = components[ref]
         assert rn.fields["Device"] == "LT5400-7"
-        assert "B-grade" in rn.fields["Grade"]
+        assert rn.fields["MPN"] == "LT5400BIMS8E-7#PBF"
+        assert "B grade" in rn.fields["Grade"]
         assert "RUN10" in rn.fields["Grade"]
-        assert "final EP disposition open" in rn.fields["EP"]
+        assert "quiet 0VA" in rn.fields["EP"]

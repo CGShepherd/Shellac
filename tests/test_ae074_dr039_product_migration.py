@@ -54,7 +54,8 @@ def test_ae074_authority_records_native_board_reconciliation_but_keeps_qualifica
     )
     blockers = {item["id"] for item in hold["routing_blockers"]}
     assert "AE071-B02" not in blockers
-    assert {"AE071-B03", "AE071-B04", "AE071-B06", "AE071-B08"} <= blockers
+    assert {"AE071-B03", "AE071-B04", "AE071-B08"} <= blockers
+    assert "AE071-B06" not in blockers
     assert "AE071-B05" not in blockers
     assert "AE071-B07" not in blockers
     resolved_ae075 = {item["id"]: item for item in hold["resolved_after_ae075"]}

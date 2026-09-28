@@ -6,6 +6,12 @@
 
 # Generated build output
 out/
+# Native PCB is a separately governed source artefact under out/.
+!out/
+out/*
+!out/kicad/
+out/kicad/*
+!out/kicad/ProjectShellac.kicad_pcb
 simulation/generated/
 simulation/logs/
 simulation/plots/

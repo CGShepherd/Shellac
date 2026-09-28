@@ -113,6 +113,10 @@ def audit_repository() -> list[str]:
         errors.append("AE-071B: missing from pre_spice_assurance")
     if not re.search(r"(?m)^  AE-074:", index):
         errors.append("AE-074: missing from pre_spice_assurance")
+    if not re.search(r"(?m)^  AE-075A:", index):
+        errors.append("AE-075A: missing from pre_spice_assurance")
+    if not re.search(r"(?m)^  AE-075B:", index):
+        errors.append("AE-075B: missing from pre_spice_assurance")
 
     dr039_match = re.search(r"(?ms)^  DR-039:\n(.*?)(?=^  DR-040:)", index)
     if not dr039_match:
@@ -136,6 +140,21 @@ def audit_repository() -> list[str]:
         for rel in authority_paths(authority, section):
             if not (ROOT / rel).exists():
                 errors.append(f"{section}: missing path {rel}")
+    # Cross-check the current decision index against document authority.
+    pre_match = re.search(
+        r"(?ms)^pre_spice_assurance:\s*\n(.*?)(?=^historical_implementation_events:|\Z)",
+        index,
+    )
+    indexed_paths = {}
+    if pre_match:
+        for raw in pre_match.group(1).splitlines():
+            m = re.match(r"^\s{2}(AE-[^:]+):\s*(\S+)\s*$", raw)
+            if m:
+                indexed_paths[m.group(1)] = m.group(2)
+    authority_evidence = set(authority_paths(authority, "pre_spice_assurance_evidence"))
+    for record, rel in indexed_paths.items():
+        if rel not in authority_evidence:
+            errors.append(f"{record}: indexed pre-spice record absent from document_authority: {rel}")
 
     if "historical_deleted_artefacts:" not in authority:
         errors.append("historical_deleted_artefacts section missing")

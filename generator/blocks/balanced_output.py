@@ -71,9 +71,13 @@ def _xlr(ref: str, ch: str, at: Point) -> Component:
         footprint="",
         fields={
             "Function": "Panel-mounted male XLR output",
+            "Manufacturer": "Neutrik",
+            "MPN": "NC3MD-L-B-1",
             "Pin 1": "CHASSIS",
             "Pin 2": "HOT/+",
             "Pin 3": "COLD/-",
+            "Shell/front-panel contact": "CHASSIS via explicit local bond",
+            "Local 0VA": "NONE",
             "Wiring": "Internal star-quad; no connector PCB",
         },
         on_board=False,
