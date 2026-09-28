@@ -4,9 +4,9 @@ from typing import Tuple
 
 ARCHITECTURE_RECORD="AE-041"
 ARCHITECTURE_REVISION="A1"
-HARDWARE_RECONCILIATION_RECORD="AE-075E"
+HARDWARE_RECONCILIATION_RECORD="AE-075F"
 MANUFACTURING_COORDINATES_RELEASED=False
-CONTROL_STACK_STATUS="ALL_OPERATOR_CONTROLS_LOCAL_PCB_OWNERSHIP_SELECTED_STACK_PARTITION_OPEN"
+CONTROL_STACK_STATUS="FOUR_LOCAL_CONTROL_MODULES_SHORT_HARNESS_FAMILY_SELECTED_DETAIL_OPEN"
 
 SIGNAL_FLOW=("INPUT","BASS","TREBLE","RUMBLE","MATRIX","MUTE","OUTPUT")
 TOP_COVER_DIRECTION="FRONT_TO_REAR"
@@ -88,8 +88,9 @@ OPEN_QUALIFICATION=(
     "matrix_mono_accuracy_spice_and_bench",
     "production_switch_detent_terminal_continuity_confirmation",
     "main_pcb_carrier_z_and_top_cover_thickness",
-    "shared_ck_local_control_pcb_partition_installed_stack_support_interconnect",
-    "eq_mezzanine_interconnect_stack_support_and_switch_local_passive_ownership",
+    "local_control_pcb_installed_stack_and_mechanical_support",
+    "exact_micro_lock_plus_header_orientation_order_codes_and_footprints",
+    "eq_mezzanine_switch_local_passive_ownership_and_run10_parasitic_acceptance",
     "exact_part_footprints_pin_mapping_and_courtyards",
     "absolute_top_cover_coordinates",
     "final_artwork_coordinates",
@@ -109,5 +110,5 @@ def validate_control_architecture()->None:
     assert MATRIX.mode_order_ccw_to_cw==("DUAL L","STEREO","L+R","DUAL R")
     assert MATRIX.switched_leg_node=="MONO_R_LEG" and MATRIX.switched_leg_mode=="L+R"
     assert MATRIX.averaging_resistor_count==2 and MATRIX.averaging_resistance_ohm==4700.0
-    assert CONTROL_STACK_STATUS=="ALL_OPERATOR_CONTROLS_LOCAL_PCB_OWNERSHIP_SELECTED_STACK_PARTITION_OPEN"
+    assert CONTROL_STACK_STATUS=="FOUR_LOCAL_CONTROL_MODULES_SHORT_HARNESS_FAMILY_SELECTED_DETAIL_OPEN"
     assert MANUFACTURING_COORDINATES_RELEASED is False

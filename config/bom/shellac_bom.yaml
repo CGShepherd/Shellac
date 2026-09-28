@@ -29,7 +29,9 @@ items:
     installed_panel_to_pcb_mm: 12.3
     physical_ownership: CHANNEL_LOCAL_EQ_MEZZANINE_SELECTED
     physical_architecture_reconciled_by: AE-075D
-    note: Exact five-position non-shorting gold-contact NR01 configuration selected. AE-075D distinguishes 10.5 mm catalogue depth from 12.3 mm installed panel-to-PCB plane and selects channel-local EQ mezzanine ownership; interconnect/stack, mechanical support, footprint/pin map and parasitic qualification remain under B03.
+    control_module_partition_reconciled_by: AE-075F
+    interconnect_family: MOLEX_MICRO_LOCK_PLUS_2MM
+    note: Exact five-position non-shorting gold-contact NR01 configuration selected. AE-075D selects channel-local EQ mezzanine ownership. AE-075F selects one EQ module per channel and the detachable Micro-Lock Plus 2.00 mm harness family; EQ passive partition, exact circuit count/header variant, support/Z, footprint/pin map and RUN10 parasitic qualification remain under B03.
   - id: BOM-CTRL-TREBLE
     function: treble_characteristic_selector_dual_mono
     manufacturer: NKK
@@ -46,7 +48,9 @@ items:
     installed_panel_to_pcb_mm: 12.3
     physical_ownership: CHANNEL_LOCAL_EQ_MEZZANINE_SELECTED
     physical_architecture_reconciled_by: AE-075D
-    note: Exact five-position non-shorting gold-contact NR01 configuration selected. AE-075D distinguishes 10.5 mm catalogue depth from 12.3 mm installed panel-to-PCB plane and selects channel-local EQ mezzanine ownership; interconnect/stack, mechanical support, footprint/pin map and parasitic qualification remain under B03.
+    control_module_partition_reconciled_by: AE-075F
+    interconnect_family: MOLEX_MICRO_LOCK_PLUS_2MM
+    note: Exact five-position non-shorting gold-contact NR01 configuration selected. AE-075D selects channel-local EQ mezzanine ownership. AE-075F selects one EQ module per channel and the detachable Micro-Lock Plus 2.00 mm harness family; EQ passive partition, exact circuit count/header variant, support/Z, footprint/pin map and RUN10 parasitic qualification remain under B03.
   - id: BOM-CTRL-CHANNEL
     function: channel_mode_selector
     manufacturer: C&K
@@ -63,8 +67,11 @@ items:
     mounting: pcb_through_hole_plus_3/8-32_threaded_top_cover_bushing
     physical_ownership: DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED
     physical_architecture_reconciled_by: AE-075E
-    physical_partition: OPEN_LOCAL_MODULE_PARTITION_SUBJECT_TO_ANALOGUE_LOCALITY
-    note: CCW to CW DUAL L, STEREO, L+R, DUAL R. Exact production-switch detent-to-terminal mapping requires continuity confirmation before manufacturing release. AE-075E selects distributed local control-PCB ownership; exact board partition, installed Z stack, support and inter-board connection remain B03-open.
+    physical_partition: DOWNSTREAM_MATRIX_MUTE_LOCAL_PCB
+    control_module_partition_reconciled_by: AE-075F
+    interconnect_family: MOLEX_MICRO_LOCK_PLUS_2MM
+    downstream_module_external_net_count: 7
+    note: CCW to CW DUAL L, STEREO, L+R, DUAL R. Exact production-switch detent-to-terminal mapping requires continuity confirmation before manufacturing release. AE-075F combines Matrix and Mute on one downstream local PCB so Matrix outputs feed Mute locally; detachable Micro-Lock Plus harness family selected, while exact support/Z/header variant and footprint remain B03-open.
   - id: BOM-MATRIX-SUM-R
     function: switched_mono_averaging_resistors
     manufacturer: OPEN
@@ -86,7 +93,10 @@ items:
     mounting: pcb_through_hole_plus_1/4-40_threaded_top_cover_bushing
     physical_ownership: DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED
     physical_architecture_reconciled_by: AE-075E
-    physical_partition: OPEN_LOCAL_MODULE_PARTITION_SUBJECT_TO_ANALOGUE_LOCALITY
+    physical_partition: RUMBLE_LOCAL_PCB
+    control_module_partition_reconciled_by: AE-075F
+    interconnect_family: MOLEX_MICRO_LOCK_PLUS_2MM
+    external_net_count: 6
   - id: BOM-CTRL-MUTE
     function: output_mute_command
     manufacturer: C&K
@@ -97,7 +107,20 @@ items:
     mounting: pcb_through_hole_plus_1/4-40_threaded_top_cover_bushing
     physical_ownership: DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED
     physical_architecture_reconciled_by: AE-075E
-    physical_partition: OPEN_LOCAL_MODULE_PARTITION_SUBJECT_TO_ANALOGUE_LOCALITY
+    physical_partition: DOWNSTREAM_MATRIX_MUTE_LOCAL_PCB
+    control_module_partition_reconciled_by: AE-075F
+    interconnect_family: MOLEX_MICRO_LOCK_PLUS_2MM
+  - id: BOM-CTRL-INTERCONNECT-FAMILY
+    function: local_control_pcb_serviceable_interconnect
+    manufacturer: Molex
+    family: Micro-Lock_Plus_2.00mm
+    pcb_header_series: [505575, 505578]
+    receptacle_housing_series: 505570
+    crimp_terminal_mpn: "5055721200"
+    quantity_harnesses: 4
+    status: FAMILY_SELECTED_EXACT_HEADER_VARIANTS_AND_CIRCUIT_COUNTS_PARTIAL
+    authority_reconciled_by: AE-075F
+    note: Positive-lock 2.00 mm family reused from the controlled input-harness ecosystem. Exact vertical/right-angle header order codes and EQ circuit count remain gated by Z/XY and EQ passive-partition/RUN10 evidence.
   - id: BOM-LED-POS
     function: positive_rail_indicator
     manufacturer: Vishay

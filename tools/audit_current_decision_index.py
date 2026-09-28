@@ -123,6 +123,8 @@ def audit_repository() -> list[str]:
         errors.append("AE-075D: missing from pre_spice_assurance")
     if not re.search(r"(?m)^  AE-075E:", index):
         errors.append("AE-075E: missing from pre_spice_assurance")
+    if not re.search(r"(?m)^  AE-075F:", index):
+        errors.append("AE-075F: missing from pre_spice_assurance")
 
     dr039_match = re.search(r"(?ms)^  DR-039:\n(.*?)(?=^  DR-040:)", index)
     if not dr039_match:

@@ -21,11 +21,21 @@ CARRIER_OR_CONTROL_PLANE_Z_MM=None
 
 EQ_CONTROL_OWNERSHIP="TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
 SHARED_CK_CONTROL_OWNERSHIP="DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED"
-CONTROL_BOARD_OWNERSHIP="ALL_OPERATOR_CONTROLS_LOCAL_PCB_OWNERSHIP_SELECTED_PARTITION_OPEN"
-SHARED_CK_CONTROL_PCB_PARTITION="OPEN_LOCAL_MODULE_PARTITION_SUBJECT_TO_ANALOGUE_LOCALITY"
+CONTROL_BOARD_OWNERSHIP="FOUR_LOCAL_CONTROL_PCBS_SELECTED_SUPPORT_FOOTPRINT_XY_OPEN"
+CONTROL_MODULE_PARTITION=("EQ_L","EQ_R","RUMBLE","MATRIX_MUTE")
+SHARED_CK_CONTROL_PCB_PARTITION="RUMBLE_LOCAL_PLUS_MATRIX_MUTE_DOWNSTREAM_SELECTED"
+CONTROL_INTERCONNECT_ARCHITECTURE="SHORT_DETACHABLE_WIRE_HARNESSES_SELECTED"
+CONTROL_CONNECTOR_FAMILY="MOLEX_MICRO_LOCK_PLUS_2MM_SELECTED"
+CONTROL_CONNECTOR_HEADER_SERIES=("505575","505578")
+CONTROL_CONNECTOR_HOUSING_SERIES="505570"
+CONTROL_CONNECTOR_CRIMP_MPN="5055721200"
+RUMBLE_EXTERNAL_NET_COUNT=6
+MATRIX_MUTE_EXTERNAL_NET_COUNT=7
+EQ_PASSIVE_PARTITION="OPEN_PENDING_B03_PARASITIC_RUN10_DISCRIMINATOR"
+RIGID_BOARD_TO_BOARD_CONTROL_INTERCONNECT_ALLOWED=False
 DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED=False
 CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED=False
-B03_STATUS="ALL_CONTROL_LOCAL_PCB_OWNERSHIP_SELECTED_Z_PARTITION_INTERCONNECT_FOOTPRINT_XY_OPEN"
+B03_STATUS="MODULE_PARTITION_AND_HARNESS_FAMILY_SELECTED_Z_SUPPORT_PASSIVES_FOOTPRINT_XY_OPEN"
 
 @dataclass(frozen=True, slots=True)
 class ControlStackPart:
@@ -44,20 +54,20 @@ PARTS=(
         "channel-local EQ mezzanine; REG-08 mechanical registration; THT straight PC with support bracket"),
     ControlStackPart("CHANNEL",1,"A30403RNCB",
         "3/8-32 threaded bushing and nut; exact PCB-plane stack still to freeze",
-        "THT PC pins; distributed local control PCB selected; exact module partition/support/interconnect open"),
+        "THT PC pins; local module partition selected; short detachable harness family selected; exact support/Z/connector variant open"),
     ControlStackPart("RUMBLE",1,"7201SYCBE",
         "1/4-40 threaded bushing and nut; exact PCB-plane stack still to freeze",
-        "THT PC pins; distributed local control PCB selected; exact module partition/support/interconnect open"),
+        "THT PC pins; local module partition selected; short detachable harness family selected; exact support/Z/connector variant open"),
     ControlStackPart("MUTE",1,"7201SYCBE",
         "1/4-40 threaded bushing and nut; exact PCB-plane stack still to freeze",
-        "THT PC pins; distributed local control PCB selected; exact module partition/support/interconnect open"),
+        "THT PC pins; local module partition selected; short detachable harness family selected; exact support/Z/connector variant open"),
 )
 
 REQUIRED_BEFORE_B03_CLOSURE=(
     "freeze main PCB/carrier Z relative to upper-cover inner face",
     "freeze top-cover thickness and finished aperture/clearance stack",
-    "freeze exact C&K installed PCB-plane stack and distributed local-control PCB partition/support/interconnect",
-    "downselect EQ mezzanine interconnect (rigid board-to-board versus short low-parasitic flex/harness), stack height and mechanical support",
+    "freeze exact C&K installed PCB-plane stack and local-control PCB support/connector variant",
+    "freeze exact short-harness connector order codes/orientation after support and XY are known",
     "freeze switch-local passive ownership and bound RUN10 parasitic/stability effect",
     "create and verify exact part footprints, pin maps, courtyards and 3D/body envelopes",
     "freeze control XY coordinates and keep-outs against adjacent components",
@@ -79,10 +89,18 @@ def validate_control_stack()->None:
     assert CARRIER_OR_CONTROL_PLANE_Z_MM is None
     assert EQ_CONTROL_OWNERSHIP=="TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
     assert SHARED_CK_CONTROL_OWNERSHIP=="DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED"
-    assert CONTROL_BOARD_OWNERSHIP=="ALL_OPERATOR_CONTROLS_LOCAL_PCB_OWNERSHIP_SELECTED_PARTITION_OPEN"
-    assert SHARED_CK_CONTROL_PCB_PARTITION=="OPEN_LOCAL_MODULE_PARTITION_SUBJECT_TO_ANALOGUE_LOCALITY"
+    assert CONTROL_BOARD_OWNERSHIP=="FOUR_LOCAL_CONTROL_PCBS_SELECTED_SUPPORT_FOOTPRINT_XY_OPEN"
+    assert CONTROL_MODULE_PARTITION==("EQ_L","EQ_R","RUMBLE","MATRIX_MUTE")
+    assert SHARED_CK_CONTROL_PCB_PARTITION=="RUMBLE_LOCAL_PLUS_MATRIX_MUTE_DOWNSTREAM_SELECTED"
+    assert CONTROL_INTERCONNECT_ARCHITECTURE=="SHORT_DETACHABLE_WIRE_HARNESSES_SELECTED"
+    assert CONTROL_CONNECTOR_FAMILY=="MOLEX_MICRO_LOCK_PLUS_2MM_SELECTED"
+    assert CONTROL_CONNECTOR_CRIMP_MPN=="5055721200"
+    assert RUMBLE_EXTERNAL_NET_COUNT==6
+    assert MATRIX_MUTE_EXTERNAL_NET_COUNT==7
+    assert EQ_PASSIVE_PARTITION=="OPEN_PENDING_B03_PARASITIC_RUN10_DISCRIMINATOR"
+    assert RIGID_BOARD_TO_BOARD_CONTROL_INTERCONNECT_ALLOWED is False
     assert DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED is False
     assert CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED is False
     assert len(PARTS)==5
     assert sum(part.quantity for part in PARTS)==7
-    assert B03_STATUS=="ALL_CONTROL_LOCAL_PCB_OWNERSHIP_SELECTED_Z_PARTITION_INTERCONNECT_FOOTPRINT_XY_OPEN"
+    assert B03_STATUS=="MODULE_PARTITION_AND_HARNESS_FAMILY_SELECTED_Z_SUPPORT_PASSIVES_FOOTPRINT_XY_OPEN"

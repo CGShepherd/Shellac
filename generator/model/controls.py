@@ -27,7 +27,7 @@ EQ_ROTARY_BODY_XY_MM=(10.7,10.7)
 EQ_ROTARY_MOUNTING=(
     "PCB through-hole straight-PC NR01 with bracket; AT3009 flanged knob beneath "
     "top cover; no threaded bushing; installed panel-to-PCB plane 12.3 mm; "
-"channel-local EQ mezzanine selected; final interconnect/stack qualification open"
+"channel-local EQ mezzanine selected; detachable Micro-Lock Plus harness family selected; passive partition/support/Z remain open"
 )
 
 MATRIX_MANUFACTURER="C&K"
@@ -35,16 +35,16 @@ MATRIX_MPN="A30403RNCB"
 MATRIX_FALLBACK_MPN="TE/Alcoswitch MRJE3404"
 MATRIX_MOUNTING=(
     "PCB through-hole PC pins with 3/8-32 threaded bushing through top cover; "
-    "distributed local control PCB selected; exact module partition/support/interconnect "
-    "and installed PCB plane remain open; PCB datum establishes alignment before nut is tightened"
+    "combined downstream Matrix+Mute local PCB selected; detachable Micro-Lock Plus harness family selected; "
+    "exact support/Z/header variant remain open; PCB datum establishes alignment before nut is tightened"
 )
 
 TOGGLE_MANUFACTURER="C&K"
 TOGGLE_MPN="7201SYCBE"
 TOGGLE_MOUNTING=(
     "PCB through-hole PC pins with 1/4-40 threaded bushing through top cover; "
-    "distributed local control PCB selected; exact module partition/support/interconnect "
-    "and installed PCB plane remain open; PCB datum establishes alignment before nut is tightened"
+    "Rumble uses its own local PCB and Mute shares the downstream Matrix+Mute PCB; "
+    "detachable Micro-Lock Plus harness family selected; exact support/Z/header variant remain open"
 )
 
 LED_MANUFACTURER="Vishay"

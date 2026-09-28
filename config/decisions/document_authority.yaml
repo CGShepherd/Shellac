@@ -50,6 +50,7 @@ pre_spice_assurance_evidence:
   - docs/design_pack/AE-075C_Control_Hardware_and_Vertical_Stack_Reconciliation_Rev_A0.md
   - docs/design_pack/AE-075D_B03_Control_Z_Stack_and_EQ_Mezzanine_Discriminator_Rev_A0.md
   - docs/design_pack/AE-075E_B03_Shared_CK_Local_Control_PCB_Ownership_Rev_A0.md
+  - docs/design_pack/AE-075F_B03_Control_Module_Partition_and_Serviceable_Harness_Architecture_Rev_A0.md
 historical_state_evidence:
   - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
   - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md
