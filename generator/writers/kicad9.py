@@ -30,6 +30,7 @@ PIN_COUNTS = {
     "Device:C": 2,
     "Device:D": 2,
     "Device:Ferrite_Bead": 2,
+    "Connector_Generic:Conn_01x02": 2,
     "Connector_Generic:Conn_01x03": 3,
     "Connector_Generic:Conn_01x05": 5,
     "Connector_Generic:Conn_01x06": 6,
@@ -262,6 +263,7 @@ def embedded_standard_symbol_ids():
         "Device:C",
         "Device:D",
         "Device:Ferrite_Bead",
+        "Connector_Generic:Conn_01x02",
         "Connector_Generic:Conn_01x03",
         "Connector_Generic:Conn_01x05",
         "Connector_Generic:Conn_01x06",
@@ -375,6 +377,15 @@ def local_symbol_library():
         (rectangle (start -1.27 -1.27) (end 1.27 1.27) (stroke (width 0.254) (type solid)) (fill (type none)))
         (pin passive line (at -2.54 0 0) (length 1.27) (name "1" {eff(1.0)}) (number "1" {eff(1.0)}))
         (pin passive line (at 2.54 0 180) (length 1.27) (name "2" {eff(1.0)}) (number "2" {eff(1.0)}))
+      )
+    )
+    (symbol "Connector_Generic:Conn_01x02" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)
+      (property "Reference" "J" (id 0) (at 2.54 -3.81 0) {eff()})
+      (property "Value" "Conn_01x02" (id 1) (at 2.54 3.81 0) {eff()})
+      (symbol "Conn_01x02_0_1"
+        (rectangle (start -2.54 -2.54) (end 2.54 2.54) (stroke (width 0.254) (type solid)) (fill (type none)))
+        (pin passive line (at -5.08 -1.27 0) (length 2.54) (name "1" {eff(1.0)}) (number "1" {eff(1.0)}))
+        (pin passive line (at -5.08 1.27 0) (length 2.54) (name "2" {eff(1.0)}) (number "2" {eff(1.0)}))
       )
     )
     (symbol "Connector_Generic:Conn_01x03" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)

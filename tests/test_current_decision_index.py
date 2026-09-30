@@ -75,6 +75,7 @@ def test_pre_spice_assurance_chain_contains_required_records():
     assert "  AE-075D:" in text
     assert "  AE-075E:" in text
     assert "  AE-075F:" in text
+    assert "  AE-075G:" in text
 
 def test_live_routing_hold_authority_is_registered_and_fail_closed():
     decisions = yaml.safe_load(INDEX.read_text(encoding="utf-8"))
@@ -158,9 +159,16 @@ def test_current_control_hardware_and_b03_architecture_are_coherent():
     assert all("REG-08 mechanical registration" in part.pcb_mounting for part in eq_parts)
 
     hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    assert hold["authority"] == "AE-075F"
-    assert hold["previous_authority"] == "AE-075E"
-    assert hold["baseline_commit"] == "b2229860369c6be87b8d411ef6be8ba25f7747f9"
+    assert hold["authority"] == "AE-075G"
+    assert hold["previous_authority"] == "AE-075F"
+    assert hold["baseline_commit"] == "2d635647cd3ee6e4e1886cbfcbfffe43f3453116"
+
+    s01 = next(
+        x for x in hold["pre_run08_prerequisites"]
+        if x["id"] == "AE071-S01"
+    )
+    assert s01["status"] == "RESOLVED"
+    assert s01["resolved_by"] == "AE-075G"
 
     b03 = next(x for x in hold["routing_blockers"] if x["id"] == "AE071-B03")
     assert b03["eq_control_ownership"] == "TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
@@ -179,6 +187,16 @@ def test_current_control_hardware_and_b03_architecture_are_coherent():
     bom = yaml.safe_load(
         Path("config/bom/shellac_bom.yaml").read_text(encoding="utf-8")
     )
+
+    output_header = next(
+        x for x in bom["items"]
+        if x["id"] == "BOM-SCH108-OUTPUT-HARNESS-PCB"
+    )
+    assert output_header["status"] == "SELECTED_NATIVE_F8_VALIDATED_PLACEMENT_RECONCILIATION_OPEN"
+    assert output_header["native_validation"] == "PASS"
+    assert output_header["placement_status"] == "PROVISIONAL_POST_F8_MANUAL_PLACEMENT_RECONCILIATION_OPEN"
+    assert output_header["authority_reconciled_by"] == "AE-075G"
+
     for item_id in ("BOM-CTRL-BASS", "BOM-CTRL-TREBLE"):
         item = next(x for x in bom["items"] if x["id"] == item_id)
         assert item["installed_panel_to_pcb_mm"] == 12.3

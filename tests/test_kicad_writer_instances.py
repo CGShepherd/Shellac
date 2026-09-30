@@ -87,8 +87,8 @@ def test_writer_embeds_every_standard_symbol_used_by_shellac():
     from generator.writers.kicad9 import embedded_standard_symbol_ids, local_symbol_library
     expected = {
         "Device:R", "Device:C", "Device:D", "Device:Ferrite_Bead",
-        "Connector_Generic:Conn_01x03", "Connector_Generic:Conn_01x05",
-        "Connector_Generic:Conn_01x06",
+        "Connector_Generic:Conn_01x02", "Connector_Generic:Conn_01x03",
+        "Connector_Generic:Conn_01x05", "Connector_Generic:Conn_01x06",
     }
     assert embedded_standard_symbol_ids() == expected
     library = local_symbol_library()

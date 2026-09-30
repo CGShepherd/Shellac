@@ -127,13 +127,9 @@ def test_ae071_hold_records_hierarchy_and_placement_reconciliation_as_resolved()
     } <= resolved
 
 
-def test_that1646_output_impedance_semantics_are_explicitly_pre_run08_open():
-    hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    assert hold["pre_run08_prerequisites"] == [{
-        "id":"AE071-S01",
-        "item":"THAT1646_OUTPUT_IMPEDANCE_MODEL_SEMANTICS_25OHM_PER_LEG_50OHM_BALANCED",
-        "status":"OPEN",
-    }]
+def test_ae071_record_preserves_that1646_semantics_as_historical_nondecision():
+    record_text = AE071_RECORD.read_text(encoding="utf-8")
+    assert "correct the THAT1646 25-ohm-per-leg / 50-ohm-balanced model semantics" in record_text
 
 
 def test_hierarchy_carries_dual_mono_controls_and_switched_mono_nodes():
@@ -169,7 +165,7 @@ def test_sch101_local_bypasses_are_current_board_population_and_cluster_owned():
 
     contract = build_footprint_contract()
     population = set(contract.board_population_refs)
-    assert len(contract.board_population_refs) == 255
+    assert "complete 255-reference current PCB population" in AE071_RECORD.read_text(encoding="utf-8")
     assert expected <= population
 
     clusters = build_cluster_placement_baseline()

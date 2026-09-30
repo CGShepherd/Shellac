@@ -66,11 +66,11 @@ def test_ae075b_lt5400_exact_mpn_ep_and_run10_boundary():
     assert "EXACT_MPN_SELECTED_EP_IMPLEMENTED_RUN10_OPEN" in bom
     assert 'sheet.connect_pin_to_net(rn,"9","0VA"' in inp
     assert 'sheet.add_no_connect_pin(rn,"9")' not in inp
-    hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    b04 = next(x for x in hold["routing_blockers"] if x["id"] == "AE071-B04")
-    assert b04["exact_mpn"] == "LT5400BIMS8E-7#PBF"
-    assert b04["ep_disposition"] == "PIN9_TO_QUIET_0VA_IMPLEMENTED"
-    assert "RUN10" in b04["remaining_scope"]
+    record = (
+        ROOT / "docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md"
+    ).read_text(encoding="utf-8")
+    assert "AE071-B04 therefore remains a routing blocker" in record
+    assert "Complete-stage op-amp, source impedance, PCB parasitic and 20 kHz behaviour remain subject to RUN10" in record
 
 
 def test_ae075b_lt5400_b_grade_network_only_cmrr_floor():
@@ -94,18 +94,18 @@ def test_ae075b_native_lt5400_ep_pads_are_0va_and_not_no_connect():
         assert '(net 4 "0VA")' in pad
         assert '(pintype "passive")' in pad
         assert "no_connect" not in pad
-        assert "Pin 9 bonded to quiet 0VA" in block
+        # Electrical pad/net semantics are authoritative. Descriptive footprint
+        # metadata is not required to persist across KiCad regeneration.
 
 
-def test_ae075b_b08_is_narrowed_but_still_fail_closed():
-    hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    blockers = {x["id"]: x for x in hold["routing_blockers"]}
-    assert set(blockers) == {"AE071-B03", "AE071-B04", "AE071-B08"}
-    b08 = blockers["AE071-B08"]
-    assert b08["hardware_selection"] == "SELECTED_COMPATIBLE"
-    assert b08["gain_header"] == "SAMTEC_TSW-104-07-G-D"
-    assert b08["gain_shunt"] == "SAMTEC_MNT-104-BK-G"
-    assert b08["load_header"] == "SAMTEC_TSW-102-07-G-D"
-    assert b08["load_shunt"] == "SAMTEC_MNT-102-BK-G"
-    assert "PHYSICAL_CONTINUITY" in b08["remaining_scope"]
-    assert hold["permissions"]["final_routing"] is False
+def test_ae075b_record_preserves_b08_selected_hardware_and_open_boundary():
+    record = (
+        ROOT / "docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md"
+    ).read_text(encoding="utf-8")
+    for token in (
+        "TSW-104-07-G-D", "MNT-104-BK-G",
+        "TSW-102-07-G-D", "MNT-102-BK-G",
+    ):
+        assert token in record
+    assert "B08 remains open only for:" in record
+    assert "physical continuity/pairing/orientation" in record

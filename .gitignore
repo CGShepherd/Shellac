@@ -58,6 +58,12 @@ simulation/results/run07_end_to_end/*
 !simulation/results/run07_end_to_end/ae070_output_phase_correlation.json
 !simulation/results/run07_end_to_end/ae070_model_composition_discriminator.json
 
+# AE-075G controlled PRE90 application-specific output evidence
+!simulation/results/ae075g_pre90_output/
+simulation/results/ae075g_pre90_output/*
+!simulation/results/ae075g_pre90_output/ae075g_pre90_output.json
+!simulation/results/ae075g_pre90_output/ae075g_pre90_output.md
+
 # Local simulator/vendor caches and transient qualification work
 .vendor_models/
 .shellac_reconciliation/

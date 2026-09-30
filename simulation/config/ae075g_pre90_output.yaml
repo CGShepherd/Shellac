@@ -1,0 +1,25 @@
+schema_version: 1
+authority: AE-075G
+title: SCH108 PRE90 2k application-specific output-load discriminator
+historical_run06_authority: AE-069
+historical_run06_evidence_immutable: true
+application:
+  device: TOPPING_PRE90
+  balanced_input_load_ohm: 2000
+  reference_load_ohm: 100000
+  measured_input_impedance_source: https://stereophile.com/content/topping-pre90-line-preamplifier-measurements
+  published_input_sensitivity_vrms_at_0db: 9.3
+execution:
+  cable_capacitance_per_leg_pf: [100, 500, 2000]
+criteria:
+  insertion_loss_abs_db_max: 0.30
+  passband_peak_db_max: 0.10
+representative_shellac_outputs_vrms_unloaded:
+  nominal_5mV_default: 0.642
+  worst_default: 5.86
+  worst_high_gain: 9.32
+boundary:
+  historical_run06_normal_loads_unchanged: true
+  output_load_cable_stability_bench_gate_retained: true
+  dynamic_thd_bench_gate_retained: true
+  output_header_xy_provisional: true

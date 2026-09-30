@@ -1,8 +1,8 @@
 schema_version: 1
 project: Shellac
-authority: AE-075F
-previous_authority: AE-075E
-baseline_commit: b2229860369c6be87b8d411ef6be8ba25f7747f9
+authority: AE-075G
+previous_authority: AE-075F
+baseline_commit: 2d635647cd3ee6e4e1886cbfcbfffe43f3453116
 status: ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS
 historical_release:
   record: config/release/sr041_routing_release.yaml
@@ -64,6 +64,30 @@ resolved_after_ae075b:
   local_0va_connection: NONE
   physical_continuity_check: RETAINED_FOR_MANUFACTURING_AND_COMMISSIONING
 
+resolved_after_ae075g:
+- id: AE075G-O01
+  item: SCH108_OUTPUT_INTERFACE_NATIVE_HEADER_MIGRATION
+  resolution: AE075G_H801_H802_5055780221_NATIVE_F8_PAD_NET_MAPPING_VALIDATED
+  pcb_header: MOLEX_5055780221
+  housing: MOLEX_5055700201
+  crimp_terminal: MOLEX_5055721200
+  pin_contract: PIN1_HOT_POS_PIN2_COLD_NEG
+  local_0va_connection: NONE
+  placement_status: PROVISIONAL_POST_F8_MANUAL_PLACEMENT_RECONCILIATION_OPEN
+- id: AE071-S01
+  item: THAT1646_OUTPUT_IMPEDANCE_MODEL_SEMANTICS_25OHM_PER_LEG_50OHM_BALANCED
+  resolution: AE075G_GENERATOR_MODEL_SEMANTICS_CORRECTED_AND_QUALIFIED
+  per_leg_ohm: 25.0
+  differential_ohm: 50.0
+- id: AE075G-PRE90
+  item: TOPPING_PRE90_2K_BALANCED_INPUT_APPLICATION_DISCRIMINATOR
+  resolution: LOAD_COMPATIBILITY_PASS_HIGH_LEVEL_MARGIN_REQUIRES_BENCH_CONFIRMATION
+  load_ohm: 2000
+  worst_insertion_loss_db_vs_100k: 0.2092393
+  worst_high_gain_loaded_vrms: 9.098397
+  margin_to_published_9p3vrms_input_sensitivity_db: 0.1904
+  run06_bench_gates_retained: true
+
 routing_blockers:
 - id: AE071-B03
   item: PCB_MOUNTED_CONTROL_FOOTPRINTS_AND_KEEP_OUTS
@@ -106,7 +130,9 @@ routing_blockers:
 pre_run08_prerequisites:
 - id: AE071-S01
   item: THAT1646_OUTPUT_IMPEDANCE_MODEL_SEMANTICS_25OHM_PER_LEG_50OHM_BALANCED
-  status: OPEN
+  status: RESOLVED
+  resolved_by: AE-075G
+  resolution: OUTPUT_IMPEDANCE_PER_LEG_25OHM_DIFFERENTIAL_50OHM
 system_release_prerequisites:
 - id: AE071-SYS01
   item: EXTERNAL_PSU_ELECTRICAL_SCHEMATIC_SETPOINT_DROPOUT_STARTUP_AND_FAULT_QUALIFICATION

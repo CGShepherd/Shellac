@@ -15,7 +15,8 @@ SUPPLY_RAIL_V = 18.0
 DIFFERENTIAL_GAIN_LINEAR = 2.0
 DIFFERENTIAL_GAIN_DB = 20.0 * log10(DIFFERENTIAL_GAIN_LINEAR)
 INPUT_IMPEDANCE_TYP_OHM = 5_000.0
-OUTPUT_IMPEDANCE_PER_LEG_OHM = 50.0
+OUTPUT_IMPEDANCE_PER_LEG_OHM = 25.0
+OUTPUT_IMPEDANCE_DIFFERENTIAL_OHM = 50.0
 DATASHEET_MAX_OUTPUT_RMS_V = 18.0
 DESIGN_OUTPUT_RMS_V = 10.0
 NOMINAL_INPUT_RMS_V = 0.321
@@ -45,6 +46,8 @@ def output_budget(input_rms_v: float) -> OutputBudget:
 def validate_output_driver() -> None:
     assert DESIGN_STATUS is OutputDriverStatus.ELECTRICALLY_CLOSED
     assert DIFFERENTIAL_GAIN_LINEAR == 2.0
+    assert OUTPUT_IMPEDANCE_PER_LEG_OHM == 25.0
+    assert OUTPUT_IMPEDANCE_DIFFERENTIAL_OHM == 50.0
     nominal = output_budget(NOMINAL_INPUT_RMS_V)
     severe = output_budget(SEVERE_INPUT_RMS_V)
     assert abs(nominal.differential_output_rms_v - 0.642) < 1e-12

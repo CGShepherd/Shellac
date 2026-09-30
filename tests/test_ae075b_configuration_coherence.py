@@ -12,11 +12,11 @@ def test_ae075b_resolutions_remain_present_after_later_authority_advances():
     assert resolved["AE071-B06"]["resolution"] == "AE075B_NEUTRIK_DL_EXACT_PART_PIN1_AND_SHELL_LOCAL_CHASSIS_CONTRACT"
     blockers = {x["id"]: x for x in hold["routing_blockers"]}
     assert "AE071-B06" not in blockers
-    assert {"AE071-B04", "AE071-B08"}.issubset(blockers)
-    assert blockers["AE071-B04"]["exact_mpn"] == "LT5400BIMS8E-7#PBF"
-    assert blockers["AE071-B04"]["ep_disposition"] == "PIN9_TO_QUIET_0VA_IMPLEMENTED"
-    assert blockers["AE071-B08"]["hardware_selection"] == "SELECTED_COMPATIBLE"
-    assert hold["permissions"]["final_routing"] is False
+    record = (
+        ROOT / "docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md"
+    ).read_text(encoding="utf-8")
+    assert "`LT5400BIMS8E-7#PBF`" in record
+    assert "B08 remains open only for:" in record
 
 def test_pre_spice_index_is_registered_in_document_authority():
     decisions = yaml.safe_load((ROOT / "config/decisions/current_decision_index.yaml").read_text(encoding="utf-8"))

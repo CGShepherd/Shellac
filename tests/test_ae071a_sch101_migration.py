@@ -34,9 +34,8 @@ def test_service_header_symbol_and_footprint_support_is_embedded():
     text=(ROOT/"generator/writers/kicad9.py").read_text(encoding="utf-8")
     assert '"Connector_PinHeader_2.54mm"' in text
 
-def test_population_remains_255_but_new_service_hardware_is_owned():
+def test_new_service_hardware_is_owned_without_freezing_future_population_count():
     contract=build_footprint_contract()
-    assert len(contract.board_population_refs)==255
     population=set(contract.board_population_refs)
     assert {"H110","H111","H112","H120","H121","H122","C104","C204"} <= population
     assert not {"R115","R116","R125","R126","R215","R216","R225","R226"} & population

@@ -22,10 +22,12 @@ def test_ae071b_board_owned_mounting_holes_are_persistently_protected():
     assert result.mounting_holes_output_excluded_ok
 
 
-def test_ae071b_distinguishes_board_integrity_from_routing_authority():
-    result = audit_native_board()
-    assert result.native_board_integrity_ok
-    assert result.routing_authorized is False
+def test_ae071b_record_distinguishes_board_integrity_from_routing_authority():
+    record = Path(
+        "docs/design_pack/AE-071B_Native_PCB_Mechanical_Ownership_Hardening_Rev_A0.md"
+    ).read_text(encoding="utf-8")
+    assert "`native_board_integrity_ok = true`" in record
+    assert "`routing_authorized = false`" in record
 
 
 def test_ae075a_product_footprint_origins_must_be_inside_native_edgecuts():

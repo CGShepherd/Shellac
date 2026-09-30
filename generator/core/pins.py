@@ -117,6 +117,10 @@ SYMBOL_PIN_CONTRACTS: dict[str, dict[str, PinContract]] = {
         "T3400": PinContract("4", Point(15.24, 2.54)),
         "T5800": PinContract("5", Point(15.24, 7.62)),
     },
+    "Connector_Generic:Conn_01x02": {
+        "1": PinContract("1", Point(-5.08, -1.27)),
+        "2": PinContract("2", Point(-5.08, 1.27)),
+    },
     "Connector_Generic:Conn_01x03": {
         "1": PinContract("1", Point(-5.08, -2.54)),
         "2": PinContract("2", Point(-5.08, 0.0)),

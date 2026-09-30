@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "authority": "AE-075G",
+  "status": "LOAD_COMPATIBILITY_PASS_HIGH_LEVEL_MARGIN_REQUIRES_BENCH_CONFIRMATION",
+  "historical_run06_modified": false,
+  "application": {
+    "device": "TOPPING_PRE90",
+    "balanced_input_load_ohm": 2000,
+    "reference_load_ohm": 100000,
+    "measured_input_impedance_source": "https://stereophile.com/content/topping-pre90-line-preamplifier-measurements",
+    "published_input_sensitivity_vrms_at_0db": 9.3
+  },
+  "headline": {
+    "worst_abs_insertion_loss_db_vs_100k": 0.20923929987000142,
+    "worst_passband_peak_db": 0.00040860659999965483,
+    "insertion_loss_pass": true,
+    "passband_peak_pass": true,
+    "dc_absolute_pass": true,
+    "hf_small_signal_evidence_complete": true,
+    "severe_3p21vrms_headroom_pass": true,
+    "quasistatic_distortion_estimate_recorded": true,
+    "load_compatibility_pass": true
+  },
+  "ferrites": {
+    "LOW_60OHM_100MHZ": {
+      "audio_ac": {
+        "100": {
+          "frequency": {
+            "20": {
+              "ratio": 0.9762215979335808,
+              "insertion_db_vs_100k": -0.20903176477999888
+            },
+            "1000": {
+              "ratio": 0.9762228064189625,
+              "insertion_db_vs_100k": -0.20902101233999923
+            },
+            "20000": {
+              "ratio": 0.9762226558139566,
+              "insertion_db_vs_100k": -0.20902235233999983
+            }
+          },
+          "passband_peak_db_rel_1khz": 0.00040860659999965483
+        },
+        "500": {
+          "frequency": {
+            "20": {
+              "ratio": 0.9762215979583068,
+              "insertion_db_vs_100k": -0.2090317645600004
+            },
+            "1000": {
+              "ratio": 0.976222806204294,
+              "insertion_db_vs_100k": -0.20902101425000066
+            },
+            "20000": {
+              "ratio": 0.9762225595852375,
+              "insertion_db_vs_100k": -0.2090232085299995
+            }
+          },
+          "passband_peak_db_rel_1khz": 0.000408476219999861
+        },
+        "2000": {
+          "frequency": {
+            "20": {
+              "ratio": 0.9762215980493442,
+              "insertion_db_vs_100k": -0.20903176374999902
+            },
+            "1000": {
+              "ratio": 0.9762228069876651,
+              "insertion_db_vs_100k": -0.20902100727999923
+            },
+            "20000": {
+              "ratio": 0.9762228363792461,
+              "insertion_db_vs_100k": -0.20902074577
+            }
+          },
+          "passband_peak_db_rel_1khz": 0.00040844529999863315
+        }
+      },
+      "dc": {
+        "differential_offset_v": -0.00388061138801,
+        "common_mode_offset_v": -0.000584976165555,
+        "diff_preferred_pass": true,
+        "diff_absolute_pass": true,
+        "cm_preferred_pass": true,
+        "cm_absolute_pass": true
+      },
+      "hf_small_signal": {
+        "method": "OFFICIAL_MURATA_EXACT_TOPOLOGY_SMALL_SIGNAL_AC_EVIDENCE",
+        "completed": true,
+        "murata_part": "BLM21PG600SN1",
+        "murata_model_sha256": "fb80b04d43a5765b63a7b47c7bfca3ad2ec69d77e127020db1a193cb1d3cfaa4",
+        "declared_model_domain": "1MHz-3GHz / 25C / 0A DC bias / small signal",
+        "load_ohm": 2000.0,
+        "high_cable_pf_per_leg": 2000.0,
+        "existing_rfi_pf_per_leg": 100.0,
+        "gain_linear": {
+          "1MHz": 1.9644463174412596,
+          "3MHz": 1.589606183404885,
+          "10MHz": 0.16580934731075633,
+          "30MHz": 0.007351219812495714,
+          "100MHz": 7.529311043964903e-05,
+          "max_1MHz_to_100MHz": 1.9705504949194468
+        },
+        "max_relative_to_1mhz_db": 0.026948054580000394,
+        "formal_pass_threshold_applied": false,
+        "note": "Bounded high-frequency small-signal evidence inside the Murata model domain. Not a substitute for the unreproducible nonlinear transient solve or prototype load/cable stability bench testing."
+      },
+      "quasistatic": {
+        "method": "QUASI_STATIC_DC_TRANSFER",
+        "load_ohm": 2000.0,
+        "ferrite_dcr_ohm": 0.02,
+        "headroom_sweep": [
+          {
+            "input_rms_v": 0.321,
+            "positive_peak_output_v": 0.879872601633,
+            "negative_peak_output_v": -0.887633841638,
+            "output_rms_v_from_symmetric_peak_transfer": 0.6249078959139198,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467535698252953,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 3.21,
+            "positive_peak_output_v": 8.83365218432,
+            "negative_peak_output_v": -8.84141318591,
+            "output_rms_v_from_symmetric_peak_transfer": 6.249079290602574,
+            "gain_linear_from_symmetric_peak_transfer": 1.946753673084914,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 5.0,
+            "positive_peak_output_v": 13.7617463266,
+            "negative_peak_output_v": -13.7695075411,
+            "output_rms_v_from_symmetric_peak_transfer": 9.733768152209517,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467536304419035,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          }
+        ],
+        "severe_3p21vrms_output_rms_v": 6.249079290602574,
+        "severe_margin_to_10vrms_design_ceiling_db": 4.083679296209526,
+        "severe_minimum_margin_pass": true,
+        "severe_preferred_margin_pass": false,
+        "first_gt_1pct_compression_input_rms_v": null,
+        "distortion_estimate": {
+          "method": "QUASI_STATIC_TRANSFER_DERIVED_HARMONIC_ESTIMATE",
+          "input_rms_v": 5.0,
+          "frequency_status": "NOT_A_DYNAMIC_1KHZ_TRANSIENT_RESULT",
+          "sample_count": 64,
+          "dc_v": -0.003880640714625187,
+          "harmonic_peak_v": {
+            "1": 13.76562681775047,
+            "2": 4.212822035665217e-09,
+            "3": 4.4854473520844484e-08,
+            "4": 2.8622797930422112e-08,
+            "5": 2.6124982524526866e-09,
+            "6": 2.7870536649377e-08,
+            "7": 3.63771135089569e-09,
+            "8": 2.0816247447985603e-08,
+            "9": 4.879684906838879e-08,
+            "10": 1.608890268928226e-08
+          },
+          "fundamental_rms_v": 9.73376807011475,
+          "thd_percent_h2_to_hmax": 5.954678940007259e-07,
+          "bench_correlation_required": true
+        },
+        "model_limitation_note": "Controlled THAT1646 macro reproduces periodic large-signal timeout in the minimal device circuit. Quasi-static result is valid as nonlinear transfer/headroom evidence and a distortion estimate only."
+      }
+    },
+    "HIGH_220OHM_100MHZ": {
+      "audio_ac": {
+        "100": {
+          "frequency": {
+            "20": {
+              "ratio": 0.9761982729979379,
+              "insertion_db_vs_100k": -0.20923929987000142
+            },
+            "1000": {
+              "ratio": 0.9761994813207024,
+              "insertion_db_vs_100k": -0.20922854861999973
+            },
+            "20000": {
+              "ratio": 0.9761992887194887,
+              "insertion_db_vs_100k": -0.20923026232000044
+            }
+          },
+          "passband_peak_db_rel_1khz": 0.0004085892599992164
+        },
+        "500": {
+          "frequency": {
+            "20": {
+              "ratio": 0.9761982730215398,
+              "insertion_db_vs_100k": -0.20923929965999952
+            },
+            "1000": {
+              "ratio": 0.9761994809194733,
+              "insertion_db_vs_100k": -0.20922855218999978
+            },
+            "20000": {
+              "ratio": 0.9761991187635879,
+              "insertion_db_vs_100k": -0.20923177453000025
+            }
+          },
+          "passband_peak_db_rel_1khz": 0.0004084257100017522
+        },
+        "2000": {
+          "frequency": {
+            "20": {
+              "ratio": 0.9761982731193181,
+              "insertion_db_vs_100k": -0.20923929879000114
+            },
+            "1000": {
+              "ratio": 0.9761994810194997,
+              "insertion_db_vs_100k": -0.20922855129999876
+            },
+            "20000": {
+              "ratio": 0.9761991209765291,
+              "insertion_db_vs_100k": -0.20923175483999812
+            }
+          },
+          "passband_peak_db_rel_1khz": 0.0004082709399983864
+        }
+      },
+      "dc": {
+        "differential_offset_v": -0.00388051685877,
+        "common_mode_offset_v": -0.000584976165555,
+        "diff_preferred_pass": true,
+        "diff_absolute_pass": true,
+        "cm_preferred_pass": true,
+        "cm_absolute_pass": true
+      },
+      "hf_small_signal": {
+        "method": "OFFICIAL_MURATA_EXACT_TOPOLOGY_SMALL_SIGNAL_AC_EVIDENCE",
+        "completed": true,
+        "murata_part": "BLM21PG221SN1",
+        "murata_model_sha256": "dadfd9eaa6e424071efbcacbe186fb921c0986ca6e26b6da6b9536de9776256a",
+        "declared_model_domain": "1MHz-3GHz / 25C / 0A DC bias / small signal",
+        "load_ohm": 2000.0,
+        "high_cable_pf_per_leg": 2000.0,
+        "existing_rfi_pf_per_leg": 100.0,
+        "gain_linear": {
+          "1MHz": 2.1266806273988355,
+          "3MHz": 1.3885694149364318,
+          "10MHz": 0.08798060859100795,
+          "30MHz": 0.00367648307503323,
+          "100MHz": 3.8728077035904395e-05,
+          "max_1MHz_to_100MHz": 2.3236550955640745
+        },
+        "max_relative_to_1mhz_db": 0.769387808030001,
+        "formal_pass_threshold_applied": false,
+        "note": "Bounded high-frequency small-signal evidence inside the Murata model domain. Not a substitute for the unreproducible nonlinear transient solve or prototype load/cable stability bench testing."
+      },
+      "quasistatic": {
+        "method": "QUASI_STATIC_DC_TRANSFER",
+        "load_ohm": 2000.0,
+        "ferrite_dcr_ohm": 0.045,
+        "headroom_sweep": [
+          {
+            "input_rms_v": 0.321,
+            "positive_peak_output_v": 0.879851184434,
+            "negative_peak_output_v": -0.887612195017,
+            "output_rms_v_from_symmetric_peak_transfer": 0.6248926705543469,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467061387985884,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 3.21,
+            "positive_peak_output_v": 8.83343667178,
+            "negative_peak_output_v": -8.84119720545,
+            "output_rms_v_from_symmetric_peak_transfer": 6.248926734789407,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467061479094727,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 5.0,
+            "positive_peak_output_v": 13.7614107952,
+            "negative_peak_output_v": -13.7691717968,
+            "output_rms_v_from_symmetric_peak_transfer": 9.73353082040976,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467061640819519,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          }
+        ],
+        "severe_3p21vrms_output_rms_v": 6.248926734789407,
+        "severe_margin_to_10vrms_design_ceiling_db": 4.08389134330795,
+        "severe_minimum_margin_pass": true,
+        "severe_preferred_margin_pass": false,
+        "first_gt_1pct_compression_input_rms_v": null,
+        "distortion_estimate": {
+          "method": "QUASI_STATIC_TRANSFER_DERIVED_HARMONIC_ESTIMATE",
+          "input_rms_v": 5.0,
+          "frequency_status": "NOT_A_DYNAMIC_1KHZ_TRANSIENT_RESULT",
+          "sample_count": 64,
+          "dc_v": -0.0038805469437115346,
+          "harmonic_peak_v": {
+            "1": 13.76529110927275,
+            "2": 8.486153356412912e-09,
+            "3": 1.7015023509939253e-08,
+            "4": 7.292607807213303e-08,
+            "5": 2.5365423126505507e-08,
+            "6": 3.1314538254113006e-09,
+            "7": 3.182840204243865e-08,
+            "8": 8.597860472192576e-09,
+            "9": 3.636894637532031e-08,
+            "10": 1.1250801741636319e-08
+          },
+          "fundamental_rms_v": 9.733530688373653,
+          "thd_percent_h2_to_hmax": 6.841586742154841e-07,
+          "bench_correlation_required": true
+        },
+        "model_limitation_note": "Controlled THAT1646 macro reproduces periodic large-signal timeout in the minimal device circuit. Quasi-static result is valid as nonlinear transfer/headroom evidence and a distortion estimate only."
+      }
+    }
+  },
+  "loaded_representative_shellac_outputs_vrms": {
+    "nominal_5mV_default": 0.626735060955476,
+    "worst_default": 5.720665821182383,
+    "worst_high_gain": 9.098396835054574
+  },
+  "pre90_0db_sensitivity_margin_db": {
+    "nominal_5mV_default": 23.42797915547164,
+    "worst_default": 4.220727396486889,
+    "worst_high_gain": 0.19036146976907556
+  },
+  "high_gain_level_disposition": "MARGINAL_BENCH_CONFIRMATION_REQUIRED",
+  "bench_gates_retained": {
+    "historical_run06_normal_loads_unchanged": true,
+    "output_load_cable_stability_bench_gate_retained": true,
+    "dynamic_thd_bench_gate_retained": true,
+    "output_header_xy_provisional": true
+  },
+  "placement_disposition": "H801_H802_XY_PROVISIONAL_PENDING_MANUAL_PLACEMENT_RECONCILIATION"
+}

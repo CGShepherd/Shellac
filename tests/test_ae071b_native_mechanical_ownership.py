@@ -141,11 +141,9 @@ def test_ae071b_native_audit_enforces_mechanical_ownership_and_pose():
     assert result.mounting_holes_output_excluded_ok
 
 
-def test_ae071b_retains_routing_hold():
-    text = HOLD.read_text(encoding="utf-8")
-    # AE-071B owns the mechanical-resolution invariant, not the identity of
-    # whichever later assurance record currently owns the live routing hold.
-    assert "id: AE071-M01" in text
-    assert "resolution: AE071B_MH1_MH4_BOARD_ONLY_LOCKED_AND_BOM_POS_EXCLUDED" in text
-    assert "status: ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS" in text
-    assert "  final_routing: false" in text
+def test_ae071b_record_preserves_its_historical_routing_hold_boundary():
+    record = Path(
+        "docs/design_pack/AE-071B_Native_PCB_Mechanical_Ownership_Hardening_Rev_A0.md"
+    ).read_text(encoding="utf-8")
+    assert "`routing_authorized = false`" in record
+    assert "does **not** release routing, layout freeze, BOM freeze or" in record

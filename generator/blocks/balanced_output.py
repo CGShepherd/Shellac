@@ -78,9 +78,41 @@ def _xlr(ref: str, ch: str, at: Point) -> Component:
             "Pin 3": "COLD/-",
             "Shell/front-panel contact": "CHASSIS via explicit local bond",
             "Local 0VA": "NONE",
-            "Wiring": "Internal star-quad; no connector PCB",
+            "Wiring": "Short HOT/COLD pair via PCB header; pin 1 and shell bond locally to CHASSIS",
         },
         on_board=False,
+    )
+
+
+def _output_harness(ref: str, ch: str, at: Point) -> Component:
+    return Component(
+        ref=ref,
+        lib_id="Connector_Generic:Conn_01x02",
+        value=f"{ch} OUTPUT HARNESS",
+        at=at,
+        footprint=(
+            "ProjectShellac:"
+            "Molex_MicroLockPlus_5055780221_"
+            "1x02_P2.00mm_Horizontal"
+        ),
+        fields={
+            "Function":
+                "SCH108 protected balanced output to rear-panel XLR",
+            "Connector family": "Molex Micro-Lock Plus 2.00 mm",
+            "PCB header": "5055780221",
+            "Harness housing": "5055700201",
+            "Harness terminal": "5055721200",
+            "Wire":
+                "22-26 AWG; 24-26 AWG preferred; HOT/COLD twisted pair",
+            "Contact finish": "0.38 um Au mating interface",
+            "Pin 1": "HOT/+",
+            "Pin 2": "COLD/-",
+            "Shield/0VA":
+                "NONE; XLR pin 1 and shell bond locally to CHASSIS",
+            "Footprint authority":
+                "AE-075G Phase 1 exact-part source footprint; "
+                "native F8 validation pending",
+        },
     )
 
 
@@ -177,7 +209,7 @@ def _protection_leg(
     base: int,
     index: int,
     driver_pin: Point,
-    xlr_pin: Point,
+    endpoint_pin: Point,
     y: float,
     polarity: str,
 ):
@@ -271,9 +303,9 @@ def _protection_leg(
     _wire_path(
         sheet,
         branch_points[2],
-        Point(385.0, y),
-        Point(385.0, xlr_pin.y),
-        xlr_pin,
+        Point(372.0, y),
+        Point(372.0, endpoint_pin.y),
+        endpoint_pin,
     )
 
 
@@ -334,8 +366,13 @@ def _add_channel(
         function=f"{ch} OUT- to SNS- common-mode capacitor",
     )
 
-    xlr = sheet.add_component(_xlr(f"J{base}1", ch, Point(415.0, y)))
-    xlr_chassis = pin_position(xlr, "1")
+    harness = sheet.add_component(
+        _output_harness(f"H80{idx + 1}", ch, Point(385.0, y))
+    )
+    harness_pos = pin_position(harness, "1")
+    harness_neg = pin_position(harness, "2")
+
+    xlr = sheet.add_component(_xlr(f"J{base}1", ch, Point(430.0, y)))
     xlr_pos = pin_position(xlr, "2")
     xlr_neg = pin_position(xlr, "3")
     sheet.connect_pin_to_net(xlr, "1", "CHASSIS", stub_dx=-8.0)
@@ -346,7 +383,7 @@ def _add_channel(
         base=base,
         index=0,
         driver_pin=out_pos_pin,
-        xlr_pin=xlr_pos,
+        endpoint_pin=harness_pos,
         y=out_pos_pin.y,
         polarity="positive",
     )
@@ -356,9 +393,20 @@ def _add_channel(
         base=base,
         index=1,
         driver_pin=out_neg_pin,
-        xlr_pin=xlr_neg,
+        endpoint_pin=harness_neg,
         y=out_neg_pin.y,
         polarity="negative",
+    )
+
+    _wire_path(
+        sheet, harness_pos,
+        Point(405.0, harness_pos.y),
+        Point(405.0, xlr_pos.y), xlr_pos,
+    )
+    _wire_path(
+        sheet, harness_neg,
+        Point(410.0, harness_neg.y),
+        Point(410.0, xlr_neg.y), xlr_neg,
     )
 
     # Local driver decoupling is grouped beneath each active stage.

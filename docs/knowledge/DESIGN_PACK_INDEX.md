@@ -101,7 +101,9 @@ AE-073 executes the long-settle RUN01 discriminator and confirms that the explor
 
 AE-074 migrates the AE-067 DR-039 branch-local topology into the live product generator and generated schematic source while preserving C30060/R30060/C35060/R35060 physical identities. The common SCH103 pre-split block is removed; the same 1 uF / 330 kOhm networks exist only in the SCH107 DIRECT/BYPASS branches, while FILTER uses its intrinsic high-pass capacitors. AE-074 closes native-PCB F8 reference relink, net and metadata reconciliation and resolves AE071-B02; RUN09/RUN10/RUN12 and bench correlation remain open.
 
-AE-042 through AE-075F, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance narrative, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-075G closes the SCH108 balanced-output connector electrical/native migration with exact Molex 5055780221 H801/H802 headers, HOT/COLD-only harnesses and no PCB-to-panel 0VA conductor. It corrects the live THAT1646 source-impedance semantics to 25 Ohm per leg / 50 Ohm differential, resolving AE071-S01. A separate application-specific PRE90 2 kOhm discriminator records 0.209239 dB worst insertion loss and negligible audio-band peaking; the worst high-gain representative state is about 9.098 V rms, only 0.190 dB below the published 9.3 V rms input-sensitivity figure, so high-level hardware/operating correlation remains mandatory. Historical AE-069 RUN06 evidence and its bench gates are unchanged. H801/H802 imported XY is explicitly provisional pending manual placement reconciliation.
+
+AE-042 through AE-075G, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance narrative, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048, AE-049 and AE-050 remain respectively the qualification, numerical-acceptance and execution authorities for the simulation campaign. AE-053 defines the toolchain architecture used to execute those authorities and does not replace them.
 
