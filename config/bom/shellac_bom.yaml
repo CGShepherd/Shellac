@@ -10,318 +10,345 @@ selection_policy:
   prefer_commonality: true
   premium_part_requires_material_benefit: true
 items:
-  - {id: BOM-ENC-AUDIO, function: audio_enclosure, manufacturer: METCASE, mpn: M5502119, status: FROZEN, decision: DEC-005}
-  - {id: BOM-ENC-PSU, function: psu_enclosure, manufacturer: METCASE, mpn: M5502119, status: FROZEN, decision: DEC-006}
-  - {id: BOM-PSU-MAINS, function: filtered_mains_entry_fuse_switch, manufacturer: SCHURTER, mpn: KMF1.1121.11, status: FROZEN, decision: DEC-007}
-  - id: BOM-CTRL-BASS
-    function: bass_characteristic_selector_dual_mono
-    manufacturer: NKK
-    mpn: NR01105ANG13-2C
-    quantity: 2
-    requirement: independent_L_R_5_position_BBM_gold
-    configured_positions: 5
-    status: EXACT_PART_SELECTED_B03_PHYSICAL_IMPLEMENTATION_OPEN
-    authority_reconciled_by: AE-075C
-    knob_colour: red
-    knob: AT3009_flanged
-    mounting: pcb_through_hole_bracket_no_threaded_bushing_flange_beneath_panel
-    depth_behind_panel_mm: 10.5
-    installed_panel_to_pcb_mm: 12.3
-    physical_ownership: CHANNEL_LOCAL_EQ_MEZZANINE_SELECTED
-    physical_architecture_reconciled_by: AE-075D
-    control_module_partition_reconciled_by: AE-075F
-    interconnect_family: MOLEX_MICRO_LOCK_PLUS_2MM
-    note: Exact five-position non-shorting gold-contact NR01 configuration selected. AE-075D selects channel-local EQ mezzanine ownership. AE-075F selects one EQ module per channel and the detachable Micro-Lock Plus 2.00 mm harness family; EQ passive partition, exact circuit count/header variant, support/Z, footprint/pin map and RUN10 parasitic qualification remain under B03.
-  - id: BOM-CTRL-TREBLE
-    function: treble_characteristic_selector_dual_mono
-    manufacturer: NKK
-    mpn: NR01105ANG13-2A
-    quantity: 2
-    requirement: independent_L_R_5_position_BBM_gold
-    configured_positions: 5
-    status: EXACT_PART_SELECTED_B03_PHYSICAL_IMPLEMENTATION_OPEN
-    authority_reconciled_by: AE-075C
-    knob_colour: black
-    knob: AT3009_flanged
-    mounting: pcb_through_hole_bracket_no_threaded_bushing_flange_beneath_panel
-    depth_behind_panel_mm: 10.5
-    installed_panel_to_pcb_mm: 12.3
-    physical_ownership: CHANNEL_LOCAL_EQ_MEZZANINE_SELECTED
-    physical_architecture_reconciled_by: AE-075D
-    control_module_partition_reconciled_by: AE-075F
-    interconnect_family: MOLEX_MICRO_LOCK_PLUS_2MM
-    note: Exact five-position non-shorting gold-contact NR01 configuration selected. AE-075D selects channel-local EQ mezzanine ownership. AE-075F selects one EQ module per channel and the detachable Micro-Lock Plus 2.00 mm harness family; EQ passive partition, exact circuit count/header variant, support/Z, footprint/pin map and RUN10 parasitic qualification remain under B03.
-  - id: BOM-CTRL-CHANNEL
-    function: channel_mode_selector
-    manufacturer: C&K
-    mpn: A30403RNCB
-    fallback_manufacturer: TE/Alcoswitch
-    fallback_mpn: MRJE3404
-    quantity: 1
-    requirement: 3P4T_4_position_BBM_non_shorting_low_level_gold
-    configured_positions: 4
-    status: PREFERRED_PART_SELECTED_PROCUREMENT_PARTIAL
-    authority_reconciled_by: AE-041-A1
-    knob_manufacturer: TE/Alcoswitch
-    knob_mpn: KN900B1/4
-    mounting: pcb_through_hole_plus_3/8-32_threaded_top_cover_bushing
-    physical_ownership: DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED
-    physical_architecture_reconciled_by: AE-075E
-    physical_partition: DOWNSTREAM_MATRIX_MUTE_LOCAL_PCB
-    control_module_partition_reconciled_by: AE-075F
-    interconnect_family: MOLEX_MICRO_LOCK_PLUS_2MM
-    downstream_module_external_net_count: 7
-    note: CCW to CW DUAL L, STEREO, L+R, DUAL R. Exact production-switch detent-to-terminal mapping requires continuity confirmation before manufacturing release. AE-075F combines Matrix and Mute on one downstream local PCB so Matrix outputs feed Mute locally; detachable Micro-Lock Plus harness family selected, while exact support/Z/header variant and footprint remain B03-open.
-  - id: BOM-MATRIX-SUM-R
-    function: switched_mono_averaging_resistors
-    manufacturer: OPEN
-    mpn: OPEN
-    quantity: 2
-    resistance_ohm: 4700
-    tolerance: 0.1%
-    status: VALUE_FROZEN_PART_OPEN
-    authority_reconciled_by: AE-041-A1
-    placement: SCH104_OPA1656_outputs_before_100R_isolation
-    topology: left_leg_to_MONO_AVG_permanent_right_leg_to_MONO_R_LEG_switched_only_in_L+R
-  - id: BOM-CTRL-RUMBLE
-    function: rumble_filter_bypass
-    manufacturer: C&K
-    mpn: 7201SYCBE
-    requirement: stereo_DPDT_BBM
-    status: SELECTED
-    decision: DEC-027
-    mounting: pcb_through_hole_plus_1/4-40_threaded_top_cover_bushing
-    physical_ownership: DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED
-    physical_architecture_reconciled_by: AE-075E
-    physical_partition: RUMBLE_LOCAL_PCB
-    control_module_partition_reconciled_by: AE-075F
-    interconnect_family: MOLEX_MICRO_LOCK_PLUS_2MM
-    external_net_count: 6
-  - id: BOM-CTRL-MUTE
-    function: output_mute_command
-    manufacturer: C&K
-    mpn: 7201SYCBE
-    requirement: stereo_DPDT_BBM
-    status: SELECTED
-    decision: DEC-027
-    mounting: pcb_through_hole_plus_1/4-40_threaded_top_cover_bushing
-    physical_ownership: DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED
-    physical_architecture_reconciled_by: AE-075E
-    physical_partition: DOWNSTREAM_MATRIX_MUTE_LOCAL_PCB
-    control_module_partition_reconciled_by: AE-075F
-    interconnect_family: MOLEX_MICRO_LOCK_PLUS_2MM
-  - id: BOM-CTRL-INTERCONNECT-FAMILY
-    function: local_control_pcb_serviceable_interconnect
-    manufacturer: Molex
-    family: Micro-Lock_Plus_2.00mm
-    pcb_header_series: [505575, 505578]
-    receptacle_housing_series: 505570
-    crimp_terminal_mpn: "5055721200"
-    quantity_harnesses: 4
-    status: FAMILY_SELECTED_EXACT_HEADER_VARIANTS_AND_CIRCUIT_COUNTS_PARTIAL
-    authority_reconciled_by: AE-075F
-    note: Positive-lock 2.00 mm family reused from the controlled input-harness ecosystem. Exact vertical/right-angle header order codes and EQ circuit count remain gated by Z/XY and EQ passive-partition/RUN10 evidence.
-  - id: BOM-LED-POS
-    function: positive_rail_indicator
-    manufacturer: Vishay
-    mpn: TLLG4401
-    bezel_manufacturer: Arcolectric / Bulgin
-    bezel_mpn: A104700BLACK
-    resistor_ohm: 8200
-    nominal_current_ma: 1.90
-    mounting: audio_top_cover_central_spine_flying_leads
-    status: SELECTED
-    decision: DEC-028
-  - id: BOM-LED-NEG
-    function: negative_rail_indicator
-    manufacturer: Vishay
-    mpn: TLLG4401
-    bezel_manufacturer: Arcolectric / Bulgin
-    bezel_mpn: A104700BLACK
-    resistor_ohm: 8200
-    nominal_current_ma: 1.90
-    mounting: audio_top_cover_central_spine_flying_leads
-    status: SELECTED
-    decision: DEC-028
-  - id: BOM-SCH101-LT5400
-    function: sch101_precision_resistor_network
-    manufacturer: Analog Devices
-    mpn: LT5400BIMS8E-7#PBF
-    candidate_mpns:
-      - LT5400BCMS8E-7#PBF
-      - LT5400BIMS8E-7#PBF
-    quantity: 2
-    package: MS8E
-    footprint: Package_SO:MSOP-8-1EP_3x3mm_P0.65mm_EP1.68x1.88mm
-    ratio_option: LT5400-7
-    available_grade: B
-    status: EXACT_MPN_SELECTED_EP_IMPLEMENTED_RUN10_OPEN
-    decision: DR-038
-    temperature_range_c: [-40, 85]
-    exposed_pad: QUIET_0VA
-    network_only_cmrr_floor_db: 84.44
-    note: Industrial-temperature B-grade -7 selected. EP9 is bonded to quiet 0VA per ADI guidance. The 84.44 dB figure is resistor-network-only from the B-grade 0.015% CMRR-matching limit; full-stage RUN10 remains mandatory before BOM freeze.
-  - id: BOM-SCH101-GAIN-SHUNT
-    function: sch101_gain_service_shunt
-    manufacturer: Samtec
-    mpn: MNT-104-BK-G
-    quantity: 1
-    pitch_mm: 2.54
-    status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
-    decision: DR-038
-  - id: BOM-SCH101-GAIN-HEADERS
-    function: sch101_gain_service_headers_low_high_park
-    manufacturer: Samtec
-    mpn: TSW-104-07-G-D
-    quantity: 3
-    pitch_mm: 2.54
-    plating: 10uin_gold_flash
-    status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
-    decision: DR-038
-    refs: [H110, H111, H112]
-  - id: BOM-SCH101-LOAD-SHUNT
-    function: sch101_cartridge_capacitance_service_shunt
-    manufacturer: Samtec
-    mpn: MNT-102-BK-G
-    quantity: 1
-    pitch_mm: 2.54
-    status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
-    decision: DR-038
-  - id: BOM-SCH101-LOAD-HEADERS
-    function: sch101_cartridge_capacitance_headers_47_base_100
-    manufacturer: Samtec
-    mpn: TSW-102-07-G-D
-    quantity: 3
-    pitch_mm: 2.54
-    plating: 10uin_gold_flash
-    status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
-    decision: DR-038
-    refs: [H120, H121, H122]
-  - id: BOM-XLR-INPUT
-    function: balanced_cartridge_panel_input
-    manufacturer: Neutrik
-    mpn: NC3FD-L-B-1
-    quantity: 2
-    gender: female
-    termination: solder_cup
-    housing: black_metal
-    contacts: gold
-    pin1: CHASSIS
-    shell_front_panel_contact: CHASSIS_EXPLICIT_LOCAL_BOND
-    local_0va_connection: NONE
-    status: SELECTED
-    authority_reconciled_by: AE-075B
-    note: Separate shell/front-panel ground contact and pin 1 are both bonded to CHASSIS locally. Do not rely on anodised panel contact; continuity is a manufacturing/commissioning check.
-  - id: BOM-XLR-OUTPUT
-    function: balanced_line_panel_output
-    manufacturer: Neutrik
-    mpn: NC3MD-L-B-1
-    quantity: 2
-    gender: male
-    termination: solder_cup
-    housing: black_metal
-    contacts: gold
-    pin1: CHASSIS
-    shell_front_panel_contact: CHASSIS_EXPLICIT_LOCAL_BOND
-    local_0va_connection: NONE
-    status: SELECTED
-    authority_reconciled_by: AE-075B
-    note: Separate shell/front-panel ground contact and pin 1 are both bonded to CHASSIS locally. No connector-local 0VA bond.
-  - id: BOM-SCH108-OUTPUT-HARNESS-PCB
-    function: sch108_balanced_output_harness_pcb_header
-    manufacturer: Molex
-    mpn: "5055780221"
-    quantity: 2
-    family: Micro-Lock_Plus_2.00mm
-    circuits: 2
-    orientation: right_angle
-    termination: SMT
-    mating_plating_um_gold: 0.38
-    refs: [H801, H802]
-    pin_contract: PIN1_HOT_POS_PIN2_COLD_NEG
-    status: SELECTED_NATIVE_F8_VALIDATED_PLACEMENT_RECONCILIATION_OPEN
-    native_validation: PASS
-    placement_status: PROVISIONAL_POST_F8_MANUAL_PLACEMENT_RECONCILIATION_OPEN
-    authority_reconciled_by: AE-075G
-    note: Short rear-panel XLR link only; downstream of the existing SCH108 ferrites, RF shunts and clamps. No 0VA conductor. Native electrical mapping is validated; imported/autogenerated XY remains deliberately non-authoritative pending manual placement reconciliation.
-  - id: BOM-SCH108-OUTPUT-HARNESS-HOUSING
-    function: sch108_balanced_output_harness_receptacle
-    manufacturer: Molex
-    mpn: "5055700201"
-    quantity: 2
-    family: Micro-Lock_Plus_2.00mm
-    circuits: 2
-    positive_lock: true
-    status: SELECTED
-    authority_reconciled_by: AE-075G
-  - id: BOM-SCH108-OUTPUT-HARNESS-CONTACT
-    function: sch108_balanced_output_harness_female_crimp_contact
-    manufacturer: Molex
-    mpn: "5055721200"
-    quantity_design: 4
-    wire_awg: [22, 24, 26]
-    mating_plating_um_gold: 0.38
-    status: SELECTED
-    authority_reconciled_by: AE-075G
-  - id: BOM-SCH108-CLAMP
-    function: sch108_phantom_fault_rail_clamp
-    manufacturer: Vishay General Semiconductor
-    mpn: S1G
-    quantity: 8
-    package: SMA_DO-214AC
-    footprint: Diode_SMD:D_SMA
-    rating: 1A_400V_standard_rectifier
-    status: FAMILY_SELECTED_EXACT_ORDER_CODE_OPEN
-    authority_reconciled_by: AE-063
-    note: Replaces incoherent generic 1N4004 identity on an SMA footprint. Final tape/reel order suffix and fault-energy acceptance remain open until procurement and AE-049/050 qualification close.
-  - id: BOM-SCH101-INPUT-HARNESS-PCB
-    function: sch101_low_level_input_harness_pcb_header
-    manufacturer: Molex
-    mpn: "5055780321"
-    quantity: 2
-    family: Micro-Lock_Plus_2.00mm
-    circuits: 3
-    orientation: right_angle
-    termination: SMT
-    mating_plating_um_gold: 0.38
-    refs: [H101, H201]
-    status: SELECTED_IMPLEMENTED_NATIVE_VALIDATED
-    authority_reconciled_by: AE-075-B07
-    note: Pin 1 CHASSIS/SHIELD; pin 2 HOT/+; pin 3 COLD/-. Exact-part footprint and native F8 migration validated under AE-075-B07. Physical harness assembly/continuity inspection remains a manufacturing/commissioning check.
-  - id: BOM-SCH101-INPUT-HARNESS-HOUSING
-    function: sch101_low_level_input_harness_receptacle
-    manufacturer: Molex
-    mpn: "5055700301"
-    quantity: 2
-    family: Micro-Lock_Plus_2.00mm
-    circuits: 3
-    positive_lock: true
-    status: SELECTED
-    authority_reconciled_by: AE-075-B07
-  - id: BOM-SCH101-INPUT-HARNESS-CONTACT
-    function: sch101_low_level_input_harness_female_crimp_contact
-    manufacturer: Molex
-    mpn: "5055721200"
-    quantity_design: 6
-    procurement_quantity: OPEN_COMBINED_SHELLAC_PHOENIX_BASKET
-    wire_awg: [22, 24, 26]
-    mating_plating_um_gold: 0.38
-    status: SELECTED
-    authority_reconciled_by: AE-075-B07
-    note: Combined procurement with Phoenix is encouraged if Phoenix mechanical verification accepts the same connector family; Phoenix design authority is not changed by this record.
-  - id: BOM-SCH108-SENSE-CAP
-    function: that1646_output_to_sense_common_mode_feedback
-    manufacturer: Panasonic
-    mpn: ECEA1VN100U
-    quantity: 4
-    capacitance_uf: 10
-    voltage_v: 35
-    polarity: bipolar_nonpolar
-    body_diameter_mm: 5.0
-    body_height_mm: 11.0
-    lead_pitch_mm: 2.0
-    footprint: ProjectShellac:Panasonic_ECEA1VN100U_D5.0mm_H11.0mm_P2.00mm
-    refs: [C80010, C80011, C90010, C90011]
-    status: SELECTED_IMPLEMENTED_NATIVE_VALIDATED
-    authority_reconciled_by: AE-075A
-    note: Exact body/pitch controlled; retain 11 mm Z envelope in cover-clearance review.
+- id: BOM-ENC-AUDIO
+  function: audio_enclosure
+  manufacturer: METCASE
+  mpn: M5502119
+  status: FROZEN
+  decision: DEC-005
+- id: BOM-ENC-PSU
+  function: psu_enclosure
+  manufacturer: METCASE
+  mpn: M5502119
+  status: FROZEN
+  decision: DEC-006
+- id: BOM-PSU-MAINS
+  function: filtered_mains_entry_fuse_switch
+  manufacturer: SCHURTER
+  mpn: KMF1.1121.11
+  status: FROZEN
+  decision: DEC-007
+- id: BOM-CTRL-BASS
+  function: bass_characteristic_selector_dual_mono
+  manufacturer: NKK
+  mpn: NR01105ANG13-2C
+  quantity: 2
+  requirement: independent_L_R_5_position_BBM_gold
+  configured_positions: 5
+  status: EXACT_PART_SELECTED_B03_PHYSICAL_IMPLEMENTATION_OPEN
+  authority_reconciled_by: AE-075C
+  knob_colour: red
+  knob: AT3009_flanged
+  mounting: pcb_through_hole_bracket_no_threaded_bushing_flange_beneath_panel
+  depth_behind_panel_mm: 10.5
+  installed_panel_to_pcb_mm: 12.3
+  physical_ownership: MAIN_AUDIO_PCB_DIRECT_SELECTED_PHYSICAL_MIGRATION_PENDING
+  physical_architecture_reconciled_by: AE-076B
+  control_module_partition_reconciled_by: AE-076B
+  interconnect_family: NONE_SINGLE_MAIN_PCB
+  note: AE-076B direct main-PCB ownership; NKK 12.3 mm relationship retained; footprint/XY/support stack and RUN10 remain open.
+- id: BOM-CTRL-TREBLE
+  function: treble_characteristic_selector_dual_mono
+  manufacturer: NKK
+  mpn: NR01105ANG13-2A
+  quantity: 2
+  requirement: independent_L_R_5_position_BBM_gold
+  configured_positions: 5
+  status: EXACT_PART_SELECTED_B03_PHYSICAL_IMPLEMENTATION_OPEN
+  authority_reconciled_by: AE-075C
+  knob_colour: black
+  knob: AT3009_flanged
+  mounting: pcb_through_hole_bracket_no_threaded_bushing_flange_beneath_panel
+  depth_behind_panel_mm: 10.5
+  installed_panel_to_pcb_mm: 12.3
+  physical_ownership: MAIN_AUDIO_PCB_DIRECT_SELECTED_PHYSICAL_MIGRATION_PENDING
+  physical_architecture_reconciled_by: AE-076B
+  control_module_partition_reconciled_by: AE-076B
+  interconnect_family: NONE_SINGLE_MAIN_PCB
+  note: AE-076B direct main-PCB ownership; NKK 12.3 mm relationship retained; footprint/XY/support stack and RUN10 remain open.
+- id: BOM-CTRL-CHANNEL
+  function: channel_mode_selector
+  manufacturer: C&K
+  mpn: A30403RNCB
+  fallback_manufacturer: TE/Alcoswitch
+  fallback_mpn: MRJE3404
+  quantity: 1
+  requirement: 3P4T_4_position_BBM_non_shorting_low_level_gold
+  configured_positions: 4
+  status: PREFERRED_PART_SELECTED_PROCUREMENT_PARTIAL
+  authority_reconciled_by: AE-041-A1
+  knob_manufacturer: TE/Alcoswitch
+  knob_mpn: KN900B1/4
+  mounting: pcb_through_hole_plus_3/8-32_threaded_top_cover_bushing
+  physical_ownership: MAIN_AUDIO_PCB_DIRECT_SELECTED_PHYSICAL_MIGRATION_PENDING
+  physical_architecture_reconciled_by: AE-076B
+  physical_partition: MAIN_AUDIO_PCB_DIRECT
+  control_module_partition_reconciled_by: AE-076B
+  interconnect_family: NONE_SINGLE_MAIN_PCB
+  note: AE-076B direct main-PCB ownership; C&K installed-plane fit/footprint/XY remain open for AE-076B2 MCAD.
+- id: BOM-MATRIX-SUM-R
+  function: switched_mono_averaging_resistors
+  manufacturer: OPEN
+  mpn: OPEN
+  quantity: 2
+  resistance_ohm: 4700
+  tolerance: 0.1%
+  status: VALUE_FROZEN_PART_OPEN
+  authority_reconciled_by: AE-041-A1
+  placement: SCH104_OPA1656_outputs_before_100R_isolation
+  topology: left_leg_to_MONO_AVG_permanent_right_leg_to_MONO_R_LEG_switched_only_in_L+R
+- id: BOM-CTRL-RUMBLE
+  function: rumble_filter_bypass
+  manufacturer: C&K
+  mpn: 7201SYCBE
+  requirement: stereo_DPDT_BBM
+  status: SELECTED
+  decision: DEC-027
+  mounting: pcb_through_hole_plus_1/4-40_threaded_top_cover_bushing
+  physical_ownership: MAIN_AUDIO_PCB_DIRECT_SELECTED_PHYSICAL_MIGRATION_PENDING
+  physical_architecture_reconciled_by: AE-076B
+  physical_partition: MAIN_AUDIO_PCB_DIRECT
+  control_module_partition_reconciled_by: AE-076B
+  interconnect_family: NONE_SINGLE_MAIN_PCB
+  note: AE-076B direct main-PCB ownership local to SCH107; installed-plane fit/footprint/XY remain open for AE-076B2 MCAD.
+- id: BOM-CTRL-MUTE
+  function: output_mute_command
+  manufacturer: C&K
+  mpn: 7201SYCBE
+  requirement: stereo_DPDT_BBM
+  status: SELECTED
+  decision: DEC-027
+  mounting: pcb_through_hole_plus_1/4-40_threaded_top_cover_bushing
+  physical_ownership: MAIN_AUDIO_PCB_DIRECT_SELECTED_PHYSICAL_MIGRATION_PENDING
+  physical_architecture_reconciled_by: AE-076B
+  physical_partition: MAIN_AUDIO_PCB_DIRECT
+  control_module_partition_reconciled_by: AE-076B
+  interconnect_family: NONE_SINGLE_MAIN_PCB
+  note: AE-076B direct main-PCB ownership immediately before THAT1646; installed-plane fit/footprint/XY remain open for AE-076B2 MCAD.
+- id: BOM-LED-POS
+  function: positive_rail_indicator
+  manufacturer: Vishay
+  mpn: TLLG4401
+  bezel_manufacturer: Arcolectric / Bulgin
+  bezel_mpn: A104700BLACK
+  resistor_ohm: 8200
+  nominal_current_ma: 1.9
+  mounting: audio_top_cover_central_spine_flying_leads
+  status: SELECTED
+  decision: DEC-028
+- id: BOM-LED-NEG
+  function: negative_rail_indicator
+  manufacturer: Vishay
+  mpn: TLLG4401
+  bezel_manufacturer: Arcolectric / Bulgin
+  bezel_mpn: A104700BLACK
+  resistor_ohm: 8200
+  nominal_current_ma: 1.9
+  mounting: audio_top_cover_central_spine_flying_leads
+  status: SELECTED
+  decision: DEC-028
+- id: BOM-SCH101-LT5400
+  function: sch101_precision_resistor_network
+  manufacturer: Analog Devices
+  mpn: LT5400BIMS8E-7#PBF
+  candidate_mpns:
+  - LT5400BCMS8E-7#PBF
+  - LT5400BIMS8E-7#PBF
+  quantity: 2
+  package: MS8E
+  footprint: Package_SO:MSOP-8-1EP_3x3mm_P0.65mm_EP1.68x1.88mm
+  ratio_option: LT5400-7
+  available_grade: B
+  status: EXACT_MPN_SELECTED_EP_IMPLEMENTED_RUN10_OPEN
+  decision: DR-038
+  temperature_range_c:
+  - -40
+  - 85
+  exposed_pad: QUIET_0VA
+  network_only_cmrr_floor_db: 84.44
+  note: Industrial-temperature B-grade -7 selected. EP9 is bonded to quiet 0VA per ADI guidance. The 84.44 dB figure is resistor-network-only from the B-grade 0.015% CMRR-matching limit; full-stage RUN10 remains mandatory before BOM freeze.
+- id: BOM-SCH101-GAIN-SHUNT
+  function: sch101_gain_service_shunt
+  manufacturer: Samtec
+  mpn: MNT-104-BK-G
+  quantity: 1
+  pitch_mm: 2.54
+  status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
+  decision: DR-038
+- id: BOM-SCH101-GAIN-HEADERS
+  function: sch101_gain_service_headers_low_high_park
+  manufacturer: Samtec
+  mpn: TSW-104-07-G-D
+  quantity: 3
+  pitch_mm: 2.54
+  plating: 10uin_gold_flash
+  status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
+  decision: DR-038
+  refs:
+  - H110
+  - H111
+  - H112
+- id: BOM-SCH101-LOAD-SHUNT
+  function: sch101_cartridge_capacitance_service_shunt
+  manufacturer: Samtec
+  mpn: MNT-102-BK-G
+  quantity: 1
+  pitch_mm: 2.54
+  status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
+  decision: DR-038
+- id: BOM-SCH101-LOAD-HEADERS
+  function: sch101_cartridge_capacitance_headers_47_base_100
+  manufacturer: Samtec
+  mpn: TSW-102-07-G-D
+  quantity: 3
+  pitch_mm: 2.54
+  plating: 10uin_gold_flash
+  status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
+  decision: DR-038
+  refs:
+  - H120
+  - H121
+  - H122
+- id: BOM-XLR-INPUT
+  function: balanced_cartridge_panel_input
+  manufacturer: Neutrik
+  mpn: NC3FD-L-B-1
+  quantity: 2
+  gender: female
+  termination: solder_cup
+  housing: black_metal
+  contacts: gold
+  pin1: CHASSIS
+  shell_front_panel_contact: CHASSIS_EXPLICIT_LOCAL_BOND
+  local_0va_connection: NONE
+  status: SELECTED
+  authority_reconciled_by: AE-075B
+  note: Separate shell/front-panel ground contact and pin 1 are both bonded to CHASSIS locally. Do not rely on anodised panel contact; continuity is a manufacturing/commissioning check.
+- id: BOM-XLR-OUTPUT
+  function: balanced_line_panel_output
+  manufacturer: Neutrik
+  mpn: NC3MD-L-B-1
+  quantity: 2
+  gender: male
+  termination: solder_cup
+  housing: black_metal
+  contacts: gold
+  pin1: CHASSIS
+  shell_front_panel_contact: CHASSIS_EXPLICIT_LOCAL_BOND
+  local_0va_connection: NONE
+  status: SELECTED
+  authority_reconciled_by: AE-075B
+  note: Separate shell/front-panel ground contact and pin 1 are both bonded to CHASSIS locally. No connector-local 0VA bond.
+- id: BOM-SCH108-OUTPUT-HARNESS-PCB
+  function: sch108_balanced_output_harness_pcb_header
+  manufacturer: Molex
+  mpn: '5055780221'
+  quantity: 2
+  family: Micro-Lock_Plus_2.00mm
+  circuits: 2
+  orientation: right_angle
+  termination: SMT
+  mating_plating_um_gold: 0.38
+  refs:
+  - H801
+  - H802
+  pin_contract: PIN1_HOT_POS_PIN2_COLD_NEG
+  status: SELECTED_NATIVE_F8_VALIDATED_PLACEMENT_RECONCILIATION_OPEN
+  native_validation: PASS
+  placement_status: PROVISIONAL_POST_F8_MANUAL_PLACEMENT_RECONCILIATION_OPEN
+  authority_reconciled_by: AE-075G
+  note: Short rear-panel XLR link only; downstream of the existing SCH108 ferrites, RF shunts and clamps. No 0VA conductor. Native electrical mapping is validated; imported/autogenerated XY remains deliberately non-authoritative pending manual placement reconciliation.
+- id: BOM-SCH108-OUTPUT-HARNESS-HOUSING
+  function: sch108_balanced_output_harness_receptacle
+  manufacturer: Molex
+  mpn: '5055700201'
+  quantity: 2
+  family: Micro-Lock_Plus_2.00mm
+  circuits: 2
+  positive_lock: true
+  status: SELECTED
+  authority_reconciled_by: AE-075G
+- id: BOM-SCH108-OUTPUT-HARNESS-CONTACT
+  function: sch108_balanced_output_harness_female_crimp_contact
+  manufacturer: Molex
+  mpn: '5055721200'
+  quantity_design: 4
+  wire_awg:
+  - 22
+  - 24
+  - 26
+  mating_plating_um_gold: 0.38
+  status: SELECTED
+  authority_reconciled_by: AE-075G
+- id: BOM-SCH108-CLAMP
+  function: sch108_phantom_fault_rail_clamp
+  manufacturer: Vishay General Semiconductor
+  mpn: S1G
+  quantity: 8
+  package: SMA_DO-214AC
+  footprint: Diode_SMD:D_SMA
+  rating: 1A_400V_standard_rectifier
+  status: FAMILY_SELECTED_EXACT_ORDER_CODE_OPEN
+  authority_reconciled_by: AE-063
+  note: Replaces incoherent generic 1N4004 identity on an SMA footprint. Final tape/reel order suffix and fault-energy acceptance remain open until procurement and AE-049/050 qualification close.
+- id: BOM-SCH101-INPUT-HARNESS-PCB
+  function: sch101_low_level_input_harness_pcb_header
+  manufacturer: Molex
+  mpn: '5055780321'
+  quantity: 2
+  family: Micro-Lock_Plus_2.00mm
+  circuits: 3
+  orientation: right_angle
+  termination: SMT
+  mating_plating_um_gold: 0.38
+  refs:
+  - H101
+  - H201
+  status: SELECTED_IMPLEMENTED_NATIVE_VALIDATED
+  authority_reconciled_by: AE-075-B07
+  note: Pin 1 CHASSIS/SHIELD; pin 2 HOT/+; pin 3 COLD/-. Exact-part footprint and native F8 migration validated under AE-075-B07. Physical harness assembly/continuity inspection remains a manufacturing/commissioning check.
+- id: BOM-SCH101-INPUT-HARNESS-HOUSING
+  function: sch101_low_level_input_harness_receptacle
+  manufacturer: Molex
+  mpn: '5055700301'
+  quantity: 2
+  family: Micro-Lock_Plus_2.00mm
+  circuits: 3
+  positive_lock: true
+  status: SELECTED
+  authority_reconciled_by: AE-075-B07
+- id: BOM-SCH101-INPUT-HARNESS-CONTACT
+  function: sch101_low_level_input_harness_female_crimp_contact
+  manufacturer: Molex
+  mpn: '5055721200'
+  quantity_design: 6
+  procurement_quantity: OPEN_COMBINED_SHELLAC_PHOENIX_BASKET
+  wire_awg:
+  - 22
+  - 24
+  - 26
+  mating_plating_um_gold: 0.38
+  status: SELECTED
+  authority_reconciled_by: AE-075-B07
+  note: Combined procurement with Phoenix is encouraged if Phoenix mechanical verification accepts the same connector family; Phoenix design authority is not changed by this record.
+- id: BOM-SCH108-SENSE-CAP
+  function: that1646_output_to_sense_common_mode_feedback
+  manufacturer: Panasonic
+  mpn: ECEA1VN100U
+  quantity: 4
+  capacitance_uf: 10
+  voltage_v: 35
+  polarity: bipolar_nonpolar
+  body_diameter_mm: 5.0
+  body_height_mm: 11.0
+  lead_pitch_mm: 2.0
+  footprint: ProjectShellac:Panasonic_ECEA1VN100U_D5.0mm_H11.0mm_P2.00mm
+  refs:
+  - C80010
+  - C80011
+  - C90010
+  - C90011
+  status: SELECTED_IMPLEMENTED_NATIVE_VALIDATED
+  authority_reconciled_by: AE-075A
+  note: Exact body/pitch controlled; retain 11 mm Z envelope in cover-clearance review.
+control_architecture_updated_by: AE-076B

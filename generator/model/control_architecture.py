@@ -4,14 +4,21 @@ from typing import Tuple
 
 ARCHITECTURE_RECORD="AE-041"
 ARCHITECTURE_REVISION="A1"
-HARDWARE_RECONCILIATION_RECORD="AE-075F"
+HARDWARE_RECONCILIATION_RECORD="AE-076B"
 MANUFACTURING_COORDINATES_RELEASED=False
-CONTROL_STACK_STATUS="FOUR_LOCAL_CONTROL_MODULES_SHORT_HARNESS_FAMILY_SELECTED_DETAIL_OPEN"
+CONTROL_STACK_STATUS="SINGLE_MAIN_PCB_SERVICE_MODULE_SELECTED_MCAD_PHYSICAL_MIGRATION_OPEN"
 
 SIGNAL_FLOW=("INPUT","BASS","TREBLE","RUMBLE","MATRIX","MUTE","OUTPUT")
 TOP_COVER_DIRECTION="FRONT_TO_REAR"
 CONTROL_SURFACE="REMOVABLE_TOP_COVER"
 REG08_ROLE="DISTRIBUTED_TOP_COVER_MECHANICAL_REGISTRATION_AUTHORITY_NO_CENTRAL_ANALOGUE_STRIP"
+CONTROL_BOARD_OWNERSHIP="ONE_MAIN_AUDIO_PCB_ALL_SEVEN_CONTROLS_DIRECT"
+CONTROL_SERVICE_MODULE="UPPER_COVER_PLUS_MAIN_PCB_PLUS_CONTROLS_REMOVABLE_ASSEMBLY"
+CONTROL_INTERBOARD_HARNESSES_SELECTED=False
+ALUMINIUM_CARRIER_SELECTED=False
+MAIN_PCB_SUPPORT_COUNT=6
+SUPPORT_XY_Z_FROZEN=False
+PHYSICAL_CAD_MIGRATION_COMPLETE=False
 
 @dataclass(frozen=True)
 class RotaryControlAuthority:
@@ -87,14 +94,14 @@ OPEN_QUALIFICATION=(
     "matrix_switching_transients_spice_and_bench",
     "matrix_mono_accuracy_spice_and_bench",
     "production_switch_detent_terminal_continuity_confirmation",
-    "main_pcb_carrier_z_and_top_cover_thickness",
-    "local_control_pcb_installed_stack_and_mechanical_support",
-    "exact_micro_lock_plus_header_orientation_order_codes_and_footprints",
-    "eq_mezzanine_switch_local_passive_ownership_and_run10_parasitic_acceptance",
-    "exact_part_footprints_pin_mapping_and_courtyards",
-    "absolute_top_cover_coordinates",
-    "final_artwork_coordinates",
-    "final_switch_footprint_orientation",
+    "ae076b2_dimensionally_controlled_mcad_digital_mockup",
+    "nkk_12p3mm_constrained_main_pcb_plane_to_ck_fit_and_tolerance_stack",
+    "six_support_xy_z_hardware_and_tolerance_stack",
+    "exact_part_footprints_pin_mapping_courtyards_and_3d_envelopes",
+    "control_xy_and_upper_cover_apertures",
+    "run10_switch_local_parasitic_and_stability_acceptance",
+    "native_pcb_control_and_support_migration",
+    "manual_placement_reconciliation_after_mcad_freeze",
 )
 
 def validate_control_architecture()->None:
@@ -110,5 +117,11 @@ def validate_control_architecture()->None:
     assert MATRIX.mode_order_ccw_to_cw==("DUAL L","STEREO","L+R","DUAL R")
     assert MATRIX.switched_leg_node=="MONO_R_LEG" and MATRIX.switched_leg_mode=="L+R"
     assert MATRIX.averaging_resistor_count==2 and MATRIX.averaging_resistance_ohm==4700.0
-    assert CONTROL_STACK_STATUS=="FOUR_LOCAL_CONTROL_MODULES_SHORT_HARNESS_FAMILY_SELECTED_DETAIL_OPEN"
+    assert CONTROL_STACK_STATUS=="SINGLE_MAIN_PCB_SERVICE_MODULE_SELECTED_MCAD_PHYSICAL_MIGRATION_OPEN"
+    assert CONTROL_BOARD_OWNERSHIP=="ONE_MAIN_AUDIO_PCB_ALL_SEVEN_CONTROLS_DIRECT"
+    assert CONTROL_INTERBOARD_HARNESSES_SELECTED is False
+    assert ALUMINIUM_CARRIER_SELECTED is False
+    assert MAIN_PCB_SUPPORT_COUNT==6
+    assert SUPPORT_XY_Z_FROZEN is False
+    assert PHYSICAL_CAD_MIGRATION_COMPLETE is False
     assert MANUFACTURING_COORDINATES_RELEASED is False

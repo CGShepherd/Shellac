@@ -26,8 +26,8 @@ EQ_ROTARY_INSTALLED_PANEL_TO_PCB_MM=12.3
 EQ_ROTARY_BODY_XY_MM=(10.7,10.7)
 EQ_ROTARY_MOUNTING=(
     "PCB through-hole straight-PC NR01 with bracket; AT3009 flanged knob beneath "
-    "top cover; no threaded bushing; installed panel-to-PCB plane 12.3 mm; "
-"channel-local EQ mezzanine selected; detachable Micro-Lock Plus harness family selected; passive partition/support/Z remain open"
+    "top cover; no threaded bushing; controlled panel-to-PCB relationship 12.3 mm; "
+    "AE-076B direct main-audio-PCB ownership; exact footprint/XY and six-support MCAD migration open"
 )
 
 MATRIX_MANUFACTURER="C&K"
@@ -35,16 +35,16 @@ MATRIX_MPN="A30403RNCB"
 MATRIX_FALLBACK_MPN="TE/Alcoswitch MRJE3404"
 MATRIX_MOUNTING=(
     "PCB through-hole PC pins with 3/8-32 threaded bushing through top cover; "
-    "combined downstream Matrix+Mute local PCB selected; detachable Micro-Lock Plus harness family selected; "
-    "exact support/Z/header variant remain open; PCB datum establishes alignment before nut is tightened"
+    "AE-076B direct main-audio-PCB ownership; six supports establish the primary datum; "
+    "exact installed-plane fit/footprint/XY remain open pending MCAD"
 )
 
 TOGGLE_MANUFACTURER="C&K"
 TOGGLE_MPN="7201SYCBE"
 TOGGLE_MOUNTING=(
     "PCB through-hole PC pins with 1/4-40 threaded bushing through top cover; "
-    "Rumble uses its own local PCB and Mute shares the downstream Matrix+Mute PCB; "
-    "detachable Micro-Lock Plus harness family selected; exact support/Z/header variant remain open"
+    "AE-076B direct main-audio-PCB ownership; six supports establish the primary datum; "
+    "exact installed-plane fit/footprint/XY remain open pending MCAD"
 )
 
 LED_MANUFACTURER="Vishay"

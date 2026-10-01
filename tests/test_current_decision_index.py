@@ -77,149 +77,60 @@ def test_pre_spice_assurance_chain_contains_required_records():
     assert "  AE-075F:" in text
     assert "  AE-075G:" in text
     assert "  AE-076A:" in text
+    assert "  AE-076B:" in text
 
 def test_live_routing_hold_authority_is_registered_and_fail_closed():
-    decisions = yaml.safe_load(INDEX.read_text(encoding="utf-8"))
-    hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
+    decisions=yaml.safe_load(INDEX.read_text(encoding="utf-8"))
+    hold=yaml.safe_load(HOLD.read_text(encoding="utf-8"))
     assert hold["authority"] in decisions["pre_spice_assurance"]
     assert hold["previous_authority"] in decisions["pre_spice_assurance"]
-    assert re.fullmatch(r"[0-9a-f]{40}", hold["baseline_commit"])
-    blockers = {item["id"]: item for item in hold["routing_blockers"]}
-    assert set(blockers) == {"AE071-B03", "AE071-B04", "AE071-B08"}
-    assert blockers["AE071-B03"]["ownership_status"] == "FOUR_LOCAL_CONTROL_PCBS_SELECTED_SUPPORT_FOOTPRINT_XY_OPEN"
-    assert blockers["AE071-B03"]["eq_control_ownership"] == "TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
-    assert blockers["AE071-B03"]["shared_ck_ownership"] == "DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED"
-    assert blockers["AE071-B03"]["direct_main_pcb_control_mounting"] == "REJECTED_CURRENT_ARCHITECTURE"
-    assert blockers["AE071-B03"]["control_module_partition"] == "EQ_L;EQ_R;RUMBLE;MATRIX_MUTE"
-    assert blockers["AE071-B03"]["shared_ck_partition"] == "RUMBLE_LOCAL_PLUS_MATRIX_MUTE_DOWNSTREAM_SELECTED"
-    assert blockers["AE071-B03"]["interconnect_architecture"] == "SHORT_DETACHABLE_WIRE_HARNESSES_SELECTED"
-    assert blockers["AE071-B03"]["connector_family"] == "MOLEX_MICRO_LOCK_PLUS_2MM_SELECTED"
-    assert blockers["AE071-B03"]["rigid_board_to_board_interconnect"] == "REJECTED_CURRENT_ARCHITECTURE"
-    assert hold["status"] == "ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS"
+    blockers={item["id"]:item for item in hold["routing_blockers"]}
+    assert set(blockers)=={"AE071-B03","AE071-B04","AE071-B08"}
+    b03=blockers["AE071-B03"]
+    assert b03["architecture_authority"]=="AE-076B"
+    assert b03["direct_main_pcb_control_mounting"]=="SELECTED_CURRENT_ARCHITECTURE"
+    assert b03["control_module_partition"]=="NONE_SINGLE_MAIN_AUDIO_PCB"
+    assert b03["interconnect_architecture"]=="NO_CONTROL_INTERBOARD_HARNESSES"
+    assert b03["aluminium_carrier_selected"] is False
+    assert b03["main_pcb_support_count"]==6
+    assert b03["support_xy_frozen"] is False
+    assert b03["support_z_tolerance_stack_frozen"] is False
+    assert "INTERIM_SR040_AE071B_MH1_MH4" in b03["physical_cad_state"]
     assert hold["permissions"]["final_routing"] is False
     assert hold["permissions"]["layout_freeze"] is False
     assert hold["permissions"]["bom_freeze"] is False
     assert hold["permissions"]["manufacturing_release"] is False
 
-
-
 def test_current_control_hardware_and_b03_architecture_are_coherent():
     from generator.mechanical.control_stack import (
-        B03_STATUS,
-        CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED,
-        CONTROL_BOARD_OWNERSHIP,
-        EQ_CONTROL_OWNERSHIP,
-        NKK_INSTALLED_PANEL_TO_PCB_MM,
-        PARTS,
-        SHARED_CK_CONTROL_OWNERSHIP,
-        SHARED_CK_CONTROL_PCB_PARTITION,
-        CONTROL_MODULE_PARTITION,
-        CONTROL_INTERCONNECT_ARCHITECTURE,
-        CONTROL_CONNECTOR_FAMILY,
-        CONTROL_CONNECTOR_CRIMP_MPN,
-        RUMBLE_EXTERNAL_NET_COUNT,
-        MATRIX_MUTE_EXTERNAL_NET_COUNT,
-        EQ_PASSIVE_PARTITION,
-        RIGID_BOARD_TO_BOARD_CONTROL_INTERCONNECT_ALLOWED,
-        DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED,
-        validate_control_stack,
+        CARRIER_PRESENT_IN_SELECTED_ARCHITECTURE, CONTROL_BOARD_OWNERSHIP,
+        CONTROL_INTERCONNECT_ARCHITECTURE, CONTROL_MODULE_PARTITION,
+        DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED, MAIN_PCB_SUPPORT_COUNT,
+        NKK_INSTALLED_PANEL_TO_PCB_MM, PHYSICAL_CAD_MIGRATION_COMPLETE,
+        SUPPORT_XY_FROZEN, SUPPORT_Z_TOLERANCE_STACK_FROZEN, validate_control_stack,
     )
-    from generator.model.controls import CONTROLS
-
     validate_control_stack()
+    assert NKK_INSTALLED_PANEL_TO_PCB_MM==12.3
+    assert CARRIER_PRESENT_IN_SELECTED_ARCHITECTURE is False
+    assert CONTROL_BOARD_OWNERSHIP=="ONE_MAIN_AUDIO_PCB_ALL_SEVEN_CONTROLS_DIRECT_SELECTED_PHYSICAL_MIGRATION_PENDING"
+    assert CONTROL_MODULE_PARTITION==("MAIN_AUDIO_PCB",)
+    assert CONTROL_INTERCONNECT_ARCHITECTURE=="NO_CONTROL_INTERBOARD_HARNESSES"
+    assert DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED is True
+    assert MAIN_PCB_SUPPORT_COUNT==6
+    assert SUPPORT_XY_FROZEN is False
+    assert SUPPORT_Z_TOLERANCE_STACK_FROZEN is False
+    assert PHYSICAL_CAD_MIGRATION_COMPLETE is False
 
-    assert [c.mpn for c in CONTROLS] == [
-        "NR01105ANG13-2C",
-        "NR01105ANG13-2C",
-        "NR01105ANG13-2A",
-        "NR01105ANG13-2A",
-        "A30403RNCB",
-        "7201SYCBE",
-        "7201SYCBE",
-    ]
+    hold=yaml.safe_load(HOLD.read_text(encoding="utf-8"))
+    assert hold["authority"]=="AE-076B"
+    assert hold["previous_authority"]=="AE-076A"
+    assert hold["baseline_commit"]=="817297ed7cccfdbaaa4c0ee3360d5c8ac3fdc35d"
 
-    assert NKK_INSTALLED_PANEL_TO_PCB_MM == 12.3
-    assert EQ_CONTROL_OWNERSHIP == "TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
-    assert CONTROL_BOARD_OWNERSHIP == "FOUR_LOCAL_CONTROL_PCBS_SELECTED_SUPPORT_FOOTPRINT_XY_OPEN"
-    assert SHARED_CK_CONTROL_OWNERSHIP == "DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED"
-    assert CONTROL_MODULE_PARTITION == ("EQ_L", "EQ_R", "RUMBLE", "MATRIX_MUTE")
-    assert SHARED_CK_CONTROL_PCB_PARTITION == "RUMBLE_LOCAL_PLUS_MATRIX_MUTE_DOWNSTREAM_SELECTED"
-    assert CONTROL_INTERCONNECT_ARCHITECTURE == "SHORT_DETACHABLE_WIRE_HARNESSES_SELECTED"
-    assert CONTROL_CONNECTOR_FAMILY == "MOLEX_MICRO_LOCK_PLUS_2MM_SELECTED"
-    assert CONTROL_CONNECTOR_CRIMP_MPN == "5055721200"
-    assert RUMBLE_EXTERNAL_NET_COUNT == 6
-    assert MATRIX_MUTE_EXTERNAL_NET_COUNT == 7
-    assert EQ_PASSIVE_PARTITION == "OPEN_PENDING_B03_PARASITIC_RUN10_DISCRIMINATOR"
-    assert RIGID_BOARD_TO_BOARD_CONTROL_INTERCONNECT_ALLOWED is False
-    assert DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED is False
-    assert CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED is False
-    assert B03_STATUS == "MODULE_PARTITION_AND_HARNESS_FAMILY_SELECTED_Z_SUPPORT_PASSIVES_FOOTPRINT_XY_OPEN"
-    eq_parts = [part for part in PARTS if part.function in {"BASS", "TREBLE"}]
-    assert len(eq_parts) == 2
-    assert all("REG-08 EQ mezzanine" not in part.pcb_mounting for part in PARTS)
-    assert all("REG-08 mechanical registration" in part.pcb_mounting for part in eq_parts)
-
-    hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    assert hold["authority"] == "AE-076A"
-    assert hold["previous_authority"] == "AE-075G"
-    assert hold["baseline_commit"] == "d2f5c9f775b6080c66a9754a8355c7692cd4ba6a"
-
-    s01 = next(
-        x for x in hold["pre_run08_prerequisites"]
-        if x["id"] == "AE071-S01"
-    )
-    assert s01["status"] == "RESOLVED"
-    assert s01["resolved_by"] == "AE-075G"
-
-    b03 = next(x for x in hold["routing_blockers"] if x["id"] == "AE071-B03")
-    assert b03["eq_control_ownership"] == "TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
-    assert b03["shared_ck_ownership"] == "DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED"
-    assert b03["direct_main_pcb_control_mounting"] == "REJECTED_CURRENT_ARCHITECTURE"
-    assert b03["control_module_partition"] == "EQ_L;EQ_R;RUMBLE;MATRIX_MUTE"
-    assert b03["shared_ck_partition"] == "RUMBLE_LOCAL_PLUS_MATRIX_MUTE_DOWNSTREAM_SELECTED"
-    assert b03["interconnect_architecture"] == "SHORT_DETACHABLE_WIRE_HARNESSES_SELECTED"
-    assert b03["connector_family"] == "MOLEX_MICRO_LOCK_PLUS_2MM_SELECTED"
-    assert b03["rigid_board_to_board_interconnect"] == "REJECTED_CURRENT_ARCHITECTURE"
-    assert b03["central_remote_control_strip"] == "REJECTED_ANALOGUE_LOCALITY"
-    assert "LOCAL_CONTROL_PCB_INSTALLED_STACK_AND_SUPPORT" in b03["remaining_scope"]
-    assert "EXACT_MICRO_LOCK_HEADER_VARIANTS_CIRCUIT_COUNTS_AND_FOOTPRINTS" in b03["remaining_scope"]
-    assert "SWITCH_LOCAL_PASSIVE_OWNERSHIP_AND_RUN10_PARASITICS" in b03["remaining_scope"]
-
-    bom = yaml.safe_load(
-        Path("config/bom/shellac_bom.yaml").read_text(encoding="utf-8")
-    )
-
-    output_header = next(
-        x for x in bom["items"]
-        if x["id"] == "BOM-SCH108-OUTPUT-HARNESS-PCB"
-    )
-    assert output_header["status"] == "SELECTED_NATIVE_F8_VALIDATED_PLACEMENT_RECONCILIATION_OPEN"
-    assert output_header["native_validation"] == "PASS"
-    assert output_header["placement_status"] == "PROVISIONAL_POST_F8_MANUAL_PLACEMENT_RECONCILIATION_OPEN"
-    assert output_header["authority_reconciled_by"] == "AE-075G"
-
-    for item_id in ("BOM-CTRL-BASS", "BOM-CTRL-TREBLE"):
-        item = next(x for x in bom["items"] if x["id"] == item_id)
-        assert item["installed_panel_to_pcb_mm"] == 12.3
-        assert item["physical_ownership"] == "CHANNEL_LOCAL_EQ_MEZZANINE_SELECTED"
-        assert item["physical_architecture_reconciled_by"] == "AE-075D"
-
-    channel = next(x for x in bom["items"] if x["id"] == "BOM-CTRL-CHANNEL")
-    rumble = next(x for x in bom["items"] if x["id"] == "BOM-CTRL-RUMBLE")
-    mute = next(x for x in bom["items"] if x["id"] == "BOM-CTRL-MUTE")
-    assert channel["physical_partition"] == "DOWNSTREAM_MATRIX_MUTE_LOCAL_PCB"
-    assert mute["physical_partition"] == "DOWNSTREAM_MATRIX_MUTE_LOCAL_PCB"
-    assert rumble["physical_partition"] == "RUMBLE_LOCAL_PCB"
-    assert channel["downstream_module_external_net_count"] == 7
-    assert rumble["external_net_count"] == 6
-    for item in (channel, rumble, mute):
-        assert item["physical_ownership"] == "DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED"
-        assert item["physical_architecture_reconciled_by"] == "AE-075E"
-        assert item["control_module_partition_reconciled_by"] == "AE-075F"
-        assert item["interconnect_family"] == "MOLEX_MICRO_LOCK_PLUS_2MM"
-
-    interconnect = next(x for x in bom["items"] if x["id"] == "BOM-CTRL-INTERCONNECT-FAMILY")
-    assert interconnect["manufacturer"] == "Molex"
-    assert interconnect["family"] == "Micro-Lock_Plus_2.00mm"
-    assert interconnect["crimp_terminal_mpn"] == "5055721200"
-    assert interconnect["quantity_harnesses"] == 4
+    bom=yaml.safe_load(Path("config/bom/shellac_bom.yaml").read_text(encoding="utf-8"))
+    ids={x["id"] for x in bom["items"]}
+    assert "BOM-CTRL-INTERCONNECT-FAMILY" not in ids
+    for item_id in ("BOM-CTRL-BASS","BOM-CTRL-TREBLE","BOM-CTRL-CHANNEL","BOM-CTRL-RUMBLE","BOM-CTRL-MUTE"):
+        item=next(x for x in bom["items"] if x["id"]==item_id)
+        assert item["physical_ownership"]=="MAIN_AUDIO_PCB_DIRECT_SELECTED_PHYSICAL_MIGRATION_PENDING"
+        assert item["physical_architecture_reconciled_by"]=="AE-076B"
+        assert item["interconnect_family"]=="NONE_SINGLE_MAIN_PCB"

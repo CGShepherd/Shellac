@@ -1,41 +1,49 @@
-"""Current Shellac control-stack mechanical contract for routing blocker B03."""
+# AE-076B current Shellac control/service-module architecture contract.
 from __future__ import annotations
 from dataclasses import dataclass
 
+ARCHITECTURE_RECORD="AE-076B"
 ENCLOSURE_MPN="M5502119"
 ENCLOSURE_INTERNAL_COVER_HEIGHT_MM=86.2
-UNICASE_GUIDE_PCB_THICKNESS_MM=1.6
-CARRIER_THICKNESS_MM=2.0
-CARRIER_GUIDE_RAIL_COMPATIBLE=False
-MAIN_PCB_CARRIER_STANDOFF_MM=8.0
+TOP_COVER_NOMINAL_MM=2.0
+TOP_COVER_TOLERANCE_MM=None
 
 NKK_SWITCH_DEPTH_BEHIND_PANEL_MM=10.5
 NKK_INSTALLED_PANEL_TO_PCB_MM=12.3
 KNOWN_MAIN_BOARD_COMPONENT_HEIGHT_MM=11.0
-NKK_NOMINAL_CLEARANCE_TO_KNOWN_11MM_PART_MM=round(
-    NKK_INSTALLED_PANEL_TO_PCB_MM-KNOWN_MAIN_BOARD_COMPONENT_HEIGHT_MM, 1
-)
 
-TOP_COVER_THICKNESS_MM=None
-CARRIER_OR_CONTROL_PLANE_Z_MM=None
+CARRIER_PRESENT_IN_SELECTED_ARCHITECTURE=False
+CARRIER_THICKNESS_MM=None
+MAIN_PCB_CARRIER_STANDOFF_MM=None
 
-EQ_CONTROL_OWNERSHIP="TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
-SHARED_CK_CONTROL_OWNERSHIP="DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED"
-CONTROL_BOARD_OWNERSHIP="FOUR_LOCAL_CONTROL_PCBS_SELECTED_SUPPORT_FOOTPRINT_XY_OPEN"
-CONTROL_MODULE_PARTITION=("EQ_L","EQ_R","RUMBLE","MATRIX_MUTE")
-SHARED_CK_CONTROL_PCB_PARTITION="RUMBLE_LOCAL_PLUS_MATRIX_MUTE_DOWNSTREAM_SELECTED"
-CONTROL_INTERCONNECT_ARCHITECTURE="SHORT_DETACHABLE_WIRE_HARNESSES_SELECTED"
-CONTROL_CONNECTOR_FAMILY="MOLEX_MICRO_LOCK_PLUS_2MM_SELECTED"
-CONTROL_CONNECTOR_HEADER_SERIES=("505575","505578")
-CONTROL_CONNECTOR_HOUSING_SERIES="505570"
-CONTROL_CONNECTOR_CRIMP_MPN="5055721200"
-RUMBLE_EXTERNAL_NET_COUNT=6
-MATRIX_MUTE_EXTERNAL_NET_COUNT=7
-EQ_PASSIVE_PARTITION="OPEN_PENDING_B03_PARASITIC_RUN10_DISCRIMINATOR"
+CONTROL_BOARD_OWNERSHIP="ONE_MAIN_AUDIO_PCB_ALL_SEVEN_CONTROLS_DIRECT_SELECTED_PHYSICAL_MIGRATION_PENDING"
+EQ_CONTROL_OWNERSHIP="MAIN_AUDIO_PCB_DIRECT_LOCAL_TO_CHANNEL_REGIONS_SELECTED"
+SHARED_CK_CONTROL_OWNERSHIP="MAIN_AUDIO_PCB_DIRECT_SELECTED"
+CONTROL_MODULE_PARTITION=("MAIN_AUDIO_PCB",)
+SHARED_CK_CONTROL_PCB_PARTITION="NONE_SINGLE_MAIN_AUDIO_PCB"
+CONTROL_INTERCONNECT_ARCHITECTURE="NO_CONTROL_INTERBOARD_HARNESSES"
+CONTROL_CONNECTOR_FAMILY=None
+CONTROL_CONNECTOR_HEADER_SERIES=()
+CONTROL_CONNECTOR_HOUSING_SERIES=None
+CONTROL_CONNECTOR_CRIMP_MPN=None
+RUMBLE_EXTERNAL_NET_COUNT=0
+MATRIX_MUTE_EXTERNAL_NET_COUNT=0
+EQ_PASSIVE_PARTITION="NO_MEZZANINE_PARTITION_SELECTED_RUN10_PARASITIC_ACCEPTANCE_OPEN"
 RIGID_BOARD_TO_BOARD_CONTROL_INTERCONNECT_ALLOWED=False
-DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED=False
+DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED=True
 CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED=False
-B03_STATUS="MODULE_PARTITION_AND_HARNESS_FAMILY_SELECTED_Z_SUPPORT_PASSIVES_FOOTPRINT_XY_OPEN"
+
+MAIN_PCB_SUPPORT_COUNT=6
+SUPPORT_ARCHITECTURE="PCB_TO_REMOVABLE_UPPER_COVER_PRIMARY_DATUM_SUPPORTS"
+SUPPORT_XY_FROZEN=False
+SUPPORT_Z_TOLERANCE_STACK_FROZEN=False
+CONTROL_XY_FROZEN=False
+CK_INSTALLED_PCB_PLANE_VERIFIED=False
+PHYSICAL_CAD_MIGRATION_COMPLETE=False
+MCAD_DIGITAL_MOCKUP_REQUIRED=True
+COMMON_MAIN_PCB_CONTROL_PLANE_MM=None
+
+B03_STATUS="SINGLE_MAIN_PCB_SERVICE_MODULE_SELECTED_MCAD_Z_XY_FOOTPRINT_MIGRATION_OPEN"
 
 @dataclass(frozen=True, slots=True)
 class ControlStackPart:
@@ -47,60 +55,57 @@ class ControlStackPart:
 
 PARTS=(
     ControlStackPart("BASS",2,"NR01105ANG13-2C",
-        "AT3009 flanged knob beneath panel; installed panel-to-PCB plane 12.3 mm",
-        "channel-local EQ mezzanine; REG-08 mechanical registration; THT straight PC with support bracket"),
+        "AT3009 flanged knob beneath panel; controlled panel-to-PCB relationship 12.3 mm",
+        "direct main audio PCB; local to corresponding SCH103 channel; exact footprint/XY migration open"),
     ControlStackPart("TREBLE",2,"NR01105ANG13-2A",
-        "AT3009 flanged knob beneath panel; installed panel-to-PCB plane 12.3 mm",
-        "channel-local EQ mezzanine; REG-08 mechanical registration; THT straight PC with support bracket"),
+        "AT3009 flanged knob beneath panel; controlled panel-to-PCB relationship 12.3 mm",
+        "direct main audio PCB; local to corresponding SCH103 channel; exact footprint/XY migration open"),
     ControlStackPart("CHANNEL",1,"A30403RNCB",
-        "3/8-32 threaded bushing and nut; exact PCB-plane stack still to freeze",
-        "THT PC pins; local module partition selected; short detachable harness family selected; exact support/Z/connector variant open"),
+        "3/8-32 threaded bushing; installed PCB plane must be proven in MCAD/tolerance stack",
+        "direct main audio PCB; bushing secondary only after six-support PCB datum is established"),
     ControlStackPart("RUMBLE",1,"7201SYCBE",
-        "1/4-40 threaded bushing and nut; exact PCB-plane stack still to freeze",
-        "THT PC pins; local module partition selected; short detachable harness family selected; exact support/Z/connector variant open"),
+        "1/4-40 threaded bushing; installed PCB plane must be proven in MCAD/tolerance stack",
+        "direct main audio PCB local to SCH107; bushing secondary only"),
     ControlStackPart("MUTE",1,"7201SYCBE",
-        "1/4-40 threaded bushing and nut; exact PCB-plane stack still to freeze",
-        "THT PC pins; local module partition selected; short detachable harness family selected; exact support/Z/connector variant open"),
+        "1/4-40 threaded bushing; installed PCB plane must be proven in MCAD/tolerance stack",
+        "direct main audio PCB immediately before THAT1646; bushing secondary only"),
 )
 
 REQUIRED_BEFORE_B03_CLOSURE=(
-    "freeze main PCB/carrier Z relative to upper-cover inner face",
-    "freeze top-cover thickness and finished aperture/clearance stack",
-    "freeze exact C&K installed PCB-plane stack and local-control PCB support/connector variant",
-    "freeze exact short-harness connector order codes/orientation after support and XY are known",
-    "freeze switch-local passive ownership and bound RUN10 parasitic/stability effect",
-    "create and verify exact part footprints, pin maps, courtyards and 3D/body envelopes",
-    "freeze control XY coordinates and keep-outs against adjacent components",
-    "verify actuator/knob projection, tool access, anti-rotation features and service removal",
-    "migrate physical switch instances only after ownership and Z stack are frozen",
+    "governed dimensionally accurate MCAD assembly of M5502119, panels, PCB, major connectors and controls",
+    "prove C&K A30403RNCB and 7201SYCBE fit at the rigid PCB plane constrained by NKK 12.3 mm installation evidence",
+    "freeze six PCB-to-upper-cover support XY, Z, hardware and tolerance stack",
+    "freeze exact control footprints, pin maps, courtyards and 3D/body envelopes",
+    "freeze control XY coordinates, upper-cover apertures and keep-outs",
+    "close RUN10 switch-local parasitic/stability obligations",
+    "migrate physical control footprints/support geometry only after MCAD acceptance",
+    "reconcile manual placement only after MCAD/support datum freeze",
 )
 
 def validate_control_stack()->None:
+    assert ARCHITECTURE_RECORD=="AE-076B"
     assert ENCLOSURE_MPN=="M5502119"
-    assert ENCLOSURE_INTERNAL_COVER_HEIGHT_MM==86.2
-    assert UNICASE_GUIDE_PCB_THICKNESS_MM==1.6
-    assert CARRIER_THICKNESS_MM==2.0
-    assert CARRIER_GUIDE_RAIL_COMPATIBLE is False
-    assert MAIN_PCB_CARRIER_STANDOFF_MM==8.0
-    assert NKK_SWITCH_DEPTH_BEHIND_PANEL_MM==10.5
+    assert TOP_COVER_NOMINAL_MM==2.0
     assert NKK_INSTALLED_PANEL_TO_PCB_MM==12.3
-    assert NKK_NOMINAL_CLEARANCE_TO_KNOWN_11MM_PART_MM==1.3
-    assert TOP_COVER_THICKNESS_MM is None
-    assert CARRIER_OR_CONTROL_PLANE_Z_MM is None
-    assert EQ_CONTROL_OWNERSHIP=="TWO_CHANNEL_LOCAL_EQ_MEZZANINES_SELECTED"
-    assert SHARED_CK_CONTROL_OWNERSHIP=="DISTRIBUTED_LOCAL_CONTROL_PCB_SELECTED"
-    assert CONTROL_BOARD_OWNERSHIP=="FOUR_LOCAL_CONTROL_PCBS_SELECTED_SUPPORT_FOOTPRINT_XY_OPEN"
-    assert CONTROL_MODULE_PARTITION==("EQ_L","EQ_R","RUMBLE","MATRIX_MUTE")
-    assert SHARED_CK_CONTROL_PCB_PARTITION=="RUMBLE_LOCAL_PLUS_MATRIX_MUTE_DOWNSTREAM_SELECTED"
-    assert CONTROL_INTERCONNECT_ARCHITECTURE=="SHORT_DETACHABLE_WIRE_HARNESSES_SELECTED"
-    assert CONTROL_CONNECTOR_FAMILY=="MOLEX_MICRO_LOCK_PLUS_2MM_SELECTED"
-    assert CONTROL_CONNECTOR_CRIMP_MPN=="5055721200"
-    assert RUMBLE_EXTERNAL_NET_COUNT==6
-    assert MATRIX_MUTE_EXTERNAL_NET_COUNT==7
-    assert EQ_PASSIVE_PARTITION=="OPEN_PENDING_B03_PARASITIC_RUN10_DISCRIMINATOR"
-    assert RIGID_BOARD_TO_BOARD_CONTROL_INTERCONNECT_ALLOWED is False
-    assert DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED is False
+    assert CARRIER_PRESENT_IN_SELECTED_ARCHITECTURE is False
+    assert CARRIER_THICKNESS_MM is None
+    assert MAIN_PCB_CARRIER_STANDOFF_MM is None
+    assert CONTROL_BOARD_OWNERSHIP=="ONE_MAIN_AUDIO_PCB_ALL_SEVEN_CONTROLS_DIRECT_SELECTED_PHYSICAL_MIGRATION_PENDING"
+    assert EQ_CONTROL_OWNERSHIP=="MAIN_AUDIO_PCB_DIRECT_LOCAL_TO_CHANNEL_REGIONS_SELECTED"
+    assert SHARED_CK_CONTROL_OWNERSHIP=="MAIN_AUDIO_PCB_DIRECT_SELECTED"
+    assert CONTROL_MODULE_PARTITION==("MAIN_AUDIO_PCB",)
+    assert CONTROL_INTERCONNECT_ARCHITECTURE=="NO_CONTROL_INTERBOARD_HARNESSES"
+    assert CONTROL_CONNECTOR_FAMILY is None
+    assert DIRECT_MAIN_PCB_CONTROL_MOUNTING_ALLOWED is True
     assert CENTRAL_REMOTE_CONTROL_STRIP_ALLOWED is False
-    assert len(PARTS)==5
+    assert MAIN_PCB_SUPPORT_COUNT==6
+    assert SUPPORT_XY_FROZEN is False
+    assert SUPPORT_Z_TOLERANCE_STACK_FROZEN is False
+    assert CONTROL_XY_FROZEN is False
+    assert CK_INSTALLED_PCB_PLANE_VERIFIED is False
+    assert PHYSICAL_CAD_MIGRATION_COMPLETE is False
+    assert MCAD_DIGITAL_MOCKUP_REQUIRED is True
+    assert COMMON_MAIN_PCB_CONTROL_PLANE_MM is None
     assert sum(part.quantity for part in PARTS)==7
-    assert B03_STATUS=="MODULE_PARTITION_AND_HARNESS_FAMILY_SELECTED_Z_SUPPORT_PASSIVES_FOOTPRINT_XY_OPEN"
+    assert all("direct main audio PCB" in part.pcb_mounting for part in PARTS)
+    assert B03_STATUS=="SINGLE_MAIN_PCB_SERVICE_MODULE_SELECTED_MCAD_Z_XY_FOOTPRINT_MIGRATION_OPEN"

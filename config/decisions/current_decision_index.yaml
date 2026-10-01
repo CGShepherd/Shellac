@@ -7,40 +7,40 @@ baseline:
   tag: sr-038-dr038-dr039-validated-baseline
   note: Historical tagged baseline only; later develop authority contains pre-SPICE design changes not yet promoted to production baseline.
 status_vocabulary:
-  - CURRENT_IMPLEMENTED
-  - CURRENT_SELECTED_PENDING_IMPLEMENTATION
-  - CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION
-  - CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
-  - SUPERSEDED
-  - REJECTED
-  - HISTORICAL
+- CURRENT_IMPLEMENTED
+- CURRENT_SELECTED_PENDING_IMPLEMENTATION
+- CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION
+- CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
+- SUPERSEDED
+- REJECTED
+- HISTORICAL
 decisions:
   DR-037:
     title: Restore legacy complete-RIAA architecture
     status: CURRENT_IMPLEMENTED
     primary_record: docs/DR-037_Restore_Legacy_Complete_RIAA_Architecture_Rev_A0.md
     evidence:
-      - docs/AE-011_End_to_End_Signal_Chain_Closure_Rev_A1.md
-      - docs/AE-012_All_State_Gain_Headroom_Closure_Rev_A0.md
-      - docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
+    - docs/AE-011_End_to_End_Signal_Chain_Closure_Rev_A1.md
+    - docs/AE-012_All_State_Gain_Headroom_Closure_Rev_A0.md
+    - docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
     implementation: Complete RIAA remains in SCH103 as the legacy TRUE-RIAA 3180/318 us bass branch plus 2121 Hz treble; independent downstream 3180 us stage is removed.
     supersedes:
-      - G3-025 optional-3180 active architecture
-      - G3-026 optional-3180 implementation
-      - G3-027 resynthesis requirement
+    - G3-025 optional-3180 active architecture
+    - G3-026 optional-3180 implementation
+    - G3-027 resynthesis requirement
   DR-038:
     title: SCH101 precision architecture
     status: CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
     primary_record: docs/decisions/DR-038_SCH101_Precision_Architecture_SELECTED.md
     proposal_record: docs/decisions/DR-038_SCH101_Precision_Architecture_PROPOSED.md
     evidence:
-      - docs/AE-013_SCH101_Noise_CMRR_Review_Rev_A0.md
-      - docs/AE-014_SCH101_Precision_Architecture_Downselect_Rev_A0.md
-      - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
-      - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
-      - docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
-      - docs/design_pack/AE-071A_SCH101_Product_Migration_Rev_A0.md
-      - docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
+    - docs/AE-013_SCH101_Noise_CMRR_Review_Rev_A0.md
+    - docs/AE-014_SCH101_Precision_Architecture_Downselect_Rev_A0.md
+    - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
+    - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
+    - docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
+    - docs/design_pack/AE-071A_SCH101_Product_Migration_Rev_A0.md
+    - docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
     implementation:
       converter_gain: 4.0
       network: LT5400BIMS8E-7#PBF selected; EP9 to quiet 0VA implemented; RUN10 full-stage tolerance/CMRR acceptance remains open
@@ -54,46 +54,44 @@ decisions:
     historical_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_SELECTED.md
     proposal_record: docs/decisions/DR-039_Common_Post_EQ_DC_Block_PROPOSED.md
     evidence:
-      - docs/AE-015_Full_Chain_Noise_DC_Review_Rev_A0.md
-      - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
-      - docs/design_pack/AE-044_DR039_SCH107_Coupled_Pre-SPICE_Review_Rev_A0.md
-      - docs/design_pack/AE-049_Shellac_SPICE_Numerical_Acceptance_Criteria_Rev_A0.md
-      - docs/design_pack/AE-052_DR039_SCH107_Pre-SPICE_Architectural_Downselect_Rev_A0.md
-      - docs/design_pack/AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md
-      - docs/design_pack/AE-074_DR039_Branch_Local_Product_Migration_Rev_A0.md
-    implementation: >
-      AE-074 migrates the AE-067 selected branch-local topology into the live generator and generated
-      schematic source. The stable C30060/R30060/C35060/R35060 identities are preserved but owned by
-      SCH107: the 1 uF / 330 kOhm network exists only in each DIRECT/BYPASS branch, while the existing
-      SCH107 high-pass branch provides intrinsic DC blocking. The common pre-split block is removed from
-      SCH103. AE-074 native PCB F8 reference relink, net reassignment and metadata reconciliation are
-      complete; RUN09, RUN10, RUN12 and bench correlation remain open before manufacturing baseline.
+    - docs/AE-015_Full_Chain_Noise_DC_Review_Rev_A0.md
+    - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
+    - docs/design_pack/AE-044_DR039_SCH107_Coupled_Pre-SPICE_Review_Rev_A0.md
+    - docs/design_pack/AE-049_Shellac_SPICE_Numerical_Acceptance_Criteria_Rev_A0.md
+    - docs/design_pack/AE-052_DR039_SCH107_Pre-SPICE_Architectural_Downselect_Rev_A0.md
+    - docs/design_pack/AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md
+    - docs/design_pack/AE-074_DR039_Branch_Local_Product_Migration_Rev_A0.md
+    implementation: 'AE-074 migrates the AE-067 selected branch-local topology into the live generator and generated schematic source. The stable C30060/R30060/C35060/R35060 identities are preserved but owned by SCH107: the 1 uF / 330 kOhm network exists only in each DIRECT/BYPASS branch, while the existing SCH107 high-pass branch provides intrinsic DC blocking. The common pre-split block is removed from SCH103. AE-074 native PCB F8 reference relink, net reassignment and metadata reconciliation are complete; RUN09, RUN10, RUN12 and bench correlation remain open before manufacturing baseline.
+
+      '
   DR-040:
     title: Precision CAD primitive staging rule
     status: CURRENT_IMPLEMENTED
     primary_record: docs/decisions/DR-040_Precision_CAD_Primitive_Staging_SELECTED.md
     evidence:
-      - docs/AE-017_Atomic_Migration_Dependency_Mapping_Gate_Rev_A0.md
-      - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
+    - docs/AE-017_Atomic_Migration_Dependency_Mapping_Gate_Rev_A0.md
+    - docs/AE-018_Live_Dependency_Disposition_and_Precision_CAD_Primitives_Rev_A0.md
   AE-041-A1:
     title: 3P4T matrix and top-cover control authority
     status: CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
     primary_record: docs/design_pack/AE-041_3P4T_Matrix_and_Top_Cover_Control_Authority_Rev_A1.md
     evidence:
-      - generator/model/control_architecture.py
-      - generator/model/controls.py
-      - config/bom/shellac_bom.yaml
-      - docs/design_pack/AE-046_SCH105_Mode_Matrix_Pre-SPICE_Review_Rev_A0.md
-      - docs/design_pack/AE-068_RUN05_SCH104_SCH105_Matrix_Evidence_Rev_A0.md
-      - docs/design_pack/AE-075C_Control_Hardware_and_Vertical_Stack_Reconciliation_Rev_A0.md
-      - docs/design_pack/AE-075D_B03_Control_Z_Stack_and_EQ_Mezzanine_Discriminator_Rev_A0.md
-      - docs/design_pack/AE-075E_B03_Shared_CK_Local_Control_PCB_Ownership_Rev_A0.md
-      - docs/design_pack/AE-075F_B03_Control_Module_Partition_and_Serviceable_Harness_Architecture_Rev_A0.md
+    - generator/model/control_architecture.py
+    - generator/model/controls.py
+    - config/bom/shellac_bom.yaml
+    - docs/design_pack/AE-046_SCH105_Mode_Matrix_Pre-SPICE_Review_Rev_A0.md
+    - docs/design_pack/AE-068_RUN05_SCH104_SCH105_Matrix_Evidence_Rev_A0.md
+    - docs/design_pack/AE-075C_Control_Hardware_and_Vertical_Stack_Reconciliation_Rev_A0.md
+    - docs/design_pack/AE-075D_B03_Control_Z_Stack_and_EQ_Mezzanine_Discriminator_Rev_A0.md
+    - docs/design_pack/AE-075E_B03_Shared_CK_Local_Control_PCB_Ownership_Rev_A0.md
+    - docs/design_pack/AE-075F_B03_Control_Module_Partition_and_Serviceable_Harness_Architecture_Rev_A0.md
+    - docs/design_pack/AE-076B_Control_Service_Module_Architecture_Supersession_Rev_A0.md
+    - config/mechanical/ae076b_control_service_module.yaml
     implementation:
       eq_controls: Four independent NKK NR01105ANG13 five-position BBM gold-contact controls; Bass uses -2C red flanged-knob configuration and Treble uses -2A black flanged-knob configuration.
       channel_matrix: C&K A30403RNCB 3P4T BBM gold THT preferred; TE/Alcoswitch MRJE3404 fallback.
       mute_rumble: C&K 7201SYCBE.
-      note: AE-068 qualifies RUN05 steady-state routing, insertion, mono weighting and crosstalk. AE-075C freezes exact external control MPNs. AE-075D selects the two channel-local EQ mezzanines. AE-075E selects distributed local C&K control-PCB ownership and rejects direct-main-PCB control mounting. AE-075F freezes four local control modules (EQ-L, EQ-R, Rumble, Matrix+Mute), selects short detachable wire harnesses and the Molex Micro-Lock Plus 2.00 mm family, and rejects rigid board-to-board control coupling as the current architecture. Main-board/carrier Z, local-board installed stack/support, exact connector variants/circuit counts, EQ passive partition/RUN10 parasitics, exact footprints/pin maps/courtyards and XY keep-outs remain open. RUN12 switching and bench qualification remain open.
+      note: 'AE-068 qualifies RUN05 steady-state matrix behaviour and AE-075C freezes exact control MPNs. AE-076B supersedes the AE-075D/E/F four-local-control-board/carrier ownership architecture: one main audio PCB carries all seven controls directly and forms a removable service module with the upper cover; six PCB-to-cover supports are selected in principle and control inter-board harnesses are not selected. Historical AE-075D/E/F remain provenance. SR-040/AE-071B MH1-MH4 native geometry is interim physical CAD pending AE-076B2 MCAD closure. C&K/NKK stack, support XY/Z/tolerances, exact footprints/3D envelopes, control XY/apertures, RUN10 and physical migration remain open. RUN12 switching and bench qualification remain open.'
 pre_spice_assurance:
   AE-042: docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
   AE-043: docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
@@ -137,13 +135,14 @@ pre_spice_assurance:
   AE-075F: docs/design_pack/AE-075F_B03_Control_Module_Partition_and_Serviceable_Harness_Architecture_Rev_A0.md
   AE-075G: docs/design_pack/AE-075G_SCH108_Output_Interface_and_PRE90_Compatibility_Reconciliation_Rev_A0.md
   AE-076A: docs/design_pack/AE-076A_17V_Rail_Authority_Migration_and_Requalification_Rev_A0.md
+  AE-076B: docs/design_pack/AE-076B_Control_Service_Module_Architecture_Supersession_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED
     reason: Premature DR-038/DR-039 implementation caused regression failures.
     superseded_by:
-      - AE-016A
-      - AE-016B
+    - AE-016A
+    - AE-016B
   AE-016A:
     disposition: HISTORICAL
     reason: First regression repair; restored active SCH101 baseline.

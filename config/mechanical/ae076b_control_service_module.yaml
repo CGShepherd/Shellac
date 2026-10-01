@@ -1,0 +1,46 @@
+schema_version: 1
+project: Shellac
+authority: AE-076B
+status: CURRENT_SELECTED_PENDING_PHYSICAL_MCAD_MIGRATION
+baseline_commit: 817297ed7cccfdbaaa4c0ee3360d5c8ac3fdc35d
+selected_architecture:
+  audio_pcb_count: 1
+  control_board_ownership: ONE_MAIN_AUDIO_PCB_ALL_SEVEN_CONTROLS_DIRECT
+  service_module: UPPER_COVER_PLUS_MAIN_PCB_PLUS_CONTROLS_REMOVABLE_ASSEMBLY
+  aluminium_carrier: NOT_SELECTED
+  local_control_pcbs: NONE
+  control_interboard_harnesses: NONE
+  panel_looms:
+    front_input_xlr: SHORT_DETACHABLE_RETAINED
+    rear_output_xlr: SHORT_DETACHABLE_RETAINED
+    rear_dc: SHORT_DETACHABLE_RETAINED
+  primary_pcb_support:
+    count: 6
+    relationship: PCB_TO_REMOVABLE_UPPER_COVER
+    xy_frozen: false
+    z_tolerance_stack_frozen: false
+control_stack:
+  nkk_installed_panel_to_pcb_mm: 12.3
+  ck_matrix_installed_pcb_plane_verified: false
+  ck_toggle_installed_pcb_plane_verified: false
+  common_direct_main_pcb_plane_mcad_proof_required: true
+physical_cad_boundary:
+  sr040_carrier_and_mh1_mh4_state: INTERIM_IMPLEMENTATION_PRESERVED
+  native_pcb_migration_authorized: false
+  support_hole_migration_authorized: false
+  control_footprint_migration_authorized: false
+  manual_placement_acceptance_authorized: false
+next_gate:
+  id: AE-076B2
+  purpose: DIMENSIONALLY_CONTROLLED_MCAD_DIGITAL_MOCKUP_AND_SUPPORT_STACK_CLOSURE
+permissions:
+  analysis: true
+  mcad_trade_study: true
+  nonbinding_placement: true
+  final_control_xy: false
+  support_xy_release: false
+  native_pcb_mechanical_migration: false
+  final_routing: false
+  layout_freeze: false
+  bom_freeze: false
+  manufacturing_release: false

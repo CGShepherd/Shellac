@@ -1,73 +1,75 @@
 schema_version: 1
 project: Shellac
 current_authority:
-  - README.md
-  - config/decisions/current_decision_index.yaml
-  - config/decisions/decision_status.yaml
-  - docs/knowledge/DESIGN_PACK_INDEX.md
-  - docs/knowledge/INDEPENDENT_REVIEW_AND_DESIGN_ASSURANCE_PLAN.md
-  - docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md
-  - docs/maintenance/Signal_Chain_Commissioning_and_Maintenance_Baseline_Rev_A0.md
-  - docs/design_pack/AE-041_3P4T_Matrix_and_Top_Cover_Control_Authority_Rev_A1.md
+- README.md
+- config/decisions/current_decision_index.yaml
+- config/decisions/decision_status.yaml
+- docs/knowledge/DESIGN_PACK_INDEX.md
+- docs/knowledge/INDEPENDENT_REVIEW_AND_DESIGN_ASSURANCE_PLAN.md
+- docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md
+- docs/maintenance/Signal_Chain_Commissioning_and_Maintenance_Baseline_Rev_A0.md
+- docs/design_pack/AE-041_3P4T_Matrix_and_Top_Cover_Control_Authority_Rev_A1.md
+- config/mechanical/ae076b_control_service_module.yaml
 pre_spice_assurance_evidence:
-  - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
-  - docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
-  - docs/design_pack/AE-044_DR039_SCH107_Coupled_Pre-SPICE_Review_Rev_A0.md
-  - docs/design_pack/AE-045_SCH104_Isolation_Mono_Preparation_Pre-SPICE_Review_Rev_A0.md
-  - docs/design_pack/AE-046_SCH105_Mode_Matrix_Pre-SPICE_Review_Rev_A0.md
-  - docs/design_pack/AE-047_System_Headroom_Power_Ground_Pre-SPICE_Reconciliation_Rev_A0.md
-  - docs/design_pack/AE-048_Shellac_Full_System_SPICE_Qualification_Matrix_Rev_A0.md
-  - docs/design_pack/AE-049_Shellac_SPICE_Numerical_Acceptance_Criteria_Rev_A0.md
-  - docs/design_pack/AE-050_Shellac_SPICE_Execution_Package_Rev_A0.md
-  - docs/design_pack/AE-051_Pre-SPICE_Non-Simulation_Issue_Reconciliation_Rev_A0.md
-  - docs/design_pack/AE-052_DR039_SCH107_Pre-SPICE_Architectural_Downselect_Rev_A0.md
-  - docs/design_pack/AE-053_Shellac_LTspice_Python_Simulation_Toolchain_Architecture_Rev_A0.md
-  - docs/design_pack/AE-054_Shellac_RUN00_Toolchain_Implementation_Rev_A0.md
-  - docs/design_pack/AE-055_Shellac_Early_Analytical_Correlation_Rev_A0.md
-  - docs/design_pack/AE-056_Shellac_LTspice_Analytical_Correlation_Implementation_Rev_A0.md
-  - docs/design_pack/AE-057_Shellac_LTspice_Windows_Compatibility_Rev_A1.md
-  - docs/design_pack/AE-058_Shellac_LTspice26_Correlation_Compatibility_and_RUN00_Correction_Rev_A2.md
-  - docs/design_pack/AE-058_Shellac_LTspice26_Correlation_Numerical_Closure_Rev_A2.md
-  - docs/design_pack/AE-059_Pre-SPICE_Configuration_Control_Reconciliation_Rev_A0.md
-  - docs/design_pack/AE-060_Integrated_SPICE_Model_Contract_and_Preflight_Rev_A0.md
-  - docs/design_pack/AE-061_Controlled_SPICE_Model_Source_Manifest_and_Cartridge_Identity_Rev_A0.md
-  - docs/design_pack/AE-062_SPICE_Model_Ingestion_and_Wrapper_Qualification_Rev_A0.md
-  - docs/design_pack/AE-063_SCH108_SMA_Clamp_and_SPICE_Model_Reconciliation_Rev_A0.md
-  - docs/design_pack/AE-064_Cartridge_Behavioural_Model_Qualification_and_Integrated_Source_Gate_Closure_Rev_A0.md
-  - docs/design_pack/AE-065_SHELLAC_TOP_Implementation_and_Integrated_RUN00_Rev_A0.md
-  - docs/design_pack/AE-066_Integrated_AC_RUN01_RUN03_and_Infrastructure_Rev_A0.md
-  - docs/design_pack/AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md
-  - docs/design_pack/AE-068_RUN05_SCH104_SCH105_Matrix_Evidence_Rev_A0.md
-  - docs/design_pack/AE-069_RUN06_SCH108_Nominal_Output_Evidence_Rev_A0.md
-  - docs/design_pack/AE-070_RUN07_End_to_End_Nominal_Chain_Evidence_Rev_A0.md
-  - docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
-  - docs/design_pack/AE-071A_SCH101_Product_Migration_Rev_A0.md
-  - docs/design_pack/AE-071B_Native_PCB_Mechanical_Ownership_Hardening_Rev_A0.md
-  - docs/design_pack/AE-073_PSU_Long_Settle_Discriminator_Rev_A0.md
-  - docs/design_pack/AE-074_DR039_Branch_Local_Product_Migration_Rev_A0.md
-  - docs/design_pack/AE-075A_Post_SR043_Placement_and_SCH108_Sense_Cap_Reconciliation_Rev_A0.md
-  - docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
-  - docs/design_pack/AE-075C_Control_Hardware_and_Vertical_Stack_Reconciliation_Rev_A0.md
-  - docs/design_pack/AE-075D_B03_Control_Z_Stack_and_EQ_Mezzanine_Discriminator_Rev_A0.md
-  - docs/design_pack/AE-075E_B03_Shared_CK_Local_Control_PCB_Ownership_Rev_A0.md
-  - docs/design_pack/AE-075F_B03_Control_Module_Partition_and_Serviceable_Harness_Architecture_Rev_A0.md
-  - docs/design_pack/AE-075G_SCH108_Output_Interface_and_PRE90_Compatibility_Reconciliation_Rev_A0.md
-  - docs/design_pack/AE-076A_17V_Rail_Authority_Migration_and_Requalification_Rev_A0.md
+- docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
+- docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
+- docs/design_pack/AE-044_DR039_SCH107_Coupled_Pre-SPICE_Review_Rev_A0.md
+- docs/design_pack/AE-045_SCH104_Isolation_Mono_Preparation_Pre-SPICE_Review_Rev_A0.md
+- docs/design_pack/AE-046_SCH105_Mode_Matrix_Pre-SPICE_Review_Rev_A0.md
+- docs/design_pack/AE-047_System_Headroom_Power_Ground_Pre-SPICE_Reconciliation_Rev_A0.md
+- docs/design_pack/AE-048_Shellac_Full_System_SPICE_Qualification_Matrix_Rev_A0.md
+- docs/design_pack/AE-049_Shellac_SPICE_Numerical_Acceptance_Criteria_Rev_A0.md
+- docs/design_pack/AE-050_Shellac_SPICE_Execution_Package_Rev_A0.md
+- docs/design_pack/AE-051_Pre-SPICE_Non-Simulation_Issue_Reconciliation_Rev_A0.md
+- docs/design_pack/AE-052_DR039_SCH107_Pre-SPICE_Architectural_Downselect_Rev_A0.md
+- docs/design_pack/AE-053_Shellac_LTspice_Python_Simulation_Toolchain_Architecture_Rev_A0.md
+- docs/design_pack/AE-054_Shellac_RUN00_Toolchain_Implementation_Rev_A0.md
+- docs/design_pack/AE-055_Shellac_Early_Analytical_Correlation_Rev_A0.md
+- docs/design_pack/AE-056_Shellac_LTspice_Analytical_Correlation_Implementation_Rev_A0.md
+- docs/design_pack/AE-057_Shellac_LTspice_Windows_Compatibility_Rev_A1.md
+- docs/design_pack/AE-058_Shellac_LTspice26_Correlation_Compatibility_and_RUN00_Correction_Rev_A2.md
+- docs/design_pack/AE-058_Shellac_LTspice26_Correlation_Numerical_Closure_Rev_A2.md
+- docs/design_pack/AE-059_Pre-SPICE_Configuration_Control_Reconciliation_Rev_A0.md
+- docs/design_pack/AE-060_Integrated_SPICE_Model_Contract_and_Preflight_Rev_A0.md
+- docs/design_pack/AE-061_Controlled_SPICE_Model_Source_Manifest_and_Cartridge_Identity_Rev_A0.md
+- docs/design_pack/AE-062_SPICE_Model_Ingestion_and_Wrapper_Qualification_Rev_A0.md
+- docs/design_pack/AE-063_SCH108_SMA_Clamp_and_SPICE_Model_Reconciliation_Rev_A0.md
+- docs/design_pack/AE-064_Cartridge_Behavioural_Model_Qualification_and_Integrated_Source_Gate_Closure_Rev_A0.md
+- docs/design_pack/AE-065_SHELLAC_TOP_Implementation_and_Integrated_RUN00_Rev_A0.md
+- docs/design_pack/AE-066_Integrated_AC_RUN01_RUN03_and_Infrastructure_Rev_A0.md
+- docs/design_pack/AE-067_RUN04_DR039_SCH107_LF_Trade_Evidence_Rev_A0.md
+- docs/design_pack/AE-068_RUN05_SCH104_SCH105_Matrix_Evidence_Rev_A0.md
+- docs/design_pack/AE-069_RUN06_SCH108_Nominal_Output_Evidence_Rev_A0.md
+- docs/design_pack/AE-070_RUN07_End_to_End_Nominal_Chain_Evidence_Rev_A0.md
+- docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
+- docs/design_pack/AE-071A_SCH101_Product_Migration_Rev_A0.md
+- docs/design_pack/AE-071B_Native_PCB_Mechanical_Ownership_Hardening_Rev_A0.md
+- docs/design_pack/AE-073_PSU_Long_Settle_Discriminator_Rev_A0.md
+- docs/design_pack/AE-074_DR039_Branch_Local_Product_Migration_Rev_A0.md
+- docs/design_pack/AE-075A_Post_SR043_Placement_and_SCH108_Sense_Cap_Reconciliation_Rev_A0.md
+- docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
+- docs/design_pack/AE-075C_Control_Hardware_and_Vertical_Stack_Reconciliation_Rev_A0.md
+- docs/design_pack/AE-075D_B03_Control_Z_Stack_and_EQ_Mezzanine_Discriminator_Rev_A0.md
+- docs/design_pack/AE-075E_B03_Shared_CK_Local_Control_PCB_Ownership_Rev_A0.md
+- docs/design_pack/AE-075F_B03_Control_Module_Partition_and_Serviceable_Harness_Architecture_Rev_A0.md
+- docs/design_pack/AE-075G_SCH108_Output_Interface_and_PRE90_Compatibility_Reconciliation_Rev_A0.md
+- docs/design_pack/AE-076A_17V_Rail_Authority_Migration_and_Requalification_Rev_A0.md
+- docs/design_pack/AE-076B_Control_Service_Module_Architecture_Supersession_Rev_A0.md
 historical_state_evidence:
-  - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
-  - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md
-  - docs/AE-016B_Full_Regression_Staging_Repair_Rev_A0.md
-  - docs/AE-017_Atomic_Migration_Dependency_Mapping_Gate_Rev_A0.md
-  - docs/AE-017_Generated_Atomic_Migration_Dependency_Map.md
-  - docs/AE-019_Design_Record_Reconciliation_Gate_Rev_A0.md
-  - docs/AE-019_Generated_Design_Record_Reconciliation.md
-  - docs/AE-020_Decision_Register_Reconciliation_and_Design_Pack_Structure_Rev_A0.md
-  - docs/updates/AE016_UPDATE_MANIFEST.md
-  - docs/updates/AE016B_UPDATE_MANIFEST.md
-  - docs/design_pack/AE-041_DP4_Matrix_and_Top_Cover_Control_Authority_Rev_A0.md
+- docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
+- docs/AE-016A_AE016_Regression_Repair_Rev_A0.md
+- docs/AE-016B_Full_Regression_Staging_Repair_Rev_A0.md
+- docs/AE-017_Atomic_Migration_Dependency_Mapping_Gate_Rev_A0.md
+- docs/AE-017_Generated_Atomic_Migration_Dependency_Map.md
+- docs/AE-019_Design_Record_Reconciliation_Gate_Rev_A0.md
+- docs/AE-019_Generated_Design_Record_Reconciliation.md
+- docs/AE-020_Decision_Register_Reconciliation_and_Design_Pack_Structure_Rev_A0.md
+- docs/updates/AE016_UPDATE_MANIFEST.md
+- docs/updates/AE016B_UPDATE_MANIFEST.md
+- docs/design_pack/AE-041_DP4_Matrix_and_Top_Cover_Control_Authority_Rev_A0.md
 historical_deleted_artefacts:
-  - tools/apply_dr038_full_migration.py
-  - tools/apply_dr039_full_closure.py
+- tools/apply_dr038_full_migration.py
+- tools/apply_dr039_full_closure.py
 historical_deleted_artefact_rule: These are provenance references to deliberately removed implementation utilities and are not expected to resolve in the live tree.
 rules:
   current_authority_can_be_reconciled: true

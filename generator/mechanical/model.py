@@ -29,6 +29,13 @@ class CandidateStatus(str, Enum):
     REJECTED = "rejected"
     DATA_REQUIRED = "data_required"
 
+# AE-076B selected architecture versus still-interim SR-040 physical CAD.
+AUDIO_SELECTED_ARCHITECTURE_RECORD="AE-076B"
+AUDIO_SELECTED_SERVICE_MODULE="UPPER_COVER_PLUS_MAIN_PCB_PLUS_CONTROLS"
+AUDIO_SELECTED_CARRIER_ENABLED=False
+AUDIO_SELECTED_MAIN_PCB_SUPPORT_COUNT=6
+AUDIO_PHYSICAL_CAD_MIGRATION_PENDING=True
+
 
 @dataclass(frozen=True, slots=True)
 class Datum:
@@ -208,6 +215,7 @@ def build_mechanical_baseline() -> MechanicalBaseline:
         datums=datums,
         candidates=candidates,
         open_inputs=[
+            "AE-076B selects a no-carrier single-main-PCB upper-cover service module with six supports; SR-040 carrier/MH1-MH4 remain interim physical CAD until AE-076B2 MCAD migration.",
             "Audio M5502119 is frozen; exact upper-cover control stack remains gated by selected control parts.",
             "PSU M5502119 is frozen by G3-023; retain closed-box thermal measurement as first-prototype verification rather than an enclosure-size selection blocker.",
             "External control MPNs are selected by AE-075C; verify part-specific footprints/pin mapping, upper-cover thickness/Z datum, PCB/control-plane ownership, actuator/knob projection and bushing hardware where applicable before drilling release.",
