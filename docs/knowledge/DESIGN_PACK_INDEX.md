@@ -107,7 +107,9 @@ AE-076A closes the nominal rail-authority drift by making +17.0 V / 0VA / -17.0 
 
 AE-076B supersedes the current AE-075D/E/F local-control-board/carrier ownership architecture with one main audio PCB carrying all seven controls directly as part of the removable upper-cover service module. Six PCB-to-cover supports are selected but their XY/Z/hardware/tolerance stack is open. NKK 12.3 mm installation evidence remains controlled; C&K fit must be proven by AE-076B2 MCAD. SR-040/AE-071B MH1-MH4 geometry remains unchanged as interim physical CAD; no placement/routing release is implied.
 
-AE-042 through AE-076B, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance narrative, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-076B2A records the 261 F.Cu / 0 B.Cu native audit and selects F.Cu-down electronics with B.Cu-up direct controls. The four 11 mm SCH108 sense capacitors therefore leave the NKK 12.3 mm upper-cover stack. Exact B.Cu control footprints/pin maps, C&K common-plane fit, six-support geometry and full MCAD clearance/service review remain open; native geometry is unchanged.
+
+AE-042 through AE-076B2A, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance narrative, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048 and AE-050 remain the qualification and execution authorities for the simulation campaign. AE-049 remains the historical numerical-acceptance basis; AE-076A narrowly supersedes its nominal-RUN00 rail criterion for the current +17 V / 0VA / -17 V product authority and records targeted rail/headroom requalification. AE-053 remains the toolchain architecture.
 

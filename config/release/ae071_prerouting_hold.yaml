@@ -1,8 +1,8 @@
 schema_version: 1
 project: Shellac
-authority: AE-076B
-previous_authority: AE-076A
-baseline_commit: 817297ed7cccfdbaaa4c0ee3360d5c8ac3fdc35d
+authority: AE-076B2A
+previous_authority: AE-076B
+baseline_commit: e9b47d1b7edbe42f76410dbafc918c9b52b25120
 status: ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS
 historical_release:
   record: config/release/sr041_routing_release.yaml
@@ -129,6 +129,11 @@ routing_blockers:
   ck_installed_pcb_plane_verified: false
   physical_cad_state: INTERIM_SR040_AE071B_MH1_MH4_UNCHANGED_PENDING_AE076B2_MCAD
   remaining_scope: AE076B2_MCAD_DIGITAL_MOCKUP;CK_FIT_AT_NKK_12P3MM_CONSTRAINED_MAIN_PCB_PLANE;SIX_SUPPORT_XY_Z_HARDWARE_AND_TOLERANCE_STACK;EXACT_CONTROL_FOOTPRINT_PINMAP_COURTYARD_3D;CONTROL_XY_KEEP_OUTS_AND_PANEL_APERTURES;RUN10_SWITCH_LOCAL_PARASITICS;NATIVE_PCB_CONTROL_AND_SUPPORT_MIGRATION;MANUAL_PLACEMENT_RECONCILIATION
+  pcb_face_strategy: F_CU_DOWN_ELECTRONICS_B_CU_UP_CONTROLS_SELECTED
+  native_population_audit: 261_FCU_0_BCU
+  sense_cap_clearance: 11MM_FCU_CAPS_REMOVED_FROM_TOP_COVER_STACK_BY_ORIENTATION
+  control_footprint_side: B_CU_SELECTED_EXACT_FOOTPRINT_MIGRATION_OPEN
+  native_pcb_mechanical_migration: NOT_AUTHORIZED
 - id: AE071-B04
   item: LT5400_B_GRADE_RUN10_TOLERANCE_AND_EP_DISPOSITION
   required_before_final_routing: true

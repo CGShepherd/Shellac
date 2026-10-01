@@ -78,6 +78,7 @@ def test_pre_spice_assurance_chain_contains_required_records():
     assert "  AE-075G:" in text
     assert "  AE-076A:" in text
     assert "  AE-076B:" in text
+    assert "  AE-076B2A:" in text
 
 def test_live_routing_hold_authority_is_registered_and_fail_closed():
     decisions=yaml.safe_load(INDEX.read_text(encoding="utf-8"))
@@ -122,9 +123,15 @@ def test_current_control_hardware_and_b03_architecture_are_coherent():
     assert PHYSICAL_CAD_MIGRATION_COMPLETE is False
 
     hold=yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    assert hold["authority"]=="AE-076B"
-    assert hold["previous_authority"]=="AE-076A"
-    assert hold["baseline_commit"]=="817297ed7cccfdbaaa4c0ee3360d5c8ac3fdc35d"
+    assert hold["authority"]=="AE-076B2A"
+    assert hold["previous_authority"]=="AE-076B"
+    assert hold["baseline_commit"]=="e9b47d1b7edbe42f76410dbafc918c9b52b25120"
+    b03=next(item for item in hold["routing_blockers"] if item["id"]=="AE071-B03")
+    assert b03["architecture_authority"]=="AE-076B"
+    assert b03["pcb_face_strategy"]=="F_CU_DOWN_ELECTRONICS_B_CU_UP_CONTROLS_SELECTED"
+    assert b03["native_population_audit"]=="261_FCU_0_BCU"
+    assert b03["control_footprint_side"]=="B_CU_SELECTED_EXACT_FOOTPRINT_MIGRATION_OPEN"
+    assert b03["native_pcb_mechanical_migration"]=="NOT_AUTHORIZED"
 
     bom=yaml.safe_load(Path("config/bom/shellac_bom.yaml").read_text(encoding="utf-8"))
     ids={x["id"] for x in bom["items"]}

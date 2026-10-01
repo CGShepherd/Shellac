@@ -10,6 +10,7 @@ current_authority:
 - docs/maintenance/Signal_Chain_Commissioning_and_Maintenance_Baseline_Rev_A0.md
 - docs/design_pack/AE-041_3P4T_Matrix_and_Top_Cover_Control_Authority_Rev_A1.md
 - config/mechanical/ae076b_control_service_module.yaml
+- config/mechanical/ae076b2a_pcb_face_strategy.yaml
 pre_spice_assurance_evidence:
 - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
 - docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
@@ -55,6 +56,7 @@ pre_spice_assurance_evidence:
 - docs/design_pack/AE-075G_SCH108_Output_Interface_and_PRE90_Compatibility_Reconciliation_Rev_A0.md
 - docs/design_pack/AE-076A_17V_Rail_Authority_Migration_and_Requalification_Rev_A0.md
 - docs/design_pack/AE-076B_Control_Service_Module_Architecture_Supersession_Rev_A0.md
+- docs/design_pack/AE-076B2A_PCB_Face_Strategy_Rev_A0.md
 historical_state_evidence:
 - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
 - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md

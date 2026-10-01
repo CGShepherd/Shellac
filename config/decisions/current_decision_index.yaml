@@ -87,6 +87,8 @@ decisions:
     - docs/design_pack/AE-075F_B03_Control_Module_Partition_and_Serviceable_Harness_Architecture_Rev_A0.md
     - docs/design_pack/AE-076B_Control_Service_Module_Architecture_Supersession_Rev_A0.md
     - config/mechanical/ae076b_control_service_module.yaml
+    - docs/design_pack/AE-076B2A_PCB_Face_Strategy_Rev_A0.md
+    - config/mechanical/ae076b2a_pcb_face_strategy.yaml
     implementation:
       eq_controls: Four independent NKK NR01105ANG13 five-position BBM gold-contact controls; Bass uses -2C red flanged-knob configuration and Treble uses -2A black flanged-knob configuration.
       channel_matrix: C&K A30403RNCB 3P4T BBM gold THT preferred; TE/Alcoswitch MRJE3404 fallback.
@@ -136,6 +138,7 @@ pre_spice_assurance:
   AE-075G: docs/design_pack/AE-075G_SCH108_Output_Interface_and_PRE90_Compatibility_Reconciliation_Rev_A0.md
   AE-076A: docs/design_pack/AE-076A_17V_Rail_Authority_Migration_and_Requalification_Rev_A0.md
   AE-076B: docs/design_pack/AE-076B_Control_Service_Module_Architecture_Supersession_Rev_A0.md
+  AE-076B2A: docs/design_pack/AE-076B2A_PCB_Face_Strategy_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

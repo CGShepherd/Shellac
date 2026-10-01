@@ -1,0 +1,49 @@
+schema_version: 1
+project: Shellac
+authority: AE-076B2A
+status: PCB_FACE_STRATEGY_SELECTED_NATIVE_MIGRATION_OPEN
+baseline_commit: e9b47d1b7edbe42f76410dbafc918c9b52b25120
+audit:
+  total_footprints: 261
+  f_cu_footprints: 261
+  b_cu_footprints: 0
+  sense_cap_refs: [C80010, C80011, C90010, C90011]
+  sense_cap_side: F_CU
+  sense_cap_height_mm: 11.0
+  nkk_panel_to_pcb_mm: 12.3
+  historical_cover_side_nominal_clearance_mm: 1.3
+selected_orientation:
+  f_cu: ENCLOSURE_FACING_DOWN
+  b_cu: TOP_COVER_FACING_UP
+  existing_electronics: RETAIN_ON_F_CU
+  seven_controls: MOUNT_FROM_B_CU
+  rationale:
+    - PRESERVE_EXISTING_261_FCU_FOOTPRINTS
+    - REMOVE_11MM_SENSE_CAPS_FROM_TOP_COVER_CLEARANCE_STACK
+    - PRESERVE_SINGLE_MAIN_PCB
+    - IMPROVE_BOTTOM_OFF_COMMISSIONING_ACCESS
+control_implementation:
+  exact_b_cu_footprints_verified: false
+  pin_numbering_and_body_orientation_verified: false
+  c_and_k_common_plane_verified: false
+support_system:
+  selected_support_count: 6
+  xy_frozen: false
+  z_frozen: false
+  hardware_frozen: false
+  tolerance_stack_frozen: false
+native_pcb:
+  current_supports: [MH1, MH2, MH3, MH4]
+  support_or_control_migration_authorized: false
+gates:
+  vendor_cad_ingested: false
+  kicad_step_exported: false
+  exact_b_cu_control_footprints_verified: false
+  ck_fit_at_nkk_plane_verified: false
+  six_support_geometry_frozen: false
+  control_xy_and_panel_apertures_frozen: false
+  rear_dc_connector_selected: false
+  clearance_and_service_review_passed: false
+  routing_authority: false
+  layout_freeze: false
+  manufacturing_release: false
