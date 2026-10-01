@@ -109,7 +109,9 @@ AE-076B supersedes the current AE-075D/E/F local-control-board/carrier ownership
 
 AE-076B2A records the 261 F.Cu / 0 B.Cu native audit and selects F.Cu-down electronics with B.Cu-up direct controls. The four 11 mm SCH108 sense capacitors therefore leave the NKK 12.3 mm upper-cover stack. Exact B.Cu control footprints/pin maps, C&K common-plane fit, six-support geometry and full MCAD clearance/service review remain open; native geometry is unchanged.
 
-AE-042 through AE-076B2A, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance narrative, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-076B2B hash-controls the public official M5502119 drawing, four official Neutrik panel STEP models and a source-bound KiCad PCB STEP. The authenticated M5502119 STEP is ingested and hash-controlled; drawing-to-STEP dimensional reconciliation remains open. The five-pole DC interface is NC5FD-LX-B at the PSU source and NC5MD-LX-B at the audio chassis; pin 1 remains 0VA, pin 4/shell CHASSIS, and the optional pin1-shell bond is prohibited.
+
+AE-042 through AE-076B2B, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance narrative, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048 and AE-050 remain the qualification and execution authorities for the simulation campaign. AE-049 remains the historical numerical-acceptance basis; AE-076A narrowly supersedes its nominal-RUN00 rail criterion for the current +17 V / 0VA / -17 V product authority and records targeted rail/headroom requalification. AE-053 remains the toolchain architecture.
 

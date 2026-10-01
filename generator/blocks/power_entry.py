@@ -18,8 +18,13 @@ def connector_5(ref, label, at):
         footprint="",
         fields={
             "Function": "Panel-mounted regulated DC input from external PSU",
+            "Physical Manufacturer": "Neutrik",
+            "Physical MPN": "NC5MD-LX-B",
+            "Mating Cable Connector": "NC5FXX-B",
             "Pin 1": "0VA", "Pin 2": "+17VA_IN", "Pin 3": "-17VA_IN",
             "Pin 4": "CHASSIS", "Pin 5": "NC_RESERVED",
+            "Panel Shell": "CHASSIS_LOCAL_PANEL_BOND",
+            "Pin1-Shell Bond": "PROHIBITED",
             "Ownership": "Panel-mounted; harnessed to PCB",
         },
         on_board=False, rotation=180,

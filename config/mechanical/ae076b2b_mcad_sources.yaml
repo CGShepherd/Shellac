@@ -1,0 +1,114 @@
+schema_version: 1
+project: Shellac
+authority: AE-076B2B
+baseline_commit: 1e8702139db68ef42bd0c2dd414db99524948309
+metcase_enclosure:
+  mpn: M5502119
+  product_page: https://www.metcase.co.uk/en/Unicase/M5502119.htm
+  drawing_url: https://www.metcase.co.uk/en/Unicase/M5502119/M5502119.pdf
+  drawing_filename: M5502119.pdf
+  drawing_min_bytes: 100000
+  drawing_source_authority: MANUFACTURER_OFFICIAL
+  drawing_bytes: 216009
+  drawing_sha256: 9df7cbf5ef4bf0ae666feea5bbbc06e1d870f1cf30ae2c7496e4901ef1a4657a
+  controlled_drawing_dimensions_mm:
+    external:
+    - 260.0
+    - 250.0
+    - 90.2
+    inside_width: 256.0
+    internal_cover_height: 86.2
+    pcb_slot_width: 241.01
+    inside_face_depth: 229.0
+    panel_thickness: 2.0
+  step_filename: M5502119.stp
+  step_status: AUTHENTICATED_MANUAL_DOWNLOAD_INGESTED
+  step_expected_size_kb_from_product_page: 417
+  step_sha256: 9bf09314db1e8ffb596c27cceecb932141d3e43ba8d5ca4998fd4d16411b91fa
+  exact_step_ingested: true
+  login_requirement_source: https://www.metcase.co.uk/en/technical-info/faq
+  step_bytes: 426871
+  geometry_reconciled_to_controlled_drawing: false
+neutrik_assets:
+  NC3FD-L-B-1:
+    source_authority: MANUFACTURER_OFFICIAL
+    product_page: https://www.neutrik.com/en/product/nc3fd-l-b-1
+    download_url: https://www.neutrik.com/media/13342/download/d-nc3fd-l-b-1.stp?v=1
+    filename: NC3FD-L-B-1.stp
+    min_bytes: 30000
+    bytes: 94399
+    sha256: 553ec8674f18717f583cbf5f11182dccc19891356253cc4649e07301c67a5465
+    redistribution: LOCAL_CACHE_ONLY_NOT_COMMITTED
+  NC3MD-L-B-1:
+    source_authority: MANUFACTURER_OFFICIAL
+    product_page: https://www.neutrik.com/en/product/nc3md-l-b-1
+    download_url: https://www.neutrik.com/media/14359/download/3-D%20NC3MD-L-1.stp?v=1
+    filename: NC3MD-L-B-1.stp
+    min_bytes: 30000
+    bytes: 70948
+    sha256: 43da1e9d5fc74cbec908b4e8b04daba871c02bdd8b9c94b6896da2304ee3c183
+    redistribution: LOCAL_CACHE_ONLY_NOT_COMMITTED
+  NC5FD-LX-B:
+    source_authority: MANUFACTURER_OFFICIAL
+    product_page: https://www.neutrik.com/en/product/nc5fd-lx-b
+    download_url: https://www.neutrik.com/media/11871/download/nc5fd-lx-1.stp?v=1
+    filename: NC5FD-LX-B.stp
+    min_bytes: 30000
+    bytes: 118484
+    sha256: 93927abde3aa2b4b0e596ddc1053e826e2143f8dfc85d8fb7c9567029a719336
+    redistribution: LOCAL_CACHE_ONLY_NOT_COMMITTED
+  NC5MD-LX-B:
+    source_authority: MANUFACTURER_OFFICIAL
+    product_page: https://www.neutrik.com/en/product/nc5md-lx-b
+    download_url: https://www.neutrik.com/media/11874/download/3-D%20NC5MD-LX.stp?v=2
+    filename: NC5MD-LX-B.stp
+    min_bytes: 30000
+    bytes: 94628
+    sha256: 5c9f2e7c067f5df17f86caccbdaa023d29ca2a73a63ab204d3059cba590be965
+    redistribution: LOCAL_CACHE_ONLY_NOT_COMMITTED
+pcb_step:
+  source_commit: 1e8702139db68ef42bd0c2dd414db99524948309
+  source_board: out/kicad/ProjectShellac.kicad_pcb
+  source_board_sha256: 2e8934d9357f85cda82a47e7a19524c5fd76b1d8357f6c2a95cfaa559b0b1417
+  filename: ProjectShellac_AE076B2A.step
+  tracked: false
+  kicad_version: 9.0.7
+  export_status: PASS_WITH_MISSING_3D_MODELS
+  bytes: 1711778
+  observed_sha256: 9e391adf01377ebdb3b58b5cd36bee400b8df176be434acb723e95324fad2646
+  reproduction_tool: tools/prepare_ae076b2b_mcad_inputs.py
+  missing_3d_model_refs:
+  - C30060
+  - C35060
+  - H901
+  geometry_complete: false
+regulated_dc_interface:
+  audio_chassis_receptacle: NC5MD-LX-B
+  psu_chassis_receptacle: NC5FD-LX-B
+  cable_audio_end: NC5FXX-B
+  cable_psu_end: NC5MXX-B
+  pin_contract:
+    1: 0VA
+    2: +17VA_IN
+    3: -17VA_IN
+    4: CHASSIS
+    5: NC_RESERVED
+  panel_shell_node: CHASSIS
+  pin1_to_shell_bond: PROHIBITED
+  generic_dmx_cable_substitution: PROHIBITED_UNLESS_PINOUT_CONTINUITY_VERIFIED
+  mandatory_label: SHELLAC +/-17 V DC ONLY
+gates:
+  enclosure_drawing_hash_controlled: true
+  metcase_exact_step_ingested: true
+  neutrik_panel_geometry_hash_controlled: true
+  pcb_step_generated: true
+  rear_dc_connector_selected: true
+  full_dimensional_assembly_authorized: false
+  ck_control_geometry_complete: false
+  six_support_geometry_frozen: false
+  native_pcb_mechanical_migration_authorized: false
+  routing_authority: false
+  layout_freeze: false
+  manufacturing_release: false
+  metcase_step_geometry_reconciled: false
+  pcb_step_geometry_complete: false

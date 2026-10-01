@@ -351,4 +351,35 @@ items:
   status: SELECTED_IMPLEMENTED_NATIVE_VALIDATED
   authority_reconciled_by: AE-075A
   note: Exact body/pitch controlled; retain 11 mm Z envelope in cover-clearance review.
+- id: BOM-POWER-DC-AUDIO-CHASSIS
+  function: regulated_dc_audio_chassis_inlet
+  manufacturer: Neutrik
+  mpn: NC5MD-LX-B
+  quantity: 1
+  status: SELECTED_AE076B2B
+  pin_contract: 1_0VA_2_PLUS17_3_MINUS17_4_CHASSIS_5_NC
+  panel_shell: CHASSIS
+  pin1_shell_bond: PROHIBITED
+- id: BOM-POWER-DC-PSU-CHASSIS
+  function: regulated_dc_psu_chassis_output
+  manufacturer: Neutrik
+  mpn: NC5FD-LX-B
+  quantity: 1
+  status: SELECTED_AE076B2B
+  pin_contract: 1_0VA_2_PLUS17_3_MINUS17_4_CHASSIS_5_NC
+  panel_shell: CHASSIS
+  pin1_shell_bond: PROHIBITED
+- id: BOM-POWER-DC-CABLE-AUDIO-END
+  function: regulated_dc_cable_audio_end
+  manufacturer: Neutrik
+  mpn: NC5FXX-B
+  quantity: 1
+  status: SELECTED_AE076B2B
+- id: BOM-POWER-DC-CABLE-PSU-END
+  function: regulated_dc_cable_psu_end
+  manufacturer: Neutrik
+  mpn: NC5MXX-B
+  quantity: 1
+  status: SELECTED_AE076B2B
 control_architecture_updated_by: AE-076B
+power_dc_interface_updated_by: AE-076B2B

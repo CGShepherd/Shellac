@@ -1,0 +1,238 @@
+AE-076B2B KiCad STEP Export Evidence
+source commit: 1e8702139db68ef42bd0c2dd414db99524948309
+source board SHA-256: 2e8934d9357f85cda82a47e7a19524c5fd76b1d8357f6c2a95cfaa559b0b1417
+KiCad version: 9.0.7
+output bytes: 1711778
+output SHA-256: 9e391adf01377ebdb3b58b5cd36bee400b8df176be434acb723e95324fad2646
+
+Exporter output:
+Determining PCB data.
+Build STEP data.
+Adding component R103.
+Adding component R7002.
+Adding component U700.
+Adding component C35020.
+Adding component C75094.
+Adding component R222.
+Adding component R35012.
+Adding component C90042.
+Adding component R30013.
+Adding component C90043.
+Adding component C35051.
+Adding component C30015.
+Adding component R7701.
+Adding component R75090.
+Adding component R7501.
+Adding component C80040.
+Adding component C191.
+Adding component C80043.
+Adding component R909.
+Adding component R214.
+Adding component C30011.
+Adding component C75093.
+Adding component H120.
+Adding component C193.
+Adding component C90020.
+Adding component C293.
+Adding component C35024.
+Adding component U3501.
+Adding component C292.
+Adding component C35021.
+Adding component C7202.
+Adding component R223.
+Adding component D90033.
+Adding component R224.
+Adding component R904.
+Adding component R105.
+Adding component R4002.
+Adding component R906.
+Adding component FB8002.
+Adding component R35060.
+Adding component H111.
+Adding component C75091.
+Adding component C5091.
+Adding component R123.
+Adding component C70094.
+Adding component U9001.
+Adding component C102.
+Adding component D90030.
+Adding component C35052.
+Adding component D80031.
+Adding component C201.
+Adding component U750.
+Adding component C194.
+Adding component R7502.
+Adding component C30019.
+Adding component R7001.
+Adding component C7701.
+Adding component C4094.
+Adding component R114.
+Could not add 3D model for H901.
+File not found: ${KICAD9_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Mini-Fit_Jr_5566-06A2_2x03_P4.20mm_Vertical.step
+Adding component R104.
+Adding component C30026.
+Adding component U8001.
+Adding component R35030.
+Adding component C35026.
+Adding component C35016.
+Adding component U203.
+Adding component C202.
+Adding component R30010.
+Adding component C30023.
+Adding component C30014.
+Adding component R205.
+Adding component C35014.
+Adding component C75092.
+Adding component R7202.
+Adding component R30040.
+Adding component R903.
+Adding component R7702.
+Adding component R212.
+Adding component FB8001.
+Adding component R4501.
+Adding component R520.
+Adding component RN130.
+Adding component R511.
+Adding component R111.
+Adding component C906.
+Adding component C35012.
+Adding component C35023.
+Adding component U401.
+Adding component C90021.
+Adding component C192.
+Adding component C901.
+Adding component C30052.
+Adding component R521.
+Adding component C30024.
+Adding component C294.
+Adding component R204.
+Could not add 3D model for C30060.
+File not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Rect_L7.2mm_W5.0mm_P5.00mm.step
+Adding component C101.
+Adding component R221.
+Adding component C30010.
+Adding component H122.
+Adding component R30030.
+Adding component R30060.
+Adding component D80030.
+Adding component C35010.
+Adding component C7201.
+Adding component C35011.
+Adding component C5092.
+Adding component R35040.
+Adding component U3001.
+Adding component R4502.
+Adding component R907.
+Adding component C7502.
+Adding component R113.
+Adding component C35017.
+Adding component C30022.
+Adding component U501.
+Adding component R35001.
+Adding component R35011.
+Adding component C4091.
+Adding component R202.
+Adding component D90031.
+Adding component C30053.
+Adding component R102.
+Adding component C35015.
+Adding component C35025.
+Adding component C70091.
+Adding component R124.
+Adding component D80032.
+Adding component RN230.
+Adding component FB9001.
+Adding component H112.
+Adding component C4092.
+Adding component R30041.
+Adding component R30001.
+Adding component C291.
+Adding component C80041.
+Adding component C80021.
+Adding component C30025.
+Adding component C90041.
+Adding component C30050.
+Adding component C7702.
+Adding component D90032.
+Adding component C35013.
+Adding component H110.
+Adding component C80020.
+Adding component C35050.
+Adding component R70090.
+Adding component R211.
+Adding component FB9002.
+Adding component R203.
+Adding component R35041.
+Adding component C904.
+Adding component R4001.
+Adding component C70093.
+Could not add 3D model for C35060.
+File not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Rect_L7.2mm_W5.0mm_P5.00mm.step
+Adding component C35018.
+Adding component R902.
+Adding component C203.
+Adding component C30020.
+Adding component C30018.
+Adding component R30012.
+Adding component R213.
+Adding component C7002.
+Adding component R35010.
+Adding component D80033.
+Adding component R30002.
+Adding component R35002.
+Adding component R121.
+Adding component C5093.
+Adding component R30011.
+Adding component C30051.
+Adding component C90040.
+Adding component C5094.
+Adding component C7501.
+Adding component C903.
+Adding component R510.
+Adding component C70092.
+Adding component C902.
+Adding component C7001.
+Adding component C4093.
+Adding component C30017.
+Adding component C35053.
+Adding component C905.
+Adding component C30021.
+Adding component U101.
+Adding component C104.
+Adding component R122.
+Adding component C103.
+Adding component C35022.
+Adding component R901.
+Adding component C35019.
+Adding component U201.
+Adding component R35013.
+Adding component H121.
+Adding component C30012.
+Adding component C80042.
+Adding component U103.
+Adding component C204.
+Adding component C30013.
+Adding component R7201.
+Adding component C30016.
+Adding component R112.
+Create PCB solid model.
+Board outline: found 4 initial points.
+Build board outlines (1 outlines) with 4 points.
+Build board cutouts and holes (160 hole(s)).
+Subtracting holes for shapes
+Subtracting holes for pads
+Subtracting holes for vias
+Generate board full shape.
+Writing STEP file.
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : $tempfile$.step(35959 ents)  Write  Done
+STEP file 'C:\Users\chris\Dropbox\000_Projects\000_Audio\Shellac\mechanical\mcad\pcb\generated\ProjectShellac_AE076B2A.step' created.
+Export time 1.301 s
+
+FIX2 missing 3D model refs: C30060,C35060,H901
+FIX2 geometry complete: False
