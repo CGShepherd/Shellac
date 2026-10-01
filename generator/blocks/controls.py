@@ -19,14 +19,14 @@ def _control_component(control,at):
                 "Switching":control.switching,"Mounting":control.mounting},on_board=False)
 
 def _indicator_component(indicator,at):
-    polarity=("Anode fed from +18V resistor; cathode to 0VA" if indicator.rail=="+18V"
-              else "Anode to 0VA; cathode fed through resistor from -18V")
+    polarity=("Anode fed from +17V resistor; cathode to 0VA" if indicator.rail=="+17V"
+              else "Anode to 0VA; cathode fed through resistor from -17V")
     return Component(indicator.identifier,"ProjectShellac:Panel_LED_Block",
         f"{indicator.name} RAIL LED",at,footprint="",
         fields={"Function":f"{indicator.rail} rail-present indication",
                 "Nominal current":f"{indicator.nominal_current_a*1000:.2f} mA",
                 "Polarity":polarity,"Mounting":indicator.mounting},
-        on_board=False,rotation=180.0 if indicator.rail=="+18V" else 0.0)
+        on_board=False,rotation=180.0 if indicator.rail=="+17V" else 0.0)
 
 def add_controls(sheet):
     sheet.add_note("SCH109 AE-041: seven top-cover controls plus two independent rail indicators.")
@@ -44,8 +44,8 @@ def add_controls(sheet):
             Point(x,y-28),tolerance="1%",
             function=f"{indicator.rail} panel-LED current limiting",rotation=90.0))
         rail_pin=pin_position(r,"2"); drive_pin=pin_position(r,"1")
-        led_drive=pin_position(led,"A" if indicator.rail=="+18V" else "K")
-        led_return=pin_position(led,"K" if indicator.rail=="+18V" else "A")
+        led_drive=pin_position(led,"A" if indicator.rail=="+17V" else "K")
+        led_return=pin_position(led,"K" if indicator.rail=="+17V" else "A")
         tp=sheet.add_component(testpoint(f"TP990{1+i}",f"{indicator.rail}_LED_DRIVE",
                                         Point(x+35,led_drive.y-5.08)))
         rail_start=Point(rail_pin.x,rail_pin.y-10)

@@ -85,7 +85,7 @@ def minifit_6(ref, label, at, function="Regulated DC harness interface", rotatio
         ref, "Connector_Generic:Conn_01x06", label, at,
         "Connector_Molex:Molex_Mini-Fit_Jr_5566-06A2_2x03_P4.20mm_Vertical",
         {"Function": function, "Connector family": "Molex Mini-Fit Jr",
-         "Pin 1": "0VA", "Pin 2": "+18VA_IN", "Pin 3": "-18VA_IN",
+         "Pin 1": "0VA", "Pin 2": "+17VA_IN", "Pin 3": "-17VA_IN",
          "Pin 4": "CHASSIS", "Pin 5": "RESERVED", "Pin 6": "KEY/NC"},
         rotation=rotation,
     )

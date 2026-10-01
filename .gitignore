@@ -64,6 +64,13 @@ simulation/results/ae075g_pre90_output/*
 !simulation/results/ae075g_pre90_output/ae075g_pre90_output.json
 !simulation/results/ae075g_pre90_output/ae075g_pre90_output.md
 
+# AE-076A controlled +/-17 V rail requalification evidence
+!simulation/results/ae076a_17v/
+simulation/results/ae076a_17v/*
+!simulation/results/ae076a_17v/ae076a_integrated_run00_17v.json
+!simulation/results/ae076a_17v/ae076a_output_pre90_17v.json
+!simulation/results/ae076a_17v/ae076a_output_pre90_17v.md
+
 # Local simulator/vendor caches and transient qualification work
 .vendor_models/
 .shellac_reconciliation/

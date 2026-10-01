@@ -25,7 +25,7 @@ def _opamp(ref, value, function, at, gain):
         footprint="Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
         fields={
             "Function": function, "Device": "OPA1612",
-            "Supply": "+18V / -18V", "Gain": gain,
+            "Supply": "+17V / -17V", "Gain": gain,
             "Design Output Ceiling": f"{OPA1612_DESIGN_OUTPUT_RMS_V:g} V RMS",
         },
     )
@@ -128,11 +128,11 @@ def _add_channel(sheet, channel, index, y):
     sheet.add_label(pre, input_end.x, input_end.y)
 
     _label_on_dedicated_stub(
-        sheet, pin_position(u1, "+V"), "+18V",
+        sheet, pin_position(u1, "+V"), "+17V",
         dy=-6, label_dx=-5.08,
     )
     _label_on_dedicated_stub(
-        sheet, pin_position(u1, "-V"), "-18V",
+        sheet, pin_position(u1, "-V"), "-17V",
         dy=6, label_dx=-5.08,
     )
 
@@ -255,11 +255,11 @@ def _add_channel(sheet, channel, index, y):
     u2_fb = pin_position(u2, "FB-")
     sheet.connect_points(treble_common, u2_in)
     _label_on_dedicated_stub(
-        sheet, pin_position(u2, "+V"), "+18V",
+        sheet, pin_position(u2, "+V"), "+17V",
         dy=-6, label_dx=5.08,
     )
     _label_on_dedicated_stub(
-        sheet, pin_position(u2, "-V"), "-18V",
+        sheet, pin_position(u2, "-V"), "-17V",
         dy=6, label_dx=5.08,
     )
 
@@ -301,7 +301,7 @@ def _add_channel(sheet, channel, index, y):
     sheet.add_label(post, output_end.x, output_end.y)
 
     # One dual OPA1612 package per channel; local decoupling remains grouped.
-    for n, rail in enumerate(("+18V", "-18V")):
+    for n, rail in enumerate(("+17V", "-17V")):
         hf_x = 330 + n * 50
         bulk_x = hf_x + 20
         hf_dec = sheet.add_component(capacitor(
@@ -316,13 +316,13 @@ def _add_channel(sheet, channel, index, y):
             footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
         ))
         for cap in (hf_dec, bulk):
-            if rail == "+18V":
-                pin1_net, pin2_net = "+18V", "0VA"
+            if rail == "+17V":
+                pin1_net, pin2_net = "+17V", "0VA"
             else:
                 # Pin 1 is the positive terminal on the polarized bulk footprint.
-                # Keep it at 0VA; pin 2 goes to -18V. The ceramic bypass is
+                # Keep it at 0VA; pin 2 goes to -17V. The ceramic bypass is
                 # unpolarized but follows the same rail/reference orientation.
-                pin1_net, pin2_net = "0VA", "-18V"
+                pin1_net, pin2_net = "0VA", "-17V"
             _label_on_dedicated_stub(
                 sheet, pin_position(cap, "1"), pin1_net,
                 dy=4.0, label_dx=5.08,

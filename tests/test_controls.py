@@ -41,12 +41,12 @@ def test_matrix_and_toggle_authority():
     assert CONTROLS[5].mpn == CONTROLS[6].mpn == TOGGLE_MPN == "7201SYCBE"
     assert all("1/4-40" in c.mounting for c in CONTROLS[5:])
 
-def test_rail_indicators_unchanged():
-    assert [i.rail for i in INDICATORS] == ["+18V","-18V"]
+def test_rail_indicators_follow_17v_authority():
+    assert [i.rail for i in INDICATORS] == ["+17V","-17V"]
     assert all(i.mpn == LED_MPN and i.bezel_mpn == LED_BEZEL_MPN for i in INDICATORS)
     assert LED_SERIES_RESISTANCE_OHM == pytest.approx(8200.0)
     assert ASSUMED_LED_FORWARD_V == pytest.approx(2.4)
-    assert LED_CURRENT_A * 1000 == pytest.approx(1.9024, rel=1e-3)
+    assert LED_CURRENT_A * 1000 == pytest.approx(1.78049, rel=1e-3)
 
 def test_ae059_sw905_selected_mechanical_mute_contract():
     mute = next(control for control in CONTROLS if control.identifier == "SW905")

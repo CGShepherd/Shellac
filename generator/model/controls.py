@@ -12,7 +12,7 @@ class ControlsStatus(str, Enum):
 DESIGN_STATUS=ControlsStatus.PHYSICAL_HARDWARE_SELECTED
 
 LED_SERIES_RESISTANCE_OHM=8200.0
-NOMINAL_RAIL_VOLTAGE_V=18.0
+NOMINAL_RAIL_VOLTAGE_V=17.0
 ASSUMED_LED_FORWARD_V=2.4
 LED_CURRENT_A=(NOMINAL_RAIL_VOLTAGE_V-ASSUMED_LED_FORWARD_V)/LED_SERIES_RESISTANCE_OHM
 
@@ -114,8 +114,8 @@ CONTROLS=(
 )
 
 INDICATORS=(
-    IndicatorDefinition("LED901","+18 V","+18V",LED_SERIES_RESISTANCE_OHM,LED_CURRENT_A),
-    IndicatorDefinition("LED902","-18 V","-18V",LED_SERIES_RESISTANCE_OHM,LED_CURRENT_A),
+    IndicatorDefinition("LED901","+17 V","+17V",LED_SERIES_RESISTANCE_OHM,LED_CURRENT_A),
+    IndicatorDefinition("LED902","-17 V","-17V",LED_SERIES_RESISTANCE_OHM,LED_CURRENT_A),
 )
 
 def validate_controls()->None:
@@ -130,4 +130,6 @@ def validate_controls()->None:
     assert CONTROLS[5].mpn==CONTROLS[6].mpn==TOGGLE_MPN
     assert "3/8-32" in CONTROLS[4].mounting
     assert all("1/4-40" in c.mounting for c in CONTROLS[5:])
-    assert 0.0018<LED_CURRENT_A<0.0020
+    # AE-076A: retain 8.2 kOhm / 2.4 V design assumption at 17 V;
+    # nominal current is ~1.7805 mA and remains intentionally subdued.
+    assert 0.0017<LED_CURRENT_A<0.0020

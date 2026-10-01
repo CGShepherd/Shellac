@@ -1,0 +1,32 @@
+schema_version: 1
+authority: AE-076A
+title: Shellac +17 V / 0VA / -17 V rail-authority requalification
+baseline_commit: d2f5c9f775b6080c66a9754a8355c7692cd4ba6a
+nominal_rails_v:
+  plus: 17.0
+  minus: -17.0
+historical_evidence:
+  ae065_integrated_run00: simulation/results/run00_sanity/ae065_integrated_run00.json
+  ae069_output: simulation/results/run06_output/ae069_run06.json
+  ae075g_pre90: simulation/results/ae075g_pre90_output/ae075g_pre90_output.json
+  preserve_unchanged: true
+output_requalification:
+  reference_load_ohm: 100000
+  normal_load_ohm: 10000
+  pre90_load_ohm: 2000
+  cable_capacitance_per_leg_pf: [100, 500, 2000]
+  high_gain_that1646_input_rms_v: 4.66
+  pre90_published_input_sensitivity_vrms_at_0db: 9.3
+criteria:
+  pre90_insertion_loss_abs_db_max: 0.30
+  local_compression_fraction_max: 0.01
+  severe_3p21vrms_margin_to_10vrms_db_min: 3.0
+  pre90_high_gain_margin_db_min: 0.0
+boundary:
+  run06_load_cable_stability_bench_gate_retained: true
+  run06_dynamic_thd_bench_gate_retained: true
+  run08_overload_recovery_remains_open: true
+  run13_power_rail_variation_remains_open: true
+  run14_phantom_fault_remains_open: true
+  powered_psu_setpoint_dropout_ripple_startup_thermal_remains_open: true
+  routing_authority_changed: false

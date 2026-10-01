@@ -133,7 +133,7 @@ def test_sch103_supply_and_ground_labels_terminate_one_wire_only():
             endpoints[point] = endpoints.get(point, 0) + 1
 
     for label in sheet.labels:
-        if label.name in {"+18V", "-18V", "0VA"}:
+        if label.name in {"+17V", "-17V", "0VA"}:
             assert endpoints.get((label.x, label.y), 0) == 1
 
 

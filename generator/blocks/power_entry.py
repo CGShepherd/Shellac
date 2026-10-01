@@ -18,7 +18,7 @@ def connector_5(ref, label, at):
         footprint="",
         fields={
             "Function": "Panel-mounted regulated DC input from external PSU",
-            "Pin 1": "0VA", "Pin 2": "+18VA_IN", "Pin 3": "-18VA_IN",
+            "Pin 1": "0VA", "Pin 2": "+17VA_IN", "Pin 3": "-17VA_IN",
             "Pin 4": "CHASSIS", "Pin 5": "NC_RESERVED",
             "Ownership": "Panel-mounted; harnessed to PCB",
         },
@@ -77,8 +77,8 @@ def _connect_power_entry(sheet, parts) -> None:
     # between the four domains while preserving a conventional sheet interface.
     inlet_lanes = {
         "1": ("0VA", align_coordinate(90.0)),
-        "2": ("+18VA_IN", align_coordinate(60.0)),
-        "3": ("-18VA_IN", align_coordinate(120.0)),
+        "2": ("+17VA_IN", align_coordinate(60.0)),
+        "3": ("-17VA_IN", align_coordinate(120.0)),
         "4": ("CHASSIS", align_coordinate(160.0)),
     }
     for pin_name, (net_name, lane_y) in inlet_lanes.items():
@@ -143,41 +143,41 @@ def _connect_power_entry(sheet, parts) -> None:
     # actual post-link rails instead of separate labelled stubs.
     sheet.connect_points(Point(340, plus_y), pin_position(parts["PWR901"], "POWER_OUT"))
     sheet.connect_points(Point(340, minus_y), pin_position(parts["PWR902"], "POWER_OUT"))
-    for name, y in (("+18V", plus_y), ("0VA", zero_y), ("-18V", minus_y), ("CHASSIS", chassis_y)):
+    for name, y in (("+17V", plus_y), ("0VA", zero_y), ("-17V", minus_y), ("CHASSIS", chassis_y)):
         sheet.add_label(name, 365, y)
 
 
 def add_power_entry(sheet):
     sheet.add_note("SCH106 POWER ENTRY: regulated dual rails from the external PSU into the audio enclosure.")
-    sheet.add_note("SR-020 HUMAN-REVIEW CAPTURE: continuous +18 V, 0VA, -18 V and chassis conductors.")
+    sheet.add_note("SR-020 HUMAN-REVIEW CAPTURE: continuous +17 V, 0VA, -17 V and chassis conductors.")
     sheet.add_note("Selected direct-bond fit: R909=0R; C909, D901 and D902 remain DNP.")
     sheet.add_note("0VA and CHASSIS are distinct everywhere except the four clearly shown configurable bond branches.")
 
     components = [
         connector_5("J901", "PANEL PSU DC INPUT", Point(25, 105)),
         minifit_6("H901", "PCB DC HARNESS", Point(48, 105), rotation=180),
-        testpoint("TP901", "+18VA_IN", Point(75, 54.92)),
+        testpoint("TP901", "+17VA_IN", Point(75, 54.92)),
         testpoint("TP902", "0VA_IN", Point(75, 84.92)),
-        testpoint("TP903", "-18VA_IN", Point(75, 114.92)),
+        testpoint("TP903", "-17VA_IN", Point(75, 114.92)),
         testpoint("TP904", "CHASSIS", Point(75, 154.92)),
-        resistor("R901", "0R", Point(100, 60), tolerance="1%", function="+18VA entry link"),
-        resistor("R902", "0R", Point(100, 120), tolerance="1%", function="-18VA entry link"),
+        resistor("R901", "0R", Point(100, 60), tolerance="1%", function="+17VA entry link"),
+        resistor("R902", "0R", Point(100, 120), tolerance="1%", function="-17VA entry link"),
         Component(
-            ref="PWR901", lib_id="ProjectShellac:Power_Rail_Source", value="+18V SOURCE",
+            ref="PWR901", lib_id="ProjectShellac:Power_Rail_Source", value="+17V SOURCE",
             at=Point(345.08, 60), in_bom=False, on_board=False,
-            fields={"Function": "ERC declaration: post-link +18V rail is driven"},
+            fields={"Function": "ERC declaration: post-link +17V rail is driven"},
         ),
         Component(
-            ref="PWR902", lib_id="ProjectShellac:Power_Rail_Source", value="-18V SOURCE",
+            ref="PWR902", lib_id="ProjectShellac:Power_Rail_Source", value="-17V SOURCE",
             at=Point(345.08, 120), in_bom=False, on_board=False,
-            fields={"Function": "ERC declaration: post-link -18V rail is driven"},
+            fields={"Function": "ERC declaration: post-link -17V rail is driven"},
         ),
     ]
 
     for ref, value, x, function in (
-        ("C901", "470u", 140, "+18VA local bulk"),
-        ("C902", "1u", 160, "+18VA bypass"),
-        ("C903", "100n", 180, "+18VA HF bypass"),
+        ("C901", "470u", 140, "+17VA local bulk"),
+        ("C902", "1u", 160, "+17VA bypass"),
+        ("C903", "100n", 180, "+17VA HF bypass"),
     ):
         components.append(capacitor(
             ref, value, Point(x, 75), dielectric="Film/X7R" if value != "470u" else "Electrolytic",
@@ -190,13 +190,13 @@ def add_power_entry(sheet):
             ),
         ))
     components.append(resistor(
-        "R903", "22k", Point(200, 75), tolerance="1%", function="+18VA bleed", rotation=270,
+        "R903", "22k", Point(200, 75), tolerance="1%", function="+17VA bleed", rotation=270,
     ))
 
     for ref, value, x, function in (
-        ("C904", "470u", 220, "-18VA local bulk"),
-        ("C905", "1u", 240, "-18VA bypass"),
-        ("C906", "100n", 260, "-18VA HF bypass"),
+        ("C904", "470u", 220, "-17VA local bulk"),
+        ("C905", "1u", 240, "-17VA bypass"),
+        ("C906", "100n", 260, "-17VA HF bypass"),
     ):
         components.append(capacitor(
             ref, value, Point(x, 105), dielectric="Film/X7R" if value != "470u" else "Electrolytic",
@@ -209,7 +209,7 @@ def add_power_entry(sheet):
             ),
         ))
     components.append(resistor(
-        "R904", "22k", Point(280, 105), tolerance="1%", function="-18VA bleed", rotation=270,
+        "R904", "22k", Point(280, 105), tolerance="1%", function="-17VA bleed", rotation=270,
     ))
 
     components.extend([

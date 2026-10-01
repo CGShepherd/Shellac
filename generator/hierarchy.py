@@ -16,7 +16,7 @@ from generator.model.core import Direction, FunctionalBlock, ProjectModel
 FOUNDRY_UUID_NAMESPACE = uuid.UUID("d352ba17-42ae-5d8d-a71d-bf8b9f0f91a4")
 
 
-GLOBAL_POWER_DOMAINS = frozenset({"+18V", "-18V", "0VA", "CHASSIS"})
+GLOBAL_POWER_DOMAINS = frozenset({"+17V", "-17V", "0VA", "CHASSIS"})
 
 
 def deterministic_uuid(*parts: object) -> str:

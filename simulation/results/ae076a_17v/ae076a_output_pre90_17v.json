@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "authority": "AE-076A",
+  "run_id": "OUTPUT_PRE90_17V",
+  "status": "PASS_17V_OUTPUT_PRE90_REQUALIFICATION_BENCH_GATES_RETAINED",
+  "pass": true,
+  "nominal_rails_v": {
+    "plus": 17.0,
+    "minus": -17.0
+  },
+  "historical_ae069_modified": false,
+  "historical_ae075g_modified": false,
+  "method": "AE-069 qualified topology/device helper reused through execution-time solver rail translation to +/-17 V; historical source/evidence unchanged",
+  "gates": {
+    "pre90_insertion_loss_pass": true,
+    "dc_absolute_pass": true,
+    "severe_3p21vrms_10k_margin_pass": true,
+    "high_gain_2k_compression_pass": true,
+    "pre90_high_gain_level_margin_pass": true
+  },
+  "headline": {
+    "worst_abs_insertion_loss_db_vs_100k": 0.2092392998800013,
+    "severe_3p21vrms_10k_margin_to_10vrms_db_min": 3.9128020213909087,
+    "high_gain_pre90_output_rms_v_max": 9.071871970964262,
+    "high_gain_pre90_compression_fraction_max": 0.0,
+    "high_gain_pre90_margin_to_9p3vrms_db_min": 0.21572072100175202
+  },
+  "ferrites": {
+    "LOW_60OHM_100MHZ": {
+      "audio_ac_pre90_vs_100k": {
+        "100": {
+          "20": {
+            "ratio": 0.9762215979324568,
+            "insertion_db_vs_100k": -0.20903176478999952
+          },
+          "1000": {
+            "ratio": 0.9762228064189625,
+            "insertion_db_vs_100k": -0.20902101233999923
+          },
+          "20000": {
+            "ratio": 0.9762226556790866,
+            "insertion_db_vs_100k": -0.2090223535399986
+          }
+        },
+        "500": {
+          "20": {
+            "ratio": 0.976221597954935,
+            "insertion_db_vs_100k": -0.20903176459000034
+          },
+          "1000": {
+            "ratio": 0.9762228062020463,
+            "insertion_db_vs_100k": -0.20902101426999994
+          },
+          "20000": {
+            "ratio": 0.9762225595234219,
+            "insertion_db_vs_100k": -0.20902320908000116
+          }
+        },
+        "2000": {
+          "20": {
+            "ratio": 0.9762215980504679,
+            "insertion_db_vs_100k": -0.20903176374000035
+          },
+          "1000": {
+            "ratio": 0.9762228069887889,
+            "insertion_db_vs_100k": -0.20902100726999956
+          },
+          "20000": {
+            "ratio": 0.9762228365894189,
+            "insertion_db_vs_100k": -0.2090207438999992
+          }
+        }
+      },
+      "dc_pre90": {
+        "differential_offset_v": -0.00388061150443,
+        "common_mode_offset_v": -0.000584986119065,
+        "diff_preferred_pass": true,
+        "diff_absolute_pass": true,
+        "cm_preferred_pass": true,
+        "cm_absolute_pass": true
+      },
+      "quasistatic_10k": {
+        "method": "QUASI_STATIC_DC_TRANSFER",
+        "load_ohm": 10000.0,
+        "ferrite_dcr_ohm": 0.02,
+        "headroom_sweep": [
+          {
+            "input_rms_v": 0.321,
+            "positive_peak_output_v": 0.897353728819,
+            "negative_peak_output_v": -0.905269166041,
+            "output_rms_v_from_symmetric_peak_transfer": 0.6373234364388154,
+            "gain_linear_from_symmetric_peak_transfer": 1.985431266164534,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 3.21,
+            "positive_peak_output_v": 9.00915669423,
+            "negative_peak_output_v": -9.01707265897,
+            "output_rms_v_from_symmetric_peak_transfer": 6.373234507435856,
+            "gain_linear_from_symmetric_peak_transfer": 1.985431310727681,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 4.66,
+            "positive_peak_output_v": 13.0805016399,
+            "negative_peak_output_v": -13.0884168927,
+            "output_rms_v_from_symmetric_peak_transfer": 9.252109875359887,
+            "gain_linear_from_symmetric_peak_transfer": 1.9854313037252975,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 5.0,
+            "positive_peak_output_v": 14.0351617037,
+            "negative_peak_output_v": -14.0430769367,
+            "output_rms_v_from_symmetric_peak_transfer": 9.927156473200494,
+            "gain_linear_from_symmetric_peak_transfer": 1.9854312946400987,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          }
+        ],
+        "severe_3p21vrms_output_rms_v": 6.373234507435856,
+        "severe_margin_to_10vrms_design_ceiling_db": 3.9128020213909087,
+        "severe_minimum_margin_pass": true,
+        "severe_preferred_margin_pass": false,
+        "first_gt_1pct_compression_input_rms_v": null,
+        "distortion_estimate": {
+          "method": "QUASI_STATIC_TRANSFER_DERIVED_HARMONIC_ESTIMATE",
+          "input_rms_v": 5.0,
+          "frequency_status": "NOT_A_DYNAMIC_1KHZ_TRANSIENT_RESULT",
+          "sample_count": 64,
+          "dc_v": -0.003957708926503371,
+          "harmonic_peak_v": {
+            "1": 14.039119183092255,
+            "2": 5.5450079958219156e-08,
+            "3": 2.9069948290563752e-08,
+            "4": 1.2938099112902479e-08,
+            "5": 3.630378025976365e-09,
+            "6": 1.0265904445971878e-08,
+            "7": 4.8810299656254794e-09,
+            "8": 1.676288224547462e-08,
+            "9": 5.394955773785351e-08,
+            "10": 3.607739413810673e-08
+          },
+          "fundamental_rms_v": 9.927156376250677,
+          "thd_percent_h2_to_hmax": 6.652506485732471e-07,
+          "bench_correlation_required": true
+        },
+        "model_limitation_note": "Controlled THAT1646 macro reproduces periodic large-signal timeout in the minimal device circuit. Quasi-static result is valid as nonlinear transfer/headroom evidence and a distortion estimate only."
+      },
+      "quasistatic_pre90_2k": {
+        "method": "QUASI_STATIC_DC_TRANSFER",
+        "load_ohm": 2000.0,
+        "ferrite_dcr_ohm": 0.02,
+        "headroom_sweep": [
+          {
+            "input_rms_v": 0.321,
+            "positive_peak_output_v": 0.879872622438,
+            "negative_peak_output_v": -0.887633862444,
+            "output_rms_v_from_symmetric_peak_transfer": 0.62490791062563,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467536156561682,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 3.21,
+            "positive_peak_output_v": 8.83365171641,
+            "negative_peak_output_v": -8.84141318591,
+            "output_rms_v_from_symmetric_peak_transfer": 6.249079125171407,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467536215487249,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 4.66,
+            "positive_peak_output_v": 12.8256836382,
+            "negative_peak_output_v": -12.8334451167,
+            "output_rms_v_from_symmetric_peak_transfer": 9.071871970964262,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467536418378244,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 5.0,
+            "positive_peak_output_v": 13.7617463266,
+            "negative_peak_output_v": -13.7695075411,
+            "output_rms_v_from_symmetric_peak_transfer": 9.733768152209517,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467536304419035,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          }
+        ],
+        "severe_3p21vrms_output_rms_v": 6.249079125171407,
+        "severe_margin_to_10vrms_design_ceiling_db": 4.0836795261501,
+        "severe_minimum_margin_pass": true,
+        "severe_preferred_margin_pass": false,
+        "first_gt_1pct_compression_input_rms_v": null,
+        "distortion_estimate": {
+          "method": "QUASI_STATIC_TRANSFER_DERIVED_HARMONIC_ESTIMATE",
+          "input_rms_v": 5.0,
+          "frequency_status": "NOT_A_DYNAMIC_1KHZ_TRANSIENT_RESULT",
+          "sample_count": 64,
+          "dc_v": -0.0038806380229507833,
+          "harmonic_peak_v": {
+            "1": 13.765626834447668,
+            "2": 1.720632854251836e-08,
+            "3": 4.101944634307686e-08,
+            "4": 2.8548463787414507e-08,
+            "5": 9.782634639854523e-09,
+            "6": 3.9042575873671215e-08,
+            "7": 3.075406379907109e-08,
+            "8": 4.766627993701977e-08,
+            "9": 3.56360531431066e-08,
+            "10": 3.3756768075285313e-09
+          },
+          "fundamental_rms_v": 9.733768081921452,
+          "thd_percent_h2_to_hmax": 6.85825348507076e-07,
+          "bench_correlation_required": true
+        },
+        "model_limitation_note": "Controlled THAT1646 macro reproduces periodic large-signal timeout in the minimal device circuit. Quasi-static result is valid as nonlinear transfer/headroom evidence and a distortion estimate only."
+      },
+      "high_gain_pre90": {
+        "that1646_input_rms_v": 4.66,
+        "output_rms_v": 9.071871970964262,
+        "compression_fraction_vs_low_level": 0.0,
+        "margin_to_pre90_9p3vrms_db": 0.21572072100175202
+      }
+    },
+    "HIGH_220OHM_100MHZ": {
+      "audio_ac_pre90_vs_100k": {
+        "100": {
+          "20": {
+            "ratio": 0.976198272996814,
+            "insertion_db_vs_100k": -0.2092392998800013
+          },
+          "1000": {
+            "ratio": 0.9761994813195786,
+            "insertion_db_vs_100k": -0.20922854862999962
+          },
+          "20000": {
+            "ratio": 0.9761992885093211,
+            "insertion_db_vs_100k": -0.2092302641899999
+          }
+        },
+        "500": {
+          "20": {
+            "ratio": 0.9761982730237875,
+            "insertion_db_vs_100k": -0.2092392996400007
+          },
+          "1000": {
+            "ratio": 0.976199480920597,
+            "insertion_db_vs_100k": -0.20922855218000086
+          },
+          "20000": {
+            "ratio": 0.9761991186253492,
+            "insertion_db_vs_100k": -0.20923177576000093
+          }
+        },
+        "2000": {
+          "20": {
+            "ratio": 0.9761982731159465,
+            "insertion_db_vs_100k": -0.20923929881999986
+          },
+          "1000": {
+            "ratio": 0.9761994810206234,
+            "insertion_db_vs_100k": -0.2092285512900008
+          },
+          "20000": {
+            "ratio": 0.9761991211125196,
+            "insertion_db_vs_100k": -0.20923175363000018
+          }
+        }
+      },
+      "dc_pre90": {
+        "differential_offset_v": -0.00388051685877,
+        "common_mode_offset_v": -0.000584986177273,
+        "diff_preferred_pass": true,
+        "diff_absolute_pass": true,
+        "cm_preferred_pass": true,
+        "cm_absolute_pass": true
+      },
+      "quasistatic_10k": {
+        "method": "QUASI_STATIC_DC_TRANSFER",
+        "load_ohm": 10000.0,
+        "ferrite_dcr_ohm": 0.045,
+        "headroom_sweep": [
+          {
+            "input_rms_v": 0.321,
+            "positive_peak_output_v": 0.897349270838,
+            "negative_peak_output_v": -0.905264639459,
+            "output_rms_v_from_symmetric_peak_transfer": 0.6373202599161037,
+            "gain_linear_from_symmetric_peak_transfer": 1.9854213704551518,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 3.21,
+            "positive_peak_output_v": 9.00911188047,
+            "negative_peak_output_v": -9.01702737729,
+            "output_rms_v_from_symmetric_peak_transfer": 6.373202653887567,
+            "gain_linear_from_symmetric_peak_transfer": 1.985421387503915,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 4.66,
+            "positive_peak_output_v": 13.080436546,
+            "negative_peak_output_v": -13.08835181,
+            "output_rms_v_from_symmetric_peak_transfer": 9.252063850981582,
+            "gain_linear_from_symmetric_peak_transfer": 1.9854214272492665,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 5.0,
+            "positive_peak_output_v": 14.0350918216,
+            "negative_peak_output_v": -14.0430073184,
+            "output_rms_v_from_symmetric_peak_transfer": 9.927107152361083,
+            "gain_linear_from_symmetric_peak_transfer": 1.9854214304722166,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          }
+        ],
+        "severe_3p21vrms_output_rms_v": 6.373202653887567,
+        "severe_margin_to_10vrms_design_ceiling_db": 3.9128454337423784,
+        "severe_minimum_margin_pass": true,
+        "severe_preferred_margin_pass": false,
+        "first_gt_1pct_compression_input_rms_v": null,
+        "distortion_estimate": {
+          "method": "QUASI_STATIC_TRANSFER_DERIVED_HARMONIC_ESTIMATE",
+          "input_rms_v": 5.0,
+          "frequency_status": "NOT_A_DYNAMIC_1KHZ_TRANSIENT_RESULT",
+          "sample_count": 64,
+          "dc_v": -0.003957684734185089,
+          "harmonic_peak_v": {
+            "1": 14.039049319645605,
+            "2": 2.064810485785663e-08,
+            "3": 1.6779411377704226e-08,
+            "4": 5.367422513391624e-09,
+            "5": 1.3546664973801562e-08,
+            "6": 3.3412812142086246e-08,
+            "7": 2.8270140436936767e-08,
+            "8": 6.157251987437551e-08,
+            "9": 3.365680097122683e-08,
+            "10": 1.549817524662591e-08
+          },
+          "fundamental_rms_v": 9.927106975333793,
+          "thd_percent_h2_to_hmax": 6.370987462778954e-07,
+          "bench_correlation_required": true
+        },
+        "model_limitation_note": "Controlled THAT1646 macro reproduces periodic large-signal timeout in the minimal device circuit. Quasi-static result is valid as nonlinear transfer/headroom evidence and a distortion estimate only."
+      },
+      "quasistatic_pre90_2k": {
+        "method": "QUASI_STATIC_DC_TRANSFER",
+        "load_ohm": 2000.0,
+        "ferrite_dcr_ohm": 0.045,
+        "headroom_sweep": [
+          {
+            "input_rms_v": 0.321,
+            "positive_peak_output_v": 0.879851163628,
+            "negative_peak_output_v": -0.887612215823,
+            "output_rms_v_from_symmetric_peak_transfer": 0.6248926705543469,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467061387985884,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 3.21,
+            "positive_peak_output_v": 8.83343667178,
+            "negative_peak_output_v": -8.84119720545,
+            "output_rms_v_from_symmetric_peak_transfer": 6.248926734789407,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467061479094727,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 4.66,
+            "positive_peak_output_v": 12.8253710547,
+            "negative_peak_output_v": -12.8331320562,
+            "output_rms_v_from_symmetric_peak_transfer": 9.071650772406757,
+            "gain_linear_from_symmetric_peak_transfer": 1.946706174336214,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          },
+          {
+            "input_rms_v": 5.0,
+            "positive_peak_output_v": 13.7614107952,
+            "negative_peak_output_v": -13.7691717968,
+            "output_rms_v_from_symmetric_peak_transfer": 9.73353082040976,
+            "gain_linear_from_symmetric_peak_transfer": 1.9467061640819519,
+            "compression_fraction_vs_quasistatic_low_level": 0.0,
+            "within_1pct_compression": true
+          }
+        ],
+        "severe_3p21vrms_output_rms_v": 6.248926734789407,
+        "severe_margin_to_10vrms_design_ceiling_db": 4.08389134330795,
+        "severe_minimum_margin_pass": true,
+        "severe_preferred_margin_pass": false,
+        "first_gt_1pct_compression_input_rms_v": null,
+        "distortion_estimate": {
+          "method": "QUASI_STATIC_TRANSFER_DERIVED_HARMONIC_ESTIMATE",
+          "input_rms_v": 5.0,
+          "frequency_status": "NOT_A_DYNAMIC_1KHZ_TRANSIENT_RESULT",
+          "sample_count": 64,
+          "dc_v": -0.003880552244336557,
+          "harmonic_peak_v": {
+            "1": 13.765291114641341,
+            "2": 6.950387300419529e-09,
+            "3": 1.7260713233713267e-08,
+            "4": 7.063655627082e-08,
+            "5": 2.2206217836773277e-08,
+            "6": 1.2892516519646967e-08,
+            "7": 2.4571840753079284e-08,
+            "8": 8.059575173913203e-09,
+            "9": 3.6760662597279405e-08,
+            "10": 1.2981398601897255e-08
+          },
+          "fundamental_rms_v": 9.733530692169822,
+          "thd_percent_h2_to_hmax": 6.571873904212425e-07,
+          "bench_correlation_required": true
+        },
+        "model_limitation_note": "Controlled THAT1646 macro reproduces periodic large-signal timeout in the minimal device circuit. Quasi-static result is valid as nonlinear transfer/headroom evidence and a distortion estimate only."
+      },
+      "high_gain_pre90": {
+        "that1646_input_rms_v": 4.66,
+        "output_rms_v": 9.071650772406757,
+        "compression_fraction_vs_low_level": 0.0,
+        "margin_to_pre90_9p3vrms_db": 0.21593251077222292
+      }
+    }
+  },
+  "bench_and_future_gates_retained": {
+    "run06_load_cable_stability_bench_gate_retained": true,
+    "run06_dynamic_thd_bench_gate_retained": true,
+    "run08_overload_recovery_remains_open": true,
+    "run13_power_rail_variation_remains_open": true,
+    "run14_phantom_fault_remains_open": true,
+    "powered_psu_setpoint_dropout_ripple_startup_thermal_remains_open": true,
+    "routing_authority_changed": false
+  }
+}

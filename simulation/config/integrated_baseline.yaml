@@ -7,11 +7,22 @@ authority:
   configuration_semantics: AE-059
   integrated_contract: AE-060
   model_source_closure: AE-064
+  rail_reconciliation: AE-076A
 
 top_level: SHELLAC_TOP
 nominal_rails_v:
-  plus: 18.0
-  minus: -18.0
+  plus: 17.0
+  minus: -17.0
+
+rail_authority_requalification:
+  authority: AE-076A
+  status: PASSED_17V_REQUALIFICATION
+  historical_18v_evidence_preserved: true
+  baseline_commit: d2f5c9f775b6080c66a9754a8355c7692cd4ba6a
+  integrated_run00_result: simulation/results/ae076a_17v/ae076a_integrated_run00_17v.json
+  output_pre90_result: simulation/results/ae076a_17v/ae076a_output_pre90_17v.json
+  powered_psu_setpoint_dropout_ripple_startup_thermal: OPEN_RUN13_RUN14_BENCH
+  routing_authority_changed: false
 
 model_semantics:
   product_generator: LIVE_IMPLEMENTATION
@@ -70,8 +81,8 @@ canonical_nodes:
   - XLR_L_NEG
   - XLR_R_POS
   - XLR_R_NEG
-  - VPLUS18
-  - VMINUS18
+  - VPLUS17
+  - VMINUS17
   - ZERO_VA
   - CHASSIS
 

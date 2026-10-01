@@ -4,7 +4,7 @@ title: Model sanity / toolchain proof
 authority:
   architecture: AE-053
   execution: AE-050
-  acceptance: AE-049
+  acceptance: AE-076A
 netlist_template: simulation/runs/run00_sanity/run00_sanity.cir.in
 generated_netlist: simulation/generated/RUN00/run00_sanity.cir
 log_file: simulation/logs/RUN00/run00_sanity.log
@@ -12,12 +12,12 @@ result_file: simulation/results/RUN00/result.json
 measurement_csv: simulation/results/RUN00/measurements.csv
 parameters:
   R_LOAD: 10000
-  V_RAIL: 18
+  V_RAIL: 17
 expected_measurements:
-  RUN00_VPLUS18:
+  RUN00_VPLUS17:
     unit: V
     criterion: run00_positive_rail
-  RUN00_VMINUS18:
+  RUN00_VMINUS17:
     unit: V
     criterion: run00_negative_rail
   RUN00_VMID:

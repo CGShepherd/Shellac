@@ -23,8 +23,32 @@ def main():
 
     if data["top_level"] != "SHELLAC_TOP":
         errors.append("top_level must be SHELLAC_TOP")
-    if data["nominal_rails_v"] != {"plus": 18.0, "minus": -18.0}:
-        errors.append("nominal rails must remain +/-18 V")
+    if data["nominal_rails_v"] != {"plus": 17.0, "minus": -17.0}:
+        errors.append("current nominal rails must be +17 V / 0VA / -17 V")
+    railq = data.get("rail_authority_requalification", {})
+    if railq.get("authority") != "AE-076A":
+        errors.append("current rail reconciliation requires AE-076A authority")
+    if railq.get("status") != "PASSED_17V_REQUALIFICATION":
+        errors.append("AE-076A rail requalification is not PASS")
+    if railq.get("historical_18v_evidence_preserved") is not True:
+        errors.append("AE-076A must preserve historical 18 V evidence")
+    for label, key, run_id in (
+        ("integrated", "integrated_run00_result", "RUN00_INTEGRATED_17V"),
+        ("output", "output_pre90_result", "OUTPUT_PRE90_17V"),
+    ):
+        rel = railq.get(key)
+        if not rel or not (ROOT / rel).is_file():
+            errors.append(f"AE-076A {label} result is missing")
+            continue
+        try:
+            result = json.loads((ROOT / rel).read_text(encoding="utf-8"))
+        except Exception as exc:
+            errors.append(f"AE-076A {label} result unreadable: {exc}")
+            continue
+        if result.get("authority") != "AE-076A" or result.get("run_id") != run_id:
+            errors.append(f"AE-076A {label} authority/run_id mismatch")
+        if result.get("pass") is not True:
+            errors.append(f"AE-076A {label} result is not PASS")
     sem = data["model_semantics"]
     if sem["integrated_spice"] != "SELECTED_NEXT_CANDIDATE_ANALYSIS":
         errors.append("integrated model semantics invalid")

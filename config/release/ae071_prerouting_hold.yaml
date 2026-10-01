@@ -1,8 +1,8 @@
 schema_version: 1
 project: Shellac
-authority: AE-075G
-previous_authority: AE-075F
-baseline_commit: 2d635647cd3ee6e4e1886cbfcbfffe43f3453116
+authority: AE-076A
+previous_authority: AE-075G
+baseline_commit: d2f5c9f775b6080c66a9754a8355c7692cd4ba6a
 status: ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS
 historical_release:
   record: config/release/sr041_routing_release.yaml
@@ -88,6 +88,21 @@ resolved_after_ae075g:
   margin_to_published_9p3vrms_input_sensitivity_db: 0.1904
   run06_bench_gates_retained: true
 
+resolved_after_ae076a:
+- id: SYS-01
+  item: SHELLAC_NOMINAL_RAIL_AUTHORITY_AND_IMPLEMENTATION_RECONCILIATION
+  resolution: AE076A_PLUS17_0VA_MINUS17_CURRENT_AUTHORITY_AND_REQUALIFICATION
+  nominal_plus_v: 17.0
+  nominal_minus_v: -17.0
+  historical_plusminus18_evidence_preserved: true
+  integrated_run00_result: simulation/results/ae076a_17v/ae076a_integrated_run00_17v.json
+  output_pre90_result: simulation/results/ae076a_17v/ae076a_output_pre90_17v.json
+  pre90_worst_insertion_loss_db_vs_100k: 0.209239300
+  pre90_high_gain_output_vrms_max: 9.071871971
+  pre90_margin_to_9p3vrms_db_min: 0.215721
+  powered_psu_qualification: OPEN_RUN13_RUN14_AND_BENCH
+  routing_authority: FALSE
+
 routing_blockers:
 - id: AE071-B03
   item: PCB_MOUNTED_CONTROL_FOOTPRINTS_AND_KEEP_OUTS
@@ -138,6 +153,7 @@ system_release_prerequisites:
   item: EXTERNAL_PSU_ELECTRICAL_SCHEMATIC_SETPOINT_DROPOUT_STARTUP_AND_FAULT_QUALIFICATION
   status: OPEN
   target_run: RUN13_RUN14
+  nominal_setpoint: PLUS17_0VA_MINUS17
 final_design_assurance:
   authority: AE-075_PENDING
   required_before_layout_freeze: true

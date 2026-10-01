@@ -161,9 +161,9 @@ def test_root_uses_one_stub_per_interface_and_global_labels_for_shared_signals(
 def test_repeated_root_signals_use_global_labels_not_direct_wires(tmp_path: Path):
     text = _build(tmp_path)
 
-    assert '(global_label "ROOT__+18V"' not in text
+    assert '(global_label "ROOT__+17V"' not in text
     assert '(global_label "ROOT__0VA"' not in text
-    assert '(pin "+18V" ' not in text
+    assert '(pin "+17V" ' not in text
     assert '(pin "0VA" ' not in text
     assert '(global_label "OUTPUT_L_POS"' not in text
     assert '(label "OUTPUT_L_POS"' in text
@@ -182,5 +182,5 @@ def test_power_domains_are_global_not_hierarchical_or_local(tmp_path: Path):
         for signal in GLOBAL_POWER_DOMAINS:
             assert f'(hierarchical_label "{signal}" ' not in child
             assert f'(label "{signal}" ' not in child
-    for signal in ("+18V", "-18V", "0VA"):
+    for signal in ("+17V", "-17V", "0VA"):
         assert f'(global_label "{signal}" ' in combined

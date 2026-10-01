@@ -33,7 +33,7 @@ def test_named_pin_position_rotates_with_component():
 def test_vertical_two_pin_helper_keeps_opposite_nets_separate():
     sheet = Sheet("stub", "stub.kicad_sch")
     cap = sheet.add_component(capacitor("C1", "100n", Point(50.0, 50.0)))
-    sheet.connect_vertical_two_pin(cap, "+18V", "0VA")
+    sheet.connect_vertical_two_pin(cap, "+17V", "0VA")
     first, second = sheet.wires
     assert max(first.y1, first.y2) > min(second.y1, second.y2)
     assert min(first.y1, first.y2) > max(second.y1, second.y2)
@@ -44,7 +44,7 @@ def test_sch104_builder_emits_real_connectivity():
     add_final_gain(sheet)
     assert len(sheet.wires) >= 20
     labels = {label.name for label in sheet.labels}
-    assert {"FILTERED_L", "FILTERED_R", "BUFFERED_L", "BUFFERED_R", "+18V", "-18V", "0VA"}.issubset(labels)
+    assert {"FILTERED_L", "FILTERED_R", "BUFFERED_L", "BUFFERED_R", "+17V", "-17V", "0VA"}.issubset(labels)
 
 
 def test_mode_switch_named_pin_contract():
@@ -64,7 +64,7 @@ def test_sch105_builder_emits_real_connectivity():
     labels = {label.name for label in sheet.labels}
     assert {
         "BUFFERED_L", "BUFFERED_R", "MONO_AVG", "MODE_L", "MODE_R",
-        "+18V", "-18V", "0VA",
+        "+17V", "-17V", "0VA",
     }.issubset(labels)
 
 
@@ -88,7 +88,7 @@ def test_sch107_builder_emits_real_connectivity():
     labels = {label.name for label in sheet.labels}
     assert {
         "POST_EQ_L", "POST_EQ_R", "FILTERED_L", "FILTERED_R",
-        "+18V", "-18V", "0VA",
+        "+17V", "-17V", "0VA",
     }.issubset(labels)
     assert {
         "L_HP1_OUT", "R_HP1_OUT", "L_HP2_OUT", "R_HP2_OUT",
@@ -127,7 +127,7 @@ def test_sch108_builder_emits_real_connectivity():
     assert len(sheet.wires) >= 90
     labels = {label.name for label in sheet.labels}
     assert {
-        "MODE_L", "MODE_R", "+18V", "-18V", "0VA", "CHASSIS",
+        "MODE_L", "MODE_R", "+17V", "-17V", "0VA", "CHASSIS",
         "OUTPUT_L_POS", "OUTPUT_L_NEG",
         "OUTPUT_R_POS", "OUTPUT_R_NEG",
     }.issubset(labels)
@@ -148,7 +148,7 @@ def test_sch109_builder_emits_real_connectivity():
     from generator.blocks.controls import add_controls
     sheet=Sheet("SCH109","SCH109.kicad_sch"); add_controls(sheet)
     assert len(sheet.wires)>=13
-    assert {"BASS_L_SELECT","BASS_R_SELECT","TREBLE_L_SELECT","TREBLE_R_SELECT","MODE_SELECT","RUMBLE_BYPASS","MUTE_CONTROL","+18V","-18V","0VA"}.issubset({x.name for x in sheet.labels})
+    assert {"BASS_L_SELECT","BASS_R_SELECT","TREBLE_L_SELECT","TREBLE_R_SELECT","MODE_SELECT","RUMBLE_BYPASS","MUTE_CONTROL","+17V","-17V","0VA"}.issubset({x.name for x in sheet.labels})
 
 
 def test_sch103_builder_emits_real_connectivity():
@@ -159,7 +159,7 @@ def test_sch103_builder_emits_real_connectivity():
     labels = {label.name for label in sheet.labels}
     assert {
         "PRE_EQ_L", "PRE_EQ_R", "POST_EQ_L", "POST_EQ_R",
-        "+18V", "-18V", "0VA",
+        "+17V", "-17V", "0VA",
     }.issubset(labels)
 
 
@@ -180,4 +180,4 @@ def test_sch101_builder_emits_real_connectivity():
     refs={component.ref for component in sheet.components}
     assert {"RN130","RN230","U103","U203"} <= refs
     assert len(sheet.wires) >= 90
-    assert {"PRE_EQ_L", "PRE_EQ_R", "+18V", "-18V", "0VA", "CHASSIS"}.issubset({label.name for label in sheet.labels})
+    assert {"PRE_EQ_L", "PRE_EQ_R", "+17V", "-17V", "0VA", "CHASSIS"}.issubset({label.name for label in sheet.labels})

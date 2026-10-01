@@ -136,6 +136,7 @@ pre_spice_assurance:
   AE-075E: docs/design_pack/AE-075E_B03_Shared_CK_Local_Control_PCB_Ownership_Rev_A0.md
   AE-075F: docs/design_pack/AE-075F_B03_Control_Module_Partition_and_Serviceable_Harness_Architecture_Rev_A0.md
   AE-075G: docs/design_pack/AE-075G_SCH108_Output_Interface_and_PRE90_Compatibility_Reconciliation_Rev_A0.md
+  AE-076A: docs/design_pack/AE-076A_17V_Rail_Authority_Migration_and_Requalification_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

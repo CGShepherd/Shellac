@@ -38,7 +38,7 @@ def _driver(ref: str, ch: str, at: Point) -> Component:
         fields={
             "Function": "Floating balanced line driver",
             "Device": DRIVER,
-            "Supply": "+18V / -18V",
+            "Supply": "+17V / -17V",
             "Differential Gain": f"2.000x / {DIFFERENTIAL_GAIN_DB:.3f} dB",
             "Design Output Ceiling": f"{DESIGN_OUTPUT_RMS_V:g} V RMS differential",
             "Pinout": "1 OUT-, 2 SNS-, 3 GND, 4 IN, 5 VEE, 6 VCC, 7 SNS+, 8 OUT+",
@@ -278,23 +278,23 @@ def _protection_leg(
         f"D{base}{30 + index * 2}",
         SURGE_DIODE,
         Point(branch_points[1].x, y + outward * 18.0),
-        f"{ch} phantom clamp from output to +18V",
+        f"{ch} phantom clamp from output to +17V",
         rotation=d_pos_rotation,
     ))
     d_neg = sheet.add_component(_diode(
         f"D{base}{31 + index * 2}",
         SURGE_DIODE,
         Point(branch_points[2].x, y + outward * 18.0),
-        f"{ch} phantom clamp from -18V to output",
+        f"{ch} phantom clamp from -17V to output",
         rotation=d_neg_rotation,
     ))
     sheet.connect_points(branch_points[1], pin_position(d_pos, d_pos_output_pin))
     sheet.connect_points(branch_points[2], pin_position(d_neg, d_neg_output_pin))
     sheet.connect_pin_to_net(
-        d_pos, d_pos_rail_pin, "+18V", stub_dy=outward * 6.0
+        d_pos, d_pos_rail_pin, "+17V", stub_dy=outward * 6.0
     )
     sheet.connect_pin_to_net(
-        d_neg, d_neg_rail_pin, "-18V", stub_dy=outward * 6.0
+        d_neg, d_neg_rail_pin, "-17V", stub_dy=outward * 6.0
     )
 
     interface_name = f"OUTPUT_{ch}_{'POS' if polarity == 'positive' else 'NEG'}"
@@ -336,8 +336,8 @@ def _add_channel(
         driver_in,
     )
 
-    sheet.connect_pin_to_net(driver, "+V", "+18V", stub_dy=-7.0)
-    sheet.connect_pin_to_net(driver, "-V", "-18V", stub_dy=7.0)
+    sheet.connect_pin_to_net(driver, "+V", "+17V", stub_dy=-7.0)
+    sheet.connect_pin_to_net(driver, "-V", "-17V", stub_dy=7.0)
     sheet.connect_pin_to_net(driver, "GND", "0VA", stub_dy=7.0)
 
     out_pos_pin = pin_position(driver, "OUT+")
@@ -410,7 +410,7 @@ def _add_channel(
     )
 
     # Local driver decoupling is grouped beneath each active stage.
-    for rail_index, (rail, x) in enumerate((("+18V", 165.0), ("-18V", 205.0))):
+    for rail_index, (rail, x) in enumerate((("+17V", 165.0), ("-17V", 205.0))):
         hf = sheet.add_component(capacitor(
             f"C{base}{40 + rail_index}",
             f"{DECOUPLING_HF_NF:g}n",
@@ -428,13 +428,13 @@ def _add_channel(
             function=f"{ch} local {rail} bulk decoupling",
             footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
         ))
-        if rail == "+18V":
-            sheet.connect_vertical_two_pin(hf, "+18V", "0VA")
-            sheet.connect_vertical_two_pin(bulk, "+18V", "0VA")
+        if rail == "+17V":
+            sheet.connect_vertical_two_pin(hf, "+17V", "0VA")
+            sheet.connect_vertical_two_pin(bulk, "+17V", "0VA")
         else:
             # Pin 1 is the positive terminal for the electrolytic footprint.
-            sheet.connect_vertical_two_pin(hf, "0VA", "-18V")
-            sheet.connect_vertical_two_pin(bulk, "0VA", "-18V")
+            sheet.connect_vertical_two_pin(hf, "0VA", "-17V")
+            sheet.connect_vertical_two_pin(bulk, "0VA", "-17V")
 
 
 def add_balanced_output(sheet) -> None:

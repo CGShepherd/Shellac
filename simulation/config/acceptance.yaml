@@ -1,15 +1,16 @@
 schema_version: 1
-authority: AE-049
+authority: AE-076A
+historical_acceptance_basis: AE-049
 criteria:
   run00_positive_rail:
     kind: range
-    minimum: 17.999999
-    maximum: 18.000001
+    minimum: 16.999999
+    maximum: 17.000001
     unit: V
   run00_negative_rail:
     kind: range
-    minimum: -18.000001
-    maximum: -17.999999
+    minimum: -17.000001
+    maximum: -16.999999
     unit: V
   run00_midpoint:
     kind: absolute_max

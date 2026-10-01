@@ -13,8 +13,15 @@ def test_candidate_analysis_is_separate_from_live_generator():
     assert d["model_semantics"]["integrated_spice"] == "SELECTED_NEXT_CANDIDATE_ANALYSIS"
     assert d["model_semantics"]["generator_migration_implied"] is False
 
-def test_nominal_shellac_rails_remain_plus_minus_18v():
-    assert data()["nominal_rails_v"] == {"plus": 18.0, "minus": -18.0}
+def test_nominal_shellac_rails_are_plus_minus_17v():
+    assert data()["nominal_rails_v"] == {"plus": 17.0, "minus": -17.0}
+
+def test_ae076a_rail_requalification_is_registered():
+    r = data()["rail_authority_requalification"]
+    assert r["authority"] == "AE-076A"
+    assert r["status"] == "PASSED_17V_REQUALIFICATION"
+    assert r["historical_18v_evidence_preserved"] is True
+    assert r["routing_authority_changed"] is False
 
 def test_sch101_candidate_contract_is_ae042():
     s = data()["selected_next_contract"]["sch101"]

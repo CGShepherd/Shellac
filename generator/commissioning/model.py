@@ -82,8 +82,8 @@ def build_commissioning_baseline() -> CommissioningBaseline:
             ("Disconnect PSU and all external cables.", "Remove active ICs from sockets where the assembly strategy permits."),
             (
                 _m("M-0101", "0VA-to-CHASSIS relationship", "Unpowered", "Defined bond network", "Only the deliberate bond path is present", "No unintended low-resistance parallel bond", AcceptanceState.MEASUREMENT_REQUIRED, "DMM", "Resistance/diode-test record"),
-                _m("M-0102", "+18V to 0VA resistance", "Unpowered", "Audio-box DC inlet", "No short circuit", "Investigate any unexpectedly low or unstable resistance", AcceptanceState.MEASUREMENT_REQUIRED, "DMM", "Resistance record"),
-                _m("M-0103", "-18V to 0VA resistance", "Unpowered", "Audio-box DC inlet", "No short circuit", "Investigate any unexpectedly low or unstable resistance", AcceptanceState.MEASUREMENT_REQUIRED, "DMM", "Resistance record"),
+                _m("M-0102", "+17V to 0VA resistance", "Unpowered", "Audio-box DC inlet", "No short circuit", "Investigate any unexpectedly low or unstable resistance", AcceptanceState.MEASUREMENT_REQUIRED, "DMM", "Resistance record"),
+                _m("M-0103", "-17V to 0VA resistance", "Unpowered", "Audio-box DC inlet", "No short circuit", "Investigate any unexpectedly low or unstable resistance", AcceptanceState.MEASUREMENT_REQUIRED, "DMM", "Resistance record"),
                 _m("M-0104", "Polarity and orientation", "Unpowered", "All polarised devices and IC pin-1 marks", "Matches assembly drawing", "No discrepancy permitted", AcceptanceState.VISUAL_INSPECTION, "Magnification and DMM", "Inspection checklist"),
             ),
             ("Short between either rail and 0VA or CHASSIS.", "Reversed diode, electrolytic or IC orientation.", "Unsoldered joint, bridge or damaged pad."),
@@ -93,8 +93,8 @@ def build_commissioning_baseline() -> CommissioningBaseline:
             "COM-02", "External PSU standalone verification", ("COM-01",), "mains_hazard",
             ("Audio box disconnected.", "Use correct internal transformer primary configuration and fuse for local mains.", "Fit insulating covers to all exposed mains terminals."),
             (
-                _m("M-0201", "Positive regulated rail", "PSU unloaded then representative dummy load", "PSU XLR +18V to 0VA", "+18.0 VDC nominal", "Initial acceptance target ±0.36 V; freeze after PSU characterisation", AcceptanceState.MEASUREMENT_REQUIRED, "DMM", "No-load and loaded readings"),
-                _m("M-0202", "Negative regulated rail", "PSU unloaded then representative dummy load", "PSU XLR -18V to 0VA", "-18.0 VDC nominal", "Initial acceptance target ±0.36 V; freeze after PSU characterisation", AcceptanceState.MEASUREMENT_REQUIRED, "DMM", "No-load and loaded readings"),
+                _m("M-0201", "Positive regulated rail", "PSU unloaded then representative dummy load", "PSU XLR +17V to 0VA", "+17.0 VDC nominal", "Initial acceptance target ±0.34 V; freeze after PSU characterisation", AcceptanceState.MEASUREMENT_REQUIRED, "DMM", "No-load and loaded readings"),
+                _m("M-0202", "Negative regulated rail", "PSU unloaded then representative dummy load", "PSU XLR -17V to 0VA", "-17.0 VDC nominal", "Initial acceptance target ±0.34 V; freeze after PSU characterisation", AcceptanceState.MEASUREMENT_REQUIRED, "DMM", "No-load and loaded readings"),
                 _m("M-0203", "Rail ripple/noise", "Representative load", "Each rail to 0VA", "Low and free of oscillation/spikes", "Numeric limit open pending PSU characterisation and measurement bandwidth definition", AcceptanceState.MEASUREMENT_REQUIRED, "Oscilloscope with short ground spring", "Bandwidth-limited captures"),
                 _m("M-0204", "Protective-earth continuity", "Mains disconnected", "IEC earth pin to exposed PSU chassis", "Low-resistance permanent bond", "Final safety limit to follow applicable construction standard and test method", AcceptanceState.MEASUREMENT_REQUIRED, "Low-resistance meter/DMM", "Continuity record"),
             ),
@@ -105,8 +105,8 @@ def build_commissioning_baseline() -> CommissioningBaseline:
             "COM-03", "Audio-box current-limited first power", ("COM-02",), "energised_low_voltage",
             ("Mute engaged.", "No signal input.", "Use current-limited bench rails or series limiting arrangement for first energisation."),
             (
-                _m("M-0301", "Audio-box +18V rail", "Current-limited power", "SCH106 rail test point", "+18 V nominal and stable", "Within PSU acceptance band", AcceptanceState.MEASUREMENT_REQUIRED, "DMM and oscilloscope", "Voltage and start-up capture"),
-                _m("M-0302", "Audio-box -18V rail", "Current-limited power", "SCH106 rail test point", "-18 V nominal and stable", "Within PSU acceptance band", AcceptanceState.MEASUREMENT_REQUIRED, "DMM and oscilloscope", "Voltage and start-up capture"),
+                _m("M-0301", "Audio-box +17V rail", "Current-limited power", "SCH106 rail test point", "+17 V nominal and stable", "Within PSU acceptance band", AcceptanceState.MEASUREMENT_REQUIRED, "DMM and oscilloscope", "Voltage and start-up capture"),
+                _m("M-0302", "Audio-box -17V rail", "Current-limited power", "SCH106 rail test point", "-17 V nominal and stable", "Within PSU acceptance band", AcceptanceState.MEASUREMENT_REQUIRED, "DMM and oscilloscope", "Voltage and start-up capture"),
                 _m("M-0303", "Quiescent current", "No input, mute engaged", "Both inter-box rail conductors", "Stable and repeatable", "Numeric acceptance limit to be frozen from calculated load inventory plus Rev A measurement", AcceptanceState.MEASUREMENT_REQUIRED, "Two DMMs or bench supply readback", "Per-rail current record"),
                 _m("M-0304", "DC at balanced outputs", "No input, mute released only after rails stabilise", "Each output leg to 0VA and differential XLR output", "Near zero and stable", "Freeze numeric limit after first hardware data; investigate drift or rail-correlated offset", AcceptanceState.MEASUREMENT_REQUIRED, "DMM", "Four leg readings plus differential reading"),
             ),

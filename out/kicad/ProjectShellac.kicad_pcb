@@ -145,8 +145,8 @@
 	(net 2 "CHASSIS")
 	(net 3 "/SCH101 Balanced Input and Differential Conversion/SCH101_L_LOAD_NEG")
 	(net 4 "0VA")
-	(net 5 "+18V")
-	(net 6 "-18V")
+	(net 5 "+17V")
+	(net 6 "-17V")
 	(net 7 "ROOT__POST_EQ_L")
 	(net 8 "Net-(C7001-Pad1)")
 	(net 9 "Net-(C7201-Pad1)")
@@ -197,9 +197,9 @@
 	(net 54 "/INPUT_L_NEG")
 	(net 55 "/INPUT_R_NEG")
 	(net 56 "/INPUT_R_POS")
-	(net 57 "/SCH106 Audio-Box Power Entry and Ground Bond/-18VA_IN")
+	(net 57 "/SCH106 Audio-Box Power Entry and Ground Bond/-17VA_IN")
 	(net 58 "Net-(H901-Pad5)")
-	(net 59 "/SCH106 Audio-Box Power Entry and Ground Bond/+18VA_IN")
+	(net 59 "/SCH106 Audio-Box Power Entry and Ground Bond/+17VA_IN")
 	(net 60 "unconnected-(H901-Pad6)")
 	(net 61 "/SCH101 Balanced Input and Differential Conversion/SCH101_L_LOAD47_BRANCH")
 	(net 62 "/SCH101 Balanced Input and Differential Conversion/SCH101_L_LT5400_PLUS_SRC")
@@ -795,7 +795,7 @@
 				)
 			)
 		)
-		(property "Supply" "+18V / -18V"
+		(property "Supply" "+17V / -17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1088,7 +1088,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "fae0d254-7b77-4c08-b8d5-4f26c133337e")
@@ -1128,7 +1128,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "3ebbe171-e763-4a5b-addc-abb4ba72bee3")
@@ -1478,7 +1478,7 @@
 				)
 			)
 		)
-		(property "Function" "R local -18V bulk decoupling"
+		(property "Function" "R local -17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1852,7 +1852,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "1c426f44-341e-46e2-8022-90e0cc5b0bf5")
@@ -2284,7 +2284,7 @@
 				)
 			)
 		)
-		(property "Function" "R local +18V bulk decoupling"
+		(property "Function" "R local +17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -2648,7 +2648,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "4551484e-5c9a-44a3-9849-60ed85a52397")
@@ -3199,7 +3199,7 @@
 				)
 			)
 		)
-		(property "Function" "R local -18V bulk decoupling"
+		(property "Function" "R local -17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -3573,7 +3573,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "954b953e-b331-4fb8-ab5e-88908bd4db32")
@@ -3669,7 +3669,7 @@
 				)
 			)
 		)
-		(property "Function" "-18V HF decoupling"
+		(property "Function" "-17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -3754,7 +3754,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "78a650e8-2093-4657-9029-cf5062e22044")
@@ -4637,7 +4637,7 @@
 				)
 			)
 		)
-		(property "Function" "L local +18V HF decoupling"
+		(property "Function" "L local +17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4712,7 +4712,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "5960f6e8-680a-4ace-bb11-eef1fd646222")
@@ -4818,7 +4818,7 @@
 				)
 			)
 		)
-		(property "Function" "L OPA1656 gain package +18V local HF bypass"
+		(property "Function" "L OPA1656 gain package +17V local HF bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4893,7 +4893,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "ac4462f4-e3a2-4aa4-836e-ce819655250d")
@@ -5101,7 +5101,7 @@
 				)
 			)
 		)
-		(property "Function" "L local -18V bulk decoupling"
+		(property "Function" "L local -17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5475,7 +5475,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "f8ede358-e534-4825-ada7-cd46aef72652")
@@ -6088,7 +6088,7 @@
 				)
 			)
 		)
-		(property "Function" "R local +18V bulk decoupling"
+		(property "Function" "R local +17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6452,7 +6452,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "cdd842d2-3134-4569-8b92-c8dfa544ab4a")
@@ -7127,7 +7127,7 @@
 				)
 			)
 		)
-		(property "Function" "L OPA1655 converter package +18V local HF bypass"
+		(property "Function" "L OPA1655 converter package +17V local HF bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -7202,7 +7202,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "6d89edfd-bba1-4382-b3a5-6755ce527c88")
@@ -7489,7 +7489,7 @@
 				)
 			)
 		)
-		(property "Function" "R OPA1655 converter package +18V local HF bypass"
+		(property "Function" "R OPA1655 converter package +17V local HF bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -7564,7 +7564,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "717dcae9-775e-4164-b819-057a045fcee3")
@@ -7851,7 +7851,7 @@
 				)
 			)
 		)
-		(property "Supply" "+18V / -18V"
+		(property "Supply" "+17V / -17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8157,7 +8157,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "a75c5998-501a-4c29-8f1b-b9d6774ab28d")
@@ -8197,7 +8197,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "59025bea-d0fc-476c-9201-9f0fdc35ec69")
@@ -8293,7 +8293,7 @@
 				)
 			)
 		)
-		(property "Function" "R OPA1656 gain package -18V local HF bypass"
+		(property "Function" "R OPA1656 gain package -17V local HF bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8378,7 +8378,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "3ce111a4-1f26-4710-bd5e-f36bcfecfc98")
@@ -9330,7 +9330,7 @@
 				)
 			)
 		)
-		(property "Function" "R phantom clamp from -18V to output"
+		(property "Function" "R phantom clamp from -17V to output"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -9543,7 +9543,7 @@
 			(size 2.5 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1388888889)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "A")
 			(pintype "passive")
 			(uuid "d63e2165-d510-4242-bedf-187544eb7063")
@@ -9794,7 +9794,7 @@
 				)
 			)
 		)
-		(property "Function" "-18VA bleed"
+		(property "Function" "-17VA bleed"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -9879,7 +9879,7 @@
 			(size 1.025 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.243902)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "7aad34f6-b899-4574-83ca-8168b3410c9f")
@@ -10298,7 +10298,7 @@
 				)
 			)
 		)
-		(property "Function" "+18V panel-LED current limiting"
+		(property "Function" "+17V panel-LED current limiting"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10383,7 +10383,7 @@
 			(size 1.025 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.243902)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "3d56d3c0-e675-4863-aabe-ee60c8ca418a")
@@ -11722,7 +11722,7 @@
 				)
 			)
 		)
-		(property "Function" "R local +18V HF decoupling"
+		(property "Function" "R local +17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11797,7 +11797,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "4a7ce317-7921-45b7-9126-49ea151bfb07")
@@ -11903,7 +11903,7 @@
 				)
 			)
 		)
-		(property "Function" "Local +18V HF decoupling"
+		(property "Function" "Local +17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11978,7 +11978,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "dcf9c909-1be8-4b44-878e-804fba9b9d65")
@@ -12252,7 +12252,7 @@
 				)
 			)
 		)
-		(property "Function" "L local -18V bulk decoupling"
+		(property "Function" "L local -17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12626,7 +12626,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "17301160-d680-4e73-ae6c-62a1028ffe36")
@@ -12722,7 +12722,7 @@
 				)
 			)
 		)
-		(property "Supply" "+18V / -18V"
+		(property "Supply" "+17V / -17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13038,7 +13038,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "16f45e8e-fc9f-40bf-8977-1965e454b6dd")
@@ -13048,7 +13048,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "82e06aa1-de08-4872-9fae-740bcdd14ba0")
@@ -13321,7 +13321,7 @@
 				)
 			)
 		)
-		(property "Function" "R phantom clamp from output to +18V"
+		(property "Function" "R phantom clamp from output to +17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13524,7 +13524,7 @@
 			(size 2.5 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1388888889)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "K")
 			(pintype "passive")
 			(uuid "4bb89e8d-1afd-405a-8f31-b1d49b6ae60f")
@@ -13630,7 +13630,7 @@
 				)
 			)
 		)
-		(property "Function" "+18V bulk decoupling"
+		(property "Function" "+17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13994,7 +13994,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "3025e709-4bb9-45a8-b746-ad145d3f5a56")
@@ -14076,7 +14076,7 @@
 				)
 			)
 		)
-		(property "Function" "L phantom clamp from -18V to output"
+		(property "Function" "L phantom clamp from -17V to output"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -14289,7 +14289,7 @@
 			(size 2.5 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1388888889)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "A")
 			(pintype "passive")
 			(uuid "ddc83177-91d3-4257-9bc1-f58b97b56920")
@@ -14566,7 +14566,7 @@
 				)
 			)
 		)
-		(property "Supply" "+18V / -18V"
+		(property "Supply" "+17V / -17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -14859,7 +14859,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "1f4d223e-1b58-4c6b-9c68-7af57c77ccec")
@@ -14899,7 +14899,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "0fc39ace-315d-480d-9667-d9b76948abb7")
@@ -14995,7 +14995,7 @@
 				)
 			)
 		)
-		(property "Function" "L OPA1655 converter package -18V local HF bypass"
+		(property "Function" "L OPA1655 converter package -17V local HF bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -15080,7 +15080,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "34087852-576c-4761-93b6-aae30c77d68d")
@@ -15835,7 +15835,7 @@
 				)
 			)
 		)
-		(property "Value" "-18VA_IN"
+		(property "Value" "-17VA_IN"
 			(at 0 1.75 0)
 			(layer "F.Fab")
 			(uuid "f6236917-a09e-4994-b3cf-d85311b52089")
@@ -15913,7 +15913,7 @@
 			(at 0 0)
 			(size 1.5 1.5)
 			(layers "F.Cu" "F.Mask")
-			(net 57 "/SCH106 Audio-Box Power Entry and Ground Bond/-18VA_IN")
+			(net 57 "/SCH106 Audio-Box Power Entry and Ground Bond/-17VA_IN")
 			(pinfunction "TP")
 			(pintype "passive")
 			(uuid "fa7d9c9d-5b71-406f-9133-ddee500ce196")
@@ -15998,7 +15998,7 @@
 				)
 			)
 		)
-		(property "Function" "Local -18V bulk decoupling"
+		(property "Function" "Local -17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -16372,7 +16372,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "f944cb14-fc9e-4bbf-a111-e78a1ffeac66")
@@ -16957,7 +16957,7 @@
 				)
 			)
 		)
-		(property "Pin 2" "+18VA_IN"
+		(property "Pin 2" "+17VA_IN"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -16970,7 +16970,7 @@
 				)
 			)
 		)
-		(property "Pin 3" "-18VA_IN"
+		(property "Pin 3" "-17VA_IN"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -17667,7 +17667,7 @@
 			(drill 1.4)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 59 "/SCH106 Audio-Box Power Entry and Ground Bond/+18VA_IN")
+			(net 59 "/SCH106 Audio-Box Power Entry and Ground Bond/+17VA_IN")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "4adbb448-de2b-4841-9727-04ac64b3e58a")
@@ -17678,7 +17678,7 @@
 			(drill 1.4)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 57 "/SCH106 Audio-Box Power Entry and Ground Bond/-18VA_IN")
+			(net 57 "/SCH106 Audio-Box Power Entry and Ground Bond/-17VA_IN")
 			(pinfunction "3")
 			(pintype "passive")
 			(uuid "2e164c24-f607-464b-8655-88b42ad71220")
@@ -18360,7 +18360,7 @@
 				)
 			)
 		)
-		(property "Supply" "+18V / -18V"
+		(property "Supply" "+17V / -17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -18676,7 +18676,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "adf16440-4f97-486b-92bb-e1354155f2b8")
@@ -18686,7 +18686,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "b5b0217f-01aa-41a9-8d69-b0c96d081b51")
@@ -19635,7 +19635,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "9256abc1-5c6a-4318-96de-33a14bc51303")
@@ -19662,7 +19662,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "7bb0f3c2-c733-4cf7-87b7-4c80828ff0c2")
@@ -20825,7 +20825,7 @@
 				)
 			)
 		)
-		(property "Function" "R local -18V HF decoupling"
+		(property "Function" "R local -17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -20910,7 +20910,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "f238137a-2384-49eb-9d66-7d9e5e254b37")
@@ -21431,7 +21431,7 @@
 				)
 			)
 		)
-		(property "Function" "+18VA bleed"
+		(property "Function" "+17VA bleed"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -21506,7 +21506,7 @@
 			(size 1.025 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.243902)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "8143c470-d365-4543-8913-f58142364389")
@@ -22987,7 +22987,7 @@
 				)
 			)
 		)
-		(property "Value" "-18V_LED_DRIVE"
+		(property "Value" "-17V_LED_DRIVE"
 			(at 0 1.75 0)
 			(layer "F.Fab")
 			(uuid "5bb369d6-86af-428c-ad6f-c2accddc2c1e")
@@ -24019,7 +24019,7 @@
 				)
 			)
 		)
-		(property "Function" "-18VA HF bypass"
+		(property "Function" "-17VA HF bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -24104,7 +24104,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "5f32700b-b6b3-4085-8d62-e6e87c6f3592")
@@ -24664,7 +24664,7 @@
 				)
 			)
 		)
-		(property "Supply" "+18V / -18V"
+		(property "Supply" "+17V / -17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -24970,7 +24970,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "f226f4aa-9a0d-4542-9166-94ea2375bd43")
@@ -25010,7 +25010,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "278398db-f2cd-4e58-a933-6e9c5296e9eb")
@@ -25287,7 +25287,7 @@
 				)
 			)
 		)
-		(property "Function" "L OPA1656 gain package -18V local HF bypass"
+		(property "Function" "L OPA1656 gain package -17V local HF bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -25372,7 +25372,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "67ac76ea-b385-4679-8833-a88287a94ec3")
@@ -25468,7 +25468,7 @@
 				)
 			)
 		)
-		(property "Function" "+18VA local bulk"
+		(property "Function" "+17VA local bulk"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -27476,7 +27476,7 @@
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(roundrect_rratio 0.125)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "64f0fe89-076a-4ca9-9083-275fac74f789")
@@ -27583,7 +27583,7 @@
 				)
 			)
 		)
-		(property "Function" "+18V bulk decoupling"
+		(property "Function" "+17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -27947,7 +27947,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "b577d4c7-5a5e-4fa7-874c-724ed295f30e")
@@ -29056,7 +29056,7 @@
 				)
 			)
 		)
-		(property "Function" "R OPA1655 converter package -18V local HF bypass"
+		(property "Function" "R OPA1655 converter package -17V local HF bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -29141,7 +29141,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "f2ccf8f6-d0c2-49ed-a56a-67309eb68814")
@@ -31507,7 +31507,7 @@
 				)
 			)
 		)
-		(property "Function" "L phantom clamp from output to +18V"
+		(property "Function" "L phantom clamp from output to +17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -31710,7 +31710,7 @@
 			(size 2.5 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1388888889)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "K")
 			(pintype "passive")
 			(uuid "f59b947d-d536-4bf4-a567-d138d17e2bae")
@@ -32381,7 +32381,7 @@
 				)
 			)
 		)
-		(property "Function" "Local -18V HF decoupling"
+		(property "Function" "Local -17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -32466,7 +32466,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "049f496f-d96a-4e2b-8e25-31726f5bcb46")
@@ -32730,7 +32730,7 @@
 				)
 			)
 		)
-		(property "Supply" "+18V / -18V"
+		(property "Supply" "+17V / -17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -33036,7 +33036,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "37f3a473-4991-442f-a79a-9810a23fe083")
@@ -33076,7 +33076,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "388c7ecb-0d02-4f00-afbd-e581e8f30cd9")
@@ -33327,7 +33327,7 @@
 				)
 			)
 		)
-		(property "Function" "-18V panel-LED current limiting"
+		(property "Function" "-17V panel-LED current limiting"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -33412,7 +33412,7 @@
 			(size 1.025 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.243902)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "c1bf283f-abbc-473a-b8c7-b823ea7540ed")
@@ -34343,7 +34343,7 @@
 				)
 			)
 		)
-		(property "Supply" "+18V / -18V"
+		(property "Supply" "+17V / -17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -34649,7 +34649,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "eb43b5b1-1343-4132-bab8-f73e406a9d63")
@@ -34689,7 +34689,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "ce515f7c-4ce0-4556-8037-8fbab0b16a90")
@@ -35223,7 +35223,7 @@
 				)
 			)
 		)
-		(property "Function" "Local +18V HF decoupling"
+		(property "Function" "Local +17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -35298,7 +35298,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "bd031e99-1415-4c6b-9209-291088c2b1e8")
@@ -35548,7 +35548,7 @@
 				)
 			)
 		)
-		(property "Function" "R phantom clamp from -18V to output"
+		(property "Function" "R phantom clamp from -17V to output"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -35761,7 +35761,7 @@
 			(size 2.5 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1388888889)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "A")
 			(pintype "passive")
 			(uuid "6008fa5a-9b1a-4f1b-88c7-547ae2d8528a")
@@ -35857,7 +35857,7 @@
 				)
 			)
 		)
-		(property "Function" "-18V bulk decoupling"
+		(property "Function" "-17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -36231,7 +36231,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "f591023c-9dda-48b7-9ebf-cc7510b2e920")
@@ -37061,7 +37061,7 @@
 				)
 			)
 		)
-		(property "Function" "L local +18V HF decoupling"
+		(property "Function" "L local +17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -37136,7 +37136,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "0b1c0ab9-8aa1-424e-b577-6368565f808f")
@@ -37386,7 +37386,7 @@
 				)
 			)
 		)
-		(property "Function" "L phantom clamp from output to +18V"
+		(property "Function" "L phantom clamp from output to +17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -37589,7 +37589,7 @@
 			(size 2.5 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1388888889)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "K")
 			(pintype "passive")
 			(uuid "e39efa5d-1908-4a07-8ae5-4491d1a0a064")
@@ -38846,7 +38846,7 @@
 				)
 			)
 		)
-		(property "Function" "Local -18V HF decoupling"
+		(property "Function" "Local -17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -38931,7 +38931,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "9d41c2e4-8f77-4a53-ad81-34ee34f6e685")
@@ -39363,7 +39363,7 @@
 				)
 			)
 		)
-		(property "Function" "R OPA1656 gain package +18V local HF bypass"
+		(property "Function" "R OPA1656 gain package +17V local HF bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -39438,7 +39438,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "ab3d301f-830f-41e5-91de-15dab85903bd")
@@ -39544,7 +39544,7 @@
 				)
 			)
 		)
-		(property "Function" "L local -18V HF decoupling"
+		(property "Function" "L local -17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -39629,7 +39629,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "8e93fd56-58e4-45fb-983e-867c9ee7732e")
@@ -41195,7 +41195,7 @@
 				)
 			)
 		)
-		(property "Function" "R local -18V HF decoupling"
+		(property "Function" "R local -17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -41280,7 +41280,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "70110f54-3670-4f01-876b-ee5d867acf7d")
@@ -41478,7 +41478,7 @@
 				)
 			)
 		)
-		(property "Function" "+18V HF decoupling"
+		(property "Function" "+17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -41553,7 +41553,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "45aaae08-a032-4c85-a3cb-3ca9f6547dc4")
@@ -41838,7 +41838,7 @@
 				)
 			)
 		)
-		(property "Function" "R phantom clamp from output to +18V"
+		(property "Function" "R phantom clamp from output to +17V"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -42041,7 +42041,7 @@
 			(size 2.5 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1388888889)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "K")
 			(pintype "passive")
 			(uuid "5e6c08e6-b267-40ee-ae08-a4d1c3aca89a")
@@ -42896,7 +42896,7 @@
 				)
 			)
 		)
-		(property "Function" "+18V HF decoupling"
+		(property "Function" "+17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -42971,7 +42971,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "67d72261-b983-436a-9933-31675f82deca")
@@ -43904,7 +43904,7 @@
 				)
 			)
 		)
-		(property "Function" "-18VA local bulk"
+		(property "Function" "-17VA local bulk"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -45923,7 +45923,7 @@
 			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "71a3420b-4b35-4e91-9cfd-c3c30229e3e7")
@@ -46289,7 +46289,7 @@
 				)
 			)
 		)
-		(property "Function" "L local +18V bulk decoupling"
+		(property "Function" "L local +17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -46653,7 +46653,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "5957ab9a-f0af-457b-9ac4-9bef8c01f1c5")
@@ -47130,7 +47130,7 @@
 				)
 			)
 		)
-		(property "Function" "-18VA entry link"
+		(property "Function" "-17VA entry link"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -47205,7 +47205,7 @@
 			(size 1.025 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.243902)
-			(net 57 "/SCH106 Audio-Box Power Entry and Ground Bond/-18VA_IN")
+			(net 57 "/SCH106 Audio-Box Power Entry and Ground Bond/-17VA_IN")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "a62902d6-a7af-4128-ae1e-32f806de4e43")
@@ -47215,7 +47215,7 @@
 			(size 1.025 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.243902)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "d36019b9-afa0-4d6a-9dc4-597ebff593ee")
@@ -49069,7 +49069,7 @@
 				)
 			)
 		)
-		(property "Function" "L phantom clamp from -18V to output"
+		(property "Function" "L phantom clamp from -17V to output"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -49282,7 +49282,7 @@
 			(size 2.5 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1388888889)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "A")
 			(pintype "passive")
 			(uuid "55a21886-7059-4723-933e-2b8555504d9a")
@@ -49882,7 +49882,7 @@
 				)
 			)
 		)
-		(property "Function" "Local +18V bulk decoupling"
+		(property "Function" "Local +17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -50246,7 +50246,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "0946e33b-566d-43bf-94af-b9705da1eedb")
@@ -50622,7 +50622,7 @@
 				)
 			)
 		)
-		(property "Function" "-18V HF decoupling"
+		(property "Function" "-17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -50707,7 +50707,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "96d3fb97-7b30-4da0-9d53-9c4f9903d902")
@@ -50803,7 +50803,7 @@
 				)
 			)
 		)
-		(property "Function" "R local +18V HF decoupling"
+		(property "Function" "R local +17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -50878,7 +50878,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "bca1bef9-a22a-47de-b0a2-9e3daf0d560e")
@@ -50984,7 +50984,7 @@
 				)
 			)
 		)
-		(property "Function" "Local -18V bulk decoupling"
+		(property "Function" "Local -17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -51358,7 +51358,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "0c48ef25-4337-4a78-b48d-5ebc988a48f6")
@@ -51883,7 +51883,7 @@
 				)
 			)
 		)
-		(property "Function" "+18VA HF bypass"
+		(property "Function" "+17VA HF bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -51958,7 +51958,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "95d161f5-0bad-482b-a9ca-f241d42f735b")
@@ -52334,7 +52334,7 @@
 				)
 			)
 		)
-		(property "Function" "L local -18V HF decoupling"
+		(property "Function" "L local -17V HF decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -52419,7 +52419,7 @@
 			(size 1 1.45)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "080ebdef-7d22-446a-ac39-46bd8f9ca11f")
@@ -52515,7 +52515,7 @@
 				)
 			)
 		)
-		(property "Function" "+18VA bypass"
+		(property "Function" "+17VA bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -52590,7 +52590,7 @@
 			(size 1.15 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.217391)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "35047adc-1a57-44ee-bf44-c5d406219de2")
@@ -52899,7 +52899,7 @@
 				)
 			)
 		)
-		(property "Function" "Local +18V bulk decoupling"
+		(property "Function" "Local +17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -53263,7 +53263,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "c9be4e0c-bfa5-42fe-8887-373e249be5c7")
@@ -53550,7 +53550,7 @@
 				)
 			)
 		)
-		(property "Function" "-18V bulk decoupling"
+		(property "Function" "-17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -53924,7 +53924,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "4d0d4778-59db-47c3-9a91-a25b5d633f10")
@@ -54020,7 +54020,7 @@
 				)
 			)
 		)
-		(property "Function" "-18VA bypass"
+		(property "Function" "-17VA bypass"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -54105,7 +54105,7 @@
 			(size 1.15 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.217391)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "318356e0-7840-42f5-8462-0887d76ac5c7")
@@ -54777,7 +54777,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "a886ff44-376d-4a9f-8d3e-2b7dda644ea5")
@@ -54817,7 +54817,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "a7400274-edda-4d25-a5a5-ae34a808d35e")
@@ -55917,7 +55917,7 @@
 				)
 			)
 		)
-		(property "Function" "+18VA entry link"
+		(property "Function" "+17VA entry link"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -55992,7 +55992,7 @@
 			(size 1.025 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.243902)
-			(net 59 "/SCH106 Audio-Box Power Entry and Ground Bond/+18VA_IN")
+			(net 59 "/SCH106 Audio-Box Power Entry and Ground Bond/+17VA_IN")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "d065ae62-eafe-43ae-a496-030ba2ce504d")
@@ -56002,7 +56002,7 @@
 			(size 1.025 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.243902)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "cda82582-ecdc-4cee-80ff-f3c030519e4f")
@@ -56139,7 +56139,7 @@
 				)
 			)
 		)
-		(property "Value" "+18V_LED_DRIVE"
+		(property "Value" "+17V_LED_DRIVE"
 			(at 0 1.75 0)
 			(layer "F.Fab")
 			(uuid "e1e1948d-f647-4d35-99ca-02feb6afc650")
@@ -56241,7 +56241,7 @@
 				)
 			)
 		)
-		(property "Value" "+18VA_IN"
+		(property "Value" "+17VA_IN"
 			(at 0 1.75 0)
 			(layer "F.Fab")
 			(uuid "8b41f4a6-0822-4a3c-9a7c-92dee1afc540")
@@ -56319,7 +56319,7 @@
 			(at 0 0)
 			(size 1.5 1.5)
 			(layers "F.Cu" "F.Mask")
-			(net 59 "/SCH106 Audio-Box Power Entry and Ground Bond/+18VA_IN")
+			(net 59 "/SCH106 Audio-Box Power Entry and Ground Bond/+17VA_IN")
 			(pinfunction "TP")
 			(pintype "passive")
 			(uuid "3fd1472b-d2c3-4409-a47d-2ddccf298e28")
@@ -56878,7 +56878,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "966e4d51-9e99-4aae-befa-572c351e35f0")
@@ -56918,7 +56918,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "522403c4-384e-45c4-bf42-f204e579ba9a")
@@ -57706,7 +57706,7 @@
 				)
 			)
 		)
-		(property "Function" "L local +18V bulk decoupling"
+		(property "Function" "L local +17V bulk decoupling"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -58070,7 +58070,7 @@
 			(size 3.5 1.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.15625)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "9a9f93d7-2cf7-4b2b-adc8-8303d83ec62b")
@@ -58479,7 +58479,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 6 "-18V")
+			(net 6 "-17V")
 			(pinfunction "-V")
 			(pintype "power_in")
 			(uuid "c6346d6d-2be1-41a6-ae9e-d7d0ed18e0f5")
@@ -58506,7 +58506,7 @@
 			(size 1.95 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 5 "+18V")
+			(net 5 "+17V")
 			(pinfunction "+V")
 			(pintype "power_in")
 			(uuid "ea64c371-ead4-468f-abe5-fd2c3c210c39")

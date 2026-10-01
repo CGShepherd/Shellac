@@ -44,7 +44,7 @@ def _opamp_block(ref: str, channel: str, section: str, at: Point) -> Component:
         fields={
             "Function": "Unity-gain Sallen-Key high-pass follower",
             "Device": OPAMP,
-            "Supply": "+18V / -18V",
+            "Supply": "+17V / -17V",
             "Filter": f"4th-order Butterworth, {TARGET_CUTOFF_HZ:g} Hz nominal",
         },
     )
@@ -210,35 +210,35 @@ def _add_section(
     sheet.add_label("0VA", r2_bottom.x, y + 48)
 
     # Explicit local supply/reference connections.
-    sheet.connect_pin_to_net(opamp, "+V", "+18V", stub_dy=6.0)
-    sheet.connect_pin_to_net(opamp, "-V", "-18V", stub_dy=-6.0)
+    sheet.connect_pin_to_net(opamp, "+V", "+17V", stub_dy=6.0)
+    sheet.connect_pin_to_net(opamp, "-V", "-17V", stub_dy=-6.0)
 
     return output_branch, opamp
 
 def _add_decoupling(sheet, channel: str, base: int, *, y_hf: float, y_bulk: float) -> None:
     plus_hf = sheet.add_component(capacitor(
         f"C{base}91", "100n", Point(255, y_hf), dielectric="C0G/X7R",
-        voltage="50V min", function=f"{channel} local +18V HF decoupling",
+        voltage="50V min", function=f"{channel} local +17V HF decoupling",
     ))
     minus_hf = sheet.add_component(capacitor(
         f"C{base}92", "100n", Point(280, y_hf), dielectric="C0G/X7R",
-        voltage="50V min", function=f"{channel} local -18V HF decoupling",
+        voltage="50V min", function=f"{channel} local -17V HF decoupling",
     ))
     plus_bulk = sheet.add_component(capacitor(
         f"C{base}93", "10u", Point(255, y_bulk), dielectric="Low-ESR electrolytic",
-        voltage="35V min", function=f"{channel} local +18V bulk decoupling",
+        voltage="35V min", function=f"{channel} local +17V bulk decoupling",
         footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
     ))
     minus_bulk = sheet.add_component(capacitor(
         f"C{base}94", "10u", Point(280, y_bulk), dielectric="Low-ESR electrolytic",
-        voltage="35V min", function=f"{channel} local -18V bulk decoupling",
+        voltage="35V min", function=f"{channel} local -17V bulk decoupling",
         footprint=bulk_decoupling_capacitor_requirements().selected_footprint,
     ))
 
     for component in (plus_hf, plus_bulk):
-        sheet.connect_vertical_two_pin(component, "+18V", "0VA")
+        sheet.connect_vertical_two_pin(component, "+17V", "0VA")
     for component in (minus_hf, minus_bulk):
-        sheet.connect_vertical_two_pin(component, "0VA", "-18V")
+        sheet.connect_vertical_two_pin(component, "0VA", "-17V")
 
 def _add_channel(
     sheet,

@@ -144,10 +144,10 @@ def test_sch101_every_physical_opamp_package_has_local_hf_bypassing():
     sheet = _sch101()
     components = {component.ref: component for component in sheet.components}
     expected = {
-        "C191": ("+18V", "0VA"), "C192": ("0VA", "-18V"),
-        "C193": ("+18V", "0VA"), "C194": ("0VA", "-18V"),
-        "C291": ("+18V", "0VA"), "C292": ("0VA", "-18V"),
-        "C293": ("+18V", "0VA"), "C294": ("0VA", "-18V"),
+        "C191": ("+17V", "0VA"), "C192": ("0VA", "-17V"),
+        "C193": ("+17V", "0VA"), "C194": ("0VA", "-17V"),
+        "C291": ("+17V", "0VA"), "C292": ("0VA", "-17V"),
+        "C293": ("+17V", "0VA"), "C294": ("0VA", "-17V"),
     }
     for ref, (pin1_net, pin2_net) in expected.items():
         cap = components[ref]

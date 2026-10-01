@@ -22,7 +22,7 @@ def test_sch108_uses_only_interface_and_domain_labels():
     labels = {label.name for label in sheet.labels}
 
     assert {
-        "MODE_L", "MODE_R", "+18V", "-18V", "0VA", "CHASSIS",
+        "MODE_L", "MODE_R", "+17V", "-17V", "0VA", "CHASSIS",
         "OUTPUT_L_POS", "OUTPUT_L_NEG", "OUTPUT_R_POS", "OUTPUT_R_NEG",
     } == labels
     assert not any(

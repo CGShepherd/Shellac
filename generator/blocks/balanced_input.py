@@ -155,8 +155,8 @@ def _gain_leg(sheet,name,base,suffix,input_node,y,headers,pair_index):
     sheet.connect_pin_to_net(headers["GAIN_HIGH"],a,high_branch,stub_dx=-5.08)
     sheet.connect_pin_to_net(headers["GAIN_HIGH"],b,"0VA",stub_dx=5.08)
 
-    sheet.connect_pin_to_net(op,"+V","+18V",stub_dy=-6)
-    sheet.connect_pin_to_net(op,"-V","-18V",stub_dy=6)
+    sheet.connect_pin_to_net(op,"+V","+17V",stub_dy=-6)
+    sheet.connect_pin_to_net(op,"-V","-17V",stub_dy=6)
     return op
 
 def _diff(sheet,ch,base,cy,po,mo):
@@ -188,8 +188,8 @@ def _diff(sheet,ch,base,cy,po,mo):
     sheet.connect_pin_to_net(rn,"8",output_net,stub_dx=6.35)
     sheet.connect_pin_to_net(amp,"OUT",output_net,stub_dx=8.89)
     sheet.connect_pin_to_net(rn,"9","0VA",stub_dy=6.35)
-    sheet.connect_pin_to_net(amp,"+V","+18V",stub_dy=-6.35)
-    sheet.connect_pin_to_net(amp,"-V","-18V",stub_dy=6.35)
+    sheet.connect_pin_to_net(amp,"+V","+17V",stub_dy=-6.35)
+    sheet.connect_pin_to_net(amp,"-V","-17V",stub_dy=6.35)
 
 def _add_local_decoupling(sheet,ch,base,cy):
     for package_name, ref_plus, ref_minus, x in (
@@ -198,14 +198,14 @@ def _add_local_decoupling(sheet,ch,base,cy):
     ):
         plus = sheet.add_component(capacitor(
             ref_plus, "100n", Point(x, cy+48), dielectric="C0G/X7R",
-            voltage="50V min", function=f"{ch} {package_name} +18V local HF bypass",
+            voltage="50V min", function=f"{ch} {package_name} +17V local HF bypass",
         ))
         minus = sheet.add_component(capacitor(
             ref_minus, "100n", Point(x+20, cy+48), dielectric="C0G/X7R",
-            voltage="50V min", function=f"{ch} {package_name} -18V local HF bypass",
+            voltage="50V min", function=f"{ch} {package_name} -17V local HF bypass",
         ))
-        sheet.connect_vertical_two_pin(plus, "+18V", "0VA")
-        sheet.connect_vertical_two_pin(minus, "0VA", "-18V")
+        sheet.connect_vertical_two_pin(plus, "+17V", "0VA")
+        sheet.connect_vertical_two_pin(minus, "0VA", "-17V")
 
 def _channel(sheet,ch,base,cy,headers,load_pair,gain_pair_offset):
     py,my=cy-20,cy+20

@@ -76,6 +76,7 @@ def test_pre_spice_assurance_chain_contains_required_records():
     assert "  AE-075E:" in text
     assert "  AE-075F:" in text
     assert "  AE-075G:" in text
+    assert "  AE-076A:" in text
 
 def test_live_routing_hold_authority_is_registered_and_fail_closed():
     decisions = yaml.safe_load(INDEX.read_text(encoding="utf-8"))
@@ -159,9 +160,9 @@ def test_current_control_hardware_and_b03_architecture_are_coherent():
     assert all("REG-08 mechanical registration" in part.pcb_mounting for part in eq_parts)
 
     hold = yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    assert hold["authority"] == "AE-075G"
-    assert hold["previous_authority"] == "AE-075F"
-    assert hold["baseline_commit"] == "2d635647cd3ee6e4e1886cbfcbfffe43f3453116"
+    assert hold["authority"] == "AE-076A"
+    assert hold["previous_authority"] == "AE-075G"
+    assert hold["baseline_commit"] == "d2f5c9f775b6080c66a9754a8355c7692cd4ba6a"
 
     s01 = next(
         x for x in hold["pre_run08_prerequisites"]

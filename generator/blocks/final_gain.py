@@ -12,7 +12,7 @@ def _opamp(ref: str, channel: str, at: Point) -> Component:
         value=f"{channel} ISOLATION BUFFER", at=at,
         footprint="Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
         fields={"Function":"Unity-gain isolation buffer","Intended Device":OPAMP,
-                "Supply":"+18V / -18V","Gain":f"1.000x / {GAIN_DB:.3f} dB",
+                "Supply":"+17V / -17V","Gain":f"1.000x / {GAIN_DB:.3f} dB",
                 "Design Output Ceiling":f"{DESIGN_OUTPUT_RMS_V:g} V RMS"})
 
 def _channel(sheet, ch: str, idx: int, y: float) -> None:
@@ -41,18 +41,18 @@ def _channel(sheet, ch: str, idx: int, y: float) -> None:
     output_tp_pin=pin_position(output_tp,"TP")
     sheet.connect_points(output_pin,output_tp_pin); sheet.connect_points(output_tp_pin,output_end)
     sheet.add_label(f"BUFFERED_{ch}",output_end.x,output_end.y)
-    sheet.connect_pin_to_net(opamp,"+V","+18V",stub_dy=6); sheet.connect_pin_to_net(opamp,"-V","-18V",stub_dy=-6)
+    sheet.connect_pin_to_net(opamp,"+V","+17V",stub_dy=6); sheet.connect_pin_to_net(opamp,"-V","-17V",stub_dy=-6)
     feedback_pin=pin_position(opamp,"IN-"); feedback_out=pin_position(opamp,"OUT")
     corner=Point(feedback_pin.x,feedback_out.y); sheet.connect_points(feedback_out,corner); sheet.connect_points(corner,feedback_pin)
 
 def _decoupling(sheet) -> None:
-    caps=(("C4091","100n",Point(170,220),"+18V","HF"),("C4092","100n",Point(210,220),"-18V","HF"),
-          ("C4093","10u",Point(170,245),"+18V","bulk"),("C4094","10u",Point(210,245),"-18V","bulk"))
+    caps=(("C4091","100n",Point(170,220),"+17V","HF"),("C4092","100n",Point(210,220),"-17V","HF"),
+          ("C4093","10u",Point(170,245),"+17V","bulk"),("C4094","10u",Point(210,245),"-17V","bulk"))
     for ref,value,at,rail,kind in caps:
         c=sheet.add_component(capacitor(ref,value,at,dielectric="C0G/X7R" if kind=="HF" else "Low-ESR electrolytic",
             voltage="50V min" if kind=="HF" else "35V min",function=f"Local {rail} {kind} decoupling",
             footprint=(bulk_decoupling_capacitor_requirements().selected_footprint if kind=="bulk" else "Capacitor_SMD:C_0805_2012Metric")))
-        sheet.connect_vertical_two_pin(c,rail,"0VA") if rail=="+18V" else sheet.connect_vertical_two_pin(c,"0VA",rail)
+        sheet.connect_vertical_two_pin(c,rail,"0VA") if rail=="+17V" else sheet.connect_vertical_two_pin(c,"0VA",rail)
 
 def add_final_gain(sheet) -> None:
     sheet.add_note("SCH104 AE-041: stereo unity OPA1656 isolation buffer.")

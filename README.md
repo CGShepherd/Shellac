@@ -27,11 +27,11 @@ Do not change live circuitry merely to make it resemble a selected-next record. 
 
 ## Power and grounding
 
-Shellac nominal regulated rails remain +/-18 V authority. AE-072 establishes the physically reconstructed AIYIMA P1-V PSU model/RUN00 baseline and AE-073 closes the long-settle discriminator, but powered set-point, dropout, ripple, startup and thermal qualification remain open; no rail-authority change is made by those records. The selected direct 0VA-to-chassis population is R909 = 0 Ohm fitted, with C909, D901 and D902 DNP. Shellac and Phoenix are independent designs.
+AE-076A establishes +17.0 V / 0VA / -17.0 V as current Shellac regulated-rail authority and migrates the live generator, current simulation contract, commissioning expectations and native PCB rail identities together. Historical +/-18 V assurance evidence remains immutable provenance. AE-073's target-17 PSU discriminator remains supporting model evidence only: powered set-point, dropout, ripple, startup and thermal qualification remain open under RUN13/RUN14 and bench work. The selected direct 0VA-to-chassis population remains R909 = 0 Ohm fitted, with C909, D901 and D902 DNP. Shellac and Phoenix are independent designs.
 
 ## Simulation
 
-AE-053 defines the LTspice/Python simulation architecture. AE-054 through AE-058 establish implemented toolchain and numerical-correlation evidence. The integrated full-system campaign remains governed by AE-048, AE-049 and AE-050. Analytical Python is an independent live-state regression/correlation aid, not final integrated analogue authority.
+AE-053 defines the LTspice/Python simulation architecture. AE-054 through AE-058 establish implemented toolchain and numerical-correlation evidence. The integrated full-system campaign remains governed by AE-048 and AE-050 with AE-049 retained as the historical numerical-acceptance basis; AE-076A narrowly supersedes the current nominal-RUN00 rail criterion at +17 V / 0VA / -17 V and adds targeted rail/headroom requalification. Analytical Python is an independent live-state regression/correlation aid, not final integrated analogue authority.
 
 ## Basic validation
 

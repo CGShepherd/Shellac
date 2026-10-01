@@ -51,7 +51,7 @@ def test_sch103_negative_bulk_electrolytics_have_positive_terminal_at_0va():
         cap = components[ref]
         assert "Low-ESR electrolytic" in cap.fields["Dielectric"]
         assert "0VA" in _connected_label_names(sheet, pin_position(cap, "1"))
-        assert "-18V" in _connected_label_names(sheet, pin_position(cap, "2"))
+        assert "-17V" in _connected_label_names(sheet, pin_position(cap, "2"))
 
 def test_sch108_negative_bulk_electrolytics_have_positive_terminal_at_0va():
     sheet = _sheet(add_balanced_output, "SCH108", "ProjectShellac_SCH108.kicad_sch")
@@ -60,7 +60,7 @@ def test_sch108_negative_bulk_electrolytics_have_positive_terminal_at_0va():
         cap = components[ref]
         assert "Low-ESR electrolytic" in cap.fields["Dielectric"]
         assert "0VA" in _connected_label_names(sheet, pin_position(cap, "1"))
-        assert "-18V" in _connected_label_names(sheet, pin_position(cap, "2"))
+        assert "-17V" in _connected_label_names(sheet, pin_position(cap, "2"))
 
 def test_generated_footprint_table_exposes_capacitor_tht():
     assert '"Capacitor_THT"' in WRITER.read_text(encoding="utf-8")

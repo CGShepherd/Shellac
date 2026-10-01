@@ -37,7 +37,7 @@ def test_power_harness_is_mechanically_distinct_and_keyed():
     assert harness.connector_family is ConnectorFamily.MINI_FIT_JR
     assert harness.ways == 5
     assert all(pin.populated for pin in harness.pins)
-    assert {p.signal for p in harness.pins if p.populated} >= {"+18V", "0VA", "-18V", "CHASSIS"}
+    assert {p.signal for p in harness.pins if p.populated} >= {"+17V", "0VA", "-17V", "CHASSIS"}
 
 
 def test_panel_connector_eco_is_closed():

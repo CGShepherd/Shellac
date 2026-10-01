@@ -114,7 +114,7 @@ def bulk_decoupling_capacitor_requirements() -> ComponentRequirements:
     """Return the physical requirements for local 10 uF rail decoupling.
 
     The generated design already specifies low-ESR electrolytic technology and
-    35 V minimum rating on the +/-18 V rails.  A 6.3 mm SMD aluminium
+    35 V minimum rating on the +/-17 V rails.  A 6.3 mm SMD aluminium
     electrolytic can footprint replaces the previous generic 0805 placeholder.
     Manufacturer and series selection remains a procurement decision.
     """

@@ -20,7 +20,8 @@ FINDINGS = (
     Finding("AE036-F04","P1","controls","Grayhill remains selected in live authority after rejection","CLOSED",False,
             "AE-040B removes Grayhill from current control authority and preserves it only as historical evidence."),
     Finding("AE036-F05","P1","controls-PCB","PCB-mounted controls are not yet physical PCB objects","OPEN",True),
-    Finding("AE036-F06","P1","power","nominal ±18 V uses top of key IC recommended range","OPEN",False),
+    Finding("AE036-F06","P1","power","nominal rail operating-margin decision","CLOSED",False,
+            "AE-076A establishes +17 V / 0VA / -17 V as current nominal product authority, retaining the historical ±18 V evidence unchanged and requalifying integrated/output headroom at ±17 V."),
     Finding("AE036-F07","P1","governance","decision/current baseline and indexes are stale","OPEN",False),
     Finding("AE036-F08","P1","PCB-authority","native pipeline retains superseded mounting-hole state","OPEN",False),
     Finding("AE036-F09","P1","PCB-audit","native-board text audits are structurally weak","OPEN",False),
@@ -52,7 +53,7 @@ def validate_findings():
     assert len({x.identifier for x in FINDINGS}) == len(FINDINGS)
     assert {x.state for x in FINDINGS} <= {"OPEN","CLOSED"}
     assert {x.identifier for x in closed_findings()} == {
-        "AE036-F01","AE036-F02","AE036-F03","AE036-F04","AE071-F01"
+        "AE036-F01","AE036-F02","AE036-F03","AE036-F04","AE036-F06","AE071-F01"
     }
     assert all(x.resolution_evidence for x in closed_findings())
     assert {x.identifier for x in routing_blockers()} == {

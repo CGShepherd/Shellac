@@ -11,7 +11,7 @@ def test_power_entry_contains_required_components_and_labels():
     refs = {c.ref for c in sheet.components}
     labels = {l.name for l in sheet.labels}
     assert {"J901", "TP901", "TP902", "TP903", "TP904", "R909", "C909", "D901", "D902"}.issubset(refs)
-    assert {"+18V", "-18V", "0VA", "CHASSIS"}.issubset(labels)
+    assert {"+17V", "-17V", "0VA", "CHASSIS"}.issubset(labels)
 
 def test_ground_clamp_diodes_are_dnp_initially():
     sheet = Sheet(title="Power Entry Test", filename="PowerEntryTest.kicad_sch")
@@ -28,7 +28,7 @@ def test_power_entry_emits_semantic_pin_connectivity():
     add_power_entry(sheet)
     assert len(sheet.wires) >= 70
     labels = {label.name for label in sheet.labels}
-    assert {"+18VA_IN", "-18VA_IN", "+18V", "-18V", "0VA", "CHASSIS"}.issubset(labels)
+    assert {"+17VA_IN", "-17VA_IN", "+17V", "-17V", "0VA", "CHASSIS"}.issubset(labels)
     assert "NC_RESERVED" not in labels
     assert len(sheet.no_connects) == 1
     by_ref = {component.ref: component for component in sheet.components}
