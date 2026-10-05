@@ -44,8 +44,11 @@ def test_dr038_dr039_record_current_pre_spice_disposition():
     assert "LT5400-7 A-grade retained provisionally" not in dr038
     assert "AE-071A live fail-safe removable gold service-shunt topology" in dr038
     assert "approximately 14/18/22 dB" in dr038
-    assert "BASE/+47/+100 pF" in dr038
-    assert "Samtec physical pairing/orientation" in dr038
+    assert "SLW-102-01-G-D" in dr038
+    assert "no card=BASE" in dr038
+    assert "matched +47/+100 pF L/R service pairs" in dr038
+    assert "Live H120/H121/H122" in dr038
+    assert "Gain-shunt physical pairing/orientation" in dr038
     assert "pre-DR038 implementation" not in dr038
 
     dr039 = _decision_block("DR-039", "DR-040")
@@ -80,6 +83,8 @@ def test_pre_spice_assurance_chain_contains_required_records():
     assert "  AE-076B:" in text
     assert "  AE-076B2A:" in text
     assert "  AE-076B2B:" in text
+    assert "  AE-076B2C:" in text
+    assert "  AE-076C:" in text
 
 def test_live_routing_hold_authority_is_registered_and_fail_closed():
     decisions=yaml.safe_load(INDEX.read_text(encoding="utf-8"))
@@ -124,9 +129,12 @@ def test_current_control_hardware_and_b03_architecture_are_coherent():
     assert PHYSICAL_CAD_MIGRATION_COMPLETE is False
 
     hold=yaml.safe_load(HOLD.read_text(encoding="utf-8"))
-    assert hold["authority"]=="AE-076B2B"
-    assert hold["previous_authority"]=="AE-076B2A"
-    assert hold["baseline_commit"]=="1e8702139db68ef42bd0c2dd414db99524948309"
+    decisions=yaml.safe_load(INDEX.read_text(encoding="utf-8"))
+    assert hold["authority"]=="AE-076C"
+    assert hold["previous_authority"]=="AE-076B2C"
+    assert hold["baseline_commit"]=="3183c07a61248aad648fdecc9cc883a5cfba14c6"
+    assert hold["authority"] in decisions["pre_spice_assurance"]
+    assert hold["previous_authority"] in decisions["pre_spice_assurance"]
     b03=next(item for item in hold["routing_blockers"] if item["id"]=="AE071-B03")
     assert b03["architecture_authority"]=="AE-076B"
     assert b03["pcb_face_strategy"]=="F_CU_DOWN_ELECTRONICS_B_CU_UP_CONTROLS_SELECTED"

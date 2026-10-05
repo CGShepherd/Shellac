@@ -1,8 +1,9 @@
 schema_version: 1
 project: shellac
 status: CONTROLLED_PARTIAL_BASELINE
-reconciled_by: AE-075C
-control_hardware_updated_by: AE-075C
+reconciled_by: AE-076C
+control_hardware_updated_by: AE-076C
+cartridge_personality_updated_by: AE-076C
 bom_reviewed_by: DR-037
 procurement_complete: false
 selection_policy:
@@ -70,13 +71,14 @@ items:
   function: channel_mode_selector
   manufacturer: C&K
   mpn: A30403RNCB
-  fallback_manufacturer: TE/Alcoswitch
-  fallback_mpn: MRJE3404
+  considered_alternative_manufacturer: TE/Alcoswitch
+  considered_alternative_mpn: MRJE3404
+  considered_alternative_status: NOT_LIVE_FALLBACK_FOOTPRINT_INCOMPATIBLE
   quantity: 1
   requirement: 3P4T_4_position_BBM_non_shorting_low_level_gold
   configured_positions: 4
-  status: PREFERRED_PART_SELECTED_PROCUREMENT_PARTIAL
-  authority_reconciled_by: AE-041-A1
+  status: SINGLE_PRODUCTION_PART_SELECTED_PHYSICAL_MIGRATION_OPEN
+  authority_reconciled_by: AE-076C
   knob_manufacturer: TE/Alcoswitch
   knob_mpn: KN900B1/4
   mounting: pcb_through_hole_plus_3/8-32_threaded_top_cover_bushing
@@ -189,26 +191,41 @@ items:
   - H111
   - H112
 - id: BOM-SCH101-LOAD-SHUNT
-  function: sch101_cartridge_capacitance_service_shunt
+  function: sch101_legacy_cartridge_capacitance_service_shunt
   manufacturer: Samtec
   mpn: MNT-102-BK-G
   quantity: 1
   pitch_mm: 2.54
-  status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
+  status: CURRENT_IMPLEMENTED_SUPERSEDED_PENDING_AE076C_MIGRATION
   decision: DR-038
 - id: BOM-SCH101-LOAD-HEADERS
-  function: sch101_cartridge_capacitance_headers_47_base_100
+  function: sch101_legacy_cartridge_capacitance_headers_47_base_100
   manufacturer: Samtec
   mpn: TSW-102-07-G-D
   quantity: 3
   pitch_mm: 2.54
   plating: 10uin_gold_flash
-  status: SELECTED_COMPATIBLE_PAIRING_ORIENTATION_VERIFY
+  status: CURRENT_IMPLEMENTED_SUPERSEDED_PENDING_AE076C_MIGRATION
   decision: DR-038
-  refs:
-  - H120
-  - H121
-  - H122
+  refs: [H120, H121, H122]
+- id: BOM-SCH101-PERSONALITY-MAIN-SOCKETS
+  function: sch101_per_channel_cartridge_personality_main_socket
+  manufacturer: Samtec
+  mpn: SLW-102-01-G-D
+  quantity: 2
+  pitch_mm: 2.54
+  status: SELECTED_NEXT_PENDING_LIVE_MIGRATION_AND_RUN10
+  decision: AE-076C
+  selected_refs: [H120, H220]
+- id: BOM-SCH101-PERSONALITY-CARD-HEADERS
+  function: sch101_service_personality_card_header
+  manufacturer: Samtec
+  mpn: TSW-102-07-G-D
+  quantity: 4
+  quantity_basis: two_matched_plus47_cards_plus_two_matched_plus100_cards
+  pitch_mm: 2.54
+  status: SELECTED_NEXT_SERVICE_ARTEFACT_EXACT_CARD_LAYOUT_RUN10_OPEN
+  decision: AE-076C
 - id: BOM-XLR-INPUT
   function: balanced_cartridge_panel_input
   manufacturer: Neutrik

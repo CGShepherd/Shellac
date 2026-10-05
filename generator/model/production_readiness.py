@@ -1,187 +1,47 @@
-"""AE-030 production-readiness gate model for Project Shellac."""
+"""Current fail-closed pre-layout readiness oracle after AE-076C."""
 from __future__ import annotations
-
 from dataclasses import dataclass
 from enum import Enum
 
-
 class GateState(str, Enum):
-    CLOSED = "CLOSED"
-    READY_FOR_NEXT_ACTIVITY = "READY_FOR_NEXT_ACTIVITY"
-    BLOCKED = "BLOCKED"
-    PROTOTYPE_EVIDENCE_REQUIRED = "PROTOTYPE_EVIDENCE_REQUIRED"
+    CLOSED="CLOSED"
+    READY_FOR_NEXT_ACTIVITY="READY_FOR_NEXT_ACTIVITY"
+    BLOCKED="BLOCKED"
+    PROTOTYPE_EVIDENCE_REQUIRED="PROTOTYPE_EVIDENCE_REQUIRED"
 
-
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True,slots=True)
 class ProductionGate:
-    identifier: str
-    area: str
-    state: GateState
-    release_blocker: bool
-    evidence: str
-    next_action: str
+    identifier:str; area:str; state:GateState; release_blocker:bool; evidence:str; next_action:str
 
-
-GATES = (
-    ProductionGate(
-        "ELEC-SIGNAL",
-        "Electrical signal chain",
-        GateState.CLOSED,
-        False,
-        "AE-023 + AE-029; DR-037/038/039/040 implemented; analytical acceptance matrix established.",
-        "Do not reopen unless prototype evidence contradicts the controlled model.",
-    ),
-    ProductionGate(
-        "ELEC-MEASURE",
-        "Prototype electrical acceptance",
-        GateState.PROTOTYPE_EVIDENCE_REQUIRED,
-        True,
-        "AE-029 defines measured CMRR/noise/DC/EQ/overload/transient acceptance.",
-        "Build representative hardware and execute commissioning matrix.",
-    ),
-    ProductionGate(
-        "MECH-ENCLOSURE",
-        "Audio enclosure / carrier / PCB datum",
-        GateState.CLOSED,
-        False,
-        "SR-040 freezes METCASE M5502119 evidence and 220 x 140 mm PCB datum.",
-        "Retain frozen datum unless a production ECO is justified.",
-    ),
-    ProductionGate(
-        "MECH-CONTROLS",
-        "Rotary control mechanics",
-        GateState.BLOCKED,
-        True,
-        "Grayhill 71BDF30 is rejected for right-angle geometry; AE-026/027/028 select Lorlin PT pending exact MPN/sample evidence.",
-        "Close Lorlin exact-order-code and physical sample geometry gates, then perform control-hardware ECO.",
-    ),
-    ProductionGate(
-        "MECH-TOP",
-        "Top-panel machining",
-        GateState.BLOCKED,
-        True,
-        "Current top-cover stack still encodes Grayhill geometry and explicitly withholds machining release.",
-        "Regenerate top-cover stack from verified Lorlin PT + C&K hardware and panel thickness.",
-    ),
-    ProductionGate(
-        "PCB-OUTLINE",
-        "PCB outline and mounting",
-        GateState.CLOSED,
-        False,
-        "SR-040 frozen outline / four mounting holes / keep-outs.",
-        "Carry frozen outline into native board.",
-    ),
-    ProductionGate(
-        "PCB-PLACEMENT",
-        "Critical placement",
-        GateState.READY_FOR_NEXT_ACTIVITY,
-        False,
-        "SR-041 accepts manual clusters as routing baseline with zero mounting collisions.",
-        "Only local refinement within movement authority during routing.",
-    ),
-    ProductionGate(
-        "PCB-NATIVE",
-        "Native KiCad board setup",
-        GateState.READY_FOR_NEXT_ACTIVITY,
-        True,
-        "SR-043 audit requires populated frozen outline, mounting holes, unrouted state and four copper layers.",
-        "Confirm native board is four-layer: F.Cu/In1.Cu/In2.Cu/B.Cu before routing.",
-    ),
-    ProductionGate(
-        "PCB-ROUTING",
-        "Native PCB routing",
-        GateState.BLOCKED,
-        True,
-        "Current native-board audit intentionally expects an unrouted board before routing release.",
-        "Complete controlled manual routing, planes, return paths, then DRC/ERC/review.",
-    ),
-    ProductionGate(
-        "PCB-FAB",
-        "Fabrication release",
-        GateState.BLOCKED,
-        True,
-        "No production-routed/DRC-closed fabrication baseline exists yet.",
-        "After routing: run DRC/ERC, Gerber/drill inspection, fabrication manifest and release review.",
-    ),
-    ProductionGate(
-        "BOM-CONTROLS",
-        "Control-hardware BOM",
-        GateState.BLOCKED,
-        True,
-        "Controlled BOM still contains rejected Grayhill rotary parts.",
-        "Replace only after Lorlin PT production MPN/sample gate closes.",
-    ),
-    ProductionGate(
-        "BOM-GENERAL",
-        "General BOM/procurement",
-        GateState.READY_FOR_NEXT_ACTIVITY,
-        True,
-        "Controlled partial BOM exists; procurement_complete is false.",
-        "Run final BOM completeness, alternates, lifecycle and availability audit before production release.",
-    ),
-    ProductionGate(
-        "DOC-AUTHORITY",
-        "Decision/document authority",
-        GateState.CLOSED,
-        False,
-        "AE-024/025 reconciliation: zero vocabulary findings and zero current-authority contradictions.",
-        "Maintain authority classifications with future ECOs.",
-    ),
-    ProductionGate(
-        "DOC-COMMISSION",
-        "Commissioning / maintenance baseline",
-        GateState.READY_FOR_NEXT_ACTIVITY,
-        False,
-        "AE-029 provides first-hardware acceptance matrix; maintenance structure exists.",
-        "Populate measured results and fault-isolation guidance after prototype.",
-    ),
-    ProductionGate(
-        "DOC-RELEASE",
-        "Production design pack",
-        GateState.BLOCKED,
-        True,
-        "Pack structure exists but fabrication release, measured acceptance, final BOM and release manifest remain incomplete.",
-        "Assemble release pack after PCB/mechanical/prototype gates close.",
-    ),
-    ProductionGate(
-        "REPRO-CLEANCLONE",
-        "Clean-clone reproducibility",
-        GateState.BLOCKED,
-        True,
-        "Not yet demonstrated from an empty clone against pinned tool/dependency versions.",
-        "Perform clean-clone build and compare generated production artifacts before tag.",
-    ),
-    ProductionGate(
-        "REPO-HYGIENE",
-        "Repository production cleanup",
-        GateState.READY_FOR_NEXT_ACTIVITY,
-        False,
-        "Cleanup deliberately deferred until production standard is known.",
-        "Classify authoritative source, controlled evidence and release artifacts; archive/remove detritus after baseline freeze.",
-    ),
-    ProductionGate(
-        "INFRA-EXTRACT",
-        "Foundry / Generator extraction",
-        GateState.READY_FOR_NEXT_ACTIVITY,
-        False,
-        "Planned post-production extraction; Shellac still informs generic/project-specific boundary.",
-        "Extract Foundry and Generator only after production clean-clone baseline is proven.",
-    ),
+GATES=(
+    ProductionGate("ELEC-SIGNAL","Electrical architecture and design-driving qualification",GateState.BLOCKED,True,"AE-076C personality architecture selected-next; live migration and RUN08-RUN14 design-driving work remain open.","Migrate the personality interface, then execute design-driving RUN08-RUN14 before routing release."),
+    ProductionGate("ELEC-MEASURE","Prototype electrical acceptance",GateState.PROTOTYPE_EVIDENCE_REQUIRED,True,"Bench CMRR/noise/overload/switching/stability/PSU/fault correlation remain mandatory.","Execute after design-driving simulation and prototype hardware."),
+    ProductionGate("MECH-ENCLOSURE","Enclosure and full assembly digital mock-up",GateState.BLOCKED,True,"AE-076B2C reconciles the M5502119 external body; internal datums and full service/interference assembly remain open.","Complete dimensionally controlled full assembly and service review."),
+    ProductionGate("MECH-CONTROLS","Seven direct-PCB controls and upper-cover service module",GateState.BLOCKED,True,"Exact NKK/C&K parts selected; exact B.Cu pin/pad/orientation mapping and common-plane fit remain open.","Close exact footprints/CAD, pin maps, B.Cu orientation, control XY/apertures and six-support stack."),
+    ProductionGate("MECH-TOP","Upper-cover machining and legend",GateState.BLOCKED,True,"Apertures/support datums are not frozen; R-017 legend generation remains open.","Freeze after control/support MCAD; generate legend programmatically."),
+    ProductionGate("PCB-OUTLINE","PCB outline and support ownership",GateState.READY_FOR_NEXT_ACTIVITY,True,"Current outline retained; MH1-MH4 interim while six PCB-to-cover supports remain selected-next.","Freeze six-support XY/Z/hardware/tolerance before replacing interim support geometry."),
+    ProductionGate("PCB-PLACEMENT","Pre-routing component/control placement",GateState.BLOCKED,True,"Current placement predates seven-control B.Cu and personality-interface migration.","Perform controlled migration only after exact footprints/MCAD close."),
+    ProductionGate("PCB-NATIVE","Native KiCad mechanical/model completeness",GateState.BLOCKED,True,"AE-076B2C proves H901 and capacitor model solutions; governed native binding remains open.","Bind exact models reproducibly and regenerate a zero-missing-model PCB STEP."),
+    ProductionGate("PCB-STACK","Four-layer stack, plane and DRC contract",GateState.BLOCKED,True,"Fabricator/bounded stack, In1 0VA plane and quantitative netclasses remain open.","Freeze stack/DRC/netclasses and instantiate/audit In1 0VA plane before first routing."),
+    ProductionGate("PCB-ROUTING","Native PCB routing",GateState.BLOCKED,True,"Routing authority remains explicitly false.","Release only after all design-driving/mechanical/model/stack/assurance blockers close."),
+    ProductionGate("PCB-FAB","Fabrication release",GateState.BLOCKED,True,"No routed/DRC-closed fabrication baseline exists.","After routing: DRC/ERC, Gerber/drill, return-path, fabrication and independent review."),
+    ProductionGate("BOM-CONTROLS","Control and personality hardware BOM",GateState.BLOCKED,True,"A30403RNCB is the single Matrix production part; personality interface is selected-next; physical migration remains open.","Complete exact control/personality footprints/CAD and procurement identities before BOM freeze."),
+    ProductionGate("BOM-GENERAL","General BOM/procurement",GateState.READY_FOR_NEXT_ACTIVITY,True,"Timing-cap decomposition and output ferrite selection remain open.","Complete RUN10/value engineering and exact remaining part identities."),
+    ProductionGate("DOC-AUTHORITY","Decision/document/current-contract authority",GateState.READY_FOR_NEXT_ACTIVITY,True,"AE-076C reconciles DR-038/current readiness/personality semantics; AE-076D must reconcile the current qualification delta and stale executable/release oracles before physical migration proceeds.","Execute AE-076D: reconcile/quarantine stale current oracles, historical release executables and the AE-075_PENDING assurance marker; publish the +17 V / Grado 78C / personality-state qualification delta."),
+    ProductionGate("DOC-COMMISSION","Commissioning / maintenance baseline",GateState.READY_FOR_NEXT_ACTIVITY,False,"Selected-next cartridge cards are not yet live maintenance authority.","Update service instructions atomically with live SCH101 migration."),
+    ProductionGate("DOC-RELEASE","Production design pack",GateState.BLOCKED,True,"Fabrication, measured acceptance, final BOM and release manifest remain incomplete.","Assemble only after routing/prototype/independent assurance close."),
+    ProductionGate("REPRO-CLEANCLONE","Clean-clone reproducibility",GateState.BLOCKED,True,"Final production baseline not yet reproduced from an empty clone.","Perform after design/fabrication artefacts freeze."),
+    ProductionGate("REPO-HYGIENE","Repository production cleanup",GateState.READY_FOR_NEXT_ACTIVITY,False,"Authority/provenance separation active; executable debt is being reconciled pre-layout.","Continue bounded reconciliation without rewriting provenance."),
+    ProductionGate("INFRA-EXTRACT","Foundry / Generator extraction",GateState.READY_FOR_NEXT_ACTIVITY,False,"Post-production activity only.","Defer until production clean-clone baseline."),
 )
 
-
-def gates_by_state(state: GateState):
-    return tuple(g for g in GATES if g.state is state)
-
-
-def release_blockers():
-    return tuple(g for g in GATES if g.release_blocker)
-
-
+def gates_by_state(state): return tuple(g for g in GATES if g.state is state)
+def release_blockers(): return tuple(g for g in GATES if g.release_blocker)
 def validate_production_gates():
-    assert len({g.identifier for g in GATES}) == len(GATES)
-    assert len(GATES) >= 15
-    assert gates_by_state(GateState.CLOSED)
+    assert len({g.identifier for g in GATES})==len(GATES)
+    assert len(GATES)>=15
     assert gates_by_state(GateState.BLOCKED)
     assert gates_by_state(GateState.PROTOTYPE_EVIDENCE_REQUIRED)
     assert all(g.next_action for g in release_blockers())
+    assert next(g for g in GATES if g.identifier=="ELEC-SIGNAL").state is GateState.BLOCKED
+    assert next(g for g in GATES if g.identifier=="PCB-ROUTING").state is GateState.BLOCKED

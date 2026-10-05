@@ -1,43 +1,24 @@
-from generator.model.production_readiness import (
-    GateState,
-    GATES,
-    gates_by_state,
-    release_blockers,
-    validate_production_gates,
-)
+from generator.model.production_readiness import GateState,GATES,release_blockers,validate_production_gates
 from tools.ae030_production_readiness_audit import render
 
-
-def test_ae030_gate_model_is_well_formed():
+def test_current_gate_model_is_fail_closed():
     validate_production_gates()
 
+def test_electrical_design_driving_work_is_blocker():
+    g=next(g for g in GATES if g.identifier=="ELEC-SIGNAL")
+    assert g.state is GateState.BLOCKED and g.release_blocker
 
-def test_signal_chain_is_not_a_design_blocker_anymore():
-    gate = next(g for g in GATES if g.identifier == "ELEC-SIGNAL")
-    assert gate.state is GateState.CLOSED
-    assert not gate.release_blocker
-
-
-def test_control_mechanics_and_routing_are_release_blockers():
-    controls = next(g for g in GATES if g.identifier == "MECH-CONTROLS")
-    routing = next(g for g in GATES if g.identifier == "PCB-ROUTING")
-    assert controls.release_blocker
-    assert routing.release_blocker
-    assert controls.state is GateState.BLOCKED
-    assert routing.state is GateState.BLOCKED
-
-
-def test_prototype_measurement_is_required_but_not_open_design():
-    gate = next(g for g in GATES if g.identifier == "ELEC-MEASURE")
-    assert gate.state is GateState.PROTOTYPE_EVIDENCE_REQUIRED
-    assert gate.release_blocker
-
+def test_controls_native_stack_and_routing_are_blockers():
+    for ident in ("MECH-CONTROLS","PCB-NATIVE","PCB-STACK","PCB-ROUTING"):
+        g=next(g for g in GATES if g.identifier==ident)
+        assert g.state is GateState.BLOCKED and g.release_blocker
 
 def test_release_blockers_have_actions():
     assert all(g.next_action for g in release_blockers())
 
-
-def test_generated_report_states_critical_path(tmp_path):
+def test_generated_report_has_current_critical_path(tmp_path):
     (tmp_path/"generator").mkdir()
-    text, _, _ = render(tmp_path)
-    assert "controls/mechanics -> native routing/fabrication -> prototype evidence" in text
+    text,_,_=render(tmp_path)
+    assert "pre-layout technical-debt clearance" in text
+    assert "RUN08-RUN14" in text
+    assert "routing release" in text.lower()

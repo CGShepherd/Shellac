@@ -11,7 +11,8 @@ current_authority:
 - docs/design_pack/AE-041_3P4T_Matrix_and_Top_Cover_Control_Authority_Rev_A1.md
 - config/mechanical/ae076b_control_service_module.yaml
 - config/mechanical/ae076b2a_pcb_face_strategy.yaml
-- config/mechanical/ae076b2b_mcad_sources.yaml
+- config/mechanical/ae076b2c_mcad_sources.yaml
+- config/decisions/ae076c_cartridge_personality.yaml
 pre_spice_assurance_evidence:
 - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
 - docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
@@ -59,7 +60,10 @@ pre_spice_assurance_evidence:
 - docs/design_pack/AE-076B_Control_Service_Module_Architecture_Supersession_Rev_A0.md
 - docs/design_pack/AE-076B2A_PCB_Face_Strategy_Rev_A0.md
 - docs/design_pack/AE-076B2B_Mechanical_Source_Inputs_DC_Interface_and_KiCad_STEP_Rev_A0.md
+- docs/design_pack/AE-076B2C_MCAD_Source_Reconciliation_Evidence_Rev_A0.md
+- docs/design_pack/AE-076C_PreLayout_Authority_and_Technical_Debt_Reconciliation_Rev_A0.md
 historical_state_evidence:
+- config/mechanical/ae076b2b_mcad_sources.yaml
 - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
 - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md
 - docs/AE-016B_Full_Regression_Staging_Repair_Rev_A0.md

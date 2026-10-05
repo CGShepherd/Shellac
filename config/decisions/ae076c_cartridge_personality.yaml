@@ -1,0 +1,49 @@
+schema_version: 1
+project: Shellac
+authority: AE-076C
+status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+parent_baseline: 3183c07a61248aad648fdecc9cc883a5cfba14c6
+scope: SCH101_CARTRIDGE_DIFFERENTIAL_CAPACITANCE_PERSONALITY_INTERFACE
+architecture:
+  card_count_installed_when_nonbase: 2
+  cards_identical_per_channel: true
+  one_card_local_to_each_channel: true
+  audio_path_passes_through_card: false
+  card_function: DIFFERENTIAL_SHUNT_ONLY
+  no_card_state: BASE
+  fail_safe_no_card: true
+  main_pcb_resistive_load_per_leg_ohm: 23700
+  approximate_differential_load_ohm: 47400
+  fixed_rf_shunt_per_leg_pf_to_chassis: 47
+  matched_rf_series_ohm: 100
+interface:
+  main_pcb_socket: {manufacturer: Samtec, mpn: SLW-102-01-G-D, pitch_mm: 2.54, rows: 2, positions_per_row: 2, contact_plating: GOLD}
+  personality_card_header: {manufacturer: Samtec, mpn: TSW-102-07-G-D, pitch_mm: 2.54, rows: 2, positions_per_row: 2, contact_plating: GOLD}
+  selected_refs: {left: H120, right: H220}
+  diagonal_duplicate_node_map: {1: POS, 2: NEG, 3: NEG, 4: POS}
+  insertion_180deg_electrically_benign_by_pin_map: true
+service_states:
+  BASE: {installed_cards: NONE, added_differential_capacitance_pf: 0}
+  PLUS_47: {installed_cards: MATCHED_LEFT_RIGHT_PAIR, nominal_added_differential_capacitance_pf: 47}
+  PLUS_100: {installed_cards: MATCHED_LEFT_RIGHT_PAIR, nominal_added_differential_capacitance_pf: 100}
+  selection_basis: CARTRIDGE_PLUS_MEASURED_CABLE_CAPACITANCE
+  label_cards_by_capacitance_not_cartridge_name: true
+  optional_resistor_footprints_allowed_on_development_cards: true
+  production_resistor_population_default: DNP
+gain_programming:
+  separate_from_personality_cards: true
+  header: TSW-104-07-G-D
+  shunt: MNT-104-BK-G
+  refs: {low: H110, high: H111, park: H112}
+  default_no_low_high_bridge_db_approx: 18
+  retained: true
+qualification:
+  run10_connector_and_card_capacitance: OPEN
+  run10_left_right_matching: OPEN
+  exact_footprint_and_mcad_stack: OPEN
+  live_sch101_generator_migration: OPEN
+  native_pcb_migration: OPEN
+  routing_authority: false
+  layout_freeze: false
+  bom_freeze: false
+  manufacturing_release: false

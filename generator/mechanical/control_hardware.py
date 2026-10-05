@@ -53,10 +53,10 @@ CK_A30403RNCB=MechanicalEvidence(
     notes="3P4T, four-position, BBM, gold contacts. MCAD must prove fit at direct-main-PCB plane.")
 
 TE_MRJE3404=MechanicalEvidence(
-    "MECH-SW903-FALLBACK","TE/Alcoswitch","MRJE3404","Channel-mode 3P4T rotary procurement fallback",
+    "MECH-SW903-ALTERNATIVE","TE/Alcoswitch","MRJE3404","Channel-mode 3P4T rotary considered alternative",
     "panel + through-hole PC mount",shaft_diameter_mm=3.17,
     evidence_grade="E1/E3 exact-MPN evidence",
-    notes="Requires different knob/shaft treatment from preferred C&K part.")
+    notes="Not a live production fallback: different footprint/shaft treatment from selected C&K A30403RNCB; retained as considered-alternative provenance only.")
 
 CK_7201SYCBE=MechanicalEvidence(
     "MECH-SW904-905","C&K / Littelfuse","7201SYCBE","Rumble/Mute common toggle",
@@ -77,8 +77,9 @@ ROTARY_PLATFORM_AUTHORITY={
     "eq_mpns":("NR01105ANG13-2C","NR01105ANG13-2A"),
     "eq_exact_mpn_status":"FROZEN_AE075C",
     "matrix_manufacturer":"C&K","matrix_mpn":"A30403RNCB",
-    "matrix_fallback_mpn":"TE/Alcoswitch MRJE3404",
-    "matrix_status":"PREFERRED_PROCUREMENT_PARTIAL",
+    "matrix_considered_alternative_mpn":"TE/Alcoswitch MRJE3404",
+    "matrix_considered_alternative_status":"NOT_LIVE_FALLBACK_FOOTPRINT_INCOMPATIBLE",
+    "matrix_status":"SINGLE_PRODUCTION_PART_SELECTED_PHYSICAL_MIGRATION_OPEN",
     "authority":"AE-041 A1 + AE-075C + AE-076B",
 }
 HISTORICAL_ROTARY_EVIDENCE=(GRAYHILL_1_DECK,GRAYHILL_2_DECK)

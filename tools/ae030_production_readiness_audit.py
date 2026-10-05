@@ -9,8 +9,6 @@ if str(_REPO_ROOT) not in sys.path:
 
 from generator.model.production_readiness import GATES, GateState
 
-from generator.model.production_readiness import GATES, GateState
-
 REQUIRED_PATHS = (
     "README.md",
     "config/decisions/current_decision_index.yaml",
@@ -43,10 +41,18 @@ def _scan_live_grayhill(repo: Path):
         repo / "generator",
         repo / "README.md",
     )
+    provenance_only = {
+        "config/procurement/sourcing_snapshot_2026-08-24.yaml",
+        "generator/mechanical/control_hardware.py",
+        "generator/model/production_integrity_audit.py",
+    }
     for root in roots:
         paths = [root] if root.is_file() else root.rglob("*")
         for p in paths:
             if not p.is_file():
+                continue
+            rel = p.relative_to(repo).as_posix()
+            if rel in provenance_only:
                 continue
             if p.suffix.lower() not in {".py", ".yaml", ".yml", ".md", ".txt"} and p.name != "README.md":
                 continue
@@ -100,23 +106,20 @@ def render(repo: Path):
         "",
         "## Recommended execution order",
         "",
-        "1. Close Lorlin PT exact MPN and AE-028 mechanical sample gate.",
-        "2. Perform control-hardware ECO: BOM + mechanical model + top-cover stack + footprints/placement.",
-        "3. Confirm native KiCad board four-layer stack and plane intent.",
-        "4. Route the native PCB under SR-041 critical-net/manual-routing rules.",
-        "5. Run full DRC/ERC, return-path/plane review and fabrication-output inspection.",
-        "6. Complete general BOM/procurement/lifecycle audit.",
-        "7. Fabricate and commission representative hardware using AE-029.",
-        "8. Freeze measured acceptance limits and complete maintenance/fault-isolation data.",
-        "9. Assemble production design/release pack.",
-        "10. Clean-clone reproducibility audit.",
-        "11. Repository cleanup and tagged production release.",
-        "12. Extract Foundry and Generator into independent versioned dependencies.",
+        "1. Complete pre-layout technical-debt clearance under AE-076D: reconcile/quarantine stale executable/release oracles and publish the current +17 V / Grado 78C / personality-state qualification delta.",
+        "2. Perform controlled personality-interface and native-model migration; prove exact H901/C30060/C35060 zero-missing-model PCB STEP.",
+        "3. Execute design-driving RUN08-RUN14 work; close any resulting schematic/component changes.",
+        "4. Complete exact control/personality CAD, six-support stack and full chassis/service digital mock-up.",
+        "5. Freeze bounded four-layer fabrication stack, quantitative DRC/netclasses and instantiate/audit the In1 0VA plane.",
+        "6. Run a fresh independent panel review; only then consider routing release.",
+        "7. Route the native PCB and perform DRC/ERC/return-path/fabrication review.",
+        "8. Complete prototype/bench commissioning and correlation.",
+        "9. Freeze BOM/manufacturing/release data and perform clean-clone reproducibility.",
         "",
         "## Interpretation",
         "",
-        "The project is no longer primarily blocked by signal-chain design.",
-        "The critical path is now controls/mechanics -> native routing/fabrication -> prototype evidence -> release/reproducibility.",
+        "Shellac remains on HOLD before routing release.",
+        "The critical path is pre-layout technical-debt clearance under AE-076D -> personality/native migration -> RUN08-RUN14 design-driving assurance -> mechanical integration -> independent review -> routing release.",
         "",
     ]
     return "\n".join(lines), missing, grayhill

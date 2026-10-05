@@ -17,6 +17,8 @@ def test_ck_installed_planes_are_not_invented():
     assert CK_7201SYCBE.installed_panel_to_pcb_mm is None
     assert CK_7201SYCBE.bushing_length_mm==8.89
 
-def test_fallback_is_recorded_not_primary():
+def test_mrje_is_considered_alternative_not_live_fallback():
     assert TE_MRJE3404.mpn=="MRJE3404"
     assert ROTARY_PLATFORM_AUTHORITY["matrix_mpn"]=="A30403RNCB"
+    assert ROTARY_PLATFORM_AUTHORITY["matrix_considered_alternative_mpn"]=="TE/Alcoswitch MRJE3404"
+    assert ROTARY_PLATFORM_AUTHORITY["matrix_considered_alternative_status"]=="NOT_LIVE_FALLBACK_FOOTPRINT_INCOMPATIBLE"

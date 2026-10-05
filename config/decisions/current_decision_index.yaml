@@ -41,12 +41,14 @@ decisions:
     - docs/design_pack/AE-071_PreRouting_Integrity_Reconciliation_Rev_A0.md
     - docs/design_pack/AE-071A_SCH101_Product_Migration_Rev_A0.md
     - docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
+    - docs/design_pack/AE-076C_PreLayout_Authority_and_Technical_Debt_Reconciliation_Rev_A0.md
+    - config/decisions/ae076c_cartridge_personality.yaml
     implementation:
       converter_gain: 4.0
       network: LT5400BIMS8E-7#PBF selected; EP9 to quiet 0VA implemented; RUN10 full-stage tolerance/CMRR acceptance remains open
       gain_selection: AE-071A live fail-safe removable gold service-shunt topology, approximately 14/18/22 dB; no LOW/HIGH shunt state is 18 dB
-      cartridge_load_selection: AE-071A live BASE/+47/+100 pF ganged L/R service-capacitance programming; fixed 47 pF leg-to-chassis RF shunts retained
-      note: AE-071A migrates the AE-042 electrical topology into the live generator after AE-066 nominal qualification. AE-075B selects LT5400BIMS8E-7#PBF, implements EP9 to quiet 0VA, and selects the compatible Samtec TSW/MNT hardware families. The resistor-network-only B-grade CMRR floor is 84.44 dB; RUN10 complete-stage tolerance/CMRR and 20 kHz parasitic acceptance remain open. Samtec physical pairing/orientation and short symmetric service-header routing/parasitic verification also remain open.
+      cartridge_load_selection: AE-076C selected-next two identical per-channel passive personality cards; main sockets Samtec SLW-102-01-G-D, card headers TSW-102-07-G-D; no card=BASE; matched +47/+100 pF L/R service pairs selected by cartridge plus measured cable capacitance; fixed 47 pF leg-to-CHASSIS RF shunts retained. Live H120/H121/H122 ganged load hardware remains implemented only until controlled migration.
+      note: AE-071A gain programming remains live and separate. AE-075B selects LT5400BIMS8E-7#PBF and implements EP9 to quiet 0VA. AE-076C reconciles the stale executable contract and selects the fail-safe per-channel load-card architecture without falsely claiming live migration. RUN10 complete-stage tolerance/CMRR, 20 kHz and personality-interface parasitic/matching acceptance remain open. Gain-shunt physical pairing/orientation also remains open.
   DR-039:
     title: State-independent post-EQ DC blocking
     status: CURRENT_ARCHITECTURE_QUALIFICATION_OPEN
@@ -90,12 +92,14 @@ decisions:
     - docs/design_pack/AE-076B2A_PCB_Face_Strategy_Rev_A0.md
     - config/mechanical/ae076b2a_pcb_face_strategy.yaml
     - docs/design_pack/AE-076B2B_Mechanical_Source_Inputs_DC_Interface_and_KiCad_STEP_Rev_A0.md
-    - config/mechanical/ae076b2b_mcad_sources.yaml
+    - docs/design_pack/AE-076B2C_MCAD_Source_Reconciliation_Evidence_Rev_A0.md
+    - config/mechanical/ae076b2c_mcad_sources.yaml
+    - docs/design_pack/AE-076C_PreLayout_Authority_and_Technical_Debt_Reconciliation_Rev_A0.md
     implementation:
       eq_controls: Four independent NKK NR01105ANG13 five-position BBM gold-contact controls; Bass uses -2C red flanged-knob configuration and Treble uses -2A black flanged-knob configuration.
-      channel_matrix: C&K A30403RNCB 3P4T BBM gold THT preferred; TE/Alcoswitch MRJE3404 fallback.
+      channel_matrix: C&K A30403RNCB 3P4T BBM gold THT is the single selected production Matrix part; TE/Alcoswitch MRJE3404 is considered-alternative provenance only and is not a live footprint-compatible fallback.
       mute_rumble: C&K 7201SYCBE.
-      note: 'AE-068 qualifies RUN05 steady-state matrix behaviour and AE-075C freezes exact control MPNs. AE-076B supersedes the AE-075D/E/F four-local-control-board/carrier ownership architecture: one main audio PCB carries all seven controls directly and forms a removable service module with the upper cover; six PCB-to-cover supports are selected in principle and control inter-board harnesses are not selected. Historical AE-075D/E/F remain provenance. SR-040/AE-071B MH1-MH4 native geometry is interim physical CAD pending AE-076B2 MCAD closure. C&K/NKK stack, support XY/Z/tolerances, exact footprints/3D envelopes, control XY/apertures, RUN10 and physical migration remain open. RUN12 switching and bench qualification remain open.'
+      note: 'AE-068 qualifies RUN05 steady-state matrix behaviour and AE-075C freezes exact control MPNs. AE-076B supersedes the AE-075D/E/F four-local-control-board/carrier ownership architecture: one main audio PCB carries all seven controls directly and forms a removable service module with the upper cover; six PCB-to-cover supports are selected in principle and control inter-board harnesses are not selected. Historical AE-075D/E/F remain provenance. SR-040/AE-071B MH1-MH4 native geometry is interim physical CAD pending current AE-076B2C/AE-076C mechanical and native-model closure. C&K/NKK stack, support XY/Z/tolerances, exact footprints/3D envelopes, control XY/apertures, RUN10 and physical migration remain open. RUN12 switching and bench qualification remain open.'
 pre_spice_assurance:
   AE-042: docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
   AE-043: docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
@@ -142,6 +146,8 @@ pre_spice_assurance:
   AE-076B: docs/design_pack/AE-076B_Control_Service_Module_Architecture_Supersession_Rev_A0.md
   AE-076B2A: docs/design_pack/AE-076B2A_PCB_Face_Strategy_Rev_A0.md
   AE-076B2B: docs/design_pack/AE-076B2B_Mechanical_Source_Inputs_DC_Interface_and_KiCad_STEP_Rev_A0.md
+  AE-076B2C: docs/design_pack/AE-076B2C_MCAD_Source_Reconciliation_Evidence_Rev_A0.md
+  AE-076C: docs/design_pack/AE-076C_PreLayout_Authority_and_Technical_Debt_Reconciliation_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

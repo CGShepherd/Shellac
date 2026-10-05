@@ -20,14 +20,21 @@ def test_sr039_controlled_validation_evidence():
     assert "warnings: 0" in text
     assert "exit_code: 0" in text
 
-def test_dr038_dr039_records_are_not_pending_after_release():
-    for path in (
-        "docs/decisions/DR-038_SCH101_Precision_Architecture_SELECTED.md",
-        "docs/decisions/DR-039_Common_Post_EQ_DC_Block_SELECTED.md",
-    ):
-        text=Path(path).read_text(encoding="utf-8").upper()
-        assert "MIGRATION PENDING" not in text
-        assert "**STATUS:** IMPLEMENTED" in text
+def test_sr039_historical_release_snapshot_and_current_decisions_are_separated():
+    historical=Path("config/release/sr039_schematic_to_layout.yaml").read_text(encoding="utf-8")
+    assert "validated_design_commit: dce5c0ec36e12f979338d8c46106c44a79c7a023" in historical
+    assert "routing_release: BLOCKED_PENDING_MECHANICAL_DATUM_FREEZE" in historical
+
+    dr038=Path("docs/decisions/DR-038_SCH101_Precision_Architecture_SELECTED.md").read_text(encoding="utf-8")
+    assert "**Status:** CURRENT ARCHITECTURE" in dr038
+    assert "**Historical implementation closure:** SR-039" in dr038
+    assert "selected-next" in dr038.lower()
+    assert "LT5400BIMS8E-7#PBF" in dr038
+
+    dr039=Path("docs/decisions/DR-039_Branch_Local_DC_Block_SELECTED.md").read_text(encoding="utf-8")
+    assert "**Status:** CURRENT_ARCHITECTURE_QUALIFICATION_OPEN" in dr039
+    assert "BRANCH_LOCAL_DIRECT_BYPASS_BLOCK" in dr039
+    assert "AE-074 migrates the selected topology" in dr039
 
 def test_current_decision_index_describes_active_dr038():
     text=Path("config/decisions/current_decision_index.yaml").read_text(encoding="utf-8")

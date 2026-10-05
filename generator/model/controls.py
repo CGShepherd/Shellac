@@ -32,7 +32,8 @@ EQ_ROTARY_MOUNTING=(
 
 MATRIX_MANUFACTURER="C&K"
 MATRIX_MPN="A30403RNCB"
-MATRIX_FALLBACK_MPN="TE/Alcoswitch MRJE3404"
+MATRIX_CONSIDERED_ALTERNATIVE_MPN="TE/Alcoswitch MRJE3404"
+MATRIX_CONSIDERED_ALTERNATIVE_STATUS="NOT_LIVE_FALLBACK_FOOTPRINT_INCOMPATIBLE"
 MATRIX_MOUNTING=(
     "PCB through-hole PC pins with 3/8-32 threaded bushing through top cover; "
     "AE-076B direct main-audio-PCB ownership; six supports establish the primary datum; "

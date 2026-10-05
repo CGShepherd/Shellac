@@ -4,35 +4,36 @@ Repository: `C:\Users\chris\Dropbox\000_Projects\000_Audio\Shellac`
 
 ## Executive status
 
-- production gates: **18**
-- CLOSED: **4**
+- production gates: **19**
+- CLOSED: **0**
 - READY_FOR_NEXT_ACTIVITY: **6**
 - PROTOTYPE_EVIDENCE_REQUIRED: **1**
-- BLOCKED: **7**
-- release blockers: **10**
+- BLOCKED: **12**
+- release blockers: **16**
 
 ## Gate matrix
 
 | ID | Area | State | Release blocker | Evidence | Next action |
 |---|---|---|---|---|---|
-| ELEC-SIGNAL | Electrical signal chain | **CLOSED** | NO | AE-023 + AE-029; DR-037/038/039/040 implemented; analytical acceptance matrix established. | Do not reopen unless prototype evidence contradicts the controlled model. |
-| ELEC-MEASURE | Prototype electrical acceptance | **PROTOTYPE_EVIDENCE_REQUIRED** | YES | AE-029 defines measured CMRR/noise/DC/EQ/overload/transient acceptance. | Build representative hardware and execute commissioning matrix. |
-| MECH-ENCLOSURE | Audio enclosure / carrier / PCB datum | **CLOSED** | NO | SR-040 freezes METCASE M5502119 evidence and 220 x 140 mm PCB datum. | Retain frozen datum unless a production ECO is justified. |
-| MECH-CONTROLS | Rotary control mechanics | **BLOCKED** | YES | Grayhill 71BDF30 is rejected for right-angle geometry; AE-026/027/028 select Lorlin PT pending exact MPN/sample evidence. | Close Lorlin exact-order-code and physical sample geometry gates, then perform control-hardware ECO. |
-| MECH-TOP | Top-panel machining | **BLOCKED** | YES | Current top-cover stack still encodes Grayhill geometry and explicitly withholds machining release. | Regenerate top-cover stack from verified Lorlin PT + C&K hardware and panel thickness. |
-| PCB-OUTLINE | PCB outline and mounting | **CLOSED** | NO | SR-040 frozen outline / four mounting holes / keep-outs. | Carry frozen outline into native board. |
-| PCB-PLACEMENT | Critical placement | **READY_FOR_NEXT_ACTIVITY** | NO | SR-041 accepts manual clusters as routing baseline with zero mounting collisions. | Only local refinement within movement authority during routing. |
-| PCB-NATIVE | Native KiCad board setup | **READY_FOR_NEXT_ACTIVITY** | YES | SR-043 audit requires populated frozen outline, mounting holes, unrouted state and four copper layers. | Confirm native board is four-layer: F.Cu/In1.Cu/In2.Cu/B.Cu before routing. |
-| PCB-ROUTING | Native PCB routing | **BLOCKED** | YES | Current native-board audit intentionally expects an unrouted board before routing release. | Complete controlled manual routing, planes, return paths, then DRC/ERC/review. |
-| PCB-FAB | Fabrication release | **BLOCKED** | YES | No production-routed/DRC-closed fabrication baseline exists yet. | After routing: run DRC/ERC, Gerber/drill inspection, fabrication manifest and release review. |
-| BOM-CONTROLS | Control-hardware BOM | **BLOCKED** | YES | Controlled BOM still contains rejected Grayhill rotary parts. | Replace only after Lorlin PT production MPN/sample gate closes. |
-| BOM-GENERAL | General BOM/procurement | **READY_FOR_NEXT_ACTIVITY** | YES | Controlled partial BOM exists; procurement_complete is false. | Run final BOM completeness, alternates, lifecycle and availability audit before production release. |
-| DOC-AUTHORITY | Decision/document authority | **CLOSED** | NO | AE-024/025 reconciliation: zero vocabulary findings and zero current-authority contradictions. | Maintain authority classifications with future ECOs. |
-| DOC-COMMISSION | Commissioning / maintenance baseline | **READY_FOR_NEXT_ACTIVITY** | NO | AE-029 provides first-hardware acceptance matrix; maintenance structure exists. | Populate measured results and fault-isolation guidance after prototype. |
-| DOC-RELEASE | Production design pack | **BLOCKED** | YES | Pack structure exists but fabrication release, measured acceptance, final BOM and release manifest remain incomplete. | Assemble release pack after PCB/mechanical/prototype gates close. |
-| REPRO-CLEANCLONE | Clean-clone reproducibility | **BLOCKED** | YES | Not yet demonstrated from an empty clone against pinned tool/dependency versions. | Perform clean-clone build and compare generated production artifacts before tag. |
-| REPO-HYGIENE | Repository production cleanup | **READY_FOR_NEXT_ACTIVITY** | NO | Cleanup deliberately deferred until production standard is known. | Classify authoritative source, controlled evidence and release artifacts; archive/remove detritus after baseline freeze. |
-| INFRA-EXTRACT | Foundry / Generator extraction | **READY_FOR_NEXT_ACTIVITY** | NO | Planned post-production extraction; Shellac still informs generic/project-specific boundary. | Extract Foundry and Generator only after production clean-clone baseline is proven. |
+| ELEC-SIGNAL | Electrical architecture and design-driving qualification | **BLOCKED** | YES | AE-076C personality architecture selected-next; live migration and RUN08-RUN14 design-driving work remain open. | Migrate the personality interface, then execute design-driving RUN08-RUN14 before routing release. |
+| ELEC-MEASURE | Prototype electrical acceptance | **PROTOTYPE_EVIDENCE_REQUIRED** | YES | Bench CMRR/noise/overload/switching/stability/PSU/fault correlation remain mandatory. | Execute after design-driving simulation and prototype hardware. |
+| MECH-ENCLOSURE | Enclosure and full assembly digital mock-up | **BLOCKED** | YES | AE-076B2C reconciles the M5502119 external body; internal datums and full service/interference assembly remain open. | Complete dimensionally controlled full assembly and service review. |
+| MECH-CONTROLS | Seven direct-PCB controls and upper-cover service module | **BLOCKED** | YES | Exact NKK/C&K parts selected; exact B.Cu pin/pad/orientation mapping and common-plane fit remain open. | Close exact footprints/CAD, pin maps, B.Cu orientation, control XY/apertures and six-support stack. |
+| MECH-TOP | Upper-cover machining and legend | **BLOCKED** | YES | Apertures/support datums are not frozen; R-017 legend generation remains open. | Freeze after control/support MCAD; generate legend programmatically. |
+| PCB-OUTLINE | PCB outline and support ownership | **READY_FOR_NEXT_ACTIVITY** | YES | Current outline retained; MH1-MH4 interim while six PCB-to-cover supports remain selected-next. | Freeze six-support XY/Z/hardware/tolerance before replacing interim support geometry. |
+| PCB-PLACEMENT | Pre-routing component/control placement | **BLOCKED** | YES | Current placement predates seven-control B.Cu and personality-interface migration. | Perform controlled migration only after exact footprints/MCAD close. |
+| PCB-NATIVE | Native KiCad mechanical/model completeness | **BLOCKED** | YES | AE-076B2C proves H901 and capacitor model solutions; governed native binding remains open. | Bind exact models reproducibly and regenerate a zero-missing-model PCB STEP. |
+| PCB-STACK | Four-layer stack, plane and DRC contract | **BLOCKED** | YES | Fabricator/bounded stack, In1 0VA plane and quantitative netclasses remain open. | Freeze stack/DRC/netclasses and instantiate/audit In1 0VA plane before first routing. |
+| PCB-ROUTING | Native PCB routing | **BLOCKED** | YES | Routing authority remains explicitly false. | Release only after all design-driving/mechanical/model/stack/assurance blockers close. |
+| PCB-FAB | Fabrication release | **BLOCKED** | YES | No routed/DRC-closed fabrication baseline exists. | After routing: DRC/ERC, Gerber/drill, return-path, fabrication and independent review. |
+| BOM-CONTROLS | Control and personality hardware BOM | **BLOCKED** | YES | A30403RNCB is the single Matrix production part; personality interface is selected-next; physical migration remains open. | Complete exact control/personality footprints/CAD and procurement identities before BOM freeze. |
+| BOM-GENERAL | General BOM/procurement | **READY_FOR_NEXT_ACTIVITY** | YES | Timing-cap decomposition and output ferrite selection remain open. | Complete RUN10/value engineering and exact remaining part identities. |
+| DOC-AUTHORITY | Decision/document/current-contract authority | **READY_FOR_NEXT_ACTIVITY** | YES | AE-076C reconciles DR-038/current readiness/personality semantics; AE-076D must reconcile the current qualification delta and stale executable/release oracles before physical migration proceeds. | Execute AE-076D: reconcile/quarantine stale current oracles, historical release executables and the AE-075_PENDING assurance marker; publish the +17 V / Grado 78C / personality-state qualification delta. |
+| DOC-COMMISSION | Commissioning / maintenance baseline | **READY_FOR_NEXT_ACTIVITY** | NO | Selected-next cartridge cards are not yet live maintenance authority. | Update service instructions atomically with live SCH101 migration. |
+| DOC-RELEASE | Production design pack | **BLOCKED** | YES | Fabrication, measured acceptance, final BOM and release manifest remain incomplete. | Assemble only after routing/prototype/independent assurance close. |
+| REPRO-CLEANCLONE | Clean-clone reproducibility | **BLOCKED** | YES | Final production baseline not yet reproduced from an empty clone. | Perform after design/fabrication artefacts freeze. |
+| REPO-HYGIENE | Repository production cleanup | **READY_FOR_NEXT_ACTIVITY** | NO | Authority/provenance separation active; executable debt is being reconciled pre-layout. | Continue bounded reconciliation without rewriting provenance. |
+| INFRA-EXTRACT | Foundry / Generator extraction | **READY_FOR_NEXT_ACTIVITY** | NO | Post-production activity only. | Defer until production clean-clone baseline. |
 
 ## Required design-pack path check
 
@@ -40,29 +41,21 @@ Repository: `C:\Users\chris\Dropbox\000_Projects\000_Audio\Shellac`
 
 ## Live Grayhill references requiring ECO disposition
 
-- `config/bom/shellac_bom.yaml`
-- `config/procurement/sourcing_snapshot_2026-08-24.yaml`
-- `generator/mechanical/control_hardware.py`
-- `generator/mechanical/top_cover_stack.py`
-- `generator/model/controls.py`
-- `generator/model/production_readiness.py`
+- No live Grayhill references detected.
 
 ## Recommended execution order
 
-1. Close Lorlin PT exact MPN and AE-028 mechanical sample gate.
-2. Perform control-hardware ECO: BOM + mechanical model + top-cover stack + footprints/placement.
-3. Confirm native KiCad board four-layer stack and plane intent.
-4. Route the native PCB under SR-041 critical-net/manual-routing rules.
-5. Run full DRC/ERC, return-path/plane review and fabrication-output inspection.
-6. Complete general BOM/procurement/lifecycle audit.
-7. Fabricate and commission representative hardware using AE-029.
-8. Freeze measured acceptance limits and complete maintenance/fault-isolation data.
-9. Assemble production design/release pack.
-10. Clean-clone reproducibility audit.
-11. Repository cleanup and tagged production release.
-12. Extract Foundry and Generator into independent versioned dependencies.
+1. Complete pre-layout technical-debt clearance under AE-076D: reconcile/quarantine stale executable/release oracles and publish the current +17 V / Grado 78C / personality-state qualification delta.
+2. Perform controlled personality-interface and native-model migration; prove exact H901/C30060/C35060 zero-missing-model PCB STEP.
+3. Execute design-driving RUN08-RUN14 work; close any resulting schematic/component changes.
+4. Complete exact control/personality CAD, six-support stack and full chassis/service digital mock-up.
+5. Freeze bounded four-layer fabrication stack, quantitative DRC/netclasses and instantiate/audit the In1 0VA plane.
+6. Run a fresh independent panel review; only then consider routing release.
+7. Route the native PCB and perform DRC/ERC/return-path/fabrication review.
+8. Complete prototype/bench commissioning and correlation.
+9. Freeze BOM/manufacturing/release data and perform clean-clone reproducibility.
 
 ## Interpretation
 
-The project is no longer primarily blocked by signal-chain design.
-The critical path is now controls/mechanics -> native routing/fabrication -> prototype evidence -> release/reproducibility.
+Shellac remains on HOLD before routing release.
+The critical path is pre-layout technical-debt clearance under AE-076D -> personality/native migration -> RUN08-RUN14 design-driving assurance -> mechanical integration -> independent review -> routing release.
