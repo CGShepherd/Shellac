@@ -1,24 +1,9 @@
+from pathlib import Path
+import yaml
 from generator.layout.sr041_routing_release import build_sr041_routing_release
-
-def test_sr041_releases_routing_without_mounting_collisions():
-    gate=build_sr041_routing_release()
-    assert gate.status=="ROUTING_RELEASED"
-    assert gate.board_width_mm==220.0
-    assert gate.board_depth_mm==140.0
-    assert gate.mounting_hole_count==4
-    assert gate.mounting_collision_count==0
-
-def test_sr041_accepts_every_manual_cluster_as_controlled_baseline():
-    gate=build_sr041_routing_release()
-    assert gate.manual_cluster_count>0
-    assert len(gate.accepted_clusters)==gate.manual_cluster_count
-    assert all(item.status=="ACCEPTED_AS_ROUTING_BASELINE" for item in gate.accepted_clusters)
-    assert all("LOCAL_REFINEMENT" in item.movement_authority for item in gate.accepted_clusters)
-
-def test_sr041_retains_manual_critical_net_authority():
-    gate=build_sr041_routing_release()
-    assert gate.manual_only_net_count>=7
-    joined=" ".join(gate.routing_rules)
-    assert "LT5400" in joined
-    assert "THAT1646" in joined
-    assert "autorouter" in joined
+def test_sr041_executable_is_historical_only_and_fail_closed():
+ g=build_sr041_routing_release(); assert g.status=='HISTORICAL_SNAPSHOT_ONLY_DO_NOT_USE_FOR_CURRENT_RELEASE' and g.historical_status=='ROUTING_RELEASED' and g.base_commit=='56c74250507a2f4d4b4dc04641096c7883512740' and not g.current_authority and not g.current_routing_authorized and not g.observed_current_hold_final_routing and g.current_hold_authority=='AE-076D'
+def test_sr041_immutable_snapshot_remains_historically_released():
+ c=yaml.safe_load(Path('config/release/sr041_routing_release.yaml').read_text(encoding='utf-8')); assert c['status']=='ROUTING_RELEASED' and c['base_commit']=='56c74250507a2f4d4b4dc04641096c7883512740' and 'four_layer_stackup' in c['controlled_frozen_items']
+def test_sr041_historical_routing_methods_are_provenance_only():
+ g=build_sr041_routing_release(); assert g.routing_method['critical_analogue']=='MANUAL_ONLY' and not g.current_authority

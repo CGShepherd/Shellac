@@ -31,7 +31,7 @@ AE-076A establishes +17.0 V / 0VA / -17.0 V as current Shellac regulated-rail au
 
 ## Simulation
 
-AE-053 defines the LTspice/Python simulation architecture. AE-054 through AE-058 establish implemented toolchain and numerical-correlation evidence. The integrated full-system campaign remains governed by AE-048 and AE-050 with AE-049 retained as the historical numerical-acceptance basis; AE-076A narrowly supersedes the current nominal-RUN00 rail criterion at +17 V / 0VA / -17 V and adds targeted rail/headroom requalification. Analytical Python is an independent live-state regression/correlation aid, not final integrated analogue authority.
+AE-053 defines the LTspice/Python simulation architecture. AE-054 through AE-058 establish implemented toolchain and numerical-correlation evidence. The integrated full-system campaign remains governed by AE-048 and AE-050 with AE-049 retained as the historical numerical-acceptance basis; AE-076A establishes the current nominal +17 V / 0VA / -17 V rail condition and targeted rail/headroom evidence. AE-076D publishes the current qualification delta that maps the retained method to Grado Prestige 78C and BASE/+47/+100 differential personality states without relaxing criteria or claiming RUN08-RUN14 execution. Analytical Python is an independent live-state regression/correlation aid, not final integrated analogue authority.
 
 ## Basic validation
 

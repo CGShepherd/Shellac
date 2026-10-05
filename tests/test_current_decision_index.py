@@ -85,6 +85,7 @@ def test_pre_spice_assurance_chain_contains_required_records():
     assert "  AE-076B2B:" in text
     assert "  AE-076B2C:" in text
     assert "  AE-076C:" in text
+    assert "  AE-076D:" in text
 
 def test_live_routing_hold_authority_is_registered_and_fail_closed():
     decisions=yaml.safe_load(INDEX.read_text(encoding="utf-8"))
@@ -130,9 +131,9 @@ def test_current_control_hardware_and_b03_architecture_are_coherent():
 
     hold=yaml.safe_load(HOLD.read_text(encoding="utf-8"))
     decisions=yaml.safe_load(INDEX.read_text(encoding="utf-8"))
-    assert hold["authority"]=="AE-076C"
-    assert hold["previous_authority"]=="AE-076B2C"
-    assert hold["baseline_commit"]=="3183c07a61248aad648fdecc9cc883a5cfba14c6"
+    assert hold["authority"]=="AE-076D"
+    assert hold["previous_authority"]=="AE-076C"
+    assert hold["baseline_commit"]=="46bfd380193fc6008cdcb2f7ae8acece597f8f80"
     assert hold["authority"] in decisions["pre_spice_assurance"]
     assert hold["previous_authority"] in decisions["pre_spice_assurance"]
     b03=next(item for item in hold["routing_blockers"] if item["id"]=="AE071-B03")

@@ -42,7 +42,9 @@ decisions:
     - docs/design_pack/AE-071A_SCH101_Product_Migration_Rev_A0.md
     - docs/design_pack/AE-075B_XLR_LT5400_and_Service_Hardware_Reconciliation_Rev_A0.md
     - docs/design_pack/AE-076C_PreLayout_Authority_and_Technical_Debt_Reconciliation_Rev_A0.md
+    - docs/design_pack/AE-076D_Executable_Authority_and_Qualification_Delta_Reconciliation_Rev_A0.md
     - config/decisions/ae076c_cartridge_personality.yaml
+    - config/decisions/ae076d_qualification_delta.yaml
     implementation:
       converter_gain: 4.0
       network: LT5400BIMS8E-7#PBF selected; EP9 to quiet 0VA implemented; RUN10 full-stage tolerance/CMRR acceptance remains open
@@ -148,6 +150,7 @@ pre_spice_assurance:
   AE-076B2B: docs/design_pack/AE-076B2B_Mechanical_Source_Inputs_DC_Interface_and_KiCad_STEP_Rev_A0.md
   AE-076B2C: docs/design_pack/AE-076B2C_MCAD_Source_Reconciliation_Evidence_Rev_A0.md
   AE-076C: docs/design_pack/AE-076C_PreLayout_Authority_and_Technical_Debt_Reconciliation_Rev_A0.md
+  AE-076D: docs/design_pack/AE-076D_Executable_Authority_and_Qualification_Delta_Reconciliation_Rev_A0.md
 historical_implementation_events:
   AE-016:
     disposition: SUPERSEDED

@@ -4,6 +4,10 @@
 
 **Production authority:** a tagged `main` release after production/reproducibility gates close.
 
+**One-off build recoverability standard:** `docs/knowledge/ONE_OFF_BUILD_RECOVERABILITY_STANDARD.md`.
+
+**Cross-chat state index (non-authoritative):** `PROJECT_SHELLAC_WORKING_STATE.md`; refresh after every material pass.
+
 ## 1. Current design baseline
 
 Use first:
@@ -19,9 +23,9 @@ Current signal-chain status:
 - DR-039: current architecture qualification open — AE-074 migrates the AE-067 branch-local topology into the live generator while preserving C30060/R30060/C35060/R35060 identities: 1 uF / 330 kOhm only in DIRECT/BYPASS, with intrinsic SCH107 high-pass DC blocking in FILTER; native-PCB F8/net/metadata reconciliation is complete; RUN09/RUN10/RUN12 and bench correlation remain open;
 - DR-040: current subject to the live implementation and subsequent assurance records;
 - AE-041 Rev A1 + AE-075C hardware + AE-076B: current control architecture — one main audio PCB carries all seven controls directly as an upper-cover service module; six PCB-to-cover supports are selected but MCAD Z/XY/tolerance, exact footprints/3D envelopes, control XY/apertures and physical CAD migration remain B03-open; historical AE-075D/E/F remain provenance; AE-068 RUN05 electrical qualification remains unchanged;
-- AE-042 through AE-076C: current assurance chain; AE-071A migrates SCH101, AE-071B hardens board-owned MH1-MH4, AE-074 migrates DR-039, AE-075A closes post-SR043 placement/sense-cap reconciliation, AE-075B closes B06 while narrowing B04/B08, AE-075C freezes exact control hardware, AE-075G closes the SCH108 output-interface migration, AE-076A reconciles +17 V rail authority, AE-076B selects the one-main-PCB upper-cover service-module architecture, AE-076B2A selects the F.Cu-down/B.Cu-up face strategy, AE-076B2B controls the mechanical source inputs, AE-076B2C reconciles the enclosure/model-source evidence, and AE-076C reconciles current precision-CAD/personality/readiness authority. SR-040/AE-071B MH1-MH4 remain interim physical CAD; native model binding, full assembly/service proof, RUN08-RUN14 and prototype/bench obligations remain open;
+- AE-042 through AE-076D: current assurance chain; AE-071A migrates SCH101, AE-071B hardens board-owned MH1-MH4, AE-074 migrates DR-039, AE-075A closes post-SR043 placement/sense-cap reconciliation, AE-075B closes B06 while narrowing B04/B08, AE-075C freezes exact control hardware, AE-075G closes the SCH108 output-interface migration, AE-076A reconciles +17 V rail authority, AE-076B selects the one-main-PCB upper-cover service-module architecture, AE-076B2A selects the F.Cu-down/B.Cu-up face strategy, AE-076B2B controls the mechanical source inputs, AE-076B2C reconciles the enclosure/model-source evidence, AE-076C reconciles current precision-CAD/personality/readiness authority, and AE-076D quarantines historical release executables and publishes the current qualification delta. SR-040/AE-071B MH1-MH4 remain interim physical CAD; native model binding, full assembly/service proof, RUN08-RUN14 and hardware/bench obligations remain open;
 - AE-072/AE-073: historical/supporting PSU assurance chain — AE-072 establishes the AIYIMA P1-V reconstruction and AE-073 closes the long-settle discriminator. AE-076A subsequently establishes +17.0 V / 0VA / -17.0 V as current product rail authority and requalifies integrated nominal sanity plus SCH108/PRE90 headroom at that rail condition. Powered PSU set-point/dropout/ripple/startup/thermal qualification remains open;
-- prototype measured acceptance: open.
+- one-off hardware measured acceptance: open.
 
 This is not yet a manufacturing baseline. The next intended configuration milestone is the **Shellac Pre-SPICE Architecture Baseline** after repository reconciliation, clean regression and configuration-control closure.
 
@@ -85,7 +89,7 @@ AE-067 executes RUN04 and closes the DR-039/SCH107 architectural down-select. Th
 
 AE-068 executes RUN05 for SCH104/SCH105. All four matrix states are exercised with L-only, R-only, equal, unequal and opposite-phase stimuli. Direct insertion, mono insertion/weighting and stereo crosstalk pass AE-049. A 5 pF lumped selector/PCB parasitic bracket gives approximately 98 dB separation at 1 kHz and 72 dB at 20 kHz; even 10 pF remains above the 60 dB 20 kHz minimum. The 2.2 MOhm returns are retained. The existing AE-041 A1 4.7 kOhm / 0.1% mono-resistor implementation remains current; RUN05 derives <=0.10% preferred / <=0.25% maximum pair mismatch as an input to RUN10 tolerance/value engineering, not as an AE-068 BOM relaxation. RUN09/RUN10/RUN12 and bench switch/parasitic correlation remain open.
 
-AE-069 executes RUN06 for SCH108. Normal 100 kOhm / 20 kOhm / 10 kOhm load gain variation and passband peaking pass AE-049, DC-offset limits pass, and the 600 Ohm stress case records approximately -0.688 dB gain droop. The 3.21 Vrms severe-input 10 kOhm case retains approximately 3.91 dB margin to the 10 Vrms design ceiling. Official Murata small-signal ferrite models are hash-controlled for exact-topology 1-100 MHz AC evidence. The combined THAT1646/Murata/S1G transient stack is not reproducibly convergent, so transient load stability is not claimed from SPICE; prototype load/cable stability remains mandatory. Dynamic large-signal THD likewise remains a bench gate because the controlled THAT1646 macro does not support reproducible periodic large-signal analysis. No ferrite, sense capacitor mechanical implementation or product-generator change is frozen by AE-069.
+AE-069 executes RUN06 for SCH108. Normal 100 kOhm / 20 kOhm / 10 kOhm load gain variation and passband peaking pass AE-049, DC-offset limits pass, and the 600 Ohm stress case records approximately -0.688 dB gain droop. The 3.21 Vrms severe-input 10 kOhm case retains approximately 3.91 dB margin to the 10 Vrms design ceiling. Official Murata small-signal ferrite models are hash-controlled for exact-topology 1-100 MHz AC evidence. The combined THAT1646/Murata/S1G transient stack is not reproducibly convergent, so transient load stability is not claimed from SPICE; hardware load/cable stability remains mandatory. Dynamic large-signal THD likewise remains a bench gate because the controlled THAT1646 macro does not support reproducible periodic large-signal analysis. No ferrite, sense capacitor mechanical implementation or product-generator change is frozen by AE-069.
 
 AE-070 executes RUN07 for representative end-to-end nominal states. Historical 78 and RIAA replay accuracy, integrated rumble response and nominal mono insertion pass AE-049. L/R comparison is nominal model symmetry only; tolerance tracking remains RUN10/RUN11. The controlled THAT1646 output pair and complete upstream chain each solve independently, while the full integrated composition reproducibly times out; RUN07 therefore uses an explicit qualification-only small-signal AC surrogate after controlled composition discrimination plus magnitude/load and isolated phase correlation. The surrogate cannot support DC/common-mode, transient stability, distortion, overload/recovery, switching or phantom/fault claims. No ferrite or product-generator migration is selected by AE-070.
 
@@ -115,14 +119,16 @@ AE-076B2C promotes the read-only MCAD reconciliation evidence: M5502119 external
 
 AE-076C reconciles exact LT5400/EP9 executable authority, selected-next per-channel cartridge personality cards, the fail-closed readiness oracle and single-production-part C&K A30403RNCB Matrix authority. Routing/layout/BOM/manufacturing release remain false.
 
-AE-042 through AE-076C, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance narrative, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+AE-076D reconciles stale executable/current-authority oracles, quarantines SR-039/SR-041 release and SR-042 bootstrap executable semantics as historical-only, advances the fail-closed routing hold and publishes the structured current qualification delta. It changes no analogue topology and executes none of RUN08-RUN14.
 
-AE-048 and AE-050 remain the qualification and execution authorities for the simulation campaign. AE-049 remains the historical numerical-acceptance basis; AE-076A narrowly supersedes its nominal-RUN00 rail criterion for the current +17 V / 0VA / -17 V product authority and records targeted rail/headroom requalification. AE-053 remains the toolchain architecture.
+AE-042 through AE-076D, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance narrative, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
+
+AE-048 and AE-050 remain the qualification and execution authorities for the simulation campaign. AE-049 remains the historical numerical-acceptance basis; AE-076A establishes the current +17 V / 0VA / -17 V product rail condition and targeted rail/headroom evidence. AE-076D maps those retained methods/criteria to the current Grado Prestige 78C and BASE/+47/+100 personality-state contract without relaxing acceptance or claiming RUN08-RUN14 execution. AE-053 remains the toolchain architecture.
 
 ## 4. Production/commissioning
 
 Still required:
-- completion of integrated RUN08-RUN14 under AE-048/049/050, plus the still-open RUN06 prototype load/cable-stability and dynamic-THD bench gates and the open Grado extended-band model/bench finding;
+- completion of integrated RUN08-RUN14 under AE-048/049/050, plus the still-open RUN06 hardware load/cable-stability and dynamic-THD bench gates and the open Grado extended-band model/bench finding;
 - integrated full-system configuration qualification following AE-059 reconciliation;
 - Shellac Pre-SPICE Architecture Baseline configuration milestone;
 - full-system LTspice qualification and sensitivity/value-engineering work;

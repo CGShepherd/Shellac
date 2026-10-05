@@ -73,3 +73,21 @@ For substantial Shellac responses, end with:
 `Chat runway: ...`
 
 Use the runway indication to preserve continuity. Begin preparing a continuation prompt when runway becomes Moderate, and proactively provide one when runway becomes Short or Critical.
+
+## 8. One-off build and controlled recoverability
+
+Shellac is expected to be a one-off or very-low-volume build, not a prototype intended to converge through repeated PCB revisions.
+
+Do not use future prototype iteration as the default mitigation for a known pre-fabrication uncertainty. Close design-driving uncertainty before fabrication where practical. Where residual uncertainty cannot reasonably be closed and a board/mechanical respin would otherwise be the likely remedy, apply the controlled recoverability standard in `docs/knowledge/ONE_OFF_BUILD_RECOVERABILITY_STANDARD.md`.
+
+Defensive options must be tied to a specific uncertainty and must not materially degrade nominal performance. Avoid speculative option proliferation, especially in the low-level cartridge/SCH101 region.
+
+## 9. Persistent cross-chat working state
+
+`PROJECT_SHELLAC_WORKING_STATE.md` is the mandatory cross-chat execution-state index.
+
+It is deliberately non-authoritative. Controlled current design/release authority wins if any conflict exists, and the working-state file must then be corrected before further major work.
+
+Refresh the working-state file after every material review, qualification pass, governed repository transaction, commit/push, or critical-path change and before beginning the next major engineering phase.
+
+A new Shellac chat should read `PROJECT_SHELLAC_WORKING_STATE.md` and this guidance before substantive work, then verify the actual repository baseline and consult specialist authority files as required.

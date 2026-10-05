@@ -1,8 +1,8 @@
 schema_version: 1
 project: Shellac
-authority: AE-076C
-previous_authority: AE-076B2C
-baseline_commit: 3183c07a61248aad648fdecc9cc883a5cfba14c6
+authority: AE-076D
+previous_authority: AE-076C
+baseline_commit: 46bfd380193fc6008cdcb2f7ae8acece597f8f80
 status: ROUTING_HELD_PENDING_REMAINING_PREROUTING_BLOCKERS
 historical_release:
   record: config/release/sr041_routing_release.yaml
@@ -170,7 +170,10 @@ system_release_prerequisites:
   target_run: RUN13_RUN14
   nominal_setpoint: PLUS17_0VA_MINUS17
 final_design_assurance:
-  authority: AE-075_PENDING
+  authority: AE-076D
+  status: OPEN_REQUIRED_BEFORE_FREEZE
+  independent_review_required: true
+  trigger: AFTER_RUN08_RUN14_AND_MECHANICAL_NATIVE_STACK_CLOSURE
   required_before_layout_freeze: true
   required_before_bom_freeze: true
   required_before_manufacturing_baseline: true

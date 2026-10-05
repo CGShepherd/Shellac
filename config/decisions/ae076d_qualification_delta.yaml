@@ -1,0 +1,44 @@
+schema_version: 1
+project: Shellac
+authority: AE-076D
+parent_baseline: 46bfd380193fc6008cdcb2f7ae8acece597f8f80
+status: CURRENT_QUALIFICATION_DELTA_EXECUTION_OPEN
+historical_methodology:
+  qualification_matrix: docs/design_pack/AE-048_Shellac_Full_System_SPICE_Qualification_Matrix_Rev_A0.md
+  numerical_acceptance_basis: docs/design_pack/AE-049_Shellac_SPICE_Numerical_Acceptance_Criteria_Rev_A0.md
+  execution_package: docs/design_pack/AE-050_Shellac_SPICE_Execution_Package_Rev_A0.md
+  records_immutable: true
+  performance_criteria_relaxed: false
+current_conditions:
+  regulated_rails: {plus_v: 17.0, zero_v: 0.0, minus_v: -17.0, authority: AE-076A, historical_plusminus18_evidence_preserved: true}
+  primary_cartridge: {identity: Grado Prestige 78C, behavioural_source_authority: AE-064, body_return_continuity_bench_verification: OPEN}
+  dr039: {topology: BRANCH_LOCAL_DIRECT_BYPASS_BLOCK, implementation_authority: AE-074, remaining_qualification: [RUN09, RUN10, RUN12, BENCH]}
+  sch101_personality:
+    architecture_authority: AE-076C
+    physical_status: SELECTED_NEXT_PENDING_CONTROLLED_MIGRATION
+    live_legacy_hardware: [H120, H121, H122]
+    selected_next_refs: {left: H120, right: H220}
+    fixed_main_board: {resistive_load_per_leg_ohm: 23700, approximate_differential_load_ohm: 47400, rf_shunt_per_leg_pf_to_chassis: 47, rf_series_ohm: 100}
+    electrical_states:
+      BASE: {added_differential_capacitance_pf: 0, physical_card: NONE}
+      PLUS_47: {added_differential_capacitance_pf: 47, physical_card: MATCHED_LR_PAIR}
+      PLUS_100: {added_differential_capacitance_pf: 100, physical_card: MATCHED_LR_PAIR}
+    electrical_state_topology_equivalent_to_live_differential_shunts: true
+    connector_card_parasitics: OPEN_RUN10_AFTER_PHYSICAL_MIGRATION
+  output: {that1646_source_ohm_per_leg: 25.0, differential_source_ohm: 50.0, authority: AE-075G}
+qualification_interpretation:
+  ae049_numerical_basis_retained: true
+  ae076a_current_nominal_rail_condition_supersedes_historical_nominal_plusminus18_for_current_runs: true
+  ae076d_does_not_claim_any_run08_run14_execution: true
+  grado_20_50khz_extended_band_finding: OPEN_MODEL_VALIDITY_OR_MEASUREMENT
+  extended_band_finding_is_not_reclassified_as_product_failure_without_better_source_or_measurement: true
+remaining_campaign:
+  RUN08: OVERLOAD_CLIPPING_RECOVERY_OPEN
+  RUN09: FULL_SYSTEM_NOISE_OPEN
+  RUN10: TOLERANCE_SENSITIVITY_VALUE_ENGINEERING_AND_INTERFACE_PARASITICS_OPEN
+  RUN11: MONTE_CARLO_OPEN
+  RUN12: SWITCHING_TRANSIENTS_OPEN
+  RUN13: RAIL_VARIATION_RIPPLE_STARTUP_OPEN
+  RUN14: PHANTOM_FAULT_ENERGY_OPEN
+  hardware_bench_correlation: OPEN
+release: {routing_authority: false, layout_freeze: false, bom_freeze: false, manufacturing_release: false}

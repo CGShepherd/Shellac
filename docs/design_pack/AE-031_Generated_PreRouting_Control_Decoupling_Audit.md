@@ -1,21 +1,18 @@
-# AE-031 Generated Pre-Routing / Control-Decoupling Audit
+# AE-031 Generated Pre-Routing / Control-Geometry Audit
 
-- live Grayhill-reference files: **6**
-- routing rules independent of rotary geometry: **8**
-- routing rules gated by rotary geometry: **2**
+**Current reconciliation:** AE-076D
 
-## Live Grayhill references
+- unexpected live Grayhill-reference files: **0**
+- routing rules independent of control geometry: **9**
+- routing rules gated by control geometry: **2**
 
-- `config/bom/shellac_bom.yaml`
-- `config/procurement/sourcing_snapshot_2026-08-24.yaml`
-- `generator/mechanical/control_hardware.py`
-- `generator/mechanical/top_cover_stack.py`
-- `generator/model/controls.py`
-- `generator/model/production_readiness.py`
+## Unexpected live Grayhill references
+
+- None. Historical/provenance references are excluded by explicit allow-list.
 
 ## Pre-routing rules
 
-| ID | Requirement | Rotary-geometry dependent? |
+| ID | Requirement | Control-geometry dependent? |
 |---|---|---|
 | LAYER-COUNT | Four copper layers: F.Cu / In1.Cu / In2.Cu / B.Cu | NO |
 | IN1-0VA | In1.Cu reserved as substantially continuous 0VA reference plane | NO |
@@ -26,10 +23,11 @@
 | OUTPUT-BALANCE | THAT1646 balanced-output legs and return paths kept symmetric | NO |
 | NO-PLANE-SPLIT | No high-impedance or precision analogue route crosses a 0VA-plane discontinuity | NO |
 | DECOUPLING | Every active device decoupled to the local reference with minimum loop area | NO |
-| ROTARY-KEEP-OUT | Final rotary footprints/keep-outs remain gated by AE-027/AE-028 | YES |
+| CONTROL-GEOMETRY | Exact NKK/C&K B.Cu footprints, pin/pad orientation, keep-outs, upper-cover apertures and six-support service-module stack remain gated by current AE071-B03 | YES |
+| PERSONALITY-LOCAL | Future H120/H220 per-channel personality sockets remain local to differential load nodes with short symmetric shunt geometry; exact interface parasitics remain RUN10-open | NO |
 
 ## Disposition
 
-Proceed now with all geometry-independent four-layer routing preparation.
-Do not freeze EQ-selector routing endpoints, rotary footprints, keep-outs or top-panel machining until AE-027/AE-028 closes.
-Historical Grayhill evidence may remain; current BOM/mechanical authority must migrate atomically during the later control-hardware ECO.
+Analysis and non-binding placement preparation may continue.
+Do not freeze control routing endpoints, exact B.Cu control footprints/keep-outs, top-cover apertures or the six-support stack until current AE071-B03 closes.
+This audit does not grant routing authority; config/release/ae071_prerouting_hold.yaml remains the current fail-closed release authority.

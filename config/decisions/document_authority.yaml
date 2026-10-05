@@ -2,6 +2,7 @@ schema_version: 1
 project: Shellac
 current_authority:
 - README.md
+- docs/knowledge/ONE_OFF_BUILD_RECOVERABILITY_STANDARD.md
 - config/decisions/current_decision_index.yaml
 - config/decisions/decision_status.yaml
 - docs/knowledge/DESIGN_PACK_INDEX.md
@@ -13,6 +14,7 @@ current_authority:
 - config/mechanical/ae076b2a_pcb_face_strategy.yaml
 - config/mechanical/ae076b2c_mcad_sources.yaml
 - config/decisions/ae076c_cartridge_personality.yaml
+- config/decisions/ae076d_qualification_delta.yaml
 pre_spice_assurance_evidence:
 - docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
 - docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md
@@ -62,6 +64,7 @@ pre_spice_assurance_evidence:
 - docs/design_pack/AE-076B2B_Mechanical_Source_Inputs_DC_Interface_and_KiCad_STEP_Rev_A0.md
 - docs/design_pack/AE-076B2C_MCAD_Source_Reconciliation_Evidence_Rev_A0.md
 - docs/design_pack/AE-076C_PreLayout_Authority_and_Technical_Debt_Reconciliation_Rev_A0.md
+- docs/design_pack/AE-076D_Executable_Authority_and_Qualification_Delta_Reconciliation_Rev_A0.md
 historical_state_evidence:
 - config/mechanical/ae076b2b_mcad_sources.yaml
 - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
