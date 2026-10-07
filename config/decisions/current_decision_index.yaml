@@ -45,12 +45,13 @@ decisions:
     - docs/design_pack/AE-076D_Executable_Authority_and_Qualification_Delta_Reconciliation_Rev_A0.md
     - config/decisions/ae076c_cartridge_personality.yaml
     - config/decisions/ae076d_qualification_delta.yaml
+    - docs/design_pack/AE-076E-A_SCH101_Personality_Interface_Primitive_Closure_Rev_A0.md
     implementation:
       converter_gain: 4.0
       network: LT5400BIMS8E-7#PBF selected; EP9 to quiet 0VA implemented; RUN10 full-stage tolerance/CMRR acceptance remains open
       gain_selection: AE-071A live fail-safe removable gold service-shunt topology, approximately 14/18/22 dB; no LOW/HIGH shunt state is 18 dB
-      cartridge_load_selection: AE-076C selected-next two identical per-channel passive personality cards; main sockets Samtec SLW-102-01-G-D, card headers TSW-102-07-G-D; no card=BASE; matched +47/+100 pF L/R service pairs selected by cartridge plus measured cable capacitance; fixed 47 pF leg-to-CHASSIS RF shunts retained. Live H120/H121/H122 ganged load hardware remains implemented only until controlled migration.
-      note: AE-071A gain programming remains live and separate. AE-075B selects LT5400BIMS8E-7#PBF and implements EP9 to quiet 0VA. AE-076C reconciles the stale executable contract and selects the fail-safe per-channel load-card architecture without falsely claiming live migration. RUN10 complete-stage tolerance/CMRR, 20 kHz and personality-interface parasitic/matching acceptance remain open. Gain-shunt physical pairing/orientation also remains open.
+      cartridge_load_selection: AE-076C selected-next two identical per-channel passive personality cards; main sockets Samtec SLW-102-01-G-D, card headers TSW-102-07-G-D; no card=BASE; matched +47/+100 pF L/R service pairs selected by cartridge plus measured cable capacitance; fixed 47 pF leg-to-CHASSIS RF shunts retained. AE-076E-A implements the exact SLW component/symbol/pin/footprint primitive without migrating the product circuit. Live H120/H121/H122 ganged load hardware remains implemented until AE-076E-B controlled source/native migration.
+      note: AE-071A gain programming remains live and separate. AE-075B selects LT5400BIMS8E-7#PBF and implements EP9 to quiet 0VA. AE-076C selects the fail-safe per-channel load-card architecture. AE-076E-A closes the exact personality-interface CAD primitive while deliberately preserving the legacy live H120/H121/H122 circuit until AE-076E-B. RUN10 complete-stage tolerance/CMRR, 20 kHz and personality-interface parasitic/matching acceptance remain open. Gain-shunt physical pairing/orientation also remains open.
   DR-039:
     title: State-independent post-EQ DC blocking
     status: CURRENT_ARCHITECTURE_QUALIFICATION_OPEN

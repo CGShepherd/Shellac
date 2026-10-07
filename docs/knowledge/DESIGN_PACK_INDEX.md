@@ -121,6 +121,8 @@ AE-076C reconciles exact LT5400/EP9 executable authority, selected-next per-chan
 
 AE-076D reconciles stale executable/current-authority oracles, quarantines SR-039/SR-041 release and SR-042 bootstrap executable semantics as historical-only, advances the fail-closed routing hold and publishes the structured current qualification delta. It changes no analogue topology and executes none of RUN08-RUN14.
 
+AE-076E-A implements and regression-qualifies the exact Samtec SLW-102-01-G-D personality-interface component, symbol, diagonal POS/NEG pin contract and controlled 2x2 PTH footprint while deliberately leaving the live H120/H121/H122 + C103/C104/C203/C204 product circuit and native PCB unchanged. This creates a green checkpoint before AE-076E-B performs the atomic source/F8/native migration. RUN10 interface parasitics/matching and exact service-card/mechanical closure remain open.
+
 AE-042 through AE-076D, including AE-071A/AE-071B and the AE-072/AE-073 PSU assurance narrative, are assurance/evidence records. They do not by themselves constitute manufacturing release authority.
 
 AE-048 and AE-050 remain the qualification and execution authorities for the simulation campaign. AE-049 remains the historical numerical-acceptance basis; AE-076A establishes the current +17 V / 0VA / -17 V product rail condition and targeted rail/headroom evidence. AE-076D maps those retained methods/criteria to the current Grado Prestige 78C and BASE/+47/+100 personality-state contract without relaxing acceptance or claiming RUN08-RUN14 execution. AE-053 remains the toolchain architecture.

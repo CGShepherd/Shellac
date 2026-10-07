@@ -151,6 +151,12 @@ SYMBOL_PIN_CONTRACTS: dict[str, dict[str, PinContract]] = {
         "A2": PinContract("3", Point(-12.70, 2.54)),
         "B2": PinContract("4", Point(12.70, 2.54)),
     },
+    "ProjectShellac:Cartridge_Personality_Socket": {
+        "POS_A": PinContract("1", Point(-10.16, -3.81)),
+        "NEG_A": PinContract("2", Point(10.16, -3.81)),
+        "NEG_B": PinContract("3", Point(10.16, 3.81)),
+        "POS_B": PinContract("4", Point(-10.16, 3.81)),
+    },
     "Device:Ferrite_Bead": {
         "1": PinContract("1", Point(-2.54, 0.0)),
         "2": PinContract("2", Point(2.54, 0.0)),

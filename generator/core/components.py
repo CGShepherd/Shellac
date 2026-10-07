@@ -112,6 +112,46 @@ def service_header_2gang(ref, label, at, function="SCH101 two-gang service progr
         rotation=rotation,
     )
 
+
+def cartridge_personality_socket(
+    ref,
+    label,
+    at,
+    function="SCH101 per-channel passive cartridge personality interface",
+    rotation=0.0,
+):
+    # AE-076E-A exact main-board socket primitive.
+    # Physical pins 1/4 -> POS and 2/3 -> NEG. The card is a differential
+    # shunt only; no cartridge signal is routed in series through the socket.
+    return Component(
+        ref,
+        "ProjectShellac:Cartridge_Personality_Socket",
+        label,
+        at,
+        "ProjectShellac:Samtec_SLW-102-01-G-D_2x02_P2.54mm_Vertical",
+        {
+            "Function": function,
+            "Manufacturer": "Samtec",
+            "MPN": "SLW-102-01-G-D",
+            "Mating header": "TSW-102-07-G-D",
+            "Pitch": "2.54 mm",
+            "Rows": "2",
+            "Positions": "2",
+            "Termination": "through-hole",
+            "Contact finish": "20 uin Au mating contact",
+            "Pin 1": "POS",
+            "Pin 2": "NEG",
+            "Pin 3": "NEG",
+            "Pin 4": "POS",
+            "Rotation safety": "180 deg benign by diagonal duplicate-node map",
+            "No-card state": "BASE",
+            "Signal-path ownership": "differential shunt only; no series audio path",
+            "Qualification": "AE-076E-A primitive qualified; live migration and RUN10 parasitics open",
+        },
+        rotation=rotation,
+    )
+
+
 def opa1656_gain_block(ref, label, at, function="JFET input non-inverting gain stage"):
     return Component(ref, "ProjectShellac:OpAmp_NonInv_Block", label, at,
         "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",

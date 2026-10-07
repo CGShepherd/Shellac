@@ -54,6 +54,7 @@ PIN_COUNTS = {
     "ProjectShellac:Treble_Select_Block": 5,
     "ProjectShellac:Service_Header_4Gang": 8,
     "ProjectShellac:Service_Header_2Gang": 4,
+    "ProjectShellac:Cartridge_Personality_Socket": 4,
 }
 
 PROJECT_NAME = "ProjectShellac"
@@ -254,6 +255,7 @@ def embedded_custom_symbol_ids():
         "ProjectShellac:Treble_Select_Block",
         "ProjectShellac:Service_Header_4Gang",
         "ProjectShellac:Service_Header_2Gang",
+        "ProjectShellac:Cartridge_Personality_Socket",
     })
 
 
@@ -655,6 +657,17 @@ def local_symbol_library():
         (pin passive line (at 12.70 -2.54 180) (length 5.08) (name "B1" {eff(1.0)}) (number "2" {eff(1.0)}))
         (pin passive line (at -12.70 2.54 0) (length 5.08) (name "A2" {eff(1.0)}) (number "3" {eff(1.0)}))
         (pin passive line (at 12.70 2.54 180) (length 5.08) (name "B2" {eff(1.0)}) (number "4" {eff(1.0)}))
+      )
+    )
+    (symbol "ProjectShellac:Cartridge_Personality_Socket" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom yes) (on_board yes)
+      (property "Reference" "H" (id 0) (at 0 -8.89 0) {eff()})
+      (property "Value" "CARTRIDGE_PERSONALITY" (id 1) (at 0 8.89 0) {eff()})
+      (symbol "Cartridge_Personality_Socket_0_1"
+        (rectangle (start -5.08 -5.08) (end 5.08 5.08) (stroke (width 0.1524) (type solid)) (fill (type none)))
+        (pin passive line (at -10.16 -3.81 0) (length 5.08) (name "POS_A" {eff(1.0)}) (number "1" {eff(1.0)}))
+        (pin passive line (at 10.16 -3.81 180) (length 5.08) (name "NEG_A" {eff(1.0)}) (number "2" {eff(1.0)}))
+        (pin passive line (at 10.16 3.81 180) (length 5.08) (name "NEG_B" {eff(1.0)}) (number "3" {eff(1.0)}))
+        (pin passive line (at -10.16 3.81 0) (length 5.08) (name "POS_B" {eff(1.0)}) (number "4" {eff(1.0)}))
       )
     )
     (symbol "ProjectShellac:Bass_Select_Block" (pin_names (offset 0.8)) (exclude_from_sim no) (in_bom no) (on_board no)

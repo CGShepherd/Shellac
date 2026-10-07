@@ -26,13 +26,13 @@ def test_one_off_recoverability_standard_is_current_authority():
 
 def test_state_repeats_critical_fail_closed_invariants():
     s=STATE.read_text(encoding="utf-8")
-    assert "46bfd380193fc6008cdcb2f7ae8acece597f8f80" in s
+    assert "4975fba11a12f25744e35ea61e11578c66f3d50f" in s
     assert "+17.0 V / 0VA / -17.0 V" in s
-    assert "AE-076D" in s
+    assert "AE-076E-A" in s
+    assert "AE-076E-B" in s
     assert "Routing: HELD" in s
     assert "Manufacturing release: FALSE" in s
-    assert "VALIDATED_UNSTAGED_CANDIDATE" in s
-    assert "`git diff --check`: PASS" in s
+    assert "promotion status must be verified live from Git" in s
 
 def test_current_hold_remains_fail_closed():
     h=yaml.safe_load(HOLD.read_text(encoding="utf-8"))
