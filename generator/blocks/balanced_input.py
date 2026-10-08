@@ -1,7 +1,7 @@
 """SCH101 DR-038 / AE-042 precision balanced-input schematic builder."""
 from generator.core.components import (
     capacitor,diff_converter_block,opa1656_gain_block,resistor,xlr3,molex_microlock_plus_3,
-    lt5400_network,service_header_4gang,service_header_2gang,
+    lt5400_network,service_header_4gang,cartridge_personality_socket,
 )
 from generator.core.geometry import Point
 from generator.core.pins import pin_position
@@ -30,26 +30,12 @@ def _service_headers(sheet):
             "H112","GAIN DEFAULT / PARK",Point(455,225),
             "AE-042 normal parking position; electrically inert"
         )),
-        "CAP_47":sheet.add_component(service_header_2gang(
-            "H120","LOAD +47p L/R",Point(410,80),
-            "AE-042/AE-066 ganged L/R +47p differential loading"
-        )),
-        "CAP_BASE":sheet.add_component(service_header_2gang(
-            "H121","LOAD BASE / PARK",Point(410,145),
-            "AE-042 normal capacitance-shunt parking position; electrically inert"
-        )),
-        "CAP_100":sheet.add_component(service_header_2gang(
-            "H122","LOAD +100p L/R",Point(410,210),
-            "AE-042/AE-066 ganged L/R +100p differential loading"
-        )),
     }
     for pin in ("A1","B1","A2","B2","A3","B3","A4","B4"):
         sheet.add_no_connect_pin(headers["GAIN_PARK"],pin)
-    for pin in ("A1","B1","A2","B2"):
-        sheet.add_no_connect_pin(headers["CAP_BASE"],pin)
     return headers
 
-def _rf_input(sheet,ch,base,cy,py,my,headers,pair_index):
+def _rf_input(sheet,ch,base,cy,py,my):
     panel=sheet.add_component(xlr3(f"J{base}01",f"{ch} PANEL INPUT XLR",Point(25,cy),f"{ch} balanced cartridge input"))
     conn=sheet.add_component(molex_microlock_plus_3(f"H{base}01",f"{ch} INPUT HARNESS",Point(48,cy),f"{ch} panel-XLR to PCB low-level harness"))
     for pin in ("1","2","3"):
@@ -58,14 +44,6 @@ def _rf_input(sheet,ch,base,cy,py,my,headers,pair_index):
     rm=sheet.add_component(resistor(f"R{base}03","100R",Point(75,my),tolerance="0.1%",function="Matched RF series isolation IN-"))
     cp=sheet.add_component(capacitor(f"C{base}01",f"{INPUT_CM_SHUNT_PF:g}p",Point(108,py-2.54),dielectric="C0G/NP0",voltage="50V",function="1% matched common-mode RF shunt IN+"))
     cm=sheet.add_component(capacitor(f"C{base}02",f"{INPUT_CM_SHUNT_PF:g}p",Point(108,my+2.54),dielectric="C0G/NP0",voltage="50V",function="1% matched common-mode RF shunt IN-"))
-    c47=sheet.add_component(capacitor(
-        f"C{base}03","47p",Point(136,cy-8.89),dielectric="C0G/NP0",voltage="50V",
-        function="AE-042 service +47p differential cartridge load; shunt-selected",rotation=90,
-    ))
-    c100=sheet.add_component(capacitor(
-        f"C{base}04","100p",Point(136,cy+8.89),dielectric="C0G/NP0",voltage="50V",
-        function="AE-042 service +100p differential cartridge load; shunt-selected",rotation=90,
-    ))
     lp=sheet.add_component(resistor(f"R{base}04",f"{INPUT_LOAD_LEG_OHM:g}",Point(150,py+7.62),tolerance="0.1%",function="Balanced cartridge load + IN+ DC bias return"))
     lm=sheet.add_component(resistor(f"R{base}05",f"{INPUT_LOAD_LEG_OHM:g}",Point(150,my-7.62),tolerance="0.1%",function="Balanced cartridge load + IN- DC bias return"))
 
@@ -90,17 +68,20 @@ def _rf_input(sheet,ch,base,cy,py,my,headers,pair_index):
     sheet.add_label(pos_net,pp.x,pp.y)
     sheet.add_label(neg_net,mm.x,mm.y)
 
-    a,b=f"A{pair_index}",f"B{pair_index}"
-    cap47_branch=f"SCH101_{ch}_LOAD47_BRANCH"
-    cap100_branch=f"SCH101_{ch}_LOAD100_BRANCH"
-    sheet.connect_pin_to_net(c47,"1",pos_net,stub_dx=5.08)
-    sheet.connect_pin_to_net(c47,"2",cap47_branch,stub_dx=-5.08)
-    sheet.connect_pin_to_net(headers["CAP_47"],a,cap47_branch,stub_dx=-5.08)
-    sheet.connect_pin_to_net(headers["CAP_47"],b,neg_net,stub_dx=5.08)
-    sheet.connect_pin_to_net(c100,"1",pos_net,stub_dx=5.08)
-    sheet.connect_pin_to_net(c100,"2",cap100_branch,stub_dx=-5.08)
-    sheet.connect_pin_to_net(headers["CAP_100"],a,cap100_branch,stub_dx=-5.08)
-    sheet.connect_pin_to_net(headers["CAP_100"],b,neg_net,stub_dx=5.08)
+    personality_ref="H120" if ch=="L" else "H220"
+    personality=sheet.add_component(cartridge_personality_socket(
+        personality_ref,
+        f"{ch} LOAD PERSONALITY",
+        Point(136,cy),
+        f"{ch} local differential cartridge personality shunt; no card=BASE",
+    ))
+    for pin,node,stub_dx in (
+        ("POS_A",pos_net,-5.08),
+        ("NEG_A",neg_net,5.08),
+        ("NEG_B",neg_net,5.08),
+        ("POS_B",pos_net,-5.08),
+    ):
+        sheet.connect_pin_to_net(personality,pin,node,stub_dx=stub_dx)
     return pp,mm
 
 def _gain_leg(sheet,name,base,suffix,input_node,y,headers,pair_index):
@@ -207,9 +188,9 @@ def _add_local_decoupling(sheet,ch,base,cy):
         sheet.connect_vertical_two_pin(plus, "+17V", "0VA")
         sheet.connect_vertical_two_pin(minus, "0VA", "-17V")
 
-def _channel(sheet,ch,base,cy,headers,load_pair,gain_pair_offset):
+def _channel(sheet,ch,base,cy,headers,gain_pair_offset):
     py,my=cy-20,cy+20
-    pp,mm=_rf_input(sheet,ch,base,cy,py,my,headers,load_pair)
+    pp,mm=_rf_input(sheet,ch,base,cy,py,my)
     po=_gain_leg(sheet,f"{ch}_PLUS",base,1,pp,py,headers,gain_pair_offset)
     mo=_gain_leg(sheet,f"{ch}_MINUS",base,2,mm,my,headers,gain_pair_offset+1)
     _diff(sheet,ch,base,cy,po,mo)
@@ -217,15 +198,15 @@ def _channel(sheet,ch,base,cy,headers,load_pair,gain_pair_offset):
 
 def add_sch101_diff_converter_slice(sheet):
     sheet.add_note("SCH101 AE-037: 47.4k balanced cartridge load + explicit DC bias return.")
-    sheet.add_note("Fixed RF: 47p C0G each leg to CHASSIS; AE-042 load service states BASE/+47/+100p differential.")
+    sheet.add_note("Fixed RF: 47p C0G each leg to CHASSIS; per-channel H120/H220 personality cards add BASE/+47/+100p differential loading.")
     sheet.add_note("AE-042 gain: fixed RF=999R, RG=1k; LOW adds 332R || RF; HIGH adds 866R || RG; DEFAULT has no active shunt.")
-    sheet.add_note("Gain shunt candidate MNT-104-BK-G moves among LOW/HIGH/PARK headers; load shunt MNT-102-BK-G moves among +47/BASE/+100 headers.")
-    sheet.add_note("Production shunt pairing/orientation and service-header parasitic/layout correlation remain routing blockers.")
+    sheet.add_note("Gain shunt MNT-104-BK-G remains LOW/HIGH/PARK; cartridge personality uses local SLW-102-01-G-D sockets with no card=BASE.")
+    sheet.add_note("H120/H220 pins 1/4=POS and 2/3=NEG; interface/card parasitics and L/R matching remain RUN10-open.")
     sheet.add_note("LT5400BIMS8E-7#PBF selected; EP9 bonds to quiet 0VA per ADI guidance; full-stage RUN10 tolerance/CMRR acceptance remains open.")
     sheet.add_note("Each physical SCH101 op-amp package has local 100 nF bypassing from each rail to 0VA.")
     headers=_service_headers(sheet)
-    _channel(sheet,"L",1,85,headers,1,1)
-    _channel(sheet,"R",2,205,headers,2,3)
+    _channel(sheet,"L",1,85,headers,1)
+    _channel(sheet,"R",2,205,headers,3)
 
 def add_sch101_rf_slice(sheet):
     return add_sch101_diff_converter_slice(sheet)

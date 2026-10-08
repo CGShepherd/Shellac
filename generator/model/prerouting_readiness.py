@@ -14,7 +14,7 @@ RULES=(
  PreRoutingRule('NO-PLANE-SPLIT','No high-impedance or precision analogue route crosses a 0VA-plane discontinuity',False,True),
  PreRoutingRule('DECOUPLING','Every active device decoupled to the local reference with minimum loop area',False,True),
  PreRoutingRule('CONTROL-GEOMETRY','Exact NKK/C&K B.Cu footprints, pin/pad orientation, keep-outs, upper-cover apertures and six-support service-module stack remain gated by current AE071-B03',True,True),
- PreRoutingRule('PERSONALITY-LOCAL','Future H120/H220 per-channel personality sockets remain local to differential load nodes with short symmetric shunt geometry; exact interface parasitics remain RUN10-open',False,True),)
+ PreRoutingRule('PERSONALITY-LOCAL','H120/H220 source-implemented per-channel personality sockets remain local to differential load nodes with short symmetric shunt geometry; native F8 and exact interface parasitics remain open',False,True),)
 def independent_rules(): return tuple(r for r in RULES if not r.control_dependent)
 def control_dependent_rules(): return tuple(r for r in RULES if r.control_dependent)
 def validate_prerouting_contract():

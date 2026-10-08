@@ -22,7 +22,8 @@ def test_human_authority_is_preserved_as_explicit_review_gate():
         for finding in manual
         for cluster_id in finding.cluster_ids
     }
-    assert {"CLU-101-E", "CLU-101-F"} <= manual_cluster_ids
+    assert "CLU-101-E" in manual_cluster_ids
+    assert "CLU-101-F" not in manual_cluster_ids
     assert all(f.severity is FindingSeverity.REVIEW for f in manual)
     assert model.status == "HUMAN_REVIEW_REQUIRED"
 

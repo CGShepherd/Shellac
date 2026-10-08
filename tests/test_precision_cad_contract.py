@@ -15,9 +15,9 @@ def test_gain_hardware_retained():
     assert GAIN_SERVICE_HEADER_REFS=={"LOW":"H110","HIGH":"H111","DEFAULT_PARK":"H112"}
     assert GAIN_SERVICE_PAIRING_STATUS.endswith("_OPEN")
 
-def test_personality_interface_selected_next_not_falsely_live():
+def test_personality_interface_source_live_native_f8_still_open():
     assert LOAD_PERSONALITY_ARCHITECTURE=="TWO_IDENTICAL_PER_CHANNEL_PASSIVE_CARDS"
-    assert LOAD_PERSONALITY_IMPLEMENTATION_STATUS=="SELECTED_NEXT_PENDING_LIVE_MIGRATION"
+    assert LOAD_PERSONALITY_IMPLEMENTATION_STATUS=="SOURCE_IMPLEMENTED_NATIVE_F8_PENDING"
     assert LOAD_PERSONALITY_MAIN_SOCKET_MPN=="Samtec SLW-102-01-G-D"
     assert LOAD_PERSONALITY_CARD_HEADER_MPN=="Samtec TSW-102-07-G-D"
     assert LOAD_PERSONALITY_SELECTED_REFS=={"L":"H120","R":"H220"}

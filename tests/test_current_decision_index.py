@@ -47,7 +47,8 @@ def test_dr038_dr039_record_current_pre_spice_disposition():
     assert "SLW-102-01-G-D" in dr038
     assert "no card=BASE" in dr038
     assert "matched +47/+100 pF L/R service pairs" in dr038
-    assert "Live H120/H121/H122" in dr038
+    assert "AE-076E-B implements local H120/H220 in generator and native PCB" in dr038
+    assert "STEP export of H901/C30060/C35060 passes" in dr038
     assert "Gain-shunt physical pairing/orientation" in dr038
     assert "pre-DR038 implementation" not in dr038
 

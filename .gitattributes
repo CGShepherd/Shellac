@@ -14,3 +14,10 @@
 *.bat text eol=crlf
 *.cmd text eol=crlf
 *.ps1 text eol=crlf
+
+# Preserve governed native PCB bytes and SHA-256 evidence.
+out/kicad/ProjectShellac.kicad_pcb -text -eol whitespace=cr-at-eol
+
+# Preserve the two hash-controlled solid STEP model files exactly on checkout.
+mechanical/mcad/models/Molex_0039299063_5566-06A2.stp -text -eol -diff
+mechanical/mcad/models/C_Rect_L7.2mm_W5.0mm_P5.00mm.step -text -eol -diff

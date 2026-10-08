@@ -86,21 +86,23 @@ def test_project_library_export_copies_controlled_footprint(tmp_path):
     assert copied.read_bytes() == FOOTPRINT.read_bytes()
 
 
-def test_ea_does_not_prematurely_migrate_live_sch101():
-    refs = {c.ref for c in _live_sch101().components}
-    assert {"H120", "H121", "H122", "C103", "C104", "C203", "C204"} <= refs
-    assert "H220" not in refs
+def test_ea_record_preserves_its_pre_eb_live_boundary():
+    record=(ROOT/"docs/design_pack/AE-076E-A_SCH101_Personality_Interface_Primitive_Closure_Rev_A0.md").read_text(encoding="utf-8")
+    assert "H120/H121/H122 remain live" in record
+    assert "H220 remains absent" in record
+    assert "AE-076E-B" in record
 
 
-def test_ae076c_live_migration_and_release_remain_fail_closed():
+def test_current_ae076c_source_migration_live_native_release_held():
     cfg = yaml.safe_load(
         (ROOT / "config/decisions/ae076c_cartridge_personality.yaml").read_text(
             encoding="utf-8"
         )
     )
-    assert cfg["status"] == "CURRENT_SELECTED_PENDING_IMPLEMENTATION"
+    assert cfg["status"] == "CURRENT_SELECTED_SOURCE_AND_NATIVE_IMPLEMENTED_QUALIFICATION_OPEN"
     q = cfg["qualification"]
-    assert q["live_sch101_generator_migration"] == "OPEN"
+    assert q["live_sch101_generator_migration"] == "IMPLEMENTED_AE076E_B_SOURCE"
+    assert q["native_pcb_migration"] == "IMPLEMENTED_AE076E_B_NATIVE_F8_VALIDATED"
     assert not q["routing_authority"]
     assert not q["layout_freeze"]
     assert not q["bom_freeze"]

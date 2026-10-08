@@ -2,8 +2,8 @@
 
 Gain programming remains live. AE-075B selected LT5400BIMS8E-7#PBF and EP9 to
 quiet 0VA. AE-076C selects two local per-channel passive cartridge-personality
-cards; that load architecture remains selected-next until controlled live/native
-migration.
+cards. AE-076E-B implements the live source architecture; native PCB F8
+reconciliation remains open in the current transaction.
 """
 from __future__ import annotations
 from dataclasses import dataclass
@@ -36,7 +36,7 @@ GAIN_SERVICE_PAIRING_STATUS="PRODUCTION_PAIRING_ORIENTATION_VERIFICATION_OPEN"
 GAIN_SERVICE_RULE=("Four-gang gold shunt programs all gain legs; no LOW/HIGH bridge is the complete default; PARK is inert.")
 
 LOAD_PERSONALITY_ARCHITECTURE="TWO_IDENTICAL_PER_CHANNEL_PASSIVE_CARDS"
-LOAD_PERSONALITY_IMPLEMENTATION_STATUS="SELECTED_NEXT_PENDING_LIVE_MIGRATION"
+LOAD_PERSONALITY_IMPLEMENTATION_STATUS="SOURCE_IMPLEMENTED_NATIVE_F8_PENDING"
 LOAD_PERSONALITY_MAIN_SOCKET_MPN="Samtec SLW-102-01-G-D"
 LOAD_PERSONALITY_CARD_HEADER_MPN="Samtec TSW-102-07-G-D"
 LOAD_PERSONALITY_SELECTED_REFS={"L":"H120","R":"H220"}
@@ -54,7 +54,7 @@ class PrecisionCadGate:
 GATES=(
     PrecisionCadGate("LT5400 complete-stage tolerance / CMRR","OPEN",("RUN10 complete-stage tolerance/CMRR","RUN10 20 kHz parasitics","retain exact MPN and EP9-to-quiet-0VA")),
     PrecisionCadGate("Gain service hardware","OPEN",("MNT-104 pairing/orientation","LOW/HIGH/PARK mapping","all four gain legs identical")),
-    PrecisionCadGate("Cartridge personality interface","OPEN",("exact SLW/TSW footprint/MCAD","live SCH101/native migration","diagonal pin-map verification","RUN10 capacitance and L/R matching")),
+    PrecisionCadGate("Cartridge personality interface","OPEN",("native PCB F8 reconciliation","exact SLW/TSW mated MCAD","RUN10 capacitance and L/R matching")),
 )
 
 def validate_precision_cad_contract()->None:
@@ -68,4 +68,4 @@ def validate_precision_cad_contract()->None:
     assert LOAD_PERSONALITY_SELECTED_REFS=={"L":"H120","R":"H220"}
     assert LOAD_PERSONALITY_PIN_NODES[1]==LOAD_PERSONALITY_PIN_NODES[4]=="POS"
     assert LOAD_PERSONALITY_PIN_NODES[2]==LOAD_PERSONALITY_PIN_NODES[3]=="NEG"
-    assert LOAD_PERSONALITY_IMPLEMENTATION_STATUS.startswith("SELECTED_NEXT")
+    assert LOAD_PERSONALITY_IMPLEMENTATION_STATUS=="SOURCE_IMPLEMENTED_NATIVE_F8_PENDING"

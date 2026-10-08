@@ -9,21 +9,25 @@ def _sheet():
 def test_rf_slice_components_and_service_headers():
     refs={c.ref for c in _sheet().components}
     for ref in (
-        "J101","J201","R102","R103","R104","R105","C101","C102","C103","C104",
-        "R202","R203","R204","R205","C201","C202","C203","C204",
-        "H110","H111","H112","H120","H121","H122",
+        "J101","J201","R102","R103","R104","R105","C101","C102",
+        "R202","R203","R204","R205","C201","C202",
+        "H110","H111","H112","H120","H220",
     ):
         assert ref in refs
+    for old in ("H121","H122","C103","C104","C203","C204"):
+        assert old not in refs
 
-def test_ae042_load_values_are_rendered_and_old_22p_dnp_is_gone():
+
+def test_fixed_rf_load_values_remain_and_legacy_selectable_caps_are_gone():
     by_ref={c.ref:c for c in _sheet().components}
     assert by_ref["C101"].value=="47p"
     assert by_ref["C102"].value=="47p"
-    assert by_ref["C103"].value=="47p" and not by_ref["C103"].dnp
-    assert by_ref["C104"].value=="100p" and not by_ref["C104"].dnp
-    assert by_ref["C203"].value=="47p" and not by_ref["C203"].dnp
-    assert by_ref["C204"].value=="100p" and not by_ref["C204"].dnp
+    assert by_ref["C201"].value=="47p"
+    assert by_ref["C202"].value=="47p"
+    for old in ("C103","C104","C203","C204"):
+        assert old not in by_ref
     assert all(c.value!="22p" for c in by_ref.values())
+
 
 def test_ae042_gain_resistors_replace_old_series_link_topology():
     by_ref={component.ref:component for component in _sheet().components}
@@ -43,8 +47,9 @@ def test_service_header_candidates_and_footprints_are_explicit():
         assert c.footprint=="Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical"
         assert c.fields["Header candidate"]=="Samtec TSW-104-07-G-D"
         assert c.fields["Shunt candidate"]=="Samtec MNT-104-BK-G"
-    for ref in ("H120","H121","H122"):
+    for ref in ("H120","H220"):
         c=by_ref[ref]
-        assert c.footprint=="Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical"
-        assert c.fields["Header candidate"]=="Samtec TSW-102-07-G-D"
-        assert c.fields["Shunt candidate"]=="Samtec MNT-102-BK-G"
+        assert c.footprint=="ProjectShellac:Samtec_SLW-102-01-G-D_2x02_P2.54mm_Vertical"
+        assert c.fields["MPN"]=="SLW-102-01-G-D"
+        assert c.fields["Mating header"]=="TSW-102-07-G-D"
+        assert c.fields["No-card state"]=="BASE"

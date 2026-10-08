@@ -194,28 +194,30 @@ items:
   function: sch101_legacy_cartridge_capacitance_service_shunt
   manufacturer: Samtec
   mpn: MNT-102-BK-G
-  quantity: 1
+  quantity: 0
+  historical_quantity: 1
   pitch_mm: 2.54
-  status: CURRENT_IMPLEMENTED_SUPERSEDED_PENDING_AE076C_MIGRATION
+  status: SUPERSEDED_REMOVED_SOURCE_AND_NATIVE
   decision: DR-038
 - id: BOM-SCH101-LOAD-HEADERS
   function: sch101_legacy_cartridge_capacitance_headers_47_base_100
   manufacturer: Samtec
   mpn: TSW-102-07-G-D
-  quantity: 3
+  quantity: 0
+  historical_quantity: 3
   pitch_mm: 2.54
   plating: 10uin_gold_flash
-  status: CURRENT_IMPLEMENTED_SUPERSEDED_PENDING_AE076C_MIGRATION
+  status: SUPERSEDED_REMOVED_SOURCE_AND_NATIVE
   decision: DR-038
-  refs: [H120, H121, H122]
+  historical_refs: [H120, H121, H122]
 - id: BOM-SCH101-PERSONALITY-MAIN-SOCKETS
   function: sch101_per_channel_cartridge_personality_main_socket
   manufacturer: Samtec
   mpn: SLW-102-01-G-D
   quantity: 2
   pitch_mm: 2.54
-  status: SELECTED_NEXT_PENDING_LIVE_MIGRATION_AND_RUN10
-  decision: AE-076C
+  status: SOURCE_NATIVE_IMPLEMENTED_RUN10_AND_MATED_MCAD_OPEN
+  decision: AE-076E-B
   selected_refs: [H120, H220]
 - id: BOM-SCH101-PERSONALITY-CARD-HEADERS
   function: sch101_service_personality_card_header

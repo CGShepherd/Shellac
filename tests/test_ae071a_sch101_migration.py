@@ -34,21 +34,21 @@ def test_service_header_symbol_and_footprint_support_is_embedded():
     text=(ROOT/"generator/writers/kicad9.py").read_text(encoding="utf-8")
     assert '"Connector_PinHeader_2.54mm"' in text
 
-def test_new_service_hardware_is_owned_without_freezing_future_population_count():
+def test_current_service_hardware_ownership_preserves_gain_and_personality():
     contract=build_footprint_contract()
     population=set(contract.board_population_refs)
-    assert {"H110","H111","H112","H120","H121","H122","C104","C204"} <= population
-    assert not {"R115","R116","R125","R126","R215","R216","R225","R226"} & population
+    assert {"H110","H111","H112","H120","H220"} <= population
+    assert not {"H121","H122","C103","C104","C203","C204"} & population
     owners={}
     for cluster in build_cluster_placement_baseline().clusters:
         for ref in cluster.member_refs:
             owners.setdefault(ref,[]).append(cluster.identifier)
     for ref in ("H110","H111","H112"):
         assert owners[ref]==["CLU-101-E"]
-    for ref in ("H120","H121","H122"):
-        assert owners[ref]==["CLU-101-F"]
-    assert owners["C104"]==["CLU-101-A"]
-    assert owners["C204"]==["CLU-101-C"]
+    assert owners["H120"]==["CLU-101-A"]
+    assert owners["H220"]==["CLU-101-C"]
+    assert "CLU-101-F" not in {c.identifier for c in build_cluster_placement_baseline().clusters}
+
 
 def test_ae071a_product_migration_resolution_remains_recorded():
     hold=yaml.safe_load((ROOT/"config/release/ae071_prerouting_hold.yaml").read_text(encoding="utf-8"))

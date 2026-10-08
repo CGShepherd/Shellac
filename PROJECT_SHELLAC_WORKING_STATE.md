@@ -7,10 +7,10 @@
 ## 1. Repository baseline
 
 - Branch: `develop`
-- Governed baseline at start of current transaction: `4975fba11a12f25744e35ea61e11578c66f3d50f`
-- Governed subject: `AE-076D: reconcile executable authority and one-off build governance`
-- Current working transaction: `AE-076E-A — exact SCH101 personality-interface primitive closure`
-- Current transaction state: PRIMITIVE_CANDIDATE — promotion status must be verified live from Git; live SCH101/native migration remains AE-076E-B
+- Governed baseline at start of current transaction: `258751f56f536cc28e836c2d013dbde46aaf4cb6`
+- Governed subject: `AE-076E-A: qualify SCH101 personality interface primitive`
+- Current working transaction: `AE-076E-B — live SCH101 personality and native-CAD migration`
+- Current transaction state: NATIVE_MIGRATED_SOLID_MODEL_EXPORT_VALIDATED_GOVERNANCE_PENDING — source/native H120/H220 reconciled, exact H901 and capacitor STEP models bound; full regression PASS (767), staged review and promotion pending
 - Routing: HELD
 - Layout freeze: FALSE
 - BOM freeze: FALSE
@@ -28,9 +28,9 @@
 - Rumble/Mute: C&K `7201SYCBE`.
 - SCH101 LT5400: `LT5400BIMS8E-7#PBF`; EP9 to quiet 0VA implemented.
 - Gain programming: TSW-104-07-G-D / MNT-104-BK-G, approximately 14/18/22 dB; no LOW/HIGH shunt = fail-safe ~18 dB.
-- Cartridge loading selected-next: two identical per-channel passive differential-load cards; no card=BASE; matched +47 pF and +100 pF L/R service pairs; audio path does not pass through card.
+- Cartridge loading: live dual per-channel main-board sockets, separate service cards remain qualification-open; no card=BASE; matched +47 pF and +100 pF L/R service pairs; audio path does not pass through card.
 - AE-076E-A exact primitive: Samtec `SLW-102-01-G-D`, controlled 2x2 PTH footprint, pins 1/4=POS and 2/3=NEG; no generic 3D model substituted.
-- Live cartridge-load implementation remains H120/H121/H122 until AE-076E-B atomically migrates source and native PCB to per-channel H120/H220.
+- Live generator and native PCB now implement per-channel H120/H220; H121/H122/C103/C104/C203/C204 are absent from the PCB, while H120 retains pins 1/4=POS and 2/3=NEG.
 - DR-039 current implementation: branch-local 1 uF / 330 kOhm only in DIRECT/BYPASS; FILTER uses intrinsic SCH107 high-pass DC blocking.
 - Grounding population: R909=0 ohm fitted; C909/D901/D902 DNP.
 - H801/H802 output harness is HOT/COLD only with no 0VA conductor.
@@ -52,14 +52,11 @@ Controlled standard:
 
 ## 4. Current pre-layout critical path
 
-1. Promote AE-076E-A exact personality-interface primitive as a green governed checkpoint.
-2. AE-076E-B atomic live personality/native-CAD migration:
-   - migrate live source from H120/H121/H122 + C103/C104/C203/C204 to per-channel H120/H220;
-   - move local placement ownership to CLU-101-A / CLU-101-C;
-   - guarded KiCad F8 native reconciliation preserving Edge.Cuts and MH1-MH4;
-   - resolve H901 model binding from actual available controlled geometry;
-   - bind C30060/C35060 to the hash-controlled installed WRL;
-   - reproduce and classify the PCB STEP model-completeness result.
+1. Complete AE-076E-B current-state reconciliation and full regression after verified native migration:
+   - source/native H120/H220 map, six superseded references removed; Edge.Cuts and MH1-MH4 retained, zero segments/vias;
+   - H901 exact vendor STEP and C30060/C35060 KiCad 10.0.6 STEP project-local models bind and export;
+   - preserve explicit exact SLW/TSW mated geometry, capacitor-specific body fit and all release holds as OPEN.
+2. Promote AE-076E-B only after full native validation and regression.
 3. RUN08-RUN14 design-driving closure against the current qualification delta.
 4. Resolve RUN10-driven component/value issues including SCH103 timing-cap decomposition and personality-interface parasitics/matching.
 5. Resolve SCH108 ferrite selection to the extent required before layout, retaining bench correlation where appropriate.
@@ -92,9 +89,9 @@ For every block review: implementation, evidence, component authority, PCB/MCAD,
 
 ## 6. Known open design-driving items
 
-- AE-076E-B live personality source/native migration using the qualified AE-076E-A primitive;
+- AE-076E-B governance/test/authority reconciliation and final promotion;
 - exact SLW/TSW mated mechanical envelope and RUN10 interface parasitics/matching;
-- H901/C30060/C35060 governed native 3D binding; local probe confirms the capacitor WRL but no H901 model at the previously assumed canonical KiCad path;
+- exact component-specific capacitor body/mechanical fit and full MCAD collision assessment after successful H901/C30060/C35060 solid STEP export;
 - gain-shunt physical pairing/orientation;
 - RUN08 overload/clipping/recovery;
 - RUN09 full-system noise;
@@ -126,8 +123,12 @@ These remain subject to the recoverability standard and may move back to pre-fab
 
 - AE-076C governed baseline full suite: 743 passed.
 - AE-076D governed baseline commit: `4975fba11a12f25744e35ea61e11578c66f3d50f`; promotion validated with 754 tests.
-- AE-076E-A primitive transaction full-suite result: PASS — 761 tests.
-- `git diff --check`: PASS for tracked AE-076E-A changes; new-file whitespace/EOF checks PASS.
+- AE-076E-A governed baseline: `258751f56f536cc28e836c2d013dbde46aaf4cb6`; promotion verified with 761 tests.
+- AE-076E-B source-phase focused validation: PASS — 64 tests; current-decision audit and generated-SCH101 discriminator PASS.
+- AE-076E-B native board SHA-256 `a5b519a21a2bbe2c9f3ad751134d43292a5b32184487100512ab045b6258861c`; H901 model `40cd349dcd35a3aa04844d09e13f92a40d90f1a664e1ad8baec2cd010259e87a`; capacitor model `35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b`; actual-board STEP `84fae4cfe2fa5edc3436a36792f3da41c8f71d29e9cd711f469631b37200fe61`; KiCad CLI rc0 and no missing models, DNP excluded.
+- AE-076E-B intermediate regression history: 764 passed/1 failed at superseded pre-F8 board assertion; subsequent 766 passed/1 failed at obsolete DR-038 wording. Both test contracts were reconciled to the live implementation.
+- Full AE-076E-B governance-candidate regression on 2026-10-08: 767 passed in 45.34 seconds; decision/configuration authority audit PASS; no routing/layout/BOM/manufacturing authorisation conferred.
+- Reproducibility: the governed native PCB remains CRLF and SHA-256-pinned; .gitattributes uses a single-file -text -eol whitespace=cr-at-eol exception so staged/checked-out bytes remain identical without weakening Git whitespace verification.
 
 ## 9. Continuity rule
 

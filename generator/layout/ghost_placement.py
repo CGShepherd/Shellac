@@ -217,7 +217,7 @@ def build_ghost_placement_baseline(
         board_depth_mm=depth_mm,
         clusters=ghosts,
         invariants=[
-            "All sixteen placement clusters appear exactly once.",
+            "All placement clusters appear exactly once.",
             "Microvolt input clusters remain on the front harness edge.",
             "Balanced-output and regulated-power interfaces remain at the rear.",
             "Signal direction remains predominantly front-to-rear.",

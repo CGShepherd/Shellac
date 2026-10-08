@@ -66,6 +66,7 @@ pre_spice_assurance_evidence:
 - docs/design_pack/AE-076C_PreLayout_Authority_and_Technical_Debt_Reconciliation_Rev_A0.md
 - docs/design_pack/AE-076D_Executable_Authority_and_Qualification_Delta_Reconciliation_Rev_A0.md
 - docs/design_pack/AE-076E-A_SCH101_Personality_Interface_Primitive_Closure_Rev_A0.md
+- docs/design_pack/AE-076E-B_Native_Migration_and_STEP_Qualification_Rev_A0.md
 historical_state_evidence:
 - config/mechanical/ae076b2b_mcad_sources.yaml
 - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md

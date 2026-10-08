@@ -15,16 +15,18 @@ current_conditions:
   dr039: {topology: BRANCH_LOCAL_DIRECT_BYPASS_BLOCK, implementation_authority: AE-074, remaining_qualification: [RUN09, RUN10, RUN12, BENCH]}
   sch101_personality:
     architecture_authority: AE-076C
-    physical_status: SELECTED_NEXT_PENDING_CONTROLLED_MIGRATION
-    live_legacy_hardware: [H120, H121, H122]
-    selected_next_refs: {left: H120, right: H220}
+    implementation_authority: AE-076E-B_NATIVE_QUALIFIED
+    physical_status: SOURCE_AND_NATIVE_IMPLEMENTED_MATED_MCAD_RUN10_OPEN
+    live_generator_hardware: [H120, H220]
+    native_legacy_hardware_removed_after_f8: [H121, H122, C103, C104, C203, C204]
+    selected_refs: {left: H120, right: H220}
     fixed_main_board: {resistive_load_per_leg_ohm: 23700, approximate_differential_load_ohm: 47400, rf_shunt_per_leg_pf_to_chassis: 47, rf_series_ohm: 100}
     electrical_states:
       BASE: {added_differential_capacitance_pf: 0, physical_card: NONE}
       PLUS_47: {added_differential_capacitance_pf: 47, physical_card: MATCHED_LR_PAIR}
       PLUS_100: {added_differential_capacitance_pf: 100, physical_card: MATCHED_LR_PAIR}
-    electrical_state_topology_equivalent_to_live_differential_shunts: true
-    connector_card_parasitics: OPEN_RUN10_AFTER_PHYSICAL_MIGRATION
+    electrical_state_topology_equivalent_to_superseded_live_differential_shunts: true
+    connector_card_parasitics: OPEN_RUN10
   output: {that1646_source_ohm_per_leg: 25.0, differential_source_ohm: 50.0, authority: AE-075G}
 qualification_interpretation:
   ae049_numerical_basis_retained: true

@@ -1,7 +1,7 @@
 schema_version: 1
 project: Shellac
 authority: AE-076C
-status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+status: CURRENT_SELECTED_SOURCE_AND_NATIVE_IMPLEMENTED_QUALIFICATION_OPEN
 parent_baseline: 3183c07a61248aad648fdecc9cc883a5cfba14c6
 scope: SCH101_CARTRIDGE_DIFFERENTIAL_CAPACITANCE_PERSONALITY_INTERFACE
 architecture:
@@ -40,9 +40,9 @@ gain_programming:
 qualification:
   run10_connector_and_card_capacitance: OPEN
   run10_left_right_matching: OPEN
-  exact_footprint_and_mcad_stack: OPEN
-  live_sch101_generator_migration: OPEN
-  native_pcb_migration: OPEN
+  exact_footprint_and_mcad_stack: EXACT_2D_MAIN_SOCKET_PRIMITIVE_COMPLETE_MATED_3D_STACK_OPEN
+  live_sch101_generator_migration: IMPLEMENTED_AE076E_B_SOURCE
+  native_pcb_migration: IMPLEMENTED_AE076E_B_NATIVE_F8_VALIDATED
   routing_authority: false
   layout_freeze: false
   bom_freeze: false
