@@ -7,10 +7,11 @@
 ## 1. Repository baseline
 
 - Branch: `develop`
-- Governed baseline at start of current transaction: `258751f56f536cc28e836c2d013dbde46aaf4cb6`
-- Governed subject: `AE-076E-A: qualify SCH101 personality interface primitive`
-- Current working transaction: `AE-076E-B — live SCH101 personality and native-CAD migration`
-- Current transaction state: NATIVE_MIGRATED_SOLID_MODEL_EXPORT_VALIDATED_GOVERNANCE_PENDING — source/native H120/H220 reconciled, exact H901 and capacitor STEP models bound; full regression PASS (767), staged review and promotion pending
+- Current governed `develop` baseline: `2a912eac1c63313443f99dc87f86e07232f1a40b`
+- Governed subject: `AE-076E-B: reconcile native personality interface and STEP model authority`
+- Promotion parent (historical AE-076E-A): `258751f56f536cc28e836c2d013dbde46aaf4cb6`
+- Current working phase: `AE-076F — pre-layout qualification and mechanical-support comparison`
+- Current transaction state: AE076E_B_PROMOTED_AE076F_QUALIFICATION_AND_MCAD_HELD — AE-076E-B promoted; read-only AE-076F startup PASS, 767 tests and authority audit; current physical/electrical holds unchanged
 - Routing: HELD
 - Layout freeze: FALSE
 - BOM freeze: FALSE
@@ -21,7 +22,7 @@
 - Regulated rails: `+17.0 V / 0VA / -17.0 V`.
 - One main audio PCB carries all seven controls directly.
 - PCB orientation: F.Cu down / B.Cu up toward removable upper cover.
-- Six PCB-to-upper-cover primary supports selected in principle; exact XY/Z/hardware/tolerance open.
+- Current selected architecture remains six PCB-to-upper-cover primary supports; exact XY/Z/hardware/tolerance open. AE-076F is evaluating rail-supported alternatives, including a 1.5/1.6 mm slot-engaging sheet with narrower bolted/bonded >=2 mm reinforcement and a two-level skeletal frame; no supersession authorised.
 - Bass: NKK `NR01105ANG13-2C` x2.
 - Treble: NKK `NR01105ANG13-2A` x2.
 - Channel Matrix production part: C&K `A30403RNCB`; MRJE3404 is provenance/considered alternative only.
@@ -52,19 +53,16 @@ Controlled standard:
 
 ## 4. Current pre-layout critical path
 
-1. Complete AE-076E-B current-state reconciliation and full regression after verified native migration:
-   - source/native H120/H220 map, six superseded references removed; Edge.Cuts and MH1-MH4 retained, zero segments/vias;
-   - H901 exact vendor STEP and C30060/C35060 KiCad 10.0.6 STEP project-local models bind and export;
-   - preserve explicit exact SLW/TSW mated geometry, capacitor-specific body fit and all release holds as OPEN.
-2. Promote AE-076E-B only after full native validation and regression.
-3. RUN08-RUN14 design-driving closure against the current qualification delta.
-4. Resolve RUN10-driven component/value issues including SCH103 timing-cap decomposition and personality-interface parasitics/matching.
-5. Resolve SCH108 ferrite selection to the extent required before layout, retaining bench correlation where appropriate.
-6. Complete exact seven-control pin/pad/orientation/footprint implementation.
-7. Complete six-support/top-cover/control-plane/full-service MCAD.
+1. AE-076E-B promotion: COMPLETE and locally verified at `2a912eac1c63313443f99dc87f86e07232f1a40b`; keep immutable AE-076E-A parent `258751f56f536cc28e836c2d013dbde46aaf4cb6` as provenance. AE-076F0 reconciles the execution index, continuity test and narrow risk-register drift without altering design/release authority.
+2. Perform bounded preliminary RUN10 design-driving tolerance/parasitic assessment at current `+17.0 V / 0VA / -17.0 V`, especially LT5400/CMRR, gain shunts, Grado 78C cable/loading and H120/H220 service-card parasitics, and SCH103 timing-component source/value choices. This is not full RUN10 closure.
+3. MCAD mechanical support comparison: retain current six-upper-cover-support selection pending dimensional evidence; evaluate 1.5/1.6 mm groove-engaging rail sheet with narrower >=2 mm reinforcement (bolted versus bonded), two-level 1.5/1.6 mm rail-engaged skeletal frames and other simpler stiffening. Check true slot throat, enclosure width, NKK 12.3 mm panel-to-PCB constraint, seven switch envelopes, F.Cu component/card clearance, cover drop fit, retention, grounding, deflection, access and assembly sequence. No carrier selected yet.
+4. Complete RUN08-RUN14 under the current AE-076D qualification delta; preserve the AE-070 vendor THAT1646 full-chain AC model composition limit and prohibit transferring AC surrogate validity to nonlinear/noise/fault gates.
+5. Resolve RUN10-driven SCH103 timing-cap decomposition and SCH108 ferrite selection before layout as justified; retain bench correlation where defensible.
+6. Complete exact seven-control B.Cu footprint/pin/pad/orientation/3D and support implementation after mechanical selection; do not modify governed native placement prematurely.
+7. Qualify ±17 V physical PSU set-point/dropout/ripple/startup/thermal behaviour, system rail fault-energy response and deliberate CHASSIS/0VA interfaces before system sign-off.
 8. Freeze bounded four-layer fabrication stack, quantitative DRC/netclasses and instantiate/audit In1 0VA plane.
-9. Formal block-by-block independent review.
-10. Consider routing release only with zero `HOLD` dispositions.
+9. Conduct block-by-block independent design assurance, with explicit one-off recoverability classifications and documented dissent.
+10. Consider routing release only after every relevant design-driving HOLD is resolved and a controlled permission transition is authorised.
 
 ## 5. Formal block-review sequence
 
@@ -89,7 +87,7 @@ For every block review: implementation, evidence, component authority, PCB/MCAD,
 
 ## 6. Known open design-driving items
 
-- AE-076E-B governance/test/authority reconciliation and final promotion;
+- AE-076F preliminary RUN10, full RUN08-RUN14 and MCAD carrier/support trade; AE-076E-B promotion is complete;
 - exact SLW/TSW mated mechanical envelope and RUN10 interface parasitics/matching;
 - exact component-specific capacitor body/mechanical fit and full MCAD collision assessment after successful H901/C30060/C35060 solid STEP export;
 - gain-shunt physical pairing/orientation;
@@ -103,7 +101,7 @@ For every block review: implementation, evidence, component authority, PCB/MCAD,
 - SCH103 timing-cap source/value decomposition;
 - SCH108 ferrite selection;
 - exact seven-control B.Cu pin/pad/orientation mapping;
-- six-support/control-plane/full-chassis MCAD;
+- rail-support-vs-six-upper-cover-support comparison, control-plane/full-chassis MCAD and mounting selection;
 - bounded fabrication stack, In1 plane and quantitative DRC/netclasses;
 - Grado 20-50 kHz model-validity/measurement disposition;
 - PSU powered set-point/dropout/ripple/startup/thermal qualification.
@@ -127,7 +125,7 @@ These remain subject to the recoverability standard and may move back to pre-fab
 - AE-076E-B source-phase focused validation: PASS — 64 tests; current-decision audit and generated-SCH101 discriminator PASS.
 - AE-076E-B native board SHA-256 `a5b519a21a2bbe2c9f3ad751134d43292a5b32184487100512ab045b6258861c`; H901 model `40cd349dcd35a3aa04844d09e13f92a40d90f1a664e1ad8baec2cd010259e87a`; capacitor model `35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b`; actual-board STEP `84fae4cfe2fa5edc3436a36792f3da41c8f71d29e9cd711f469631b37200fe61`; KiCad CLI rc0 and no missing models, DNP excluded.
 - AE-076E-B intermediate regression history: 764 passed/1 failed at superseded pre-F8 board assertion; subsequent 766 passed/1 failed at obsolete DR-038 wording. Both test contracts were reconciled to the live implementation.
-- Full AE-076E-B governance-candidate regression on 2026-10-08: 767 passed in 45.34 seconds; decision/configuration authority audit PASS; no routing/layout/BOM/manufacturing authorisation conferred.
+- Full AE-076E-B governance-candidate regression on 2026-10-08: 767 passed in 45.34 seconds; decision/configuration authority audit PASS. Promoted Git `develop` baseline `2a912eac1c63313443f99dc87f86e07232f1a40b` was subsequently verified by read-only AE-076F startup on 2026-10-09: 767 passed in 47.46 seconds, authority audit PASS, hashes matched, local HEAD=origin/develop, clean index/tree. No routing/layout/BOM/manufacturing authorisation conferred.
 - Reproducibility: the governed native PCB remains CRLF and SHA-256-pinned; .gitattributes uses a single-file -text -eol whitespace=cr-at-eol exception so staged/checked-out bytes remain identical without weakening Git whitespace verification.
 
 ## 9. Continuity rule

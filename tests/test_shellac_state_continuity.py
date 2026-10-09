@@ -30,7 +30,9 @@ def test_state_repeats_critical_fail_closed_invariants():
     assert "+17.0 V / 0VA / -17.0 V" in s
     assert "AE-076E-A" in s
     assert "AE-076E-B" in s
-    assert "NATIVE_MIGRATED_SOLID_MODEL_EXPORT_VALIDATED_GOVERNANCE_PENDING" in s
+    assert "2a912eac1c63313443f99dc87f86e07232f1a40b" in s
+    assert "AE076E_B_PROMOTED_AE076F_QUALIFICATION_AND_MCAD_HELD" in s
+    assert "NATIVE_MIGRATED_SOLID_MODEL_EXPORT_VALIDATED_GOVERNANCE_PENDING" not in s
     assert "Routing: HELD" in s
     assert "Manufacturing release: FALSE" in s
 
