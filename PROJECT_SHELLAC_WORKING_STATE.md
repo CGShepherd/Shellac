@@ -7,11 +7,14 @@
 ## 1. Repository baseline
 
 - Branch: `develop`
-- Current governed `develop` baseline: `2a912eac1c63313443f99dc87f86e07232f1a40b`
-- Governed subject: `AE-076E-B: reconcile native personality interface and STEP model authority`
+- Current governed `develop` baseline: `24899753d05597aedd7a2ced6a482e6e1001c705`
+- Governed subject: `AE-076F0: reconcile promoted state and record mechanical support trade`
 - Promotion parent (historical AE-076E-A): `258751f56f536cc28e836c2d013dbde46aaf4cb6`
+- Historical AE-076E-B / AE-076F0 parent: `2a912eac1c63313443f99dc87f86e07232f1a40b`
 - Current working phase: `AE-076F — pre-layout qualification and mechanical-support comparison`
-- Current transaction state: AE076E_B_PROMOTED_AE076F_QUALIFICATION_AND_MCAD_HELD — AE-076E-B promoted; read-only AE-076F startup PASS, 767 tests and authority audit; current physical/electrical holds unchanged
+- AE-076F1A–F1E read-only MCAD/native-CAD qualification: authenticated Metcase rail profiles and corrected provisional cover datum, carrier-only nominal sampled insertion, 256 F.Cu footprints, interim MH1–MH4 and zero mounted control footprints. Latest evidence disposition: `docs/design_pack/AE-076F1F_Native_Control_and_Mechanical_Evidence_Rev_A0.md`; no support architecture supersession.
+- Historical transaction state: AE076E_B_PROMOTED_AE076F_QUALIFICATION_AND_MCAD_HELD — AE-076E-B promotion and AE-076F startup; preserved as continuity provenance.
+- Current transaction state: AE076F1F_EVIDENCE_RECONCILED_PHYSICAL_QUALIFICATION_HELD — AE-076F1D/E read-only mechanical and native CAD evidence integrated; six-upper-cover-support design selection unchanged; all routing/layout/BOM/manufacturing holds remain.
 - Routing: HELD
 - Layout freeze: FALSE
 - BOM freeze: FALSE
@@ -53,12 +56,12 @@ Controlled standard:
 
 ## 4. Current pre-layout critical path
 
-1. AE-076E-B promotion: COMPLETE and locally verified at `2a912eac1c63313443f99dc87f86e07232f1a40b`; keep immutable AE-076E-A parent `258751f56f536cc28e836c2d013dbde46aaf4cb6` as provenance. AE-076F0 reconciles the execution index, continuity test and narrow risk-register drift without altering design/release authority.
+1. AE-076E-B is historical governed parent `2a912eac1c63313443f99dc87f86e07232f1a40b`; AE-076F0 is promoted and GitHub-confirmed `24899753d05597aedd7a2ced6a482e6e1001c705`. Retain immutable AE-076E-A `258751f56f536cc28e836c2d013dbde46aaf4cb6` as provenance. AE-076F1A–F1E informational read-only evidence is being reconciled by AE-076F1F without changing native CAD or design authority.
 2. Perform bounded preliminary RUN10 design-driving tolerance/parasitic assessment at current `+17.0 V / 0VA / -17.0 V`, especially LT5400/CMRR, gain shunts, Grado 78C cable/loading and H120/H220 service-card parasitics, and SCH103 timing-component source/value choices. This is not full RUN10 closure.
 3. MCAD mechanical support comparison: retain current six-upper-cover-support selection pending dimensional evidence; evaluate 1.5/1.6 mm groove-engaging rail sheet with narrower >=2 mm reinforcement (bolted versus bonded), two-level 1.5/1.6 mm rail-engaged skeletal frames and other simpler stiffening. Check true slot throat, enclosure width, NKK 12.3 mm panel-to-PCB constraint, seven switch envelopes, F.Cu component/card clearance, cover drop fit, retention, grounding, deflection, access and assembly sequence. No carrier selected yet.
 4. Complete RUN08-RUN14 under the current AE-076D qualification delta; preserve the AE-070 vendor THAT1646 full-chain AC model composition limit and prohibit transferring AC surrogate validity to nonlinear/noise/fault gates.
 5. Resolve RUN10-driven SCH103 timing-cap decomposition and SCH108 ferrite selection before layout as justified; retain bench correlation where defensible.
-6. Complete exact seven-control B.Cu footprint/pin/pad/orientation/3D and support implementation after mechanical selection; do not modify governed native placement prematurely.
+6. Qualify NKK/C&K 3D envelopes, B.Cu control pin/pad/orientation, shared switch Z and panel apertures before downselecting six-cover-support versus rail-carrier assembly. AE-076F1E confirms none of seven control footprints exists on the native PCB; MH1–MH4 remain interim, not the selected six. Do not modify native placement prematurely.
 7. Qualify ±17 V physical PSU set-point/dropout/ripple/startup/thermal behaviour, system rail fault-energy response and deliberate CHASSIS/0VA interfaces before system sign-off.
 8. Freeze bounded four-layer fabrication stack, quantitative DRC/netclasses and instantiate/audit In1 0VA plane.
 9. Conduct block-by-block independent design assurance, with explicit one-off recoverability classifications and documented dissent.
@@ -127,6 +130,10 @@ These remain subject to the recoverability standard and may move back to pre-fab
 - AE-076E-B intermediate regression history: 764 passed/1 failed at superseded pre-F8 board assertion; subsequent 766 passed/1 failed at obsolete DR-038 wording. Both test contracts were reconciled to the live implementation.
 - Full AE-076E-B governance-candidate regression on 2026-10-08: 767 passed in 45.34 seconds; decision/configuration authority audit PASS. Promoted Git `develop` baseline `2a912eac1c63313443f99dc87f86e07232f1a40b` was subsequently verified by read-only AE-076F startup on 2026-10-09: 767 passed in 47.46 seconds, authority audit PASS, hashes matched, local HEAD=origin/develop, clean index/tree. No routing/layout/BOM/manufacturing authorisation conferred.
 - Reproducibility: the governed native PCB remains CRLF and SHA-256-pinned; .gitattributes uses a single-file -text -eol whitespace=cr-at-eol exception so staged/checked-out bytes remain identical without weakening Git whitespace verification.
+
+- AE-076F0 governed commit `24899753d05597aedd7a2ced6a482e6e1001c705` promoted after 767 tests/decision audit; later read-only AE-076F1E reverified GitHub `develop` and clean index/tree.
+- AE-076F1D authenticated Metcase and populated-PCB STEP models (FreeCAD 1.0.2), corrected the cover underside Y to -33.911678 mm, reported nominal populated-board-to-G1-carrier clearance 7.657547 mm, and sampled unobstructed carrier-only insertion with relevant end panel removed. No complete installation qualification.
+- AE-076F1E controlled native PCB SHA-256 `a5b519a21a2bbe2c9f3ad751134d43292a5b32184487100512ab045b6258861c`: 256 F.Cu footprints; MH1–MH4 at (25,28), (235,28), (235,152), (25,152) mm; no physical seven-control footprints and no dedicated control CAD discovered by filename. Informational disposition `docs/design_pack/AE-076F1F_Native_Control_and_Mechanical_Evidence_Rev_A0.md`. Release held.
 
 ## 9. Continuity rule
 
