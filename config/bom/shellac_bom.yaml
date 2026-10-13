@@ -69,25 +69,25 @@ items:
   note: AE-076B direct main-PCB ownership; NKK 12.3 mm relationship retained; footprint/XY/support stack and RUN10 remain open.
 - id: BOM-CTRL-CHANNEL
   function: channel_mode_selector
-  manufacturer: C&K
-  mpn: A30403RNCB
-  considered_alternative_manufacturer: TE/Alcoswitch
-  considered_alternative_mpn: MRJE3404
-  considered_alternative_status: NOT_LIVE_FALLBACK_FOOTPRINT_INCOMPATIBLE
+  manufacturer: TE Connectivity / Alcoswitch
+  mpn: MRJE3404
+  manufacturer_part_number: '1825537-3'
+  superseded_matrix_mpn: C&K_A30403RNCB_HISTORICAL_ONLY
+  fallback_mpn: NONE_SELECTED
   quantity: 1
   requirement: 3P4T_4_position_BBM_non_shorting_low_level_gold
   configured_positions: 4
-  status: SINGLE_PRODUCTION_PART_SELECTED_PHYSICAL_MIGRATION_OPEN
-  authority_reconciled_by: AE-076C
-  knob_manufacturer: TE/Alcoswitch
-  knob_mpn: KN900B1/4
-  mounting: pcb_through_hole_plus_3/8-32_threaded_top_cover_bushing
+  status: EXACT_PART_SELECTED_PHYSICAL_MIGRATION_OPEN
+  authority_reconciled_by: AE-076F4C
+  knob_manufacturer: OPEN_TE_3P17_SHAFT_MATCH_REQUIRED
+  knob_mpn: OPEN
+  mounting: pcb_through_hole_plus_independent_three_pillar_aluminium_switch_plate_not_PCB_structural_support
   physical_ownership: MAIN_AUDIO_PCB_DIRECT_SELECTED_PHYSICAL_MIGRATION_PENDING
   physical_architecture_reconciled_by: AE-076B
   physical_partition: MAIN_AUDIO_PCB_DIRECT
   control_module_partition_reconciled_by: AE-076B
   interconnect_family: NONE_SINGLE_MAIN_PCB
-  note: AE-076B direct main-PCB ownership; C&K installed-plane fit/footprint/XY remain open for AE-076B2 MCAD.
+  note: AE-076F4C selects TE MRJE3404 only; exact numbered B.Cu terminal map, independent three-pillar plate, shaft/knob, seated-stack and footprint/XY remain CLOSE_BEFORE_FAB. Existing PCB/support architecture not superseded.
 - id: BOM-MATRIX-SUM-R
   function: switched_mono_averaging_resistors
   manufacturer: OPEN

@@ -45,18 +45,18 @@ NKK_NR01=MechanicalEvidence(
     notes="Bass uses -2C red AT3009; Treble uses -2A black AT3009. Four independent controls total.")
 
 CK_A30403RNCB=MechanicalEvidence(
-    "MECH-SW903","C&K","A30403RNCB","Channel-mode 3P4T rotary",
+    "MECH-SW903-SUPERSEDED","C&K","A30403RNCB","Historical Channel-mode 3P4T rotary",
     "panel + through-hole PC mount; 3/8-32 threaded bushing; installed PCB plane not frozen",
     behind_panel_depth_mm=14.48,shaft_diameter_mm=6.35,shaft_projection_mm=9.53,
     body_length_mm=26.2,panel_cutout_mm=9.8,bushing_thread="3/8-32",
     evidence_grade="E1 exact-MPN/family evidence",
-    notes="3P4T, four-position, BBM, gold contacts. MCAD must prove fit at direct-main-PCB plane.")
+    notes="SUPERSEDED by AE-076F4C TE MRJE3404; immutable physical provenance, not production candidate.")
 
 TE_MRJE3404=MechanicalEvidence(
-    "MECH-SW903-ALTERNATIVE","TE/Alcoswitch","MRJE3404","Channel-mode 3P4T rotary considered alternative",
-    "panel + through-hole PC mount",shaft_diameter_mm=3.17,
-    evidence_grade="E1/E3 exact-MPN evidence",
-    notes="Not a live production fallback: different footprint/shaft treatment from selected C&K A30403RNCB; retained as considered-alternative provenance only.")
+    "MECH-SW903","TE Connectivity / Alcoswitch","MRJE3404","Selected Channel-mode 3P4T rotary",
+    "PCB through-hole terminals, mechanically restrained by independent three-pillar aluminium plate; actual TE panel/shaft hardware OPEN",shaft_diameter_mm=3.17,
+    evidence_grade="E1 genuine exact-part STEP evidence; terminal numbering/fit qualification OPEN",
+    notes="Selected by AE-076F4C / part 1825537-3. C&K matrix superseded. No qualified panel-to-PCB stack, knob or drilled footprint.")
 
 CK_7201SYCBE=MechanicalEvidence(
     "MECH-SW904-905","C&K / Littelfuse","7201SYCBE","Rumble/Mute common toggle",
@@ -76,14 +76,15 @@ ROTARY_PLATFORM_AUTHORITY={
     "eq_manufacturer":"NKK","eq_family":"NR01","eq_quantity":4,
     "eq_mpns":("NR01105ANG13-2C","NR01105ANG13-2A"),
     "eq_exact_mpn_status":"FROZEN_AE075C",
-    "matrix_manufacturer":"C&K","matrix_mpn":"A30403RNCB",
-    "matrix_considered_alternative_mpn":"TE/Alcoswitch MRJE3404",
-    "matrix_considered_alternative_status":"NOT_LIVE_FALLBACK_FOOTPRINT_INCOMPATIBLE",
+    "matrix_manufacturer":"TE Connectivity / Alcoswitch","matrix_mpn":"MRJE3404",
+    "matrix_manufacturer_part_number":"1825537-3",
+    "matrix_fallback_mpn":None,
+    "matrix_superseded_historical_mpn":"A30403RNCB",
     "matrix_status":"SINGLE_PRODUCTION_PART_SELECTED_PHYSICAL_MIGRATION_OPEN",
-    "authority":"AE-041 A1 + AE-075C + AE-076B",
+    "authority":"AE-076F4C (part selection) + AE-041 A1 (electrical truth table)",
 }
 HISTORICAL_ROTARY_EVIDENCE=(GRAYHILL_1_DECK,GRAYHILL_2_DECK)
-CURRENT_ROTARY_EVIDENCE=(NKK_NR01,CK_A30403RNCB)
+CURRENT_ROTARY_EVIDENCE=(NKK_NR01,TE_MRJE3404)
 EXTERNAL_CONTROL_CONTRACTS=(NKK_NR01,CK_A30403RNCB,TE_MRJE3404,CK_7201SYCBE,LED_BEZEL)
 
 def validate_control_mechanical_evidence()->None:
@@ -92,7 +93,8 @@ def validate_control_mechanical_evidence()->None:
     assert "no threaded mounting bushing" in NKK_NR01.mounting
     assert ROTARY_PLATFORM_AUTHORITY["eq_mpns"]==("NR01105ANG13-2C","NR01105ANG13-2A")
     assert ROTARY_PLATFORM_AUTHORITY["eq_exact_mpn_status"]=="FROZEN_AE075C"
-    assert ROTARY_PLATFORM_AUTHORITY["matrix_mpn"]=="A30403RNCB"
+    assert ROTARY_PLATFORM_AUTHORITY["matrix_mpn"]=="MRJE3404"
+    assert ROTARY_PLATFORM_AUTHORITY["matrix_fallback_mpn"] is None
     assert CK_A30403RNCB.installed_panel_to_pcb_mm is None
     assert CK_7201SYCBE.installed_panel_to_pcb_mm is None
     assert CK_7201SYCBE.bushing_length_mm==8.89

@@ -44,7 +44,7 @@ class ToggleAuthority:
 class MatrixAuthority:
     manufacturer:str
     mpn:str
-    fallback_mpn:str
+    fallback_mpn:str|None
     poles:int
     positions:int
     switching:str
@@ -69,17 +69,17 @@ EQ_CONTROLS=(
 RUMBLE=ToggleAuthority("SW904","RUMBLE","C&K","7201SYCBE","BYPASS","IN")
 MUTE=ToggleAuthority("SW905","MUTE","C&K","7201SYCBE","RUN","MUTE")
 MATRIX=MatrixAuthority(
-    "C&K","A30403RNCB","TE/Alcoswitch MRJE3404",
-    3,4,"BBM_NON_SHORTING","GOLD","THT_PCB_PLUS_3/8-32_BUSHING",
+    "TE Connectivity / Alcoswitch","MRJE3404",None,
+    3,4,"BBM_NON_SHORTING","GOLD","THT_PCB_SEPARATE_THREE_PILLAR_PLATE",
     ("DUAL L","STEREO","L+R","DUAL R"),
     4700.0,0.1,2,"MONO_AVG","MONO_R_LEG","L+R",100.0)
 
 MATRIX_KNOB={
-    "manufacturer":"TE/Alcoswitch",
-    "mpn":"KN900B1/4",
-    "diameter_mm":24.1,
-    "finish":"black knurled aluminium",
-    "indicator":"line",
+    "manufacturer":"OPEN",
+    "mpn":None,
+    "shaft_match":"TE_3P17MM_NEEDS_QUALIFICATION",
+    "diameter_mm":None,
+    "status":"CLOSE_BEFORE_FAB",
 }
 
 RELATIVE_GEOMETRY={
@@ -95,7 +95,7 @@ OPEN_QUALIFICATION=(
     "matrix_mono_accuracy_spice_and_bench",
     "production_switch_detent_terminal_continuity_confirmation",
     "ae076b2_dimensionally_controlled_mcad_digital_mockup",
-    "nkk_12p3mm_constrained_main_pcb_plane_to_ck_fit_and_tolerance_stack",
+    "nkk_12p3mm_to_TE_independent_plate_and_toggle_seating_tolerance_stack",
     "six_support_xy_z_hardware_and_tolerance_stack",
     "exact_part_footprints_pin_mapping_courtyards_and_3d_envelopes",
     "control_xy_and_upper_cover_apertures",
@@ -112,8 +112,8 @@ def validate_control_architecture()->None:
         "NR01105ANG13-2A","NR01105ANG13-2A"]
     assert all("no threaded bushing" in c.panel_registration for c in EQ_CONTROLS)
     assert RUMBLE.mpn==MUTE.mpn=="7201SYCBE"
-    assert MATRIX.mpn=="A30403RNCB" and MATRIX.poles==3 and MATRIX.positions==4
-    assert MATRIX.fallback_mpn=="TE/Alcoswitch MRJE3404"
+    assert MATRIX.mpn=="MRJE3404" and MATRIX.poles==3 and MATRIX.positions==4
+    assert MATRIX.fallback_mpn is None and "THREE_PILLAR" in MATRIX.mounting
     assert MATRIX.mode_order_ccw_to_cw==("DUAL L","STEREO","L+R","DUAL R")
     assert MATRIX.switched_leg_node=="MONO_R_LEG" and MATRIX.switched_leg_mode=="L+R"
     assert MATRIX.averaging_resistor_count==2 and MATRIX.averaging_resistance_ohm==4700.0

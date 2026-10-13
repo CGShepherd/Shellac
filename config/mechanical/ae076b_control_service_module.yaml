@@ -21,7 +21,8 @@ selected_architecture:
     z_tolerance_stack_frozen: false
 control_stack:
   nkk_installed_panel_to_pcb_mm: 12.3
-  ck_matrix_installed_pcb_plane_verified: false
+  te_matrix_independent_plate_stack_verified: false
+  matrix_part_selection_authority: AE-076F4C
   ck_toggle_installed_pcb_plane_verified: false
   common_direct_main_pcb_plane_mcad_proof_required: true
 physical_cad_boundary:

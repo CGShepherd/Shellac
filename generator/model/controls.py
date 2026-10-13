@@ -30,14 +30,14 @@ EQ_ROTARY_MOUNTING=(
     "AE-076B direct main-audio-PCB ownership; exact footprint/XY and six-support MCAD migration open"
 )
 
-MATRIX_MANUFACTURER="C&K"
-MATRIX_MPN="A30403RNCB"
-MATRIX_CONSIDERED_ALTERNATIVE_MPN="TE/Alcoswitch MRJE3404"
-MATRIX_CONSIDERED_ALTERNATIVE_STATUS="NOT_LIVE_FALLBACK_FOOTPRINT_INCOMPATIBLE"
+MATRIX_MANUFACTURER="TE Connectivity / Alcoswitch"
+MATRIX_MPN="MRJE3404"
+MATRIX_MANUFACTURER_PART_NUMBER="1825537-3"
+MATRIX_FALLBACK_MPN=None
 MATRIX_MOUNTING=(
-    "PCB through-hole PC pins with 3/8-32 threaded bushing through top cover; "
-    "AE-076B direct main-audio-PCB ownership; six supports establish the primary datum; "
-    "exact installed-plane fit/footprint/XY remain open pending MCAD"
+    "PCB through-hole with separate three-pillar aluminium switch plate carrying actuation loads; "
+    "independent PCB support and true TE bushing/retainer/shaft seating must be verified; "
+    "exact numbered 15-terminal B.Cu footprint, contact map, MCAD, panel and tolerance HOLD"
 )
 
 TOGGLE_MANUFACTURER="C&K"
@@ -129,7 +129,7 @@ def validate_controls()->None:
     assert all("no threaded bushing" in c.mounting for c in CONTROLS[:4])
     assert CONTROLS[4].mpn==MATRIX_MPN and CONTROLS[4].control_type=="3P4T rotary"
     assert CONTROLS[5].mpn==CONTROLS[6].mpn==TOGGLE_MPN
-    assert "3/8-32" in CONTROLS[4].mounting
+    assert "three-pillar" in CONTROLS[4].mounting and MATRIX_FALLBACK_MPN is None
     assert all("1/4-40" in c.mounting for c in CONTROLS[5:])
     # AE-076A: retain 8.2 kOhm / 2.4 V design assumption at 17 V;
     # nominal current is ~1.7805 mA and remains intentionally subdued.

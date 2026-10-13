@@ -16,6 +16,8 @@ Normal ChatGPT may analyse evidence, use connected tools within the user's reque
 
 ## Latest continuation note - 13 October 2026
 
+- **AE-076F4C controlled selection (pending reviewed promotion):** TE Connectivity/Alcoswitch MRJE3404, exact part 1825537-3, is the single chosen Channel Matrix SW903; C&K A30403RNCB superseded as production part, historical evidence only, no current fallback. Electrical 3P4T BBM mode truth table unchanged. Exact TE numbered pad mapping, three-pillar independent switch plate, shaft/knob, tolerance stack, PCB drilling, RUN10/RUN12 and full MCAD remain CLOSE_BEFORE_FAB. Existing six-upper-cover-support current mechanical architecture is NOT yet formally superseded by the proposed single-G1 lower frame. ROUTING HELD; layout/BOM/manufacturing FALSE. Baseline parent 482c7bb37eb8ccaf3e23d80f6871885bc6273bad.
+
 - **AE-076F4B geometric constraint (upon reviewed governed promotion):** corrected native coordinates reconcile 598 pad centres and preserve five support sites as *unreleased* 2D candidates. Genuine NKK models give 12.300 mm bearing-to-flange height; unmodified lower-G1 direct 18 mm PCB / 28 mm TE support pair nominally overlaps the lid by 0.047488 mm and must not be frozen. All four NKK flanges require positive tolerance-qualified underside clearance. This introduces a requirement only; neither upper-cover-support nor C&K matrix authority is superseded, and no replacement spacer, hole, panel, PCB, PDR/CDR or release is authorised. Decision record: `docs/design_pack/AE-076F4B_NKK_Clearance_and_Corrected_Native_Screen_Rev_A0.md`.
 
 This note records conversation continuity; it does not promote design authority or replace controlled evidence. The older engineering baseline below is retained as provenance and must be reconciled with later evidence before any governed transaction.
@@ -53,7 +55,7 @@ This note records conversation continuity; it does not promote design authority 
 - **Current controlled support authority:** six PCB-to-removable-upper-cover primary supports; exact XY/Z/hardware/tolerances open, native footprint migration unauthorised. **Selected-next engineering concept (AE-076F3L, not authority):** stiffened open rail-engaged lower frame, independently supported main PCB on 20 mm M3 spacers, and flat three-arm TE switch plate on three separate 30 mm M3 metal pillars passing freely through three provisional PCB clearance holes. Conceptual carrier fit, actual holes and all control CAD remain CLOSE_BEFORE_FAB; no formal support supersession authorised.
 - Bass: NKK `NR01105ANG13-2C` x2.
 - Treble: NKK `NR01105ANG13-2A` x2.
-- Channel Matrix production part: C&K `A30403RNCB`; MRJE3404 is provenance/considered alternative only.
+- Channel Matrix production part: TE/Alcoswitch `MRJE3404` / `1825537-3` selected under AE-076F4C; C&K `A30403RNCB` superseded historical only.
 - Rumble/Mute: C&K `7201SYCBE`.
 - SCH101 LT5400: `LT5400BIMS8E-7#PBF`; EP9 to quiet 0VA implemented.
 - Gain programming: TSW-104-07-G-D / MNT-104-BK-G, approximately 14/18/22 dB; no LOW/HIGH shunt = fail-safe ~18 dB.

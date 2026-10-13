@@ -101,9 +101,24 @@ decisions:
     - docs/design_pack/AE-076C_PreLayout_Authority_and_Technical_Debt_Reconciliation_Rev_A0.md
     implementation:
       eq_controls: Four independent NKK NR01105ANG13 five-position BBM gold-contact controls; Bass uses -2C red flanged-knob configuration and Treble uses -2A black flanged-knob configuration.
-      channel_matrix: C&K A30403RNCB 3P4T BBM gold THT is the single selected production Matrix part; TE/Alcoswitch MRJE3404 is considered-alternative provenance only and is not a live footprint-compatible fallback.
+      channel_matrix: TE/Alcoswitch MRJE3404 / 1825537-3 is the single selected SW903 production matrix part under AE-076F4C; C&K A30403RNCB is superseded historical part evidence only; TE physical implementation is OPEN.
       mute_rumble: C&K 7201SYCBE.
       note: 'AE-068 qualifies RUN05 steady-state matrix behaviour and AE-075C freezes exact control MPNs. AE-076B supersedes the AE-075D/E/F four-local-control-board/carrier ownership architecture: one main audio PCB carries all seven controls directly and forms a removable service module with the upper cover; six PCB-to-cover supports are selected in principle and control inter-board harnesses are not selected. Historical AE-075D/E/F remain provenance. SR-040/AE-071B MH1-MH4 native geometry is interim physical CAD pending current AE-076B2C/AE-076C mechanical and native-model closure. C&K/NKK stack, support XY/Z/tolerances, exact footprints/3D envelopes, control XY/apertures, RUN10 and physical migration remain open. RUN12 switching and bench qualification remain open.'
+  AE-076F4C:
+    title: TE MRJE3404 single production channel-matrix switch supersedes C&K rotary
+    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    primary_record: docs/design_pack/AE-076F4C_TE_Matrix_Selection_Supersession_Rev_A0.md
+    functional_truth_table_record: docs/design_pack/AE-041_3P4T_Matrix_and_Top_Cover_Control_Authority_Rev_A1.md
+    selected_manufacturer: TE Connectivity / Alcoswitch
+    selected_mpn: MRJE3404
+    manufacturer_part_number: 1825537-3
+    superseded_matrix_part: C&K A30403RNCB
+    fallback: NONE_SELECTED
+    qualification: EXACT_TE_TERMINAL_MAP_BCU_FOOTPRINT_KNOB_CAGE_STACK_RUN10_RUN12_MCAD_DRC_OPEN
+    routing: HELD
+    layout_freeze: false
+    bom_freeze: false
+    manufacturing_release: false
   AE-076F4B:
     title: NKK under-lid positive-clearance constraint and corrected native candidate-site screen
     status: CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION

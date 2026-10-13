@@ -33,8 +33,8 @@ def test_eq_controls_are_exact_nkk_nr01_flanged_knob_variants():
     assert "2121 Hz RIAA" in CONTROLS[2].positions
 
 def test_matrix_and_toggle_authority():
-    assert CONTROLS[4].mpn == MATRIX_MPN == "A30403RNCB"
-    assert "3/8-32" in CONTROLS[4].mounting
+    assert CONTROLS[4].mpn == MATRIX_MPN == "MRJE3404"
+    assert "three-pillar" in CONTROLS[4].mounting
     assert CONTROLS[4].positions == ("DUAL LEFT","STEREO","L+R MONO","DUAL RIGHT")
     assert CONTROLS[5].positions == ("BYPASS","IN")
     assert CONTROLS[6].positions == ("RUN","MUTE")

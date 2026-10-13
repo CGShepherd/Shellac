@@ -60,9 +60,9 @@ PARTS=(
     ControlStackPart("TREBLE",2,"NR01105ANG13-2A",
         "AT3009 flanged knob beneath panel; controlled panel-to-PCB relationship 12.3 mm",
         "direct main audio PCB; local to corresponding SCH103 channel; exact footprint/XY migration open"),
-    ControlStackPart("CHANNEL",1,"A30403RNCB",
-        "3/8-32 threaded bushing; installed PCB plane must be proven in MCAD/tolerance stack",
-        "direct main audio PCB; bushing secondary only after six-support PCB datum is established"),
+    ControlStackPart("CHANNEL",1,"MRJE3404",
+        "TE exact bushing/shaft plus independent three-pillar plate; panel retention and stack unqualified",
+        "direct main audio PCB terminals; independent TE plate carries actuation load; qualification open"),
     ControlStackPart("RUMBLE",1,"7201SYCBE",
         "1/4-40 threaded bushing; installed PCB plane must be proven in MCAD/tolerance stack",
         "direct main audio PCB local to SCH107; bushing secondary only"),
@@ -73,7 +73,7 @@ PARTS=(
 
 REQUIRED_BEFORE_B03_CLOSURE=(
     "governed dimensionally accurate MCAD assembly of M5502119, panels, PCB, major connectors and controls",
-    "prove C&K A30403RNCB and 7201SYCBE fit at the rigid PCB plane constrained by NKK 12.3 mm installation evidence",
+    "prove TE MRJE3404 on its independent three-pillar plate and C&K 7201SYCBE toggles fit with NKK 12.3 mm datum",
     "freeze six PCB-to-upper-cover support XY, Z, hardware and tolerance stack",
     "freeze exact control footprints, pin maps, courtyards and 3D/body envelopes",
     "freeze control XY coordinates, upper-cover apertures and keep-outs",
@@ -108,4 +108,5 @@ def validate_control_stack()->None:
     assert COMMON_MAIN_PCB_CONTROL_PLANE_MM is None
     assert sum(part.quantity for part in PARTS)==7
     assert all("direct main audio PCB" in part.pcb_mounting for part in PARTS)
+    assert PARTS[2].mpn=="MRJE3404"
     assert B03_STATUS=="SINGLE_MAIN_PCB_SERVICE_MODULE_SELECTED_MCAD_Z_XY_FOOTPRINT_MIGRATION_OPEN"

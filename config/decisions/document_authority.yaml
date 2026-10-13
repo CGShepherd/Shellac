@@ -10,6 +10,7 @@ current_authority:
 - docs/maintenance/MAINTENANCE_GUIDE_SKELETON.md
 - docs/maintenance/Signal_Chain_Commissioning_and_Maintenance_Baseline_Rev_A0.md
 - docs/design_pack/AE-041_3P4T_Matrix_and_Top_Cover_Control_Authority_Rev_A1.md
+- docs/design_pack/AE-076F4C_TE_Matrix_Selection_Supersession_Rev_A0.md
 - config/mechanical/ae076b_control_service_module.yaml
 - config/mechanical/ae076b2a_pcb_face_strategy.yaml
 - config/mechanical/ae076b2c_mcad_sources.yaml
