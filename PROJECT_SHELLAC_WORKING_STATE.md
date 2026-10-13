@@ -4,6 +4,31 @@
 **Authority status:** NON-AUTHORITATIVE SUMMARY. If this file conflicts with controlled current authority, the controlled authority wins and this file must be corrected before further major work.
 **Refresh rule:** update after every material engineering review, qualification pass, governed transaction, commit/push, or change to the critical path.
 
+## Mandatory interaction mode - user instruction, 13 October 2026
+
+Project Shellac must continue in a normal ChatGPT chat. Do not use Codex or ChatGPT Work for this project, create or delegate Shellac work to either, or switch the user into either environment.
+
+This restriction remains in force unless the user explicitly revokes the Shellac-specific restriction. Requests such as "continue", "review", "resolve", "promote", or a request involving code, Git, Python, KiCad or other engineering tools do not revoke it.
+
+If this project is opened in Codex or ChatGPT Work, stop project engineering activity, explain this standing instruction, and provide a normal-chat handoff. Do not run project commands or change project files. The only exception is a narrowly scoped administrative handoff or policy update explicitly requested by the user; that is not permission to resume engineering.
+
+Normal ChatGPT may analyse evidence, use connected tools within the user's request, and prepare bounded, fail-closed scripts or patches for the user to run. Preserve controlled design authority and release holds. This interaction policy is a written instruction, not an app-enforced access control.
+
+## Latest continuation note - 13 October 2026
+
+- **AE-076F4B geometric constraint (upon reviewed governed promotion):** corrected native coordinates reconcile 598 pad centres and preserve five support sites as *unreleased* 2D candidates. Genuine NKK models give 12.300 mm bearing-to-flange height; unmodified lower-G1 direct 18 mm PCB / 28 mm TE support pair nominally overlaps the lid by 0.047488 mm and must not be frozen. All four NKK flanges require positive tolerance-qualified underside clearance. This introduces a requirement only; neither upper-cover-support nor C&K matrix authority is superseded, and no replacement spacer, hole, panel, PCB, PDR/CDR or release is authorised. Decision record: `docs/design_pack/AE-076F4B_NKK_Clearance_and_Corrected_Native_Screen_Rev_A0.md`.
+
+This note records conversation continuity; it does not promote design authority or replace controlled evidence. The older engineering baseline below is retained as provenance and must be reconciled with later evidence before any governed transaction.
+
+- User objective: keep resolving and promoting supported design decisions in bounded controlled updates, then present a frozen candidate to reviewers for PDR/CDR. Avoid repeated general analysis that does not close a decision. No reviewer has been contacted in this handoff.
+- User-reported F4A staging succeeded: six information-only artefacts staged, Rev A7 archived, Rev A8 installed. Rev A8 SHA-256: ee78f9bb8408b56c45adf5480d2d1302717c048a8d13a9e809fd61cb2dace27f. The successful staging reported governed Git/PCB/STEP unchanged.
+- Two successor studies were reviewed and accepted by the user, but are not staged or promoted: corrected native pad transform, and genuine NKK knob/lid stack interference. Their evidence is in SHELLAC_POST_F4A_SUCCESSOR_REVIEW_PACKAGE.zip and SHELLAC_POST_F4A_CORRECTION_AND_NKK_STACK.md. Carry these into the next normal chat; do not assume automatic cross-chat file access.
+- Corrected native screening reconciles all 598 pad centres and retains the five candidate support coordinates. Positive analytical clearances are not full native layout or manufacturing qualification.
+- NKK flange height is 12.300 mm above the PCB. The studied 18 mm PCB / 28 mm TE support pair yields 0.047488 mm nominal interference with the lid; genuine-model coupon intersection confirms the issue. Do not freeze these spacer lengths. Reconcile the TE and toggle seating stacks, tolerance allowance and service access before choosing the common datum and obtainable hardware.
+- Selected development direction remains TE MRJE3404 / 1825537-3 matrix, independent reinforced lower rail carrier, six independent PCB supports, and a separate three-pillar TE plate. Current controlled C&K matrix / upper-cover-support authority has not been formally superseded. Accepted development decisions and promoted authority must remain distinct.
+- Routing HELD; layout freeze, BOM freeze and manufacturing release FALSE. No PDR/CDR completion or release is claimed.
+- Engineering stopped for the user's normal-chat handoff. This administrative update changed only PROJECT_GUIDANCE.md and PROJECT_SHELLAC_WORKING_STATE.md. An additional AGENTS.md stop instruction was prepared, but creating it in the repository was denied by the filesystem; it is not installed. No commit or push was performed. Review these intentional documentation changes during the next governed preflight; do not discard or absorb them as unrelated changes. Current Git cleanliness was not verified during this handoff.
+
 ## 1. Repository baseline
 
 - Branch: `develop`

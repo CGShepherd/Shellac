@@ -104,6 +104,24 @@ decisions:
       channel_matrix: C&K A30403RNCB 3P4T BBM gold THT is the single selected production Matrix part; TE/Alcoswitch MRJE3404 is considered-alternative provenance only and is not a live footprint-compatible fallback.
       mute_rumble: C&K 7201SYCBE.
       note: 'AE-068 qualifies RUN05 steady-state matrix behaviour and AE-075C freezes exact control MPNs. AE-076B supersedes the AE-075D/E/F four-local-control-board/carrier ownership architecture: one main audio PCB carries all seven controls directly and forms a removable service module with the upper cover; six PCB-to-cover supports are selected in principle and control inter-board harnesses are not selected. Historical AE-075D/E/F remain provenance. SR-040/AE-071B MH1-MH4 native geometry is interim physical CAD pending current AE-076B2C/AE-076C mechanical and native-model closure. C&K/NKK stack, support XY/Z/tolerances, exact footprints/3D envelopes, control XY/apertures, RUN10 and physical migration remain open. RUN12 switching and bench qualification remain open.'
+  AE-076F4B:
+    title: NKK under-lid positive-clearance constraint and corrected native candidate-site screen
+    status: CURRENT_REQUIREMENT_IMPLEMENTATION_REQUALIFICATION
+    primary_record: docs/design_pack/AE-076F4B_NKK_Clearance_and_Corrected_Native_Screen_Rev_A0.md
+    evidence:
+    - docs/design_pack/evidence/AE-076F4B_Corrected_Native_Screen.json
+    - docs/design_pack/evidence/AE-076F4B_NKK_Flange_Stack_Probe.json
+    implementation:
+      constraint: ALL_FOUR_NKK_FLANGES_REQUIRE_POSITIVE_TOLERANCE_INCLUSIVE_UNDER_LID_CLEARANCE
+      unmodified_G1_direct_18mm_PCB_28mm_TE_pair: REJECTED_AS_NOMINALLY_INTERFERING
+      nominal_current_gap_mm: -0.047488
+      approved_spacer_or_panel_z: NONE_PHYSICAL_QUALIFICATION_OPEN
+      candidate_support_xy: RETAINED_FOR_SCREENING_ONLY_NOT_DRILLING_AUTHORITY
+      existing_CK_and_upper_cover_support_authority: UNCHANGED
+      routing: HELD
+      layout_freeze: false
+      bom_freeze: false
+      manufacturing_release: false
 pre_spice_assurance:
   AE-042: docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
   AE-043: docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md

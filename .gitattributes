@@ -21,3 +21,7 @@ out/kicad/ProjectShellac.kicad_pcb -text -eol whitespace=cr-at-eol
 # Preserve the two hash-controlled solid STEP model files exactly on checkout.
 mechanical/mcad/models/Molex_0039299063_5566-06A2.stp -text -eol -diff
 mechanical/mcad/models/C_Rect_L7.2mm_W5.0mm_P5.00mm.step -text -eol -diff
+
+# AE-076F4B: preserve original SHA-256-pinned JSON evidence bytes.
+docs/design_pack/evidence/AE-076F4B_Corrected_Native_Screen.json -text -eol whitespace=cr-at-eol
+docs/design_pack/evidence/AE-076F4B_NKK_Flange_Stack_Probe.json -text -eol whitespace=cr-at-eol

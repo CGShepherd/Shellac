@@ -2,13 +2,15 @@
 
 This file defines the standing collaboration and execution policy for Project Shellac. It is process guidance, not electrical, mechanical, CAD, BOM, qualification, release, or manufacturing authority.
 
-## 1. Default execution mode
+## Mandatory interaction mode - user instruction, 13 October 2026
 
-Default to normal ChatGPT plus connected tools.
+Project Shellac must continue in a normal ChatGPT chat. Do not use Codex or ChatGPT Work for this project, create or delegate Shellac work to either, or switch the user into either environment.
 
-Do not use Codex or ChatGPT Work merely because Shellac contains software, Git, Python, KiCad, LTspice, automated tests, generated artefacts, or other repository-managed engineering material.
+This restriction remains in force unless the user explicitly revokes the Shellac-specific restriction. Requests such as "continue", "review", "resolve", "promote", or a request involving code, Git, Python, KiCad or other engineering tools do not revoke it.
 
-Use Codex or direct/local repository execution only when the user explicitly requests it.
+If this project is opened in Codex or ChatGPT Work, stop project engineering activity, explain this standing instruction, and provide a normal-chat handoff. Do not run project commands or change project files. The only exception is a narrowly scoped administrative handoff or policy update explicitly requested by the user; that is not permission to resume engineering.
+
+Normal ChatGPT may analyse evidence, use connected tools within the user's request, and prepare bounded, fail-closed scripts or patches for the user to run. Preserve controlled design authority and release holds. This interaction policy is a written instruction, not an app-enforced access control.
 
 ## 2. Preferred workflow
 

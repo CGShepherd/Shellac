@@ -1,0 +1,470 @@
+{
+  "status": "READ_ONLY_CORRECTED_SCREEN_NOT_DRC_NOT_FOR_FAB",
+  "board_sha256": "a5b519a21a2bbe2c9f3ad751134d43292a5b32184487100512ab045b6258861c",
+  "f4a_generator_sha256": "b64e3216d5d64c646aab07f60eedde749ae3bd11c2d2803041965ec2a2f4a50b",
+  "kicad_version": "10.0.4",
+  "footprints": 256,
+  "pads": 598,
+  "tracks_and_vias": 0,
+  "corrected_transform_max_error_mm": 3.1776437161565096e-14,
+  "original_f4a_mismatched_pad_count": 23,
+  "original_f4a_mismatches": [
+    {
+      "ref": "H120",
+      "pad": "2",
+      "pad_index": 1,
+      "f4a_xy_mm": [
+        206.70000000000002,
+        32.1
+      ],
+      "native_xy_mm": [
+        211.78,
+        32.1
+      ],
+      "error_mm": 5.079999999999984
+    },
+    {
+      "ref": "H120",
+      "pad": "3",
+      "pad_index": 2,
+      "f4a_xy_mm": [
+        209.24,
+        34.64
+      ],
+      "native_xy_mm": [
+        209.24,
+        29.56
+      ],
+      "error_mm": 5.080000000000002
+    },
+    {
+      "ref": "H120",
+      "pad": "4",
+      "pad_index": 3,
+      "f4a_xy_mm": [
+        206.70000000000002,
+        34.64
+      ],
+      "native_xy_mm": [
+        211.78,
+        29.56
+      ],
+      "error_mm": 7.184204896855313
+    },
+    {
+      "ref": "H901",
+      "pad": "",
+      "pad_index": 0,
+      "f4a_xy_mm": [
+        95.55999999999999,
+        130.76000000000002
+      ],
+      "native_xy_mm": [
+        105.64,
+        140.16
+      ],
+      "error_mm": 13.782829898101472
+    },
+    {
+      "ref": "H901",
+      "pad": "",
+      "pad_index": 1,
+      "f4a_xy_mm": [
+        95.55999999999999,
+        148.56
+      ],
+      "native_xy_mm": [
+        105.64,
+        122.36
+      ],
+      "error_mm": 28.072164148850376
+    },
+    {
+      "ref": "H901",
+      "pad": "2",
+      "pad_index": 3,
+      "f4a_xy_mm": [
+        100.6,
+        139.66
+      ],
+      "native_xy_mm": [
+        100.6,
+        131.26
+      ],
+      "error_mm": 8.400000000000006
+    },
+    {
+      "ref": "H901",
+      "pad": "3",
+      "pad_index": 4,
+      "f4a_xy_mm": [
+        100.6,
+        143.86
+      ],
+      "native_xy_mm": [
+        100.6,
+        127.06
+      ],
+      "error_mm": 16.80000000000001
+    },
+    {
+      "ref": "H901",
+      "pad": "4",
+      "pad_index": 5,
+      "f4a_xy_mm": [
+        95.1,
+        135.46
+      ],
+      "native_xy_mm": [
+        106.1,
+        135.46
+      ],
+      "error_mm": 11.0
+    },
+    {
+      "ref": "H901",
+      "pad": "5",
+      "pad_index": 6,
+      "f4a_xy_mm": [
+        95.1,
+        139.66
+      ],
+      "native_xy_mm": [
+        106.1,
+        131.26
+      ],
+      "error_mm": 13.840520221436769
+    },
+    {
+      "ref": "H901",
+      "pad": "6",
+      "pad_index": 7,
+      "f4a_xy_mm": [
+        95.1,
+        143.86
+      ],
+      "native_xy_mm": [
+        106.1,
+        127.06
+      ],
+      "error_mm": 20.080836635957187
+    },
+    {
+      "ref": "H201",
+      "pad": "1",
+      "pad_index": 0,
+      "f4a_xy_mm": [
+        143.9791,
+        29.366999
+      ],
+      "native_xy_mm": [
+        135.2209,
+        33.367001
+      ],
+      "error_mm": 9.628399827593565
+    },
+    {
+      "ref": "H201",
+      "pad": "2",
+      "pad_index": 1,
+      "f4a_xy_mm": [
+        143.9791,
+        31.367
+      ],
+      "native_xy_mm": [
+        135.2209,
+        31.367
+      ],
+      "error_mm": 8.758199999999988
+    },
+    {
+      "ref": "H201",
+      "pad": "3",
+      "pad_index": 2,
+      "f4a_xy_mm": [
+        143.9791,
+        33.367001
+      ],
+      "native_xy_mm": [
+        135.2209,
+        29.366999
+      ],
+      "error_mm": 9.628399827593565
+    },
+    {
+      "ref": "H201",
+      "pad": "4",
+      "pad_index": 3,
+      "f4a_xy_mm": [
+        139.82909999999998,
+        26.967001
+      ],
+      "native_xy_mm": [
+        139.3709,
+        35.766999
+      ],
+      "error_mm": 8.81191874905823
+    },
+    {
+      "ref": "H201",
+      "pad": "5",
+      "pad_index": 4,
+      "f4a_xy_mm": [
+        139.82909999999998,
+        35.766999
+      ],
+      "native_xy_mm": [
+        139.3709,
+        26.967001
+      ],
+      "error_mm": 8.81191874905823
+    },
+    {
+      "ref": "H101",
+      "pad": "1",
+      "pad_index": 0,
+      "f4a_xy_mm": [
+        39.9791,
+        29.366999
+      ],
+      "native_xy_mm": [
+        31.2209,
+        33.367001
+      ],
+      "error_mm": 9.62839982759358
+    },
+    {
+      "ref": "H101",
+      "pad": "2",
+      "pad_index": 1,
+      "f4a_xy_mm": [
+        39.9791,
+        31.367
+      ],
+      "native_xy_mm": [
+        31.2209,
+        31.367
+      ],
+      "error_mm": 8.758200000000002
+    },
+    {
+      "ref": "H101",
+      "pad": "3",
+      "pad_index": 2,
+      "f4a_xy_mm": [
+        39.9791,
+        33.367001
+      ],
+      "native_xy_mm": [
+        31.2209,
+        29.366999
+      ],
+      "error_mm": 9.62839982759358
+    },
+    {
+      "ref": "H101",
+      "pad": "4",
+      "pad_index": 3,
+      "f4a_xy_mm": [
+        35.829100000000004,
+        26.967001
+      ],
+      "native_xy_mm": [
+        35.3709,
+        35.766999
+      ],
+      "error_mm": 8.811918749058231
+    },
+    {
+      "ref": "H101",
+      "pad": "5",
+      "pad_index": 4,
+      "f4a_xy_mm": [
+        35.829100000000004,
+        35.766999
+      ],
+      "native_xy_mm": [
+        35.3709,
+        26.967001
+      ],
+      "error_mm": 8.811918749058231
+    },
+    {
+      "ref": "H220",
+      "pad": "2",
+      "pad_index": 1,
+      "f4a_xy_mm": [
+        217.9,
+        32.1
+      ],
+      "native_xy_mm": [
+        222.98,
+        32.1
+      ],
+      "error_mm": 5.079999999999984
+    },
+    {
+      "ref": "H220",
+      "pad": "3",
+      "pad_index": 2,
+      "f4a_xy_mm": [
+        220.44,
+        34.64
+      ],
+      "native_xy_mm": [
+        220.44,
+        29.56
+      ],
+      "error_mm": 5.080000000000002
+    },
+    {
+      "ref": "H220",
+      "pad": "4",
+      "pad_index": 3,
+      "f4a_xy_mm": [
+        217.9,
+        34.64
+      ],
+      "native_xy_mm": [
+        222.98,
+        29.56
+      ],
+      "error_mm": 7.184204896855313
+    }
+  ],
+  "filled_front_courtyard_count": 252,
+  "missing_front_courtyard_refs": [
+    "MH3",
+    "MH1",
+    "MH4",
+    "MH2"
+  ],
+  "sites": {
+    "ADD_A": {
+      "xy_mm": [
+        120.0,
+        120.0
+      ],
+      "screen_diameter_mm": 8.0,
+      "all_pad_objects": {
+        "ref": "H901",
+        "pad": "",
+        "pad_index": 1,
+        "gap_mm": 8.431315156582592
+      },
+      "copper_only": {
+        "ref": "H901",
+        "pad": "6",
+        "pad_index": 7,
+        "gap_mm": 9.45827583359439
+      },
+      "filled_FCourtyard": {
+        "ref": "H901",
+        "gap_mm": 6.161557,
+        "centre_inside": false
+      }
+    },
+    "ADD_B": {
+      "xy_mm": [
+        150.0,
+        50.0
+      ],
+      "screen_diameter_mm": 8.0,
+      "all_pad_objects": {
+        "ref": "R203",
+        "pad": "1",
+        "pad_index": 0,
+        "gap_mm": 2.859249289623955
+      },
+      "copper_only": {
+        "ref": "R203",
+        "pad": "1",
+        "pad_index": 0,
+        "gap_mm": 2.859249289623955
+      },
+      "filled_FCourtyard": {
+        "ref": "R203",
+        "gap_mm": 2.5748689999999996,
+        "centre_inside": false
+      }
+    },
+    "TE_LEFT": {
+      "xy_mm": [
+        143.0,
+        144.0
+      ],
+      "screen_diameter_mm": 9.5,
+      "all_pad_objects": {
+        "ref": "C905",
+        "pad": "1",
+        "pad_index": 0,
+        "gap_mm": 2.744839306115794
+      },
+      "copper_only": {
+        "ref": "C905",
+        "pad": "1",
+        "pad_index": 0,
+        "gap_mm": 2.744839306115794
+      },
+      "filled_FCourtyard": {
+        "ref": "C905",
+        "gap_mm": 2.6449999999999996,
+        "centre_inside": false
+      }
+    },
+    "TE_RIGHT": {
+      "xy_mm": [
+        189.0,
+        124.0
+      ],
+      "screen_diameter_mm": 9.5,
+      "all_pad_objects": {
+        "ref": "C90010",
+        "pad": "2",
+        "pad_index": 1,
+        "gap_mm": 2.36339870418853
+      },
+      "copper_only": {
+        "ref": "C90010",
+        "pad": "2",
+        "pad_index": 1,
+        "gap_mm": 2.36339870418853
+      },
+      "filled_FCourtyard": {
+        "ref": "C90010",
+        "gap_mm": 0.7241520000000001,
+        "centre_inside": false
+      }
+    },
+    "TE_FRONT": {
+      "xy_mm": [
+        165.0,
+        104.0
+      ],
+      "screen_diameter_mm": 9.5,
+      "all_pad_objects": {
+        "ref": "U501",
+        "pad": "8",
+        "pad_index": 7,
+        "gap_mm": 1.054759673975986
+      },
+      "copper_only": {
+        "ref": "U501",
+        "pad": "8",
+        "pad_index": 7,
+        "gap_mm": 1.054759673975986
+      },
+      "filled_FCourtyard": {
+        "ref": "U501",
+        "gap_mm": 0.763007,
+        "centre_inside": false
+      }
+    }
+  },
+  "limitations": [
+    "Circumscribed pad-size circles, not exact pad-edge DRC",
+    "F.CrtYd only, native cache, not complete body/tool/plug geometry",
+    "No new holes, copper zones, footprints or governance changes",
+    "No independent Git-state verification; baseline PCB bytes hash-verified"
+  ]
+}

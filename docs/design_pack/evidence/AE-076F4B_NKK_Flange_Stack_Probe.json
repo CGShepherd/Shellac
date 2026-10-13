@@ -1,0 +1,131 @@
+{
+  "status": "NOMINAL_NKK_DATUM_INTERFERENCE_CONFIRMED_NOT_FULL_ASSEMBLY",
+  "freecad_version": [
+    "1",
+    "0",
+    "2",
+    "39319 (Git)",
+    "https://github.com/FreeCAD/FreeCAD",
+    "2025/08/05 20:19:07",
+    "(HEAD detached at 1.0.2)",
+    "256fc7eff3379911ab5daf88e10182c509aa8052"
+  ],
+  "models": {
+    "NR01105ANG13-2A.stp": {
+      "seat_y_mm": -9.992000000000012,
+      "bearing_face_count": 4,
+      "bearing_face_area_each_mm2": [
+        0.6133711969359809,
+        0.6133711969360128,
+        0.6133711969360139,
+        0.6133711969360139
+      ],
+      "flange_top_y_mm": 2.3080000000000083,
+      "flange_diameter_mm": 16.000000000000007,
+      "knob_top_y_mm": 11.808000000000005,
+      "terminal_tip_y_mm": -13.494199999999996,
+      "sha256": "ede38fcc6f51791ed8f7f5ed2f524df8f6ef7ce1a19778bad2c52d4b380f84cd"
+    },
+    "NR01105ANG13-2C.stp": {
+      "seat_y_mm": -9.992000000000012,
+      "bearing_face_count": 4,
+      "bearing_face_area_each_mm2": [
+        0.6133711969359809,
+        0.6133711969360128,
+        0.6133711969360139,
+        0.6133711969360139
+      ],
+      "flange_top_y_mm": 2.3080000000000083,
+      "flange_diameter_mm": 16.000000000000007,
+      "knob_top_y_mm": 11.808000000000005,
+      "terminal_tip_y_mm": -13.494199999999996,
+      "sha256": "29fecfb6c2b523e49884b4cfcbcbd633b32d0f55a27d15718e3dadca09ceb678"
+    }
+  },
+  "depth_sensitivity": [
+    {
+      "model": "NR01105ANG13-2A.stp",
+      "pcb_to_lid_mm": 12.252512,
+      "flange_gap_mm": -0.04748800000002085,
+      "overlap_mm3": 3.813244051426287
+    },
+    {
+      "model": "NR01105ANG13-2A.stp",
+      "pcb_to_lid_mm": 12.3,
+      "flange_gap_mm": -1.9539925233402755e-14,
+      "overlap_mm3": 0.0
+    },
+    {
+      "model": "NR01105ANG13-2A.stp",
+      "pcb_to_lid_mm": 12.4,
+      "flange_gap_mm": 0.0999999999999801,
+      "overlap_mm3": 0.0
+    },
+    {
+      "model": "NR01105ANG13-2A.stp",
+      "pcb_to_lid_mm": 12.55,
+      "flange_gap_mm": 0.24999999999998046,
+      "overlap_mm3": 0.0
+    },
+    {
+      "model": "NR01105ANG13-2A.stp",
+      "pcb_to_lid_mm": 12.8,
+      "flange_gap_mm": 0.49999999999998046,
+      "overlap_mm3": 0.0
+    },
+    {
+      "model": "NR01105ANG13-2C.stp",
+      "pcb_to_lid_mm": 12.252512,
+      "flange_gap_mm": -0.04748800000002085,
+      "overlap_mm3": 3.813244051426287
+    },
+    {
+      "model": "NR01105ANG13-2C.stp",
+      "pcb_to_lid_mm": 12.3,
+      "flange_gap_mm": -1.9539925233402755e-14,
+      "overlap_mm3": 0.0
+    },
+    {
+      "model": "NR01105ANG13-2C.stp",
+      "pcb_to_lid_mm": 12.4,
+      "flange_gap_mm": 0.0999999999999801,
+      "overlap_mm3": 0.0
+    },
+    {
+      "model": "NR01105ANG13-2C.stp",
+      "pcb_to_lid_mm": 12.55,
+      "flange_gap_mm": 0.24999999999998046,
+      "overlap_mm3": 0.0
+    },
+    {
+      "model": "NR01105ANG13-2C.stp",
+      "pcb_to_lid_mm": 12.8,
+      "flange_gap_mm": 0.49999999999998046,
+      "overlap_mm3": 0.0
+    }
+  ],
+  "panel_coupon_mm": [
+    30,
+    30,
+    2
+  ],
+  "test_aperture_diameter_mm": 12.4,
+  "aperture_status": "test assumption, not approved panel cutout",
+  "current_stack": {
+    "carrier_support_face_depth_mm": 31.852512,
+    "pcb_spacer_mm": 18,
+    "board_finished_thickness_mm": 1.6,
+    "pcb_BCu_depth_mm": 12.252512
+  },
+  "bearing_datum_evidence": "four native STEP bracket bearing faces at Y=-9.992; nominal drawing body/seat dimension 10.5 agrees with front face Y=0.508",
+  "nominal_flange_height_above_PCB_mm": 12.3,
+  "candidate_relationship": "nominal_flange_gap_mm = 17.952512 - PCB_spacer_mm; TE pillar = PCB spacer + 10 mm only while preserving current relative TE stack",
+  "zero_gap_is_not_acceptance": true,
+  "step_roundtrip_solids": 5,
+  "step_sha256": "beb0f066e0dd66bfc1b668d25e9d3010c80c887af638045153a667f0e2645ffb",
+  "limitations": [
+    "nominal models, not manufacturer tolerance bounds",
+    "panel coupon, not seven-control lid-motion or populated assembly qualification",
+    "no spacer, panel or board edit authorised by this result"
+  ]
+}
