@@ -9,7 +9,12 @@ def test_ae076f1f_continuity_tracks_real_pcb_not_phantom_switches():
     evidence = (ROOT / "docs/design_pack/AE-076F1F_Native_Control_and_Mechanical_Evidence_Rev_A0.md").read_text(encoding="utf-8")
     assert "24899753d05597aedd7a2ced6a482e6e1001c705" in state
     assert "AE-076F1E" in state
-    assert "- Current transaction state: AE076F1F_EVIDENCE_RECONCILED_PHYSICAL_QUALIFICATION_HELD" in state
+    # F1F remains historical native-PCB evidence, not a perpetual current state.
+    assert "AE-076F1F" in state
+    current = [line for line in state.splitlines()
+               if line.startswith("- Current transaction state: ")]
+    assert len(current) == 1
+    assert "AE076F1F_EVIDENCE_RECONCILED_PHYSICAL_QUALIFICATION_HELD" not in current[0]
     assert "- Historical transaction state: AE076E_B_PROMOTED_AE076F_QUALIFICATION_AND_MCAD_HELD" in state
     assert "Routing: HELD" in state
     assert "Manufacturing release: FALSE" in state
