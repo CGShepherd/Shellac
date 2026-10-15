@@ -104,6 +104,22 @@ decisions:
       channel_matrix: TE/Alcoswitch MRJE3404 / 1825537-3 is the single selected SW903 production matrix part under AE-076F4C; C&K A30403RNCB is superseded historical part evidence only; TE physical implementation is OPEN.
       mute_rumble: C&K 7201SYCBE.
       note: 'AE-068 qualifies RUN05 steady-state matrix behaviour and AE-075C freezes exact control MPNs. AE-076B supersedes the AE-075D/E/F four-local-control-board/carrier ownership architecture: one main audio PCB carries all seven controls directly and forms a removable service module with the upper cover; six PCB-to-cover supports are selected in principle and control inter-board harnesses are not selected. Historical AE-075D/E/F remain provenance. SR-040/AE-071B MH1-MH4 native geometry is interim physical CAD pending current AE-076B2C/AE-076C mechanical and native-model closure. C&K/NKK stack, support XY/Z/tolerances, exact footprints/3D envelopes, control XY/apertures, RUN10 and physical migration remain open. RUN12 switching and bench qualification remain open.'
+  AE-076F4T:
+    title: Seven-control physical mounting method selection (manufacturing qualification open)
+    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    primary_record: docs/design_pack/AE-076F4T_Switch_Mounting_Selection_Rev_A0.md
+    selected_controls: FOUR_NKK_AT3009_PCB_MOUNTED_TWO_CK_7201SYCBE_DIRECT_KEYED_PANEL_NUTS_ONE_TE_MRJE3404_INDEPENDENT_THREE_PILLAR_PLATE
+    selected_next_pcb: 220x148mm_17mm_six_PCB_spacers_UNIMPLEMENTED
+    matrix_mount: SEPARATE_1p5mm_ALUMINIUM_PLATE_THREE_INDEPENDENT_PILLARS
+    rejected_development_options: TE_TOPHAT_DIRECT_TWO_NUT_LID_CK_TOPHAT_EXTENDED_SHARED_TE_TOGGLE_BRACKET
+    existing_mechanical_authority: AE-076B_SIX_PCB_TO_UPPER_COVER_SUPPORTS_UNCHANGED
+    evidence: AE-076F4B_AE-076F4I_AE-076F4L_AE-076F4M_AE-076F4P_AE-076F4R
+    physical_qualification: TE_RETAINER_CK_NUT_TOLERANCE_NKK_FLANGE_STACK_G1_CARRIER_PANEL_HANDING_HARNESS_FOOTPRINT_DRC_OPEN
+    routing: HELD
+    layout_freeze: false
+    bom_freeze: false
+    manufacturing_release: false
+    pdr_cdr_release: false
   AE-076F4C:
     title: TE MRJE3404 single production channel-matrix switch supersedes C&K rotary
     status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
