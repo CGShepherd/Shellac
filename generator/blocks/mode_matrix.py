@@ -8,7 +8,7 @@ from generator.model.mode_matrix import BUFFER_GAIN, DESIGN_OUTPUT_RMS_V, INPUT_
 
 def _mode_switch(ref: str, at: Point) -> Component:
     return Component(ref=ref, lib_id="ProjectShellac:Mode_Switch_Block",
-        value="MODE 3P4T — A30403RNCB", at=at, footprint="",
+        value="MODE 3P4T — MRJE3404", at=at, footprint="",
         fields={"Function":"DUAL L / STEREO / L+R / DUAL R","Type":SWITCH_TYPE,
             "Pole A":"Left output: L / L / MONO_AVG / R",
             "Pole B":"Right output: L / R / MONO_AVG / R",

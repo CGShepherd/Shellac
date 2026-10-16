@@ -42,3 +42,20 @@ def test_f4c_no_unintended_release_or_native_change():
     mech = load("config/mechanical/ae076b_control_service_module.yaml")
     assert mech["selected_architecture"]["aluminium_carrier"] == "NOT_SELECTED"
     assert mech["permissions"]["native_pcb_mechanical_migration"] is False
+
+def test_f4w_sch105_live_generator_identity_no_historical_fallback():
+    from generator.model.mode_matrix import (
+        SWITCH_TYPE, SWITCH_PREFERRED_MPN, SWITCH_FALLBACK_MPN,
+    )
+    from generator.blocks.mode_matrix import _mode_switch
+    from generator.core.geometry import Point
+
+    assert SWITCH_TYPE == "TE/Alcoswitch MRJE3404 3P4T break-before-make"
+    assert SWITCH_PREFERRED_MPN == "MRJE3404"
+    assert SWITCH_FALLBACK_MPN is None
+    sw = _mode_switch("SW501", Point(215.0, 150.0))
+    assert sw.value == "MODE 3P4T — MRJE3404"
+    assert sw.fields["Type"] == SWITCH_TYPE
+    # No phantom physical switch is allowed before the numbered-pin migration.
+    assert sw.on_board is False
+    assert sw.footprint == ""

@@ -23,9 +23,9 @@ class ChannelMode(str, Enum):
     DUAL_RIGHT = "dual_right"
 
 DESIGN_STATUS = ModeMatrixStatus.QUALIFICATION_OPEN
-SWITCH_TYPE = "C&K A30403RNCB 3P4T break-before-make"
-SWITCH_PREFERRED_MPN = "A30403RNCB"
-SWITCH_FALLBACK_MPN = "TE/Alcoswitch MRJE3404"
+SWITCH_TYPE = "TE/Alcoswitch MRJE3404 3P4T break-before-make"
+SWITCH_PREFERRED_MPN = "MRJE3404"
+SWITCH_FALLBACK_MPN = None
 OPAMP = "OPA1656"
 SUM_RESISTOR_OHM = 4_700.0
 SUM_RESISTOR_TOLERANCE_PERCENT = 0.1
@@ -93,7 +93,7 @@ def resistor_noise_nv_per_rt_hz(resistance_ohm: float, temperature_k: float = 30
 
 def validate_mode_matrix() -> None:
     assert DESIGN_STATUS is ModeMatrixStatus.QUALIFICATION_OPEN
-    assert SWITCH_TYPE.startswith("C&K A30403RNCB")
+    assert SWITCH_TYPE.startswith("TE/Alcoswitch MRJE3404")
     assert [row.mode for row in MODE_TABLE] == [
         ChannelMode.DUAL_LEFT, ChannelMode.STEREO,
         ChannelMode.MONO_SUM, ChannelMode.DUAL_RIGHT,
