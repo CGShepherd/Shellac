@@ -14,6 +14,13 @@ If this project is opened in Codex or ChatGPT Work, stop project engineering act
 
 Normal ChatGPT may analyse evidence, use connected tools within the user's request, and prepare bounded, fail-closed scripts or patches for the user to run. Preserve controlled design authority and release holds. This interaction policy is a written instruction, not an app-enforced access control.
 
+## AE-076F5U - active local workspace (26 October 2026)
+
+- **Administrative workspace cutover:** `C:\Engineering\Shellac` is the sole normal active checkout following the governed AE-076F5U commit/push. Use `C:\Engineering\Shellac\.venv\Scripts\python.exe`; GitHub `CGShepherd/Shellac` remains the promoted source authority.
+- The previous Dropbox checkout `C:\Users\chris\Dropbox\000_Projects\000_Audio\Shellac` is retained unchanged as a **procedurally read-only rollback reference**, not a second active engineering location. No old-repository rename, deletion, reset or merger is authorised.
+- F5P/F5Q/F5R-FIX1/F5S/F5T verified KiCad10 connectivity/3D, generator, local Git checkout, 771 tests and recovered assets. Refer to `docs/maintenance/AE-076F5U_Active_Engineering_Workspace_Cutover_Rev_A0.md` for scope, exact evidence and rollback.
+- **Holds unchanged:** KiCad9 library/model variables remain in native source; retain KiCad9 installed pending governed migration. Existing ERC14, DRC336, 432 unconnected, physical-switch, 220 x 148 candidate, routing/fabrication and BOM release holds remain. New-location cloud backup/restoration required before retiring Dropbox rollback.
+
 ## Current selected-next mechanical mounting — AE-076F4T (15 October 2026)
 
 - User approved the seven-switch *mounting-method* downselect; native implementation and physical acceptance remain OPEN. TE MRJE3404 / 1825537-3 returns to separate 1.5 mm aluminium plate on three independent pillars; no TE lid nut or custom top-hat. Four NKK NR01105ANG13 -2A/-2C retain standard AT3009 flanged knobs, fully seated PCB mounting. Both C&K 7201SYCBE toggles retain a directly profiled inward-keyed Metcase cover opening and individually adjusted lower/upper retaining nuts; no extra toggle bracket or custom top-hat. Do not reopen these alternatives without contradictory evidence and a new decision.
