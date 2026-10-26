@@ -58,7 +58,7 @@ def _native_footprint(text, ref):
 def test_native_pcb_exact_ae076eb_migration_and_model_bindings():
     import re
     digest = hashlib.sha256(BOARD.read_bytes()).hexdigest()
-    assert digest == "a5b519a21a2bbe2c9f3ad751134d43292a5b32184487100512ab045b6258861c"
+    assert digest == "6824b2c311173046e0fd8ec782d8a61ba017ca2cc359cc7a17179252b28f81a2"
     text = BOARD.read_text(encoding="utf-8")
     assert text.count('(footprint "') == 256
     assert text.count('(segment ') == 0 and text.count('(via ') == 0

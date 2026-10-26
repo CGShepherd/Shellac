@@ -110,7 +110,7 @@ def test_generated_project_has_local_symbol_and_footprint_tables(tmp_path: Path)
     custom_library = (tmp_path / "ProjectShellac.kicad_sym").read_text(encoding="utf-8")
     assert '${KIPRJMOD}/Device.kicad_sym' in symbol_table
     assert '${KIPRJMOD}/ProjectShellac.kicad_sym' in symbol_table
-    assert '${KICAD9_FOOTPRINT_DIR}/Package_SO.pretty' in footprint_table
+    assert '${KICAD10_FOOTPRINT_DIR}/Package_SO.pretty' in footprint_table
     assert '(symbol "OpAmp_NonInv_Block" ' in custom_library
     assert '(symbol "DIP_Switch_Block" ' in custom_library
     assert '(symbol "R" ' in (tmp_path / "Device.kicad_sym").read_text(encoding="utf-8")

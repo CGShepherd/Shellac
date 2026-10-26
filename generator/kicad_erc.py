@@ -19,11 +19,11 @@ def find_kicad_cli() -> Path:
     if discovered:
         return Path(discovered)
     program_files = Path(os.environ.get("ProgramFiles", r"C:\Program Files"))
-    candidate = program_files / "KiCad" / "9.0" / "bin" / "kicad-cli.exe"
+    candidate = program_files / "KiCad" / "10.0" / "bin" / "kicad-cli.exe"
     if candidate.exists():
         return candidate
     raise FileNotFoundError(
-        "KiCad 9 command-line tools were not found. Add kicad-cli to PATH or install KiCad 9."
+        "KiCad 10 command-line tools were not found. Add kicad-cli to PATH or install KiCad 10."
     )
 
 

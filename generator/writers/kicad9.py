@@ -328,7 +328,7 @@ def write_project_library_tables(out_dir):
         "Resistor_SMD", "TestPoint",
     )
     rows = "\n".join(
-        f'  (lib (name "{name}")(type "KiCad")(uri "${{KICAD9_FOOTPRINT_DIR}}/{name}.pretty")(options "")(descr ""))'
+        f'  (lib (name "{name}")(type "KiCad")(uri "${{KICAD10_FOOTPRINT_DIR}}/{name}.pretty")(options "")(descr ""))'
         for name in footprint_libraries
     )
     rows += (

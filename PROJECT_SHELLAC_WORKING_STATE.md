@@ -14,6 +14,12 @@ If this project is opened in Codex or ChatGPT Work, stop project engineering act
 
 Normal ChatGPT may analyse evidence, use connected tools within the user's request, and prepare bounded, fail-closed scripts or patches for the user to run. Preserve controlled design authority and release holds. This interaction policy is a written instruction, not an app-enforced access control.
 
+## AE-076F5Y - KiCad 10 toolchain migration (26 October 2026)
+
+- **Qualified selected toolchain:** KiCad 10.0.7 with version-specific CLI fallback, generator footprint paths and 197 native PCB 3D-model paths; three project STEP references unchanged. Historical `kicad9.py` module name retained.
+- **Scope:** five exactly reviewed implementation/regression files plus `docs/maintenance/AE-076F5Y_KiCad_10_Native_Configuration_Migration_Rev_A0.md` and this non-authoritative index. Isolated candidate 771 tests passed, authority audit PASS, KiCad10 ERC/DRC class and STEP topology unchanged.
+- **Holds preserved:** 14 ERC findings, 336 DRC findings plus 432 unconnected items, all selected-next mechanical controls/PCB 220x148, routing/fab/BOM and PDR/CDR holds. KiCad9 stays installed until separate dependency review; FreeCAD–KiCad integration remains deferred.
+
 ## AE-076F5U - active local workspace (26 October 2026)
 
 - **Administrative workspace cutover:** `C:\Engineering\Shellac` is the sole normal active checkout following the governed AE-076F5U commit/push. Use `C:\Engineering\Shellac\.venv\Scripts\python.exe`; GitHub `CGShepherd/Shellac` remains the promoted source authority.
