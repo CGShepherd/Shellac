@@ -106,7 +106,7 @@ def render(repo: Path):
         "",
         "## Recommended execution order",
         "",
-        "1. Perform controlled personality-interface and native-model migration; prove exact H901/C30060/C35060 zero-missing-model PCB STEP.",
+        "1. Retain the AE-076E-B H120/H220 and H901/C30060/C35060 native implementation evidence; qualify exact mated personality hardware, seven-control PCB geometry and full assembly MCAD.",
         "2. Execute design-driving RUN08-RUN14 work against the AE-076D current qualification delta; close any resulting schematic/component changes.",
         "3. Complete exact control/personality CAD, six-support stack and full chassis/service digital mock-up.",
         "4. Freeze bounded four-layer fabrication stack, quantitative DRC/netclasses and instantiate/audit the In1 0VA plane.",
@@ -118,7 +118,7 @@ def render(repo: Path):
         "## Interpretation",
         "",
         "Shellac remains on HOLD before routing release.",
-        "The critical path is personality/native migration -> RUN08-RUN14 design-driving assurance under the AE-076D current qualification delta -> mechanical integration -> independent review -> routing release.",
+        "The critical path is RUN08-RUN14 design-driving assurance under AE-076D, exact personality/control hardware and integrated MCAD qualification, bounded PCB stack and independent review before any routing release.",
         "",
     ]
     return "\n".join(lines), missing, grayhill

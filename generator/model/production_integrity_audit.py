@@ -27,7 +27,7 @@ FINDINGS=(
  Finding('AE071-F05','P1','EMC-interface','XLR pin-1 local chassis termination is not yet represented as controlled physical implementation','CLOSED',False,'AE-075B controls exact Neutrik connectors with pin 1 and shell/front-panel contact locally bonded to CHASSIS and no connector-local 0VA bond.'),
  Finding('AE071-F06','P1','low-level-interconnect','cartridge input harness contact system requires low-level signal suitability review','CLOSED',False,'AE-075-B07 selects and natively validates Molex Micro-Lock Plus 5055780321 / 5055700301 / 5055721200 with controlled CHASSIS/HOT/COLD pin contract.'),
  Finding('AE071-F07','P1','simulation-model','THAT1646 output impedance model semantics require 25-ohm-per-leg / 50-ohm-balanced correction before RUN08','CLOSED',False,'AE-075G corrects live semantics to 25 ohm per leg / 50 ohm differential and records AE071-S01 RESOLVED.'),
- Finding('AE071-F08','P1','SCH101-service-hardware','gain-shunt physical pairing/orientation plus selected-next per-channel personality-interface CAD/migration/parasitic correlation remain open','OPEN',True),)
+ Finding('AE071-F08','P1','SCH101-service-hardware','gain-shunt physical pairing/orientation and exact mated personality-card CAD/parasitic correlation remain open; H120/H220 source/native migration is complete','OPEN',True),)
 CLOSED_IDS={'AE036-F01','AE036-F02','AE036-F03','AE036-F04','AE036-F06','AE036-F07','AE036-F08','AE071-F01','AE071-F02','AE071-F04','AE071-F05','AE071-F06','AE071-F07'}
 OPEN_IDS={'AE036-F05','AE036-F09','AE036-F10','AE036-F11','AE036-F12','AE036-F13','AE071-F03','AE071-F08'}
 ROUTING_BLOCKER_IDS={'AE036-F05','AE071-F03','AE071-F08'}
