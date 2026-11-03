@@ -35,9 +35,21 @@ def test_power_harness_is_mechanically_distinct_and_keyed():
     assert len(power) == 1
     harness = power[0]
     assert harness.connector_family is ConnectorFamily.MINI_FIT_JR
-    assert harness.ways == 5
-    assert all(pin.populated for pin in harness.pins)
-    assert {p.signal for p in harness.pins if p.populated} >= {"+17V", "0VA", "-17V", "CHASSIS"}
+    assert harness.ways == 6
+    assert len(harness.pins) == 6
+    assert [
+        (p.position, p.signal, p.colour, p.populated)
+        for p in harness.pins
+    ] == [
+        (1, "0VA", "black", True),
+        (2, "+17VA_IN", "red", True),
+        (3, "-17VA_IN", "blue", True),
+        (4, "CHASSIS", "green/yellow", True),
+        (5, "RESERVED", "unpopulated", False),
+        (6, "NC", "unpopulated", False),
+    ]
+    assert [p.position for p in harness.pins if p.populated] == [1, 2, 3, 4]
+    assert [p.position for p in harness.pins if not p.populated] == [5, 6]
 
 
 def test_panel_connector_eco_is_closed():
