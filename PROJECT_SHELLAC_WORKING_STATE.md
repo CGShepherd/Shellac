@@ -1,5 +1,50 @@
 # Project Shellac — Persistent Working State
 
+## CURRENT — F7G-D working-state reconciliation, 3 November 2026
+
+**Authority:** NON-AUTHORITATIVE execution index. Current decision/configuration authority and live governed source take precedence. Historical sections below remain provenance, not current execution instructions.
+
+### Governed source and evidence
+
+- Active checkout: `C:\Engineering\Shellac`; previous Dropbox checkout is a procedurally read-only rollback reference.
+- Governed `develop` HEAD and independently verified `origin/develop`: `fb273fff59b3e082163d2501ec5a10bebb544a34`.
+- F7F correction committed and pushed, with clean working tree verified at F7F-E4.
+- F7F-D complete regression: 771 passed, zero failed.
+- F7F-E3 established decision/configuration authority audit: PASS.
+- No PCB, schematic, physical harness, panel, enclosure, routing or fabrication release resulted from F7F.
+
+### Electrical and harness interfaces
+
+- Regulated rails: +17 V, 0VA, -17 V.
+- Preserve R909 0R as the sole intended 0VA-to-CHASSIS bond.
+- Five-pole Neutrik DC panel interface: pin 1 0VA; pin 2 +17 V; pin 3 -17 V; pin 4 CHASSIS; pin 5 reserved. Do not bond panel pin 1 to connector shell.
+- Separate six-position Molex Mini-Fit Jr. PCB header H901: pin 1 0VA (black AWG18); pin 2 +17VA_IN (red AWG18); pin 3 -17VA_IN (blue AWG18); pin 4 CHASSIS (green/yellow AWG18); pins 5 and 6 unpopulated in mating loom.
+- F7E FIX2 authentic native pad/net mapping and F7F governed generator/test correction establish this PCB-side contract. They do not establish completed cable continuity, polarisation, approved mating housing/crimps, strain relief or external PSU polarity.
+- F6Z nominal populated-body H901/R909 clearance approximately 5.768 mm with zero solid intersection, not mated-harness qualification; leave R909 at its governed location.
+
+### Mechanical authority and selected-next concept
+
+- Current controlled primary PCB support architecture remains AE-076B: six PCB-to-removable-upper-cover supports. This has NOT been superseded.
+- AE-076F4T selected-next concept: independent reinforced Metcase G1 rail carrier; six 17 mm M3 PCB supports; proposed 220 x 148 mm PCB; independent 1.5 mm TE three-arm plate supported by three pillars. Physical migration, frame retention, PCB holes, geometry tolerances and fabrication acceptance remain OPEN.
+- Earlier F3L 20 mm PCB and 30 mm TE spacer studies and other preliminary pillar XY coordinates remain historical candidate evidence, not the current selected-next geometry.
+- Four NKK NR01105ANG13 switches use AT3009 knobs; two C&K 7201SYCBE toggles use direct keyed-cover/two-nut retention; TE MRJE3404 / 1825537-3 is the selected channel-matrix part. Exact physical switch footprints, hole numbers, seating and complete assembly remain unqualified.
+- The native production PCB has not been changed by the F7F harness correction.
+
+### Release, risk and execution disposition
+
+- Current routing hold: `config/release/ae071_prerouting_hold.yaml`, AE-076D; `final_routing: false`, `layout_freeze: false`, `bom_freeze: false`, `manufacturing_release: false`.
+- Historical SR-039/SR-041/SR-042 release snapshots are explicitly quarantined; historical `ROUTING_RELEASED` does not grant current permission.
+- Pre-fabrication holds include RUN08-RUN14 qualification as applicable, RIAA/input tolerance and noise, exact seven-switch footprint/contact mapping, real G1 carrier and mated connector fit, power harness/crimp/polarity, full four-layer DRC, reviewed routing rules and independent design assurance.
+- One-off build recoverability rules remain governed by `docs/knowledge/ONE_OFF_BUILD_RECOVERABILITY_STANDARD.md`.
+- **Next:** continue F7G root-and-branch requirements/technical-debt reconciliation. Review discrepancies against current decision index and executable source before changing authority. No new layout/routing or fabrication release.
+
+### Historical interpretation rule
+
+The older date-labelled notes, prior Git HEAD claims, early spacer geometries and former critical-path instructions below are preserved as evidence. They must not be used as current instructions without reconciling them against this status, the current decision index and live source.
+
+---
+
+
 **Purpose:** cross-chat continuity and execution index.
 **Authority status:** NON-AUTHORITATIVE SUMMARY. If this file conflicts with controlled current authority, the controlled authority wins and this file must be corrected before further major work.
 **Refresh rule:** update after every material engineering review, qualification pass, governed transaction, commit/push, or change to the critical path.
@@ -34,7 +79,7 @@ Normal ChatGPT may analyse evidence, use connected tools within the user's reque
 - Controlled AE-076B legacy SIX PCB-TO-UPPER-COVER primary support authority is NOT superseded. AE-076F4B four-NKK flange positive worst-case clearance continues. Mandatory CLOSE_BEFORE_FAB: actual TE bearing/nut/plate assembly and fastening, C&K inner-key panel detail and upper/lower nut/short pin no-preload tolerance, all seven shaft/panel handedness and service lid motion, retained G1 carrier/end stops and connector harness, numbered/mirrored switch footprints and native four-layer DRC/fab acceptance. No routing/layout/BOM/fabrication/PDR/CDR release.
 - AE-076F4T selected-next choice record: `docs/design_pack/AE-076F4T_Switch_Mounting_Selection_Rev_A0.md`, indexed as `CURRENT_SELECTED_PENDING_IMPLEMENTATION`. Source Git HEAD on entry: `450ed541d2ab58cd73671df245c8ff071116c236`; verify resulting promotion commit and push separately. Staged F4R evidence remains informational.
 
-## Latest continuation note - 13 October 2026
+## Historical continuation note - 13 October 2026
 
 - **AE-076F4C published selection (13 October 2026):** `develop` HEAD/origin `3ed361dbe90c7ca0c401a1ab8aa4f82ae3f0c3c8`; TE Connectivity/Alcoswitch MRJE3404 / 1825537-3 is the sole current Channel Matrix SW903 part, and C&K A30403RNCB is superseded historical evidence only (NO selected fallback). The 3P4T BBM truth table is unchanged. Exact indexed physical terminal-to-net mapping, separate three-pillar plate, shaft/knob, tolerance stack, PCB holes, RUN10/RUN12 and full MCAD remain CLOSE_BEFORE_FAB. Six upper-cover PCB supports remain the governed architecture until a separate deliberate supersession. ROUTING HELD; layout/BOM/manufacturing freeze and release FALSE. Parent `482c7bb37eb8ccaf3e23d80f6871885bc6273bad`.
 
@@ -53,7 +98,7 @@ This note records conversation continuity; it does not promote design authority 
 - Routing HELD; layout freeze, BOM freeze and manufacturing release FALSE. No PDR/CDR completion or release is claimed.
 - Engineering stopped for the user's normal-chat handoff. This administrative update changed only PROJECT_GUIDANCE.md and PROJECT_SHELLAC_WORKING_STATE.md. An additional AGENTS.md stop instruction was prepared, but creating it in the repository was denied by the filesystem; it is not installed. No commit or push was performed. Review these intentional documentation changes during the next governed preflight; do not discard or absorb them as unrelated changes. Current Git cleanliness was not verified during this handoff.
 
-## 1. Repository baseline
+## 1. Historical repository baseline (13 October 2026)
 
 - Branch: `develop`
 - Last independently verified governed HEAD/origin: `3ed361dbe90c7ca0c401a1ab8aa4f82ae3f0c3c8` (AE-076F4C), published 13 October 2026 after local compilation/770-test promotion reported PASS and a successful fast-forward push/postcheck. Earlier AE-076F3N and AE-076F1F commits are provenance only.
@@ -69,7 +114,7 @@ This note records conversation continuity; it does not promote design authority 
 - BOM freeze: FALSE
 - Manufacturing release: FALSE
 
-## 2. Current design essentials
+## 2. Design essentials and historical candidates (verify current authority)
 
 - Regulated rails: `+17.0 V / 0VA / -17.0 V`.
 - One main audio PCB carries all seven controls directly.
@@ -103,7 +148,7 @@ Where a residual uncertainty could otherwise require board or mechanical respin,
 Controlled standard:
 `docs/knowledge/ONE_OFF_BUILD_RECOVERABILITY_STANDARD.md`
 
-## 4. Current pre-layout critical path
+## 4. Historical pre-layout critical path (superseded as execution order)
 
 1. Verified current published AE-076F4C baseline is `3ed361dbe90c7ca0c401a1ab8aa4f82ae3f0c3c8` on `develop`; TE is the selected matrix part, and the six-upper-cover-support architecture remains current mechanical authority. AE-076F4D drawing review and F3O terminal-site correlation are informational; neither is a numbered pinout/detent qualification or a physical implementation. Historical F3-series analyses remain supporting evidence, not design authority.
 2. Perform bounded preliminary RUN10 design-driving tolerance/parasitic assessment at current `+17.0 V / 0VA / -17.0 V`, especially LT5400/CMRR, gain shunts, Grado 78C cable/loading and H120/H220 service-card parasitics, and SCH103 timing-component source/value choices. This is not full RUN10 closure.
