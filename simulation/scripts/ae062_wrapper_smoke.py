@@ -7,7 +7,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 TMP = ROOT / ".ae062_wrapper_smoke_tmp"
-LTSPICE = Path.home() / "AppData/Local/Programs/ADI/LTspice/LTspice.exe"
+LTSPICE = Path(r"C:\Program Files\ADI\LTspice\LTspice.exe")
+LTSPICE_SHA256 = "3C144A2B3EC6A30BAAC6761C502D99B95AAA40B947FF5ECA25B8FBD80D68AF72"
 LT5400 = Path.home() / "AppData/Local/LTspice/lib/sub/LT5400.lib"
 
 EXPECTED = {
@@ -49,8 +50,8 @@ def run_case(name, deck):
     return ok
 
 def main():
-    if not LTSPICE.exists():
-        print(f"LTspice not found: {LTSPICE}")
+    if not LTSPICE.is_file() or sha256(LTSPICE).upper() != LTSPICE_SHA256:
+        print(f"LTspice missing or SHA256 mismatch: {LTSPICE}")
         return 1
     if not LT5400.exists() or sha256(LT5400) != LT5400_HASH:
         print("Controlled LT5400 installed library missing or hash mismatch.")

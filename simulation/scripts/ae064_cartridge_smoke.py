@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import hashlib
 import math
 import re
 import shutil
@@ -9,7 +10,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 TMP = ROOT / ".ae064_cartridge_smoke_tmp"
-LTSPICE = Path.home() / "AppData/Local/Programs/ADI/LTspice/LTspice.exe"
+LTSPICE = Path(r"C:\Program Files\ADI\LTspice\LTspice.exe")
+LTSPICE_SHA256 = "3C144A2B3EC6A30BAAC6761C502D99B95AAA40B947FF5ECA25B8FBD80D68AF72"
 CARTRIDGES = ROOT / "simulation/models/cartridges"
 
 CASES = {
@@ -39,6 +41,13 @@ CASES = {
 RLOAD = 47400.0
 FREQS = (1000.0, 20000.0)
 REL_TOL = 2e-3
+
+def sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as source:
+        for block in iter(lambda: source.read(1048576), b""):
+            h.update(block)
+    return h.hexdigest()
 
 def expected(vac: float, r: float, l: float, freq: float) -> float:
     z_series = complex(r, 2.0 * math.pi * freq * l)
@@ -126,8 +135,8 @@ RLOAD P N {RLOAD:.12g}
     return ok
 
 def main() -> int:
-    if not LTSPICE.exists():
-        print(f"LTspice not found: {LTSPICE}")
+    if not LTSPICE.is_file() or sha256(LTSPICE).upper() != LTSPICE_SHA256:
+        print(f"LTspice missing or SHA256 mismatch: {LTSPICE}")
         return 1
     missing = [str(c["file"]) for c in CASES.values() if not c["file"].exists()]
     if missing:

@@ -2,7 +2,6 @@ schema_version: 1
 tool: LTspice
 executable_environment_variable: LTSPICE_EXE
 windows_candidates:
-  - C:/Users/chris/AppData/Local/Programs/ADI/LTspice/LTspice.exe
   - C:/Program Files/ADI/LTspice/LTspice.exe
   - C:/Program Files/LTC/LTspiceXVII/XVIIx64.exe
   - C:/Program Files/LTC/LTspiceXVII/XVIIx86.exe

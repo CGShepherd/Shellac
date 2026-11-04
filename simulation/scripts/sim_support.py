@@ -15,7 +15,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 ACQ_CFG = ROOT / "simulation/config/vendor_source_acquisition.yaml"
-LTSPICE = Path.home() / "AppData/Local/Programs/ADI/LTspice/LTspice.exe"
+LTSPICE = Path(r"C:\Program Files\ADI\LTspice\LTspice.exe")
 
 FATAL_TERMS = (
     "fatal error",
@@ -38,7 +38,7 @@ def load_acquisition_config() -> dict:
 
 def validate_ltspice() -> Path:
     cfg = load_acquisition_config()["ltspice"]
-    expected_path = Path.home() / cfg["executable_user_relative_path"]
+    expected_path = Path(cfg["executable"])
     if expected_path != LTSPICE:
         raise RuntimeError(f"LTspice configured path mismatch: {expected_path} != {LTSPICE}")
     if not LTSPICE.is_file():

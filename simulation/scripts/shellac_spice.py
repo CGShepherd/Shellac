@@ -48,6 +48,17 @@ def _git_commit() -> str:
         return "UNKNOWN"
 
 
+def _pinned_ltspice(path: Path) -> Path:
+    approved = load_yaml(SIM / "config" / "vendor_source_acquisition.yaml")["ltspice"]
+    selected = path.resolve()
+    expected = Path(approved["executable"]).resolve()
+    if selected != expected:
+        raise ToolchainError(f"LTspice selected path {selected} differs from pinned {expected}")
+    actual = sha256_file(selected).lower()
+    if actual != str(approved["executable_sha256"]).lower():
+        raise ToolchainError(f"LTspice executable SHA256 mismatch at {selected}")
+    return selected
+
 def find_ltspice() -> Path | None:
     cfg = load_yaml(SIM / "config" / "toolchain.yaml")
     env_name = cfg["executable_environment_variable"]
@@ -55,18 +66,18 @@ def find_ltspice() -> Path | None:
     if env_value:
         path = Path(env_value).expanduser()
         if path.is_file():
-            return path.resolve()
+            return _pinned_ltspice(path.resolve())
         raise ToolchainError(f"{env_name} points to a missing file: {path}")
 
     for candidate in cfg.get("windows_candidates", []):
         path = Path(candidate)
         if path.is_file():
-            return path.resolve()
+            return _pinned_ltspice(path.resolve())
 
     for name in ("LTspice", "LTspice.exe", "XVIIx64.exe", "XVIIx86.exe"):
         found = shutil.which(name)
         if found:
-            return Path(found).resolve()
+            return _pinned_ltspice(Path(found).resolve())
     return None
 
 
@@ -171,6 +182,7 @@ def manifest() -> Path:
         SIM / "config" / "run00.yaml",
         SIM / "config" / "acceptance.yaml",
         SIM / "config" / "toolchain.yaml",
+        SIM / "config" / "vendor_source_acquisition.yaml",
     ])
     entries = []
     for path in paths:

@@ -2,8 +2,8 @@ schema_version: 1
 authority: AE-066
 purpose: Reusable exact-hash acquisition metadata for externally controlled SPICE sources.
 ltspice:
-  executable_user_relative_path: AppData/Local/Programs/ADI/LTspice/LTspice.exe
-  executable_sha256: a94eb1789084db9f46375cce05110e03578f9cdb931867a0faaca5b200793f06
+  executable: 'C:\Program Files\ADI\LTspice\LTspice.exe'
+  executable_sha256: 3c144a2b3ec6a30baac6761c502d99b95aaa40b947ff5eca25b8fbd80d68af72
 
 policy:
   vendor_payloads_committed_to_repository: false

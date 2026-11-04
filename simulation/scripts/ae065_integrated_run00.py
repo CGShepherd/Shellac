@@ -15,7 +15,8 @@ ROOT = Path(__file__).resolve().parents[2]
 TMP = ROOT / ".ae065_integrated_run00_tmp"
 VENDOR = TMP / "vendor"
 RESULT = ROOT / "simulation/results/run00_sanity/ae065_integrated_run00.json"
-LTSPICE = Path.home() / "AppData/Local/Programs/ADI/LTspice/LTspice.exe"
+LTSPICE = Path(r"C:\Program Files\ADI\LTspice\LTspice.exe")
+LTSPICE_SHA256 = "3C144A2B3EC6A30BAAC6761C502D99B95AAA40B947FF5ECA25B8FBD80D68AF72"
 LT5400 = Path.home() / "AppData/Local/LTspice/lib/sub/LT5400.lib"
 
 LT5400_HASH = "f2c8ec58c2573983a8211393f7bcd27792769155b9ecf494ad027155b3e1d553"
@@ -193,8 +194,8 @@ def measure(text: str, name: str) -> float:
     raise RuntimeError(f"missing measurement {name}")
 
 def main() -> int:
-    if not LTSPICE.exists():
-        print(f"ERROR: LTspice not found: {LTSPICE}")
+    if not LTSPICE.is_file() or sha256(LTSPICE).upper() != LTSPICE_SHA256:
+        print(f"ERROR: LTspice missing or SHA256 mismatch: {LTSPICE}")
         return 2
     if not LT5400.exists() or sha256(LT5400) != LT5400_HASH:
         print("ERROR: controlled LT5400 installed library missing/hash mismatch.")
