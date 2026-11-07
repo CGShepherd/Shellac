@@ -1,6 +1,31 @@
 # Project Shellac — Persistent Working State
 
-## CURRENT — F7G-D working-state reconciliation, 3 November 2026
+## CURRENT — AE-076F7G evidence-regression checkpoint, 7 November 2026
+
+**Authority:** NON-AUTHORITATIVE execution index only. Current governed design/configuration/release files take precedence. This entry records a reviewed feature branch, not a promoted design or manufacturing baseline.
+
+### Verified Git and qualification
+
+- GitHub PR **#1** (`AE-076F7G — Integrate nonbinding mechanical evidence regression`) is an **open draft** targeting `develop`; it has **not** been merged. The initially verified feature commit is `e12c1d4150d0bcb681b0b7f8b871604d35f3e757` on `feature/ae076f7g-mechanical-evidence-regression`.
+- Governed `develop` and `origin/develop` were checked at `4274622e34578a9d9d36761b441ec183dc736c3a`, with the Windows governed checkout reported clean. Do not treat this recorded hash as a substitute for a fresh preflight at the next transaction.
+- At commit `e12c1d4`, local isolated-worktree focused pytest **9 passed**, complete pytest **781 passed**; GitHub CI push run **#96** and pull-request run **#97** both passed. Five U1/U2/U3/U4R/U5 historical JSON reports were byte-verified against the staged evidence register on Windows. Ordinary CI does **not** fetch those external reports or rerun FreeCAD.
+- PR #1 initially adds four qualification files only: the nonbinding evidence YAML, a fail-closed provenance validator, nine pytest cases and a design-pack qualification-boundary document. The present documentation-only update to this index requires its own CI verification before merger.
+
+### Mechanical configuration and remaining gates
+
+- Current implemented mechanical authority remains **AE-076B** (six PCB-to-removable-upper-cover supports). Current governed native board is **220 × 140 mm**. The independent Metcase G1 reinforced lower carrier, six **17 mm** PCB spacers, TE three-pillar bracket and **220 × 148 mm** PCB are **selected-next, not implemented or approved for fabrication**.
+- U5 used historical F6H geometry associated with a **228 × 156 mm** study PCB. Its candidate **R3 66 × 48 mm** gain-shunt handwell `(145, 12)–(211, 60)` mm connected W8/W2 and passed the limited native planar/connected-metal/Metcase screen. It remains **NONBINDING**, without demonstrated real pinch-grip service, full-assembly registration, tolerance/structural acceptance or cable retention.
+- Outstanding before a manufacturing baseline: complete correct-board/current-carrier registration; actual seven-switch, cover, support and TE plate stack; native FreeCAD integrated BREP; connector/harness envelopes and strain relief; cable-web/stiffness/fastener assessment; accessible shunt service; governed mechanical architecture supersession; routing/DRC, RUN08–RUN14, hardware evidence and independent design assurance.
+- Governing release file remains `config/release/ae071_prerouting_hold.yaml` (AE-076D): `final_routing=false`, `layout_freeze=false`, `bom_freeze=false`, `manufacturing_release=false`. No native PCB, CAD, panel, mechanical manufacturing, routing or BOM promotion is implied by this record.
+- **Next bounded transaction:** complete PR #1 review and checks, then deliberately merge the regression-only change if approved. After the updated `develop` baseline and this index are reconciled, undertake integrated 220 × 148 mm PCB/carrier/Metcase registration with durable Tier-1 pytest and separate authenticated native FreeCAD Tier-2 qualification.
+
+### Historical interpretation
+
+Sections below are retained for traceability. Earlier `CURRENT` claims, baseline hashes, PCB dimensions and directions become historical when they conflict with this checkpoint or live governed authority.
+
+---
+
+## HISTORICAL — F7G-D working-state reconciliation, 3 November 2026
 
 **Authority:** NON-AUTHORITATIVE execution index. Current decision/configuration authority and live governed source take precedence. Historical sections below remain provenance, not current execution instructions.
 
