@@ -1,0 +1,60 @@
+schema_version: 1
+project: Shellac
+record: F7G-I7C-U5-NONBINDING-EVIDENCE
+classification: NONBINDING_HISTORICAL_SHADOW
+current_mechanical_authority: AE-076B
+current_board:
+  path: out/kicad/ProjectShellac.kicad_pcb
+  sha256: 6824b2c311173046e0fd8ec782d8a61ba017ca2cc359cc7a17179252b28f81a2
+  outline_mm: [220, 140]
+selected_next_board_outline_mm: [220, 148]
+historical_F6H_study_board_outline_mm: [228, 156]
+historical_F6H_step_sha256: 86f02207a1733c725ca9450d9d88bdaaeff7bcc124f980fdccce35490102bf6e
+metcase_step_sha256: 9bf09314db1e8ffb596c27cceecb932141d3e43ba8d5ca4998fd4d16411b91fa
+handover_rev_A20_sha256: 7dad79c80852454cf88baf70c3579468231e7bb854f93ba02792b1ecfff1990b
+study_results:
+  U1:
+    filename: SHELLAC_F7G_I7C_U1_GAIN_SHUNT_ACCESS_NATIVE_READONLY.json
+    sha256: 71bbe591e64aaa3006c5d598b8602b84527ba929ef668888c3ac549f07acf240
+    status: PASS_NOMINAL_CARRIER_APERTURE_SHADOW__FULL_SERVICE_AND_MANUFACTURING_HELD
+  U2:
+    filename: SHELLAC_F7G_I7C_U2_W2_ACCESS_OPTIMISATION_READONLY.json
+    sha256: d0b1517d747471bb6cf7ff4d002cba92f03b0ea8c1fec77988f4db86aad8616e
+    status: PASS_NONBINDING_NATIVE_W2_PATCH_SCREEN__PHYSICAL_SERVICE_HELD
+  U3:
+    filename: SHELLAC_F7G_I7C_U3_NATIVE_COMPONENT_EXTRACTOR_READONLY.json
+    sha256: e1a3df2ea1df450bd0b13c4a315484fa65c510f5bad45f6675e2eb940f7055af
+    status: PASS_NATIVE_IDEALISED_EXTRACTION_SCREEN__REAL_TOOL_AND_SERVICE_HELD
+  U4R:
+    filename: SHELLAC_F7G_I7C_U4R_MANUAL_PLIERS_ACCESS_READONLY.json
+    sha256: 9995a9403462538c621daa92c0fcf25866d7e714a5984a6bee304cb5d01efd5a
+    status: PASS_NATIVE_PLANAR_ACCESS_SCREEN__ACTUAL_FINGER_AND_PLIER_SERVICE_HELD
+  U5:
+    filename: SHELLAC_F7G_I7C_U5_LARGE_FINGER_SERVICE_OPENING_READONLY.json
+    sha256: 60cf9041805fc0b195e701d852381c96cf4774ce81661919f02c028b96ece7d1
+    status: PASS_SINGLE_BROAD_NATIVE_PLANAR_HANDWELL__ACTUAL_HAND_GRIP_STRUCTURAL_AND_FAB_HELD
+U5_historical_candidate:
+  status: PROPOSED_NOT_AUTHORISED_FOR_CAD_OR_FAB
+  R3_new_cut_xy_mm: [145, 12, 211, 60]
+  joined_existing_windows: [W8, W2]
+  additional_removed_area_per_leaf_mm2: 1648.362833
+  projected_26mm_gauges:
+    LOW_P01_CENTRED: CLEAR
+    HIGH_H111_CENTRED: CLEAR
+    PARK_O10_NORTH_APPROACH: CLEAR
+    PARK_O10_CENTRED: BLOCKED
+remaining_qualifications:
+  current_board_to_carrier_registration: OPEN
+  full_switch_support_panel_assembly: OPEN
+  real_hand_grip_and_shunt_service: OPEN
+  harness_restrain_and_W8_W2_merge: OPEN
+  sheet_stiffness_tolerance_and_fasteners: OPEN
+  native_current_design_FreeCAD_BREP_qualification: OPEN
+  physical_and_independent_design_review: OPEN
+  formal_AE076B_supersession: OPEN
+release_claims:
+  native_pcb_mechanical_migration: false
+  final_routing: false
+  layout_freeze: false
+  bom_freeze: false
+  manufacturing_release: false
