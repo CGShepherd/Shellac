@@ -1,6 +1,48 @@
 # Project Shellac — Persistent Working State
 
-## CURRENT — AE-076F7G evidence-regression checkpoint, 7 November 2026
+## CURRENT — F7H engineering-continuity checkpoint, 8 November 2026
+
+**Classification:** NON-AUTHORITATIVE execution index. No design, PCB, CAD or manufacturing promotion.
+
+### Governed baseline and completed integration
+
+- Verified local `C:\Engineering\Shellac` on clean `develop` at pre-checkpoint HEAD `502ea3e916d61dd6eb882895c2d20ab87a8117f8`; matched `origin/develop` at the last local synchronisation.
+- GitHub PR #1 merged into `develop`; merge commit `502ea3e916d61dd6eb882895c2d20ab87a8117f8`. Merge CI run 42394459320 passed.
+- F7G evidence regression installed: five changed files; historical U1–U5 reports remain NONBINDING. Historical source register `config/mechanical/ae076f7g_shunt_access_evidence.yaml`.
+- Current governed KiCad PCB SHA-256 `6824b2c311173046e0fd8ec782d8a61ba017ca2cc359cc7a17179252b28f81a2`; implemented outline 220 x 140 mm, 256 footprint instances, seven switch footprints not yet implemented.
+
+### F7H authenticated model sources
+
+- Metcase `M5502119.stp`: SHA-256 `9bf09314db1e8ffb596c27cceecb932141d3e43ba8d5ca4998fd4d16411b91fa`; user verified exact local file under `mechanical/mcad/vendor/cache`.
+- NKK `NR01105ANG13-2A.stp`: SHA-256 `ede38fcc6f51791ed8f7f5ed2f524df8f6ef7ce1a19778bad2c52d4b380f84cd`; user verified internal STEP in `source_evidence/NKKSWITCHES_NR01105ANG132A.zip`.
+- NKK `NR01105ANG13-2C.stp`: SHA-256 `29fecfb6c2b523e49884b4cfcbcbd633b32d0f55a27d15718e3dadca09ceb678`; user verified internal STEP in `source_evidence/NKKSWITCHES_NR01105ANG132C.zip`.
+- TE `c-1825537-3-a-3d.stp`: SHA-256 `24e75b2dd8187e63ee200f278dd84016c8e705525980846cd78b37aa4fdeb3d9`; user verified internal STEP in `source_evidence/ENG_CVM_CVM_1825537-3_A.3d_stp (1).zip`.
+- Dropbox source root: `000_Projects/000_Audio/Shellac_Engineering_Staging/`. Manufacturer hashes verify source identity, not full assembly fit. FreeCAD 1.1 Python installation was reported present.
+- Historical F6H carrier STEP not found in the searched locations; its old 228 x 156 mm PCB assumption is not current product geometry.
+
+### Selected-next mechanical candidate and source chain
+
+- Current controlled support authority remains AE-076B: six PCB-to-removable-upper-cover supports. No formal supersession.
+- Selected-next: Metcase G1 independent lower carrier; 220 x 148 x 1.6 mm PCB; six 17 mm M3 PCB supports; separate 1.5 mm TE plate on three independent pillars; four NKK and two C&K toggles direct to the single PCB.
+- F4Z verified historical candidate PCB SHA-256 `1199112d3238489c282fb0d078c2effb34e08cf36dda67969114a4a1ecd6fd5f`, under Dropbox `transactions/AE-076F4Z_FIX2_EQUILATERAL_LOCKED_CANDIDATE_NOT_FOR_FAB/`.
+- F4Z equilateral TE pattern: centre (125,118), 35 mm radius; MHTE1 (140.343,149.458), MHTE2 (90.085,115.559), MHTE3 (144.572,88.984), coordinates in KiCad XY mm. Earlier F4T non-equilateral pillar coordinates remain historical, not the primary candidate.
+- F5A preview SHA-256 `7dcc3911aebf47cd70a998738357ada1c1dfdd97e037f032246e89ba62077f85`: six paired L/R component movements, C7701/C7201, C75094/C70094, TP7504/TP7004. All six original footprint positions independently observed unchanged on current native PCB. Historical 1.638 mm minimum copper-void screen is nominal only.
+- F5B preview SHA-256 `c7b4183c0700e3da0c74506eb2dcbfed066916b298288a6ed808b1462337d540`: provisional seven-switch body witnesses.
+- F5C preview SHA-256 `a804526e5f8904d1d9f5e5927e249602d190122ee0ea9c95913d258fc3fdd92f`: 67 unnumbered physical-site witnesses. F5E historical report records 51 contact-site registrations without verified vendor numbering/net assignments.
+- F5A/F5B/F5C/F5E records are under their named `AE-076F5*` Dropbox transaction folders. They predate current PCB changes and are NOT FOR FAB. None may be promoted without fresh reconciliation.
+- U5 historical candidate broad shunt handwell `(145,12)-(211,60)` mm is NONBINDING; no complete-assembly, real finger-grip, structural or harness qualification.
+
+### Outstanding qualification and next action
+
+- Full native FreeCAD assembly on reconciled current-source 220 x 148 mm shadow PCB: authentic Metcase, true seven-switch orientations and manufacturer solids, TE retainer/plate/fasteners, C&K provisional bodies clearly identified, six PCB supports, connector mates and cable envelopes.
+- Verify underside/cover registration, mechanical interference, positive worst-case NKK flange clearance, C&K threaded retention, carrier windows/stiffness, G1 capture, hardware access and actual shunt-service motion.
+- Preserve true numbered B.Cu switch-contact mapping, electrical parasitic/RUN08–RUN14, four-layer DRC and independent assurance as separate gates.
+- Governing holds in `config/release/ae071_prerouting_hold.yaml`: `final_routing=false`, `layout_freeze=false`, `bom_freeze=false`, `manufacturing_release=false`.
+- **Next bounded engineering transaction:** current-board-based, read-only F7H native registration/assembly qualification. No older F4Z/F5A–F5E reconstruction or further manufacturer download is required merely to recover known history.
+
+**Checkpoint verification:** This entry records the pre-transaction baseline. Verify subsequent commit, PR and CI status using Git and GitHub; this document does not certify its own integration.
+
+## HISTORICAL — AE-076F7G evidence-regression checkpoint, 7 November 2026
 
 **Authority:** NON-AUTHORITATIVE execution index only. Current governed design/configuration/release files take precedence. This entry records a reviewed feature branch, not a promoted design or manufacturing baseline.
 
