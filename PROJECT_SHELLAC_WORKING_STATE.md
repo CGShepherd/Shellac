@@ -1,6 +1,49 @@
 # Project Shellac — Persistent Working State
 
-## CURRENT — F7H-P02A authenticated datum survey, 9 November 2026
+## CURRENT — F7H-P02B authenticated geometry constraints, 9 November 2026
+
+**Classification:** NON-AUTHORITATIVE / INFORMATIONAL_NOT_FOR_FAB. Physical mechanical qualification HELD.
+
+### Governed configuration
+- Pre-transaction `develop` HEAD: `8200169f8a1e24eb3eedf5263a7e6a086932a676`.
+- F7H-P02A merged under PR #4; prior checkpoint and evidence retained below.
+- Current mechanical authority: AE-076B, six PCB supports attached to removable upper cover.
+- Selected-next, NOT IMPLEMENTED: independent lower G1 carrier, 220 x 148 x 1.6 mm PCB, six 17 mm M3 supports, separate three-pillar TE mounting plate.
+- Governed native PCB remains 220 x 140 mm. No CAD, routing or PCB migration authorised.
+
+### F7H-P02B native results
+- FreeCAD 1.1.4 execution: `NOMINAL_CONSTRAINTS_REPRODUCED_NOT_QUALIFIED`.
+- Authenticated Metcase STEP SHA-256: `9bf09314db1e8ffb596c27cceecb932141d3e43ba8d5ca4998fd4d16411b91fa`.
+- True side extrusions recovered as solids 36/37. Cover solids 38/39 and end-panel solids 40/41 distinguished.
+- G1 opening: 1.999996 mm. Opposing inner extrusion faces: 236.000010 mm. Internal longitudinal span: 229.000 mm.
+- Historical F4R PCB placement reproduced: 36.5 and 44.5 mm nominal end margins; centre shifted -4.0 mm relative to internal midpoint.
+- Front/rear physical identification and justification of the asymmetric offset remain UNVERIFIED.
+- With an assumed 1.5 mm sheet and 17 mm pillar-to-F.Cu relationship, nominal PCB F.Cu cover depth spans 14.352518–14.852514 mm.
+- An exact 13.9 mm historical depth would require calculated pillars of 17.452518–17.952514 mm under this conditional stack convention.
+- The 13.9 mm datum has NOT been re-established as the governing switch installation requirement.
+- Historical P02A bottom-anchored sheet placement leaves 0.045002 mm nominal lower-lip clearance. Top-anchored placement has -0.044998 mm lower-lip interference; midplane is effectively tangent.
+- Five discriminator negative controls passed, including cover/rail identity, excessive sheet thickness, impossible longitudinal translations and historical depth mismatch.
+- No real sheet-contact bearing, stack tolerances, switch installation, connector-defined front/rear orientation or positive clearance accepted.
+
+### Durable Dropbox evidence
+- Archive: `/000_Projects/000_Audio/Shellac_Engineering_Staging/reports/F7H_P02B_GEOMETRY_CONSTRAINTS/`.
+- Report `SHELLAC_F7H_P02B_NATIVE_DATUM_CONSTRAINTS.json` SHA-256: `0154c660aa13a86b1f2e90f86a89ff148e33f610803255f9a56a0bf1aa48d658`.
+- Worker `SHELLAC_F7H_P02B_NATIVE_WORKER.py` SHA-256: `997bfd51d0ecb6cb042fb1eb6b9dbadfa22292eaaf75d9c234bf2fa7e0f64e57`.
+- Manifest `SHELLAC_F7H_P02B_EVIDENCE_MANIFEST.json` SHA-256: `a59bfc92c029c4398ea46013d11c8eca0e04ae6cd526331d7714ea951075f36a`.
+- Source F3V evidence SHA-256: `ed2388e21272d1b0e9c3b19b5ebb9c5dc5e4edc6470f48cf2728f784c4357317`.
+- Source F4R evidence SHA-256: `3228428017913390c31d520194bb7f66fc7e0dc1009ca0c41accd8dbcc905c95`.
+- Source F7H-P02A report SHA-256: `30a084a6bb14d2ff458b8edb26578d264b00f40c2d41001197e4430b9184566c`.
+- Local source and archive hashes validated by the PowerShell evidence transactions.
+
+### Release holds and next engineering action
+- `final_routing=false`; `layout_freeze=false`; `bom_freeze=false`; `manufacturing_release=false`.
+- No manufacturing release, support geometry freeze, PCB modification or architecture supersession.
+- **Next bounded engineering transaction:** F7H-P02C — establish the actual NKK/C&K switch installation Z-stack, including the controlling panel-to-PCB face datums, and compare with the G1/17 mm candidate using authenticated dimensions. The longitudinal connector registration remains a separate outstanding gate.
+- Use source-controlled mechanical authority and manufacturer geometry. Do not assume that historical 13.9 mm F.Cu depth is mandatory or substitute 18 mm pillars without proof.
+
+**Checkpoint verification:** This records the pre-transaction baseline and evidence identity, not the resulting commit or merge. Independently verify Git, PR and CI integration.
+
+## HISTORICAL — F7H-P02A authenticated datum survey, 9 November 2026
 
 **Classification:** NON-AUTHORITATIVE / INFORMATIONAL_NOT_FOR_FAB. Datum registration HELD.
 
