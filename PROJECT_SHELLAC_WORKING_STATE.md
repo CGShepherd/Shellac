@@ -1,6 +1,45 @@
 # Project Shellac — Persistent Working State
 
-## CURRENT — F7H engineering-continuity checkpoint, 8 November 2026
+## CURRENT — F7H-P01 native substrate evidence, 9 November 2026
+
+**Classification:** NON-AUTHORITATIVE / INFORMATIONAL_NOT_FOR_FAB.
+
+### Governed baseline
+- Pre-transaction develop HEAD: `fc1d89f6beff8268ad9622a0aa6dd542286bcdfb`.
+- PR #2 merged as `fc1d89f6beff8268ad9622a0aa6dd542286bcdfb`; continuity policy installed and post-merge CI passed.
+- Current controlled mechanical authority: AE-076B, six supports to removable upper cover.
+- Selected-next, NOT IMPLEMENTED: independent G1 lower carrier, 220 x 148 x 1.60 mm PCB, six 17 mm PCB supports, separate three-pillar TE plate.
+- Current governed PCB remains 220 x 140 mm; SHA-256 `6824b2c311173046e0fd8ec782d8a61ba017ca2cc359cc7a17179252b28f81a2`.
+
+### F7H-P01 native evidence
+- Outcome: PASS_NOMINAL_SUBSTRATE_ONLY, on FreeCAD 1.1.4.
+- Metcase native solid count: 42.
+- Shadow substrate: 220 x 148 x 1.60 mm, six support openings and three provisional TE passages.
+- Three historical vertical registration variants tested; each returned zero volumetric intersection with imported Metcase geometry.
+- Historical F4R coordinate transform was reused, NOT independently validated.
+- Evidence location (Dropbox):
+  `/000_Projects/000_Audio/Shellac_Engineering_Staging/reports/F7H_P01_NATIVE_SUBSTRATE/`
+- Report: `SHELLAC_F7H_P01_NATIVE_SUBSTRATE_READONLY.json`; SHA-256 `6349312a159d358bd6eed4ad408c1704d51d28e8f4cbe647a293ddb13f4b3661`.
+- Worker: `SHELLAC_F7H_P01_NATIVE_SUBSTRATE_WORKER.py`; SHA-256 `167beec9053c1ab6272266aa3054369a2b40249e98d69443c9de5f092d426fce`.
+- Manifest: `SHELLAC_F7H_P01_EVIDENCE_MANIFEST.json`; SHA-256 `a2c2d22c053b124dd217bdbd4867d1b49ccaf17c3d41f3aad9568d1aeae5c209`.
+- Metcase STEP SHA-256: `9bf09314db1e8ffb596c27cceecb932141d3e43ba8d5ca4998fd4d16411b91fa`.
+- Archived report, worker and manifest located in Dropbox and their contents reviewed; local PowerShell SHA-256 checks repeated during checkpoint preparation.
+
+### Qualification boundary
+- No independent world-coordinate registration or physical datum acceptance.
+- No populated PCB, carrier, panel apertures, switch mounting, fasteners or mating harness.
+- No demonstrated positive minimum clearance, tolerance stack, structural integrity, service access or four-layer DRC.
+- Zero nominal intersection is not complete-assembly acceptance.
+- Historical F4Z/F5A-F5E candidate evidence remains indexed in the preceding HISTORICAL checkpoint; do not rediscover it as a new investigation.
+
+### Release and continuation
+- final_routing=false; layout_freeze=false; bom_freeze=false; manufacturing_release=false.
+- No CAD, PCB, schematic, generator, BOM or design-authority changes.
+- **Next bounded engineering transaction:** F7H-P02, independently verify the Metcase-to-native-PCB coordinate transform and board vertical datum before qualifying populated-board or carrier interference. Preserve provisional geometry and negative controls.
+
+**Checkpoint verification:** This section records the pre-transaction baseline and evidence identity. Verify the resulting Git commit, PR, merge and CI independently; this document does not certify its own integration.
+
+## HISTORICAL — F7H engineering-continuity checkpoint, 8 November 2026
 
 **Classification:** NON-AUTHORITATIVE execution index. No design, PCB, CAD or manufacturing promotion.
 
