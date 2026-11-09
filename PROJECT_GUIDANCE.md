@@ -93,3 +93,25 @@ It is deliberately non-authoritative. Controlled current design/release authorit
 Refresh the working-state file after every material review, qualification pass, governed repository transaction, commit/push, or critical-path change and before beginning the next major engineering phase.
 
 A new Shellac chat should read `PROJECT_SHELLAC_WORKING_STATE.md` and this guidance before substantive work, then verify the actual repository baseline and consult specialist authority files as required.
+
+## 10. Mandatory checkpoint gate
+
+The persistent Git working-state index is the mandatory cross-chat entry point.
+It remains NON-AUTHORITATIVE: controlled design, source and release files always take precedence.
+
+After every accepted material engineering increment, before the next substantive engineering transaction:
+
+1. Reconcile the current implemented authority, selected-next candidate, historical evidence and unresolved qualifications.
+2. Update the CURRENT section of PROJECT_SHELLAC_WORKING_STATE.md.
+3. Record the source baseline, affected artefacts, exact evidence paths and hashes where available, reported or reproduced results, limitations, outstanding holds and ONE precise next action.
+4. Preserve old checkpoints under HISTORICAL headings rather than silently deleting or rewriting their provenance.
+5. Include the checkpoint update in the same governed commit/PR as its associated engineering change where practical. A substantive analysis-only decision requires a documentation checkpoint before the next major phase.
+6. Verify the staged diff, Git commit, remote integration and applicable CI. Do not describe uncommitted or unmerged documentation as installed.
+7. Do not repeat completed investigations solely because the conversation has changed. Reopen them only for an identified evidence gap, a changed source or a contradiction.
+8. If the checkpoint is missing, stale or inaccessible, STOP the next major transaction and reconcile it. Do not substitute chat recollection for verified source evidence.
+
+Dropbox is the evidence archive, not a competing current-status authority. Record exact paths and hashes in Git. Living Handover revisions are supplemental and must identify their scope; they do not silently override current design/release authority.
+
+The current source-control commit cannot be self-recorded inside its own committed contents. Record the pre-transaction baseline and evidence identity; verify the resulting commit independently.
+
+Checkpoint completion never opens routing, layout, BOM or manufacturing holds.
