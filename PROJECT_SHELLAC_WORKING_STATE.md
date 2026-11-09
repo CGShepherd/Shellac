@@ -1,6 +1,49 @@
 # Project Shellac — Persistent Working State
 
-## CURRENT — F7H-P01 native substrate evidence, 9 November 2026
+## CURRENT — F7H-P02A authenticated datum survey, 9 November 2026
+
+**Classification:** NON-AUTHORITATIVE / INFORMATIONAL_NOT_FOR_FAB. Datum registration HELD.
+
+### Governed configuration
+- Pre-transaction `develop` HEAD: `b989272124002ade5ab9588fef29d485b772e046`.
+- Prior F7H-P01 evidence checkpoint integrated through PR #3; report and historical context retained below.
+- Current implemented mechanical support authority: AE-076B, six PCB-to-removable-upper-cover supports.
+- Selected-next, NOT IMPLEMENTED: independent G1 lower carrier, 220 x 148 x 1.6 mm PCB, six 17 mm support pillars, independent three-pillar TE mounting plate.
+- Current native PCB remains 220 x 140 mm, not the candidate 220 x 148 mm shadow substrate.
+
+### F7H-P02A authenticated evidence
+- Native FreeCAD 1.1.4 survey completed: `DATUM_SURVEY_COMPLETE`; registration NOT QUALIFIED.
+- Authenticated Metcase source STEP: SHA-256 `9bf09314db1e8ffb596c27cceecb932141d3e43ba8d5ca4998fd4d16411b91fa`.
+- Overall imported assembly bounding box: X 264.008066, Y 95.204806, Z 250.000000 mm.
+- F4R versus bounding-box-centred offset residual: X -0.002585 mm, Z +4.000000 mm.
+- Drawing-envelope mismatch is accounted for at nominal cover level by historical F3U solid inventory; overall STEP extents include additional hardware.
+- Physical front/rear handedness and selected board longitudinal placement remain UNVERIFIED.
+- Historical AE-076F3V genuine G1 lip geometry: upper Y -65.264195 mm, lower Y -67.264190 mm; slot opening 1.999995 mm; nominal groove-back width 241.000 mm. This geometry was not requalified by P02A.
+
+### Conditional 17 mm mechanical sensitivity
+- If the modelled PCB bottom is 17 mm above the upper face of a nominal 1.5 mm G1-engaging sheet, the P02A bottom-anchored placement leaves approximately 0.045 mm lower-lip clearance.
+- Under the same unverified convention, top-anchored placement penetrates the lower lip approximately 0.045 mm; midplane placement is approximately tangent.
+- These are DERIVED NOMINAL HYPOTHESES, not tested sheet positions or positive tolerance margins.
+- No 17 mm support stack or sheet bearing datum accepted.
+
+### Durable evidence location
+- Dropbox root: `/000_Projects/000_Audio/Shellac_Engineering_Staging/reports/F7H_P02A_DATUM_SURVEY/`.
+- Report `SHELLAC_F7H_P02A_DATUM_SURVEY.json`: SHA-256 `30a084a6bb14d2ff458b8edb26578d264b00f40c2d41001197e4430b9184566c`.
+- Worker `SHELLAC_F7H_P02A_DATUM_WORKER.py`: SHA-256 `86e20adea38d13e07d6b2e45cb6330d0711acfc6b32cea5d0b2b7ded8957306a`.
+- Manifest `SHELLAC_F7H_P02A_EVIDENCE_MANIFEST.json`: SHA-256 `36d603418222c2f491b23cbbefdb0a05012aabfe7e32198c372a42dac0439a22`.
+- Source references: `SHELLAC_AE076F3U_NATIVE_METCASE_SECTION_INVENTORY.json` and `SHELLAC_AE076F3V_G1_FABRICATED_FRAME_DATUM_READONLY.json` in Dropbox reports.
+- Source bytes verified locally during evidence archival and again before this checkpoint transaction.
+
+### Outstanding qualifications and single next action
+- Full native orientation, longitudinal placement, cover datum and genuine G1 sheet-contact face remain open.
+- Nominal and worst-case vertical rail engagement, switch shaft/nut stacks, retention and service clearances remain open.
+- No populated-board/carrier full-assembly qualification, manufacturing geometry or PCB migration.
+- `final_routing=false`, `layout_freeze=false`, `bom_freeze=false`, `manufacturing_release=false`.
+- **Next transaction:** F7H-P02B read-only, source-reconciled longitudinal placement and 17 mm carrier-stack geometric feasibility, with explicit G1 face/contact definitions and tolerance negatives. No source design changes.
+
+**Checkpoint verification:** This entry records the pre-transaction baseline and evidence identity; independently verify commit, PR, CI and merge. No self-certification of integration.
+
+## HISTORICAL — F7H-P01 native substrate evidence, 9 November 2026
 
 **Classification:** NON-AUTHORITATIVE / INFORMATIONAL_NOT_FOR_FAB.
 
