@@ -1,5 +1,55 @@
 # Project Shellac — Persistent Working State
 
+## CURRENT — F7H-P02E-S35A integrated mechanical qualification checkpoint, 11 November 2026
+
+**Classification:** INFORMATIONAL / DEVELOPMENT_NOT_FOR_FAB.
+**Purpose:** Reconcile S21–S34 handover evidence and establish the next integrated mechanical qualification transaction.
+
+### Verified governed configuration
+
+- Pre-transaction develop HEAD: `7dbbd972db0f49fe84c65afd552df3f07abc690a`.
+- S34 user-executed read-only preflight: PASS; develop clean; local origin/develop tracking ref equal to HEAD.
+- Governed native PCB SHA-256: `6824B2C311173046E0FD8EC782D8A61BA017CA2CC359CC7A17179252B28F81A2`.
+- Installed external living handover SHA-256: `61A3026B55C5B1E70980039AD0AFF1EA163745ABE2D2A9275D22C1FDA567936E`.
+- Current implemented mechanical support authority remains AE-076B. No support-architecture supersession or physical PCB migration has occurred.
+
+### Selected development configuration — not implemented
+
+- Symmetric seven-control layout: Bass L/R `(76,53)/(184,53)`; Treble L/R `(76,86)/(184,86)`; Rumble `(130,86)`; Matrix `(130,118)`; Mute `(130,153)` mm in KiCad XY.
+- Proposed 220 x 148 x 1.6 mm single PCB; current governed board remains 220 x 140 mm.
+- Proposed independent lower Metcase G1 carrier, separate TE spider/plate and independent PCB and UB2 switch support.
+- TE MRJE3404 is the governed selected matrix part; NKK UB226SKG03N-5C x2 is a development substitution for the currently governed C&K toggles.
+- H802 selected lead development placement is `(148.100001,125.7291)` mm, S33 B (+8,+8), unchanged orientation, with all three local F.Cu keep-outs translated.
+- H802 A (+4,+4) and prior left/up alternatives remain fallbacks only against identified B failures.
+
+### Evidence and scope limitations
+
+- S27 archive SHA-256: `DE67D5A6107F453295800C783B50C8BF62F9666CF4409EC9ADA3C28664556639`.
+- S33 isolated-candidate archive SHA-256: `37564EF66ACEAA24999196577DAAA228B0716A74F3679E4113279BBBCCB91687`.
+- S33 candidate B native PCB SHA-256: `EA6204EA4904C618CD66F6231BD232EA776B40FA58FE11C7500B6DD825594D44`.
+- S33 B reports 356 KiCad DRC violations, 432 unconnected and zero footprint errors. Baseline-differential violation identities remain unqualified.
+- S32 projected Matrix/H802 separation 7.1906 mm is not a native installed 3D clearance.
+- Available native STEP sources include Metcase G1, NKK rotary and UB2 controls, TE Matrix and historical F3X/F4A carrier/support models.
+- Historical F3X/F4A geometry remains NONBINDING_NOT_FOR_FAB.
+- Genuine installed connector mating/cable withdrawal, UB2 physical Z-stack, seven-control assembly, carrier load path, tolerances, copper, service access and cover-removal geometry remain OPEN.
+- The historical 1.51 mm STEP substrate does not supersede the current 1.6 mm native PCB thickness.
+- S27/S33 archive inspection is not a local FreeCAD 1.1 installed-assembly PASS.
+
+### Retained release and assurance holds
+
+- `final_routing=false`
+- `layout_freeze=false`
+- `bom_freeze=false`
+- `manufacturing_release=false`
+- RUN08–RUN14, independent design assurance and remaining electrical, DFM and service-access obligations remain active.
+
+### One next engineering transaction
+
+F7H-P02E-S35B: read-only integrated native mechanical qualification using authenticated existing evidence. Register H802 B, the genuine TE Matrix and both NKK UB2 models, all four NKK rotaries, the 220 x 148 development substrate, G1 carrier/spider candidates, neighbouring components, mating/service volumes, fasteners and cover. Produce explicit PASS/FAIL/OPEN findings. Compare fallback H802 locations only against proven B blockers. Preserve all governed design and release holds.
+
+**Checkpoint status:** ISOLATED_DOCUMENTATION_CANDIDATE; review, regression, commit, remote integration and CI not yet completed.
+
+---
 ## CURRENT — F7H-P02B authenticated geometry constraints, 9 November 2026
 
 **Classification:** NON-AUTHORITATIVE / INFORMATIONAL_NOT_FOR_FAB. Physical mechanical qualification HELD.
