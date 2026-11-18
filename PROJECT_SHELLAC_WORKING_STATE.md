@@ -1,5 +1,21 @@
 # Project Shellac — Persistent Working State
 
+## CURRENT — S35B-P14 user-reported TE static continuity checkpoint, 18 November 2026
+
+**Classification:** PHYSICAL SAMPLE STATIC CONTACT EVIDENCE ACCEPTED / NOT FOR FABRICATION. **Source parent develop:** `a097987a8ebd1c360defb5e90bad2308e1bd9951`. This is a candidate checkpoint until governed merge; all earlier CURRENT headings below are historical snapshots.
+
+- Purchased TE MRJE3404 three independent commons C1/C2/C3 reportedly select their respective numbered throw 1 at full CCW D1, then throw 2 at D2, 3 at D3 and 4 at D4 full CW. Non-selected throws and inter-pole commons were reported open-circuit. The reported 0.15 ohm closed reading is two-wire probe-limited and is NOT a 30 milliohm contact-resistance qualification.
+- Static truth-table evidence: `docs/design_pack/AE-076F7H_S35B_P14_TE_Matrix_Physical_Continuity_Rev_A0.md`. Four identified JPEG image SHA-256 values are recorded there. The original measurement is user-reported; no calibrated instrument trace or dynamic timing trace exists.
+- Manufacturer-qualified BBM designation is retained; physical transition timing is NOT bench-proven. Operational MUTE -> MATRIX -> RUN remains. RUN12 remains open.
+- Functional contact-to-net table is proposed, not native 15-pad implementation. B.Cu shaft-view versus terminal-view mirroring, TE footprint geometry, solder/clearance and full seven-control MCAD remain OPEN. Unused Pole C throws 1/2/4 are NC, not 0VA.
+- Source-controlled selected-next design and implemented hardware remain differentiated as in S14. NO PCB, BOM, generator or release control edits are authorised. `final_routing=false`, `layout_freeze=false`, `bom_freeze=false`, `manufacturing_release=false` remain closed.
+
+**ONE next action:** reconcile the TE Rev A3 `3-4` shaft-view recommended hole layout against numbered physical terminals and the intended B.Cu footprint; then proceed to registered seven-control native 3D qualification. Do not repeat physical static continuity tests without contradictory evidence.
+
+**Checkpoint proof after merge:** isolated candidate pytest, authority audit, allowed-path diff, source SHA, commit/PR/CI and merge SHA must be independently verified. Dropbox photographic evidence is retained outside Git; verify archive hashes before treating the archive as installed.
+
+---
+
 ## CURRENT — S35B-S14 reconciled current-specification checkpoint, 18 November 2026
 
 **Classification:** CURRENT SELECTED-NEXT DOCUMENTARY STATUS / NOT FOR FABRICATION. **Source parent develop:** `7f13ac9f71bf4b73ce387c30bef02c42ef433c83`. This checkpoint becomes installed only after its own PR is merged and the result independently verified. All earlier CURRENT headings below this point are historical snapshots, not current design authority.

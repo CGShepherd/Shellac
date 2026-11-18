@@ -29,7 +29,11 @@ channel_matrix:
   operator_order_ccw_cw: [DUAL_L, STEREO, L_PLUS_R, DUAL_R]
   mono_leg_connected_only_in: L_PLUS_R
   control_pin_mapping: OPEN_BEFORE_FAB
-  physical_continuity: NOT_YET_MEASURED
+  physical_continuity: USER_REPORTED_STATIC_SEQUENCE_AND_ISOLATION_PASS
+  physical_continuity_evidence: docs/design_pack/AE-076F7H_S35B_P14_TE_Matrix_Physical_Continuity_Rev_A0.md
+  physical_detent_throw_map_ccw_cw: [1, 2, 3, 4]
+  physical_common_banks: [C1, C2, C3]
+  physical_bbm_timing: MANUFACTURER_SPECIFIED_NOT_BENCH_MEASURED
   static_simulation: AE-068_RUN05_REVIEWED_STEADY_STATE_ONLY
   dynamic_switching: RUN12_OPEN
 mechanical_selected_next:
@@ -62,9 +66,9 @@ assurance:
   source_netlist_mapping: EXACT_TE_TERMINAL_MAPPING_OPEN
   mcad_complete_seven_control_assembly: OPEN
   run08_to_run14: OPEN_OR_ONLY_PARTIALLY_QUALIFIED
-  te_physical_continuity: CLOSE_BEFORE_FAB
+  te_physical_continuity: STATIC_ACCEPTED_PAD_ORIENTATION_OPEN
   connector_and_harness_3d: CLOSE_BEFORE_FAB
   cover_aperture_drm: CLOSE_BEFORE_FAB
   carrier_stop_attachment: CLOSE_BEFORE_FAB
   mechanical_tolerance_qualification: CLOSE_BEFORE_FAB
-next_engineering_transaction: PHYSICAL_TE_MRJE3404_15_TERMINAL_CONTINUITY_AND_DETENT_MAP
+next_engineering_transaction: TE_FOOTPRINT_15_PAD_ANTIMIRROR_AND_SEVEN_CONTROL_NATIVE_MCAD

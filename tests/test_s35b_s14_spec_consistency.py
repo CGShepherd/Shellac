@@ -35,7 +35,7 @@ def test_current_matrix_identity_and_truth_table_are_consistent():
     assert (cm['poles'], cm['positions']) == (3, 4)
     assert cm['operator_order_ccw_cw'] == ['DUAL_L', 'STEREO', 'L_PLUS_R', 'DUAL_R']
     assert cm['control_pin_mapping'] == 'OPEN_BEFORE_FAB'
-    assert cm['physical_continuity'] == 'NOT_YET_MEASURED'
+    assert cm['physical_continuity'] == 'USER_REPORTED_STATIC_SEQUENCE_AND_ISOLATION_PASS'
     assert mode_matrix.SWITCH_PREFERRED_MPN == cm['selected_mpn']
     assert '3P4T' in mode_matrix.SWITCH_TYPE
     assert [p.mono_right_leg_connected for p in mode_matrix.MODE_TABLE] == [False, False, True, False]
@@ -69,9 +69,9 @@ def test_never_relabel_open_release_and_validation_gates_as_passed():
         assert m['system_invariants'][gate] is False
         assert permissions[gate] is False
     assert m['assurance']['mcad_complete_seven_control_assembly'] == 'OPEN'
-    assert m['assurance']['te_physical_continuity'] == 'CLOSE_BEFORE_FAB'
+    assert m['assurance']['te_physical_continuity'] == 'STATIC_ACCEPTED_PAD_ORIENTATION_OPEN'
     assert m['channel_matrix']['dynamic_switching'] == 'RUN12_OPEN'
     spec_text = (ROOT / SPEC).read_text(encoding='utf-8')
     assert 'NOT FOR FABRICATION' in spec_text
     assert 'No complete seven-control installed 3D qualification has passed.' in spec_text
-    assert m['next_engineering_transaction'] == 'PHYSICAL_TE_MRJE3404_15_TERMINAL_CONTINUITY_AND_DETENT_MAP'
+    assert m['next_engineering_transaction'] == 'TE_FOOTPRINT_15_PAD_ANTIMIRROR_AND_SEVEN_CONTROL_NATIVE_MCAD'
