@@ -1,5 +1,27 @@
 # Project Shellac — Persistent Working State
 
+## CURRENT — S35B-S14 reconciled current-specification checkpoint, 18 November 2026
+
+**Classification:** CURRENT SELECTED-NEXT DOCUMENTARY STATUS / NOT FOR FABRICATION. **Source parent develop:** `7f13ac9f71bf4b73ce387c30bef02c42ef433c83`. This checkpoint becomes installed only after its own PR is merged and the result independently verified. All earlier CURRENT headings below this point are historical snapshots, not current design authority.
+
+### Design and authority reconciliation
+
+- **Selected matrix part retained:** TE `MRJE3404` / `1825537-3`, true **3P4T BBM**. Governed electrical 3P4T design/4-mode truth table: `AE-041 A1`; later exact-part supersession: `AE-076F4C`. The historical 4P4T architecture and C&K matrix-part preference do not govern.
+- **Implemented vs development separated:** Live generator/BOM still specify C&K `7201SYCBE` for Rumble/Mute and governed upper-cover PCB support; candidate next NKK `UB226SKG03N-5C` ×2 direct PCB/no raiser, lower G1 aluminium carrier, six nominal 16 mm pillars, 220×148×1.6 mm board. NONE of the new control footprints, lower support geometry or board depth has been migrated to the native PCB.
+- **Selected development controls:** four unchanged NKK NR01105ANG13 switches with AT3009 knobs; TE independent 1.5 mm plate/three adjustable supports; local relief only for demonstrated clearance failures. Carrier retention Option B removable groove stops; Option A extended edge rails fallback. Exact stops, plate height, full tolerances, cover and H802 B mating/service remain held.
+- **Physical TE evidence:** user provided switch photograph and approximate A=11 mm shoulder-to-tips, B=27 mm shoulder-to-shaft end, threaded bush 6.5–7 mm with opposing flats and O-ring shoulder. Actual 15-terminal continuity and detent-to-throw mapping not yet recorded. Do not confuse selected part configuration with verified physical terminal mapping.
+- **New authoritative selected-next view:** `docs/specifications/SHELLAC_CURRENT_TECHNICAL_SPEC_Rev_A0.md` and `config/decisions/current_spec_manifest.yaml`. Decision index makes AE-076F4T historical selected-next and adds AE-076F7H-S14; historical design documents are preserved. `tools/SHELLAC_CHAT_HANDOVER.py` now reads actual status rather than retaining a stale October snapshot.
+- **Evidence:** `AE-068 RUN05` documented steady-state matrix model pass, but RUN10/RUN12 and real hardware remain open. User-run P06 native face/topology survey passed within its limited scope; later P10–P13 non-governed screens are not a full installed-assembly acceptance.
+- **No physical source changed by S14:** BOM, generator, KiCad PCB, release gate YAML, manufacturer CAD and enclosure geometry remain untouched. Governing PCB SHA256 `6824B2C311173046E0FD8EC782D8A61BA017CA2CC359CC7A17179252B28F81A2`.
+- **All holds:** `final_routing=false`, `layout_freeze=false`, `bom_freeze=false`, `manufacturing_release=false`. No automatic release on merge.
+
+### One next transaction after merge / living-handover promotion
+
+**P14 physical TE continuity test:** determine all three commons, twelve throws, CCW/CW four-detent order and BBM transition behaviour using the purchased switch and manufacturer numbered drawing. Then resume fully registered native seven-control assembly qualification; do not repeat completed historical STEP imports.
+
+**Checkpoint proof to append after local work:** isolated-branch full regression, configuration audit, diff and allowed-files-only gate; exact candidate commit, PR/CI and merge commit must be verified externally before calling this checkpoint current.
+
+---
 ## CURRENT — F7H-P02E-S35A integrated mechanical qualification checkpoint, 11 November 2026
 
 **Classification:** INFORMATIONAL / DEVELOPMENT_NOT_FOR_FAB.

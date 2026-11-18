@@ -1,0 +1,70 @@
+schema_version: 1
+project: Shellac
+record: S35B-S14
+specification: docs/specifications/SHELLAC_CURRENT_TECHNICAL_SPEC_Rev_A0.md
+classification: CURRENT_SELECTED_NEXT_AND_IMPLEMENTED_STATE_INDEX_NOT_FABRICATION_AUTHORITY
+parent_develop_head: 7f13ac9f71bf4b73ce387c30bef02c42ef433c83
+scope: SYSTEM_INVARIANTS_AND_SEVEN_CONTROL_ASSEMBLY;OTHER_SUBSYSTEMS_RETAIN_EXISTING_DECISION_AUTHORITY
+baseline:
+  pcb_state: GOVERNED_220x140mm_SEVEN_CONTROL_FOOTPRINTS_NOT_MIGRATED
+  native_pcb_sha256: 6824B2C311173046E0FD8EC782D8A61BA017CA2CC359CC7A17179252B28F81A2
+  control_support_authority: AE-076B_SIX_TO_UPPER_COVER
+  implemented_mute_rumble_mpn_in_generator_and_bom: 7201SYCBE
+  native_routing_complete: false
+  native_control_footprints_complete: false
+system_invariants:
+  rails: +17V_0VA_-17V
+  designated_0va_chassis_bond: R909_FITTED_0R
+  audio_pcb_count: 1
+  final_routing: false
+  layout_freeze: false
+  bom_freeze: false
+  manufacturing_release: false
+channel_matrix:
+  selected_mpn: MRJE3404
+  te_order_number: 1825537-3
+  poles: 3
+  positions: 4
+  contact_action: BBM_NON_SHORTING
+  operator_order_ccw_cw: [DUAL_L, STEREO, L_PLUS_R, DUAL_R]
+  mono_leg_connected_only_in: L_PLUS_R
+  control_pin_mapping: OPEN_BEFORE_FAB
+  physical_continuity: NOT_YET_MEASURED
+  static_simulation: AE-068_RUN05_REVIEWED_STEADY_STATE_ONLY
+  dynamic_switching: RUN12_OPEN
+mechanical_selected_next:
+  main_pcb: {width_mm: 220, depth_mm: 148, thickness_mm: 1.6, implemented: false}
+  pcb_supports: {count: 6, height_mm_nominal: 16.0, height_frozen: false, site_xy_frozen: false}
+  carrier: {material: aluminium, main_sheet_mm: 1.5, reinforcement_mm: 2.0, architecture: LOWER_G1_GROOVE_SLIDING_CARRIER, installed: false}
+  retention_primary: REMOVABLE_GROOVE_STOPS_HARDWARE_OPEN
+  retention_fallback: EXTENDED_CARRIER_SIDE_MEMBERS_WITH_END_RELIEF
+  controlled_nkk_rotaries: [NR01105ANG13-2C, NR01105ANG13-2C, NR01105ANG13-2A, NR01105ANG13-2A]
+  mute_rumble_mpn: UB226SKG03N-5C
+  mute_rumble_quantity: 2
+  ub2_mount: DIRECT_PCB_NO_RAISER
+  ub2_aperture_mm_candidate: 16.5
+  ub2_aperture_frozen: false
+  matrix_mount: INDEPENDENT_THREE_PILLAR_1p5mm_ALUMINIUM_SPIDER
+  matrix_pillar_height_frozen: false
+  h802_candidate_xy_mm: [148.100001, 125.7291]
+  h802_candidate_implemented: false
+  carrier_local_relief: PERMITTED_ONLY_WHERE_PROVEN_NECESSARY
+  seven_control_centres_xy_mm:
+    bass_l: [76,53]
+    bass_r: [184,53]
+    treble_l: [76,86]
+    treble_r: [184,86]
+    rumble: [130,86]
+    matrix: [130,118]
+    mute: [130,153]
+assurance:
+  component_identity: SELECTED_AND_REPOSITORY_RECONCILED
+  source_netlist_mapping: EXACT_TE_TERMINAL_MAPPING_OPEN
+  mcad_complete_seven_control_assembly: OPEN
+  run08_to_run14: OPEN_OR_ONLY_PARTIALLY_QUALIFIED
+  te_physical_continuity: CLOSE_BEFORE_FAB
+  connector_and_harness_3d: CLOSE_BEFORE_FAB
+  cover_aperture_drm: CLOSE_BEFORE_FAB
+  carrier_stop_attachment: CLOSE_BEFORE_FAB
+  mechanical_tolerance_qualification: CLOSE_BEFORE_FAB
+next_engineering_transaction: PHYSICAL_TE_MRJE3404_15_TERMINAL_CONTINUITY_AND_DETENT_MAP
