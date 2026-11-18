@@ -106,7 +106,8 @@ decisions:
       note: 'AE-068 qualifies RUN05 steady-state matrix behaviour and AE-075C freezes exact control MPNs. AE-076B supersedes the AE-075D/E/F four-local-control-board/carrier ownership architecture: one main audio PCB carries all seven controls directly and forms a removable service module with the upper cover; six PCB-to-cover supports are selected in principle and control inter-board harnesses are not selected. Historical AE-075D/E/F remain provenance. SR-040/AE-071B MH1-MH4 native geometry is interim physical CAD pending current AE-076B2C/AE-076C mechanical and native-model closure. C&K/NKK stack, support XY/Z/tolerances, exact footprints/3D envelopes, control XY/apertures, RUN10 and physical migration remain open. RUN12 switching and bench qualification remain open.'
   AE-076F4T:
     title: Seven-control physical mounting method selection (manufacturing qualification open)
-    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    status: SUPERSEDED
+    superseded_by: AE-076F7H-S14
     primary_record: docs/design_pack/AE-076F4T_Switch_Mounting_Selection_Rev_A0.md
     selected_controls: FOUR_NKK_AT3009_PCB_MOUNTED_TWO_CK_7201SYCBE_DIRECT_KEYED_PANEL_NUTS_ONE_TE_MRJE3404_INDEPENDENT_THREE_PILLAR_PLATE
     selected_next_pcb: 220x148mm_17mm_six_PCB_spacers_UNIMPLEMENTED
@@ -153,6 +154,27 @@ decisions:
       layout_freeze: false
       bom_freeze: false
       manufacturing_release: false
+  AE-076F7H-S14:
+    title: Reconciled current specification and latest selected-next seven-control mechanical architecture
+    status: CURRENT_SELECTED_PENDING_IMPLEMENTATION
+    primary_record: docs/specifications/SHELLAC_CURRENT_TECHNICAL_SPEC_Rev_A0.md
+    machine_readable_record: config/decisions/current_spec_manifest.yaml
+    scope: SELECTED_NEXT_CONTROL_AND_MECHANICAL_ONLY_NOT_PHYSICALLY_IMPLEMENTED
+    supersedes_selected_next: AE-076F4T
+    existing_implemented_support_authority: AE-076B
+    exact_matrix_part_authority: AE-076F4C
+    matrix_truth_table_authority: AE-041-A1
+    exact_mute_rumble_implementation: C&K_7201SYCBE_IN_LIVE_BOM_AND_GENERATOR
+    selected_next_mute_rumble: NKK_UB226SKG03N-5C_QTY2_DIRECT_PCB_NO_RAISER
+    selected_next_pcb: 220x148x1p6mm_SIX_16mm_PCB_PILLARS_NOT_IMPLEMENTED
+    selected_next_carrier: G1_LOWER_CARRIER_REMOVABLE_GROOVE_STOPS_OPTION_B
+    te_support_height: ADJUSTABLE_NOT_FROZEN
+    native_control_footprint_migration: HELD
+    physical_validation: OPEN
+    routing: HELD
+    layout_freeze: false
+    bom_freeze: false
+    manufacturing_release: false
 pre_spice_assurance:
   AE-042: docs/design_pack/AE-042_SCH101_Pre-SPICE_Interim_Design_Authority_Rev_A0.md
   AE-043: docs/design_pack/AE-043_SCH103_Pre-SPICE_Interim_Analysis_Rev_A0.md

@@ -1,6 +1,8 @@
 schema_version: 1
 project: Shellac
 current_authority:
+- docs/specifications/SHELLAC_CURRENT_TECHNICAL_SPEC_Rev_A0.md
+- config/decisions/current_spec_manifest.yaml
 - README.md
 - docs/knowledge/ONE_OFF_BUILD_RECOVERABILITY_STANDARD.md
 - config/decisions/current_decision_index.yaml
@@ -69,6 +71,7 @@ pre_spice_assurance_evidence:
 - docs/design_pack/AE-076E-A_SCH101_Personality_Interface_Primitive_Closure_Rev_A0.md
 - docs/design_pack/AE-076E-B_Native_Migration_and_STEP_Qualification_Rev_A0.md
 historical_state_evidence:
+- docs/design_pack/AE-076F4T_Switch_Mounting_Selection_Rev_A0.md
 - config/mechanical/ae076b2b_mcad_sources.yaml
 - docs/AE-016_DR038_DR039_Implementation_Baseline_Rev_A0.md
 - docs/AE-016A_AE016_Regression_Repair_Rev_A0.md
