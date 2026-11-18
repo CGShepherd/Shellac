@@ -131,7 +131,8 @@ decisions:
     manufacturer_part_number: 1825537-3
     superseded_matrix_part: C&K A30403RNCB
     fallback: NONE_SELECTED
-    qualification: EXACT_TE_TERMINAL_MAP_BCU_FOOTPRINT_KNOB_CAGE_STACK_RUN10_RUN12_MCAD_DRC_OPEN
+    qualification: STATIC_CONTACT_SEQUENCE_ACCEPTED_EXACT_15_PAD_BCU_FOOTPRINT_KNOB_CAGE_STACK_RUN10_RUN12_MCAD_DRC_OPEN
+    physical_static_continuity_evidence: docs/design_pack/AE-076F7H_S35B_P14_TE_Matrix_Physical_Continuity_Rev_A0.md
     routing: HELD
     layout_freeze: false
     bom_freeze: false

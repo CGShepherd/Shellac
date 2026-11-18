@@ -34,7 +34,7 @@
 
 **Verified at model level:** The live `generator/model/mode_matrix.py` and `generator/blocks/mode_matrix.py` implement the 3P4T intention. `AE-068 RUN05` documents a reviewed steady-state simulated pass: worst direct insertion 0.000861 dB; nominal mono insertion −0.018608 dB at 1 kHz; separation under a **hypothetical 5 pF bracket** of 72.00 dB at 20 kHz. These numbers are not physical measured performance and the capacitance is not a switch-specific qualified value.
 
-**Not yet verified:** the exact TE 15-terminal number-to-net allocation; physical detent sequence/direction/BBM; final PCB pin/footprint orientation and solder penetration; switching transients (RUN12) and real-hardware correlation. The user owns an actual MRJE3404, measured approximately 11 mm shoulder-to-pin-tip, 27 mm shoulder-to-shaft-end, 6.5–7 mm threaded bush, plus a small O-ring shoulder. These dimensions are **user-supplied approximate caliper results**, not a released manufacturer tolerance drawing. The next engineering transaction shall map the actual 15 terminals and four detents by continuity before physical footprint release.
+**Post-S14 P14 user-reported static evidence (18 November 2026):** physical D1..D4 progression and disconnected throws/commons were verified with a two-wire DMM (see `docs/design_pack/AE-076F7H_S35B_P14_TE_Matrix_Physical_Continuity_Rev_A0.md`). This closes static sample detent/contact progression only. The exact 15-pad native B.Cu numbering/mirroring, solder geometry, dynamic BBM timing, switching transients (RUN12) and operating-hardware correlation remain OPEN. The user owns an actual MRJE3404, measured approximately 11 mm shoulder-to-pin-tip, 27 mm shoulder-to-shaft-end, 6.5–7 mm threaded bush, plus a small O-ring shoulder. These dimensions are **user-supplied approximate caliper results**, not a released manufacturer tolerance drawing. The next engineering transaction is to reconcile the measured TE contact nomenclature against the manufacturer's shaft-end hole drawing and native B.Cu pad numbering, including an explicit anti-mirroring check before footprint release.
 
 ## 4. Seven-control mechanical selected-next, unimplemented
 
@@ -60,7 +60,7 @@ The S35B-P06 FreeCAD survey was user-run: TE/Metcase/NKK model geometry was impo
 | Gate | Present status | Required release evidence |
 |---|---|---|
 | Correct TE part, logical 3P4T design | Documentary/source consistency confirmed | No reversal without a governed new decision |
-| Actual TE switch continuity | OPEN | Three commons, four throws per pole, terminal numbering and CCW/CW/BBM test |
+| Actual TE switch static continuity | USER-REPORTED PASS (P14) | Contact sequence/isolation accepted; numbered B.Cu pads and anti-mirroring remain OPEN; dynamic BBM manufacturer-supported only |
 | Matrix RUN05 steady state | REVIEWED PASS for model and 5 pF bracket | Preserve scope and model version |
 | RUN08–RUN14 including RUN10 and RUN12 | OPEN/PARTIAL | Numerical accepted simulations with correct ±17 V source and parasitic assumptions |
 | Exact switch footprints, native PCB and routing | HELD | Net-to-pin parity, DRC/DFM, copper/fastener clearance |
@@ -73,6 +73,10 @@ Before fabrication, unresolved findings must be classified as `CLOSE_BEFORE_FAB`
 
 `final_routing=false`, `layout_freeze=false`, `bom_freeze=false`, `manufacturing_release=false`. No BOM quantity/purchasing or panel drilling approval follows from this specification. No governed design or source file is physically migrated by S14.
 
-## 7. Exact next transaction after S14 merge
+## 7. Historical S14 next-action instruction (superseded by P14)
 
 **P14: map the real MRJE3404 in all four detents against manufacturer 15-terminal nomenclature, using low-energy continuity testing, and produce one accepted contact truth table. BBM transition timing remains a separate manufacturer/dynamic-test qualification, not something a static multimeter continuity test proves.** Do not revisit the now-reconciled 3P4T part selection. Then continue registered seven-control MCAD, with the selected 16 mm candidate and no UB2 raisers.
+
+## 8. S35B-P14 post-S14 evidence checkpoint (18 November 2026)
+
+User-reported purchased-switch static continuity and isolation are accepted to the limited scope recorded in `docs/design_pack/AE-076F7H_S35B_P14_TE_Matrix_Physical_Continuity_Rev_A0.md`. The S14 next-action instruction in Section 7 is now historical; the current next transaction is exact manufacturer shaft-end terminal geometry to native B.Cu pad-number anti-mirroring, followed by the fully registered seven-control native assembly. This status addendum makes no change to the S14-selected electrical or mechanical architecture and opens no release hold.
