@@ -1,9 +1,9 @@
 # AE-076F7H S35B-P14 — TE MRJE3404 physical static continuity evidence — Rev A0
 
-**Status:** USER-REPORTED STATIC CONTACT SEQUENCE ACCEPTED; NOT A NATIVE FOOTPRINT OR FABRICATION RELEASE.  
-**Date:** 18 November 2026.  
-**Parent controlled baseline:** `develop` `a097987a8ebd1c360defb5e90bad2308e1bd9951` (S14).  
-**Component:** purchased TE Connectivity / Alcoswitch MRJE3404, manufacturer 1825537-3; 3 poles x 4 throws, four detents.  
+**Status:** USER-REPORTED STATIC CONTACT SEQUENCE ACCEPTED; NOT A NATIVE FOOTPRINT OR FABRICATION RELEASE.
+**Date:** 18 November 2026.
+**Parent controlled baseline:** `develop` `a097987a8ebd1c360defb5e90bad2308e1bd9951` (S14).
+**Component:** purchased TE Connectivity / Alcoswitch MRJE3404, manufacturer 1825537-3; 3 poles x 4 throws, four detents.
 **Source design:** AE-041 Rev A1 (matrix logic), AE-076F4C (part identity), SHELLAC_CURRENT_TECHNICAL_SPEC_Rev_A0 (selected-next), TE Customer Drawing 1825537 Rev A3.
 
 ## Physical evidence and observation classification
