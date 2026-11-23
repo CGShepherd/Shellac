@@ -1,6 +1,25 @@
 # Project Shellac — Persistent Working State
 
-## CURRENT — S35B-P14 user-reported TE static continuity checkpoint, 18 November 2026
+## CURRENT — S35B-P16 nominal TE bracket-site checkpoint, 23 November 2026
+
+**Classification:** SELECTED-NEXT NOMINAL GEOMETRY ACCEPTED / NO PHYSICAL PCB MIGRATION / NOT FOR FABRICATION. **Pre-transaction governed `develop`:** `33494f18b610571a2ed3cabea402a306c8781aeb`.
+
+- The selected TE MRJE3404 / 1825537-3, physical P14 static contact results and 3P4T mode truth table are **unchanged**. Do not reopen component down-selection or repeat the continuity test absent contradictory evidence.
+- The **three-pillar independent 1.5 mm aluminium spider is retained** for the selected-next lower-carrier architecture. Nominal shaft centre `(130,118)` mm. P16-selected candidate supports: MHTE1 `(145.343,149.458)`, MHTE2 `(91.085,125.059)`, MHTE3 `(149.572,88.984)` mm in KiCad XY. The MHTE2 move relative to the earlier F4Z site is `10.307764` mm. No PCB support-hole change is implemented.
+- P16 user-executed read-only native FreeCAD 1.1.4 result `P16_NOMINAL_SITE_PASS_OTHER_QUALIFICATIONS_OPEN`. Native 1.5 mm bracket is a valid single solid; nominal bracket, pillars and 220×148×1.6 mm shadow PCB have zero volumetric intersection with the authenticated uncut Metcase model under the conditional historical registration. The TE shaft lies inside the three-pillar triangle (area `1692.190832 mm²`).
+- **Pillar copper/courtyard results** against the pinned 256-footprint, 584-numbered-pad existing board (provisional Ø10 mm all-copper void and Ø8 mm passage): MHTE1 6.592881 / 7.369216 mm; revised MHTE2 2.549380 / 2.765000 mm; MHTE3 1.664993 / 2.371501 mm. The original MHTE2 failed at −1.930798 / −2.150000 mm. Revised MHTE2 nine-sample ±0.25 mm XY grid min copper gap is 2.263783 mm; this is NOT a complete tolerance analysis.
+- **Important DFM margin:** MHTE3 is only `0.164993 mm` above the *provisional* minimum 1.5 mm pad-to-void criterion. This is nominal pass only; tolerance-inclusive finished copper clearance and fastener DFM remain CLOSE_BEFORE_FAB. Do not infer MHTE3 tolerance qualification from the MHTE2-only sensitivity screen.
+- **TE/plate source-model limitation:** the genuine TE STEP fuses fastening hardware into one solid. Its 108.392536 mm³ overlap with the candidate plate cannot prove bare-switch interference or acceptable bearing/retainer engagement. The double-D bore, clamp, O-ring, screws, head lands, access, loading and deflection remain open.
+- **Other selected-next, not implemented:** lower Metcase G1 1.5 mm aluminium carrier plus 2 mm reinforcement; 220×148 mm main PCB; six nominal 16 mm PCB supports (not frozen); four NKK NR01 controls; two direct-mounted UB226SKG03N-5C controls; H802 candidate B at `(148.100001,125.7291)`. Source/BOM still implement C&K mute/rumble and the current AE-076B upper-cover mechanical authority. No seven-control fully registered 3D qualification has passed.
+- **Evidence:** Dropbox `Shellac_Engineering_Staging/reports/S35B_P15_TE_BRACKET_NATIVE/P15_REPORT.json` SHA-256 `305E72657D3663259AE8FF6FD67BA45D589C88A1022C0BDB549A68C4F45BB555`; `reports/S35B_P16_TE_BRACKET_SITE/P16_REPORT.json` SHA-256 `31E2878CDE5CE70C2AA6C65C6A693F7D8753785DB8AF2BDC84C5A5B83287DBE1`; P16 manifest SHA-256 `8230C1DE6CA3279ECA261FCAD6C47D50846159E526F64EC8EF0CF350E7883FA3`. The P16 design-pack disposition is `docs/design_pack/AE-076F7H_S35B_P16_TE_Bracket_Nominal_Site_Rev_A0.md`.
+- **No changes** to native KiCad PCB, footprints, CAD, BOM, generator, current authority, released support datum or drilling instructions. `final_routing=false`, `layout_freeze=false`, `bom_freeze=false`, `manufacturing_release=false` remain explicitly HELD.
+
+**ONE next engineering transaction after this checkpoint is merged and CI verified:** reconcile the actual TE Rev A3 manufacturer numbered 15-terminal layout and existing third-party 15-pad footprint into one explicitly transformed B.Cu shaft/terminal-view anti-mirroring contract. Then register all seven real controls in a single native mechanical assembly. Do **not** run further broad TE-bracket searches or rework already closed P14/P16 evidence.
+
+**Checkpoint verification:** this document records the pre-transaction source and authenticated external evidence, not its own merge. Verify the allowed-path diff, full pytest, authority audit, feature commit, PR, CI and merged `develop` SHA before regarding it as installed.
+
+---
+## HISTORICAL — S35B-P14 user-reported TE static continuity checkpoint, 18 November 2026
 
 **Classification:** PHYSICAL SAMPLE STATIC CONTACT EVIDENCE ACCEPTED / NOT FOR FABRICATION. **Source parent develop:** `a097987a8ebd1c360defb5e90bad2308e1bd9951`. This is a candidate checkpoint until governed merge; all earlier CURRENT headings below are historical snapshots.
 
@@ -16,7 +35,7 @@
 
 ---
 
-## CURRENT — S35B-S14 reconciled current-specification checkpoint, 18 November 2026
+## HISTORICAL — S35B-S14 reconciled current-specification checkpoint, 18 November 2026
 
 **Classification:** CURRENT SELECTED-NEXT DOCUMENTARY STATUS / NOT FOR FABRICATION. **Source parent develop:** `7f13ac9f71bf4b73ce387c30bef02c42ef433c83`. This checkpoint becomes installed only after its own PR is merged and the result independently verified. All earlier CURRENT headings below this point are historical snapshots, not current design authority.
 
@@ -38,7 +57,7 @@
 **Checkpoint proof to append after local work:** isolated-branch full regression, configuration audit, diff and allowed-files-only gate; exact candidate commit, PR/CI and merge commit must be verified externally before calling this checkpoint current.
 
 ---
-## CURRENT — F7H-P02E-S35A integrated mechanical qualification checkpoint, 11 November 2026
+## HISTORICAL — F7H-P02E-S35A integrated mechanical qualification checkpoint, 11 November 2026
 
 **Classification:** INFORMATIONAL / DEVELOPMENT_NOT_FOR_FAB.
 **Purpose:** Reconcile S21–S34 handover evidence and establish the next integrated mechanical qualification transaction.
@@ -88,7 +107,7 @@ F7H-P02E-S35B: read-only integrated native mechanical qualification using authen
 **Checkpoint status:** ISOLATED_DOCUMENTATION_CANDIDATE; review, regression, commit, remote integration and CI not yet completed.
 
 ---
-## CURRENT — F7H-P02B authenticated geometry constraints, 9 November 2026
+## HISTORICAL — F7H-P02B authenticated geometry constraints, 9 November 2026
 
 **Classification:** NON-AUTHORITATIVE / INFORMATIONAL_NOT_FOR_FAB. Physical mechanical qualification HELD.
 
