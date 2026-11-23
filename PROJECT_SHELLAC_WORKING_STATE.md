@@ -1,6 +1,22 @@
 # Project Shellac — Persistent Working State
 
-## CURRENT — S35B-P16 nominal TE bracket-site checkpoint, 23 November 2026
+## CURRENT — S35B-P17/P18 TE 15-pad drawing/footprint candidate checkpoint, 23 November 2026
+
+**Classification:** 15 UNIQUE TERMINAL SITES + SOURCE-NUMBERED NON-FABRICABLE KICAD CANDIDATE PASS / NATIVE PLACEMENT AND BOARD MIRROR OPEN. **Pre-transaction merged `develop`:** `3961f3f0b276c1c538c79592b00b672225ac292d`.
+
+- Selected TE MRJE3404 / 1825537-3 **3P4T**, P14 measured detent-to-throw progression, P16 selected 1.5 mm TE three-pillar bracket sites and support architecture remain unchanged. Do not repeat switch procurement downselect, static continuity or general bracket searches absent contradictory evidence.
+- **P17 accepted relative correspondence:** Rev A3 `3-4` shaft-end hole drawing and 15 anonymous OEM STEP terminal sites register 15/15, PCD 11.9888 mm; 180-degree wrong rotation and best mirrored orientation each match only 14/15. This is **not yet** absolute body-flat angular registration or installed board-side authority.
+- **P18 candidate accepted in isolation only:** 15 uniquely named thru-hole KiCad pads, all 15 report-coordinate read-backs and 47 wrong mirror/rotation negative controls passed. Manufacturer shaft-end (X right,Y up) -> candidate KiCad F.Cu top (X right,Y down); a solder-side display reversal is not an additional board-coordinate mirror. Candidate origin `(130,118)` mm with 0-degree placement is NOT locked.
+- Provisional pad Ø1.420 mm, drill Ø0.762 mm, minimum nominal adjacent copper gap **0.144852 mm**. These are **not** fabrication tolerances, installed footprints or verified mask/annulus. Actual KiCad native importer/3D TE STEP register, keyed bushing, PTH DFM, 4-layer DRC and final seven-control assembly remain OPEN.
+- **Evidence:** P17 report `B6038C73605AEF594D437B1A865339CC555F9FFA91B056AE1091F01871A7884C`; P17 site table `BEA68B16B710EF8B15A3B2EAC4B417D02AFADEBDA0158EC802B2B7DDA11E11F2`; P18 report `ECBF48E3C6E52167505111A44C9167166C2BE6169EDEB68AE686D5D884FD4C0A`; P18 candidate KiCad footprint `9F2CC841DE1A2692A9C461B72E5B1F9A55199A3C690BCD21078D5CCBED8913B3` (all SHA-256, relative to `Shellac_Engineering_Staging/reports/` at P17/P18 paths recorded in `docs/design_pack/AE-076F7H_S35B_P17_P18_TE_15Pad_Candidate_Disposition_Rev_A0.md`). P16 support-site report `31E2878CDE5CE70C2AA6C65C6A693F7D8753785DB8AF2BDC84C5A5B83287DBE1` remains accepted with MHTE3 thin DFM margin.
+- **NO native design-source changes:** the governed PCB, schematic, generator, BOM, wiring, manufactured sheet metal, AE-076B upper-cover support authority and all panel drilling remain untouched. The selected-next 220x148 mm lower-carrier board, TE bracket and NKK UB2 conversions are **not implemented**. All four holds remain `final_routing=false`, `layout_freeze=false`, `bom_freeze=false`, `manufacturing_release=false`.
+
+**ONE next engineering transaction after this documentation checkpoint merges and CI is verified:** independent **native KiCad + TE STEP registration of P18 terminals**, with explicit shaft/flats datum and F.Cu/physical B.Cu mirror/rotation negative controls; retain only non-fabrication shadow geometry. Then proceed to the fully registered seven-control native mechanical assembly. Do not manufacture or migrate the footprint from this documentary checkpoint.
+
+**Checkpoint proof:** validate only two documentation files changed, full tests/audit, feature branch commit/push, PR, CI and remote merged `develop` SHA. This section contains the pre-checkpoint baseline, not its own merge SHA.
+
+---
+## HISTORICAL — S35B-P16 nominal TE bracket-site checkpoint, 23 November 2026
 
 **Classification:** SELECTED-NEXT NOMINAL GEOMETRY ACCEPTED / NO PHYSICAL PCB MIGRATION / NOT FOR FABRICATION. **Pre-transaction governed `develop`:** `33494f18b610571a2ed3cabea402a306c8781aeb`.
 
