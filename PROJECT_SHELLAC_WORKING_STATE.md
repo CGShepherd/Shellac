@@ -1,6 +1,22 @@
 # Project Shellac — Persistent Working State
 
-## CURRENT — S35B-P17/P18 TE 15-pad drawing/footprint candidate checkpoint, 23 November 2026
+## CURRENT — S35B-P19 native TE STEP/KiCad relative registration checkpoint, 23 November 2026
+
+**Classification:** NATIVE FREECAD / KICAD 15-TERMINAL RELATIVE ALIGNMENT PASS; FINAL B.Cu ANGLE AND ASSEMBLY OPEN / **NOT FOR FABRICATION**. **Pre-transaction `develop`:** `aee870b668144ea28df21399607fe6bc4ed95ed1`.
+
+- TE MRJE3404 / 1825537-3 (3P4T) and P14 user-measured detents D1-D4 are unchanged. P16 nominal three-pillar bracket sites and P17/P18 15-pad drawing-derived candidate remain selected-next evidence. Do not repeat component selection, continuity, 2D polar registration or general bracket searches without contradictory evidence.
+- **P19 native FreeCAD 1.1.4 PASS:** exact OEM TE STEP one valid fused solid; 15 terminal-tip centres, largest reported site error 0.000006 mm. Opposing nominal bushing flats at STEP local Y=±2.54 mm (5.08 mm across flats). These are relative source CAD data, not final physical angular registration.
+- **P19 native KiCad 10.0.7 PASS:** isolated .kicad_mod imported with 15 unique named through-hole pads, scratch PCB save/reload roundtrip, native B.Cu Flip X parity. 47 incorrect mirror/rotation controls rejected for 15/15 perfect site match (best wrong alignment 14/15).
+- **Open:** choose/prove the double-D flat-to-real-board B.Cu and panel/bracket assembly rotation/side, full seven-control registered MCAD, true TE holder/retainer fit, plated-hole/copper/mask DFM and 4-layer DRC. These cannot be inferred from a relative 15-site match.
+- **Evidence:** Dropbox `reports/S35B_P19_TE_NATIVE_STEP_KICAD_REGISTRATION/P19_REPORT.json` SHA-256 `A49815B8808DC946569D2D65E41A4FD272CABC9CBE93A5A4FCF56F464F3A3005` and its manifest with native FreeCAD, KiCad and shadow-board hashes. OEM STEP SHA-256 `24E75B2DD8187E63EE200F278DD84016C8E705525980846CD78B37AA4FDEB3D9`; P17 `B6038C73605AEF594D437B1A865339CC555F9FFA91B056AE1091F01871A7884C`; P18 `ECBF48E3C6E52167505111A44C9167166C2BE6169EDEB68AE686D5D884FD4C0A`. Detail in `docs/design_pack/AE-076F7H_S35B_P19_TE_Native_Relative_Registration_Rev_A0.md`.
+- No PCB, generator, electrical nets, BOM, fabrication footprints, panel apertures or current AE-076B upper-cover authority changed. Selected-next 220x148 mm PCB and lower carrier not implemented. P16 MHTE3 marginal nominal copper-void clearance remains open. Release permissions `final_routing=false`, `layout_freeze=false`, `bom_freeze=false`, `manufacturing_release=false` remain HELD.
+
+**ONE next engineering transaction after the P19 checkpoint is merged and CI passed:** independently register the native TE bushing flat axis with the actual **board-side / bracket-panel double-D angular datum** in an isolated 3D shadow assembly; reject wrong mirror/180-degree rotation, do not repeat the qualified 15 contact positions. Then proceed to full seven-control native MCAD qualification.
+
+**Checkpoint:** only two documentation paths may change; audit, regression, feature-branch push, PR/merge and post-merge CI are distinct gates. This file records the *pre-transaction* source, not its own merge SHA.
+
+---
+## HISTORICAL — S35B-P17/P18 TE 15-pad drawing/footprint candidate checkpoint, 23 November 2026
 
 **Classification:** 15 UNIQUE TERMINAL SITES + SOURCE-NUMBERED NON-FABRICABLE KICAD CANDIDATE PASS / NATIVE PLACEMENT AND BOARD MIRROR OPEN. **Pre-transaction merged `develop`:** `3961f3f0b276c1c538c79592b00b672225ac292d`.
 
