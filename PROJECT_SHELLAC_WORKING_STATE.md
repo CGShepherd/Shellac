@@ -1,6 +1,47 @@
 # Project Shellac — Persistent Working State
 
-## CURRENT — S35B-P19 native TE STEP/KiCad relative registration checkpoint, 23 November 2026
+## CURRENT — S35B-R01 recovered P21 evidence, 26 November 2026
+
+**Classification:** RECOVERY CHECKPOINT / DESIGN UNCHANGED /
+NOT FOR FABRICATION.
+
+**Source baseline:** develop
+82ac3b2fbde031fe77f18610f0a5938bf3c0d95a
+
+- Local develop was fast-forwarded to the above baseline.
+- Working tree was confirmed clean after synchronisation.
+- P19, P20 and P21 report files exist in Dropbox staging.
+- Independently calculated SHA-256 values:
+  - P19: A49815B8808DC946569D2D65E41A4FD272CABC9CBE93A5A4FCF56F464F3A3005
+  - P20: DB737A18B912EE4C541C424DC6107D09CA563496CC305F8B0A9A640748331F59
+  - P21: 7C394B3AE987F2ABFB521628698F81E31ACE05B1814C15382A6175326DBC6FA2
+- P21 reports seven installed vendor control instances, zero
+  control/control collisions, zero spider/other-control clashes,
+  and three aligned support/load-path columns.
+- Four cover-proxy intersections and nominal 0.752512 mm
+  clearance remain recorded. No tolerance approval is inferred.
+- P20/P21 external evidence is retained but not promoted
+  into the implemented PCB, generator or BOM.
+- The selected 220 x 148 mm PCB and seven-control footprint
+  migration remain outstanding.
+- Existing selected switch identities, matrix contact progression,
+  bracket architecture and support decisions remain unchanged.
+- No general switch-geometry reinvestigation is authorised.
+- Holds remain: final_routing=false, layout_freeze=false,
+  bom_freeze=false, manufacturing_release=false.
+
+**Next engineering transaction:** implement the selected
+seven-control PCB configuration in the native design and
+its generating sources, with electrical netlist preservation.
+Verify actual PCB state before applying changes.
+
+This checkpoint records evidence and implementation status.
+It does not qualify manufacturing or supersede design authority.
+
+---
+
+
+## HISTORICAL — S35B-P19 native TE STEP/KiCad relative registration checkpoint, 23 November 2026
 
 **Classification:** NATIVE FREECAD / KICAD 15-TERMINAL RELATIVE ALIGNMENT PASS; FINAL B.Cu ANGLE AND ASSEMBLY OPEN / **NOT FOR FABRICATION**. **Pre-transaction `develop`:** `aee870b668144ea28df21399607fe6bc4ed95ed1`.
 
